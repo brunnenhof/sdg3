@@ -51,5 +51,5 @@ cb_pa_tx = 'Pacific Rim'
 cb_ec_tx = 'East Europe - Central Asia'
 cb_eu_tx = 'Europe'
 cb_se_tx = 'Southeast Asia'
-gm_reg_npbp_tx = 'When you are done, click this button'
+gm_reg_npbp_tx = 'When you are done (and sure), click this button'
 
