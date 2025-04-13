@@ -1,9 +1,11 @@
 unique_ids:
   assets:
+    BlueWay_logo_512x512.png: '1744531418444147461751757.69992'
     standard-page.html: S3VBMV5LT7KNPIORKH7DURU5HLFEPJ2Q
     theme.css: ZEXMB7OLKJS6MFFMWYPMEAZYH4IDUKRX
   forms:
-    Form1: RLBSXBDSIT6I2KZAG3FIAKS45JCIPA56
-  modules: {}
+    home: RLBSXBDSIT6I2KZAG3FIAKS45JCIPA56
+  modules:
+    mg: '1744531999374124090128595.91318'
   scripts: {}
   server_modules: {}
