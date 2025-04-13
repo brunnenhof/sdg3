@@ -64,7 +64,8 @@ components:
         padding: [null, '8', null, '8']
       text: button_1
     type: Button
-  - layout_properties: {}
+  - event_bindings: {change: file_loader_1_change}
+    layout_properties: {}
     name: file_loader_1
     properties:
       spacing:
