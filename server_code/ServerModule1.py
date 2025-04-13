@@ -51,7 +51,7 @@ def upload_csv_sdg(rows, re):
   for r in range(1, len(rows)):
     r = rows[r]
     rr = r.split(",")
-    app_tables.sdg.add_row(id=int(rr[0]), sdgNbr=int(rr[])  )
+    app_tables.sdg.add_row(id=int(rr[0]), sdgNbr=rr[1], sdg=rr[2], sdg_dt=rr[3] )
 
 @anvil.server.callable
 def upload_csv_pols(rows, re):
@@ -60,3 +60,23 @@ def upload_csv_pols(rows, re):
     r = rows[r]
     rr = r.split(",")
     app_tables.policies.add_row(id=int(rr[0]), abbr=rr[1], name=rr[2], tltl=float(rr[3]), gl=float(rr[4]), expl=rr[5], ta=rr[6] )
+
+@anvil.server.callable
+def upload_csv_mpv(rows, re):
+  app_tables.mdf_play_vars.delete_all_rows()
+  for r in range(1, len(rows)):
+    r = rows[r]
+    rr = r.split(",")
+    print(rr)
+    app_tables.mdf_play_vars.add_row(var_name=rr[0], col_idx=int(rr[1]) )
+
+@anvil.server.callable
+def upload_csv_sdg_vars(rows, re):
+  app_tables.sdg_vars.delete_all_rows()
+  for r in range(1, len(rows)):
+    r = rows[r]
+    rr = r.split(",")
+    print(rr)
+    app_tables.sdg_vars.add_row(id=int(rr[0]), sdg_nbr= int(rr[1]), sdg=rr[2], indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),
+                               red=float(rr[6]), lowerbetter=int(rr[7]), ymin=float(rr[8]), ymax=float(rr[9]),
+                               subtitle=rr[10], ta=rr[11], pct=int(rr[12]))

@@ -48,12 +48,13 @@ class home(homeTemplate):
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
-    #print(f"The file's name is: {file.name}")
-    #print(f"The number of bytes in the file is: {file.length}")
-    #print(f"The file's content type is: {file.content_type}")
+#    print(f"The file's name is: {file.name}")
+#    print(f"The number of bytes in the file is: {file.length}")
+#    print(f"The file's content type is: {file.content_type}")
 #    print(f"The file's contents are: '{file.get_bytes()}'")
+    print(file)
     b = file.get_bytes()
     bb = b.decode("utf-8")
     bbb = bb.splitlines()
-    print(bbb)
-    anvil.server.call('upload_csv_sdg', bbb, 'regs')
+#    print(bbb)
+    anvil.server.call('upload_csv_sdg_vars', bbb, 'regs')
