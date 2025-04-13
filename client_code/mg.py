@@ -31,3 +31,10 @@ top_join_game = 'JOIN a game as player'
 top_start_game = 'Start a game as organizer'
 p_lb_choose_game = 'There are more than one open games. First select the one you want to join, then press the JOIN button:'
 p_btn_select_game = 'JOIN'
+gm_id_msg1 = "Your game ID is "
+gm_id_msg2 =". Make a note of it and tell your players."
+gm_id_title="Your game ID:"
+top_thanks_msg ="... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers."
+top_thanks_title="Thank you ... "
+top_roles_setup_msg ="All roles have been set up for "
+

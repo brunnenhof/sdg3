@@ -2,6 +2,11 @@ from ._anvil_designer import homeTemplate
 from anvil import *
 from .. import mg
 import webbrowser
+import anvil.server
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
+from .. import mg
 
 
 class home(homeTemplate):
@@ -29,8 +34,13 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    game_id = anvil.server.call('generate_id')
+    app_tables.status.add_row(game_id=game_id, closed=0, current_gm=0, current_p=0, roles_avail=4)
+    msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
+    alert(msg, title=mg.gm_id_title)
+    anvil.server.call('set_roles', game_id)
+    msg = mg.top_roles_setup_msg + game_id
+    alert(msg)
 
   def top_join_game_click(self, **event_args):
     """This method is called when the button is clicked"""

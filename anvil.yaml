@@ -1,4 +1,57 @@
 allow_embedding: false
+db_schema:
+  roles_taken:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: reg
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: role
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: taken
+      type: number
+    - admin_ui: {order: 4, width: 101}
+      name: role_nbr
+      type: number
+    - admin_ui: {order: 5, width: 99}
+      name: round
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: wert
+      type: number
+    server: full
+    title: roles_taken
+  status:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: closed
+      type: number
+    - admin_ui: {order: 2, width: 200}
+      name: current_p
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: next_p
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: current_gm
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: next_gm
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: roles_avail
+      type: number
+    server: full
+    title: status
 dependencies: []
 metadata: {description: m3 theme because of dropdown, logo_img: 'asset:BlueWay_logo_512x512.png'}
 name: sdg3
