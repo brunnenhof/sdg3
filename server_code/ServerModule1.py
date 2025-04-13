@@ -8,14 +8,18 @@ from . import mg
 
 @anvil.server.callable
 def generate_id():
+  not_allowed = ['FUCK', 'SHIT']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   a = random.randint(10, 99)
+  while a == 88:
+    a = random.randint(10, 99)
   cid = cid + '-' + str(a) 
   while app_tables.status.has_row(q.like(cid)):
     cid = ''.join(random.choices(string.ascii_uppercase, k=4))
     a = random.randint(10, 99)
-    d = random.randint(10, 99)
-    cid = cid + '-' + str(d) + '-' + str(a) 
+    while a == 88:
+      a = random.randint(10, 99)
+    cid = cid + '-' + str(a) 
   return f"{cid}"
 
 @anvil.server.callable
