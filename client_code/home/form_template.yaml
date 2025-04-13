@@ -4,16 +4,33 @@ components:
     - event_bindings: {click: top_start_game_click}
       layout_properties: {grid_position: 'PINTXY,HDMYCU'}
       name: top_start_game
-      properties: {background: '#ffedd3', text: button_1}
+      properties: {background: '#ffedd3', role: elevated-button, text: button_1}
       type: Button
     - event_bindings: {click: top_join_game_click}
       layout_properties: {grid_position: 'PINTXY,XDTWPY'}
       name: top_join_game
-      properties: {background: '#e8f4d5', text: button_2}
+      properties: {background: '#e8f4d5', role: elevated-button, text: button_2}
       type: Button
     layout_properties: {grid_position: 'RLGLYI,VVXMFZ'}
-    name: outlined_card_1
+    name: top_entry
     properties: {role: outlined-card}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'FCDJNG,KWKUWY'}
+      name: p_lb_choose_game
+      properties: {}
+      type: Label
+    - layout_properties: {grid_position: 'FCDJNG,JGEVBC'}
+      name: p_dd_select_game
+      properties: {}
+      type: DropDown
+    - layout_properties: {grid_position: 'AJJBNE,FTSODT'}
+      name: p_btn_select_game
+      properties: {role: elevated-button, text: button_1}
+      type: Button
+    layout_properties: {grid_position: 'WEAXJJ,FMNFHY'}
+    name: p_cp_choose_game
+    properties: {background: '#e8f4d5', role: outlined-card}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: top_cp_1

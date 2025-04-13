@@ -15,6 +15,8 @@ class home(homeTemplate):
     self.top_btn_poc.text = 'PoC'
     self.top_join_game.text = mg.top_join_game
     self.top_start_game.text = mg.top_start_game
+    self.p_lb_choose_game.text = mg.p_lb_choose_game
+    self.p_btn_select_game.text = mg.p_btn_select_game
 
   def top_btn_thanks_click(self, **event_args):
     alert(content="... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers.", title="Thank you", large=True)
