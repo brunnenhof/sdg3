@@ -1,0 +1,15 @@
+components:
+- layout_properties: {grid_position: 'CREBSS,OKHGPK'}
+  name: gm_card_wait_1_temp_title
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'CFQPJM,NLFVJZ'}
+  name: gm_card_wait_1_temp_reg
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'CFQPJM,KCEMOZ'}
+  name: gm_card_wait_1_temp_ta
+  properties: {}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true

@@ -187,6 +187,23 @@ db_schema:
       type: datetime
     server: full
     title: status
+  to_reg_loogedin:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: reg
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: ta
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: logged_in
+      type: number
+    server: full
+    title: to_reg_loogedin
 dependencies: []
 metadata: {description: m3 theme because of dropdown, logo_img: 'asset:BlueWay_logo_512x512.png'}
 name: sdg3

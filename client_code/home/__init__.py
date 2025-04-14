@@ -35,6 +35,10 @@ class home(homeTemplate):
     self.cb_eu.text = mg.cb_eu_tx
     self.cb_se.text = mg.cb_se_tx
     self.gm_reg_npbp.text = mg.gm_reg_npbp_tx
+    self.gm_card_wait_1_info.content = mg.gm_card_wait_1_info_tx
+    self.gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx
+    self.gm_card_wait_1_btn_kick_off_round_1.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx
+    self.setup_npbp_label.text = mg.setup_npbp_label_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -48,6 +52,7 @@ class home(homeTemplate):
 
   def top_start_game_click(self, **event_args):
     game_id = anvil.server.call('generate_id')
+    mg.my_game_id = game_id
     app_tables.status.add_row(game_id=game_id, game_status=0, gm_status=0, p_status=0, roles_avail=4)
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
@@ -107,6 +112,7 @@ class home(homeTemplate):
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
+    self.setup_npbp_label.visible = False
     npbp = [] # not played by human players
     if self.cb_us.checked:
       npbp.append('us')
@@ -130,36 +136,36 @@ class home(homeTemplate):
       npbp.append('se')
     self.gm_cp_not_played.visible = False
     self.gm_board_info.visible = False
-    allok = anvil.server.call('set_npbp', cid, npbp)
-    self.label_set_up_game_info.visible = True
-    temp, regions = anvil.server.call('set_up_game_db', 1, cid, npbp)
-    if temp:
-      self.label_rd1_setup1.visible = True
-    anvil.server.call('set_up_game_db', 2, cid, npbp)
-    self.label_rd2_setup.visible = True
-    anvil.server.call('set_up_game_db', 3, cid, npbp)
-    self.label_rd3_setup.visible = True
-    anvil.server.call('set_up_role_assignments', cid, npbp, regions)
-    txt = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
-    self.label_role_assign.text = txt
-    self.label_role_assign.visible = True
+    anfang = time.time()
+    self.task = anvil.server.call('launch_set_npbp', cid, npbp)
+    while not self.task.is_completed():
+      self.setup_npbp_label.visible = True
+    else:
+      self.setup_npbp_label.visible = False
+      ende = time.time()
+      dauer = round(ende - anfang, 1)
+      alert('it took '+str(dauer)+' sec')
+    
+    self.gm_card_wait_1.visible = True
 
-    self.card_all_logged_in.visible = True
-    fdz = anvil.server.call('all_logged_in', cid)
-    self.rep_nli.items = fdz
-    while fdz:
-        time.sleep(20)
-        fdz = anvil.server.call('all_logged_in', cid)
-        if fdz:
-          self.rep_nli.items = fdz
-          
-    if not fdz:  #  meaning all players have logged in, the game mistress is now waiting for the decisions to be submitted
-        self.card_all_logged_in.visible = False
-        self.card_waiting_for_all_pol_submissions.visible = True
-        fdz2 = anvil.server.call('dec_sub', cid)
-        self.rep_wait_decisions.items = fdz2
-        while fdz2:
-          time.sleep(60)
-          fdz2 = anvil.server.call('dec_sub', cid)  # # DECisions SUBmitted
-          if fdz2:
-            self.rep_wait_decisions.items = fdz2
+  def gm_card_wait_1_btn_check_click(self, runde):
+    cid = mg.my_game_id
+    runde = mg.game_runde
+    rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
+    slots = []
+    for row in rows:
+      slot = {'reg' : names[i], 'ta': cost}
+      
+    for i in range(0, len(pct)):
+        nw = pct[i] - tltl[i]
+        nb = 0
+        nt = gl[i] - tltl[i]
+        pct_of_range = nw / (nt - nb)
+        cost = round(maxc * pct_of_range, 2)
+        slot = {'pol_name' : names[i], 'pol_amount': cost}
+        slots.append(slot)
+    return slots
+
+    slots = [{key: r[key] for key in ["reg", "ta"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
+    self.gm_card_wait_1_rp.items = slots
+    pass

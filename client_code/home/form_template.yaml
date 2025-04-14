@@ -166,6 +166,33 @@ components:
       name: gm_cp_not_played
       properties: {col_widths: '{"ONUDQF":15,"STRJVV":15,"EADDOM":15,"RXODTA":15,"AWRDXR":12}'}
       type: ColumnPanel
+    - layout_properties: {grid_position: 'NSUXZS,UOLGFU'}
+      name: setup_npbp_label
+      properties: {align: center, bold: true, visible: false}
+      type: Label
+    - components:
+      - layout_properties: {grid_position: 'WYMSDF,BOUPZK'}
+        name: gm_card_wait_1_info
+        properties:
+          content: "All roles have been set up now. \nTell your players to log in, look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. You can check if all have logged in by clicking on the **Check LogIn** button. Once they are ready to proceed to the next round, click on the **Advance the model for the next round** button."
+        type: RichText
+      - event_bindings: {click: gm_card_wait_1_btn_check_click}
+        layout_properties: {grid_position: 'VWEOQI,ALEEHI'}
+        name: gm_card_wait_1_btn_check
+        properties: {background: '#e8f4d5', bold: true, foreground: 'theme:Primary', role: elevated-button, text: Check LogIn}
+        type: Button
+      - layout_properties: {grid_position: 'VWEOQI,EAGIKU'}
+        name: gm_card_wait_1_btn_kick_off_round_1
+        properties: {bold: true, foreground: 'theme:Primary', role: elevated-button, text: Advance the model for the next round}
+        type: Button
+      - layout_properties: {grid_position: 'SJYWOF,YYSVJG'}
+        name: gm_card_wait_1_rp
+        properties: {item_template: home.gm_card_wait_1_temp, visible: false}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'JNDAVR,ULHFHB'}
+      name: gm_card_wait_1
+      properties: {background: '#ffedd3', role: outlined-card, visible: false}
+      type: ColumnPanel
     layout_properties: {grid_position: 'WUIUEW,ZUIVEK'}
     name: gm_role_reg
     properties: {background: '#ffedd3', role: outlined-card, visible: false}

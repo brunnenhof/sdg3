@@ -12,7 +12,7 @@ my_reg = ''
 my_ministry = ''
 my_personal_game_id = ''
 my_step = 0
-game_step = 0
+game_runde = 0
 ###
 ### comment this out in production and ask interactively
 not_played_by_players = ['us', 'af', 'cn', 'sa', 'la', 'pa', 'eu', 'se']
@@ -103,4 +103,9 @@ cb_eu_tx = 'Europe'
 cb_se_tx = 'Southeast Asia'
 gm_reg_npbp_tx = 'When you are done (and sure), click this button'
 top_entry_label_tx = 'Hold on ... setting up all the necessary slots and tables for the game ...'
-
+gm_card_wait_1_temp_title_tx = 'Still waiting for the following to log in ...'
+gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. You can check if all have logged in by clicking on the **Check LogIn** button. Once they are ready to proceed **---** *this will take some time* **--** to the next round, click on the **Advance the model for the next round** button."
+gm_card_wait_1_btn_check_tx = 'Check LogIn'
+gm_card_wait_1_btn_kick_off_round_1_tx = 'Advance model for the next round'
+setup_npbp_label_tx = '... Hold on ... Role assignments are being set up ...'
+#    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'

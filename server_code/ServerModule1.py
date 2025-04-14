@@ -96,33 +96,42 @@ def upload_csv_sdg_vars(rows, re):
                                red=float(rr[6]), lowerbetter=int(rr[7]), ymin=float(rr[8]), ymax=float(rr[9]),
                                subtitle=rr[10], ta=rr[11], pct=int(rr[12]))
 
-def get_tltl_or_random(pol):
-  row = app_tables.policies.get(abbr=pol)
-  tltl = row['tltl']
-  gl = row['gl']
-  mymin = tltl
-  mymax = gl
-  myhalf = (mymax - mymin) / 2
-  wert = random.uniform(myhalf, mymax)  # random policy value biased towards GL
-  return tltl, wert
-
 @anvil.server.callable
+def launch_set_npbp(game_id, npbp):
+  task = anvil.server.launch_background_task('set_npbp', game_id, npbp)
+  return task
+
+@anvil.server.background_task
 def set_npbp(cid, npbp):
-  #app_tables.roles_assign.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
+  print(pol_list)
+  tltl_list = [r['tltl'] for r in app_tables.policies.search()]
+  print(tltl_list)
+  gl_list = [r['gl'] for r in app_tables.policies.search()]
+  print(gl_list)
+  w_list = []
+  for i in range(0,len(tltl_list)):
+    mymin = tltl_list[i]
+    mymax = gl_list[i]
+    myrange = (mymax - mymin) 
+    w = mymin + random.uniform(0, myrange)
+    w_list.append(w)  # random policy value biased towards GL
   regs = mg.regs
+  print(w_list)
   for runde in range(1,4):
     for re in regs:
-        for p in pol_list:
-          ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
-          row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
-          tltl, wert = get_tltl_or_random(p)
-          if re in npbp:
-            taken = 2
-            w2 = wert
-          else:
-            taken = 0
-            w2 = tltl
-          row.update(taken=taken, wert=w2)
+      j = 0
+      for p in pol_list:
+        ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
+        row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
+        if re in npbp:
+          taken = 2
+          w2 = w_list[j]
+          print(cid,' ' + str(runde)+' '+re+' '+p+' '+ta+' '+str(w2))
+        else:
+          taken = 0
+          w2 = tltl_list[j]
+        row.update(taken=taken, wert=w2)
+        j += 1
   rs = app_tables.status.get(game_id=cid)
   rs.update(gm_status=1)
