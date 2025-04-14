@@ -22,6 +22,14 @@ roles = ['pov', 'ineq', 'emp', 'food', 'ener', 'fut']
 ro_nbr = [0, 1, 2, 3, 4, 5]
 regs = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
 re_nbr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+pov_to_Poverty = thisdict = {
+  "pov": "Poverty",
+  "ineq": "Inequality",
+  "emp": "Empowerment",
+  "food": "Food",
+  "ener": "Energy",
+  "fut": "Future"
+}
 top_title = 'END-times'
 top_btn_thanks = 'Danke'
 top_btn_start = 'Start a new game as organizer'
@@ -36,7 +44,7 @@ gm_id_msg2 =". Make a note of it and tell your players."
 gm_id_title="Your game ID:"
 top_thanks_msg ="... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers."
 top_thanks_title="Thank you ... "
-top_roles_setup_msg ="All roles have been set up for "
+top_roles_setup_msg ="Roles template has been set up for "
 title_you_are_joining = "You are joining: "
 msg_game_not_started = "The game organizer has not yet started a game. Please wait until he/she does ..."
 msg_gm_board = "Game Organizer Board"

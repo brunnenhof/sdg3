@@ -34,6 +34,7 @@ class home(homeTemplate):
     self.cb_ec.text = mg.cb_ec_tx
     self.cb_eu.text = mg.cb_eu_tx
     self.cb_se.text = mg.cb_se_tx
+    self.gm_reg_npbp.text = mg.gm_reg_npbp_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -87,7 +88,7 @@ class home(homeTemplate):
     bb = b.decode("utf-8")
     bbb = bb.splitlines()
 #    print(bbb)
-    anvil.server.call('upload_csv_sdg_vars', bbb, 'regs')
+    anvil.server.call('upload_csv_pols', bbb, 'regs')
 
   def p_btn_select_game_click(self, **event_args):
     alert(self.p_dd_select_game.selected_value['game_id'], title=mg.title_you_are_joining)
@@ -99,5 +100,60 @@ class home(homeTemplate):
 #    self.card_select_reg_role.visible = True
 
   def gm_reg_npbp_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    global cid
+    npbp = [] # not played by human players
+    if self.cb_us.checked:
+      npbp.append('us')
+    if self.cb_af.checked:
+      npbp.append('af')
+    if self.cb_cn.checked:
+      npbp.append('cn')
+    if self.cb_me.checked:
+      npbp.append('me')
+    if self.cb_sa.checked:
+      npbp.append('sa')
+    if self.cb_la.checked:
+      npbp.append('la')
+    if self.cb_pa.checked:
+      npbp.append('pa')
+    if self.cb_ec.checked:
+      npbp.append('ec')
+    if self.cb_eu.checked:
+      npbp.append('eu')
+    if self.cb_se.checked:
+      npbp.append('se')
+    self.gm_cp_not_played.visible = False
+    set_up_gi, npbhp_str = anvil.server.call('start_new_game', cid, npbp, 1)
+    if set_up_gi:
+      self.label_set_up_game_info.visible = True
+      temp, regions = anvil.server.call('set_up_game_db', 1, cid, npbp)
+      if temp:
+        self.label_rd1_setup1.visible = True
+      anvil.server.call('set_up_game_db', 2, cid, npbp)
+      self.label_rd2_setup.visible = True
+      anvil.server.call('set_up_game_db', 3, cid, npbp)
+      self.label_rd3_setup.visible = True
+      anvil.server.call('set_up_role_assignments', cid, npbp, regions)
+      txt = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
+      self.label_role_assign.text = txt
+      self.label_role_assign.visible = True
+
+      self.card_all_logged_in.visible = True
+      fdz = anvil.server.call('all_logged_in', cid)
+      self.rep_nli.items = fdz
+      while fdz:
+        time.sleep(20)
+        fdz = anvil.server.call('all_logged_in', cid)
+        if fdz:
+          self.rep_nli.items = fdz
+          
+      if not fdz:  #  meaning all players have logged in, the game mistress is now waiting for the decisions to be submitted
+        self.card_all_logged_in.visible = False
+        self.card_waiting_for_all_pol_submissions.visible = True
+        fdz2 = anvil.server.call('dec_sub', cid)
+        self.rep_wait_decisions.items = fdz2
+        while fdz2:
+          time.sleep(60)
+          fdz2 = anvil.server.call('dec_sub', cid)  # # DECisions SUBmitted
+          if fdz2:
+            self.rep_wait_decisions.items = fdz2

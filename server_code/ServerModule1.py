@@ -4,10 +4,12 @@ from anvil.tables import app_tables
 import anvil.server
 import random
 import string
+import datetime
 from . import mg
 
 @anvil.server.callable
 def generate_id():
+  app_tables.status.delete_all_rows()
   not_allowed = ['FUCK', 'SHIT']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   a = random.randint(10, 99)
@@ -24,14 +26,17 @@ def generate_id():
 
 @anvil.server.callable
 def set_roles(game_id):
+  app_tables.roles_assign.delete_all_rows()
   roles = mg.roles
   regs = mg.regs
   ro_nbr = mg.ro_nbr
   re_nbr = mg.re_nbr
+  pols = [r['abbr'] for r in app_tables.policies.search()]
   for re in regs:
     for ro_n in ro_nbr:
       for runde in range(1,4):
-        app_tables.roles_taken.add_row(game_id=game_id,role_nbr=ro_n,role=roles[ro_n], taken = 4, reg=re, round=runde)
+        for p in pols:
+          app_tables.roles_assign.add_row(game_id=game_id,role_nbr=ro_n,role=roles[ro_n], taken = 4, reg=re, round=runde, pol=p)
 
 @anvil.server.callable
 def upload_csv_reg(rows, re):
@@ -84,3 +89,34 @@ def upload_csv_sdg_vars(rows, re):
     app_tables.sdg_vars.add_row(id=int(rr[0]), sdg_nbr= int(rr[1]), sdg=rr[2], indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),
                                red=float(rr[6]), lowerbetter=int(rr[7]), ymin=float(rr[8]), ymax=float(rr[9]),
                                subtitle=rr[10], ta=rr[11], pct=int(rr[12]))
+
+def get_tltl_or_random(role, pol):
+  row = app_tables.policies.get(ta=mg.pov_to_Poverty[role], abbr=pol)
+  tltl = row['tltl']
+  gl = row['gl']
+  mymin = tltl
+  mymax = gl
+  myhalf = (mymax - mymin) / 2
+  wert = random.uniform(myhalf, mymax)  # random policy value biased towards GL
+  return tltl, wert
+
+@anvil.server.callable
+def start_new_game(cid, npbp, next_step_gmv):
+  app_tables.roles_assign.delete_all_rows()
+  npbp_str = ' '.join(npbp)
+  jetzt = datetime.datetime.now()
+  for runde in range(1,4):
+    for re in mg.regs:
+      row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re)
+      tltl, wert = get_tltl_or_random(row['role'], row['pol'])
+      if re in npbp:
+        taken = 2
+        w2 = wert
+      else:
+        taken = 0
+        w2 = tltl
+      row.update(taken=taken, wert=w2) 
+      #app_tables.games_info.add_row(game_id=cid , npbhp=npbp_str, next_step_gm= next_step_gmv , started_on = jetzt, closed = False) 
+  ###
+  # need to update status
+  return 

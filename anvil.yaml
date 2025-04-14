@@ -40,7 +40,7 @@ db_schema:
     - admin_ui: {order: 2, width: 200}
       name: name
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 85}
       name: tltl
       type: number
     - admin_ui: {order: 4, width: 63}
@@ -49,7 +49,7 @@ db_schema:
     - admin_ui: {order: 5, width: 200}
       name: expl
       type: string
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 92}
       name: ta
       type: string
     server: full
@@ -77,19 +77,19 @@ db_schema:
       type: number
     server: full
     title: regions
-  roles_taken:
+  roles_assign:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {order: 0, width: 128}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {order: 1, width: 108}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {order: 2, width: 80}
       name: role
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 98}
       name: taken
       type: number
     - admin_ui: {order: 4, width: 101}
@@ -98,11 +98,14 @@ db_schema:
     - admin_ui: {order: 5, width: 99}
       name: round
       type: number
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 126}
       name: wert
       type: number
+    - admin_ui: {order: 7, width: 108}
+      name: pol
+      type: string
     server: full
-    title: roles_taken
+    title: roles_assign
   sdg:
     client: none
     columns:
@@ -170,24 +173,27 @@ db_schema:
     - admin_ui: {order: 0, width: 200}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {order: 1, width: 64}
       name: closed
       type: number
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {order: 2, width: 108}
       name: current_p
       type: number
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 151}
       name: next_p
       type: number
     - admin_ui: {order: 4, width: 200}
       name: current_gm
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {order: 5, width: 123}
       name: next_gm
       type: number
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 110}
       name: roles_avail
       type: number
+    - admin_ui: {order: 7, width: 200}
+      name: started
+      type: datetime
     server: full
     title: status
 dependencies: []
