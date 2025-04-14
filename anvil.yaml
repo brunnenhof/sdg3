@@ -170,25 +170,19 @@ db_schema:
     - admin_ui: {width: 200}
       name: game_id
       type: string
-    - admin_ui: {width: 64}
-      name: closed
+    - admin_ui: {order: 1, width: 109}
+      name: game_status
       type: number
     - admin_ui: {order: 2, width: 108}
-      name: current_p
+      name: p_status
       type: number
-    - admin_ui: {order: 3, width: 113}
-      name: next_p
-      type: number
-    - admin_ui: {order: 4, width: 114}
-      name: current_gm
-      type: number
-    - admin_ui: {width: 123}
-      name: next_gm
+    - admin_ui: {order: 5, width: 123}
+      name: gm_status
       type: number
     - admin_ui: {width: 110}
       name: roles_avail
       type: number
-    - admin_ui: {order: 7, width: 182}
+    - admin_ui: {order: 7, width: 144}
       name: started
       type: datetime
     server: full

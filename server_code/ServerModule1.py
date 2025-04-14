@@ -33,18 +33,17 @@ def launch_set_roles(game_id):
 @anvil.server.background_task
 def set_roles(game_id):
   app_tables.roles_assign.delete_all_rows()
-  roles = mg.roles
   regs = mg.regs
-  ro_nbr = mg.ro_nbr
-  re_nbr = mg.re_nbr
   pols = [r['abbr'] for r in app_tables.policies.search()]
   for runde in range(1,4):
     for re in regs:
         for p in pols:
           my_role = mg.Pov_to_pov[mg.pol_to_ta[p]]
-          #print(re+' '+str(ro_n)+' '+str(runde)+' '+p)
           app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
-
+  jetzt = datetime.datetime.now()
+  row = app_tables.status.get(game_id=game_id)
+  row.update(started=jetzt,closed=2)
+  
 @anvil.server.callable
 def upload_csv_reg(rows, re):
   app_tables.policies.delete_all_rows()
