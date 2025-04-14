@@ -42,7 +42,7 @@ def set_roles(game_id):
           app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
   jetzt = datetime.datetime.now()
   row = app_tables.status.get(game_id=game_id)
-  row.update(started=jetzt,closed=2)
+  row.update(started=jetzt,game_status=1)
   
 @anvil.server.callable
 def upload_csv_reg(rows, re):
@@ -96,8 +96,8 @@ def upload_csv_sdg_vars(rows, re):
                                red=float(rr[6]), lowerbetter=int(rr[7]), ymin=float(rr[8]), ymax=float(rr[9]),
                                subtitle=rr[10], ta=rr[11], pct=int(rr[12]))
 
-def get_tltl_or_random(role, pol):
-  row = app_tables.policies.get(ta=mg.pov_to_Poverty[role], abbr=pol)
+def get_tltl_or_random(pol):
+  row = app_tables.policies.get(abbr=pol)
   tltl = row['tltl']
   gl = row['gl']
   mymin = tltl
@@ -107,22 +107,22 @@ def get_tltl_or_random(role, pol):
   return tltl, wert
 
 @anvil.server.callable
-def start_new_game(cid, npbp, next_step_gmv):
-  app_tables.roles_assign.delete_all_rows()
-  npbp_str = ' '.join(npbp)
-  jetzt = datetime.datetime.now()
+def set_npbp(cid, npbp):
+  #app_tables.roles_assign.delete_all_rows()
+  pol_list = [r['abbr'] for r in app_tables.policies.search()]
+  regs = mg.regs
   for runde in range(1,4):
-    for re in mg.regs:
-      row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re)
-      tltl, wert = get_tltl_or_random(row['role'], row['pol'])
-      if re in npbp:
-        taken = 2
-        w2 = wert
-      else:
-        taken = 0
-        w2 = tltl
-      row.update(taken=taken, wert=w2) 
-      #app_tables.games_info.add_row(game_id=cid , npbhp=npbp_str, next_step_gm= next_step_gmv , started_on = jetzt, closed = False) 
-  ###
-  # need to update status
-  return 
+    for re in regs:
+        for p in pol_list:
+          ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
+          row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
+          tltl, wert = get_tltl_or_random(p)
+          if re in npbp:
+            taken = 2
+            w2 = wert
+          else:
+            taken = 0
+            w2 = tltl
+          row.update(taken=taken, wert=w2)
+  rs = app_tables.status.get(game_id=cid)
+  rs.update(gm_status=1)

@@ -48,7 +48,7 @@ class home(homeTemplate):
 
   def top_start_game_click(self, **event_args):
     game_id = anvil.server.call('generate_id')
-    app_tables.status.add_row(game_id=game_id, closed=0, current_gm=0, current_p=0, roles_avail=4)
+    app_tables.status.add_row(game_id=game_id, game_status=0, gm_status=0, p_status=0, roles_avail=4)
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
     anfang = time.time()
@@ -64,19 +64,15 @@ class home(homeTemplate):
       self.gm_board.text = mg.msg_gm_board + '  for '+game_id
       self.gm_role_reg.visible = True
 
-      
-
-      
-
   def top_join_game_click(self, **event_args):
     self.top_entry.visible = False
     self.p_cp_choose_game.visible = True
-    how_many_new = len(app_tables.status.search(closed=0, current_gm =0))
+    how_many_new = len(app_tables.status.search(game_status=0, gm_status=0))
     if how_many_new > 1:
       self.p_cp_choose_game.visible = True
-      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(closed=0, current_gm =0, roles_avail=1)]
+      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=0, gm_status=0, p_status=0)]
     elif how_many_new == 1:
-      row = app_tables.status.get(closed=0)
+      row = app_tables.status.get(game_status=0)
       alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
       #### 
@@ -110,7 +106,7 @@ class home(homeTemplate):
 #    self.card_select_reg_role.visible = True
 
   def gm_reg_npbp_click(self, **event_args):
-    global cid
+    cid = mg.my_game_id
     npbp = [] # not played by human players
     if self.cb_us.checked:
       npbp.append('us')
@@ -133,31 +129,31 @@ class home(homeTemplate):
     if self.cb_se.checked:
       npbp.append('se')
     self.gm_cp_not_played.visible = False
-    set_up_gi, npbhp_str = anvil.server.call('start_new_game', cid, npbp, 1)
-    if set_up_gi:
-      self.label_set_up_game_info.visible = True
-      temp, regions = anvil.server.call('set_up_game_db', 1, cid, npbp)
-      if temp:
-        self.label_rd1_setup1.visible = True
-      anvil.server.call('set_up_game_db', 2, cid, npbp)
-      self.label_rd2_setup.visible = True
-      anvil.server.call('set_up_game_db', 3, cid, npbp)
-      self.label_rd3_setup.visible = True
-      anvil.server.call('set_up_role_assignments', cid, npbp, regions)
-      txt = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
-      self.label_role_assign.text = txt
-      self.label_role_assign.visible = True
+    self.gm_board_info.visible = False
+    allok = anvil.server.call('set_npbp', cid, npbp)
+    self.label_set_up_game_info.visible = True
+    temp, regions = anvil.server.call('set_up_game_db', 1, cid, npbp)
+    if temp:
+      self.label_rd1_setup1.visible = True
+    anvil.server.call('set_up_game_db', 2, cid, npbp)
+    self.label_rd2_setup.visible = True
+    anvil.server.call('set_up_game_db', 3, cid, npbp)
+    self.label_rd3_setup.visible = True
+    anvil.server.call('set_up_role_assignments', cid, npbp, regions)
+    txt = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
+    self.label_role_assign.text = txt
+    self.label_role_assign.visible = True
 
-      self.card_all_logged_in.visible = True
-      fdz = anvil.server.call('all_logged_in', cid)
-      self.rep_nli.items = fdz
-      while fdz:
+    self.card_all_logged_in.visible = True
+    fdz = anvil.server.call('all_logged_in', cid)
+    self.rep_nli.items = fdz
+    while fdz:
         time.sleep(20)
         fdz = anvil.server.call('all_logged_in', cid)
         if fdz:
           self.rep_nli.items = fdz
           
-      if not fdz:  #  meaning all players have logged in, the game mistress is now waiting for the decisions to be submitted
+    if not fdz:  #  meaning all players have logged in, the game mistress is now waiting for the decisions to be submitted
         self.card_all_logged_in.visible = False
         self.card_waiting_for_all_pol_submissions.visible = True
         fdz2 = anvil.server.call('dec_sub', cid)
