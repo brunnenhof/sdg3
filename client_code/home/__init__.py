@@ -6,8 +6,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from .. import mg
-
+import time
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -51,12 +50,19 @@ class home(homeTemplate):
     app_tables.status.add_row(game_id=game_id, closed=0, current_gm=0, current_p=0, roles_avail=4)
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
-    anvil.server.call('set_roles', game_id)
-    msg = mg.top_roles_setup_msg + game_id
-    alert(msg)
-    self.top_entry.visible = False
-    self.gm_board.text = mg.msg_gm_board + '  for '+game_id
-    self.gm_role_reg.visible = True
+    anfang = time.time()
+    self.task = anvil.server.call('launch_set_roles', game_id)
+    self.top_entry_label.visible = True
+#      make something visible
+    while not self.task.is_completed():
+      self.top_entry_label.text = mg.top_entry_label_tx
+    else:
+      ende = time.time()
+      dauer = ende - anfang
+      alert('it took '+str(dauer))
+      self.top_entry.visible = False
+      self.gm_board.text = mg.msg_gm_board + '  for '+game_id
+      self.gm_role_reg.visible = True
 
   def top_join_game_click(self, **event_args):
     self.top_entry.visible = False

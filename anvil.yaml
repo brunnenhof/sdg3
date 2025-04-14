@@ -3,10 +3,10 @@ db_schema:
   mdf_play_vars:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 273}
+    - admin_ui: {width: 273}
       name: var_name
       type: string
-    - admin_ui: {order: 1, width: 94}
+    - admin_ui: {width: 94}
       name: col_idx
       type: number
     server: full
@@ -14,16 +14,16 @@ db_schema:
   ministries:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 88}
+    - admin_ui: {width: 88}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 119}
+    - admin_ui: {width: 119}
       name: ministry
       type: string
-    - admin_ui: {order: 2, width: 142}
+    - admin_ui: {width: 142}
       name: long
       type: string
-    - admin_ui: {order: 3, width: 92}
+    - admin_ui: {width: 92}
       name: mini
       type: string
     server: full
@@ -31,25 +31,25 @@ db_schema:
   policies:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 63}
+    - admin_ui: {width: 63}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 76}
+    - admin_ui: {width: 76}
       name: abbr
       type: string
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: name
       type: string
-    - admin_ui: {order: 3, width: 85}
+    - admin_ui: {width: 85}
       name: tltl
       type: number
-    - admin_ui: {order: 4, width: 63}
+    - admin_ui: {width: 63}
       name: gl
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
       name: expl
       type: string
-    - admin_ui: {order: 6, width: 92}
+    - admin_ui: {width: 92}
       name: ta
       type: string
     server: full
@@ -57,22 +57,22 @@ db_schema:
   regions:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 88}
+    - admin_ui: {width: 88}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 80}
+    - admin_ui: {width: 80}
       name: abbr
       type: string
-    - admin_ui: {order: 2, width: 162}
+    - admin_ui: {width: 162}
       name: name
       type: string
-    - admin_ui: {order: 3, width: 95}
+    - admin_ui: {width: 95}
       name: col
       type: string
-    - admin_ui: {order: 4, width: 94}
+    - admin_ui: {width: 94}
       name: colhex
       type: string
-    - admin_ui: {order: 5, width: 95}
+    - admin_ui: {width: 95}
       name: pyidx
       type: number
     server: full
@@ -80,28 +80,25 @@ db_schema:
   roles_assign:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 128}
+    - admin_ui: {width: 128}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 108}
+    - admin_ui: {width: 108}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 80}
+    - admin_ui: {width: 80}
       name: role
       type: string
-    - admin_ui: {order: 3, width: 98}
+    - admin_ui: {width: 98}
       name: taken
       type: number
-    - admin_ui: {order: 4, width: 101}
-      name: role_nbr
-      type: number
-    - admin_ui: {order: 5, width: 99}
+    - admin_ui: {width: 99}
       name: round
       type: number
-    - admin_ui: {order: 6, width: 126}
+    - admin_ui: {width: 126}
       name: wert
       type: number
-    - admin_ui: {order: 7, width: 108}
+    - admin_ui: {width: 108}
       name: pol
       type: string
     server: full
@@ -109,16 +106,16 @@ db_schema:
   sdg:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 55}
+    - admin_ui: {width: 55}
       name: id
       type: number
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: sdg
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: sdg_dt
       type: string
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {width: 200}
       name: sdgNbr
       type: string
     server: full
@@ -126,43 +123,43 @@ db_schema:
   sdg_vars:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 88}
+    - admin_ui: {width: 88}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 94}
+    - admin_ui: {width: 94}
       name: sdg_nbr
       type: number
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: indicator
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: vensim_name
       type: string
-    - admin_ui: {order: 4, width: 86}
+    - admin_ui: {width: 86}
       name: green
       type: number
-    - admin_ui: {order: 5, width: 83}
+    - admin_ui: {width: 83}
       name: red
       type: number
-    - admin_ui: {order: 6, width: 94}
+    - admin_ui: {width: 94}
       name: lowerbetter
       type: number
-    - admin_ui: {order: 7, width: 87}
+    - admin_ui: {width: 87}
       name: ymin
       type: number
-    - admin_ui: {order: 8, width: 84}
+    - admin_ui: {width: 84}
       name: ymax
       type: number
-    - admin_ui: {order: 9, width: 233}
+    - admin_ui: {width: 233}
       name: subtitle
       type: string
-    - admin_ui: {order: 10, width: 89}
+    - admin_ui: {width: 89}
       name: ta
       type: string
-    - admin_ui: {order: 11, width: 200}
+    - admin_ui: {width: 200}
       name: pct
       type: number
-    - admin_ui: {order: 12, width: 200}
+    - admin_ui: {width: 200}
       name: sdg
       type: string
     server: full
@@ -170,28 +167,28 @@ db_schema:
   status:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 64}
+    - admin_ui: {width: 64}
       name: closed
       type: number
-    - admin_ui: {order: 2, width: 108}
+    - admin_ui: {width: 108}
       name: current_p
       type: number
-    - admin_ui: {order: 3, width: 151}
+    - admin_ui: {order: 3, width: 113}
       name: next_p
       type: number
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {order: 4, width: 114}
       name: current_gm
       type: number
-    - admin_ui: {order: 5, width: 123}
+    - admin_ui: {width: 123}
       name: next_gm
       type: number
-    - admin_ui: {order: 6, width: 110}
+    - admin_ui: {width: 110}
       name: roles_avail
       type: number
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {order: 7, width: 182}
       name: started
       type: datetime
     server: full

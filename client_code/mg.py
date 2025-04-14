@@ -30,6 +30,48 @@ pov_to_Poverty = thisdict = {
   "ener": "Energy",
   "fut": "Future"
 }
+Pov_to_pov = {
+  "Poverty": "pov",
+  "Inequality": "ineq",
+  "Empowerment": "emp",
+  "Food": "food",
+  "Energy": "ener",
+  "Future": "fut"
+}
+pol_to_ta = {"CCS" : "Energy",
+"TOW" : "Poverty",
+"FPGDC" : "Poverty",
+"RMDR" : "Food",
+"REFOREST" : "Food",
+"FTPEE" : "Energy",
+"LPBsplit" : "Poverty",
+"ExPS" : "Poverty",
+"FMPLDD " : "Poverty",
+"StrUP" : "Inequality",
+"Wreaction" : "Inequality",
+"SGMP" : "Empowerment",
+"FWRP" : "Food",
+"ICTR" : "Inequality",
+"XtaxCom" : "Inequality",
+"Lfrac" : "Poverty",
+"IOITR" : "Inequality",
+"IWITR" : "Inequality",
+"SGRPI" : "Inequality",
+"FEHC" : "Empowerment",
+"XtaxRateEmp" : "Empowerment",
+"FLWR" : "Food",
+"RIPLGF" : "Food",
+"FC" : "Food",
+"NEP" : "Energy",
+"Ctax" : "Inequality",
+"DAC" : "Energy",
+"XtaxFrac" : "Inequality",
+"LPBgrant" : "Poverty",
+"LPB" : "Poverty",
+"SSGDR" : "Poverty",
+"ISPV" : "Energy"
+}
+
 top_title = 'END-times'
 top_btn_thanks = 'Danke'
 top_btn_start = 'Start a new game as organizer'
@@ -60,4 +102,5 @@ cb_ec_tx = 'East Europe - Central Asia'
 cb_eu_tx = 'Europe'
 cb_se_tx = 'Southeast Asia'
 gm_reg_npbp_tx = 'When you are done (and sure), click this button'
+top_entry_label_tx = 'Hold on ... setting up all the necessary slots and tables for the game ...'
 
