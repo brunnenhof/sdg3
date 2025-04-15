@@ -172,8 +172,14 @@ class home(homeTemplate):
     
     self.gm_card_wait_1.visible = True
 
-  def show_roles(self, cid):
+  def set_avail_regs(self, **event_args):
+    cid = mg.my_game_id
+    runde = mg.game_runde
+    pass
     
+  def show_roles(self, cid):
+    self.set_avail_regs()
+    self.p_choose_role.visible =True
     alert("show roles not yet coded")
     pass
     
@@ -213,7 +219,7 @@ class home(homeTemplate):
 
   def set_ministries_visible(self, cid, reg):
     self.submit_role.visible = False
-    minis_ta = [r['ta'] for r in app_tables.roles_assign.search(game_id=cid, reg=reg, taken=0)]
+    minis_ta = [r['ta'] for r in app_tables.regs_state_of_play.search(game_id=cid, reg=reg, step_complete_p=0)]
     for ta in minis_ta:
       if ta == 'pov':
         self.pcr_rb_pov.visible = True
@@ -222,9 +228,9 @@ class home(homeTemplate):
       elif ta == 'ineq':
         self.pcr_rb_ineq.visible = True
       elif ta == 'food':
-        self.pcr_rb_foo.visible = True
+        self.pcr_rb_food.visible = True
       elif ta == 'ener':
-        self.pcr_rb_ene.visible = True
+        self.pcr_rb_ener.visible = True
       elif ta == 'fut':
         self.pcr_rb_fut.visible = True
   
