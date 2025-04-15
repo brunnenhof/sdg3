@@ -71,22 +71,23 @@ class home(homeTemplate):
 
   def top_join_game_click(self, **event_args):
     self.top_entry.visible = False
-    self.p_cp_choose_game.visible = True
-    how_many_new = len(app_tables.status.search(game_status=0, gm_status=0))
+    how_many_new = len(app_tables.status.search(game_status=1, p_status=0))
+    print(how_many_new)
     if how_many_new > 1:
       self.p_cp_choose_game.visible = True
-      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=0, gm_status=0, p_status=0)]
+      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0)]
+#      cid = self.p_dd_select_game.selected_value["game_id"]
+#      alert(cid)
     elif how_many_new == 1:
-      row = app_tables.status.get(game_status=0)
+      row = app_tables.status.get(game_status=1, p_status=0)
       alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
-      #### 
-      #### xy must be replaced with the chosen region
-      #### 
-#      self.show_roles(row['game_id'], 'xy')
-#      self.card_select_reg_role.visible = True
+      row.update(p_status=1)
+      self.show_roles(row['game_id'])
     else:
       alert(mg.msg_game_not_started)
+      self.top_entry.visible = True
+      self.p_cp_choose_game.visible = False
 
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
@@ -103,12 +104,13 @@ class home(homeTemplate):
 
   def p_btn_select_game_click(self, **event_args):
     alert(self.p_dd_select_game.selected_value['game_id'], title=mg.title_you_are_joining)
-    game_id_chosen = self.select_game.selected_value['game_id']
+    game_id_chosen = self.p_dd_select_game.selected_value['game_id']
     mg.my_game_id = game_id_chosen
-    self.show_roles(game_id_chosen, 'xy')
-#    alert(my_globs.my_game_id,"stored globally")
+    row = app_tables.status.get(game_id=game_id_chosen)
+    row.update(p_status=1) # he / she chose a game
+    self.show_roles(game_id_chosen)
     self.p_cp_choose_game.visible = False
-#    self.card_select_reg_role.visible = True
+    self.card_select_reg_role.visible = True
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
@@ -148,6 +150,11 @@ class home(homeTemplate):
     
     self.gm_card_wait_1.visible = True
 
+  def show_roles(self, cid):
+    
+    alert("show roles not yet coded")
+    pass
+    
   def gm_card_wait_1_btn_check_click(self, runde):
     cid = mg.my_game_id
     runde = mg.game_runde
