@@ -104,7 +104,7 @@ class home(homeTemplate):
       row = app_tables.status.get(game_status=1, p_status=0)
       alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
-      row.update(p_status=1)
+#      row.update(p_status=1)
       self.show_roles(row['game_id'])
     else:
       alert(mg.msg_game_not_started)
@@ -173,15 +173,44 @@ class home(homeTemplate):
     self.gm_card_wait_1.visible = True
 
   def set_avail_regs(self, **event_args):
+    print("IN set_avail_regs")
     cid = mg.my_game_id
+    msg = mg.pcr_title_tx + ': '+cid
+    self.pcr_title.text = msg
     runde = mg.game_runde
-    pass
+    rows = app_tables.regs_state_of_play.search(game_id=cid, step_complete_p=0)
+    print(len(rows))
+    for r in rows:
+      reg = r['reg']
+      if reg == 'af':
+        self.pcr_rb_af.visible = True
+      elif reg == 'us':
+        self.pcr_rb_us.visible = True
+      elif reg == 'cn':
+        self.pcr_rb_cn.visible = True
+      elif reg == 'me':
+        self.pcr_rb_me.visible = True
+      elif reg == 'sa':
+        self.pcr_rb_sa.visible = True
+      elif reg == 'la':
+        self.pcr_rb_la.visible = True
+      elif reg == 'pa':
+        self.pcr_rb_pa.visible = True
+      elif reg == 'ec':
+        self.pcr_rb_ec.visible = True
+      elif reg == 'eu':
+        self.pcr_rb_eu.visible = True
+      elif reg == 'se':
+        self.pcr_rb_se.visible = True
     
   def show_roles(self, cid):
+    print("in show_roles")
+    self.pcr_col_right_title.visible = False
+    self.pcr_submit.visible = False
+    self.set_minis_invisible()
+    self.set_regs_invisible()
     self.set_avail_regs()
     self.p_choose_role.visible =True
-    alert("show roles not yet coded")
-    pass
     
   def gm_card_wait_1_btn_check_click(self, runde):
     cid = mg.my_game_id
@@ -204,22 +233,45 @@ class home(homeTemplate):
 #    self.gm_card_wait_1_rp.items = slots
 #    pass
 
-    def set_minis_invisible(self):
-      self.pcr_rb_fut.visible = False
-      self.pcr_rb_pov.visible = False
-      self.pcr_rb_ineq.visible = False
-      self.pcr_rb_emp.visible = False
-      self.pcr_rb_food.visible = False
-      self.pcr_rb_ener.visible = False
-      self.pcr_rb_pov.selected = False
-      self.pcr_rb_ineq.selected = False
-      self.pcr_rb_emp.selected = False
-      self.pcr_rb_food.selected = False
-      self.pcr_rb_ener.selected = False
+  def set_minis_invisible(self, **event_args):
+    self.pcr_rb_fut.visible = False
+    self.pcr_rb_pov.visible = False
+    self.pcr_rb_ineq.visible = False
+    self.pcr_rb_emp.visible = False
+    self.pcr_rb_food.visible = False
+    self.pcr_rb_ener.visible = False
+    self.pcr_rb_pov.selected = False
+    self.pcr_rb_ineq.selected = False
+    self.pcr_rb_emp.selected = False
+    self.pcr_rb_food.selected = False
+    self.pcr_rb_ener.selected = False
+
+  def set_regs_invisible(self, **event_args):
+    self.pcr_rb_us.visible = False
+    self.pcr_rb_us.selected = False
+    self.pcr_rb_af.visible = False
+    self.pcr_rb_af.selected = False
+    self.pcr_rb_cn.visible = False
+    self.pcr_rb_cn.selected = False
+    self.pcr_rb_me.visible = False
+    self.pcr_rb_me.selected = False
+    self.pcr_rb_sa.visible = False
+    self.pcr_rb_sa.selected = False
+    self.pcr_rb_la.visible = False
+    self.pcr_rb_la.selected = False
+    self.pcr_rb_pa.visible = False
+    self.pcr_rb_pa.selected = False
+    self.pcr_rb_ec.visible = False
+    self.pcr_rb_ec.selected = False
+    self.pcr_rb_eu.visible = False
+    self.pcr_rb_eu.selected = False
+    self.pcr_rb_se.visible = False
+    self.pcr_rb_se.selected = False
 
   def set_ministries_visible(self, cid, reg):
-    self.submit_role.visible = False
-    minis_ta = [r['ta'] for r in app_tables.regs_state_of_play.search(game_id=cid, reg=reg, step_complete_p=0)]
+    self.pcr_submit.visible = False
+    self.set_minis_invisible()
+    minis_ta = [r['role'] for r in app_tables.roles_assign.search(game_id=cid, reg=reg, taken=0)]
     for ta in minis_ta:
       if ta == 'pov':
         self.pcr_rb_pov.visible = True
@@ -235,8 +287,15 @@ class home(homeTemplate):
         self.pcr_rb_fut.visible = True
   
   def pcr_rb_us_clicked(self, **event_args):
-    global cid
-    print ('in us2 btn ' + cid)
+    cid = mg.my_game_id
+    print ('in us btn ' + cid)
     self.pcr_col_right_title.visible = True
     self.set_minis_invisible()
     self.set_ministries_visible(cid, 'us')
+
+  def pcr_rb_af_clicked(self, **event_args):
+    cid = mg.my_game_id
+    print ('in af btn ' + cid)
+    self.pcr_col_right_title.visible = True
+    self.set_minis_invisible()
+    self.set_ministries_visible(cid, 'af')

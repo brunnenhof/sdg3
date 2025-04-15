@@ -78,7 +78,7 @@ db_schema:
     server: full
     title: regions
   regs_state_of_play:
-    client: none
+    client: full
     columns:
     - admin_ui: {order: 0, width: 200}
       name: game_id
