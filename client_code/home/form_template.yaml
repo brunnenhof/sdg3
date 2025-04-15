@@ -197,6 +197,72 @@ components:
     name: gm_role_reg
     properties: {background: '#ffedd3', role: outlined-card, visible: false}
     type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'BKYJHZ,DNUXWE'}
+      name: pcr_title
+      properties: {}
+      type: Label
+    - components:
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ ECTVYT,TYIFHW'}
+        name: pcr_col_left_title
+        properties: {}
+        type: Label
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ BFDKIP,ELNCWL'}
+        name: pcr_btn_us
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ LXTZVX,NHVDYC'}
+        name: pcr_btn_af
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ MHORFI,DXSNHC'}
+        name: pcr_btn_cn
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ IFYLYE,JWMBXP'}
+        name: pcr_btn_me
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ QZIKBJ,TRTIRM'}
+        name: pcr_btn_sa
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO SELMKT,SOGDDA'}
+        name: pcr_cal_right_title
+        properties: {}
+        type: Label
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO ALHQOD,GMLZUQ'}
+        name: pcr_btn_la
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO WBVLQE,BWEQMQ'}
+        name: pcr_btn_pa
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO CEROYL,MUWWJC'}
+        name: pcr_btn_ec
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO ANZDNT,PTRLVB'}
+        name: pcr_btn_eu
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO VVXUPQ,KRDRVM'}
+        name: pcr_btn_se
+        properties: {text: button_1}
+        type: Button
+      - layout_properties: {grid_position: 'VFZCAS,MWGWKA'}
+        name: pcr_submit
+        properties: {text: button_1}
+        type: Button
+      layout_properties: {grid_position: 'VQEHOX,XRYOSE'}
+      name: pcr_column_panel
+      properties: {}
+      type: ColumnPanel
+    layout_properties: {grid_position: 'DFYFPU,QTVUBQ'}
+    name: p_choose_role
+    properties: {background: '#e8f4d5', role: outlined-card}
+    type: ColumnPanel
   layout_properties: {slot: default}
   name: top_cp_1
   properties: {col_widths: '{}'}
