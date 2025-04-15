@@ -194,7 +194,43 @@ class home(homeTemplate):
         slot = {'pol_name' : names[i], 'pol_amount': cost}
         slots.append(slot)
     return slots
+#    slots = [{key: r[key] for key in ["reg", "ta"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
+#    self.gm_card_wait_1_rp.items = slots
+#    pass
 
-    slots = [{key: r[key] for key in ["reg", "ta"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
-    self.gm_card_wait_1_rp.items = slots
-    pass
+    def set_minis_invisible(self):
+      self.pcr_rb_fut.visible = False
+      self.pcr_rb_pov.visible = False
+      self.pcr_rb_ineq.visible = False
+      self.pcr_rb_emp.visible = False
+      self.pcr_rb_food.visible = False
+      self.pcr_rb_ener.visible = False
+      self.pcr_rb_pov.selected = False
+      self.pcr_rb_ineq.selected = False
+      self.pcr_rb_emp.selected = False
+      self.pcr_rb_food.selected = False
+      self.pcr_rb_ener.selected = False
+
+  def set_ministries_visible(self, cid, reg):
+    self.submit_role.visible = False
+    minis_ta = [r['ta'] for r in app_tables.roles_assign.search(game_id=cid, reg=reg, taken=0)]
+    for ta in minis_ta:
+      if ta == 'pov':
+        self.pcr_rb_pov.visible = True
+      elif ta == 'emp':
+        self.pcr_rb_emp.visible = True
+      elif ta == 'ineq':
+        self.pcr_rb_ineq.visible = True
+      elif ta == 'food':
+        self.pcr_rb_foo.visible = True
+      elif ta == 'ener':
+        self.pcr_rb_ene.visible = True
+      elif ta == 'fut':
+        self.pcr_rb_fut.visible = True
+  
+  def pcr_rb_us_clicked(self, **event_args):
+    global cid
+    print ('in us2 btn ' + cid)
+    self.pcr_col_right_title.visible = True
+    self.set_minis_invisible()
+    self.set_ministries_visible(cid, 'us')

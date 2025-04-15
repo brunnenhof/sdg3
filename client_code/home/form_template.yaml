@@ -207,7 +207,8 @@ components:
         name: pcr_col_left_title
         properties: {}
         type: Label
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ NIASAF,EBZFND'}
+      - event_bindings: {clicked: pcr_rb_us_clicked}
+        layout_properties: {grid_position: 'QSCGQN,GNRZUZ NIASAF,EBZFND'}
         name: pcr_rb_us
         properties:
           font_size: 14
