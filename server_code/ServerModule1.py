@@ -118,11 +118,13 @@ def set_npbp(cid, npbp):
     w_list.append(w)  # random policy value biased towards GL
   regs = mg.regs
   print(w_list)
-  for re in regs: # set up regs_state_of_play
-    if re in npbp:
-      app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=99) # step_complete 99: played by computer
-    else:
-      app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=0) # step_complete 0: data set up
+  roles = mg.roles
+  for ro in roles:
+    for re in regs: # set up regs_state_of_play
+      if re in npbp:
+        app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=99, ta=ro) # step_complete 99: played by computer
+      else:
+        app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=0, ta=ro) # step_complete 0: data set up
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
       j = 0
