@@ -39,6 +39,28 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx
     self.gm_card_wait_1_btn_kick_off_round_1.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx
     self.setup_npbp_label.text = mg.setup_npbp_label_tx
+    self.pcr_rb_af.text = mg.cb_af_tx
+    self.pcr_rb_us.text = mg.cb_us_tx
+    self.pcr_rb_cn.text = mg.cb_cn_tx
+    self.pcr_rb_me.text = mg.cb_me_tx
+    self.pcr_rb_sa.text = mg.cb_sa_tx
+    self.pcr_rb_la.text = mg.cb_la_tx
+    self.pcr_rb_pa.text = mg.cb_pa_tx
+    self.pcr_rb_ec.text = mg.cb_ec_tx
+    self.pcr_rb_eu.text = mg.cb_eu_tx
+    self.pcr_rb_se.text = mg.cb_se_tx
+
+    self.pcr_rb_pov.text = mg.cb_pov_tx
+    self.pcr_rb_ineq.text = mg.cb_ineq_tx
+    self.pcr_rb_emp.text = mg.cb_emp_tx
+    self.pcr_rb_food.text = mg.cb_food_tx
+    self.pcr_rb_ener.text = mg.cb_ener_tx
+    self.pcr_rb_fut.text = mg.cb_fut_tx
+
+    self.pcr_title.text = mg.pcr_title_tx
+    self.pcr_col_left_title.text = mg.pcr_col_left_title_tx
+    self.pcr_col_right_title.text = mg.pcr_col_right_title_tx
+    self.pcr_submit.text = mg.pcr_submit_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)

@@ -207,53 +207,189 @@ components:
         name: pcr_col_left_title
         properties: {}
         type: Label
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ BFDKIP,ELNCWL'}
-        name: pcr_btn_us
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ LXTZVX,NHVDYC'}
-        name: pcr_btn_af
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ MHORFI,DXSNHC'}
-        name: pcr_btn_cn
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ IFYLYE,JWMBXP'}
-        name: pcr_btn_me
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ QZIKBJ,TRTIRM'}
-        name: pcr_btn_sa
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO SELMKT,SOGDDA'}
-        name: pcr_cal_right_title
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ NIASAF,EBZFND'}
+        name: pcr_rb_us
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_1
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ LDVOFC,JFMKZC'}
+        name: pcr_rb_af
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_2
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ AFKCHJ,LQFENC'}
+        name: pcr_rb_cn
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_3
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ YVADQV,WFPNAB'}
+        name: pcr_rb_me
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_4
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ JINRZU,QRSYYQ'}
+        name: pcr_rb_sa
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_5
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ IDJJNJ,OPFLNX'}
+        name: pcr_rb_la
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_6
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ YGXRYW,KRXLGE'}
+        name: pcr_rb_pa
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_7
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ XGQELN,ASZISE'}
+        name: pcr_rb_ec
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_8
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ DTYYEI,GWVBZA'}
+        name: pcr_rb_eu
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_9
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,GNRZUZ IZXHHT,PLRPJS'}
+        name: pcr_rb_se
+        properties:
+          font_size: 14
+          group_name: reg
+          spacing:
+            padding: ['0', null, null, null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_10
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO PKOZQR,OVIQVV'}
+        name: pcr_col_right_title
         properties: {}
         type: Label
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO ALHQOD,GMLZUQ'}
-        name: pcr_btn_la
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO WBVLQE,BWEQMQ'}
-        name: pcr_btn_pa
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO CEROYL,MUWWJC'}
-        name: pcr_btn_ec
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO ANZDNT,PTRLVB'}
-        name: pcr_btn_eu
-        properties: {text: button_1}
-        type: Button
-      - layout_properties: {grid_position: 'QSCGQN,HNKSMO VVXUPQ,KRDRVM'}
-        name: pcr_btn_se
-        properties: {text: button_1}
-        type: Button
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO UNJAYT,BFWSVQ'}
+        name: pcr_rb_pov
+        properties:
+          font_size: 14
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_1
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO WFMRCB,DJHUMS'}
+        name: pcr_rb_ineq
+        properties:
+          font_size: 14
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_2
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO XLJJBX,ZYLYQO'}
+        name: pcr_rb_emp
+        properties:
+          font_size: 14
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_3
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO TEBVWT,CBKOUG'}
+        name: pcr_rb_food
+        properties:
+          font_size: 14
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_4
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO TNXXIJ,VMPFXJ'}
+        name: pcr_rb_ener
+        properties:
+          font_size: 14
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_5
+        type: RadioButton
+      - layout_properties: {grid_position: 'QSCGQN,HNKSMO IUYUSY,MDBEYO'}
+        name: pcr_rb_fut
+        properties:
+          font_size: 13
+          group_name: rolle
+          spacing:
+            padding: ['0', null, '0', null]
+          spacing_above: none
+          spacing_below: none
+          text: radio_button_6
+        type: RadioButton
       - layout_properties: {grid_position: 'VFZCAS,MWGWKA'}
         name: pcr_submit
-        properties: {text: button_1}
+        properties: {bold: true, text: button_1}
         type: Button
       layout_properties: {grid_position: 'VQEHOX,XRYOSE'}
       name: pcr_column_panel
