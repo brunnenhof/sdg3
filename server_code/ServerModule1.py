@@ -41,7 +41,7 @@ def set_roles(game_id):
         my_role = mg.Pov_to_pov[mg.pol_to_ta[p]]
         app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
         ## set up future which has no policies
-      app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=4, reg=re, round=runde, pol='nopol')
+      app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=0, reg=re, round=runde, pol='nopol')
   jetzt = datetime.datetime.now()
   row = app_tables.status.get(game_id=game_id)
   row.update(started=jetzt,game_status=1)
@@ -124,9 +124,9 @@ def set_npbp(cid, npbp):
   for ro in roles:
     for re in regs: # set up regs_state_of_play
       if re in npbp:
-        app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=99, ta=ro) # step_complete 99: played by computer
+        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
       else:
-        app_tables.regs_state_of_play.add_row(game_id=cid, reg=re, step_complete_p=0, ta=ro) # step_complete 0: data set up
+        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
       j = 0

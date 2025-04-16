@@ -248,6 +248,7 @@ class home(homeTemplate):
     self.pcr_rb_emp.selected = False
     self.pcr_rb_food.selected = False
     self.pcr_rb_ener.selected = False
+    self.pcr_rb_fut.selected = False
 
   def set_regs_invisible(self, **event_args):
     self.pcr_rb_us.visible = False
@@ -352,15 +353,16 @@ class home(homeTemplate):
     self.pcr_submit.visible = True
     mg.my_ministry = 'fut'    
 
-  def save_player_choice(self, game_id, ministry, region):
+  def save_player_choice(self, cid, role, reg):
 #    print ('in save_player_choice: ' + region)
 #    print ('in save_player_choice: ' + ministry)
-    row = app_tables.fr2.get(gameID=game_id, region=region, ta=ministry)
-    if row['free']:
-      row['free'] = False
-    else:
-      alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
-      return False
+    rows = app_tables.roles_assign.search(game_id=cid, role=role, reg=reg)
+    for r in rows:
+      if r['taken'] == 0:
+        r['taken'] = 1
+      else:
+        alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
+        return False
     return True
     
   def pcr_submit_click(self, **event_args):
@@ -376,16 +378,17 @@ class home(homeTemplate):
     #tas = ['poverty', 'inequality', 'empowerment', 'food', 'energy', 'future']
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
-      which_region_long  = anvil.server.call('get_reg_long_names', which_region)
-      wrx = reg.index(which_region)
-      which_ministy_long = anvil.server.call('get_ministry_long', which_ministry)
-      wmx = tas.index(which_ministry)
+      self.p_card_graf_dec.visible = True
+      self.p_choose_role.visible = False
+      which_region_long  = reglong
+      wrx = mg.regs.index(reg)
+      which_ministy_long = rolelong
+      wmx = mg.roles.index(role)
       your_game_id = cid + "-" + str(wrx) + str(wmx)
-      msgid = "\nYour personal Game ID is:\n" + your_game_id + "\nPlease make a note of it!"
-     # ("Congratulations, you have been confirmed as the Minister " + which_ministy_long + " in " + which_region_long + '.' + msgid)
-      alert(msg)
-      self.update_client_globs(cid, your_game_id, which_region, which_ministry, 1)
-      self.choose_role2.visible = False
+      congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
+      mg.my_personal_game_id = your_game_id
+      alert(congrats)
+
       self.cplot.visible = True
       self.info_rnd_1_card.visible = True
       self.your_personal_gameID.text = 'Your personal Game ID is: ' + your_game_id
