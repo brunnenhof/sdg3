@@ -61,8 +61,8 @@ class home(homeTemplate):
     self.pcr_col_left_title.text = mg.pcr_col_left_title_tx
     self.pcr_col_right_title.text = mg.pcr_col_right_title_tx
     self.pcr_submit.text = mg.pcr_submit_tx
-    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
-    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
+#    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
+#    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
     self.pcgd_title.text = mg.pcr_title_tx
 
   def top_btn_thanks_click(self, **event_args):
@@ -181,7 +181,7 @@ class home(homeTemplate):
     msg = mg.pcr_title_tx + ': '+cid
     self.pcr_title.text = msg
     runde = mg.game_runde
-    rows = app_tables.regs_state_of_play.search(game_id=cid, step_complete_p=0)
+    rows = app_tables.state_of_play.search(game_id=cid, p_state=0)
     print(len(rows))
     for r in rows:
       reg = r['reg']
@@ -365,8 +365,11 @@ class home(homeTemplate):
     
   def pcr_submit_click(self, **event_args):
     reg = mg.my_reg
+    reglong = mg.reg_to_longreg[reg]
     role = mg.my_ministry
+    rolelong = mg.ta_to_longmini[role]
     cid = mg.my_game_id
+    self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+', '+reglong+', '+rolelong
 #    alert('reg is '+reg+' role is '+role)
     regs = mg.regs
     tas = mg.roles

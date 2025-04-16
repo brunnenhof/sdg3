@@ -22,7 +22,27 @@ roles = ['pov', 'ineq', 'emp', 'food', 'ener', 'fut']
 ro_nbr = [0, 1, 2, 3, 4, 5]
 regs = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
 re_nbr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-pov_to_Poverty = thisdict = {
+reg_to_longreg = {
+  "us" : "USA",
+  "af" : "Africa, South of Sahara",
+  "cn" : "China",
+  "me" : "Middle East & North Africa",
+  "sa" : "South Asia",
+  "la" : "Latin America",
+  "pa" : "Pacific Rim",
+  "ec" : "East Europe & Central Asia",
+  "eu" : "Eurpe",
+  "se" : "Southeast Asia"
+}
+ta_to_longmini = {
+  "pov" : "Minister against Poverty",
+  "ineq" : "Minister against Inequality",
+  "emp" : "Minister for Empowerment",
+  "food" : "Minister for Food & Agriculture",
+  "energy" : "Minister for Energy",
+  "fut" : "Minister for the Future"
+}
+pov_to_Poverty = {
   "pov": "Poverty",
   "ineq": "Inequality",
   "emp": "Empowerment",

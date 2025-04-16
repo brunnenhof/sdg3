@@ -77,26 +77,6 @@ db_schema:
       type: number
     server: full
     title: regions
-  regs_state_of_play:
-    client: full
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: game_id
-      type: string
-    - admin_ui: {order: 1, width: 114}
-      name: reg
-      type: string
-    - admin_ui: {order: 2, width: 144}
-      name: p_state
-      type: number
-    - admin_ui: {order: 3, width: 172}
-      name: ta
-      type: string
-    - admin_ui: {order: 4, width: 200}
-      name: gm_state
-      type: number
-    server: full
-    title: regs_state_of_play
   roles_assign:
     client: full
     columns:
@@ -184,6 +164,26 @@ db_schema:
       type: string
     server: full
     title: sdg_vars
+  state_of_play:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 114}
+      name: reg
+      type: string
+    - admin_ui: {order: 2, width: 144}
+      name: p_state
+      type: number
+    - admin_ui: {order: 3, width: 132}
+      name: ta
+      type: string
+    - admin_ui: {order: 4, width: 127}
+      name: gm_state
+      type: number
+    server: full
+    title: state_of_play
   status:
     client: full
     columns:
