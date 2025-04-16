@@ -102,7 +102,7 @@ class home(homeTemplate):
 #      alert(cid)
     elif how_many_new == 1:
       row = app_tables.status.get(game_status=1, p_status=0)
-      alert(row['game_id'], title=mg.title_you_are_joining)
+#      alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
 #      row.update(p_status=1)
       self.show_roles(row['game_id'])
@@ -125,7 +125,7 @@ class home(homeTemplate):
     anvil.server.call('upload_csv_pols', bbb, 'regs')
 
   def p_btn_select_game_click(self, **event_args):
-    alert(self.p_dd_select_game.selected_value['game_id'], title=mg.title_you_are_joining)
+#    alert(self.p_dd_select_game.selected_value['game_id'], title=mg.title_you_are_joining)
     game_id_chosen = self.p_dd_select_game.selected_value['game_id']
     mg.my_game_id = game_id_chosen
     row = app_tables.status.get(game_id=game_id_chosen)
@@ -285,17 +285,71 @@ class home(homeTemplate):
         self.pcr_rb_ener.visible = True
       elif ta == 'fut':
         self.pcr_rb_fut.visible = True
-  
-  def pcr_rb_us_clicked(self, **event_args):
+
+  def reg_clicked(self, reg):
     cid = mg.my_game_id
-    print ('in us btn ' + cid)
+    print ('in '+reg+' btn ' + cid)
     self.pcr_col_right_title.visible = True
+    self.pcr_submit.visible = False
+    mg.my_reg = reg
     self.set_minis_invisible()
-    self.set_ministries_visible(cid, 'us')
+    self.set_ministries_visible(cid, reg)
+
+  def pcr_rb_us_clicked(self, **event_args):
+    self.reg_clicked('us')
 
   def pcr_rb_af_clicked(self, **event_args):
-    cid = mg.my_game_id
-    print ('in af btn ' + cid)
-    self.pcr_col_right_title.visible = True
-    self.set_minis_invisible()
-    self.set_ministries_visible(cid, 'af')
+    self.reg_clicked('af')
+
+  def pcr_rb_pov_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'pov'
+
+  def pcr_rb_ineq_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'ineq'    
+
+  def pcr_rb_me_clicked(self, **event_args):
+    self.reg_clicked('me')
+
+  def pcr_rb_cn_clicked(self, **event_args):
+    self.reg_clicked('cn')
+    
+  def pcr_rb_sa_clicked(self, **event_args):
+    self.reg_clicked('sa')
+    
+  def pcr_rb_la_clicked(self, **event_args):
+    self.reg_clicked('la')
+    
+  def pcr_rb_pa_clicked(self, **event_args):
+    self.reg_clicked('pa')
+    
+  def pcr_rb_ec_clicked(self, **event_args):
+    self.reg_clicked('ec')
+    
+  def pcr_rb_eu_clicked(self, **event_args):
+    self.reg_clicked('eu')
+    
+  def pcr_rb_se_clicked(self, **event_args):
+    self.reg_clicked('se')
+    
+  def pcr_rb_emp_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'emp'    
+    
+  def pcr_rb_food_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'food'    
+    
+  def pcr_rb_ener_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'ener'    
+    
+  def pcr_rb_fut_clicked(self, **event_args):
+    self.pcr_submit.visible = True
+    mg.my_ministry = 'fut'    
+    
+  def pcr_submit_click(self, **event_args):
+    reg = mg.my_reg
+    role = mg.my_ministry
+    alert('reg is '+reg+' role is '+role)
