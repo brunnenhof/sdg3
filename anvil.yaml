@@ -87,11 +87,14 @@ db_schema:
       name: reg
       type: string
     - admin_ui: {order: 2, width: 144}
-      name: step_complete_p
+      name: p_state
       type: number
     - admin_ui: {order: 3, width: 172}
       name: ta
       type: string
+    - admin_ui: {order: 4, width: 200}
+      name: gm_state
+      type: number
     server: full
     title: regs_state_of_play
   roles_assign:
