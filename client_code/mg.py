@@ -120,3 +120,5 @@ gm_card_wait_1_btn_check_tx = 'Check LogIn'
 gm_card_wait_1_btn_kick_off_round_1_tx = 'Advance model for the next round'
 setup_npbp_label_tx = '... Hold on ... Role assignments are being set up ...'
 #    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
+pcr_submit_msg1 = "Congratulations, you have been confirmed as the Minister "
+pcr_submit_msg2 = 'in'

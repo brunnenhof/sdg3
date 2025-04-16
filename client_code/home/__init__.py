@@ -61,6 +61,9 @@ class home(homeTemplate):
     self.pcr_col_left_title.text = mg.pcr_col_left_title_tx
     self.pcr_col_right_title.text = mg.pcr_col_right_title_tx
     self.pcr_submit.text = mg.pcr_submit_tx
+    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
+    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
+    self.pcgd_title.text = mg.pcr_title_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -348,8 +351,62 @@ class home(homeTemplate):
   def pcr_rb_fut_clicked(self, **event_args):
     self.pcr_submit.visible = True
     mg.my_ministry = 'fut'    
+
+  def save_player_choice(self, game_id, ministry, region):
+#    print ('in save_player_choice: ' + region)
+#    print ('in save_player_choice: ' + ministry)
+    row = app_tables.fr2.get(gameID=game_id, region=region, ta=ministry)
+    if row['free']:
+      row['free'] = False
+    else:
+      alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
+      return False
+    return True
     
   def pcr_submit_click(self, **event_args):
     reg = mg.my_reg
     role = mg.my_ministry
-    alert('reg is '+reg+' role is '+role)
+    cid = mg.my_game_id
+#    alert('reg is '+reg+' role is '+role)
+    regs = mg.regs
+    tas = mg.roles
+    #tas = ['poverty', 'inequality', 'empowerment', 'food', 'energy', 'future']
+    save_ok = self.save_player_choice(cid, role, reg)
+    if save_ok:
+      which_region_long  = anvil.server.call('get_reg_long_names', which_region)
+      wrx = reg.index(which_region)
+      which_ministy_long = anvil.server.call('get_ministry_long', which_ministry)
+      wmx = tas.index(which_ministry)
+      your_game_id = cid + "-" + str(wrx) + str(wmx)
+      msgid = "\nYour personal Game ID is:\n" + your_game_id + "\nPlease make a note of it!"
+     # ("Congratulations, you have been confirmed as the Minister " + which_ministy_long + " in " + which_region_long + '.' + msgid)
+      alert(msg)
+      self.update_client_globs(cid, your_game_id, which_region, which_ministry, 1)
+      self.choose_role2.visible = False
+      self.cplot.visible = True
+      self.info_rnd_1_card.visible = True
+      self.your_personal_gameID.text = 'Your personal Game ID is: ' + your_game_id
+      self.your_region.text = which_region_long
+      temp = 'Minister ' + which_ministy_long
+      self.your_ta.text = temp
+#      title, sub, fig, cap = anvil.server.call('load_plots', which_region, which_ministy)
+      self.task = anvil.server.call('launch_put_plots_for_slots', your_game_id, which_region, which_ministry)
+      self.label_aa.visible = True
+#      make something visible
+      while not self.task.is_completed():
+        self.label_aa.text = 'Generating plots and decision sheets ...'
+      else:
+        self.label_aa.visible = False
+        self.plot_card.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(pers_game_id=your_game_id)]
+        self.repeating_plots_panel.items = slots
+      app_tables.globs.delete_all_rows()
+      app_tables.globs.add_row(game_id_pers=your_game_id,ta=which_ministry, 
+        reg=which_region,runde=1, game_id=cid,updated=datetime.datetime.now())
+      anvil.server.call('put_budget', 2025, cid)
+      within_budget = False
+      if which_ministry == 'future':
+        within_budget = self.do_future(cid, which_ministry, which_region, runde )
+      else:
+        self.do_non_future(cid, which_ministry, which_region , runde)      
+
