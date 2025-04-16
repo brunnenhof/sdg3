@@ -37,9 +37,11 @@ def set_roles(game_id):
   pols = [r['abbr'] for r in app_tables.policies.search()]
   for runde in range(1,4):
     for re in regs:
-        for p in pols:
-          my_role = mg.Pov_to_pov[mg.pol_to_ta[p]]
-          app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
+      for p in pols:
+        my_role = mg.Pov_to_pov[mg.pol_to_ta[p]]
+        app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
+        ## set up future which has no policies
+      app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=4, reg=re, round=runde, pol='nopol')
   jetzt = datetime.datetime.now()
   row = app_tables.status.get(game_id=game_id)
   row.update(started=jetzt,game_status=1)
@@ -140,5 +142,7 @@ def set_npbp(cid, npbp):
           w2 = tltl_list[j]
         row.update(taken=taken, wert=w2)
         j += 1
+      # setup fut which has no policy
+      row
   rs = app_tables.status.get(game_id=cid)
   rs.update(gm_status=1)
