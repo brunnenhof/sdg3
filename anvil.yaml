@@ -1,5 +1,19 @@
 allow_embedding: false
 db_schema:
+  files:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: path
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: file
+      type: media
+    - admin_ui: {order: 2, width: 200}
+      name: file_version
+      type: string
+    server: full
+    title: Files
   mdf_play_vars:
     client: none
     columns:
@@ -28,6 +42,26 @@ db_schema:
       type: string
     server: full
     title: ministries
+  plots:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: title
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: subtitle
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: cap
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      name: fig
+      type: media
+    server: full
+    title: plots
   policies:
     client: none
     columns:
@@ -238,5 +272,8 @@ services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {file_table: files}
+  source: /runtime/services/anvil/files.yml
 startup: {module: home, type: form}
 startup_form: null

@@ -64,7 +64,7 @@ class home(homeTemplate):
 #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
 #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
     self.pcgd_title.text = mg.pcr_title_tx
-    self.pcgd_info_rd1.text = mg.pcgd_rd1_info_tx
+    self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
     self.pcgd_generating.text = mg.pcgd_generating_tx
 
   def top_btn_thanks_click(self, **event_args):

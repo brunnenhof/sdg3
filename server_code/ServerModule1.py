@@ -1,3 +1,5 @@
+import anvil.files
+from anvil.files import data_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -5,6 +7,11 @@ import anvil.server
 import random
 import string
 import datetime
+import time
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import anvil.mpl_util
 from . import mg
 
 @anvil.server.callable
@@ -151,29 +158,164 @@ def set_npbp(cid, npbp):
   rs = app_tables.status.get(game_id=cid)
   rs.update(gm_status=1)
 
+def read_mdfplay25(datei, runde):
+  print('APRIL IN read_mdfplay25 loading: ' + datei)
+  f = data_files[datei]
+  mdf_play = np.load(f)
+  if runde == 1:
+    mdf_play = mdf_play[320:1440, :]
+  elif runde == 2:
+    mdf_play = mdf_play[320:1920, :]
+  return mdf_play
+
+def pick(ys, x, y):
+    o = []
+    ys_len = len(ys)
+    ys_cnt = 0
+    ys_check = ys[ys_cnt]
+    for i in range(0, len(x)):
+        if ys_check == x[i]:
+            o.append(y[i])
+            ys_cnt += 1
+            if ys_cnt == ys_len:
+                ys_check = 1952
+            else:
+                ys_check = ys[ys_cnt]
+        else:
+            o.append(np.nan)
+    return o
+
+def make_png(df, row, pyidx, end_yr, my_title):
+    fig, ax = plt.subplots()
+    pct = row['pct']
+    x = df[:, 0]
+    y = df[:, 1] * pct
+    data_max = y.max() * 1.1
+    data_min = y.min()
+    plot_max = row['ymax']
+    plot_min = row['ymin']
+    ymin = min(data_min, plot_min)
+    ymax = max(data_max, plot_max)
+    if ymin > 0:
+        ymin = 0
+    if ymax < 0:
+        ymax = 0
+    if int(row['id']) in [27, 5]:  # Labour share of GDP | life expectancy
+        ymin = plot_min  # red min
+    if int(row['id']) in [26]:  # population | 
+        ymax = data_max
+    if int(row['id']) in [32]:  # Nitrogen use
+        ymax = 25
+    if int(row['id']) in [21]:  # pH  |
+        ymin = plot_min
+        ymax = plot_max
+    abc = app_tables.regions.get(pyidx=pyidx)
+    my_colhex = abc['colhex']
+    my_lab = abc['name']
+    plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
+    runto_row = app_tables.runto.get(end_year=end_yr)
+    yr_picks_str = runto_row['yr_picks']
+    yps = yr_picks_str.replace("'", "")
+    yr_picks = yps.split(' ')
+    yps_int = []
+    for i in range(0, len(yr_picks)):
+        yps_int.append(int(yr_picks[i]))
+#    print('IN make_png yr_picks: ')
+    ys = pick(yps_int, x, y)
+    plt.scatter(x, ys, color=my_colhex, s=300, alpha=0.55)
+    if int(row['lowerbetter']) == 1:
+        grn_min = row['ymin']  # 8
+        grn_max = row['green']  # vars_df.iloc[varx, 4]
+        red_min = row['red']  # vars_df.iloc[varx, 5]
+        if int(row['id']) == 16:  # Emissions per person
+            red_max = max(data_max, 8)
+            ymax = red_max
+        else:
+            red_max = row['ymax']  # vars_df.iloc[varx, 9]
+        if red_max < ymax:
+            red_max = ymax
+        yel_min = grn_max
+        yel_max = red_min
+    else:
+        red_min = row['ymin']  # vars_df.iloc[varx, 8]
+        if int(row['id']) == 10:  # Access to electricity
+            if red_min > ymin:
+                ymin = red_min
+        red_max = row['red']  # vars_df.iloc[varx, 5]
+        grn_min = row['green']  # vars_df.iloc[varx, 4]
+        grn_max = row['ymax']  # vars_df.iloc[varx, 9]
+        yel_min = red_max
+        yel_max = grn_min
+    plt.ylim(ymin, ymax)
+    xmin = 1990
+    xmax = end_yr
+    if not int(row['id']) == 26:  # population
+        opa = 0.075
+        poly_coords = [(xmin, grn_max), (xmax, grn_max), (xmax, grn_min), (xmin, grn_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='green', alpha=opa))
+        poly_coords = [(xmin, red_max), (xmax, red_max), (xmax, red_min), (xmin, red_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='red', alpha=opa))
+        poly_coords = [(xmin, yel_max), (xmax, yel_max), (xmax, yel_min), (xmin, yel_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='yellow', alpha=opa))
+    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
+    plt.box(False)
+    return anvil.mpl_util.plot_image()
+
+def build_plot(var_row, regidx, cap, cid, runde):
+  # find out for which round
+  if runde == 1:
+    yr = 2025
+  mdf_play = read_mdfplay25('mdf_play.npy', runde)
+  var_l = var_row['vensim_name']
+  var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
+  varx = var_row['id']
+  print('starting new plot ...')
+  print('... build plot 272 var_l: ' + var_l)
+  rowx = app_tables.mdf_play_vars.get(var_name=var_l)
+  print('--- build plot 274 rowx: on next line')
+  print (rowx)
+  idx = rowx['col_idx']
+  print(idx)
+  if varx in[19, 21, 22, 35]: # global variable
+    lx = idx # find location of variable in mdf
+  else:
+    lx = idx + regidx # find location of variable in mdf with reg offset
+  dfv = mdf_play[:, [0, lx]]
+  dfv_pd = pd.DataFrame(dfv)
+  print(dfv_pd)
+  cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
+  cur_sub = var_row['indicator']
+  cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
+  fdz = {'title' : cur_title, 'subtitle' : cur_sub, 'fig' : cur_fig, 'cap' : cap}
+  return fdz
+
 @anvil.server.callable
-def launch_create_plots_for_slots(game_id, reg, ta):
+def launch_create_plots_for_slots(game_id, reg, ta, runde):
   task = anvil.server.launch_background_task('create_plots_for_slots', game_id, reg, ta, runde)
   return task
 
+def get_all_vars_for_ta(ta):
+  ta_cap = ta.capitalize()
+  v_row = app_tables.sdg_vars.search(ta=ta_cap)
+  vars = [r['vensim_name'] for r in app_tables.sdg_vars.search(ta=ta_cap)]
+  return vars, v_row
+
 @anvil.server.background_task
-def create_plots_for_slots(pers_game_id, region, single_ta, runde):
-    cid = pers_game_id[:-3]
-    runde_row = app_tables.games_info.get(game_id=cid)
-    if runde_row['next_step_gm'] == 1 and runde_row['next_step_p'] is None:
-      runde = 1
+def create_plots_for_slots(game_id, region, single_ta, runde):
+    cid = game_id
+    if runde == 1:
       yr = 2025
     else:
       print('In put_plots_for_slots: We dont know which runde')
   # generate a dictionary of 
     print(region + ' ----- ' + single_ta)
-    regrow = app_tables.regions.get(abbreviation=region)
+    regrow = app_tables.regions.get(abbr=region)
     regidx = int(regrow['pyidx'])
-    my_time = time.localtime()
-    my_time_formatted = time.strftime("%a %d %b %G", my_time)
+    my_time = datetime.currentDateAndTime.strftime("%a %d %b %G")
     foot1 = 'mov240906 mppy GAME e4a 10reg.mdl'
-    cap = foot1 + ' on ' + my_time_formatted
-    long, farbe = get_reg_x_name_colx(region)
+    cap = foot1 + ' on ' + my_time
+    farbe = regrow['col']
+    long = mg.pov_to_Poverty(region)
     vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
     for var_row in vars_info_rows:
       fdz = build_plot(var_row, regidx, cap, cid, runde)
