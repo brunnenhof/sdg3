@@ -143,6 +143,10 @@ def set_npbp(cid, npbp):
         row.update(taken=taken, wert=w2)
         j += 1
       # setup fut which has no policy
-      row
+      row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, role='fut')
+      if re in npbp:
+        row.update(taken=2)
+      else:
+        row.update(taken=0)
   rs = app_tables.status.get(game_id=cid)
   rs.update(gm_status=1)

@@ -39,7 +39,7 @@ ta_to_longmini = {
   "ineq" : "Minister against Inequality",
   "emp" : "Minister for Empowerment",
   "food" : "Minister for Food & Agriculture",
-  "energy" : "Minister for Energy",
+  "ener" : "Minister for Energy",
   "fut" : "Minister for the Future"
 }
 pov_to_Poverty = {
@@ -122,7 +122,7 @@ cb_ec_tx = 'East Europe - Central Asia'
 cb_eu_tx = 'Europe'
 cb_se_tx = 'Southeast Asia'
 cb_pov_tx = 'Poverty'
-cb_ineq_tx = 'Inequity'
+cb_ineq_tx = 'Inequality'
 cb_emp_tx = 'Empowerment'
 cb_food_tx = 'Food & agriculture'
 cb_ener_tx = 'Energy'

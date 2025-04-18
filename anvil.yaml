@@ -89,7 +89,7 @@ db_schema:
     - admin_ui: {width: 80}
       name: role
       type: string
-    - admin_ui: {width: 98}
+    - admin_ui: {order: 3, width: 61}
       name: taken
       type: number
     - admin_ui: {width: 99}

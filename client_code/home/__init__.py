@@ -177,35 +177,36 @@ class home(homeTemplate):
 
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
+    self.set_regs_invisible()
     cid = mg.my_game_id
     msg = mg.pcr_title_tx + ': '+cid
     self.pcr_title.text = msg
     runde = mg.game_runde
-    rows = app_tables.state_of_play.search(game_id=cid, p_state=0)
-    print(len(rows))
-    for r in rows:
-      reg = r['reg']
-      if reg == 'af':
-        self.pcr_rb_af.visible = True
-      elif reg == 'us':
-        self.pcr_rb_us.visible = True
-      elif reg == 'cn':
-        self.pcr_rb_cn.visible = True
-      elif reg == 'me':
-        self.pcr_rb_me.visible = True
-      elif reg == 'sa':
-        self.pcr_rb_sa.visible = True
-      elif reg == 'la':
-        self.pcr_rb_la.visible = True
-      elif reg == 'pa':
-        self.pcr_rb_pa.visible = True
-      elif reg == 'ec':
-        self.pcr_rb_ec.visible = True
-      elif reg == 'eu':
-        self.pcr_rb_eu.visible = True
-      elif reg == 'se':
-        self.pcr_rb_se.visible = True
-    
+    regs = mg.regs
+    for r in regs:
+      len_rows_role_assign = len(app_tables.roles_assign.search(game_id=cid, taken=0, reg=r))
+      if len_rows_role_assign > 0:
+        if r == 'af':
+          self.pcr_rb_af.visible = True
+        elif r == 'us':
+          self.pcr_rb_us.visible = True
+        elif r == 'cn':
+          self.pcr_rb_cn.visible = True
+        elif r == 'me':
+          self.pcr_rb_me.visible = True
+        elif r == 'sa':
+          self.pcr_rb_sa.visible = True
+        elif r == 'la':
+          self.pcr_rb_la.visible = True
+        elif r == 'pa':
+          self.pcr_rb_pa.visible = True
+        elif r == 'ec':
+          self.pcr_rb_ec.visible = True
+        elif r == 'eu':
+          self.pcr_rb_eu.visible = True
+        elif r == 'se':
+          self.pcr_rb_se.visible = True
+     
   def show_roles(self, cid):
     print("in show_roles")
     self.pcr_col_right_title.visible = False
@@ -353,6 +354,13 @@ class home(homeTemplate):
     self.pcr_submit.visible = True
     mg.my_ministry = 'fut'    
 
+  def all_roles_in_reg_logged(self, cid, reg):
+    rows = len(app_tables.roles_assign.search(game_id=cid, taken=0, reg=reg))
+    if rows == 0:
+      return True
+    else:
+      return False
+    
   def save_player_choice(self, cid, role, reg):
 #    print ('in save_player_choice: ' + region)
 #    print ('in save_player_choice: ' + ministry)
@@ -360,6 +368,10 @@ class home(homeTemplate):
     for r in rows:
       if r['taken'] == 0:
         r['taken'] = 1
+        all_roles_in_reg_taken = self.all_roles_in_reg_logged(cid, reg)
+        if all_roles_in_reg_taken:
+          # set region as taken
+          pass
       else:
         alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
         return False
