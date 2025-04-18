@@ -64,6 +64,8 @@ class home(homeTemplate):
 #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
 #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
     self.pcgd_title.text = mg.pcr_title_tx
+    self.pcgd_info_rd1.text = mg.pcgd_rd1_info_tx
+    self.pcgd_generating.text = mg.pcgd_generating_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -400,6 +402,17 @@ class home(homeTemplate):
       congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
       alert(congrats)
+
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1)
+      self.pcgd_generating.visible = True
+#      make something visible
+      while not self.task.is_completed():
+        pass
+      else:
+        self.pcgd_generating.visible = False
+        self.plot_card.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(pers_game_id=your_game_id)]
+        self.repeating_plots_panel.items = slots
 
       self.cplot.visible = True
       self.info_rnd_1_card.visible = True

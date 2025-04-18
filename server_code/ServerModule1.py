@@ -150,3 +150,32 @@ def set_npbp(cid, npbp):
         row.update(taken=0)
   rs = app_tables.status.get(game_id=cid)
   rs.update(gm_status=1)
+
+@anvil.server.callable
+def launch_create_plots_for_slots(game_id, reg, ta):
+  task = anvil.server.launch_background_task('create_plots_for_slots', game_id, reg, ta, runde)
+  return task
+
+@anvil.server.background_task
+def create_plots_for_slots(pers_game_id, region, single_ta, runde):
+    cid = pers_game_id[:-3]
+    runde_row = app_tables.games_info.get(game_id=cid)
+    if runde_row['next_step_gm'] == 1 and runde_row['next_step_p'] is None:
+      runde = 1
+      yr = 2025
+    else:
+      print('In put_plots_for_slots: We dont know which runde')
+  # generate a dictionary of 
+    print(region + ' ----- ' + single_ta)
+    regrow = app_tables.regions.get(abbreviation=region)
+    regidx = int(regrow['pyidx'])
+    my_time = time.localtime()
+    my_time_formatted = time.strftime("%a %d %b %G", my_time)
+    foot1 = 'mov240906 mppy GAME e4a 10reg.mdl'
+    cap = foot1 + ' on ' + my_time_formatted
+    long, farbe = get_reg_x_name_colx(region)
+    vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
+    for var_row in vars_info_rows:
+      fdz = build_plot(var_row, regidx, cap, cid, runde)
+      app_tables.plots.add_row(pers_game_id=pers_game_id, title=fdz['title'], subtitle=fdz['subtitle'],
+                              fig=fdz['fig'], cap=cap)

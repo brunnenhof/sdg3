@@ -1,0 +1,22 @@
+components:
+- layout_properties: {grid_position: 'DAHNEO,FQIBIP'}
+  name: plot_title
+  properties: {bold: true, spacing_above: none, spacing_below: none}
+  type: Label
+- layout_properties: {grid_position: 'SFOKAI,RTXZPC'}
+  name: plot_subtitle
+  properties: {font_size: 12, spacing_above: none, spacing_below: none}
+  type: Label
+- layout_properties: {grid_position: 'WPQDCZ,LMHIEV'}
+  name: image_1
+  properties:
+    margin: ['0', null, '0', null]
+    spacing_above: none
+    spacing_below: none
+  type: Image
+- layout_properties: {grid_position: 'JEXKPN,BZPXVQ'}
+  name: plot_cap
+  properties: {align: right, font_size: 11, italic: true, spacing_above: none, spacing_below: none}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true
