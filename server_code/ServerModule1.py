@@ -213,15 +213,17 @@ def make_png(df, row, pyidx, end_yr, my_title):
     my_colhex = abc['colhex']
     my_lab = abc['name']
     plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
-    runto_row = app_tables.runto.get(end_year=end_yr)
-    yr_picks_str = runto_row['yr_picks']
-    yps = yr_picks_str.replace("'", "")
-    yr_picks = yps.split(' ')
-    yps_int = []
-    for i in range(0, len(yr_picks)):
-        yps_int.append(int(yr_picks[i]))
-#    print('IN make_png yr_picks: ')
-    ys = pick(yps_int, x, y)
+    if end_yr==2025:
+      yr_picks = mg.yr_picks_start
+    elif end_yr == 2040:
+      yr_picks = mg.yr_picks_r1
+    elif end_yr == 2060:
+      yr_picks = mg.yr_picks_r2
+    elif end_yr == 2100:
+      yr_picks = mg.yr_picks_r3
+    else:
+      print("problem with yr_picks")
+    ys = pick(yr_picks, x, y)
     plt.scatter(x, ys, color=my_colhex, s=300, alpha=0.55)
     if int(row['lowerbetter']) == 1:
         grn_min = row['ymin']  # 8
@@ -295,9 +297,10 @@ def launch_create_plots_for_slots(game_id, reg, ta, runde):
   return task
 
 def get_all_vars_for_ta(ta):
-  ta_cap = ta.capitalize()
-  v_row = app_tables.sdg_vars.search(ta=ta_cap)
-  vars = [r['vensim_name'] for r in app_tables.sdg_vars.search(ta=ta_cap)]
+  ta1 = mg.pov_to_Poverty[ta]
+  print('get_all_vars_for_ta +++++ '+ta1)
+  v_row = app_tables.sdg_vars.search(ta=ta1)
+  vars = [r['vensim_name'] for r in app_tables.sdg_vars.search(ta=ta1)]
   return vars, v_row
 
 @anvil.server.background_task
@@ -311,13 +314,17 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
     print(region + ' ----- ' + single_ta)
     regrow = app_tables.regions.get(abbr=region)
     regidx = int(regrow['pyidx'])
-    my_time = datetime.currentDateAndTime.strftime("%a %d %b %G")
+    my_time = datetime.datetime.now().strftime("%a %d %b %G")
     foot1 = 'mov240906 mppy GAME e4a 10reg.mdl'
     cap = foot1 + ' on ' + my_time
-    farbe = regrow['col']
-    long = mg.pov_to_Poverty(region)
+#    farbe = regrow['col']
+#    long = mg.pov_to_Poverty[single_ta]
     vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
     for var_row in vars_info_rows:
+      print(var_row)
+      print(regidx)
+      print("going to build_plot")
       fdz = build_plot(var_row, regidx, cap, cid, runde)
-      app_tables.plots.add_row(pers_game_id=pers_game_id, title=fdz['title'], subtitle=fdz['subtitle'],
+      print(fdz)
+      app_tables.plots.add_row(game_id=game_id, title=fdz['title'], subtitle=fdz['subtitle'],
                               fig=fdz['fig'], cap=cap)

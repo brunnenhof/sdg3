@@ -43,7 +43,7 @@ db_schema:
     server: full
     title: ministries
   plots:
-    client: none
+    client: search
     columns:
     - admin_ui: {order: 0, width: 200}
       name: game_id
@@ -265,8 +265,9 @@ package_name: sdg3
 renamed: true
 runtime_options:
   client_version: '3'
-  server_spec: {base: python310-minimal}
-  server_version: python3-sandbox
+  server_spec: null
+  server_spec_disabled: {base: python310-minimal, requirements: ''}
+  server_version: python3-full
   version: 2
 services:
 - client_config: {}

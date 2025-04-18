@@ -410,34 +410,14 @@ class home(homeTemplate):
         pass
       else:
         self.pcgd_generating.visible = False
-        self.plot_card.visible = True
-        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(pers_game_id=your_game_id)]
-        self.repeating_plots_panel.items = slots
+        self.pcgd_plot_card.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid)]
+        self.plot_card_rp.items = slots
 
-      self.cplot.visible = True
-      self.info_rnd_1_card.visible = True
-      self.your_personal_gameID.text = 'Your personal Game ID is: ' + your_game_id
-      self.your_region.text = which_region_long
-      temp = 'Minister ' + which_ministy_long
-      self.your_ta.text = temp
-#      title, sub, fig, cap = anvil.server.call('load_plots', which_region, which_ministy)
-      self.task = anvil.server.call('launch_put_plots_for_slots', your_game_id, which_region, which_ministry)
-      self.label_aa.visible = True
-#      make something visible
-      while not self.task.is_completed():
-        self.label_aa.text = 'Generating plots and decision sheets ...'
-      else:
-        self.label_aa.visible = False
-        self.plot_card.visible = True
-        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(pers_game_id=your_game_id)]
-        self.repeating_plots_panel.items = slots
-      app_tables.globs.delete_all_rows()
-      app_tables.globs.add_row(game_id_pers=your_game_id,ta=which_ministry, 
-        reg=which_region,runde=1, game_id=cid,updated=datetime.datetime.now())
-      anvil.server.call('put_budget', 2025, cid)
-      within_budget = False
-      if which_ministry == 'future':
-        within_budget = self.do_future(cid, which_ministry, which_region, runde )
-      else:
-        self.do_non_future(cid, which_ministry, which_region , runde)      
+#      anvil.server.call('put_budget', 2025, cid)
+#      within_budget = False
+#      if which_ministry == 'future':
+#        within_budget = self.do_future(cid, which_ministry, which_region, runde )
+#      else:
+#        self.do_non_future(cid, which_ministry, which_region , runde)      
 

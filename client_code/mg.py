@@ -13,6 +13,14 @@ my_ministry = ''
 my_personal_game_id = ''
 my_step = 0
 game_runde = 0
+end_yr_start = 2025
+end_yr_r1 = 2040
+end_yr_r2 = 2060
+end_yr_r3 = 2100
+yr_picks_start = [1990, 2000, 2010, 2020]
+yr_picks_r1 = [1990, 2000, 2010, 2020, 2030, 2040]
+yr_picks_r2 = [1990, 2010, 2030, 2040, 2050, 2060]
+yr_picks_r3 = [1990, 2025, 2060, 2080, 2100]
 ###
 ### comment this out in production and ask interactively
 not_played_by_players = ['us', 'af', 'cn', 'sa', 'la', 'pa', 'eu', 'se']

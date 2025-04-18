@@ -427,7 +427,7 @@ components:
       type: Label
     - layout_properties: {grid_position: 'SLCGLT,AQZPIC'}
       name: pcgd_generating
-      properties: {visible: false}
+      properties: {bold: true, visible: false}
       type: Label
     - components:
       - layout_properties: {grid_position: 'IQOCKP,CIDKMO'}
