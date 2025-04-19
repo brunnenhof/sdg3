@@ -66,6 +66,8 @@ class home(homeTemplate):
     self.pcgd_title.text = mg.pcr_title_tx
     self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
     self.pcgd_generating.text = mg.pcgd_generating_tx
+    self.dec_info.content = mg.dec_info_tx
+    self.dec_title.text = mg.dec_title_tx
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -426,5 +428,6 @@ class home(homeTemplate):
     self.show_hide_plots.selected = False
     self.show_hide_plots.text = mg.show_hide_plots_hide_tx
     if self.show_hide_plots.selected == False:
+      pass
       
 

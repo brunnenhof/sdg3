@@ -1,0 +1,24 @@
+components:
+- layout_properties: {grid_position: 'NGKKWD,YHKNOM'}
+  name: dec_rp_expl
+  properties:
+    background: '#D5FFFF'
+    font_size: 12
+    margin: [-0.7692307692307692, null, '0', null]
+    spacing_above: none
+    spacing_below: none
+  type: TextBox
+- layout_properties: {grid_position: 'NGKKWD,FRCSMS'}
+  name: dec_rp_value
+  properties:
+    background: '#383a1'
+    foreground: white
+    spacing:
+      padding: [-0.7692307692307692, null, -0.7692307692307692, null]
+    spacing_above: none
+    spacing_below: none
+  type: Label
+container:
+  properties: {col_widths: '{"YHKNOM":50,"FRCSMS":10}'}
+  type: ColumnPanel
+is_package: true

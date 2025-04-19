@@ -448,6 +448,23 @@ components:
         spacing_above: none
         spacing_below: none
       type: ColumnPanel
+    - components:
+      - layout_properties: {grid_position: 'CHVGSU,CIIRVR'}
+        name: dec_title
+        properties: {align: center, bold: true, icon: 'fa:sliders', italic: true, text: Set your policies}
+        type: Label
+      - layout_properties: {grid_position: 'HSEOPN,CXJBVP'}
+        name: dec_info
+        properties: {}
+        type: RichText
+      - layout_properties: {grid_position: 'GRNOKR,GWXNGO'}
+        name: dec_rp
+        properties: {item_template: home.dec_rp_template}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'UMLOUN,TWPGRR'}
+      name: dec_card
+      properties: {background: '#e8f4d5', role: outlined-card}
+      type: ColumnPanel
     layout_properties: {grid_position: 'WZKHMK,ZGYZYV'}
     name: p_card_graf_dec
     properties: {background: '#e8f4d5', role: outlined-card, visible: false}
