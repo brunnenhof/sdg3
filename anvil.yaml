@@ -45,13 +45,13 @@ db_schema:
   plots:
     client: search
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {order: 0, width: 116}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {order: 1, width: 176}
       name: title
       type: string
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {order: 2, width: 145}
       name: subtitle
       type: string
     - admin_ui: {order: 3, width: 200}
@@ -60,6 +60,15 @@ db_schema:
     - admin_ui: {order: 4, width: 200}
       name: fig
       type: media
+    - admin_ui: {order: 5, width: 200}
+      name: runde
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: ta
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: reg
+      type: string
     server: full
     title: plots
   policies:

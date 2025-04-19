@@ -385,7 +385,6 @@ class home(homeTemplate):
     role = mg.my_ministry
     rolelong = mg.ta_to_longmini[role]
     cid = mg.my_game_id
-    self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+', '+reglong+', '+rolelong
 #    alert('reg is '+reg+' role is '+role)
     regs = mg.regs
     tas = mg.roles
@@ -396,6 +395,7 @@ class home(homeTemplate):
       self.p_choose_role.visible = False
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
+      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',  '+reglong+',  '+rolelong
       your_game_id = cid + "-" + str(wrx) + str(wmx)
       congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
@@ -410,7 +410,7 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         self.pcgd_info_rd1.visible = True
-        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid)]
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
 
 #      anvil.server.call('put_budget', 2025, cid)
@@ -419,4 +419,12 @@ class home(homeTemplate):
 #        within_budget = self.do_future(cid, which_ministry, which_region, runde )
 #      else:
 #        self.do_non_future(cid, which_ministry, which_region , runde)      
+
+  def show_hide_plots_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.show_hide_plots.visible = True
+    self.show_hide_plots.selected = False
+    self.show_hide_plots.text = mg.show_hide_plots_hide_tx
+    if self.show_hide_plots.selected == False:
+      
 

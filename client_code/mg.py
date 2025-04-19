@@ -154,3 +154,5 @@ pcr_submit_msg3 = 'Your personal Game ID is: '
 
 pcgd_rd1_info_tx = "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
 pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
+show_hide_plots_hide_tx = "Hide graphs"
+show_hide_plots_show_tx = "Show graphs"

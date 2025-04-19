@@ -271,20 +271,20 @@ def build_plot(var_row, regidx, cap, cid, runde):
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
-  print('starting new plot ...')
-  print('... build plot 272 var_l: ' + var_l)
+#  print('starting new plot ...')
+#  print('... build plot 272 var_l: ' + var_l)
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
-  print('--- build plot 274 rowx: on next line')
-  print (rowx)
+#  print('--- build plot 274 rowx: on next line')
+#  print (rowx)
   idx = rowx['col_idx']
-  print(idx)
+#  print(idx)
   if varx in[19, 21, 22, 35]: # global variable
     lx = idx # find location of variable in mdf
   else:
     lx = idx + regidx # find location of variable in mdf with reg offset
   dfv = mdf_play[:, [0, lx]]
   dfv_pd = pd.DataFrame(dfv)
-  print(dfv_pd)
+#  print(dfv_pd)
   cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
@@ -311,20 +311,14 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
     else:
       print('In put_plots_for_slots: We dont know which runde')
   # generate a dictionary of 
-    print(region + ' ----- ' + single_ta)
     regrow = app_tables.regions.get(abbr=region)
     regidx = int(regrow['pyidx'])
     my_time = datetime.datetime.now().strftime("%a %d %b %G")
     foot1 = 'mov240906 mppy GAME e4a 10reg.mdl'
     cap = foot1 + ' on ' + my_time
-#    farbe = regrow['col']
-#    long = mg.pov_to_Poverty[single_ta]
     vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
     for var_row in vars_info_rows:
-      print(var_row)
-      print(regidx)
-      print("going to build_plot")
       fdz = build_plot(var_row, regidx, cap, cid, runde)
-      print(fdz)
+#      print(fdz)
       app_tables.plots.add_row(game_id=game_id, title=fdz['title'], subtitle=fdz['subtitle'],
-                              fig=fdz['fig'], cap=cap)
+                              fig=fdz['fig'], cap=cap, runde=runde, ta=single_ta, reg=region)
