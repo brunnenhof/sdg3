@@ -205,7 +205,7 @@ def make_png(df, row, pyidx, end_yr, my_title):
     if int(row['id']) in [26]:  # population | 
         ymax = data_max
     if int(row['id']) in [32]:  # Nitrogen use
-        ymax = 25
+        ymax = max(25, data_max)
     if int(row['id']) in [21]:  # pH  |
         ymin = plot_min
         ymax = plot_max
@@ -335,7 +335,6 @@ def budget_to_db(yr, cid):
     print("Forgot to add reading later mdfs")
   mdf_bud = read_mdfplay25('mdf_play.npy', runde)
   ba = []
-  
   rowx = app_tables.mdf_play_vars.get(var_name='Budget_for_all_TA_per_region')
   idx = rowx['col_idx']
   for i in range(0,10):
@@ -383,22 +382,21 @@ def budget_to_db(yr, cid):
   print(cener)
 
   for i in range(0,10):
-    row = app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas[i],
-          c_po=cpov[i], c_ineq=cineq[i], cost_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
+    row = app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i],
+          c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
 
 @anvil.server.callable
 def get_policy_budgets(reg, ta, yr, cid):
-  row_globs = app_tables.globs.get()
-  ta = ta.capitalize()
+  TA = mg.pov_to_Poverty[ta]
   pol_list = []
-  pols = app_tables.policies.search(ta=ta)
+  pols = app_tables.policies.search(ta=TA)
   for pol in pols:
     print(pol)
     pol_name = pol['name']
     pol_expl = pol['expl']
     pol_tltl = pol['tltl']
     pol_gl = pol['gl']
-    pol_abbr = pol['abbreviation']
+    pol_abbr = pol['abbr']
     fdz = {'pol_name' : pol_name, 'pol_expl' : pol_expl, 'pol_tltl' : pol_tltl, 'pol_gl' : pol_gl, 'pol_abbr' : pol_abbr}
     pol_list.append(fdz)
   return pol_list

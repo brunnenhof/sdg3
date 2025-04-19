@@ -382,8 +382,20 @@ class home(homeTemplate):
     return True
 
   def get_runde(self, cid):
-    pass
-    
+    row = app_tables.status.get(game_id=cid)
+    r = row['game_status']
+    if r == 1:
+      yr = 2025
+    elif r == 2:
+      yr = 2040
+    elif r == 3:
+      yr = 2060
+    elif r == 4:
+      yr = 2100
+    else:
+      print("runde is NOT in 1,2,3,4")
+    return yr, r
+
   def pcr_submit_click(self, **event_args):
     reg = mg.my_reg
     reglong = mg.reg_to_longreg[reg]
@@ -419,13 +431,13 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
 
         ### get runde, yr
-        runde, yr = get_runde(cid);
+        yr, runde = self.get_runde(cid)
         anvil.server.call('budget_to_db', yr, cid)
         within_budget = False
-        if role == 'future':
+        if role == 'fut':
           within_budget = self.do_future(cid, role, reg, runde )
         else:
-          self.do_non_future(cid, role, reg , runde)      
+          self.do_non_future(cid, role, reg , runde, yr)      
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -435,15 +447,13 @@ class home(homeTemplate):
     if self.show_hide_plots.selected == False:
       pass
       
-  def do_non_future(self, cid, which_ministry, which_region, runde):
-    self.pol_card.visible = True
-    if runde == 1:
-      yr = 2025
-    pol_list = anvil.server.call('get_policy_budgets', which_region, which_ministry, yr, cid)
+  def do_non_future(self, cid, role, reg, runde, yr):
+    self.dec_card.visible = True
+    pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid)
 #      print(pol_list)
-    self.pol_repeat.items = pol_list
+    self.dec_rp.items = pol_list
 
-  def do_future(self, cid, which_ministry, which_region, runde):
+  def do_future(self, cid, role, reg, runde, yr):
     self.card_fut.visible = True
     self.submit_numbers.visible = False
     f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.put_policy_investments()
@@ -464,3 +474,66 @@ class home(homeTemplate):
       self.submit_numbers.visible = False
     return within_budget
 
+  def put_policy_investments(self, cid, role, reg, runde, yr):
+    global budget
+    pov_list = []
+    pct_pov = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Poverty', reg=reg, runde=runde)]
+    pct_ineq = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Inequality', reg=reg, runde=runde)]
+    pct_emp = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Empowerment', reg=reg, runde=runde)]
+    pct_food = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Food', reg=reg, runde=runde)]
+    pct_ener = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Energy', reg=reg, runde=runde)]
+    tltl_pov = [r['tltl'] for r in app_tables.policies.search(ta='Poverty')]
+    gl_pov = [r['gl'] for r in app_tables.policies.search(ta='Poverty')]
+    tltl_emp = [r['tltl'] for r in app_tables.policies.search(ta='Empowerment')]
+    gl_emp = [r['gl'] for r in app_tables.policies.search(ta='Empowerment')]
+    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(ta='Inequality')]
+    gl_ineq = [r['gl'] for r in app_tables.policies.search(ta='Inequality')]
+    tltl_food = [r['tltl'] for r in app_tables.policies.search(ta='Food')]
+    gl_food = [r['gl'] for r in app_tables.policies.search(ta='Food')]
+    tltl_ener = [r['tltl'] for r in app_tables.policies.search(ta='Energy')]
+    gl_ener = [r['gl'] for r in app_tables.policies.search(ta='Energy')]
+    lb = app_tables.budget.get(reg=reg, game_id=cid, yr=yr)
+    bud = lb['Bud_all_TA']
+    max_cost_pov = lb['Cost_poverty']
+    max_cost_food = lb['Cost_food']
+    max_cost_ener = lb['Cost_energy']
+    max_cost_ineq = lb['Cost_inequality']
+    max_cost_emp = lb['Cost_empowerment']
+    cost_pov = self.calc_cost_home_tot(pct_pov, tltl_pov, gl_pov, max_cost_pov)
+    cost_emp = self.calc_cost_home_tot(pct_emp, tltl_emp, gl_emp, max_cost_emp)
+    cost_ineq = self.calc_cost_home_tot(pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq)
+    cost_food = self.calc_cost_home_tot(pct_food, tltl_food, gl_food, max_cost_food)
+    cost_ener = self.calc_cost_home_tot(pct_ener, tltl_ener, gl_ener, max_cost_ener)  
+    costs_by_ta = {'cpov' : cost_pov, 'cfood' : cost_food, 'cemp': cost_emp, 'cineq' : cost_ineq, 'cener': cost_ener}
+    total_cost = cost_pov + cost_emp + cost_ener + cost_food + cost_ineq
+    pct_of_budget = total_cost / bud * 100
+    self.fut_bud_amount.text = round(bud, 0)
+    self.fut_invest.text = round(total_cost, 2)
+    within_budget = False
+    if pct_of_budget > 100:
+      if pct_of_budget > 101:
+        pct_shown = str(int(pct_of_budget))
+      else:
+        pct_shown = round(pct_of_budget, 1)
+      self.fut_bud_amount.foreground = 'red'
+      self.fut_invest.foreground = 'red'
+      self.fut_invest_pct.foreground = 'red'
+      self.fut_submit_all_pols.visible = False
+    else:
+      within_budget = True
+      if pct_of_budget > 10:
+        pct_shown = str(int(pct_of_budget))
+      else:
+        pct_shown = round(pct_of_budget, 1)
+      self.fut_invest.foreground = 'green'
+      self.fut_invest_pct.foreground = 'green'
+      self.fut_bud_amount.foreground = 'green'
+      self.submit_numbers.visible = True
+    self.fut_invest_pct.text = pct_shown
+    
+    pov_list = self.calc_cost_home_ta(pct_pov, tltl_pov, gl_pov, max_cost_pov, 'pov')
+    ineq_list = self.calc_cost_home_ta(pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq, 'ineq')
+    emp_list = self.calc_cost_home_ta(pct_emp, tltl_emp, gl_emp, max_cost_emp, 'emp')
+    food_list = self.calc_cost_home_ta(pct_food, tltl_food, gl_food, max_cost_food, 'food')
+    ener_list = self.calc_cost_home_ta(pct_ener, tltl_ener, gl_ener, max_cost_ener, 'ener')
+    return costs_by_ta, pov_list, ineq_list, emp_list, food_list, ener_list, within_budget
