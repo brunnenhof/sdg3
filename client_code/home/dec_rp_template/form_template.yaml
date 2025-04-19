@@ -18,7 +18,7 @@ components:
     spacing_below: none
   type: TextBox
 - data_bindings:
-  - {code: 'self.item[''slide_val'']', property: value, writeback: true}
+  - {code: 'self.item[''pol_tltl'']', property: value, writeback: true}
   - {code: 'self.item[''pol_gl'']', property: max, writeback: false}
   - {code: 'self.item[''pol_tltl'']', property: min, writeback: false}
   - {code: '(self.item[''pol_gl''] - self.item[''pol_tltl'']) / 10', property: step, writeback: false}
@@ -58,7 +58,9 @@ components:
     spacing_above: none
     spacing_below: none
   type: Label
-- layout_properties: {grid_position: 'NGKKWD,FRCSMS'}
+- data_bindings:
+  - {code: 'self.item[''slide_val.value'']', property: text, writeback: false}
+  layout_properties: {grid_position: 'NGKKWD,FRCSMS'}
   name: slide_val
   properties:
     background: '#383a1'

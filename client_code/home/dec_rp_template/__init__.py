@@ -4,6 +4,8 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ... import mg
+from .. import home
 
 
 class dec_rp_template(dec_rp_templateTemplate):
@@ -15,7 +17,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     self.pol_name.text = self.item['pol_name']
     self.slide_min.text = self.item['pol_tltl']
     self.slide_max.text = self.item['pol_gl']
-    self.slide_val.text = self.item['slide_val']
+#    self.slide_val.text = self.item['slide_val']
 
   def get_budget_for_region(self, reg, cid, yr):
     lb = app_tables.budget.search(reg=reg, game_id=cid, yr=yr)
@@ -33,21 +35,15 @@ class dec_rp_template(dec_rp_templateTemplate):
     return cost
 
   def slider_1_change_end(self, **event_args):
-    global budget
-    row = app_tables.globs.get()
-    cid = row['game_id']
-    ta = row['ta'].capitalize()
-    reg = row['reg']
+    cid = mg.my_game_id
+    ta = mg.my_ministry
+    reg = mg.my_reg
+    yr, runde = home.get_runde(cid)
     # update the games DB
     # need game_id, reg, pol, runde, to
     # set wert
     pol = self.pol_abbr.text
-    runde = 1
-    if runde==1:
-      yr = 2025
-    else:
-      alert("OOPS in slider_1_change_end: forgot to set YEAR")
-    row = app_tables.games.get(game_id=cid, pol=pol, runde=runde, ta=ta, reg=reg)
+    row = app_tables.roles_assign.get(game_id=cid,pol=pol,round=runde, role=ta, reg=reg)
     print (row)
     row['wert'] = float(self.slider_1.value)
     self.slide_val.text = self.slider_1.value
