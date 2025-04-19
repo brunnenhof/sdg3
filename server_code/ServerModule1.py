@@ -322,3 +322,66 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
 #      print(fdz)
       app_tables.plots.add_row(game_id=game_id, title=fdz['title'], subtitle=fdz['subtitle'],
                               fig=fdz['fig'], cap=cap, runde=runde, ta=single_ta, reg=region)
+
+@anvil.server.callable
+def budget_to_db(yr, cid):
+  print('IN budget_to_db ...')
+  app_tables.budget.delete_all_rows()
+  regs = mg.regs
+  if yr == 2025:
+    rx = 1440 - 321
+    runde = 1
+  else:
+    print("Forgot to add reading later mdfs")
+  mdf_bud = read_mdfplay25('mdf_play.npy', runde)
+  ba = []
+  
+  rowx = app_tables.mdf_play_vars.get(var_name='Budget_for_all_TA_per_region')
+  idx = rowx['col_idx']
+  for i in range(0,10):
+    ba.append(mdf_bud[rx, idx + i])
+  print('IN put_budget ... ba ')
+  print(ba)
+  cpov = []
+  rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_poverty_policy')
+  idx = rowx['col_idx']
+  for i in range(10):
+    cpov.append(mdf_bud[rx, idx + i]) # poverty
+  print('IN put_budget ... cpov ')
+  print(cpov)
+  
+  cineq = [] 
+  rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_inequality_policy')
+  idx = rowx['col_idx']
+  for i in range(10):
+    cineq.append(mdf_bud[rx, idx + i]) # inequality
+  print('IN put_budget ... cineq ')
+  print(cineq)
+  
+  cemp = []
+  rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_empowerment_policy')
+  idx = rowx['col_idx']
+  for i in range(10):
+    cemp.append(mdf_bud[rx, idx + i]) # empowerment
+  print('IN put_budget ... cemp ')
+  print(cemp)
+  
+  cfood = []
+  rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_food_policy')
+  idx = rowx['col_idx']
+  for i in range(10):
+    cfood.append(mdf_bud[rx, idx + i]) # food
+  print('IN put_budget ... cfood ')
+  print(cfood)
+  
+  cener = []
+  rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_energy_policy')
+  idx = rowx['col_idx']
+  for i in range(10):
+    cener.append(mdf_bud[rx, idx + i]) # energy
+  print('IN put_budget ... cener ')
+  print(cener)
+
+  for i in range(0,10):
+    row = app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas[i],
+          c_po=cpov[i], c_ineq=cineq[i], cost_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])

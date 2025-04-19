@@ -415,12 +415,14 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
 
-#      anvil.server.call('put_budget', 2025, cid)
-#      within_budget = False
-#      if which_ministry == 'future':
-#        within_budget = self.do_future(cid, which_ministry, which_region, runde )
-#      else:
-#        self.do_non_future(cid, which_ministry, which_region , runde)      
+        ### get runde, yr
+        runde, yr = get_runde();
+        anvil.server.call('budget_to_db', yr, cid)
+        within_budget = False
+        if role == 'future':
+          within_budget = self.do_future(cid, role, reg, runde )
+        else:
+          self.do_non_future(cid, role, reg , runde)      
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""

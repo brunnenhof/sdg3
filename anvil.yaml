@@ -1,5 +1,37 @@
 allow_embedding: false
 db_schema:
+  budget:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 91}
+      name: yr
+      type: number
+    - admin_ui: {order: 1, width: 103}
+      name: reg
+      type: string
+    - admin_ui: {order: 2, width: 105}
+      name: game_id
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: c_pov
+      type: number
+    - admin_ui: {order: 4, width: 200}
+      name: c_ineq
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: c_emp
+      type: number
+    - admin_ui: {order: 6, width: 200}
+      name: c_food
+      type: number
+    - admin_ui: {order: 7, width: 200}
+      name: c_ener
+      type: number
+    - admin_ui: {order: 8, width: 200}
+      name: bud_all_tas
+      type: number
+    server: full
+    title: budget
   files:
     client: none
     columns:
