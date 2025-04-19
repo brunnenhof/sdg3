@@ -394,9 +394,7 @@ class home(homeTemplate):
     if save_ok:
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
-      which_region_long  = reglong
       wrx = mg.regs.index(reg)
-      which_ministy_long = rolelong
       wmx = mg.roles.index(role)
       your_game_id = cid + "-" + str(wrx) + str(wmx)
       congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
@@ -411,6 +409,7 @@ class home(homeTemplate):
       else:
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
+        self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid)]
         self.plot_card_rp.items = slots
 
