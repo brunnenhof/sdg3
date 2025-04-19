@@ -380,6 +380,9 @@ class home(homeTemplate):
         alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
         return False
     return True
+
+  def get_runde(self, cid):
+    pass
     
   def pcr_submit_click(self, **event_args):
     reg = mg.my_reg
@@ -416,7 +419,7 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
 
         ### get runde, yr
-        runde, yr = get_runde();
+        runde, yr = get_runde(cid);
         anvil.server.call('budget_to_db', yr, cid)
         within_budget = False
         if role == 'future':
@@ -432,4 +435,32 @@ class home(homeTemplate):
     if self.show_hide_plots.selected == False:
       pass
       
+  def do_non_future(self, cid, which_ministry, which_region, runde):
+    self.pol_card.visible = True
+    if runde == 1:
+      yr = 2025
+    pol_list = anvil.server.call('get_policy_budgets', which_region, which_ministry, yr, cid)
+#      print(pol_list)
+    self.pol_repeat.items = pol_list
+
+  def do_future(self, cid, which_ministry, which_region, runde):
+    self.card_fut.visible = True
+    self.submit_numbers.visible = False
+    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.put_policy_investments()
+    self.pov_rep_panel.visible = True
+    self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
+    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+    self.pov_rep_panel.items = fut_pov_list
+    self.ineq_rep_panel.items = fut_ineq_list
+    self.emp_rep_panel.items = fut_emp_list
+    self.food_rep_panel.items = fut_food_list
+    self.ener_rep_panel.items = fut_ener_list
+    if within_budget:
+      self.submit_numbers.visible = True
+    else:
+      self.submit_numbers.visible = False
+    return within_budget
 

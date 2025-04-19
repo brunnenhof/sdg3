@@ -385,3 +385,20 @@ def budget_to_db(yr, cid):
   for i in range(0,10):
     row = app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas[i],
           c_po=cpov[i], c_ineq=cineq[i], cost_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
+
+@anvil.server.callable
+def get_policy_budgets(reg, ta, yr, cid):
+  row_globs = app_tables.globs.get()
+  ta = ta.capitalize()
+  pol_list = []
+  pols = app_tables.policies.search(ta=ta)
+  for pol in pols:
+    print(pol)
+    pol_name = pol['name']
+    pol_expl = pol['expl']
+    pol_tltl = pol['tltl']
+    pol_gl = pol['gl']
+    pol_abbr = pol['abbreviation']
+    fdz = {'pol_name' : pol_name, 'pol_expl' : pol_expl, 'pol_tltl' : pol_tltl, 'pol_gl' : pol_gl, 'pol_abbr' : pol_abbr}
+    pol_list.append(fdz)
+  return pol_list
