@@ -153,9 +153,27 @@ pcr_submit_msg2 = ' in '
 pcr_submit_msg3 = 'Your personal Game ID is: '
 
 pcgd_rd1_info_tx = "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
+pcgd_rd1_info_fut_tx = "Together with your ministerial team, you are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to see the investment plans of your colleagues. Make sure they are within your regional budget. More instructions are below the graphs."
 pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
 show_hide_plots_hide_tx = "Hide graphs"
 show_hide_plots_show_tx = "Show graphs"
 
 dec_info_tx = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."
 dec_title_tx = "Set your policies"
+
+fut_info_tx = "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note:* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde."
+fut_bud_lb1_tx = "Your total budget:"
+fut_bud_lb2_tx = "All the investment plans of all your fellow ministers summed up:"
+fut_bud_lb3_tx = "Investment plans as % of your budget"
+cfpov_tx = "Poverty"
+cfpov_lb_tx = "Regional investment plans against poverty:"
+cfineq_tx = "Inequality"
+cfineq_lb_tx = "Regional investment plans against inequality:"
+cfemp_tx = "Empowerment"
+cfemp_lb_tx = "Regional investment plans for empowerment:"
+cffood_tx = "Food & agriculture"
+cffood_lb_tx = "Regional investment for food and agriculture:"
+cfener_tx = "Energy"
+cfener_lb_tx = "Regional investment for energy:"
+refresh_numbers_tx = "RFRESH numbers"
+submit_numbers_tx = "SUBMIT numbers"

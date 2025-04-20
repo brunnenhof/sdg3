@@ -69,6 +69,24 @@ class home(homeTemplate):
     self.dec_info.content = mg.dec_info_tx
     self.dec_title.text = mg.dec_title_tx
 
+    self.refresh_numbers.text = mg.refresh_numbers_tx
+    self.submit_numbers.text = mg.submit_numbers_tx
+    self.fut_info.content = mg.fut_info_tx 
+    self.fut_bud_lb1.text = mg.fut_bud_lb1_tx 
+    self.fut_bud_lb2.text = mg.fut_bud_lb2_tx 
+    self.fut_but_lb3.text = mg.fut_bud_lb3_tx 
+    self.cpf_lb.text = mg.cfpov_tx
+    self.cpf_lb2.text = mg.cfpov_lb_tx 
+#    self.cfineq.text = mg.cfineq_tx 
+#    self.cfineq_lb.text = mg.cfineq_lb_tx 
+    cfemp_tx = "Empowerment"
+    cfemp_lb_tx = "Regional investment plans for empowerment:"
+    cffood_tx = "Food & agriculture"
+    cffood_lb_tx = "Regional investment for food and agriculture:"
+    cfener_tx = "Energy"
+    cfener_lb_tx = "Regional investment for energy:"
+    
+
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
 
@@ -397,6 +415,8 @@ class home(homeTemplate):
     return yr, r
 
   def pcr_submit_click(self, **event_args):
+    if self.pcr_rb_fut.selected:
+      self.p_card_graf_dec.visible = False
     reg = mg.my_reg
     reglong = mg.reg_to_longreg[reg]
     role = mg.my_ministry
@@ -426,6 +446,10 @@ class home(homeTemplate):
       else:
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
+        if role == 'fut':
+          self.pcgd_info_rd1.text = mg.pcgd_rd1_info_tx
+        else:
+          self.pcgd_info_rd1.text = mg.pcgd_rd1_info_fut_tx
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
@@ -435,9 +459,9 @@ class home(homeTemplate):
         anvil.server.call('budget_to_db', yr, cid)
         within_budget = False
         if role == 'fut':
-          within_budget = self.do_future(cid, role, reg, runde )
+          within_budget = self.do_future(cid, role, reg, runde, yr )
         else:
-          self.do_non_future(cid, role, reg , runde, yr)      
+          self.do_non_future(cid, role, reg, runde, yr)      
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -454,9 +478,10 @@ class home(homeTemplate):
     self.dec_rp.items = pol_list
 
   def do_future(self, cid, role, reg, runde, yr):
+    self.dec_card.visible = False
     self.card_fut.visible = True
     self.submit_numbers.visible = False
-    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.put_policy_investments()
+    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
     self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
     self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
@@ -474,31 +499,41 @@ class home(homeTemplate):
       self.submit_numbers.visible = False
     return within_budget
 
-  def put_policy_investments(self, cid, role, reg, runde, yr):
+    def calc_cost_home_tot(self, pct, tltl, gl, maxc):
+      cost = 0
+      for i in range(0, len(pct)):
+        nw = pct[i] - tltl[i]
+        nb = 0
+        nt = gl[i] - tltl[i]
+        pct_of_range = nw / (nt - nb)
+        cost += maxc * pct_of_range
+      return cost
+
+  def get_policy_investments(self, cid, role, reg, runde, yr):
     global budget
     pov_list = []
-    pct_pov = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Poverty', reg=reg, runde=runde)]
-    pct_ineq = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Inequality', reg=reg, runde=runde)]
-    pct_emp = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Empowerment', reg=reg, runde=runde)]
-    pct_food = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Food', reg=reg, runde=runde)]
-    pct_ener = [r['wert'] for r in app_tables.games.search(game_id=cid, ta='Energy', reg=reg, runde=runde)]
-    tltl_pov = [r['tltl'] for r in app_tables.policies.search(ta='Poverty')]
-    gl_pov = [r['gl'] for r in app_tables.policies.search(ta='Poverty')]
-    tltl_emp = [r['tltl'] for r in app_tables.policies.search(ta='Empowerment')]
-    gl_emp = [r['gl'] for r in app_tables.policies.search(ta='Empowerment')]
-    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(ta='Inequality')]
-    gl_ineq = [r['gl'] for r in app_tables.policies.search(ta='Inequality')]
-    tltl_food = [r['tltl'] for r in app_tables.policies.search(ta='Food')]
-    gl_food = [r['gl'] for r in app_tables.policies.search(ta='Food')]
-    tltl_ener = [r['tltl'] for r in app_tables.policies.search(ta='Energy')]
-    gl_ener = [r['gl'] for r in app_tables.policies.search(ta='Energy')]
+    pct_pov = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='pov', reg=reg, runde=runde)]
+    pct_ineq = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='ineq', reg=reg, runde=runde)]
+    pct_emp = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='emp', reg=reg, runde=runde)]
+    pct_food = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='food', reg=reg, runde=runde)]
+    pct_ener = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='ener', reg=reg, runde=runde)]
+    tltl_pov = [r['tltl'] for r in app_tables.policies.search(ta='pov')]
+    gl_pov = [r['gl'] for r in app_tables.policies.search(ta='pov')]
+    tltl_emp = [r['tltl'] for r in app_tables.policies.search(ta='emp')]
+    gl_emp = [r['gl'] for r in app_tables.policies.search(ta='emp')]
+    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(ta='ineq')]
+    gl_ineq = [r['gl'] for r in app_tables.policies.search(ta='ineq')]
+    tltl_food = [r['tltl'] for r in app_tables.policies.search(ta='food')]
+    gl_food = [r['gl'] for r in app_tables.policies.search(ta='food')]
+    tltl_ener = [r['tltl'] for r in app_tables.policies.search(ta='ener')]
+    gl_ener = [r['gl'] for r in app_tables.policies.search(ta='ener')]
     lb = app_tables.budget.get(reg=reg, game_id=cid, yr=yr)
-    bud = lb['Bud_all_TA']
-    max_cost_pov = lb['Cost_poverty']
-    max_cost_food = lb['Cost_food']
-    max_cost_ener = lb['Cost_energy']
-    max_cost_ineq = lb['Cost_inequality']
-    max_cost_emp = lb['Cost_empowerment']
+    bud = lb['bud_all_tas']
+    max_cost_pov = lb['c_pov']
+    max_cost_food = lb['c_food']
+    max_cost_ener = lb['c_ener']
+    max_cost_ineq = lb['c_ineq']
+    max_cost_emp = lb['c_emp']
     cost_pov = self.calc_cost_home_tot(pct_pov, tltl_pov, gl_pov, max_cost_pov)
     cost_emp = self.calc_cost_home_tot(pct_emp, tltl_emp, gl_emp, max_cost_emp)
     cost_ineq = self.calc_cost_home_tot(pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq)
