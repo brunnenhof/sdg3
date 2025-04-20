@@ -80,7 +80,7 @@ components:
     foreground: white
     spacing:
       margin: ['11', null, null, null]
-      padding: [-0.7692307692307692, null, -0.7692307692307692, null]
+      padding: [-0.7692307692307692, null, -0.7692307692307692, '7']
     spacing_above: none
     spacing_below: none
   type: Label
