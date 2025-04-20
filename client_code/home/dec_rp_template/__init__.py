@@ -13,7 +13,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.pol_expl.text = self.item['pol_expl']
+    self.pol_tx_area.text = self.item['pol_expl']
     self.pol_name.text = self.item['pol_name']
     self.slide_min.text = self.item['pol_tltl']
     self.slide_max.text = self.item['pol_gl']
@@ -38,7 +38,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     cid = mg.my_game_id
     ta = mg.my_ministry
     reg = mg.my_reg
-    yr, runde = home.get_runde(cid)
+    yr, runde = home.get_runde(self, cid)
     # update the games DB
     # need game_id, reg, pol, runde, to
     # set wert
