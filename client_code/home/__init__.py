@@ -443,13 +443,13 @@ class home(homeTemplate):
 #      make something visible
       while not self.task.is_completed():
         pass
-      else:
+      else: ## background is done
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         if role == 'fut':
-          self.pcgd_info_rd1.text = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_fut_tx
         else:
-          self.pcgd_info_rd1.text = mg.pcgd_rd1_info_fut_tx
+          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
