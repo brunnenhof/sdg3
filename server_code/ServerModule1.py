@@ -40,6 +40,7 @@ def launch_set_roles(game_id):
 @anvil.server.background_task
 def set_roles(game_id):
   app_tables.roles_assign.delete_all_rows()
+  app_tables.budget.delete_all_rows()
   regs = mg.regs
   pols = [r['abbr'] for r in app_tables.policies.search()]
   for runde in range(1,4):
@@ -112,12 +113,14 @@ def launch_set_npbp(game_id, npbp):
 
 @anvil.server.background_task
 def set_npbp(cid, npbp):
+  app_tables.state_of_play.delete_all_rows()
+  app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
-  print(pol_list)
+#  print(pol_list)
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
-  print(tltl_list)
+#  print(tltl_list)
   gl_list = [r['gl'] for r in app_tables.policies.search()]
-  print(gl_list)
+#  print(gl_list)
   w_list = []
   for i in range(0,len(tltl_list)):
     mymin = tltl_list[i]
@@ -126,7 +129,12 @@ def set_npbp(cid, npbp):
     w = mymin + random.uniform(0, myrange)
     w_list.append(w)  # random policy value biased towards GL
   regs = mg.regs
-  print(w_list)
+#  print(w_list)
+  for re in regs: # set up regs_state_of_play
+    if re in npbp:
+      app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
+    else:
+      app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0) # p_state 0: data set up
   roles = mg.roles
   for ro in roles:
     for re in regs: # set up regs_state_of_play
@@ -143,7 +151,7 @@ def set_npbp(cid, npbp):
         if re in npbp:
           taken = 2
           w2 = w_list[j]
-          print(cid,' ' + str(runde)+' '+re+' '+p+' '+ta+' '+str(w2))
+#          print(cid,' ' + str(runde)+' '+re+' '+p+' '+ta+' '+str(w2))
         else:
           taken = 0
           w2 = tltl_list[j]
@@ -159,7 +167,7 @@ def set_npbp(cid, npbp):
   rs.update(gm_status=1)
 
 def read_mdfplay25(datei, runde):
-  print('APRIL IN read_mdfplay25 loading: ' + datei)
+#  print('APRIL IN read_mdfplay25 loading: ' + datei)
   f = data_files[datei]
   mdf_play = np.load(f)
   if runde == 1:

@@ -58,7 +58,7 @@ db_schema:
     - admin_ui: {width: 94}
       name: col_idx
       type: number
-    server: full
+    server: search
     title: mdf_play_vars
   ministries:
     client: none
@@ -75,7 +75,7 @@ db_schema:
     - admin_ui: {width: 92}
       name: mini
       type: string
-    server: full
+    server: search
     title: ministries
   plots:
     client: search
@@ -130,7 +130,7 @@ db_schema:
     - admin_ui: {width: 92}
       name: ta
       type: string
-    server: full
+    server: search
     title: policies
   regions:
     client: none
@@ -153,7 +153,7 @@ db_schema:
     - admin_ui: {width: 95}
       name: pyidx
       type: number
-    server: full
+    server: search
     title: regions
   roles_assign:
     client: full
@@ -196,7 +196,7 @@ db_schema:
     - admin_ui: {width: 200}
       name: sdgNbr
       type: string
-    server: full
+    server: search
     title: sdg
   sdg_vars:
     client: none
@@ -240,21 +240,21 @@ db_schema:
     - admin_ui: {width: 200}
       name: sdg
       type: string
-    server: full
+    server: search
     title: sdg_vars
   state_of_play:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {order: 0, width: 163}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 114}
+    - admin_ui: {order: 1, width: 94}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 144}
+    - admin_ui: {order: 2, width: 99}
       name: p_state
       type: number
-    - admin_ui: {order: 3, width: 132}
+    - admin_ui: {order: 3, width: 113}
       name: ta
       type: string
     - admin_ui: {order: 4, width: 127}
@@ -285,8 +285,8 @@ db_schema:
       type: datetime
     server: full
     title: status
-  to_reg_loogedin:
-    client: none
+  step_done:
+    client: full
     columns:
     - admin_ui: {order: 0, width: 200}
       name: game_id
@@ -295,13 +295,13 @@ db_schema:
       name: reg
       type: string
     - admin_ui: {order: 2, width: 200}
-      name: ta
-      type: string
+      name: p_step_done
+      type: number
     - admin_ui: {order: 3, width: 200}
-      name: logged_in
+      name: gm_step_done
       type: number
     server: full
-    title: to_reg_loogedin
+    title: step_done
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}

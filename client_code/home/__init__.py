@@ -392,8 +392,8 @@ class home(homeTemplate):
         r['taken'] = 1
         all_roles_in_reg_taken = self.all_roles_in_reg_logged(cid, reg)
         if all_roles_in_reg_taken:
-          # set region as taken
-          pass
+          row2 = app_tables.step_done.get(game_id=cid, reg=reg)
+          row2.update(p_step_done=1) ## all in the region are logged in
       else:
         alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
         return False
@@ -430,6 +430,7 @@ class home(homeTemplate):
     if save_ok:
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
+      self.dec_card.visible = False
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
       self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',  '+reglong+',  '+rolelong
@@ -447,8 +448,10 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         if role == 'fut':
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_fut_tx
+          self.card_fut.visible = True
+          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
         else:
+          self.dec_card.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
