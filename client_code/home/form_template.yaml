@@ -529,7 +529,7 @@ components:
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       layout_properties: {grid_position: 'BKHGPG,NUOBCW'}
       name: card_pov_fut
-      properties: {role: outlined-card}
+      properties: {col_widths: '{"SLZPPW":40,"QPTRTG":20}', role: outlined-card}
       type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'FIHOPK,CVZZBA'}
@@ -550,7 +550,7 @@ components:
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       layout_properties: {grid_position: 'OUZEGC,MKJDNX'}
       name: card_ineq_fut
-      properties: {role: outlined-card}
+      properties: {col_widths: '{"TSRELT":40,"HCHHTB":20}', role: outlined-card}
       type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'OZUWQQ,VKQQQU'}
@@ -592,7 +592,7 @@ components:
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       layout_properties: {grid_position: 'PEKFFC,XNSWYA'}
       name: card_food_fut
-      properties: {role: outlined-card}
+      properties: {col_widths: '{"PJASFC":40,"VJOYCH":20}', role: outlined-card}
       type: ColumnPanel
     - components:
       - layout_properties: {grid_position: 'PUPOVT,EVBNRV'}
@@ -613,7 +613,7 @@ components:
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       layout_properties: {grid_position: 'EWGUBP,HNAGSR'}
       name: card_ener_fut
-      properties: {role: outlined-card}
+      properties: {col_widths: '{"JKPEYS":40,"RLANVE":20}', role: outlined-card}
       type: ColumnPanel
     layout_properties: {grid_position: 'OVTHZG,GFIOCC'}
     name: card_fut

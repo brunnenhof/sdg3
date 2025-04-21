@@ -12,6 +12,6 @@ class cpf_ineq_template(cpf_ineq_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.pol_ineq_name.text = self.item['pol_ineq_name']
-    self.pol_ineq_amount.text = self.item['pol_ineq_amount']
+    self.pol_ineq_name.text = self.item['pol_name']
+    self.pol_ineq_amount.text = self.item['pol_amount']
 

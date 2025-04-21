@@ -12,6 +12,6 @@ class cpf_food_template(cpf_food_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.pol_food_name.text = self.item['pol_food_name']
-    self.pol_food_amount.text = self.item['pol_food_amount']
+    self.pol_food_name.text = self.item['pol_name']
+    self.pol_food_amount.text = self.item['pol_amount']
 

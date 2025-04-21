@@ -490,13 +490,13 @@ class home(homeTemplate):
     self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
     self.pov_rep_panel.items = fut_pov_list
     self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-    self.ineq_rep_panel.items = fut_ineq_list    
+    self.cpf_rp_ineq.items = fut_ineq_list    
     self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-    self.emp_rep_panel.items = fut_emp_list    
+    self.cpf_rp_emp.items = fut_emp_list    
     self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-    self.food_rep_panel.items = fut_food_list    
+    self.cpf_food_rp.items = fut_food_list    
     self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-    self.ener_rep_panel.items = fut_ener_list    
+    self.cpf_ener_rp.items = fut_ener_list    
     if within_budget:
       self.submit_numbers.visible = True
     else:

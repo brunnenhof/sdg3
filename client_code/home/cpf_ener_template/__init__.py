@@ -12,7 +12,7 @@ class cpf_ener_template(cpf_ener_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.pol_ener_name.text = self.item['pol_ener_name']
-    self.pol_ener_amount.text = self.item['pol_ener_amount']
+    self.pol_ener_name.text = self.item['pol_name']
+    self.pol_ener_amount.text = self.item['pol_amount']
 
     

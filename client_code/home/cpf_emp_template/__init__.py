@@ -12,5 +12,5 @@ class cpf_emp_template(cpf_emp_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.pol_emp_name.text = self.item['pol_emp_name']
-    self.pol_emp_amount.text = self.item['pol_emp_amount']
+    self.pol_emp_name.text = self.item['pol_name']
+    self.pol_emp_amount.text = self.item['pol_amount']
