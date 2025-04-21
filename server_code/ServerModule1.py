@@ -276,20 +276,22 @@ def build_plot(var_row, regidx, cap, cid, runde):
   if runde == 1:
     yr = 2025
   mdf_play = read_mdfplay25('mdf_play.npy', runde)
+  print(mdf_play.shape)
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
-#  print('starting new plot ...')
-#  print('... build plot 272 var_l: ' + var_l)
+  print('starting new plot ...')
+  print('... build plot 272 var_l: ' + var_l)
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
-#  print('--- build plot 274 rowx: on next line')
-#  print (rowx)
+  print('--- build plot 274 rowx: on next line')
+  print (rowx)
   idx = rowx['col_idx']
-#  print(idx)
+  print(idx)
   if varx in[19, 21, 22, 35]: # global variable
     lx = idx # find location of variable in mdf
   else:
     lx = idx + regidx # find location of variable in mdf with reg offset
+  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
   dfv_pd = pd.DataFrame(dfv)
 #  print(dfv_pd)
