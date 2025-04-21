@@ -1,0 +1,13 @@
+components:
+- layout_properties: {grid_position: 'HEIDBX,PAGBTV'}
+  name: pol_food_name
+  properties: {align: right}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'HEIDBX,RJTCQA'}
+  name: pol_food_amount
+  properties: {}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+container:
+  properties: {col_widths: '{"PAGBTV":40,"RJTCQA":20}'}
+  type: ColumnPanel
+is_package: true

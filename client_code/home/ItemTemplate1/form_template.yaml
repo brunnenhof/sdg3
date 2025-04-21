@@ -1,3 +1,13 @@
-components: []
-container: {type: ColumnPanel}
+components:
+- layout_properties: {grid_position: 'NNIHUB,NSFJYF'}
+  name: pol_name
+  properties: {align: right, scale: medium}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'NNIHUB,JXJRSP'}
+  name: pol_amount
+  properties: {}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+container:
+  properties: {col_widths: '{"NSFJYF":40,"JXJRSP":20}'}
+  type: ColumnPanel
 is_package: true

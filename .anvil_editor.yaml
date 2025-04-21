@@ -6,6 +6,10 @@ unique_ids:
   forms:
     home: RLBSXBDSIT6I2KZAG3FIAKS45JCIPA56
     home.ItemTemplate1: '1745163289750878255801428.3281'
+    home.cpf_emp_template: '1745252259624768410952607.6062'
+    home.cpf_ener_template: '1745253519347949112467508.0076'
+    home.cpf_food_template: '1745253215977936491198024.9253'
+    home.cpf_ineq_template: '1745250937937137977567637.82166'
     home.dec_rp_template: '1745054573378838428050906.4794'
     home.gm_card_wait_1_temp: '1744642643134287465907804.4164'
     home.pcgd_plot_card_rp_temp: '1744990444403540063935316.8255'

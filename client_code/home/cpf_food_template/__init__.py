@@ -1,15 +1,17 @@
-from ._anvil_designer import ItemTemplate1Template
+from ._anvil_designer import cpf_food_templateTemplate
 from anvil import *
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class ItemTemplate1(ItemTemplate1Template):
+
+class cpf_food_template(cpf_food_templateTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
     # Any code you write here will run before the form opens.
-    self.pol_name.text = self.item['pol_name']
-    self.pol_amount.text = self.item['pol_amount']
+    self.pol_food_name.text = self.item['pol_food_name']
+    self.pol_food_amount.text = self.item['pol_food_amount']
 

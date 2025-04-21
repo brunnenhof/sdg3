@@ -77,15 +77,15 @@ class home(homeTemplate):
     self.fut_but_lb3.text = mg.fut_bud_lb3_tx 
     self.cpf_lb.text = mg.cfpov_tx
     self.cpf_lb2.text = mg.cfpov_lb_tx 
-#    self.cfineq.text = mg.cfineq_tx 
-#    self.cfineq_lb.text = mg.cfineq_lb_tx 
-    cfemp_tx = "Empowerment"
-    cfemp_lb_tx = "Regional investment plans for empowerment:"
-    cffood_tx = "Food & agriculture"
-    cffood_lb_tx = "Regional investment for food and agriculture:"
-    cfener_tx = "Energy"
-    cfener_lb_tx = "Regional investment for energy:"
-    
+    self.cpf_ineq_lb.text = mg.cfineq_tx
+    self.cpf_ineq_lb2.text = mg.cfineq_lb_tx 
+    self.cpf_emp_lb.text = mg.cfemp_tx
+    self.cpf_emp_lb2.text = mg.cfemp_lb_tx 
+    self.cpf_food_lb.text = mg.cffood_tx
+    self.cpf_food_lb2.text = mg.cffood_lb_tx 
+    self.cpf_ener_lb.text = mg.cfener_tx
+    self.cpf_ener_lb2.text = mg.cfener_lb_tx 
+   
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -433,7 +433,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
-      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',  '+reglong+',  '+rolelong
+      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
       your_game_id = cid + "-" + str(wrx) + str(wmx)
       congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
@@ -488,15 +488,15 @@ class home(homeTemplate):
     f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
     self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
     self.pov_rep_panel.items = fut_pov_list
-    self.ineq_rep_panel.items = fut_ineq_list
-    self.emp_rep_panel.items = fut_emp_list
-    self.food_rep_panel.items = fut_food_list
-    self.ener_rep_panel.items = fut_ener_list
+    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+    self.ineq_rep_panel.items = fut_ineq_list    
+    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+    self.emp_rep_panel.items = fut_emp_list    
+    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+    self.food_rep_panel.items = fut_food_list    
+    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+    self.ener_rep_panel.items = fut_ener_list    
     if within_budget:
       self.submit_numbers.visible = True
     else:
@@ -512,6 +512,30 @@ class home(homeTemplate):
       pct_of_range = nw / (nt - nb)
       cost += maxc * pct_of_range
     return cost
+
+  def calc_cost_home_ta(self, pct, tltl, gl, maxc, ta):
+    # get_names
+    if ta == 'pov':
+      names = [r['name'] for r in app_tables.policies.search(ta='Poverty')]
+    elif ta == 'ineq':
+      names = [r['name'] for r in app_tables.policies.search(ta='Inequality')]
+    elif ta == 'emp':
+      names = [r['name'] for r in app_tables.policies.search(ta='Empowerment')]
+    elif ta == 'food':
+      names = [r['name'] for r in app_tables.policies.search(ta='Food')]
+    elif ta == 'ener':
+      names = [r['name'] for r in app_tables.policies.search(ta='Energy')]
+    
+    slots = []
+    for i in range(0, len(pct)):
+        nw = pct[i] - tltl[i]
+        nb = 0
+        nt = gl[i] - tltl[i]
+        pct_of_range = nw / (nt - nb)
+        cost = round(maxc * pct_of_range, 2)
+        slot = {'pol_name' : names[i], 'pol_amount': cost}
+        slots.append(slot)
+    return slots
 
   def get_policy_investments(self, cid, role, reg, runde, yr):
     global budget

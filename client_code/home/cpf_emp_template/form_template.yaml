@@ -1,0 +1,13 @@
+components:
+- layout_properties: {grid_position: 'PHAYDO,GYNRWB'}
+  name: pol_emp_name
+  properties: {align: right}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'PHAYDO,JWCOEK'}
+  name: pol_emp_amount
+  properties: {}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+container:
+  properties: {col_widths: '{"GYNRWB":40,"JWCOEK":20}'}
+  type: ColumnPanel
+is_package: true
