@@ -1,7 +1,7 @@
 allow_embedding: false
 db_schema:
   budget:
-    client: none
+    client: full
     columns:
     - admin_ui: {order: 0, width: 91}
       name: yr
@@ -107,7 +107,7 @@ db_schema:
     server: full
     title: plots
   policies:
-    client: none
+    client: search
     columns:
     - admin_ui: {width: 63}
       name: id

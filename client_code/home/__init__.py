@@ -503,15 +503,15 @@ class home(homeTemplate):
       self.submit_numbers.visible = False
     return within_budget
 
-    def calc_cost_home_tot(self, pct, tltl, gl, maxc):
-      cost = 0
-      for i in range(0, len(pct)):
-        nw = pct[i] - tltl[i]
-        nb = 0
-        nt = gl[i] - tltl[i]
-        pct_of_range = nw / (nt - nb)
-        cost += maxc * pct_of_range
-      return cost
+  def calc_cost_home_tot(self, pct, tltl, gl, maxc):
+    cost = 0
+    for i in range(0, len(pct)):
+      nw = pct[i] - tltl[i]
+      nb = 0
+      nt = gl[i] - tltl[i]
+      pct_of_range = nw / (nt - nb)
+      cost += maxc * pct_of_range
+    return cost
 
   def get_policy_investments(self, cid, role, reg, runde, yr):
     global budget
@@ -521,16 +521,16 @@ class home(homeTemplate):
     pct_emp = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='emp', reg=reg, round=runde)]
     pct_food = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='food', reg=reg, round=runde)]
     pct_ener = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='ener', reg=reg, round=runde)]
-    tltl_pov = [r['tltl'] for r in app_tables.policies.search(role='pov')]
-    gl_pov = [r['gl'] for r in app_tables.policies.search(role='pov')]
-    tltl_emp = [r['tltl'] for r in app_tables.policies.search(role='emp')]
-    gl_emp = [r['gl'] for r in app_tables.policies.search(role='emp')]
-    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(role='ineq')]
-    gl_ineq = [r['gl'] for r in app_tables.policies.search(role='ineq')]
-    tltl_food = [r['tltl'] for r in app_tables.policies.search(role='food')]
-    gl_food = [r['gl'] for r in app_tables.policies.search(role='food')]
-    tltl_ener = [r['tltl'] for r in app_tables.policies.search(role='ener')]
-    gl_ener = [r['gl'] for r in app_tables.policies.search(role='ener')]
+    tltl_pov = [r['tltl'] for r in app_tables.policies.search(ta='Poverty')]
+    gl_pov = [r['gl'] for r in app_tables.policies.search(ta='Poverty')]
+    tltl_emp = [r['tltl'] for r in app_tables.policies.search(ta='Empowerment')]
+    gl_emp = [r['gl'] for r in app_tables.policies.search(ta='Empowerment')]
+    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(ta='Inequality')]
+    gl_ineq = [r['gl'] for r in app_tables.policies.search(ta='Inequality')]
+    tltl_food = [r['tltl'] for r in app_tables.policies.search(ta='Food')]
+    gl_food = [r['gl'] for r in app_tables.policies.search(ta='Food')]
+    tltl_ener = [r['tltl'] for r in app_tables.policies.search(ta='Energy')]
+    gl_ener = [r['gl'] for r in app_tables.policies.search(ta='Energy')]
     lb = app_tables.budget.get(reg=reg, game_id=cid, yr=yr)
     bud = lb['bud_all_tas']
     max_cost_pov = lb['c_pov']
