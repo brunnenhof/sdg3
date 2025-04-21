@@ -118,15 +118,15 @@ class home(homeTemplate):
 
   def top_join_game_click(self, **event_args):
     self.top_entry.visible = False
-    how_many_new = len(app_tables.status.search(game_status=1, p_status=0))
+    how_many_new = len(app_tables.status.search(game_status=1, p_status=0, gm_status=1))
     print(how_many_new)
     if how_many_new > 1:
       self.p_cp_choose_game.visible = True
-      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0)]
+      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0, gm_status=1)]
 #      cid = self.p_dd_select_game.selected_value["game_id"]
 #      alert(cid)
     elif how_many_new == 1:
-      row = app_tables.status.get(game_status=1, p_status=0)
+      row = app_tables.status.get(game_status=1, p_status=0, gm_status=1)
 #      alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
 #      row.update(p_status=1)
