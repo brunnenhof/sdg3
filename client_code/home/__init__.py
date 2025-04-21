@@ -449,6 +449,7 @@ class home(homeTemplate):
         self.pcgd_plot_card.visible = True
         if role == 'fut':
           self.card_fut.visible = True
+          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
           self.fut_info.content = mg.pcgd_rd1_info_fut_tx
         else:
           self.dec_card.visible = True
@@ -515,21 +516,21 @@ class home(homeTemplate):
   def get_policy_investments(self, cid, role, reg, runde, yr):
     global budget
     pov_list = []
-    pct_pov = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='pov', reg=reg, runde=runde)]
-    pct_ineq = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='ineq', reg=reg, runde=runde)]
-    pct_emp = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='emp', reg=reg, runde=runde)]
-    pct_food = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='food', reg=reg, runde=runde)]
-    pct_ener = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, ta='ener', reg=reg, runde=runde)]
-    tltl_pov = [r['tltl'] for r in app_tables.policies.search(ta='pov')]
-    gl_pov = [r['gl'] for r in app_tables.policies.search(ta='pov')]
-    tltl_emp = [r['tltl'] for r in app_tables.policies.search(ta='emp')]
-    gl_emp = [r['gl'] for r in app_tables.policies.search(ta='emp')]
-    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(ta='ineq')]
-    gl_ineq = [r['gl'] for r in app_tables.policies.search(ta='ineq')]
-    tltl_food = [r['tltl'] for r in app_tables.policies.search(ta='food')]
-    gl_food = [r['gl'] for r in app_tables.policies.search(ta='food')]
-    tltl_ener = [r['tltl'] for r in app_tables.policies.search(ta='ener')]
-    gl_ener = [r['gl'] for r in app_tables.policies.search(ta='ener')]
+    pct_pov = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='pov', reg=reg, round=runde)]
+    pct_ineq = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='ineq', reg=reg, round=runde)]
+    pct_emp = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='emp', reg=reg, round=runde)]
+    pct_food = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='food', reg=reg, round=runde)]
+    pct_ener = [r['wert'] for r in app_tables.roles_assign.search(game_id=cid, role='ener', reg=reg, round=runde)]
+    tltl_pov = [r['tltl'] for r in app_tables.policies.search(role='pov')]
+    gl_pov = [r['gl'] for r in app_tables.policies.search(role='pov')]
+    tltl_emp = [r['tltl'] for r in app_tables.policies.search(role='emp')]
+    gl_emp = [r['gl'] for r in app_tables.policies.search(role='emp')]
+    tltl_ineq = [r['tltl'] for r in app_tables.policies.search(role='ineq')]
+    gl_ineq = [r['gl'] for r in app_tables.policies.search(role='ineq')]
+    tltl_food = [r['tltl'] for r in app_tables.policies.search(role='food')]
+    gl_food = [r['gl'] for r in app_tables.policies.search(role='food')]
+    tltl_ener = [r['tltl'] for r in app_tables.policies.search(role='ener')]
+    gl_ener = [r['gl'] for r in app_tables.policies.search(role='ener')]
     lb = app_tables.budget.get(reg=reg, game_id=cid, yr=yr)
     bud = lb['bud_all_tas']
     max_cost_pov = lb['c_pov']
