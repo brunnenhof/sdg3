@@ -246,8 +246,6 @@ class home(homeTemplate):
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_btn_kick_off_round_1.visible = True
       self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
-      
-      pass
     else:
       slots = []
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
@@ -640,3 +638,24 @@ class home(homeTemplate):
       n = Notification(mg.nothing_submitted_tx)
       n.show()
 #      self.do_future(self, cid, role, reg, runde, yr)
+
+  def gm_card_wait_1_btn_kick_off_round_1_click(self, **event_args):
+    cid = mg.my_game_id
+    runde = mg.game_runde+1
+    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1))
+    if len(rows) == 0:
+      self.gm_card_wait_1_btn_check.visible = False
+      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+      self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
+    else:
+      slots = []
+#    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
+#    res = list({d[key] for d in slots2 if key in d})
+      for row in rows:
+        longreg = mg.reg_to_longreg[row['reg']]
+        slot = {'reg' : longreg, 'ta': 'longrole'}
+        if slot not in slots:
+          slots.append(slot)
+      self.gm_wait_kickoff_r1.visible = True
+      self.gm_wait_kickoff_r1_rp.visible = True
+      self.gm_wait_kickoff_r1_rp.items = slots

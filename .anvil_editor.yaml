@@ -12,6 +12,7 @@ unique_ids:
     home.cpf_ineq_template: '1745250937937137977567637.82166'
     home.dec_rp_template: '1745054573378838428050906.4794'
     home.gm_card_wait_1_temp: '1744642643134287465907804.4164'
+    home.gm_wait_kickoff_r1_rp_template: '1745338855286380064150922.6772'
     home.pcgd_plot_card_rp_temp: '1744990444403540063935316.8255'
   modules:
     mg: '1744531999374124090128595.91318'

@@ -1,0 +1,14 @@
+components:
+- layout_properties: {grid_position: 'EHCIBV,AKBMOJ'}
+  name: gm_wait_kickoff_r1_rp_reg
+  properties: {align: right, font_size: 12}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'EHCIBV,WCDTCH'}
+  name: gm_wait_kickoff_r1_rp_role
+  properties:
+    font_size: 12
+    spacing:
+      padding: [null, null, null, null]
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+container: {type: ColumnPanel}
+is_package: true
