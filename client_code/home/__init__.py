@@ -230,7 +230,7 @@ class home(homeTemplate):
           self.pcr_rb_se.visible = True
      
   def show_roles(self, cid):
-    print("in show_roles")
+#    print("in show_roles")
     self.pcr_col_right_title.visible = False
     self.pcr_submit.visible = False
     self.set_minis_invisible()
@@ -238,23 +238,23 @@ class home(homeTemplate):
     self.set_avail_regs()
     self.p_choose_role.visible =True
     
-  def gm_card_wait_1_btn_check_click(self, runde):
+  def gm_card_wait_1_btn_check_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     slots = []
-    for row in rows:
-      slot = {'reg' : names[i], 'ta': cost}
-      
-    for i in range(0, len(pct)):
-        nw = pct[i] - tltl[i]
-        nb = 0
-        nt = gl[i] - tltl[i]
-        pct_of_range = nw / (nt - nb)
-        cost = round(maxc * pct_of_range, 2)
-        slot = {'pol_name' : names[i], 'pol_amount': cost}
-        slots.append(slot)
-    return slots
+#    for row in rows:
+#      slot = {'reg' : role[i], 'ta': cost}
+#      
+#    for i in range(0, len(pct)):
+#        nw = pct[i] - tltl[i]
+#        nb = 0
+#        nt = gl[i] - tltl[i]
+#        pct_of_range = nw / (nt - nb)
+#        cost = round(maxc * pct_of_range, 2)
+#        slot = {'pol_name' : names[i], 'pol_amount': cost}
+#        slots.append(slot)
+#    return slots
 #    slots = [{key: r[key] for key in ["reg", "ta"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
 #    self.gm_card_wait_1_rp.items = slots
 #    pass

@@ -142,8 +142,8 @@ pcr_submit_tx = 'Once you have logged in to both your region and your ministry, 
 
 gm_reg_npbp_tx = 'When you are done (and sure), click this button'
 top_entry_label_tx = 'Hold on ... setting up all the necessary slots and tables for the game ...'
-gm_card_wait_1_temp_title_tx = 'Still waiting for the following to log in ...'
-gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. You can check if all have logged in by clicking on the **Check LogIn** button. Once they are ready to proceed to the next round **---** *this will take some time!* **---**, click on the **Advance the model for the next round** button."
+gm_card_wait_1_temp_title_tx = 'Still waiting for the following to log in ... Ask if they need help ...'
+gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. You can check if all have logged in by clicking on the **Check LogIn** button. Once they are ready to proceed to the next round **---** *this will take some time!* **---** click on the **Advance the model for the next round** button.\nIf the button does not show, your players are not ready yet."
 gm_card_wait_1_btn_check_tx = 'Check LogIn'
 gm_card_wait_1_btn_kick_off_round_1_tx = 'Advance model for the next round'
 setup_npbp_label_tx = '... Hold on ... Role assignments are being set up ...'

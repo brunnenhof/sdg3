@@ -183,7 +183,7 @@ components:
         type: Button
       - layout_properties: {grid_position: 'VWEOQI,EAGIKU'}
         name: gm_card_wait_1_btn_kick_off_round_1
-        properties: {bold: true, foreground: 'theme:Primary', role: elevated-button, text: Advance the model for the next round}
+        properties: {bold: true, foreground: 'theme:Primary', role: elevated-button, text: Advance the model for the next round, visible: false}
         type: Button
       - layout_properties: {grid_position: 'SJYWOF,YYSVJG'}
         name: gm_card_wait_1_rp
@@ -191,7 +191,7 @@ components:
         type: RepeatingPanel
       layout_properties: {grid_position: 'JNDAVR,ULHFHB'}
       name: gm_card_wait_1
-      properties: {background: '#ffedd3', role: outlined-card, visible: false}
+      properties: {background: '#ffedd3', role: outlined-card, visible: true}
       type: ColumnPanel
     layout_properties: {grid_position: 'WUIUEW,ZUIVEK'}
     name: gm_role_reg
