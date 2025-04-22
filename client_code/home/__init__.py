@@ -624,7 +624,16 @@ class home(homeTemplate):
       role = 'fut'
       reg = mg.my_reg
       yr, runde = self.get_runde(cid)
-      alert("submitted")
+      self.after_submit.content = mg.after_submit_tx
+      self.refresh_numbers.visible = False
+      self.submit_numbers.visible = False 
+      self.card_pov_fut.visible = False 
+      self.card_ineq_fut.visible = False 
+      self.card_emp_fut.visible = False 
+      self.card_food_fut.visible = False 
+      self.card_ener_fut.visible = False
+      self.after_submit.visible = True
     else:
-      alert("NOT submitted")
+      n = Notification(mg.nothing_submitted_tx)
+      n.show()
 #      self.do_future(self, cid, role, reg, runde, yr)
