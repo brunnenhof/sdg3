@@ -633,6 +633,9 @@ class home(homeTemplate):
       self.card_food_fut.visible = False 
       self.card_ener_fut.visible = False
       self.after_submit.visible = True
+      row2 = app_tables.step_done.get(game_id=cid, reg=reg)
+      row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
+
     else:
       n = Notification(mg.nothing_submitted_tx)
       n.show()
