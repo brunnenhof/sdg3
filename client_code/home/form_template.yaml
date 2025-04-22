@@ -506,11 +506,13 @@ components:
       name: fut_invest_pct
       properties: {bold: true}
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
-    - layout_properties: {grid_position: 'NTPKKK,QWVBXB'}
+    - event_bindings: {click: refresh_numbers_click}
+      layout_properties: {grid_position: 'NTPKKK,QWVBXB'}
       name: refresh_numbers
       properties: {align: right, background_color: lightgreen, text_color: 'theme:Primary'}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
-    - layout_properties: {grid_position: 'NTPKKK,RTZKOP'}
+    - event_bindings: {click: submit_numbers_click}
+      layout_properties: {grid_position: 'NTPKKK,RTZKOP'}
       name: submit_numbers
       properties: {background_color: yellow, text_color: red}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button

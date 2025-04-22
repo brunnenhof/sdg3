@@ -604,3 +604,27 @@ class home(homeTemplate):
     food_list = self.calc_cost_home_ta(pct_food, tltl_food, gl_food, max_cost_food, 'food')
     ener_list = self.calc_cost_home_ta(pct_ener, tltl_ener, gl_ener, max_cost_ener, 'ener')
     return costs_by_ta, pov_list, ineq_list, emp_list, food_list, ener_list, within_budget
+
+  def refresh_numbers_click(self, **event_args):
+    cid = mg.my_game_id
+    role = 'fut'
+    reg = mg.my_reg
+    yr, runde = self.get_runde(cid)
+    self.do_future(self, cid, role, reg, runde, yr)
+
+  def submit_numbers_click(self, **event_args):
+    # Display a large popup with a title and three buttons.
+    result = alert(content=mg.confirm_submit_tx,
+               title=mg.confirm_title_tx,
+               large=True,
+               buttons= mg.confirm_buttons_tx
+                  )
+    if result:
+      cid = mg.my_game_id
+      role = 'fut'
+      reg = mg.my_reg
+      yr, runde = self.get_runde(cid)
+      alert("submitted")
+    else:
+      alert("NOT submitted")
+#      self.do_future(self, cid, role, reg, runde, yr)
