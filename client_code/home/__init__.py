@@ -241,6 +241,8 @@ class home(homeTemplate):
   def gm_card_wait_1_btn_check_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde+1
+    self.gm_card_wait_1_btn_check.visible = True
+    self.gm_card_wait_1_btn_kick_off_round_1.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
@@ -642,20 +644,29 @@ class home(homeTemplate):
   def gm_card_wait_1_btn_kick_off_round_1_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde+1
+    self.gm_card_wait_1_btn_check.visible = False
+    self.gm_card_wait_1_btn_kick_off_round_1.visible = True
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1))
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_btn_kick_off_round_1.visible = True
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
+      ## hide wait card
+      ## show run card
+      ## kickoff server run model
+      ## update step done / status / others ???
     else:
       slots = []
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
 #    res = list({d[key] for d in slots2 if key in d})
       for row in rows:
         longreg = mg.reg_to_longreg[row['reg']]
-        slot = {'reg' : longreg, 'ta': 'longrole'}
+        slot = {'reg' : longreg, 'ta': ''}
         if slot not in slots:
           slots.append(slot)
+      self.gm_card_wait_1_temp_title.visible = False
+      self.gm_card_wait_1_rp.visible = False
+      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
       self.gm_wait_kickoff_r1.visible = True
       self.gm_wait_kickoff_r1_rp.visible = True
       self.gm_wait_kickoff_r1_rp.items = slots
