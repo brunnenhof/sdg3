@@ -12,5 +12,5 @@ class gm_wait_kickoff_r1_rp_template(gm_wait_kickoff_r1_rp_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.gm_card_wait_1_temp_reg.text = self.item['reg']
-    self.gm_wait_kickoff_r1_rp_role = self.item['ta']
+    self.gm_wait_kickoff_r1_rp_reg.text = self.item['reg']
+    self.gm_wait_kickoff_r1_rp_role.text = self.item['ta']

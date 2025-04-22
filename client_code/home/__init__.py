@@ -642,6 +642,9 @@ class home(homeTemplate):
   def gm_card_wait_1_btn_kick_off_round_1_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde+1
+    self.gm_card_wait_1_btn_check.visible = False
+      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1))
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
@@ -656,6 +659,11 @@ class home(homeTemplate):
         slot = {'reg' : longreg, 'ta': 'longrole'}
         if slot not in slots:
           slots.append(slot)
+      self.gm_card_wait_1_temp_title.visible = False
+      self.gm_card_wait_1_rp.visible = False
+      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
+      self.gm_card_wait_1_btn_check.visible = False
+      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
       self.gm_wait_kickoff_r1.visible = True
       self.gm_wait_kickoff_r1_rp.visible = True
       self.gm_wait_kickoff_r1_rp.items = slots
