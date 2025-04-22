@@ -11,6 +11,5 @@ class gm_card_wait_1_temp(gm_card_wait_1_tempTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
-    self.gm_card_wait_1_temp_reg.text = self.item['gm_card_wait_1_temp_reg']
-    self.gm_card_wait_1_temp_ta.text = self.item['gm_card_wait_1_temp_ta']
+    self.gm_card_wait_1_temp_reg.text = self.item['reg']
+    self.gm_card_wait_1_temp_ta.text = self.item['ta']

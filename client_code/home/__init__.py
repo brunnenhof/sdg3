@@ -85,6 +85,7 @@ class home(homeTemplate):
     self.cpf_food_lb2.text = mg.cffood_lb_tx 
     self.cpf_ener_lb.text = mg.cfener_tx
     self.cpf_ener_lb2.text = mg.cfener_lb_tx 
+    self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
    
 
   def top_btn_thanks_click(self, **event_args):
@@ -110,8 +111,8 @@ class home(homeTemplate):
       self.top_entry_label.text = mg.top_entry_label_tx
     else:
       ende = time.time()
-      dauer = round(ende - anfang, 1)
-      alert('it took '+str(dauer)+' sec')
+      dauer = round(ende - anfang, 0)
+      self.seconds.text = str(dauer)+' sec'
       self.top_entry.visible = False
       self.gm_board.text = mg.msg_gm_board + '  for '+game_id
       self.gm_role_reg.visible = True
@@ -192,9 +193,8 @@ class home(homeTemplate):
     else:
       self.setup_npbp_label.visible = False
       ende = time.time()
-      dauer = round(ende - anfang, 1)
-      alert('it took '+str(dauer)+' sec')
-    
+      dauer = round(ende - anfang, 0)
+      self.seconds.text = str(dauer)+' sec'
     self.gm_card_wait_1.visible = True
 
   def set_avail_regs(self, **event_args):
@@ -240,23 +240,27 @@ class home(homeTemplate):
     
   def gm_card_wait_1_btn_check_click(self, **event_args):
     cid = mg.my_game_id
-    runde = mg.game_runde
+    runde = mg.game_runde+1
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
-    slots = []
-#    for row in rows:
-#      slot = {'reg' : role[i], 'ta': cost}
-#      
-#    for i in range(0, len(pct)):
-#        nw = pct[i] - tltl[i]
-#        nb = 0
-#        nt = gl[i] - tltl[i]
-#        pct_of_range = nw / (nt - nb)
-#        cost = round(maxc * pct_of_range, 2)
-#        slot = {'pol_name' : names[i], 'pol_amount': cost}
-#        slots.append(slot)
-#    return slots
-#    slots = [{key: r[key] for key in ["reg", "ta"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
-#    self.gm_card_wait_1_rp.items = slots
+    if len(rows) == 0:
+      self.gm_card_wait_1_btn_check.visible = False
+      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+      self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
+      
+      pass
+    else:
+      slots = []
+#    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
+#    res = list({d[key] for d in slots2 if key in d})
+      for row in rows:
+        longreg = mg.reg_to_longreg[row['reg']]
+        longrole = mg.ta_to_longmini[row['role']]
+        slot = {'reg' : longreg, 'ta': longrole}
+        if slot not in slots:
+          slots.append(slot)
+      self.gm_card_wait_1_temp_title.visible = True
+      self.gm_card_wait_1_rp.visible = True
+      self.gm_card_wait_1_rp.items = slots
 #    pass
 
   def set_minis_invisible(self, **event_args):
