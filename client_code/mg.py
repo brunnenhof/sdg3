@@ -39,7 +39,7 @@ reg_to_longreg = {
   "la" : "Latin America",
   "pa" : "Pacific Rim",
   "ec" : "East Europe & Central Asia",
-  "eu" : "Eurpe",
+  "eu" : "Europe",
   "se" : "Southeast Asia"
 }
 ta_to_longmini = {
