@@ -180,7 +180,7 @@ cfener_lb_tx = "Regional investment for energy:"
 refresh_numbers_tx = "RFRESH numbers"
 submit_numbers_tx = "SUBMIT numbers"
 
-confirm_submit_tx = "Yes to continue, No to go back"
+confirm_submit_tx = "Yes to submit, No to go back"
 confirm_title_tx = "Last chance to go back."
 confirm_buttons_tx = [
                  ("Yes", "YES"),

@@ -610,7 +610,7 @@ class home(homeTemplate):
     role = 'fut'
     reg = mg.my_reg
     yr, runde = self.get_runde(cid)
-    self.do_future(self, cid, role, reg, runde, yr)
+    self.do_future(cid, role, reg, runde, yr)
 
   def submit_numbers_click(self, **event_args):
     # Display a large popup with a title and three buttons.
@@ -619,7 +619,7 @@ class home(homeTemplate):
                large=True,
                buttons= mg.confirm_buttons_tx
                   )
-    if result:
+    if result == 'YES':
       cid = mg.my_game_id
       role = 'fut'
       reg = mg.my_reg
