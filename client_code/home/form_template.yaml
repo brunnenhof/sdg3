@@ -642,7 +642,7 @@ components:
       properties: {col_widths: '{"JKPEYS":40,"RLANVE":20}', role: outlined-card}
       type: ColumnPanel
     - layout_properties: {grid_position: 'BFCDRM,XTBYAN'}
-      name: after_submit
+      name: wait_for_run_after_submit
       properties: {visible: false}
       type: RichText
     layout_properties: {grid_position: 'OVTHZG,GFIOCC'}

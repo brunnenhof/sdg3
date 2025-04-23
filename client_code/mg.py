@@ -187,5 +187,5 @@ confirm_buttons_tx = [
                  ("Yes", "YES"),
                  ("No", "NO")
                ]
-after_submit_tx = "Your region's decisions have been submitted.\nOnce all regions have submitted their decisons, the Game Organizer will advance the model for the next round. This will take some time ..."
+after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the Game Organizer will advance the model for the next round. This will take some time ..."
 nothing_submitted_tx = "Nothing was submitted ..."

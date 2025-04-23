@@ -646,16 +646,22 @@ class home(homeTemplate):
     runde = mg.game_runde+1
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_card_wait_1_btn_kick_off_round_1.visible = True
-    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1))
-    if len(rows) == 0:
+    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1)) ## 99 played by computer
+    if len(rows) == 0: ## means all regions have submitted
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_btn_kick_off_round_1.visible = True
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
+      self.card_fut.visible = False
       ## show run card
-      ## kickoff server run model
+      self.wait_for_run_after_submit.content = mg.after_submit_tx
+      self.wait_for_run_after_submit.visible = True
       ## update step done / status / others ???
-    else:
+      row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
+      row.update(p_step_done=2)
+      ## kickoff server run model
+      Notification("off to run the model", timeout=4)
+    else:  ## means at least one region has not yet submitted
       slots = []
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
 #    res = list({d[key] for d in slots2 if key in d})
