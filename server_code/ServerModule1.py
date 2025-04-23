@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import anvil.mpl_util
+import anvil.tz
 from . import mg
 
 @anvil.server.callable
@@ -50,7 +51,7 @@ def set_roles(game_id):
         app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
         ## set up future which has no policies
       app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=0, reg=re, round=runde, pol='nopol')
-  jetzt = datetime.datetime.now()
+  jetzt = datetime.datetime.now(anvil.tz.tzlocal(anvil.tz.tzlocal()))
   row = app_tables.status.get(game_id=game_id)
   row.update(started=jetzt,game_status=1)
   
