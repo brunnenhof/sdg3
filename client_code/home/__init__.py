@@ -661,6 +661,13 @@ class home(homeTemplate):
       row.update(p_step_done=2)
       ## kickoff server run model
       Notification("off to run the model", timeout=4)
+      self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
+#      make something visible
+      while not self.task.is_completed(): # model still running
+        pass
+      else: ## model is done
+        Notification("Model is done", timeout=7)
+
     else:  ## means at least one region has not yet submitted
       slots = []
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
