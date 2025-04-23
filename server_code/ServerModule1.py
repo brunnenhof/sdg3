@@ -54,7 +54,7 @@ def set_roles(game_id):
         app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
         ## set up future which has no policies
       app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=0, reg=re, round=runde, pol='nopol')
-  jetzt = datetime.datetime.now(anvil.tz.tzlocal(anvil.tz.tzlocal()))
+  jetzt = datetime.datetime.now()
   row = app_tables.status.get(game_id=game_id)
   row.update(started=jetzt,game_status=1)
   
@@ -13495,70 +13495,70 @@ def ugregmod(game_id, von, bis):
 
 #mdf_val = run_game(2025, 2040)
 #mdf_val = run_game(2040, 2060)
-mdf_val, plot_reg, plot_glob = ugregmod(2025, 2040)
+#mdf_val, plot_reg, plot_glob = ugregmod(game_id, 2025, 2040)
 
-def plot_ts_glob(mdata, tittel):
-    df1 = mdata[:, 1:2]  # col 0 has the years in it the rest is regional data
-    ymax = np.nanmax(df1) * 1.1
-    ymin = np.nanmin(df1)
-    plt.figure(figsize=(10, 5))
-    if ymin > 0:
-        ymin = 0
-    for x in range(0, 1):
-        plt.plot(mdata[:, 0], mdata[:, x + 1], color='black', linewidth=1.5, label='global')
-    plt.ylim(ymin, ymax)
-    plt.suptitle(tittel, y=.99, fontsize=12)
-    plt.title('read in from e4a-exo.xlxs', loc='left', fontsize=9)
-    my_now = pd.Timestamp.now()
-    plt.figtext(0.88, 0.01, 'ug ' + str(my_now.strftime('%Y-%m-%d %X')), ha='right', fontsize=6)
-    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
-    leg = plt.legend()
-    leg.get_frame().set_alpha(.8)
-    plt.show()
+#def plot_ts_glob(mdata, tittel):
+#    df1 = mdata[:, 1:2]  # col 0 has the years in it the rest is regional data
+#    ymax = np.nanmax(df1) * 1.1
+#    ymin = np.nanmin(df1)
+#    plt.figure(figsize=(10, 5))
+#    if ymin > 0:
+#        ymin = 0
+#    for x in range(0, 1):
+#        plt.plot(mdata[:, 0], mdata[:, x + 1], color='black', linewidth=1.5, label='global')
+#    plt.ylim(ymin, ymax)
+#    plt.suptitle(tittel, y=.99, fontsize=12)
+#    plt.title('read in from e4a-exo.xlxs', loc='left', fontsize=9)
+#    my_now = pd.Timestamp.now()
+#    plt.figtext(0.88, 0.01, 'ug ' + str(my_now.strftime('%Y-%m-%d %X')), ha='right', fontsize=6)
+#    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
+#    leg = plt.legend()
+#    leg.get_frame().set_alpha(.8)
+#    plt.show()
 
-def plot_ts(mdata, tittel):
-    df1 = mdata[:, 1:11]  # col 0 has the years in it the rest is regional data
-    ymax = np.nanmax(df1) * 1.1
-    ymin = np.nanmin(df1)
-    plt.figure(figsize=(10, 5))
-    if ymin > 0:
-        ymin = 0
-    for x in range(0, 10):
-        plt.plot(mdata[:, 0], mdata[:, x + 1], color=my_col[x], linewidth=1.5, label=my_lab[x])
-    plt.ylim(ymin, ymax)
-    plt.suptitle(tittel, y=.99, fontsize=12)
-    plt.title('read in from e4a-exo.xlxs', loc='left', fontsize=9)
-    my_now = pd.Timestamp.now()
-    plt.figtext(0.88, 0.01, 'ug ' + str(my_now.strftime('%Y-%m-%d %X')), ha='right', fontsize=6)
-    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
-    leg = plt.legend()
-    leg.get_frame().set_alpha(.8)
-    plt.show()
+#def plot_ts(mdata, tittel):
+#    df1 = mdata[:, 1:11]  # col 0 has the years in it the rest is regional data
+#    ymax = np.nanmax(df1) * 1.1
+#    ymin = np.nanmin(df1)
+#    plt.figure(figsize=(10, 5))
+#    if ymin > 0:
+#        ymin = 0
+#    for x in range(0, 10):
+#        plt.plot(mdata[:, 0], mdata[:, x + 1], color=my_col[x], linewidth=1.5, label=my_lab[x])
+#    plt.ylim(ymin, ymax)
+#    plt.suptitle(tittel, y=.99, fontsize=12)
+#    plt.title('read in from e4a-exo.xlxs', loc='left', fontsize=9)
+#    my_now = pd.Timestamp.now()
+#    plt.figtext(0.88, 0.01, 'ug ' + str(my_now.strftime('%Y-%m-%d %X')), ha='right', fontsize=6)
+#    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
+#    leg = plt.legend()
+#    leg.get_frame().set_alpha(.8)
+#    plt.show()
 
-reg_col = len(plot_reg) * 10 + 1
+#reg_col = len(plot_reg) * 10 + 1
 #mdf_val = np.load('mdfg2025.npy')
-idx = reg_col
-for plotg in plot_glob:
-    aaa = mdf_val[:, [0, idx]]
-    abc = pd.DataFrame(aaa)
-    plt.plot(abc[0], abc[1], color='blue', linewidth=3)
-    plt.title(plotg)
-    plt.grid(True)
-    plt.box(False)
-    plt.show()
-    idx += 1
+#idx = reg_col
+#for plotg in plot_glob:
+#    aaa = mdf_val[:, [0, idx]]
+#    abc = pd.DataFrame(aaa)
+#    plt.plot(abc[0], abc[1], color='blue', linewidth=3)
+#    plt.title(plotg)
+#    plt.grid(True)
+#    plt.box(False)
+#    plt.show()
+#    idx += 1
 
-my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
+#my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
 
-idx = 1
-for plotr in plot_reg:
-    aaa = mdf_val[:, [0, idx, idx + 1, idx + 2, idx + 3, idx + 4, idx + 5, idx + 6, idx + 7, idx + 8, idx + 9]]
-    abc = pd.DataFrame(aaa)
-    for i in range(0,10):
-        plt.plot(abc[0], abc[i+1], color=my_col[i], linewidth=3)
-    plt.title(plotr)
-    plt.grid(True)
-    plt.box(False)
-    plt.show()
-    idx += 10
+#idx = 1
+#for plotr in plot_reg:
+#    aaa = mdf_val[:, [0, idx, idx + 1, idx + 2, idx + 3, idx + 4, idx + 5, idx + 6, idx + 7, idx + 8, idx + 9]]
+#    abc = pd.DataFrame(aaa)
+#    for i in range(0,10):
+#        plt.plot(abc[0], abc[i+1], color=my_col[i], linewidth=3)
+#    plt.title(plotr)
+#    plt.grid(True)
+#    plt.box(False)
+#    plt.show()
+#    idx += 10
 

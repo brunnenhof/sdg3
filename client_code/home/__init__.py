@@ -113,6 +113,7 @@ class home(homeTemplate):
       ende = time.time()
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
+#      self.seconds.textcolor = '#FFD6D6'
       self.top_entry.visible = False
       self.gm_board.text = mg.msg_gm_board + '  for '+game_id
       self.gm_role_reg.visible = True
@@ -620,19 +621,15 @@ class home(homeTemplate):
                buttons= mg.confirm_buttons_tx
                   )
     if result == 'YES':
+      my_cid = mg.my_personal_game_id
       cid = mg.my_game_id
       role = 'fut'
       reg = mg.my_reg
-      yr, runde = self.get_runde(cid)
-      self.after_submit.content = mg.after_submit_tx
-      self.refresh_numbers.visible = False
-      self.submit_numbers.visible = False 
-      self.card_pov_fut.visible = False 
-      self.card_ineq_fut.visible = False 
-      self.card_emp_fut.visible = False 
-      self.card_food_fut.visible = False 
-      self.card_ener_fut.visible = False
-      self.after_submit.visible = True
+      self.wait_for_run_after_submit.content = mg.after_submit_tx
+      self.cid_reg_role_info.text = my_cid + '  - ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
+      self.card_fut.visible = False
+      self.p_card_graf_dec.visible = False
+      self.p_after_submit.visible = True
       row2 = app_tables.step_done.get(game_id=cid, reg=reg)
       row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
 
