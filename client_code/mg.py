@@ -189,3 +189,4 @@ confirm_buttons_tx = [
                ]
 after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the Game Organizer will advance the model for the next round. This will take some time ..."
 nothing_submitted_tx = "Nothing was submitted ..."
+p_advance_to_next_round_tx = "Advance to the next round"

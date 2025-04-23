@@ -630,6 +630,7 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
+      self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
       row2 = app_tables.step_done.get(game_id=cid, reg=reg)
       row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
 
@@ -680,3 +681,19 @@ class home(homeTemplate):
       self.gm_wait_kickoff_r1.visible = True
       self.gm_wait_kickoff_r1_rp.visible = True
       self.gm_wait_kickoff_r1_rp.items = slots
+
+  def p_advance_to_next_round_click(self, **event_args):
+    """This method is called when the component is clicked."""
+    ## check if gm has set step_done gm_step_done to 2 (?)
+    Notification("... still waiting for GM ...")
+    pass
+
+  def test_model_click(self, **event_args):
+    Notification("off to run the model", timeout=4)
+    cid = mg.my_game_id
+    self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
+#      make something visible
+    while not self.task.is_completed(): # model still running
+      pass
+    else: ## model is done
+      Notification("Model is done", timeout=7)
