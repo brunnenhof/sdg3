@@ -180,6 +180,13 @@ def read_mdfplay25(datei, runde):
     mdf_play = mdf_play[320:1920, :]
   return mdf_play
 
+def read_mdfplay_full(datei, runde):
+#  print('APRIL IN read_mdfplay25 loading: ' + datei)
+  f = data_files[datei]
+  mdf_play = np.load(f)
+#  mdf_play = mdf_play[320:1440, :]
+  return mdf_play
+
 def pick(ys, x, y):
     o = []
     ys_len = len(ys)
@@ -1923,7 +1930,7 @@ def ugregmod(game_id, von, bis):
       ftab_in_d_table = json.load(fj)    
 #    with open('ftab_in_d_table.json') as ff:
 #        ftab_in_d_table = json.load(ff)
-    with open(data_files['d_table.pkl']) as fp:
+    with open(data_files['d_table.pkl'], 'rb') as fp:
         d_table = pickle.load(fp)
 #    with open('d_table.pkl', 'rb') as fp:
 #        d_table = pickle.load(fp)
