@@ -1917,16 +1917,14 @@ def ugregmod(game_id, von, bis):
     ff = data_files['chtab.npy']
     chtab = np.load(ff)
 #    chtab = np.load('chtab.npy')
-    ff = data_files['fcol_in_mdf.json']
-    fcol_in_mdf = json.load(ff)
-#    with open('fcol_in_mdf.json') as ff:
-#        fcol_in_mdf = json.load(ff)
-    ff = data_files['ftab_in_d_table.json']
-    ftab_in_d_table = json.load(ff)
+    with open(data_files['fcol_in_mdf.json']) as fj:
+      fcol_in_mdf = json.load(fj)
+    with open(data_files['ftab_in_d_table.json']) as fj:
+      ftab_in_d_table = json.load(fj)    
 #    with open('ftab_in_d_table.json') as ff:
 #        ftab_in_d_table = json.load(ff)
-    ff = data_files['d_table.pkl']
-    d_table = pickle.load(fp)
+    with open(data_files['d_table.pkl']) as fp:
+        d_table = pickle.load(fp)
 #    with open('d_table.pkl', 'rb') as fp:
 #        d_table = pickle.load(fp)
     dt = 1 / 32
