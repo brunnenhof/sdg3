@@ -697,3 +697,13 @@ class home(homeTemplate):
       pass
     else: ## model is done
       Notification("Model is done", timeout=7)
+
+  def test_model_top_click(self, **event_args):
+    Notification("off to run the model", timeout=4)
+    cid = mg.my_game_id
+    self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
+#      make something visible
+    while not self.task.is_completed(): # model still running
+      pass
+    else: ## model is done
+      Notification("Model is done", timeout=7)
