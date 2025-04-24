@@ -684,6 +684,15 @@ components:
     name: p_after_submit
     properties: {background: '#e8f4d5', role: outlined-card, visible: false}
     type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'YQLGYK,HLJETJ'}
+      name: card_test_plot_rp
+      properties: {item_template: home.card_test_plot_rp_template}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'WJVAAV,KHIZNM'}
+    name: card_test_plot
+    properties: {role: outlined-card}
+    type: ColumnPanel
   layout_properties: {slot: default}
   name: top_cp_1
   properties: {col_widths: '{}'}

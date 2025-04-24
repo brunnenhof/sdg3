@@ -1955,7 +1955,10 @@ def ugregmod(game_id, von, bis):
         end_tick = int((bis - von) / dt + 1)
     elif von == 2040 and bis == 2060:
         howlong = 60
-        row_start = np.load('row2040.npy')
+        s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+        s_row_elem = s_row['start_row_data']
+        row_start = pickle.loads(s_row_elem.get_bytes())
+#        row_start = np.load('row2040.npy')
         start_mod = von
         zeit = start_mod
         end_mod = bis
@@ -1970,7 +1973,10 @@ def ugregmod(game_id, von, bis):
         end_tick = int((bis - von) / dt + 1)
     elif von == 2060 and bis == 2100:
         howlong = 21
-        row_start = np.load('row2060.npy')
+        s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
+        s_row_elem = s_row['start_row_data']
+        row_start = pickle.loads(s_row_elem.get_bytes())
+#        row_start = np.load('row2060.npy')
         start_mod = von
         zeit = start_mod
         end_mod = bis
@@ -13504,7 +13510,11 @@ def ugregmod(game_id, von, bis):
     elif howlong == 60:
       mdf_play = mdf_play[0:2560, :]
       row2060 = mdf[640, :]
-      np.save('row2060.npy', row2060)
+      amo = anvil.BlobMedia(
+                  'text/plain', 
+                  pickle.dumps( row2060 ) ,
+                )
+      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo,version=datetime.datetime.now(), yr=2060)
 
     return mdf_play, plot_reg, plot_glob
 

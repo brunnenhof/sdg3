@@ -719,4 +719,29 @@ class home(homeTemplate):
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
     print(self.dropdown_menu_1.selected_value)
-    pass
+    if self.dropdown_menu_1.selected_value == 1:
+      app_tables.game_files.delete_all_rows()
+      von = 2025
+      bis = 2040
+    elif self.dropdown_menu_1.selected_value == 2:
+      von = 2040
+      bis = 2060
+    else:
+      von = 2060
+      bis = 2100
+    msg = "off to run the model " + str(von) + ' to ' + str(bis)
+    alert(content=msg, dismissible=True)
+    cid = mg.my_game_id
+    cid = "TEST"
+    anfang = time.time()
+    self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
+#      make something visible
+    while not self.task.is_completed(): # model still running
+      pass
+    else: ## model is done
+      ende = time.time()
+      dauer = round(ende - anfang, 0)
+      abc = 'After ' +str(dauer)+' sec, model is done'
+      alert(abc, timeout=7)
+      slots = anvil.server.call('fill_test_plots')
+      

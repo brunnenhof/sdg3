@@ -1,0 +1,11 @@
+components:
+- layout_properties: {grid_position: 'ITWUJB,PXVQDT'}
+  name: ctp_rp_img1
+  properties: {}
+  type: Image
+- layout_properties: {grid_position: 'ITWUJB,EOVGDI'}
+  name: ctp_rp_img2
+  properties: {}
+  type: Image
+container: {type: ColumnPanel}
+is_package: true

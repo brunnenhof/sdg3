@@ -319,6 +319,23 @@ db_schema:
       type: number
     server: full
     title: step_done
+  test_plots:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: fig1
+      type: media
+    - admin_ui: {order: 2, width: 200}
+      name: fig2
+      type: media
+    - admin_ui: {order: 3, width: 200}
+      name: title
+      type: string
+    server: full
+    title: test_plots
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}
