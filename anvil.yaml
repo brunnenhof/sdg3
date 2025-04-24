@@ -323,7 +323,7 @@ db_schema:
     server: full
     title: step_done
   test_plots:
-    client: none
+    client: search
     columns:
     - admin_ui: {order: 0, width: 200}
       name: game_id

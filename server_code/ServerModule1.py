@@ -13550,21 +13550,23 @@ def fill_test_plots(runde):
 #  reg_col = len(plot_reg) * 10 + 1
   reg_col = 401
   idx = reg_col
-  test_plots = []
+  app_tables.game_files.delete_all_rows()
   for plotg in plot_glob:
+    fig, ax = plt.subplots()
     aaa = mdf_data[:, idx]
     abc = pd.DataFrame({'Yr':tid, 'y':aaa})
 #    abc = pd.DataFrame(aaa)
-    plt.plot(abc[0], abc[1], color='blue', linewidth=3)
+    plt.plot(abc['Yr'], abc['y'], color='blue', linewidth=3)
     plt.title(plotg)
     plt.grid(True)
     plt.box(False)
 #    plt.show()
-    figg = anvil.mpl_util.plot_image()
-    test_plots.append(figg)
+    app_tables.test_plots.add_row(title=plotg, fig1=anvil.mpl_util.plot_image(), game_id="TEST")
+    plt.close(fig)
     idx += 1
-  idx = 0
+  idx = 1
   for plotr in plot_reg:
+    fig, ax = plt.subplots()
     a0 = mdf_data[:, idx]
     a1 = mdf_data[:, idx+1]
     a2 = mdf_data[:, idx+2]
@@ -13575,17 +13577,25 @@ def fill_test_plots(runde):
     a7 = mdf_data[:, idx+7]
     a8 = mdf_data[:, idx+8]
     a9 = mdf_data[:, idx+9]
-    abc = pd.DataFrame({'Yr':tid, 'us':a0, 'af':a1, 'cn':a2, 'me':a3, 'sa':a4, 'la':a5, 'pa':a6, 'ec':a7, 'eu':a8, 'se':a9})
-    for i in range(0,10):
-        plt.plot(abc[0], abc[i+1], color=mg.my_col_mg[i], linewidth=3)
+    abc2 = pd.DataFrame({'Yr':tid, 'us':a0, 'af':a1, 'cn':a2, 'me':a3, 'sa':a4, 'la':a5, 'pa':a6, 'ec':a7, 'eu':a8, 'se':a9})
+    plt.plot(abc2['Yr'], abc2['us'], color=mg.my_col_mg[0], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['af'], color=mg.my_col_mg[1], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['cn'], color=mg.my_col_mg[2], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['me'], color=mg.my_col_mg[3], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['sa'], color=mg.my_col_mg[4], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['la'], color=mg.my_col_mg[5], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['pa'], color=mg.my_col_mg[6], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['ec'], color=mg.my_col_mg[7], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['eu'], color=mg.my_col_mg[8], linewidth=3)
+    plt.plot(abc2['Yr'], abc2['se'], color=mg.my_col_mg[9], linewidth=3)
     plt.title(plotr)
     plt.grid(True)
     plt.box(False)
 #    plt.show()
-    figg = anvil.mpl_util.plot_image()
-    test_plots.append(figg)
+    app_tables.test_plots.add_row(title=plotr, fig1=anvil.mpl_util.plot_image(),game_id="TEST")
+#    app_tables.test_plots.add_row(title=plotr, fig1=figg,game_id="TEST")
+    plt.close(fig)
     idx += 10
-  return test_plots
 
 
 def make_png_test(df, row, pyidx, end_yr, my_title):
