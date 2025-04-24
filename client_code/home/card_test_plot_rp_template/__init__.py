@@ -12,3 +12,5 @@ class card_test_plot_rp_template(card_test_plot_rp_templateTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+    self.ctp_rp_img1.source = self.item['fig1']
+    self.ctp_rp_img2.source = self.item['fig2']

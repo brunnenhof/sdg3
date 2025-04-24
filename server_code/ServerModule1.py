@@ -13518,6 +13518,9 @@ def ugregmod(game_id, von, bis):
 
     return mdf_play, plot_reg, plot_glob
 
+@anvil.server.callable
+def fill_test_plots(runde):
+  pass
 #mdf_val = run_game(2025, 2040)
 #mdf_val = run_game(2040, 2060)
 #mdf_val, plot_reg, plot_glob = ugregmod(game_id, 2025, 2040)

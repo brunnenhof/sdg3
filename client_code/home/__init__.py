@@ -743,5 +743,9 @@ class home(homeTemplate):
       dauer = round(ende - anfang, 0)
       abc = 'After ' +str(dauer)+' sec, model is done'
       alert(abc, timeout=7)
-      slots = anvil.server.call('fill_test_plots')
+      self.card_test_plot.visible = True
+      anvil.server.call('fill_test_plots', self.dropdown_menu_1.selected_value)
+      slots = [{key: r[key] for key in ["title", "fig1", "fig2"]} for r in app_tables.test_plots.search(game_id= "TEST")]
+      self.card_test_plot_rp.items = slots
+
       
