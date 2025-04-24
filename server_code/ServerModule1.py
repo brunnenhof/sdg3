@@ -13499,6 +13499,7 @@ def ugregmod(game_id, von, bis):
       s_row_elem = s_row['start_row_data']
       r2040 = pickle.loads(s_row_elem.get_bytes())
       print(r2040)
+      print(type(r2040))
 #        np.save('row2040.npy', row2040)
     elif howlong == 60:
       mdf_play = mdf_play[0:2560, :]

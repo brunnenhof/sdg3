@@ -86,6 +86,8 @@ class home(homeTemplate):
     self.cpf_ener_lb.text = mg.cfener_tx
     self.cpf_ener_lb2.text = mg.cfener_lb_tx 
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
+
+    self.dropdown_menu_1.items = [("2025-2040", 1), ("2040-2060", 2), ("2060-2100", 3)]
    
 
   def top_btn_thanks_click(self, **event_args):
@@ -699,6 +701,7 @@ class home(homeTemplate):
       Notification("Model is done", timeout=7)
 
   def test_model_top_click(self, **event_args):
+    app_tables.game_files.delete_all_rows()
     Notification("off to run the model", timeout=4)
     cid = mg.my_game_id
     cid = "TEST"
@@ -712,3 +715,8 @@ class home(homeTemplate):
       dauer = round(ende - anfang, 0)
       abc = 'After ' +str(dauer)+' sec, model is done'
       alert(abc, timeout=7)
+
+  def dropdown_menu_1_change(self, **event_args):
+    """This method is called when an item is selected"""
+    print(self.dropdown_menu_1.selected_value)
+    pass

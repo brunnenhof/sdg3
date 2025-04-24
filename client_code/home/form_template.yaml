@@ -16,6 +16,15 @@ components:
       name: test_model_top
       properties: {appearance: elevated, text: Test Model}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - data_bindings:
+      - {code: '', property: items, writeback: false}
+      event_bindings: {change: dropdown_menu_1_change}
+      layout_properties: {grid_position: 'PINTXY,YKYYBF'}
+      name: dropdown_menu_1
+      properties:
+        items: ['"Round 1", "Round 2","Round 3"']
+        placeholder: Model testing
+      type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
     - layout_properties: {grid_position: 'VYOQIA,GULAQJ'}
       name: top_entry_label
       properties: {align: center, bold: true, visible: false}
