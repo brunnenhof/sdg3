@@ -1917,7 +1917,7 @@ def ugregmod(game_id, von, bis):
 
     if von == 2025:
       runde = 1
-    mdf_play = read_mdfplay25('mdf_play.npy', runde)
+    mdf_play = read_mdfplay_full('mdf_play.npy', runde)
     ff = data_files['ch.npy']
     ch = np.load(ff)
 #    ch = np.load('ch.npy')
