@@ -190,3 +190,28 @@ confirm_buttons_tx = [
 after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the Game Organizer will advance the model for the next round. This will take some time ..."
 nothing_submitted_tx = "Nothing was submitted ..."
 p_advance_to_next_round_tx = "Advance to the next round"
+
+plot_glob_mg = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
+                          'Planetary risk']
+plot_reg_mg = ['Energy footprint pp', 'Fraction of population undernourished',
+                'Cost_per_regional_poverty_policy',
+                'RoC in Forest land', 'Total energy use per GDP',
+                'Years of schooling', 'All SDG Scores', 'RoC Populated land', 'Public services pp',
+                'Safe sanitation',
+                'Smoothed RoC in GDPpp', 'Fraction of population below existential minimum',
+                'Regenerative cropland fraction',
+                'Total government revenue as a proportion of GDP', 'El from wind and PV',
+                'Labour share of GDP',
+                'Cropland', 'Smoothed Social tension index with trust effect', 'LPB investment share',
+                'Food footprint kgN ppy',
+                'Life expectancy at birth', 'GenderEquality', 'Social trust',
+                'Total CO2 emissions', 'Social trust', 'Safe water', 'Access to electricity',
+                'Carbon intensity', 'Disposable income pp post tax pre loan impact', 'Population',
+                'Average wellbeing index',
+                'Local private and govt investment share', 'Unemployment rate smoothed',
+                'Renewable energy share in the total final energy consumption', 'GDP USED',
+                'Nitrogen use per ha',
+                'Budget_for_all_TA_per_region', 'Cost_per_regional_inequality_policy',
+                'Cost_per_regional_empowerment_policy',
+                'Cost_per_regional_food_policy', 'Cost_per_regional_energy_policy']
+my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']

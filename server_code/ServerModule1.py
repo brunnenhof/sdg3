@@ -13500,7 +13500,8 @@ def ugregmod(game_id, von, bis):
                   'text/plain', 
                   pickle.dumps( row2040 ) ,
                 )
-      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo,version=datetime.datetime.now(), yr=2040)
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
       s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
       s_row_elem = s_row['start_row_data']
       r2040 = pickle.loads(s_row_elem.get_bytes())
@@ -13514,13 +13515,187 @@ def ugregmod(game_id, von, bis):
                   'text/plain', 
                   pickle.dumps( row2060 ) ,
                 )
-      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo,version=datetime.datetime.now(), yr=2060)
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2060)
+    elif howlong == 21:
+#      mdf_play = mdf_play[0:2560, :]
+      row2100 = mdf[640, :]
+      amo = anvil.BlobMedia(
+                  'text/plain', 
+                  pickle.dumps( row2100 ) ,
+                )
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2100)
 
     return mdf_play, plot_reg, plot_glob
 
 @anvil.server.callable
 def fill_test_plots(runde):
-  pass
+  # first get mdf_play
+  if runde==1:
+    yr = 2040
+    tid = np.linspace(1980, yr, 1920)
+  elif runde == 2:
+    yr = 2060
+    tid = np.linspace(1980, yr, 2560)    
+  elif runde==3:
+    yr = 2100
+    tid = np.linspace(1980, yr, 3840)
+    
+  s_row = app_tables.game_files.get(game_id="TEST", yr=yr)
+  s_row_elem = s_row['mdf_play']
+  mdf_data = pickle.loads(s_row_elem.get_bytes())
+  plot_glob = mg.plot_glob_mg
+  plot_reg = mg.plot_reg_mg
+#  reg_col = len(plot_reg) * 10 + 1
+  reg_col = 401
+  idx = reg_col
+  test_plots = []
+  for plotg in plot_glob:
+    aaa = mdf_data[:, idx]
+    abc = pd.DataFrame({'Yr':tid, 'y':aaa})
+#    abc = pd.DataFrame(aaa)
+    plt.plot(abc[0], abc[1], color='blue', linewidth=3)
+    plt.title(plotg)
+    plt.grid(True)
+    plt.box(False)
+#    plt.show()
+    figg = anvil.mpl_util.plot_image()
+    test_plots.append(figg)
+    idx += 1
+  idx = 0
+  for plotr in plot_reg:
+    a0 = mdf_data[:, idx]
+    a1 = mdf_data[:, idx+1]
+    a2 = mdf_data[:, idx+2]
+    a3 = mdf_data[:, idx+3]
+    a4 = mdf_data[:, idx+4]
+    a5 = mdf_data[:, idx+5]
+    a6 = mdf_data[:, idx+6]
+    a7 = mdf_data[:, idx+7]
+    a8 = mdf_data[:, idx+8]
+    a9 = mdf_data[:, idx+9]
+    abc = pd.DataFrame({'Yr':tid, 'us':a0, 'af':a1, 'cn':a2, 'me':a3, 'sa':a4, 'la':a5, 'pa':a6, 'ec':a7, 'eu':a8, 'se':a9})
+    for i in range(0,10):
+        plt.plot(abc[0], abc[i+1], color=mg.my_col_mg[i], linewidth=3)
+    plt.title(plotr)
+    plt.grid(True)
+    plt.box(False)
+#    plt.show()
+    figg = anvil.mpl_util.plot_image()
+    test_plots.append(figg)
+    idx += 10
+  return test_plots
+
+
+def make_png_test(df, row, pyidx, end_yr, my_title):
+    fig, ax = plt.subplots()
+    pct = row['pct']
+    x = df[:, 0]
+    y = df[:, 1] * pct
+    data_max = y.max() * 1.1
+    data_min = y.min()
+    plot_max = row['ymax']
+    plot_min = row['ymin']
+    ymin = min(data_min, plot_min)
+    ymax = max(data_max, plot_max)
+    if ymin > 0:
+        ymin = 0
+    if ymax < 0:
+        ymax = 0
+    if int(row['id']) in [27, 5]:  # Labour share of GDP | life expectancy
+        ymin = plot_min  # red min
+    if int(row['id']) in [26]:  # population | 
+        ymax = data_max
+    if int(row['id']) in [32]:  # Nitrogen use
+        ymax = max(25, data_max)
+    if int(row['id']) in [21]:  # pH  |
+        ymin = plot_min
+        ymax = plot_max
+    abc = app_tables.regions.get(pyidx=pyidx)
+    my_colhex = abc['colhex']
+    my_lab = abc['name']
+    plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
+    if end_yr==2025:
+      yr_picks = mg.yr_picks_start
+    elif end_yr == 2040:
+      yr_picks = mg.yr_picks_r1
+    elif end_yr == 2060:
+      yr_picks = mg.yr_picks_r2
+    elif end_yr == 2100:
+      yr_picks = mg.yr_picks_r3
+    else:
+      print("problem with yr_picks")
+    ys = pick(yr_picks, x, y)
+    plt.scatter(x, ys, color=my_colhex, s=300, alpha=0.55)
+    if int(row['lowerbetter']) == 1:
+        grn_min = row['ymin']  # 8
+        grn_max = row['green']  # vars_df.iloc[varx, 4]
+        red_min = row['red']  # vars_df.iloc[varx, 5]
+        if int(row['id']) == 16:  # Emissions per person
+            red_max = max(data_max, 8)
+            ymax = red_max
+        else:
+            red_max = row['ymax']  # vars_df.iloc[varx, 9]
+        if red_max < ymax:
+            red_max = ymax
+        yel_min = grn_max
+        yel_max = red_min
+    else:
+        red_min = row['ymin']  # vars_df.iloc[varx, 8]
+        if int(row['id']) == 10:  # Access to electricity
+            if red_min > ymin:
+                ymin = red_min
+        red_max = row['red']  # vars_df.iloc[varx, 5]
+        grn_min = row['green']  # vars_df.iloc[varx, 4]
+        grn_max = row['ymax']  # vars_df.iloc[varx, 9]
+        yel_min = red_max
+        yel_max = grn_min
+    plt.ylim(ymin, ymax)
+    xmin = 1990
+    xmax = end_yr
+    if not int(row['id']) == 26:  # population
+        opa = 0.075
+        poly_coords = [(xmin, grn_max), (xmax, grn_max), (xmax, grn_min), (xmin, grn_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='green', alpha=opa))
+        poly_coords = [(xmin, red_max), (xmax, red_max), (xmax, red_min), (xmin, red_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='red', alpha=opa))
+        poly_coords = [(xmin, yel_max), (xmax, yel_max), (xmax, yel_min), (xmin, yel_min)]
+        ax.add_patch(plt.Polygon(poly_coords, color='yellow', alpha=opa))
+    plt.grid(color='gainsboro', linestyle='-', linewidth=.5)
+    plt.box(False)
+    return anvil.mpl_util.plot_image()
+
+  
+def build_plot_test(var_row, regidx, cap, cid, runde):
+  # find out for which round
+  if runde == 1:
+    yr = 2025
+  mdf_play = read_mdfplay25('mdf_play.npy', runde)
+  print(mdf_play.shape)
+  var_l = var_row['vensim_name']
+  var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
+  varx = var_row['id']
+  print('starting new plot ...')
+  print('... build plot 272 var_l: ' + var_l)
+  rowx = app_tables.mdf_play_vars.get(var_name=var_l)
+  print('--- build plot 274 rowx: on next line')
+  print (rowx)
+  idx = rowx['col_idx']
+  print(idx)
+  if varx in[19, 21, 22, 35]: # global variable
+    lx = idx # find location of variable in mdf
+  else:
+    lx = idx + regidx # find location of variable in mdf with reg offset
+  print(var_l+' '+str(lx))
+  dfv = mdf_play[:, [0, lx]]
+  dfv_pd = pd.DataFrame(dfv)
+#  print(dfv_pd)
+  cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
+  cur_sub = var_row['indicator']
+  cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
+  fdz = {'title' : cur_title, 'subtitle' : cur_sub, 'fig' : cur_fig, 'cap' : cap}
+  return fdz
 #mdf_val = run_game(2025, 2040)
 #mdf_val = run_game(2040, 2060)
 #mdf_val, plot_reg, plot_glob = ugregmod(game_id, 2025, 2040)

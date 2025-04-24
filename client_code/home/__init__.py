@@ -729,8 +729,6 @@ class home(homeTemplate):
     else:
       von = 2060
       bis = 2100
-    msg = "off to run the model " + str(von) + ' to ' + str(bis)
-    alert(content=msg, dismissible=True)
     cid = mg.my_game_id
     cid = "TEST"
     anfang = time.time()

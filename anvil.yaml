@@ -50,7 +50,7 @@ db_schema:
     server: full
     title: Files
   game_files:
-    client: none
+    client: full
     columns:
     - admin_ui: {order: 0, width: 116}
       name: game_id
@@ -63,6 +63,9 @@ db_schema:
       type: number
     - admin_ui: {order: 5, width: 200}
       name: start_row_data
+      type: media
+    - admin_ui: {order: 6, width: 200}
+      name: mdf_play
       type: media
     server: full
     title: game_files
