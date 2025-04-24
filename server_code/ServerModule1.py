@@ -13488,13 +13488,22 @@ def ugregmod(game_id, von, bis):
 
     ##### END loop
     if howlong == 40:
-        mdf_play = mdf_play[0:1920, :]
-        row2040 = mdf[480, :]
-        np.save('row2040.npy', row2040)
+      mdf_play = mdf_play[0:1920, :]
+      row2040 = mdf[480, :]
+      amo = anvil.BlobMedia(
+                  'text/plain', 
+                  pickle.dumps( row2040 ) ,
+                )
+      app_tables.game_files.add_row(game_id=game_id, start_row_data=amo,version=datetime.datetime.now(), yr=2040)
+      s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+      s_row_elem = s_row['start_row_data']
+      r2040 = pickle.loads(s_row_elem.get_bytes())
+      print(r2040)
+#        np.save('row2040.npy', row2040)
     elif howlong == 60:
-        mdf_play = mdf_play[0:2560, :]
-        row2060 = mdf[640, :]
-        np.save('row2060.npy', row2060)
+      mdf_play = mdf_play[0:2560, :]
+      row2060 = mdf[640, :]
+      np.save('row2060.npy', row2060)
 
     return mdf_play, plot_reg, plot_glob
 

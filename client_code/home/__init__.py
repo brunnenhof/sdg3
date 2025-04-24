@@ -701,6 +701,7 @@ class home(homeTemplate):
   def test_model_top_click(self, **event_args):
     Notification("off to run the model", timeout=4)
     cid = mg.my_game_id
+    cid = "TEST"
     anfang = time.time()
     self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
 #      make something visible
