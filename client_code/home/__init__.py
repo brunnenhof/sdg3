@@ -725,10 +725,16 @@ class home(homeTemplate):
     return pol_list
     
   def test_model_top_click(self, **event_args):
-    pol_list = self.get_sorted_pol_list(1, 'XtaxFrac')
-    print(pol_list)
-    pol_list = self.get_sorted_pol_list(1, 'Lfrac')
-    print(pol_list)
+    pols = ["CCS", "TOW", "FPGDC" ,"RMDR" ,"REFOREST" ,"FTPEE" ,"LPBsplit" ,"ExPS" ,
+                        "FMPLDD " ,"StrUP" ,"Wreaction" ,"SGMP" ,"FWRP" ,"ICTR" ,"XtaxCom" ,"Lfrac" ,
+                        "IOITR" ,"IWITR" ,"SGRPI" ,"FEHC" ,"XtaxRateEmp" ,"FLWR" ,"RIPLGF" ,"FC" ,"NEP" ,
+                        "Ctax" ,"DAC" ,"XtaxFrac" ,"LPBgrant" ,"LPB" ,"SSGDR" ,"ISPV"]
+    for p in pols:
+      print(p)
+      for r in range(1,4):
+        pol_list = self.get_sorted_pol_list(r, p)
+        print('Runde ' + str(r) )
+        print(pol_list)
 
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -744,7 +750,7 @@ class home(homeTemplate):
       von = 2060
       bis = 2100
     cid = mg.my_game_id
-    cid = "TEST"
+    cid = "PPW-64"
     anfang = time.time()
     self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
 #      make something visible
