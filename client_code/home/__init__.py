@@ -738,8 +738,8 @@ class home(homeTemplate):
 
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
-    print(self.dropdown_menu_1.selected_value)
     if self.dropdown_menu_1.selected_value == 1:
+      print(self.dropdown_menu_1.selected_value)      
       app_tables.game_files.delete_all_rows()
       von = 2025
       bis = 2040
@@ -762,8 +762,8 @@ class home(homeTemplate):
       abc = 'Using ' +str(dauer)+' sec to run the model successfully from '+str(von)+' to '+str(bis)
       alert(abc)
       self.card_test_plot.visible = True
-      anvil.server.call('fill_test_plots', self.dropdown_menu_1.selected_value)
-      slots = [{key: r[key] for key in ["title", "fig1", "fig2"]} for r in app_tables.test_plots.search(game_id= "TEST")]
+      anvil.server.call('fill_test_plots', self.dropdown_menu_1.selected_value, "QTO-53")
+      slots = [{key: r[key] for key in ["title", "fig1"]} for r in app_tables.test_plots.search(game_id= cid)]
       self.card_test_plot_rp.items = slots
 
       

@@ -13659,7 +13659,7 @@ def ugregmod(game_id, von, bis):
     return mdf_play, plot_reg, plot_glob
 
 @anvil.server.callable
-def fill_test_plots(runde):
+def fill_test_plots(runde,cid):
   # first get mdf_play
   if runde==1:
     yr = 2040
@@ -13671,7 +13671,7 @@ def fill_test_plots(runde):
     yr = 2100
     tid = np.linspace(1980, yr, 3840)
     
-  s_row = app_tables.game_files.get(game_id="QTO-53", yr=yr)
+  s_row = app_tables.game_files.get(game_id=cid, yr=yr)
   s_row_elem = s_row['mdf_play']
   mdf_data = pickle.loads(s_row_elem.get_bytes())
   plot_glob = mg.plot_glob_mg
@@ -13679,7 +13679,7 @@ def fill_test_plots(runde):
 #  reg_col = len(plot_reg) * 10 + 1
   reg_col = 401
   idx = reg_col
-  app_tables.game_files.delete_all_rows()
+  app_tables.test_plots.delete_all_rows()
   for plotg in plot_glob:
     fig, ax = plt.subplots()
     aaa = mdf_data[:, idx]
@@ -13690,7 +13690,7 @@ def fill_test_plots(runde):
     plt.grid(True)
     plt.box(False)
 #    plt.show()
-    app_tables.test_plots.add_row(title=plotg, fig1=anvil.mpl_util.plot_image(), game_id="TEST")
+    app_tables.test_plots.add_row(title=plotg, fig1=anvil.mpl_util.plot_image(), game_id=cid)
     plt.close(fig)
     idx += 1
   idx = 1
@@ -13721,7 +13721,7 @@ def fill_test_plots(runde):
     plt.grid(True)
     plt.box(False)
 #    plt.show()
-    app_tables.test_plots.add_row(title=plotr, fig1=anvil.mpl_util.plot_image(),game_id="TEST")
+    app_tables.test_plots.add_row(title=plotr, fig1=anvil.mpl_util.plot_image(),game_id=cid)
 #    app_tables.test_plots.add_row(title=plotr, fig1=figg,game_id="TEST")
     plt.close(fig)
     idx += 10
