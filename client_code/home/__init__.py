@@ -701,21 +701,15 @@ class home(homeTemplate):
       Notification("Model is done", timeout=7)
 
   def test_model_top_click(self, **event_args):
-    app_tables.game_files.delete_all_rows()
-    Notification("off to run the model", timeout=4)
-    cid = mg.my_game_id
-    cid = "TEST"
-    anfang = time.time()
-    self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
-#      make something visible
-    while not self.task.is_completed(): # model still running
-      pass
-    else: ## model is done
-      ende = time.time()
-      dauer = round(ende - anfang, 0)
-      abc = 'After ' +str(dauer)+' sec, model is done'
-      alert(abc, timeout=7)
-
+    rregs = mg.regs
+    XtaxFrac_R3_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    ab = type(XtaxFrac_R3_via_Excel)
+    rows = app_tables.roles_assign.search(round=1, pol='XtaxFrac') # in production also use game_id
+    for row in rows:
+      rreg = row['reg']
+      rval = row['wert']
+    a = 2
+    
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
     print(self.dropdown_menu_1.selected_value)
@@ -739,8 +733,8 @@ class home(homeTemplate):
     else: ## model is done
       ende = time.time()
       dauer = round(ende - anfang, 0)
-      abc = 'After ' +str(dauer)+' sec, model is done'
-      alert(abc, timeout=7)
+      abc = 'Using ' +str(dauer)+' sec to run the model successfully from '+str(von)+' to '+str(bis)
+      alert(abc)
       self.card_test_plot.visible = True
       anvil.server.call('fill_test_plots', self.dropdown_menu_1.selected_value)
       slots = [{key: r[key] for key in ["title", "fig1", "fig2"]} for r in app_tables.test_plots.search(game_id= "TEST")]

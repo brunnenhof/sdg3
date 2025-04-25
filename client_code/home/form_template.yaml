@@ -197,12 +197,12 @@ components:
       - event_bindings: {click: gm_card_wait_1_btn_check_click}
         layout_properties: {grid_position: 'VWEOQI,ALEEHI'}
         name: gm_card_wait_1_btn_check
-        properties: {background: '#e8f4d5', bold: true, foreground: 'theme:Primary', role: elevated-button, text: Check LogIn}
+        properties: {background: '#e8f4d5', bold: true, foreground: 'theme:Primary', icon: 'fa:refresh', role: elevated-button, text: Check LogIn}
         type: Button
       - event_bindings: {click: gm_card_wait_1_btn_kick_off_round_1_click}
         layout_properties: {grid_position: 'VWEOQI,EAGIKU'}
         name: gm_card_wait_1_btn_kick_off_round_1
-        properties: {bold: true, foreground: 'theme:Primary', role: elevated-button, text: Advance the model for the next round, visible: true}
+        properties: {bold: true, foreground: 'theme:Primary', icon: 'fa:refresh', role: elevated-button, text: Advance the model for the next round, visible: true}
         type: Button
       - layout_properties: {grid_position: 'APZYMA,CBRFVR'}
         name: gm_card_wait_1_temp_title
@@ -539,7 +539,7 @@ components:
     - event_bindings: {click: refresh_numbers_click}
       layout_properties: {grid_position: 'NTPKKK,QWVBXB'}
       name: refresh_numbers
-      properties: {align: right, background_color: lightgreen, text_color: 'theme:Primary'}
+      properties: {align: right, background_color: lightgreen, icon: 'mi:refresh', text_color: 'theme:Primary'}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: submit_numbers_click}
       layout_properties: {grid_position: 'NTPKKK,RTZKOP'}
