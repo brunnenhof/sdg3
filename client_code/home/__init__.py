@@ -750,7 +750,7 @@ class home(homeTemplate):
       von = 2060
       bis = 2100
     cid = mg.my_game_id
-    cid = "PPW-64"
+    cid = "QTO-53"
     anfang = time.time()
     self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
 #      make something visible

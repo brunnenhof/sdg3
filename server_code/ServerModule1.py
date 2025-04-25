@@ -607,9 +607,9 @@ def ugregmod(game_id, von, bis):
 #    IOITR_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     XtaxRateEmp_policy_Max = 5
     XtaxRateEmp_policy_Min = 0.0
-    XtaxEmp_R3_via_Excel = get_sorted_pol_list(game_id, 3, 'XtaxEmp')
-    XtaxEmp_R2_via_Excel = get_sorted_pol_list(game_id, 2, 'XtaxEmp')
-    XtaxEmp_R1_via_Excel = get_sorted_pol_list(game_id, 1, 'XtaxEmp')
+    XtaxEmp_R3_via_Excel = get_sorted_pol_list(game_id, 3, 'XtaxRateEmp')
+    XtaxEmp_R2_via_Excel = get_sorted_pol_list(game_id, 2, 'XtaxRateEmp')
+    XtaxEmp_R1_via_Excel = get_sorted_pol_list(game_id, 1, 'XtaxRateEmp')
     print(game_id)
     print(XtaxEmp_R3_via_Excel)
     print(XtaxEmp_R2_via_Excel)
@@ -13665,7 +13665,7 @@ def fill_test_plots(runde):
     yr = 2100
     tid = np.linspace(1980, yr, 3840)
     
-  s_row = app_tables.game_files.get(game_id="TEST", yr=yr)
+  s_row = app_tables.game_files.get(game_id="QTO-53", yr=yr)
   s_row_elem = s_row['mdf_play']
   mdf_data = pickle.loads(s_row_elem.get_bytes())
   plot_glob = mg.plot_glob_mg
