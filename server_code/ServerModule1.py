@@ -293,7 +293,6 @@ def build_plot(var_row, regidx, cap, cid, runde):
   elif runde == 4:
     yr = 2100
   mdf_play = read_mdfplay25('mdf_play.npy', runde)
-  print(mdf_play.shape)
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
@@ -522,6 +521,8 @@ def get_sorted_pol_list(cid, runde, pol):
   myKeys.sort()
   sd = {i: dic[i] for i in myKeys}
   pol_list = list(sd.values())
+  print(cid+' '+str(runde)+' '+pol)
+  print(pol_list)
   return pol_list
 
 @anvil.server.background_task
@@ -617,10 +618,6 @@ def ugregmod(game_id, von, bis):
     XtaxEmp_R3_via_Excel = get_sorted_pol_list(game_id, 3, 'XtaxRateEmp')
     XtaxEmp_R2_via_Excel = get_sorted_pol_list(game_id, 2, 'XtaxRateEmp')
     XtaxEmp_R1_via_Excel = get_sorted_pol_list(game_id, 1, 'XtaxRateEmp')
-    print(game_id)
-    print(XtaxEmp_R3_via_Excel)
-    print(XtaxEmp_R2_via_Excel)
-    print(XtaxEmp_R1_via_Excel)
 #    XtaxEmp_R3_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 #    XtaxEmp_R2_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 #    XtaxEmp_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -2113,7 +2110,10 @@ def ugregmod(game_id, von, bis):
         s_row_elem = s_row['start_row_data']
         row_start = pickle.loads(s_row_elem.get_bytes())
         print('in ugregmod von=2060')
-        print(row_start)
+        print(row_start.shape)
+        print(type(row_start))
+        for kk in range(0, 200):
+          print(str(kk)+' '+str(row_start[kk]))
 #        row_start = np.load('row2060.npy')
         start_mod = von
         zeit = start_mod
@@ -13641,12 +13641,6 @@ def ugregmod(game_id, von, bis):
                 )
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
-#      s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
-#      s_row_elem = s_row['start_row_data']
-#      r2040 = pickle.loads(s_row_elem.get_bytes())
-#      print(r2040)
-#      print(type(r2040))
-#        np.save('row2040.npy', row2040)
     elif howlong == 60:
       mdf_play = mdf_play[0:2560, :]
       row2060 = mdf[640, :]
@@ -13657,8 +13651,7 @@ def ugregmod(game_id, von, bis):
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2060)
     elif howlong == 21:
-#      mdf_play = mdf_play[0:2560, :]
-      row2100 = mdf[640, :]
+      row2100 = mdf[1280, :]
       amo = anvil.BlobMedia(
                   'text/plain', 
                   pickle.dumps( row2100 ) ,
@@ -13693,8 +13686,6 @@ def fill_test_plots(runde,cid):
   for plotg in plot_glob:
     fig, ax = plt.subplots()
     aaa = mdf_data[:, idx]
-    print(tid.shape)
-    print(aaa.shape)
     abc = pd.DataFrame({'Yr':tid, 'y':aaa})
 #    abc = pd.DataFrame(aaa)
     plt.plot(abc['Yr'], abc['y'], color='blue', linewidth=3)
@@ -13823,7 +13814,6 @@ def build_plot_test(var_row, regidx, cap, cid, runde):
   if runde == 1:
     yr = 2025
   mdf_play = read_mdfplay25('mdf_play.npy', runde)
-  print(mdf_play.shape)
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
