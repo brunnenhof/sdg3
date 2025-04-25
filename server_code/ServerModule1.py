@@ -286,6 +286,12 @@ def build_plot(var_row, regidx, cap, cid, runde):
   # find out for which round
   if runde == 1:
     yr = 2025
+  elif runde == 2:
+    yr = 2040
+  elif runde == 3:
+    yr = 2060
+  elif runde == 4:
+    yr = 2100
   mdf_play = read_mdfplay25('mdf_play.npy', runde)
   print(mdf_play.shape)
   var_l = var_row['vensim_name']
@@ -520,6 +526,7 @@ def get_sorted_pol_list(cid, runde, pol):
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
+    anvil.server.task_state['Year'] = von
 #    my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green','orange']
     plot_glob = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
                           'Planetary risk']
@@ -2105,6 +2112,8 @@ def ugregmod(game_id, von, bis):
         s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
         s_row_elem = s_row['start_row_data']
         row_start = pickle.loads(s_row_elem.get_bytes())
+        print('in ugregmod von=2060')
+        print(row_start)
 #        row_start = np.load('row2060.npy')
         start_mod = von
         zeit = start_mod
@@ -2131,7 +2140,8 @@ def ugregmod(game_id, von, bis):
 #        print(str(rowi) + ' --- zeit is: ' + str(zeit) + ' --- rowi in start_tick_in_mdf_play: ' + str(start_tick_in_mdf_play))
         jjyr = rowi - 1
         if jjyr % 32 == 0:
-            print('okrun - runto ' + str(bis) + ' current YEAR: ' + str(yr))
+            anvil.server.task_state['Year'] = yr
+#            print('okrun - runto ' + str(bis) + ' current YEAR: ' + str(yr))
             yr += 1
         # Cohort_0_to_20_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D422' )
 #        tabidx = ftab_in_d_table['Cohort_0_to_20_H']  # fetch the correct table
@@ -13656,7 +13666,7 @@ def ugregmod(game_id, von, bis):
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2100)
 
-    return mdf_play, plot_reg, plot_glob
+#    return mdf_play, plot_reg, plot_glob
 
 @anvil.server.callable
 def fill_test_plots(runde,cid):
@@ -13669,7 +13679,7 @@ def fill_test_plots(runde,cid):
     tid = np.linspace(1980, yr, 2560)    
   elif runde==3:
     yr = 2100
-    tid = np.linspace(1980, yr, 3840)
+    tid = np.linspace(1980, yr, 3841)
     
   s_row = app_tables.game_files.get(game_id=cid, yr=yr)
   s_row_elem = s_row['mdf_play']
@@ -13683,6 +13693,8 @@ def fill_test_plots(runde,cid):
   for plotg in plot_glob:
     fig, ax = plt.subplots()
     aaa = mdf_data[:, idx]
+    print(tid.shape)
+    print(aaa.shape)
     abc = pd.DataFrame({'Yr':tid, 'y':aaa})
 #    abc = pd.DataFrame(aaa)
     plt.plot(abc['Yr'], abc['y'], color='blue', linewidth=3)

@@ -744,19 +744,25 @@ class home(homeTemplate):
       von = 2025
       bis = 2040
     elif self.dropdown_menu_1.selected_value == 2:
+      print(self.dropdown_menu_1.selected_value)       
       von = 2040
       bis = 2060
     else:
+      print(self.dropdown_menu_1.selected_value)       
       von = 2060
       bis = 2100
     cid = mg.my_game_id
     cid = "QTO-53"
     anfang = time.time()
+    self.yr_from_mod.visible = True
     self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
 #      make something visible
     while not self.task.is_completed(): # model still running
+      yr = self.task.get_state(['Year'])
+      self.yr_from_mod.text = yr
       pass
     else: ## model is done
+      self.yr_from_mod.visible = False
       ende = time.time()
       dauer = round(ende - anfang, 0)
       abc = 'Using ' +str(dauer)+' sec to run the model successfully from '+str(von)+' to '+str(bis)

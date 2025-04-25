@@ -16,6 +16,10 @@ components:
       name: test_model_top
       properties: {appearance: elevated, text: Test Model}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - layout_properties: {grid_position: 'PINTXY,NRIAQC'}
+      name: yr_from_mod
+      properties: {align: center}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Text
     - data_bindings:
       - {code: '', property: items, writeback: false}
       event_bindings: {change: dropdown_menu_1_change}
