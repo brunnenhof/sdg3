@@ -8,6 +8,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import time
 import datetime
+import random
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -723,18 +724,76 @@ class home(homeTemplate):
     sd = {i: dic[i] for i in myKeys}
     pol_list = list(sd.values())
     return pol_list
-    
+
+  def randval(self, p, pl):
+    pass
+
+  def get_randGLbias_for_pol(self, pol, pl, tl, gl):
+    idx = pl.index(pol)
+    gle = gl[idx]
+    tle = tl[idx]
+    floor = tle 
+    mid = (gle - tle ) / 2
+    w = random.uniform(floor + mid, gle)
+    if w < floor or w > gle:
+      oops = 2
+    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+    return w
+
   def test_model_top_click(self, **event_args):
-    pols = ["CCS", "TOW", "FPGDC" ,"RMDR" ,"REFOREST" ,"FTPEE" ,"LPBsplit" ,"ExPS" ,
-                        "FMPLDD " ,"StrUP" ,"Wreaction" ,"SGMP" ,"FWRP" ,"ICTR" ,"XtaxCom" ,"Lfrac" ,
-                        "IOITR" ,"IWITR" ,"SGRPI" ,"FEHC" ,"XtaxRateEmp" ,"FLWR" ,"RIPLGF" ,"FC" ,"NEP" ,
-                        "Ctax" ,"DAC" ,"XtaxFrac" ,"LPBgrant" ,"LPB" ,"SSGDR" ,"ISPV"]
-    for p in pols:
-      print(p)
-      for r in range(1,4):
-        pol_list = self.get_sorted_pol_list(r, p)
-        print('Runde ' + str(r) )
-        print(pol_list)
+    #app_tables.state_of_play.delete_all_rows()
+    #app_tables.step_done.delete_all_rows()
+    pol_list = [r['abbr'] for r in app_tables.policies.search()]
+    tltl_list = [r['tltl'] for r in app_tables.policies.search()]
+    gl_list = [r['gl'] for r in app_tables.policies.search()]
+    result = [
+        {
+            'tltl': row["tltl"],
+            'gl':   row["gl"],
+            'pol':  row["abbr"],
+        }
+        for row in app_tables.policies.search()
+    ]
+    regs = mg.regs
+    for runde in range(1,4):  # set up roles_assign
+      for re in regs:
+        j = 0
+        for p in pol_list:
+          for jj in range(0,100):
+            w2 = self.get_minmax_from_pol(p, pol_list, tltl_list, gl_list)
+        j += 1
+
+    w_list = []
+    for i in range(0,len(tltl_list)):
+      mymin = tltl_list[i]
+      mymax = gl_list[i]
+      myrange = (mymax - mymin) 
+      w = mymin + random.uniform(0, myrange)
+      w_list.append(w)  # random policy value biased towards GL
+    regs = mg.regs
+    for re in regs: # set up regs_state_of_play
+      if re in npbp:
+        app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
+      else:
+        app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0) # p_state 0: data set up
+    roles = mg.roles
+    for ro in roles:
+      for re in regs: # set up regs_state_of_play
+        if re in npbp:
+          app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
+        else:
+         app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
+
+#    pols = ["CCS", "TOW", "FPGDC" ,"RMDR" ,"REFOREST" ,"FTPEE" ,"LPBsplit" ,"ExPS" ,
+#                        "FMPLDD " ,"StrUP" ,"Wreaction" ,"SGMP" ,"FWRP" ,"ICTR" ,"XtaxCom" ,"Lfrac" ,
+#                        "IOITR" ,"IWITR" ,"SGRPI" ,"FEHC" ,"XtaxRateEmp" ,"FLWR" ,"RIPLGF" ,"FC" ,"NEP" ,
+#                        "Ctax" ,"DAC" ,"XtaxFrac" ,"LPBgrant" ,"LPB" ,"SSGDR" ,"ISPV"]
+#    for p in pols:
+#      print(p)
+#      for r in range(1,4):
+#        pol_list = self.get_sorted_pol_list(r, p)
+ #       print('Runde ' + str(r) )
+#        print(pol_list)
 
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""

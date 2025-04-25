@@ -115,6 +115,18 @@ def launch_set_npbp(game_id, npbp):
   task = anvil.server.launch_background_task('set_npbp', game_id, npbp)
   return task
 
+def get_randGLbias_for_pol(pol, pl, tl, gl):
+  idx = pl.index(pol)
+  gle = gl[idx]
+  tle = tl[idx]
+  floor = tle 
+  mid = (gle - tle ) / 2
+  w = random.uniform(floor + mid, gle)
+  if w < floor or w > gle:
+    oops = 2
+#  print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+  return w
+
 @anvil.server.background_task
 def set_npbp(cid, npbp):
   app_tables.state_of_play.delete_all_rows()
@@ -125,13 +137,6 @@ def set_npbp(cid, npbp):
 #  print(tltl_list)
   gl_list = [r['gl'] for r in app_tables.policies.search()]
 #  print(gl_list)
-  w_list = []
-  for i in range(0,len(tltl_list)):
-    mymin = tltl_list[i]
-    mymax = gl_list[i]
-    myrange = (mymax - mymin) 
-    w = mymin + random.uniform(0, myrange)
-    w_list.append(w)  # random policy value biased towards GL
   regs = mg.regs
 #  print(w_list)
   for re in regs: # set up regs_state_of_play
@@ -148,19 +153,19 @@ def set_npbp(cid, npbp):
         app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
-      j = 0
+#      j = 0
       for p in pol_list:
         ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
         row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
         if re in npbp:
           taken = 2
-          w2 = w_list[j]
+          w2 = get_randGLbias_for_pol(p, pol_list, tltl_list, gl_list)
 #          print(cid,' ' + str(runde)+' '+re+' '+p+' '+ta+' '+str(w2))
         else:
           taken = 0
           w2 = tltl_list[j]
         row.update(taken=taken, wert=w2)
-        j += 1
+#        j += 1
       # setup fut which has no policy
       row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, role='fut')
       if re in npbp:
