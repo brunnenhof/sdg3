@@ -700,16 +700,36 @@ class home(homeTemplate):
     else: ## model is done
       Notification("Model is done", timeout=7)
 
-  def test_model_top_click(self, **event_args):
-    rregs = mg.regs
-    XtaxFrac_R3_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
-    ab = type(XtaxFrac_R3_via_Excel)
-    rows = app_tables.roles_assign.search(round=1, pol='XtaxFrac') # in production also use game_id
+  def get_sorted_pol_list(self, runde, pol):
+    r_to_x = {
+      'us' : 0,
+      'af' : 1,
+      'cn' : 2,
+      'me' : 3,
+      'sa' : 4,
+      'la' : 5,
+      'pa' : 6,
+      'ec' : 7,
+      'eu' : 8,
+      'se' : 9
+    }
+    rows = app_tables.roles_assign.search(round=runde, pol=pol) # in production also use game_id
+    dic = {}
     for row in rows:
-      rreg = row['reg']
-      rval = row['wert']
-    a = 2
+      rreg2 = r_to_x[row['reg']]
+      dic[rreg2] = row['wert']
+    myKeys = list(dic.keys())
+    myKeys.sort()
+    sd = {i: dic[i] for i in myKeys}
+    pol_list = list(sd.values())
+    return pol_list
     
+  def test_model_top_click(self, **event_args):
+    pol_list = self.get_sorted_pol_list(1, 'XtaxFrac')
+    print(pol_list)
+    pol_list = self.get_sorted_pol_list(1, 'Lfrac')
+    print(pol_list)
+
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
     print(self.dropdown_menu_1.selected_value)

@@ -494,6 +494,30 @@ def launch_ugregmod(game_id, von, bis):
   task = anvil.server.launch_background_task('ugregmod', game_id, von, bis)
   return task
 
+def get_sorted_pol_list(runde, pol):
+  r_to_x = {
+      'us' : 0,
+      'af' : 1,
+      'cn' : 2,
+      'me' : 3,
+      'sa' : 4,
+      'la' : 5,
+      'pa' : 6,
+      'ec' : 7,
+      'eu' : 8,
+      'se' : 9
+  }
+  rows = app_tables.roles_assign.search(round=runde, pol=pol) # in production also use game_id
+  dic = {}
+  for row in rows:
+      rreg2 = r_to_x[row['reg']]
+      dic[rreg2] = row['wert']
+  myKeys = list(dic.keys())
+  myKeys.sort()
+  sd = {i: dic[i] for i in myKeys}
+  pol_list = list(sd.values())
+  return pol_list
+
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
     regnames = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
@@ -544,9 +568,12 @@ def ugregmod(game_id, von, bis):
     ## from anvil DB
     StrUP_policy_Max = 3
     StrUP_policy_Min = 0.0
-    StrUP_R3_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    StrUP_R2_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    StrUP_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    StrUP_R3_via_Excel = get_sorted_pol_list(3, 'StrUP')
+    StrUP_R2_via_Excel = get_sorted_pol_list(2, 'StrUP')
+    StrUP_R1_via_Excel = get_sorted_pol_list(1, 'StrUP')
+#    StrUP_R3_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#    StrUP_R2_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#    StrUP_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     SGMP_policy_Max = 10
     SGMP_policy_Min = 0.0
     SGMP_R3_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -574,9 +601,12 @@ def ugregmod(game_id, von, bis):
     XtaxEmp_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     Xtaxfrac_policy_Max = 90
     Xtaxfrac_policy_Min = 50.0
-    XtaxFrac_R3_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
-    XtaxFrac_R2_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
-    XtaxFrac_R1_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+    XtaxFrac_R3_via_Excel = get_sorted_pol_list(3, 'XtaxFrac')
+    XtaxFrac_R2_via_Excel = get_sorted_pol_list(2, 'XtaxFrac')
+    XtaxFrac_R1_via_Excel = get_sorted_pol_list(1, 'XtaxFrac')
+#    XtaxFrac_R3_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+#    XtaxFrac_R2_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+#    XtaxFrac_R1_via_Excel = [50, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
     XtaxCom_policy_Max = 5
     XtaxCom_policy_Min = 0.0
     XtaxCom_R3_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
