@@ -2040,6 +2040,12 @@ def ugregmod(game_id, von, bis):
 
     if von == 2025:
       runde = 1
+    elif von == 2040:
+      runde = 2
+    elif von == 2060:
+      runde = 3
+    else:
+      print("von not 2025 | 2040 | 2060")
     mdf_play = read_mdfplay_full('mdf_play.npy', runde)
     ff = data_files['ch.npy']
     ch = np.load(ff)
@@ -13625,11 +13631,11 @@ def ugregmod(game_id, von, bis):
                 )
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
-      s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
-      s_row_elem = s_row['start_row_data']
-      r2040 = pickle.loads(s_row_elem.get_bytes())
-      print(r2040)
-      print(type(r2040))
+#      s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+#      s_row_elem = s_row['start_row_data']
+#      r2040 = pickle.loads(s_row_elem.get_bytes())
+#      print(r2040)
+#      print(type(r2040))
 #        np.save('row2040.npy', row2040)
     elif howlong == 60:
       mdf_play = mdf_play[0:2560, :]
