@@ -186,11 +186,9 @@ def read_mdfplay25(datei, runde):
   return mdf_play
 
 def read_mdfplay_full(datei, runde):
-#  print('APRIL IN read_mdfplay25 loading: ' + datei)
   f = data_files[datei]
-  mdf_play = np.load(f)
-#  mdf_play = mdf_play[320:1440, :]
-  return mdf_play
+  mdf_play_full = np.load(f)
+  return mdf_play_full
 
 def pick(ys, x, y):
     o = []
@@ -301,20 +299,20 @@ def build_plot(var_row, regidx, cap, cid, runde):
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
-  print('starting new plot ...')
-  print('... build plot 272 var_l: ' + var_l)
+#  print('starting new plot ...')
+#  print('... build plot 272 var_l: ' + var_l)
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
-  print('--- build plot 274 rowx: on next line')
-  print (rowx)
+#  print('--- build plot 274 rowx: on next line')
+#  print (rowx)
   idx = rowx['col_idx']
-  print(idx)
+#  print(idx)
   if varx in[19, 21, 22, 35]: # global variable
     lx = idx # find location of variable in mdf
   else:
     lx = idx + regidx # find location of variable in mdf with reg offset
   print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
-  dfv_pd = pd.DataFrame(dfv)
+#  dfv_pd = pd.DataFrame(dfv)
 #  print(dfv_pd)
   cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = var_row['indicator']
@@ -362,6 +360,15 @@ def budget_to_db(yr, cid):
   if yr == 2025:
     rx = 1440 - 321
     runde = 1
+  elif yr == 2040:
+    runde = 2
+    rx = 1920 - 321
+  elif yr == 2060:
+    runde = 3
+    rx = 2560 - 321
+  elif yr == 2100:
+    runde = 4
+    rx = 3840 - 321
   else:
     print("Forgot to add reading later mdfs")
   mdf_bud = read_mdfplay25('mdf_play.npy', runde)
@@ -371,14 +378,14 @@ def budget_to_db(yr, cid):
   for i in range(0,10):
     ba.append(mdf_bud[rx, idx + i])
   print('IN put_budget ... ba ')
-  print(ba)
+#  print(ba)
   cpov = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_poverty_policy')
   idx = rowx['col_idx']
   for i in range(10):
     cpov.append(mdf_bud[rx, idx + i]) # poverty
   print('IN put_budget ... cpov ')
-  print(cpov)
+#  print(cpov)
   
   cineq = [] 
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_inequality_policy')
@@ -386,7 +393,7 @@ def budget_to_db(yr, cid):
   for i in range(10):
     cineq.append(mdf_bud[rx, idx + i]) # inequality
   print('IN put_budget ... cineq ')
-  print(cineq)
+#  print(cineq)
   
   cemp = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_empowerment_policy')
@@ -394,7 +401,7 @@ def budget_to_db(yr, cid):
   for i in range(10):
     cemp.append(mdf_bud[rx, idx + i]) # empowerment
   print('IN put_budget ... cemp ')
-  print(cemp)
+#  print(cemp)
   
   cfood = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_food_policy')
@@ -402,7 +409,7 @@ def budget_to_db(yr, cid):
   for i in range(10):
     cfood.append(mdf_bud[rx, idx + i]) # food
   print('IN put_budget ... cfood ')
-  print(cfood)
+#  print(cfood)
   
   cener = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_energy_policy')
@@ -410,7 +417,7 @@ def budget_to_db(yr, cid):
   for i in range(10):
     cener.append(mdf_bud[rx, idx + i]) # energy
   print('IN put_budget ... cener ')
-  print(cener)
+#  print(cener)
 
   for i in range(0,10):
     row = app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i],
@@ -2154,7 +2161,7 @@ def ugregmod(game_id, von, bis):
       print("von not 2025 | 2040 | 2060")
     mdf_play_full = read_mdfplay_full('mdf_play.npy', runde)
     nun = datetime.datetime.now()
-    print('loaded mdf_play.npy')
+    print('loaded mdf_play full.npy')
     print(nun)
     ff = data_files['ch.npy']
     ch = np.load(ff)
@@ -2248,11 +2255,9 @@ def ugregmod(game_id, von, bis):
     yr = int(zeit)
     for rowi in range(start_tick, end_tick):
         zeit = zeit + dt
-#        print(str(rowi) + ' --- zeit is: ' + str(zeit) + ' --- rowi in start_tick_in_mdf_play: ' + str(start_tick_in_mdf_play))
         jjyr = rowi - 1
         if jjyr % 32 == 0:
             anvil.server.task_state['Year'] = yr
-#            print('okrun - runto ' + str(bis) + ' current YEAR: ' + str(yr))
             yr += 1
         # Cohort_0_to_20_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D422' )
 #        tabidx = ftab_in_d_table['Cohort_0_to_20_H']  # fetch the correct table
@@ -13730,17 +13735,19 @@ def ugregmod(game_id, von, bis):
             idx = fcol_in_mdf[prr]
             for jk in range(0, 10):
                 a2 = mdf[rowi, idx + jk]
-                mdf_play[start_tick_in_mdf_play, colmdf] = a2
+                mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
                 colmdf += 1
         for pgg in plot_glob:
             idx = fcol_in_mdf[pgg]
             a2 = mdf[rowi, idx]
-            mdf_play[start_tick_in_mdf_play, colmdf] = a2
+            mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
             colmdf += 1
 
         start_tick_in_mdf_play += 1
 
     ##### END loop
+    # make sure I save the entire ndarray
+    mdf_new_full = mdf_play_full
     if howlong == 40:
       mdf_play = mdf_play[0:1920, :]
       row2040 = mdf[480, :]
@@ -13748,7 +13755,7 @@ def ugregmod(game_id, von, bis):
                   'text/plain', 
                   pickle.dumps( row2040 ) ,
                 )
-      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
     elif howlong == 60:
       mdf_play = mdf_play[0:2560, :]
@@ -13757,7 +13764,7 @@ def ugregmod(game_id, von, bis):
                   'text/plain', 
                   pickle.dumps( row2060 ) ,
                 )
-      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2060)
     elif howlong == 21:
       row2100 = mdf[1280, :]
@@ -13765,7 +13772,7 @@ def ugregmod(game_id, von, bis):
                   'text/plain', 
                   pickle.dumps( row2100 ) ,
                 )
-      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_play ) ,)
+      amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2100)
 
 #    return mdf_play, plot_reg, plot_glob
