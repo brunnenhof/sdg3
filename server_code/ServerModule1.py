@@ -533,13 +533,14 @@ def get_sorted_pol_list(cid, runde, pol):
   myKeys.sort()
   sd = {i: dic[i] for i in myKeys}
   pol_list = list(sd.values())
-  print(cid+' '+str(runde)+' '+pol)
-  print(pol_list)
+#  print(cid+' '+str(runde)+' '+pol)
+#  print(pol_list)
   return pol_list
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
     anvil.server.task_state['Year'] = von
+    anvil.server.task_state['load'] = '... loading constants, policies, ...'
 #    my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green','orange']
     plot_glob = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
                           'Planetary risk']
@@ -842,6 +843,7 @@ def ugregmod(game_id, von, bis):
 #    ExPS_R2_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 #    ExPS_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
+    """
     ExPS_R1_via_Excel = [77.64, 0, 0, 0, 0, 0, 0, 0, 0, 73.36]
     ExPS_R2_via_Excel = [84.71, 0, 0, 0, 0, 0, 0, 0, 0, 62.96]
     ExPS_R3_via_Excel = [58.33, 0, 0, 0, 0, 0, 0, 0, 0, 88.49]
@@ -938,6 +940,7 @@ def ugregmod(game_id, von, bis):
     DAC_R1_via_Excel = [1.26, 0, 0, 0, 0, 0, 0, 0, 0, 1.07]
     DAC_R2_via_Excel = [1.41, 0, 0, 0, 0, 0, 0, 0, 0, 0.98]
     DAC_R3_via_Excel = [0.81, 0, 0, 0, 0, 0, 0, 0, 0, 1.03]
+    """
     
 #    Capital_output_ratio_in_1980 = ([3, 8, 1.6, 8, 8, 6, 4, 5, 3, 8])
     Employed_in_1980 = ([103, 139, 494, 41, 322, 114, 92, 163, 194, 128])
@@ -13748,8 +13751,9 @@ def ugregmod(game_id, von, bis):
     ##### END loop
     # make sure I save the entire ndarray
     mdf_new_full = mdf_play_full
+    print(mdf_new_full.shape)
     if howlong == 40:
-      mdf_play = mdf_play[0:1920, :]
+      mdf_play = mdf_new_full[0:1920, :]
       row2040 = mdf[480, :]
       amo = anvil.BlobMedia(
                   'text/plain', 
@@ -13758,7 +13762,7 @@ def ugregmod(game_id, von, bis):
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
     elif howlong == 60:
-      mdf_play = mdf_play[0:2560, :]
+      mdf_play = mdf_new_full[0:2560, :]
       row2060 = mdf[640, :]
       amo = anvil.BlobMedia(
                   'text/plain', 
@@ -13783,16 +13787,20 @@ def fill_test_plots(runde,cid):
   if runde==1:
     yr = 2040
     tid = np.linspace(1980, yr, 1920)
+    rx = len(tid)
   elif runde == 2:
     yr = 2060
     tid = np.linspace(1980, yr, 2560)    
+    rx = len(tid)    
   elif runde==3:
     yr = 2100
     tid = np.linspace(1980, yr, 3841)
+    rx = len(tid)
     
   s_row = app_tables.game_files.get(game_id=cid, yr=yr)
   s_row_elem = s_row['mdf_play']
   mdf_data = pickle.loads(s_row_elem.get_bytes())
+  mdf_data = mdf_data[0:rx, :]
   plot_glob = mg.plot_glob_mg
   plot_reg = mg.plot_reg_mg
 #  reg_col = len(plot_reg) * 10 + 1
