@@ -732,6 +732,8 @@ class home(homeTemplate):
     idx = pl.index(pol)
     gle = gl[idx]
     tle = tl[idx]
+#    avg = tle + (gle -tle) / 2
+#    w = random.uniform(avg, gle)
     floor = tle 
     mid = (gle - tle ) / 2
     w = random.uniform(floor + mid, gle)

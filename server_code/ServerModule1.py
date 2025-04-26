@@ -2194,6 +2194,9 @@ def ugregmod(game_id, von, bis):
         s_row_elem = s_row['start_row_data']
         row_start = pickle.loads(s_row_elem.get_bytes())
 #        row_start = np.load('row2040.npy')
+        s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+        s_row_elem = s_row['mdf_play']
+        mdf_play = pickle.loads(s_row_elem.get_bytes())
         start_mod = von
         zeit = start_mod
         end_mod = bis
@@ -2211,11 +2214,14 @@ def ugregmod(game_id, von, bis):
         s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
         s_row_elem = s_row['start_row_data']
         row_start = pickle.loads(s_row_elem.get_bytes())
+        s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
+        s_row_elem = s_row['mdf_play']
+        mdf_play = pickle.loads(s_row_elem.get_bytes())
         print('in ugregmod von=2060')
-        print(row_start.shape)
-        print(type(row_start))
-        for kk in range(0, 200):
-          print(str(kk)+' '+str(row_start[kk]))
+#        print(row_start.shape)
+#        print(type(row_start))
+#        for kk in range(0, 200):
+#          print(str(kk)+' '+str(row_start[kk]))
 #        row_start = np.load('row2060.npy')
         start_mod = von
         zeit = start_mod
@@ -2349,9 +2355,7 @@ def ugregmod(game_id, von, bis):
         idx3 = fcol_in_mdf['Embedded_TFP']
         for j in range(0, 10):
             mdf[rowi, idxlhs + j] = Optimal_output_in_1980[j] * (
-                        mdf[rowi, idx1 + j] / Capacity_in_1980[j]) ** Kappa * (
-                                                mdf[rowi, idx2 + j] / Employed_in_1980[j]) ** Lambdav * (
-                                    mdf[rowi, idx3 + j])
+                        mdf[rowi, idx1 + j] / Capacity_in_1980[j]) ** Kappa * (mdf[rowi, idx2 + j] / Employed_in_1980[j]) ** Lambdav * (mdf[rowi, idx3 + j])
 
         # Perceived_relative_inventory[region] = SMOOTHI ( Inventory_coverage_to_goal_ratio[region] , Inventory_coverage_perception_time , Perceived_relative_inventory_in_1980[region] )
         idx1 = fcol_in_mdf['Perceived_relative_inventory']
