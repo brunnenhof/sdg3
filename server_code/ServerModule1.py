@@ -2152,7 +2152,7 @@ def ugregmod(game_id, von, bis):
       runde = 3
     else:
       print("von not 2025 | 2040 | 2060")
-    mdf_play = read_mdfplay_full('mdf_play.npy', runde)
+    mdf_play_full = read_mdfplay_full('mdf_play.npy', runde)
     nun = datetime.datetime.now()
     print('loaded mdf_play.npy')
     print(nun)
