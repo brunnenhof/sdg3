@@ -14,11 +14,11 @@ components:
     - event_bindings: {click: test_model_top_click}
       layout_properties: {grid_position: 'PINTXY,ZFDBLZ'}
       name: test_model_top
-      properties: {appearance: elevated, text: Test Model}
+      properties: {appearance: elevated, text: Test Model, visible: false}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - layout_properties: {grid_position: 'PINTXY,NRIAQC'}
       name: yr_from_mod
-      properties: {align: center}
+      properties: {align: center, visible: false}
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
     - data_bindings:
       - {code: '', property: items, writeback: false}
@@ -28,6 +28,7 @@ components:
       properties:
         items: ['"Round 1", "Round 2","Round 3"']
         placeholder: Model testing
+        visible: false
       type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
     - layout_properties: {grid_position: 'VYOQIA,GULAQJ'}
       name: top_entry_label
@@ -695,7 +696,7 @@ components:
       type: RepeatingPanel
     layout_properties: {grid_position: 'WJVAAV,KHIZNM'}
     name: card_test_plot
-    properties: {role: outlined-card}
+    properties: {role: outlined-card, visible: false}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: top_cp_1
@@ -736,6 +737,7 @@ components:
       spacing:
         margin: ['0', null, '0', null]
         padding: [-1.92, '5', '0', '5']
+      visible: false
     type: FileLoader
   layout_properties: {slot: nav-right}
   name: navbar_links

@@ -153,7 +153,7 @@ def set_npbp(cid, npbp):
         app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
-#      j = 0
+      j = 0
       for p in pol_list:
         ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
         row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
@@ -165,7 +165,7 @@ def set_npbp(cid, npbp):
           taken = 0
           w2 = tltl_list[j]
         row.update(taken=taken, wert=w2)
-#        j += 1
+        j += 1
       # setup fut which has no policy
       row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, role='fut')
       if re in npbp:
