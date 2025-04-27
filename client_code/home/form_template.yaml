@@ -207,7 +207,7 @@ components:
       - event_bindings: {click: gm_card_wait_1_btn_kick_off_round_1_click}
         layout_properties: {grid_position: 'VWEOQI,EAGIKU'}
         name: gm_card_wait_1_btn_kick_off_round_1
-        properties: {bold: true, foreground: 'theme:Primary', icon: 'fa:refresh', role: elevated-button, text: Advance the model for the next round, visible: true}
+        properties: {bold: true, foreground: 'theme:Primary', icon: 'fa:refresh', role: elevated-button, text: Advance the model for the next round, visible: false}
         type: Button
       - layout_properties: {grid_position: 'APZYMA,CBRFVR'}
         name: gm_card_wait_1_temp_title

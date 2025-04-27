@@ -143,12 +143,12 @@ pcr_submit_tx = 'Once you have logged in to both your region and your ministry, 
 gm_reg_npbp_tx = 'When you are done (and sure), click this button'
 top_entry_label_tx = 'Hold on, setting up all the necessary slots, templates and tables for the game ...'
 gm_card_wait_1_temp_title_tx = 'Still waiting for the following ministers to log in ... Ask if they need help ...'
-gm_card_wait_1_temp_title_tx2 = 'All logged in! By clicking on the Ready to advance button, you can check if all your players are ready. This will take time!'
+gm_card_wait_1_temp_title_tx2 = 'All logged in! By clicking on the "Ready to advance" button, you can check if all your regions have submitted their policies. Tell them how much time they have.'
 gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. Check repeatedly if all your players have logged in by clicking the **Check LogIn** button. Once they are ready to proceed to the next round **---** *this will take some time!* **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet."
 gm_card_wait_1_btn_check_tx = 'Check LogIn'
 gm_card_wait_1_btn_kick_off_round_1_tx = 'Ready to advance the model for the next round?'
 gm_wait_kickoff_r1_tx = 'Still waiting for the region below to submit their decisions ... You may want to ask if they need help ...'
-setup_npbp_label_tx = '... Hold on ... Role assignments are being set up ...'
+setup_npbp_label_tx = 'Hold on, all roles are being prepared ...'
 #    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
 pcr_submit_msg1 = "Congratulations, you have been confirmed as "
 pcr_submit_msg2 = ' in '
@@ -190,6 +190,10 @@ confirm_buttons_tx = [
 after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the Game Organizer will advance the model for the next round. This will take some time ..."
 nothing_submitted_tx = "Nothing was submitted ..."
 p_advance_to_next_round_tx = "Advance to the next round"
+p_advance_to_2_tx = "Advance to round 2: 2040-2060 - your children's future"
+p_advance_to_3_tx = "Advance to round 3: 2060-2100 - your grandchildren's future"
+p_waiting_model_run_tx = "still waiting for the GM to advance the model ..."
+waiting_tx = "Waiting ..."
 
 plot_glob_mg = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
                           'Planetary risk']

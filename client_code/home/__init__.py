@@ -166,7 +166,9 @@ class home(homeTemplate):
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
-    self.setup_npbp_label.visible = False
+    self.gm_cp_not_played.visible = False
+    self.gm_board_info.visible = False
+    self.setup_npbp_label.visible = True
     npbp = [] # not played by human players
     if self.cb_us.checked:
       npbp.append('us')
@@ -188,8 +190,6 @@ class home(homeTemplate):
       npbp.append('eu')
     if self.cb_se.checked:
       npbp.append('se')
-    self.gm_cp_not_played.visible = False
-    self.gm_board_info.visible = False
     anfang = time.time()
     self.task = anvil.server.call('launch_set_npbp', cid, npbp)
     while not self.task.is_completed():
@@ -633,7 +633,12 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
-      self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
+      rows = app_tables.game_files.search(game_id=cid)
+      if len(rows) == 1:
+        msg = mg.p_advance_to_2_tx
+      elif len(rows) == 2:
+        msg = mg.p_advance_to_3_tx
+      self.p_advance_to_next_round.text = msg
       row2 = app_tables.step_done.get(game_id=cid, reg=reg)
       row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
 
@@ -687,9 +692,15 @@ class home(homeTemplate):
 
   def p_advance_to_next_round_click(self, **event_args):
     """This method is called when the component is clicked."""
+    cid = mg.my_game_id
+    row = app_tables.status.get(game_id=cid)
+    gm_status = row['gm_status']
     ## check if gm has set step_done gm_step_done to 2 (?)
-    Notification("... still waiting for GM ...")
-    pass
+    if gm_status == 1 or gm_status == 3:
+      alert(mg.p_waiting_model_run_tx, title=mg.waiting_tx)
+    ### prepare graphs and decisions for round 2 if gm_status == 2
+    else:
+      alert("not coded yet ...")
 
   def test_model_click(self, **event_args):
     Notification("off to run the model", timeout=4)
