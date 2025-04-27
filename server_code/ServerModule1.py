@@ -19,6 +19,12 @@ import json
 import pickle
 
 @anvil.server.callable
+def fe_keepalive():
+  ### from https://anvil.works/forum/t/increase-session-timeout/307/3
+  ### should it return something dynamic?
+  return "pong"
+  
+@anvil.server.callable
 def generate_id():
   app_tables.status.delete_all_rows()
   not_allowed = ['FUCK', 'SHIT', 'NSU']
@@ -33,8 +39,13 @@ def generate_id():
     while a == 88:
       a = random.randint(10, 99)
     cid = cid + '-' + str(a) 
+  anvil.server.cookies.local['game_id'] = cid    
   return f"{cid}"
 
+@anvil.server.callable
+def get_game_id_from_cookie():
+  return anvil.server.cookies.local.get('game_id','no ID stored')
+  
 @anvil.server.callable
 def launch_set_roles(game_id):
   task = anvil.server.launch_background_task('set_roles', game_id)

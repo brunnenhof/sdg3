@@ -844,4 +844,8 @@ class home(homeTemplate):
       slots = [{key: r[key] for key in ["title", "fig1"]} for r in app_tables.test_plots.search(game_id= cid)]
       self.card_test_plot_rp.items = slots
 
+  def timer_1_tick(self, **event_args):
+    """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+    dummy=anvil.server.call('fe_keepalive')
+
       

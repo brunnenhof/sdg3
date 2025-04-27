@@ -1,5 +1,10 @@
 components:
 - components:
+  - event_bindings: {tick: timer_1_tick}
+    layout_properties: {grid_position: 'NXDKZL,NWMMZA'}
+    name: timer_1
+    properties: {interval: 120}
+    type: Timer
   - components:
     - event_bindings: {click: top_start_game_click}
       layout_properties: {grid_position: 'PINTXY,HDMYCU'}
