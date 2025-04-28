@@ -51,17 +51,16 @@ def set_cookie_sub(r, val, cid):
   row = app_tables.cookies.get(game_id=cid)
   if r == 'r1':
     last_val = row['r1sub']
-    mew_val = last_val + val
+    new_val = last_val + val
     row.update(r1sub = new_val)
   elif r == 'r2':
-    last_val = anvil.server.cookies.local.get('r2sub','no r2 val stored')
-    mew_val = last_val + val
-    anvil.server.cookies.local.set(30, r2sub = new_val)
+    last_val = row['r2sub']
+    new_val = last_val + val
+    row.update(r1sub = new_val)
   elif r == 'r3':
-    last_val = anvil.server.cookies.local.get('r3sub','no r3 val stored')
-    mew_val = last_val + val
-    anvil.server.cookies.local.set(30, r3ub = new_val)
-
+    last_val = row['r3sub']
+    new_val = last_val + val
+    row.update(r1sub = new_val)
 
 @anvil.server.callable
 def launch_set_roles(game_id):
@@ -158,7 +157,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 @anvil.server.background_task
 def set_npbp(cid, npbp):
   app_tables.cookies.delete_all_rows()
-  app_tables.cookies.add_row(game_id=cid, r1sub=len(npbp), r2sub=len(npbh), r3sub=len(npbp))
+  app_tables.cookies.add_row(game_id=cid, r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp))
   app_tables.state_of_play.delete_all_rows()
   app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
