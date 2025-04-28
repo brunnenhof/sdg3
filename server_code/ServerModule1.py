@@ -47,11 +47,12 @@ def get_game_id_from_cookie():
   return row['game_id']
 
 @anvil.server.callable
-def set_cookie_sub(r, val):
+def set_cookie_sub(r, val, cid):
+  row = app_tables.cookies.get(game_id=cid)
   if r == 'r1':
-    last_val = anvil.server.cookies.local.get('r1sub','no r1 val stored')
+    last_val = row['r1sub']
     mew_val = last_val + val
-    anvil.server.cookies.local.set(30, r1sub = new_val)
+    row.update(r1sub = new_val)
   elif r == 'r2':
     last_val = anvil.server.cookies.local.get('r2sub','no r2 val stored')
     mew_val = last_val + val
