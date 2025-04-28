@@ -674,13 +674,15 @@ class home(homeTemplate):
       row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
       row.update(p_step_done=2)
       ## kickoff server run model
-      Notification("off to run the model", timeout=4)
+      n = Notification("off to run the model", timeout=4)
+      n.show()
       self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
 #      make something visible
       while not self.task.is_completed(): # model still running
         pass
       else: ## model is done
-        Notification("Model is done", timeout=7)
+        n= Notification("Model is done", timeout=7)
+        n.show()
 
     else:  ## means at least one region has not yet submitted
       slots = []
@@ -711,7 +713,8 @@ class home(homeTemplate):
       alert("not coded yet ...")
 
   def test_model_click(self, **event_args):
-    Notification("off to run the model", timeout=4)
+    n= Notification("off to run the model from test_model_click", timeout=4)
+    n.show()
     cid = mg.my_game_id
     self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
 #      make something visible
@@ -722,16 +725,8 @@ class home(homeTemplate):
 
   def get_sorted_pol_list(self, runde, pol):
     r_to_x = {
-      'us' : 0,
-      'af' : 1,
-      'cn' : 2,
-      'me' : 3,
-      'sa' : 4,
-      'la' : 5,
-      'pa' : 6,
-      'ec' : 7,
-      'eu' : 8,
-      'se' : 9
+      'us' : 0, 'af' : 1, 'cn' : 2, 'me' : 3, 'sa' : 4, 'la' : 5,
+      'pa' : 6, 'ec' : 7, 'eu' : 8, 'se' : 9
     }
     rows = app_tables.roles_assign.search(round=runde, pol=pol) # in production also use game_id
     dic = {}
