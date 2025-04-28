@@ -39,16 +39,12 @@ def generate_id():
     while a == 88:
       a = random.randint(10, 99)
     cid = cid + '-' + str(a) 
-  anvil.server.cookies.local['game_id'] = cid
-  ## set all the cookies that track pol submissions to 0
-  anvil.server.cookies.local['r1sub'] = 0
-  anvil.server.cookies.local['r2sub'] = 0
-  anvil.server.cookies.local['r2sub'] = 0
   return f"{cid}"
 
 @anvil.server.callable
 def get_game_id_from_cookie():
-  return anvil.server.cookies.local.get('game_id','no ID stored')
+  row = app_tables.cookies.get()
+  return row['game_id']
 
 @anvil.server.callable
 def set_cookie_sub(r, val):
@@ -160,7 +156,8 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 
 @anvil.server.background_task
 def set_npbp(cid, npbp):
-  set_cookie_sub('r1', len(npbp))
+  app_tables.cookies.delete_all_rows()
+  app_tables.cookies.add_row(game_id=cid, r1sub=len(npbp), r2sub=len(npbh), r3sub=len(npbp))
   app_tables.state_of_play.delete_all_rows()
   app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
