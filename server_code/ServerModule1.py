@@ -39,13 +39,33 @@ def generate_id():
     while a == 88:
       a = random.randint(10, 99)
     cid = cid + '-' + str(a) 
-  anvil.server.cookies.local['game_id'] = cid    
+  anvil.server.cookies.local['game_id'] = cid
+  ## set all the cookies that track pol submissions to 0
+  anvil.server.cookies.local['r1sub'] = 0
+  anvil.server.cookies.local['r2sub'] = 0
+  anvil.server.cookies.local['r2sub'] = 0
   return f"{cid}"
 
 @anvil.server.callable
 def get_game_id_from_cookie():
   return anvil.server.cookies.local.get('game_id','no ID stored')
-  
+
+@anvil.server.callable
+def set_cookie_sub(r, val):
+  if r == 'r1':
+    last_val = anvil.server.cookies.local.get('r1sub','no r1 val stored')
+    mew_val = last_val + val
+    anvil.server.cookies.local.set(30, r1sub = new_val)
+  elif r == 'r2':
+    last_val = anvil.server.cookies.local.get('r2sub','no r2 val stored')
+    mew_val = last_val + val
+    anvil.server.cookies.local.set(30, r2sub = new_val)
+  elif r == 'r3':
+    last_val = anvil.server.cookies.local.get('r3sub','no r3 val stored')
+    mew_val = last_val + val
+    anvil.server.cookies.local.set(30, r3ub = new_val)
+
+
 @anvil.server.callable
 def launch_set_roles(game_id):
   task = anvil.server.launch_background_task('set_roles', game_id)
@@ -140,6 +160,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 
 @anvil.server.background_task
 def set_npbp(cid, npbp):
+  set_cookie_sub('r1', len(npbp))
   app_tables.state_of_play.delete_all_rows()
   app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
@@ -365,7 +386,7 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
 
 @anvil.server.callable
 def budget_to_db(yr, cid):
-  print('IN budget_to_db ...')
+#  print('IN budget_to_db ...')
   app_tables.budget.delete_all_rows()
   regs = mg.regs
   if yr == 2025:
@@ -388,14 +409,14 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(0,10):
     ba.append(mdf_bud[rx, idx + i])
-  print('IN put_budget ... ba ')
+#  print('IN put_budget ... ba ')
 #  print(ba)
   cpov = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_poverty_policy')
   idx = rowx['col_idx']
   for i in range(10):
     cpov.append(mdf_bud[rx, idx + i]) # poverty
-  print('IN put_budget ... cpov ')
+#  print('IN put_budget ... cpov ')
 #  print(cpov)
   
   cineq = [] 
@@ -403,7 +424,7 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(10):
     cineq.append(mdf_bud[rx, idx + i]) # inequality
-  print('IN put_budget ... cineq ')
+#  print('IN put_budget ... cineq ')
 #  print(cineq)
   
   cemp = []
@@ -411,7 +432,7 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(10):
     cemp.append(mdf_bud[rx, idx + i]) # empowerment
-  print('IN put_budget ... cemp ')
+#  print('IN put_budget ... cemp ')
 #  print(cemp)
   
   cfood = []
@@ -419,7 +440,7 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(10):
     cfood.append(mdf_bud[rx, idx + i]) # food
-  print('IN put_budget ... cfood ')
+#  print('IN put_budget ... cfood ')
 #  print(cfood)
   
   cener = []
@@ -427,7 +448,7 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(10):
     cener.append(mdf_bud[rx, idx + i]) # energy
-  print('IN put_budget ... cener ')
+#  print('IN put_budget ... cener ')
 #  print(cener)
 
   for i in range(0,10):

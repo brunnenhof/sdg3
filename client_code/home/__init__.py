@@ -640,10 +640,12 @@ class home(homeTemplate):
       self.p_after_submit.visible = True
       rows = app_tables.game_files.search(game_id=cid)
       print(len(rows))
-      if len(rows) == 1:
+      if len(rows) == 0:
         msg = mg.p_advance_to_2_tx
-      elif len(rows) == 2:
+        anvil.server.call('set_cookie_sub', 'r1', 1)        
+      elif len(rows) == 1:
         msg = mg.p_advance_to_3_tx
+
       self.p_advance_to_next_round.text = msg
       row2 = app_tables.step_done.get(game_id=cid, reg=reg)
       row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
