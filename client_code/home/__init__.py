@@ -625,15 +625,21 @@ class home(homeTemplate):
                   )
     if result == 'YES':
       my_cid = mg.my_personal_game_id
+      print(my_cid)
       cid = mg.my_game_id
+      print(cid)
       role = 'fut'
       reg = mg.my_reg
+      print(reg)
+      cid_cookie = anvil.server.call('get_game_id_from_cookie')
+      print(cid_cookie)
       self.wait_for_run_after_submit.content = mg.after_submit_tx
-      self.cid_reg_role_info.text = my_cid + '  - ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
+      self.cid_reg_role_info.text = my_cid + '  + ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
       rows = app_tables.game_files.search(game_id=cid)
+      print(len(rows))
       if len(rows) == 1:
         msg = mg.p_advance_to_2_tx
       elif len(rows) == 2:
