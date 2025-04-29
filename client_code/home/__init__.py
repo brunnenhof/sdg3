@@ -655,7 +655,9 @@ class home(homeTemplate):
       n.show()
 #      self.do_future(self, cid, role, reg, runde, yr)
 
-  def gm_card_wait_1_btn_kick_off_round_1_click(self, **event_args):
+  def gm_start_round_click(self, **event_args):
+    ## first, check if all regions have submitted
+    
     cid = mg.my_game_id
     runde = mg.game_runde+1
     self.gm_card_wait_1_btn_check.visible = False
