@@ -254,6 +254,7 @@ class home(homeTemplate):
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_start_round.visible = True
+      self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
     else:
       slots = []
@@ -684,7 +685,7 @@ class home(homeTemplate):
       self.gm_wait_kickoff_r1_rp.items = slots
     else:
       self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round = False
+      self.gm_start_round.visible = False
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
