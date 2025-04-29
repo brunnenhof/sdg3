@@ -22,7 +22,8 @@ import pickle
 def fe_keepalive():
   ### from https://anvil.works/forum/t/increase-session-timeout/307/3
   ### should it return something dynamic?
-  return "pong"
+  row = app_tables.cookies.get()
+  return row['game_id']
   
 @anvil.server.callable
 def generate_id():

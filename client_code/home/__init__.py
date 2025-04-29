@@ -665,16 +665,13 @@ class home(homeTemplate):
     if not all_regs_submitted:
       n=Notification(mg.not_all_submitted_tx)
       n.show()
-      
       return
     else:
       pass 
     self.gm_card_wait_1_btn_check.visible = False
-    self.gm_start_round_click.visible = True
-    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1)) ## 99 played by computer
     if len(rows) == 0: ## means all regions have submitted
       self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round_click.visible = True
+      self.gm_start_round = False
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
       self.card_fut.visible = False
