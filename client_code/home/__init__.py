@@ -668,6 +668,22 @@ class home(homeTemplate):
     row = app_tables.cookies.get(game_id=cid)
     if runde == 1:
       all_regs_submitted = (row['r1sub'] == 10)
+      von = 2025
+      bis = 2040
+      row = app_tables.status.get(game_id=cid, game_status=1, p_status=0)
+      row.update(game_status=2, p_status=1)
+    elif runde == 2:
+      all_regs_submitted = (row['r2sub'] == 10)
+      von = 2040
+      bis = 2060
+      row = app_tables.status.get(game_id=cid, game_status=2, p_status=1)
+      row.update(game_status=3, p_status=2)
+    elif runde == 2:
+      all_regs_submitted = (row['r3sub'] == 10)
+      von = 2060
+      bis = 2100
+      row = app_tables.status.get(game_id=cid, game_status=3, p_status=2)
+      row.update(game_status=4, p_status=3)
     print(runde)
     print(all_regs_submitted)
     self.gm_card_wait_1_info.visible = False
@@ -686,12 +702,14 @@ class home(homeTemplate):
       print("ln 686")
       print(cid)
       print(mg.my_reg)
-      row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
-      row.update(p_step_done=2)
+      rows = app_tables.step_done.search(game_id=cid)
+      for row in rows:
+        if row['p_step_done'] == 2:
+          row.update(p_step_done=3)  ## 3 = all regs submitted
       ## kickoff server run model
       n = Notification("off to run the model", timeout=4)
       n.show()
-      self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
+      self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
 #      make something visible
       while not self.task.is_completed(): # model still running
         pass
@@ -699,7 +717,7 @@ class home(homeTemplate):
         n= Notification("Model is done", timeout=7)
         n.show()
         ### reset everything for next round ...
-    else:
+    else:  ## NOT all regs submitted
       n=Notification(mg.not_all_submitted_tx)
       n.show()
 #      slots = []
@@ -714,7 +732,6 @@ class home(homeTemplate):
 #      self.gm_wait_kickoff_r1.visible = True
 #      self.gm_wait_kickoff_r1_rp.visible = True
 #      self.gm_wait_kickoff_r1_rp.items = slots
-
 
   def p_advance_to_next_round_click(self, **event_args):
     """This method is called when the component is clicked."""
