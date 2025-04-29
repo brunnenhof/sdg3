@@ -665,13 +665,22 @@ class home(homeTemplate):
     if not all_regs_submitted:
       n=Notification(mg.not_all_submitted_tx)
       n.show()
-      return
+      slots = []
+      for row in rows:
+        longreg = mg.reg_to_longreg[row['reg']]
+        slot = {'reg' : longreg, 'ta': ''}
+        if slot not in slots:
+          slots.append(slot)
+      self.gm_card_wait_1_temp_title.visible = False
+      self.gm_card_wait_1_rp.visible = False
+      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
+      self.gm_wait_kickoff_r1.visible = True
+      self.gm_wait_kickoff_r1_rp.visible = True
+      self.gm_wait_kickoff_r1_rp.items = slots
     else:
-      pass 
-    self.gm_card_wait_1_btn_check.visible = False
-    if len(rows) == 0: ## means all regions have submitted
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_start_round = False
+      self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
       self.card_fut.visible = False
@@ -691,22 +700,7 @@ class home(homeTemplate):
       else: ## model is done
         n= Notification("Model is done", timeout=7)
         n.show()
-
-    else:  ## means at least one region has not yet submitted
-      slots = []
-#    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
-#    res = list({d[key] for d in slots2 if key in d})
-      for row in rows:
-        longreg = mg.reg_to_longreg[row['reg']]
-        slot = {'reg' : longreg, 'ta': ''}
-        if slot not in slots:
-          slots.append(slot)
-      self.gm_card_wait_1_temp_title.visible = False
-      self.gm_card_wait_1_rp.visible = False
-      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
-      self.gm_wait_kickoff_r1.visible = True
-      self.gm_wait_kickoff_r1_rp.visible = True
-      self.gm_wait_kickoff_r1_rp.items = slots
+        ### reset everything for next round ...
 
   def p_advance_to_next_round_click(self, **event_args):
     """This method is called when the component is clicked."""
