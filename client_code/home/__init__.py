@@ -657,9 +657,18 @@ class home(homeTemplate):
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
-    
     cid = mg.my_game_id
-    runde = mg.game_runde+1
+    yr, runde = self.get_runde(cid)
+    row = app_tables.cookies.get(game_id=cid)
+    if runde == 1:
+      all_regs_submitted = (row['r1sub'] == 10)
+    if not all_regs_submitted:
+      n=Notification(mg.not_all_submitted_tx)
+      n.show()
+      
+      return
+    else:
+      pass 
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_card_wait_1_btn_kick_off_round_1.visible = True
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1)) ## 99 played by computer

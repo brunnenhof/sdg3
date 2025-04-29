@@ -219,3 +219,5 @@ plot_reg_mg = ['Energy footprint pp', 'Fraction of population undernourished',
                 'Cost_per_regional_empowerment_policy',
                 'Cost_per_regional_food_policy', 'Cost_per_regional_energy_policy']
 my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
+
+not_all_submitted_tx = "Mot all regions have submitted their decisions ..."
