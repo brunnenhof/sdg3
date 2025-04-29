@@ -668,22 +668,10 @@ class home(homeTemplate):
     row = app_tables.cookies.get(game_id=cid)
     if runde == 1:
       all_regs_submitted = (row['r1sub'] == 10)
-    if not all_regs_submitted:
-      n=Notification(mg.not_all_submitted_tx)
-      n.show()
-      slots = []
-      for row in rows:
-        longreg = mg.reg_to_longreg[row['reg']]
-        slot = {'reg' : longreg, 'ta': ''}
-        if slot not in slots:
-          slots.append(slot)
-      self.gm_card_wait_1_temp_title.visible = False
-      self.gm_card_wait_1_rp.visible = False
-      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
-      self.gm_wait_kickoff_r1.visible = True
-      self.gm_wait_kickoff_r1_rp.visible = True
-      self.gm_wait_kickoff_r1_rp.items = slots
-    else:
+    print(runde)
+    print(all_regs_submitted)
+    self.gm_card_wait_1_info.visible = False
+    if all_regs_submitted:
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_start_round.visible = False
       self.gm_card_wait_1_rp.visible = False
@@ -707,6 +695,22 @@ class home(homeTemplate):
         n= Notification("Model is done", timeout=7)
         n.show()
         ### reset everything for next round ...
+    else:
+      n=Notification(mg.not_all_submitted_tx)
+      n.show()
+#      slots = []
+#      for row in rows:
+#        longreg = mg.reg_to_longreg[row['reg']]
+#        slot = {'reg' : longreg, 'ta': ''}
+#        if slot not in slots:
+#          slots.append(slot)
+#      self.gm_card_wait_1_temp_title.visible = False
+#      self.gm_card_wait_1_rp.visible = False
+#      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
+#      self.gm_wait_kickoff_r1.visible = True
+#      self.gm_wait_kickoff_r1_rp.visible = True
+#      self.gm_wait_kickoff_r1_rp.items = slots
+
 
   def p_advance_to_next_round_click(self, **event_args):
     """This method is called when the component is clicked."""
