@@ -672,6 +672,7 @@ class home(homeTemplate):
     print(all_regs_submitted)
     self.gm_card_wait_1_info.visible = False
     if all_regs_submitted:
+      self.gm_card_wait_1_temp_title.visible = False
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_start_round.visible = False
       self.gm_card_wait_1_rp.visible = False
@@ -682,6 +683,9 @@ class home(homeTemplate):
       self.wait_for_run_after_submit.content = mg.after_submit_tx
       self.wait_for_run_after_submit.visible = True
       ## update step done / status / others ???
+      print("ln 686")
+      print(cid)
+      print(mg.my_reg)
       row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
       row.update(p_step_done=2)
       ## kickoff server run model
