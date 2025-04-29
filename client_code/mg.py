@@ -101,7 +101,7 @@ pol_to_ta = {"CCS" : "Energy",
 }
 
 top_title = 'END-times'
-top_btn_thanks = 'Danke'
+top_btn_thanks = 'Thanks'
 top_btn_start = 'Start a new game as organizer'
 top_btn_join = 'JOIN a game as player'
 top_btn_help = 'Help'

@@ -38,7 +38,7 @@ class home(homeTemplate):
     self.gm_reg_npbp.text = mg.gm_reg_npbp_tx
     self.gm_card_wait_1_info.content = mg.gm_card_wait_1_info_tx
     self.gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx
-    self.gm_card_wait_1_btn_kick_off_round_1.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx
+    self.gm_start_round.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx
     self.setup_npbp_label.text = mg.setup_npbp_label_tx
     self.pcr_rb_af.text = mg.cb_af_tx
     self.pcr_rb_us.text = mg.cb_us_tx
@@ -246,11 +246,11 @@ class home(homeTemplate):
     cid = mg.my_game_id
     runde = mg.game_runde+1
     self.gm_card_wait_1_btn_check.visible = True
-    self.gm_card_wait_1_btn_kick_off_round_1.visible = False
+    self.gm_start_round.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
-      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+      self.gm_start_round.visible = True
       self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
     else:
       slots = []
@@ -670,11 +670,11 @@ class home(homeTemplate):
     else:
       pass 
     self.gm_card_wait_1_btn_check.visible = False
-    self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+    self.gm_start_round_click.visible = True
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.none_of(99, 1)) ## 99 played by computer
     if len(rows) == 0: ## means all regions have submitted
       self.gm_card_wait_1_btn_check.visible = False
-      self.gm_card_wait_1_btn_kick_off_round_1.visible = True
+      self.gm_start_round_click.visible = True
       self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
       self.card_fut.visible = False
