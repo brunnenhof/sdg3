@@ -160,6 +160,7 @@ pcgd_rd1_info_fut_tx = "As Minister for the Future, you see the big picture. You
 pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
 show_hide_plots_hide_tx = "Hide graphs"
 show_hide_plots_show_tx = "Show graphs"
+pcgd_advance_tx = "Check if the game leader has advanced the model ..."
 
 dec_info_tx = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."
 dec_title_tx = "Set your policies"
@@ -220,4 +221,5 @@ plot_reg_mg = ['Energy footprint pp', 'Fraction of population undernourished',
                 'Cost_per_regional_food_policy', 'Cost_per_regional_energy_policy']
 my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
 
-not_all_submitted_tx = "Mot all regions have submitted their decisions ..."
+not_all_submitted_tx = "Not all regions have submitted their decisions ..."
+not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."

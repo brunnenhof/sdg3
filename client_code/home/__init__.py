@@ -69,6 +69,7 @@ class home(homeTemplate):
     self.pcgd_generating.text = mg.pcgd_generating_tx
     self.dec_info.content = mg.dec_info_tx
     self.dec_title.text = mg.dec_title_tx
+    self.pcgd_advance.text = mg.pcgd_advance_tx
 
     self.refresh_numbers.text = mg.refresh_numbers_tx
     self.submit_numbers.text = mg.submit_numbers_tx
@@ -103,6 +104,8 @@ class home(homeTemplate):
 
   def top_start_game_click(self, **event_args):
     game_id = anvil.server.call('generate_id')
+    self.top_start_game.visible = False
+    self.top_join_game.visible = False
     mg.my_game_id = game_id
     app_tables.status.add_row(game_id=game_id, game_status=0, gm_status=0, p_status=0, roles_avail=4)
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
@@ -480,16 +483,18 @@ class home(homeTemplate):
     self.show_hide_plots.visible = True
     self.show_hide_plots.selected = False
     self.show_hide_plots.text = mg.show_hide_plots_hide_tx
-    if self.show_hide_plots.selected == False:
+    if self.show_hide_plots.selected is False:
       pass
       
   def do_non_future(self, cid, role, reg, runde, yr):
     self.dec_card.visible = True
+    self.pcgd_advance.visible = True
     pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid)
 #      print(pol_list)
     self.dec_rp.items = pol_list
 
   def do_future(self, cid, role, reg, runde, yr):
+    self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
     self.submit_numbers.visible = False
@@ -576,10 +581,10 @@ class home(homeTemplate):
     cost_food = self.calc_cost_home_tot(pct_food, tltl_food, gl_food, max_cost_food)
     cost_ener = self.calc_cost_home_tot(pct_ener, tltl_ener, gl_ener, max_cost_ener)  
     costs_by_ta = {'cpov' : cost_pov, 'cfood' : cost_food, 'cemp': cost_emp, 'cineq' : cost_ineq, 'cener': cost_ener}
-    total_cost = cost_pov + cost_emp + cost_ener + cost_food + cost_ineq
+    total_cost = round(cost_pov + cost_emp + cost_ener + cost_food + cost_ineq, 2)
     pct_of_budget = total_cost / bud * 100
     self.fut_bud_amount.text = round(bud, 0)
-    self.fut_invest.text = round(total_cost, 2)
+    self.fut_invest.text = total_cost
     within_budget = False
     if pct_of_budget > 100:
       if pct_of_budget > 101:
@@ -852,5 +857,42 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
+
+  def pcgd_advance_click(self, **event_args):
+    ## this is a player (NOT fut) who wants to know if ready for next round
+    ## first, check if all regions have submitted
+    cid = mg.my_game_id
+    yr, runde = self.get_runde(cid)
+    row = app_tables.cookies.get(game_id=cid)
+    if runde == 1:
+      all_regs_submitted = (row['r1sub'] == 10)
+    if not all_regs_submitted:
+      n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n.show()
+    else:
+      ## get info for next round
+#      self.gm_card_wait_1_btn_check.visible = False
+#      self.gm_start_round = False
+#      self.gm_card_wait_1_rp.visible = False
+#      self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
+#      ## hide wait card
+#      self.card_fut.visible = False
+#      ## show run card
+#      self.wait_for_run_after_submit.content = mg.after_submit_tx
+#      self.wait_for_run_after_submit.visible = True
+#      ## update step done / status / others ???
+#      row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
+#      row.update(p_step_done=2)
+#      ## kickoff server run model
+#      n = Notification("off to run the model", timeout=4)
+#      n.show()
+#      self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
+#      make something visible
+      while not self.task.is_completed(): # model still running
+        pass
+      else: ## model is done
+        n= Notification("Model is done", timeout=7)
+        n.show()
+        ### reset everything for next round ...
 
       
