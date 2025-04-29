@@ -626,8 +626,8 @@ class home(homeTemplate):
     if result == 'YES':
       my_cid = mg.my_personal_game_id
       print(my_cid)
-      cid = mg.my_game_id
-      print(cid)
+#      cid = mg.my_game_id
+#      print(cid)
       role = 'fut'
       reg = mg.my_reg
       print(reg)
@@ -638,16 +638,16 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
-      rows = app_tables.game_files.search(game_id=cid)
+      rows = app_tables.game_files.search(game_id=cid_cookie)
       print(len(rows))
       if len(rows) == 0:
         msg = mg.p_advance_to_2_tx
-        anvil.server.call('set_cookie_sub', 'r1', 1)        
+        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
       elif len(rows) == 1:
         msg = mg.p_advance_to_3_tx
 
       self.p_advance_to_next_round.text = msg
-      row2 = app_tables.step_done.get(game_id=cid, reg=reg)
+      row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
       row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
 
     else:
