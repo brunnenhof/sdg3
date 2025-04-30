@@ -266,7 +266,7 @@ class home(homeTemplate):
         slot = {'reg' : longreg, 'ta': longrole}
         if slot not in slots:
           slots.append(slot)
-      self.gm_card_wait_1_temp_title.visible = True
+#      self.gm_card_wait_1_temp_title.visible = True
       self.gm_card_wait_1_rp.visible = True
       self.gm_card_wait_1_rp.items = slots
 #    pass
