@@ -157,8 +157,8 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 
 @anvil.server.background_task
 def set_npbp(cid, npbp):
-  app_tables.cookies.delete_all_rows()
-  app_tables.cookies.add_row(game_id=cid, r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp))
+  row = app_tables.cookies.get(game_id=cid)
+  row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
   app_tables.state_of_play.delete_all_rows()
   app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]

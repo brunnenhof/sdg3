@@ -103,7 +103,9 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
+    app_tables.cookies.delete_all_rows()
     game_id = anvil.server.call('generate_id')
+    app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
     mg.my_game_id = game_id
