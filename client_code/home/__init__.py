@@ -714,24 +714,13 @@ class home(homeTemplate):
       while not self.task.is_completed(): # model still running
         pass
       else: ## model is done
-        n= Notification("Model is done", timeout=7)
+        n= Notification("Model is done", timeout=3)
         n.show()
+        self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
         ### reset everything for next round ...
     else:  ## NOT all regs submitted
       n=Notification(mg.not_all_submitted_tx)
       n.show()
-#      slots = []
-#      for row in rows:
-#        longreg = mg.reg_to_longreg[row['reg']]
-#        slot = {'reg' : longreg, 'ta': ''}
-#        if slot not in slots:
-#          slots.append(slot)
-#      self.gm_card_wait_1_temp_title.visible = False
-#      self.gm_card_wait_1_rp.visible = False
-#      self.gm_wait_kickoff_r1.text = mg.gm_wait_kickoff_r1_tx
-#      self.gm_wait_kickoff_r1.visible = True
-#      self.gm_wait_kickoff_r1_rp.visible = True
-#      self.gm_wait_kickoff_r1_rp.items = slots
 
   def p_advance_to_next_round_click(self, **event_args):
     """This method is called when the component is clicked."""

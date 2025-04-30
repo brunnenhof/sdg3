@@ -188,7 +188,7 @@ components:
       - event_bindings: {click: gm_reg_npbp_click}
         layout_properties: {grid_position: 'FVFJBH,ODXANQ'}
         name: gm_reg_npbp
-        properties: {bold: true, role: elevated-button, text: button_1}
+        properties: {bold: true, role: elevated-button, text: 'When you are done (and sure), click this button'}
         type: Button
       layout_properties: {grid_position: 'MPLIUF,HYGLWB'}
       name: gm_cp_not_played
@@ -232,6 +232,7 @@ components:
           bold: true
           spacing:
             margin: ['12', null, null, null]
+          text: Still waiting for the region below to submit their decisions ... You may want to ask if they need help ...
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       - layout_properties: {grid_position: 'TQCSME,XGDBXB'}
         name: gm_wait_kickoff_r1_rp

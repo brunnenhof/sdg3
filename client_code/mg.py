@@ -148,6 +148,7 @@ gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to
 gm_card_wait_1_btn_check_tx = 'Check LogIn'
 gm_card_wait_1_btn_kick_off_round_1_tx = 'Ready to advance the model for the next round?'
 gm_wait_kickoff_r1_tx = 'Still waiting for the region below to submit their decisions ... You may want to ask if they need help ...'
+gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
 setup_npbp_label_tx = 'Hold on, all roles are being prepared ...'
 #    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
 pcr_submit_msg1 = "Congratulations, you have been confirmed as "
