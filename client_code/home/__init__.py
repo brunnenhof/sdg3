@@ -15,6 +15,8 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    row = app_tables.cookies.get()
+    row.update(gm_step=0)
     self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
