@@ -156,6 +156,7 @@ class home(homeTemplate):
 #      alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
 #      row.update(p_status=1)
+      ccid = row['game_id']
       self.show_roles(row['game_id'])
     else:
       alert(mg.msg_game_not_started)

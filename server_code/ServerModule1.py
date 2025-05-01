@@ -23,7 +23,10 @@ def fe_keepalive():
   ### from https://anvil.works/forum/t/increase-session-timeout/307/3
   ### should it return something dynamic?
   row = app_tables.cookies.get()
-  return row['game_id']
+  if len(row) > 0:
+    return row['game_id']
+  else:
+    return "no cookies yet"
   
 @anvil.server.callable
 def generate_id():
