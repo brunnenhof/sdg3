@@ -689,11 +689,11 @@ class home(homeTemplate):
     self.do_future(cid, role, reg, runde, yr)
 
   def all_reg_submitted(self, cid, step):
-    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.any_of(step, 99)
+    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.any_of(step, 99))
     if len(rows) == 10:
-      return Tr
-    pass
-
+      return True 
+    else:
+      return False
     
   def submit_numbers_click(self, **event_args):
     # Display a large popup with a title and three buttons.
@@ -702,38 +702,43 @@ class home(homeTemplate):
                large=True,
                buttons= mg.confirm_buttons_tx
                   )
-    if result == 'YES':
+    if result == 'NO':
+      n = Notification(mg.nothing_submitted_tx)
+      n.show()
+    else:
       my_cid = mg.my_personal_game_id
       print(my_cid)
-#      cid = mg.my_game_id
-#      print(cid)
+      cid = mg.my_game_id
+      print(cid)
       role = 'fut'
       reg = mg.my_reg
       print(reg)
+      row = app_tables.step_done.get(game_id=cid, reg=reg)
+      step = row['p_step_done']
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
-      self.wait_for_run_after_submit.content = mg.after_submit_tx
       self.cid_reg_role_info.text = my_cid + '  + ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
-      
-      rows = app_tables.game_files.search(game_id=cid_cookie)
-      print(len(rows))
-      if len(rows) == 0:
-        msg = mg.p_advance_to_2_tx
-        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
-      elif len(rows) == 1:
-        msg = mg.p_advance_to_3_tx
-
+      anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
+      ### update steps
+      if self.all_reg_submitted(cid_cookie, step):
+        ### run round || signal to gm to run round
+        ### what next?
+        alert("ready to run model")
+      else:
+        ### give some sort of waiting msg
+        if step == 2:
+          self.wait_for_run_after_submit.content = mg.after_submit_tx
+        elif step == 123:
+          msg = mg.p_advance_to_2_tx
+        elif len(rows) == 456:
+          msg = mg.p_advance_to_3_tx
       self.p_advance_to_next_round.text = msg
       row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
-      row2.update(p_step_done=2) ## the region submitted decisions for round 2025-2040
+      row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
 
-    else:
-      n = Notification(mg.nothing_submitted_tx)
-      n.show()
-#      self.do_future(self, cid, role, reg, runde, yr)
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
@@ -773,7 +778,7 @@ class home(homeTemplate):
       self.wait_for_run_after_submit.content = mg.after_submit_tx
       self.wait_for_run_after_submit.visible = True
       ## update step done / status / others ???
-      print("ln 686")
+      print("ln 781")
       print(cid)
       print(mg.my_reg)
       rows = app_tables.step_done.search(game_id=cid)
