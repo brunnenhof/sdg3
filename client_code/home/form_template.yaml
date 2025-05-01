@@ -233,6 +233,7 @@ components:
           spacing:
             margin: ['12', null, null, null]
           text: Still waiting for the region below to submit their decisions ... You may want to ask if they need help ...
+          visible: false
         type: form:dep_srfw5i6mu5hwvt:_Components.Text
       - layout_properties: {grid_position: 'TQCSME,XGDBXB'}
         name: gm_wait_kickoff_r1_rp
