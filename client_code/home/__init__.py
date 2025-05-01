@@ -130,6 +130,11 @@ class home(homeTemplate):
       self.gm_role_reg.visible = True
 
   def top_join_game_click(self, **event_args):
+    row = app_tables.cookies.get()
+    if row['gm_step'] == 0:
+      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
+      n.show()
+      return
     self.top_entry.visible = False
     how_many_new = len(app_tables.status.search(game_status=1, p_status=0, gm_status=1))
     print(how_many_new)
