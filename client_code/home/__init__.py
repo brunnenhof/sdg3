@@ -432,19 +432,23 @@ class home(homeTemplate):
     return True
 
   def get_runde(self, cid):
-    row = app_tables.status.get(game_id=cid)
-    r = row['game_status']
-    if r == 1:
+    row = app_tables.games_log.get(game_id=cid)
+    r = row['gm_status']
+    if r == 4:
+      runde = 1
       yr = 2025
     elif r == 2:
+      runde = 2
       yr = 2040
     elif r == 3:
+      runde = 3
       yr = 2060
     elif r == 4:
+      runde = 4
       yr = 2100
     else:
       print("runde is NOT in 1,2,3,4")
-    return yr, r
+    return yr, runde
 
   def pcr_submit_click(self, **event_args):
     if self.pcr_rb_fut.selected:
@@ -812,57 +816,14 @@ class home(homeTemplate):
     return w
 
   def test_model_top_click(self, **event_args):
-    pol_list = [r['abbr'] for r in app_tables.policies.search()]
-    tltl_list = [r['tltl'] for r in app_tables.policies.search()]
-    gl_list = [r['gl'] for r in app_tables.policies.search()]
-    result = [
-        {
-            'tltl': row["tltl"],
-            'gl':   row["gl"],
-            'pol':  row["abbr"],
-        }
-        for row in app_tables.policies.search()
-    ]
-    regs = mg.regs
-    for runde in range(1,4):  # set up roles_assign
-      for re in regs:
-        j = 0
-        for p in pol_list:
-          for jj in range(0,100):
-            w2 = self.get_minmax_from_pol(p, pol_list, tltl_list, gl_list)
-        j += 1
-
-    w_list = []
-    for i in range(0,len(tltl_list)):
-      mymin = tltl_list[i]
-      mymax = gl_list[i]
-      myrange = (mymax - mymin) 
-      w = mymin + random.uniform(0, myrange)
-      w_list.append(w)  # random policy value biased towards GL
-    regs = mg.regs
-    for re in regs: # set up step_done
-      if re in npbp:
-        app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
-      else:
-        app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0) # p_state 0: data set up
-    roles = mg.roles
-    for ro in roles:
-      for re in regs: # set up regs_state_of_play
-        if re in npbp:
-          app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
-        else:
-         app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
-
-#    pols = ["CCS", "TOW", "FPGDC" ,"RMDR" ,"REFOREST" ,"FTPEE" ,"LPBsplit" ,"ExPS" ,
-#                        "FMPLDD " ,"StrUP" ,"Wreaction" ,"SGMP" ,"FWRP" ,"ICTR" ,"XtaxCom" ,"Lfrac" ,
-#                        "IOITR" ,"IWITR" ,"SGRPI" ,"FEHC" ,"XtaxRateEmp" ,"FLWR" ,"RIPLGF" ,"FC" ,"NEP" ,
-#                        "Ctax" ,"DAC" ,"XtaxFrac" ,"LPBgrant" ,"LPB" ,"SSGDR" ,"ISPV"]
-#    for p in pols:
-#      print(p)
-#      for r in range(1,4):
-#        pol_list = self.get_sorted_pol_list(r, p)
- #       print('Runde ' + str(r) )
-#        print(pol_list)
+    ## clear db
+    app_tables.cookies.delete_all_rows()
+    app_tables.state_of_play.delete_all_rows()
+    app_tables.step_done.delete_all_rows()
+    app_tables.roles_assign.delete_all_rows()
+    rows = app_tables.games_log.search(game_id=q.not_("TEST"))
+    for row in rows:
+      row.delete()
 
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""

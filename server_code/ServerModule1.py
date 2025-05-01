@@ -69,7 +69,7 @@ def launch_set_roles(game_id):
 #@anvil.server.callable
 @anvil.server.background_task
 def set_roles(game_id):
-  app_tables.roles_assign.delete_all_rows()
+#  app_tables.roles_assign.delete_all_rows()
   app_tables.budget.delete_all_rows()
   regs = mg.regs
   pols = [r['abbr'] for r in app_tables.policies.search()]

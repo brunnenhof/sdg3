@@ -24,7 +24,13 @@ components:
     - event_bindings: {click: test_model_top_click}
       layout_properties: {grid_position: 'PINTXY,ZFDBLZ'}
       name: test_model_top
-      properties: {appearance: elevated, text: Test Model, visible: false}
+      properties:
+        align: center
+        appearance: elevated
+        spacing:
+          padding: [null, '4', null, '4']
+        text: clear db
+        visible: true
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - layout_properties: {grid_position: 'PINTXY,NRIAQC'}
       name: yr_from_mod
