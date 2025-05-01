@@ -840,7 +840,7 @@ class home(homeTemplate):
       w = mymin + random.uniform(0, myrange)
       w_list.append(w)  # random policy value biased towards GL
     regs = mg.regs
-    for re in regs: # set up regs_state_of_play
+    for re in regs: # set up step_done
       if re in npbp:
         app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
       else:

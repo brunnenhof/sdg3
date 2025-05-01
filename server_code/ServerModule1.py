@@ -156,8 +156,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 def set_npbp(cid, npbp):
   row = app_tables.cookies.get(game_id=cid)
   row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
-  app_tables.state_of_play.delete_all_rows()
-  app_tables.step_done.delete_all_rows()
+#  app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
   print(pol_list)
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
@@ -166,18 +165,18 @@ def set_npbp(cid, npbp):
 #  print(gl_list)
   regs = mg.regs
 #  print(w_list)
-  for re in regs: # set up regs_state_of_play
+  for re in regs: # set up step_done
     if re in npbp:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
     else:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0) # p_state 0: data set up
   roles = mg.roles
-  for ro in roles:
-    for re in regs: # set up regs_state_of_play
-      if re in npbp:
-        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
-      else:
-        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
+#  for ro in roles:
+#    for re in regs: # set up step_done
+#      if re in npbp:
+#        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
+#      else:
+#        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
       j = 0
