@@ -533,8 +533,35 @@ class home(homeTemplate):
     all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
     if not all_colleauges_logged_in:
       self.fut_not_all_logged_in.visible = True
+      self.fut_bud_lb1.visible = False
+      self.fut_bud_lb2.visible = False
+      self.fut_but_lb3.visible = False
+      self.fut_bud_amount.visible = False
+      self.fut_invest.visible = False
+      self.fut_invest_pct.visible = False
+      self.refresh_numbers.visible = True
+      self.submit_numbers.visible = False
+      self.card_emp_fut.visible = False
+      self.card_ener_fut.visible = False
+      self.card_food_fut.visible = False
+      self.card_ineq_fut.visible = False
+      self.card_pov_fut.visible = False
     else:
       self.fut_not_all_logged_in.visible = False
+      self.fut_bud_lb1.visible = True
+      self.fut_bud_lb2.visible = True
+      self.fut_but_lb3.visible = True
+      self.fut_bud_amount.visible = True
+      self.fut_invest.visible = True
+      self.fut_invest_pct.visible = True
+      self.refresh_numbers.visible = True
+      self.submit_numbers.visible = True
+      self.card_emp_fut.visible = True
+      self.card_ener_fut.visible = True
+      self.card_food_fut.visible = True
+      self.card_ineq_fut.visible = True
+      self.card_pov_fut.visible = True
+      
       self.submit_numbers.visible = False
       f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
       self.pov_rep_panel.visible = True

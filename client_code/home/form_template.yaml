@@ -550,7 +550,7 @@ components:
       type: RichText
     - layout_properties: {grid_position: 'JBICQT,DOMHZG'}
       name: fut_not_all_logged_in
-      properties: {bold: true, visible: false}
+      properties: {bold: true, text_color: red, visible: false}
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
     - layout_properties: {grid_position: 'JTBVXT,HOGYGC'}
       name: fut_bud_lb1
