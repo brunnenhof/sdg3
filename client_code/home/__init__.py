@@ -18,10 +18,10 @@ class home(homeTemplate):
     ### during dev, keep db small
     ### in production comment out the next 4 lines and only delete once game is closed
     ### in games_log
-    app_tables.cookies.delete_all_rows()
-    app_tables.state_of_play.delete_all_rows()
-    app_tables.step_done.delete_all_rows()
-    app_tables.roles_assign.delete_all_rows()
+#    app_tables.cookies.delete_all_rows()
+#    app_tables.state_of_play.delete_all_rows()
+#    app_tables.step_done.delete_all_rows()
+#    app_tables.roles_assign.delete_all_rows()
     ###
 #    row = app_tables.cookies.get()
 #    row.update(gm_step=0)

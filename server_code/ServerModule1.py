@@ -22,11 +22,7 @@ import pickle
 def fe_keepalive():
   ### from https://anvil.works/forum/t/increase-session-timeout/307/3
   ### should it return something dynamic?
-  row = app_tables.cookies.get()
-  if row is not None:
-    return row['game_id']
-  else:
-    return "no cookies yet"
+  return "fe_keepalive"
   
 @anvil.server.callable
 def generate_id():
@@ -163,7 +159,7 @@ def set_npbp(cid, npbp):
   app_tables.state_of_play.delete_all_rows()
   app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
-#  print(pol_list)
+  print(pol_list)
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
 #  print(tltl_list)
   gl_list = [r['gl'] for r in app_tables.policies.search()]
@@ -200,7 +196,7 @@ def set_npbp(cid, npbp):
       # setup fut which has no policy
       row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, role='fut')
       if re in npbp:
-        row.update(taken=2)
+        row.update(taken=99)
       else:
         row.update(taken=0)
   rs = app_tables.games_log.get(game_id=cid)
