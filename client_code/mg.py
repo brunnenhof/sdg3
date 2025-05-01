@@ -139,6 +139,7 @@ pcr_title_tx = 'Player Board Game '
 pcr_col_left_title_tx = 'First, log into your region ...'
 pcr_col_right_title_tx = '... then into your role as minister ...'
 pcr_submit_tx = 'Once you have logged in to both your region and your ministry, click here to submit your choice'
+fut_not_all_logged_in_tx = "Not all of your regional ministerial colleauges have logged in yet. Weit until they have done so."
 
 gm_reg_npbp_tx = 'When you are done (and sure), click this button'
 top_entry_label_tx = 'Hold on, setting up all the necessary slots, templates and tables for the game ...'

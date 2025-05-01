@@ -62,6 +62,7 @@ class home(homeTemplate):
     self.pcr_col_left_title.text = mg.pcr_col_left_title_tx
     self.pcr_col_right_title.text = mg.pcr_col_right_title_tx
     self.pcr_submit.text = mg.pcr_submit_tx
+    self.fut_not_all_logged_in.text = mg.fut_not_all_logged_in_tx
 #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
 #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
     self.pcgd_title.text = mg.pcr_title_tx
@@ -496,28 +497,41 @@ class home(homeTemplate):
 #      print(pol_list)
     self.dec_rp.items = pol_list
 
+  def check_all_colleagues_logged_in(self, cid, reg, runde):
+    rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1)
+    if len(rows) == 32:
+      return True
+    else:
+      return False
+    
   def do_future(self, cid, role, reg, runde, yr):
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
-    self.submit_numbers.visible = False
-    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
-    self.pov_rep_panel.visible = True
-    self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-    self.pov_rep_panel.items = fut_pov_list
-    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-    self.cpf_rp_ineq.items = fut_ineq_list    
-    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-    self.cpf_rp_emp.items = fut_emp_list    
-    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-    self.cpf_food_rp.items = fut_food_list    
-    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-    self.cpf_ener_rp.items = fut_ener_list    
-    if within_budget:
-      self.submit_numbers.visible = True
+    ## check if all your regional ministers have logged in
+    all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
+    if not all_colleauges_logged_in:
+      self.fut_not_all_logged_in.visible = True
     else:
+      self.fut_not_all_logged_in.visible = False
       self.submit_numbers.visible = False
-    return within_budget
+      f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
+      self.pov_rep_panel.visible = True
+      self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
+      self.pov_rep_panel.items = fut_pov_list
+      self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+      self.cpf_rp_ineq.items = fut_ineq_list    
+      self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+      self.cpf_rp_emp.items = fut_emp_list    
+      self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+      self.cpf_food_rp.items = fut_food_list    
+      self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+      self.cpf_ener_rp.items = fut_ener_list    
+      if within_budget:
+        self.submit_numbers.visible = True
+      else:
+        self.submit_numbers.visible = False
+      return within_budget
 
   def calc_cost_home_tot(self, pct, tltl, gl, maxc):
     cost = 0
@@ -874,6 +888,7 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
+    
 
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
@@ -911,5 +926,14 @@ class home(homeTemplate):
         n= Notification("Model is done", timeout=7)
         n.show()
         ### reset everything for next round ...
+
+  def tick_refresh_fut_tick(self, **event_args):
+    cid = mg.my_game_id
+    reg = mg.my_reg
+    yr, runde = self.get_runde(cid)    
+    if app_tables.roles_assign.has_row(game_id=cid,reg='fut', round=runde):
+      self.do_future(cid, 'fut', reg, runde, yr)
+    else:
+      pass
 
       
