@@ -153,7 +153,7 @@ class home(homeTemplate):
 #      cid = self.p_dd_select_game.selected_value["game_id"]
 #      alert(cid)
     elif how_many_new == 1:
-      row = app_tables.games_log.get(gm_status=3)
+      row = app_tables.games_log.get(gm_status=4)
 #      alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
 #      row.update(p_status=1)
