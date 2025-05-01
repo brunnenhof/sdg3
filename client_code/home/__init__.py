@@ -15,8 +15,16 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    row = app_tables.cookies.get()
-    row.update(gm_step=0)
+    ### during dev, keep db small
+    ### in production comment out the next 4 lines and only delete once game is closed
+    ### in games_log
+    app_tables.cookies.delete_all_rows()
+    app_tables.state_of_play.delete_all_rows()
+    app_tables.step_done.delete_all_rows()
+    app_tables.roles_assign.delete_all_rows()
+    ###
+#    row = app_tables.cookies.get()
+#    row.update(gm_step=0)
     self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
@@ -106,13 +114,13 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
-    app_tables.cookies.delete_all_rows()
     game_id = anvil.server.call('generate_id')
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
     mg.my_game_id = game_id
-    app_tables.status.add_row(game_id=game_id, game_status=0, gm_status=0, p_status=0, roles_avail=4)
+    jetzt = datetime.datetime.now()
+    app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
     anfang = time.time()
@@ -130,13 +138,13 @@ class home(homeTemplate):
       self.gm_role_reg.visible = True
 
   def top_join_game_click(self, **event_args):
-    row = app_tables.cookies.get()
-    if row['gm_step'] == 0:
+    rows = app_tables.games_log.search()
+    if len(rows) == 1 and rows[0]['game_id'] == 'TEST':
       n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
       n.show()
       return
     self.top_entry.visible = False
-    how_many_new = len(app_tables.status.search(game_status=1, p_status=0, gm_status=1))
+    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(2)))
     print(how_many_new)
     if how_many_new > 1:
       self.p_cp_choose_game.visible = True
@@ -144,7 +152,7 @@ class home(homeTemplate):
 #      cid = self.p_dd_select_game.selected_value["game_id"]
 #      alert(cid)
     elif how_many_new == 1:
-      row = app_tables.status.get(game_status=1, p_status=0, gm_status=1)
+      row = app_tables.games_log.get(gm_status=3)
 #      alert(row['game_id'], title=mg.title_you_are_joining)
       mg.my_game_id = row['game_id']
 #      row.update(p_status=1)
@@ -802,8 +810,6 @@ class home(homeTemplate):
     return w
 
   def test_model_top_click(self, **event_args):
-    #app_tables.state_of_play.delete_all_rows()
-    #app_tables.step_done.delete_all_rows()
     pol_list = [r['abbr'] for r in app_tables.policies.search()]
     tltl_list = [r['tltl'] for r in app_tables.policies.search()]
     gl_list = [r['gl'] for r in app_tables.policies.search()]

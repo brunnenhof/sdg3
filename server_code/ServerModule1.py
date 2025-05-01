@@ -27,14 +27,13 @@ def fe_keepalive():
   
 @anvil.server.callable
 def generate_id():
-  app_tables.status.delete_all_rows()
   not_allowed = ['FUCK', 'SHIT', 'NSU']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   a = random.randint(10, 99)
   while a == 88:
     a = random.randint(10, 99)
   cid = cid + '-' + str(a) 
-  while app_tables.status.has_row(q.like(cid)):
+  while app_tables.games_log.has_row(q.like(cid)):
     cid = ''.join(random.choices(string.ascii_uppercase, k=4))
     a = random.randint(10, 99)
     while a == 88:
@@ -82,9 +81,8 @@ def set_roles(game_id):
         app_tables.roles_assign.add_row(game_id=game_id,role=my_role, taken = 4, reg=re, round=runde, pol=p)
         ## set up future which has no policies
       app_tables.roles_assign.add_row(game_id=game_id,role='fut', taken=0, reg=re, round=runde, pol='nopol')
-  jetzt = datetime.datetime.now()
-  row = app_tables.status.get(game_id=game_id)
-  row.update(started=jetzt,game_status=1)
+  row = app_tables.games_log.get(game_id=game_id)
+  row.update(gm_status=2)
   
 @anvil.server.callable
 def upload_csv_reg(rows, re):
@@ -202,8 +200,8 @@ def set_npbp(cid, npbp):
         row.update(taken=2)
       else:
         row.update(taken=0)
-  rs = app_tables.status.get(game_id=cid)
-  rs.update(gm_status=1)
+  rs = app_tables.games_log.get(game_id=cid)
+  rs.update(gm_status=3)
 
 def read_mdfplay25(datei, runde):
 #  print('APRIL IN read_mdfplay25 loading: ' + datei)

@@ -3,34 +3,34 @@ db_schema:
   budget:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 91}
+    - admin_ui: {width: 91}
       name: yr
       type: number
-    - admin_ui: {order: 1, width: 103}
+    - admin_ui: {width: 103}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 105}
+    - admin_ui: {width: 105}
       name: game_id
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: c_pov
       type: number
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {width: 200}
       name: c_ineq
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
       name: c_emp
       type: number
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {width: 200}
       name: c_food
       type: number
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {width: 200}
       name: c_ener
       type: number
-    - admin_ui: {order: 8, width: 200}
+    - admin_ui: {width: 200}
       name: bud_all_tas
       type: number
-    - admin_ui: {order: 9, width: 200}
+    - admin_ui: {width: 200}
       name: runde
       type: number
     server: full
@@ -38,33 +38,36 @@ db_schema:
   cookies:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 120}
+    - admin_ui: {width: 120}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 107}
+    - admin_ui: {width: 107}
       name: r1sub
       type: number
-    - admin_ui: {order: 2, width: 117}
+    - admin_ui: {width: 117}
       name: r2sub
       type: number
-    - admin_ui: {order: 3, width: 114}
+    - admin_ui: {width: 114}
       name: r3sub
       type: number
-    - admin_ui: {order: 4, width: 131}
+    - admin_ui: {width: 131}
       name: gm_step
       type: number
+    - admin_ui: {width: 200}
+      name: started
+      type: bool
     server: full
     title: cookies
   files:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       name: path
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {width: 200}
       name: file
       type: media
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: file_version
       type: string
     server: full
@@ -72,23 +75,43 @@ db_schema:
   game_files:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 116}
+    - admin_ui: {width: 116}
       name: game_id
       type: string
-    - admin_ui: {order: 3, width: 167}
+    - admin_ui: {width: 167}
       name: version
       type: datetime
-    - admin_ui: {order: 4, width: 74}
+    - admin_ui: {width: 74}
       name: yr
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
       name: start_row_data
       type: media
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {width: 200}
       name: mdf_play
       type: media
     server: full
     title: game_files
+  games_log:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 101}
+      name: game_id
+      type: string
+    - admin_ui: {order: 5, width: 87}
+      name: gm_status
+      type: number
+    - admin_ui: {order: 7, width: 110}
+      name: started
+      type: datetime
+    - admin_ui: {order: 8, width: 153}
+      name: suspended
+      type: datetime
+    - admin_ui: {order: 9, width: 138}
+      name: closed
+      type: datetime
+    server: full
+    title: games_log
   mdf_play_vars:
     client: none
     columns:
@@ -120,28 +143,28 @@ db_schema:
   plots:
     client: search
     columns:
-    - admin_ui: {order: 0, width: 116}
+    - admin_ui: {width: 116}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 176}
+    - admin_ui: {width: 176}
       name: title
       type: string
-    - admin_ui: {order: 2, width: 145}
+    - admin_ui: {width: 145}
       name: subtitle
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: cap
       type: string
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {width: 200}
       name: fig
       type: media
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
       name: runde
       type: number
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {width: 200}
       name: ta
       type: string
-    - admin_ui: {order: 7, width: 200}
+    - admin_ui: {width: 200}
       name: reg
       type: string
     server: full
@@ -207,7 +230,7 @@ db_schema:
     - admin_ui: {width: 80}
       name: role
       type: string
-    - admin_ui: {order: 3, width: 61}
+    - admin_ui: {width: 61}
       name: taken
       type: number
     - admin_ui: {width: 99}
@@ -285,59 +308,36 @@ db_schema:
   state_of_play:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 163}
+    - admin_ui: {width: 163}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 94}
+    - admin_ui: {width: 94}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 99}
+    - admin_ui: {width: 99}
       name: p_state
       type: number
-    - admin_ui: {order: 3, width: 113}
+    - admin_ui: {width: 113}
       name: ta
       type: string
-    - admin_ui: {order: 4, width: 127}
+    - admin_ui: {width: 127}
       name: gm_state
       type: number
     server: full
     title: state_of_play
-  status:
+  step_done:
     client: full
     columns:
     - admin_ui: {width: 200}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 94}
-      name: game_status
-      type: number
-    - admin_ui: {order: 2, width: 75}
-      name: p_status
-      type: number
-    - admin_ui: {order: 5, width: 80}
-      name: gm_status
-      type: number
-    - admin_ui: {width: 110}
-      name: roles_avail
-      type: number
-    - admin_ui: {order: 7, width: 144}
-      name: started
-      type: datetime
-    server: full
-    title: status
-  step_done:
-    client: full
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: game_id
-      type: string
-    - admin_ui: {order: 1, width: 126}
+    - admin_ui: {width: 126}
       name: reg
       type: string
-    - admin_ui: {order: 2, width: 139}
+    - admin_ui: {width: 139}
       name: p_step_done
       type: number
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: gm_step_done
       type: number
     server: full
@@ -345,16 +345,16 @@ db_schema:
   test_plots:
     client: search
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       name: game_id
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {width: 200}
       name: fig1
       type: media
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: fig2
       type: media
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
       name: title
       type: string
     server: full
