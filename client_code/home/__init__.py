@@ -144,7 +144,8 @@ class home(homeTemplate):
       n.show()
       return
     self.top_entry.visible = False
-    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(2)))
+#    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(3)))
+    how_many_new = len(app_tables.games_log.search(gm_status=4))
     print(how_many_new)
     if how_many_new > 1:
       self.p_cp_choose_game.visible = True

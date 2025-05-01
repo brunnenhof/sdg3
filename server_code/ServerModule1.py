@@ -23,7 +23,7 @@ def fe_keepalive():
   ### from https://anvil.works/forum/t/increase-session-timeout/307/3
   ### should it return something dynamic?
   row = app_tables.cookies.get()
-  if len(row) > 0:
+  if row is not None:
     return row['game_id']
   else:
     return "no cookies yet"
@@ -204,7 +204,7 @@ def set_npbp(cid, npbp):
       else:
         row.update(taken=0)
   rs = app_tables.games_log.get(game_id=cid)
-  rs.update(gm_status=3)
+  rs.update(gm_status=4)
 
 def read_mdfplay25(datei, runde):
 #  print('APRIL IN read_mdfplay25 loading: ' + datei)
