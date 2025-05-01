@@ -688,6 +688,13 @@ class home(homeTemplate):
     yr, runde = self.get_runde(cid)
     self.do_future(cid, role, reg, runde, yr)
 
+  def all_reg_submitted(self, cid, step):
+    rows = app_tables.step_done.search(game_id=cid, p_step_done=q.any_of(step, 99)
+    if len(rows) == 10:
+      return Tr
+    pass
+
+    
   def submit_numbers_click(self, **event_args):
     # Display a large popup with a title and three buttons.
     result = alert(content=mg.confirm_submit_tx,
@@ -710,6 +717,7 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
+      
       rows = app_tables.game_files.search(game_id=cid_cookie)
       print(len(rows))
       if len(rows) == 0:
@@ -789,6 +797,7 @@ class home(homeTemplate):
       n.show()
 
   def p_advance_to_next_round_click(self, **event_args):
+    # Get the results until the end of the 
     """This method is called when the component is clicked."""
     cid = mg.my_game_id
     row = app_tables.status.get(game_id=cid)
