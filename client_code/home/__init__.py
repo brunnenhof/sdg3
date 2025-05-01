@@ -519,7 +519,9 @@ class home(homeTemplate):
     self.dec_rp.items = pol_list
 
   def check_all_colleagues_logged_in(self, cid, reg, runde):
-    rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1)
+    rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1, role=q.not_('fut'))
+    len_rows = len(rows)
+    print(len_rows)
     if len(rows) == 32:
       return True
     else:
