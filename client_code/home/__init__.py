@@ -91,7 +91,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
 
     self.dropdown_menu_1.items = [("2025-2040", 1), ("2040-2060", 2), ("2060-2100", 3)]
-   
+    self.tick_refresh_fut.interval = 0
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -928,12 +928,17 @@ class home(homeTemplate):
         ### reset everything for next round ...
 
   def tick_refresh_fut_tick(self, **event_args):
-    cid = mg.my_game_id
-    reg = mg.my_reg
-    yr, runde = self.get_runde(cid)    
-    if app_tables.roles_assign.has_row(game_id=cid,reg='fut', round=runde):
-      self.do_future(cid, 'fut', reg, runde, yr)
+    if not self.tick_refresh_fut.interval == 0:
+      cid = mg.my_game_id
+      reg = mg.my_reg
+      yr, runde = self.get_runde(cid)    
+      if len(app_tables.roles_assign.get(game_id=cid,reg='fut', round=runde, taken=1)) == 1:
+        self.fut_not_all_logged_in.visible = True
+        self.do_future(cid, 'fut', reg, runde, yr)
+      else:
+        self.fut_not_all_logged_in.visible = True
     else:
-      pass
+      self.tick_refresh_fut.interval = 52
+      
 
       
