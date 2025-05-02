@@ -195,10 +195,10 @@ confirm_buttons_tx = [
                ]
 after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
 nothing_submitted_tx = "Nothing was submitted ..."
-p_advance_to_next_round_tx = "Get the results until 2040 and decision sheet for 2040-2060 - your children's future"
-p_advance_to_1_tx = "Get the results until 2060 and decision sheet for 2060-210 - your grandchildren's future"
+p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
+p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
 p_advance_to_2_tx = "Get the results until the end of the century"
-p_waiting_model_run_tx = "still waiting for the GM to advance the model ..."
+p_waiting_model_run_tx = "... still waiting for the GM to advance the model ..."
 waiting_tx = "Waiting ..."
 
 plot_glob_mg = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',

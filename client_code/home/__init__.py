@@ -26,6 +26,8 @@ class home(homeTemplate):
 #    row = app_tables.cookies.get()
 #    row.update(gm_step=0)
     self.tick_gm_round_ready.interval = 0
+    self.timer_1.interval = 52
+    self.timer_1_tick()
     self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
