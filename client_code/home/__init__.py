@@ -770,9 +770,12 @@ class home(homeTemplate):
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
         self.test_model.visible = False
+        self.wait_for_run_after_submit.text = ""
+        self.p_advance_to_next_round.text = ""
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
+    self.gm_card_wait_1_rp.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     print(cid_cookie)
     row = app_tables.games_log.get(game_id=cid_cookie)
@@ -783,11 +786,11 @@ class home(homeTemplate):
       von = 2025
       bis = 2040
       runde = 1
-    elif row['gm_status'] == 123:
+    elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
       runde = 2
-    elif row['gm_status'] == 456:
+    elif row['gm_status'] == 9:
       von = 2060
       bis = 2100
       runde = 3
