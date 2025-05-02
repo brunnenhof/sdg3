@@ -500,9 +500,9 @@ class home(homeTemplate):
       wmx = mg.roles.index(role)
       self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
       your_game_id = cid + "-" + str(wrx) + str(wmx)
-      congrats = "\n" + mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
+      congrats = mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
-      alert(congrats)
+      alert(congrats, title=mg.pcr_submit_title)
 
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1)
       self.pcgd_generating.visible = True
@@ -741,6 +741,7 @@ class home(homeTemplate):
       print(my_cid)
       cid = mg.my_game_id
       print(cid)
+      yr, runde = self.get_runde(cid)
       role = 'fut'
       reg = mg.my_reg
       print(reg)
@@ -765,7 +766,14 @@ class home(homeTemplate):
           row['gm_status'] = 5 ## off to run 2025 to 2040
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
-        ## organize the player card
+        self.test_model.visible = False
+        self.wait_for_run_after_submit.content = mg.after_submit_tx
+        if runde == 1:
+          self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
+        elif runde == 2:
+          self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
+        elif runde == 3:
+          self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
@@ -798,7 +806,6 @@ class home(homeTemplate):
       ## hide wait card
     self.card_fut.visible = False
       ## show run card
-    self.wait_for_run_after_submit.content = mg.after_submit_tx
     self.wait_for_run_after_submit.visible = True
       ## update step done / status / others ???
     print("ln 781")
