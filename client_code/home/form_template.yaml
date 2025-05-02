@@ -738,6 +738,10 @@ components:
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components:
+  - layout_properties: {}
+    name: top_duration
+    properties: {font_size: 11, text_color: 'theme:Primary Container'}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: top_btn_thanks_click}
     layout_properties: {}
     name: top_btn_thanks

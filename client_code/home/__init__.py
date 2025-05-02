@@ -141,10 +141,34 @@ class home(homeTemplate):
       self.gm_board.text = mg.msg_gm_board + '  for '+game_id
       self.gm_role_reg.visible = True
 
+  def check_rnsub(self, cid):
+    ## ToDo
+    ## in production switch true and false and handle in top_join_game_click
+    row = app_tables.cookies.get(game_id=cid)
+    if row['r1sub'] < 10 or row['r2sub'] < 10 or row['r3sub'] < 10:
+      return False 
+    else:
+      return True
+  
+  def any_open_games(self, g_nbr):
+    rows = app_tables.games_log.search()
+    open_games = []
+    for i in range(1,g_nbr):
+      if rows[i]['closed'] == None:
+        cid = rows[i]['game_id']
+        if self.check_rnsub(cid):
+          open_games.append(cid)
+    return len(open_games), open_games
+
   def top_join_game_click(self, **event_args):
     rows = app_tables.games_log.search()
     if len(rows) == 1 and rows[0]['game_id'] == 'TEST':
       n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
+      n.show()
+      return
+    lenopen, open = self.any_open_games(len(rows))
+    if lenopen == 0:
+      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooops...')
       n.show()
       return
     self.top_entry.visible = False
@@ -455,6 +479,7 @@ class home(homeTemplate):
     return yr, runde
 
   def pcr_submit_click(self, **event_args):
+    anfang = time.time()
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
@@ -506,6 +531,8 @@ class home(homeTemplate):
           within_budget = self.do_future(cid, role, reg, runde, yr )
         else:
           self.do_non_future(cid, role, reg, runde, yr)      
+    dauer = round(time.time() - anfang, 0)
+    self.top_duration.text = dauer
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""
