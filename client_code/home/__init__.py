@@ -114,6 +114,8 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
+    with Notification("Clearing DBs ..."):
+      self.test_model_top_click()
     game_id = anvil.server.call('generate_id')
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
@@ -864,6 +866,7 @@ class home(homeTemplate):
     app_tables.state_of_play.delete_all_rows()
     app_tables.step_done.delete_all_rows()
     app_tables.roles_assign.delete_all_rows()
+    app_tables.game_files.delete_all_rows()
     rows = app_tables.games_log.search(game_id=q.not_("TEST"))
     for row in rows:
       row.delete()
