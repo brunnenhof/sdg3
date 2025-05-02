@@ -755,49 +755,6 @@ class home(homeTemplate):
       row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
       row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
 
-  def do_prod_ugregmod(self, cid, von, bis):
-    elif runde == 2:
-      all_regs_submitted = (row['r2sub'] == 10)
-      von = 2040
-      bis = 2060
-      row = app_tables.status.get(game_id=cid, game_status=2, p_status=1)
-      row.update(game_status=3, p_status=2)
-    elif runde == 3:
-      all_regs_submitted = (row['r3sub'] == 10)
-      von = 2060
-      bis = 2100
-      row = app_tables.status.get(game_id=cid, game_status=3, p_status=2)
-      row.update(game_status=4, p_status=3)
-    print(runde)
-    print(all_regs_submitted)
-    self.gm_card_wait_1_info.visible = False
-    if all_regs_submitted:
-      self.gm_card_wait_1_temp_title.visible = False
-      self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round.visible = False
-      self.gm_card_wait_1_rp.visible = False
-      self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
-      ## hide wait card
-      self.card_fut.visible = False
-      ## show run card
-      self.wait_for_run_after_submit.content = mg.after_submit_tx
-      self.wait_for_run_after_submit.visible = True
-      ## update step done / status / others ???
-      print("ln 781")
-      print(cid)
-      print(mg.my_reg)
-      rows = app_tables.step_done.search(game_id=cid)
-      for row in rows:
-        if row['p_step_done'] == 2:
-          row.update(p_step_done=3)  ## 3 = all regs submitted
-      ## kickoff server run model
-      n = Notification("off to run the model", timeout=4)
-      n.show()
-        ### reset everything for next round ...
-    else:  ## NOT all regs submitted
-      n=Notification(mg.not_all_submitted_tx)
-      n.show()
-
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
     cid = mg.my_game_id
