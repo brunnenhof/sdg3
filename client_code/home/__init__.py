@@ -758,7 +758,7 @@ class home(homeTemplate):
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
         n = Notification(mg.not_all_submitted_p_tx, timeout=7)
-        n.show()
+        n.show() 
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         if row['gm_status'] == 4:
