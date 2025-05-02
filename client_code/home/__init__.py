@@ -561,6 +561,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr):
+    print("in do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -769,13 +770,6 @@ class home(homeTemplate):
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
         self.test_model.visible = False
-        self.wait_for_run_after_submit.content = mg.after_submit_tx
-        if runde == 1:
-          self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
-        elif runde == 2:
-          self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
-        elif runde == 3:
-          self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
@@ -788,15 +782,18 @@ class home(homeTemplate):
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
+      runde = 1
     elif row['gm_status'] == 123:
       von = 2040
       bis = 2060
+      runde = 2
     elif row['gm_status'] == 456:
       von = 2060
       bis = 2100
+      runde = 3
     else:
       abc = str(row['gm_status'])
-      abc2 = "row['gm_status'] not correct "+abc
+      abc2 = "row['gm_status'] not correct " + abc
       alert(abc2)
       return
     self.gm_card_wait_1_info.visible = False
@@ -807,10 +804,16 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.text = mg.gm_wait_round_started_tx
       ## hide wait card
     self.card_fut.visible = False
+    self.gm_wait_kickoff_r1_rp.visible = False
       ## show run card
     self.wait_for_run_after_submit.visible = True
-      ## update step done / status / others ???
-    print("ln 781")
+    self.wait_for_run_after_submit.content = mg.after_submit_tx
+    if runde == 1:
+      self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
+    elif runde == 2:
+      self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
+    elif runde == 3:
+      self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
     n = Notification("off to run the model", timeout=4)
     n.show()
     self.task = anvil.server.call('launch_ugregmod', cid_cookie, von, bis)
@@ -821,6 +824,13 @@ class home(homeTemplate):
       n= Notification("Model is done", timeout=3)
       n.show()
       self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
+      row = app_tables.games_log.get(game_id=cid_cookie)
+      if runde == 1:
+        row['gm_status'] = 6 ## first round successfully done
+      elif runde == 2:
+        row['gm_status'] = 8
+      elif runde == 3:
+        row['gm_status'] = 10
       ### reset everything for next round ...
       ### for gm
       ### for all players
@@ -835,6 +845,11 @@ class home(homeTemplate):
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6:
       alert("not coded yet ...")
+#      self.do_future(cid, role, reg, runde, yr)
+      reg = mg.my_reg
+      runde = 2
+      yr = 2040
+      self.do_future(cid, 'fut', reg, runde, yr)
 
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
