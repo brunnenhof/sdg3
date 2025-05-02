@@ -801,8 +801,8 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_start_round.visible = False
-    self.gm_card_wait_1_rp.visible = False
-    self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
+    self.gm_card_wait_1_rp.visible = True
+    self.gm_card_wait_1_info.text = mg.gm_wait_round_started_tx
       ## hide wait card
     self.card_fut.visible = False
       ## show run card
@@ -811,7 +811,7 @@ class home(homeTemplate):
     print("ln 781")
     n = Notification("off to run the model", timeout=4)
     n.show()
-    self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
+    self.task = anvil.server.call('launch_ugregmod', cid_cookie, von, bis)
 #      make something visible
     while not self.task.is_completed(): # model still running
       pass
