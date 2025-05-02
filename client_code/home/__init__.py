@@ -101,7 +101,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
 
     self.dropdown_menu_1.items = [("2025-2040", 1), ("2040-2060", 2), ("2060-2100", 3)]
-    self.tick_refresh_fut.interval = 0
+    self.tick_gm_round_ready.interval = 0
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -123,6 +123,8 @@ class home(homeTemplate):
     mg.my_game_id = game_id
     jetzt = datetime.datetime.now()
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
+    cc = self.tick_gm_round_ready(interval = 52)
+    #self.tick_gm_round_ready.
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
     anfang = time.time()
@@ -707,7 +709,7 @@ class home(homeTemplate):
     if result == 'NO':
       n = Notification(mg.nothing_submitted_tx)
       n.show()
-    else:
+    else: ## reg DID submit numbers
       my_cid = mg.my_personal_game_id
       print(my_cid)
       cid = mg.my_game_id
@@ -728,7 +730,7 @@ class home(homeTemplate):
       if not self.all_reg_submitted(cid_cookie, pStepDone):
         n = Notification(not_all_submitted_p_tx, timeout=7)
         n.show()
-      else:
+      else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
@@ -962,18 +964,10 @@ class home(homeTemplate):
         n.show()
         ### reset everything for next round ...
 
-  def tick_refresh_fut_tick(self, **event_args):
-    if not self.tick_refresh_fut.interval == 0:
-      cid = mg.my_game_id
-      reg = mg.my_reg
-      yr, runde = self.get_runde(cid)    
-      if len(app_tables.roles_assign.get(game_id=cid,reg='fut', round=runde, taken=1)) == 1:
-        self.fut_not_all_logged_in.visible = True
-        self.do_future(cid, 'fut', reg, runde, yr)
-      else:
-        self.fut_not_all_logged_in.visible = True
-    else:
-      self.tick_refresh_fut.interval = 52
-      
+  def tick_gm_round_ready_tick(self, **event_args):
+    """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+    pass
+
+     
 
       

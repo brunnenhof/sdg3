@@ -5,11 +5,6 @@ components:
     name: timer_1
     properties: {interval: 120}
     type: Timer
-  - event_bindings: {tick: tick_refresh_fut_tick}
-    layout_properties: {grid_position: 'KOLSPG,IPUGXW'}
-    name: tick_refresh_fut
-    properties: {interval: 69}
-    type: Timer
   - components:
     - event_bindings: {click: top_start_game_click}
       layout_properties: {grid_position: 'PINTXY,HDMYCU'}
@@ -54,6 +49,11 @@ components:
     name: top_entry
     properties: {role: outlined-card}
     type: ColumnPanel
+  - event_bindings: {tick: tick_gm_round_ready_tick}
+    layout_properties: {grid_position: 'XCCMNU,SQKRBN'}
+    name: tick_gm_round_ready
+    properties: {interval: 0}
+    type: Timer
   - components:
     - layout_properties: {grid_position: 'FCDJNG,KWKUWY'}
       name: p_lb_choose_game
