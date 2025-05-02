@@ -951,38 +951,28 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     cid = mg.my_game_id
-    yr, runde = self.get_runde(cid)
+    row = app_tables.games_log.get(game_id=cid)
+    gmStatus = row['gm_status']
     row = app_tables.cookies.get(game_id=cid)
-    if runde == 1:
+    if gmStatus == 4: ## all submitted, before run 2025 to 2040
       all_regs_submitted = (row['r1sub'] == 10)
+    elif gmStatus == 7: ## all submitted, before run 2040 to 2060
+      all_regs_submitted = (row['r2sub'] == 10)
+    elif gmStatus == 9: ## all submitted, before run 2060 to 2100
+      all_regs_submitted = (row['r2sub'] == 10)
+    else:
+      alert("pcgd_avance_click gmStatus NOT 4 | 7 | 10") 
     if not all_regs_submitted:
       n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
       n.show()
     else:
-      ## get info for next round
-#      self.gm_card_wait_1_btn_check.visible = False
-#      self.gm_start_round = False
-#      self.gm_card_wait_1_rp.visible = False
-#      self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
-#      ## hide wait card
-#      self.card_fut.visible = False
-#      ## show run card
-#      self.wait_for_run_after_submit.content = mg.after_submit_tx
-#      self.wait_for_run_after_submit.visible = True
-#      ## update step done / status / others ???
-#      row = app_tables.step_done.get(game_id=cid, reg=mg.my_reg)
-#      row.update(p_step_done=2)
-#      ## kickoff server run model
-#      n = Notification("off to run the model", timeout=4)
-#      n.show()
-#      self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
-#      make something visible
-      while not self.task.is_completed(): # model still running
-        pass
-      else: ## model is done
-        n= Notification("Model is done", timeout=7)
-        n.show()
-        ### reset everything for next round ...
+      if gmStatus==6: ## round 1 is done
+        role = mg.my_ministry
+        reg = mg.my_reg
+        runde = 2
+        yr = 2040
+        self.do_non_future(cid, role, reg, runde, yr)
+      
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
