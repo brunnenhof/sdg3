@@ -827,13 +827,11 @@ class home(homeTemplate):
     # Get the results until the end of the 
     """This method is called when the component is clicked."""
     cid = mg.my_game_id
-    row = app_tables.status.get(game_id=cid)
-    gm_status = row['gm_status']
-    ## check if gm has set step_done gm_step_done to 2 (?)
-    if gm_status == 1 or gm_status == 3:
+    row = app_tables.games_log.get(game_id=cid)
+    if row['gm_status'] == 5:
       alert(mg.p_waiting_model_run_tx, title=mg.waiting_tx)
     ### prepare graphs and decisions for round 2 if gm_status == 2
-    else:
+    elif row['gm_status'] == 6:
       alert("not coded yet ...")
 
   def test_model_click(self, **event_args):
