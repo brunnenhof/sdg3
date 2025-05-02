@@ -143,10 +143,10 @@ class home(homeTemplate):
 
   def check_rnsub(self, cid):
     ## ToDo
-    ## in production switch true and false and handle in top_join_game_click
+    ## in production switch first true and false and handle in top_join_game_click
     row = app_tables.cookies.get(game_id=cid)
     if row['r1sub'] < 10 or row['r2sub'] < 10 or row['r3sub'] < 10:
-      return False 
+      return True 
     else:
       return True
   
