@@ -25,6 +25,7 @@ class home(homeTemplate):
     ###
 #    row = app_tables.cookies.get()
 #    row.update(gm_step=0)
+    self.tick_gm_round_ready.interval = 0
     self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
@@ -101,7 +102,6 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
 
     self.dropdown_menu_1.items = [("2025-2040", 1), ("2040-2060", 2), ("2060-2100", 3)]
-    self.tick_gm_round_ready.interval = 0
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -123,8 +123,8 @@ class home(homeTemplate):
     mg.my_game_id = game_id
     jetzt = datetime.datetime.now()
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
-    cc = self.tick_gm_round_ready(interval = 52)
-    #self.tick_gm_round_ready.
+    self.tick_gm_round_ready.interval = 52
+    self.tick_gm_round_ready_tick()
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
     anfang = time.time()
@@ -728,95 +728,58 @@ class home(homeTemplate):
       anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
       ### update steps
       if not self.all_reg_submitted(cid_cookie, pStepDone):
-        n = Notification(not_all_submitted_p_tx, timeout=7)
+        row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
+        row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
+        n = Notification(mg.not_all_submitted_p_tx, timeout=7)
         n.show()
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
-          with Notification(mg.running_model_tx):
-            ## ugregmod
-            self.task = anvil.server.call('launch_ugregmod', cid_cookie, 2025, 2040)
-            while not self.task.is_completed(): # model still running
-              pass
-            else: ## model is done
-              n= Notification("Model is done", timeout=3)
-              n.show()
-              self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
-            ## show proper results for round and region
-            pass
-      else:
-        ### give some sort of waiting msg
-        if pStepDone == 1:
-          self.wait_for_run_after_submit.content = mg.after_submit_tx
-        elif pStepDone == 123:
-          msg = mg.p_advance_to_2_tx
-        elif pStepDone == 456:
-          msg = mg.p_advance_to_3_tx
-      self.p_advance_to_next_round.text = msg
-      row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
-      row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
+        n = Notification(mg.all_submitted_p_tx, timeout=7)
+        n.show()
+        ## organize the player card
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
-    cid = mg.my_game_id
-    yr, runde = self.get_runde(cid)
-    row = app_tables.cookies.get(game_id=cid)
-    if runde == 1:
-      all_regs_submitted = (row['r1sub'] == 10)
+    cid_cookie = anvil.server.call('get_game_id_from_cookie')
+    print(cid_cookie)
+    row = app_tables.games_log.get(game_id=cid_cookie)
+    if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
-      row = app_tables.status.get(game_id=cid, game_status=1, p_status=0)
-      row.update(game_status=2, p_status=1)
-    elif runde == 2:
-      all_regs_submitted = (row['r2sub'] == 10)
+    elif row['gm_status'] == 123:
       von = 2040
       bis = 2060
-      row = app_tables.status.get(game_id=cid, game_status=2, p_status=1)
-      row.update(game_status=3, p_status=2)
-    elif runde == 2:
-      all_regs_submitted = (row['r3sub'] == 10)
+    elif row['gm_status'] == 456:
       von = 2060
       bis = 2100
-      row = app_tables.status.get(game_id=cid, game_status=3, p_status=2)
-      row.update(game_status=4, p_status=3)
-    print(runde)
-    print(all_regs_submitted)
     self.gm_card_wait_1_info.visible = False
-    if all_regs_submitted:
-      self.gm_card_wait_1_temp_title.visible = False
-      self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round.visible = False
-      self.gm_card_wait_1_rp.visible = False
-      self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
+    self.gm_card_wait_1_temp_title.visible = False
+    self.gm_card_wait_1_btn_check.visible = False
+    self.gm_start_round.visible = False
+    self.gm_card_wait_1_rp.visible = False
+    self.gm_card_wait_1_info.text = mg.gm_wait_kickoff_r1_tx
       ## hide wait card
-      self.card_fut.visible = False
+    self.card_fut.visible = False
       ## show run card
-      self.wait_for_run_after_submit.content = mg.after_submit_tx
-      self.wait_for_run_after_submit.visible = True
+    self.wait_for_run_after_submit.content = mg.after_submit_tx
+    self.wait_for_run_after_submit.visible = True
       ## update step done / status / others ???
-      print("ln 781")
-      print(cid)
-      print(mg.my_reg)
-      rows = app_tables.step_done.search(game_id=cid)
-      for row in rows:
-        if row['p_step_done'] == 2:
-          row.update(p_step_done=3)  ## 3 = all regs submitted
-      ## kickoff server run model
-      n = Notification("off to run the model", timeout=4)
-      n.show()
-      self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
+    print("ln 781")
+    n = Notification("off to run the model", timeout=4)
+    n.show()
+    self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
 #      make something visible
-      while not self.task.is_completed(): # model still running
-        pass
-      else: ## model is done
-        n= Notification("Model is done", timeout=3)
-        n.show()
-        self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
-        ### reset everything for next round ...
-    else:  ## NOT all regs submitted
-      n=Notification(mg.not_all_submitted_tx)
+    while not self.task.is_completed(): # model still running
+      pass
+    else: ## model is done
+      n= Notification("Model is done", timeout=3)
       n.show()
+      self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
+      ### reset everything for next round ...
+      ### for gm
+      ### for all players
 
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the 
@@ -966,7 +929,15 @@ class home(homeTemplate):
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-    pass
+    cid = mg.my_game_id
+    row = app_tables.games_log.get(game_id=cid)
+    if row['gm_status'] == 5:
+      self.gm_card_wait_1_btn_check.visible = False
+      self.gm_start_round.visible = True
+    else:
+      self.gm_card_wait_1_btn_check.visible = True
+      self.gm_start_round.visible = False
+      
 
      
 

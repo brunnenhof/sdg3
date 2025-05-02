@@ -226,4 +226,5 @@ my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgre
 
 not_all_submitted_tx = "Not all regions have submitted their decisions ..."
 not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
+all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
 running_model_tx = "... advancing the model ..."
