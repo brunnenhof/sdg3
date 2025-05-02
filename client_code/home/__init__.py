@@ -123,8 +123,8 @@ class home(homeTemplate):
     mg.my_game_id = game_id
     jetzt = datetime.datetime.now()
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
-    self.tick_gm_round_ready.interval = 52
-    self.tick_gm_round_ready_tick()
+    self.tick_gm_round_ready.interval = 0
+    # self.tick_gm_round_ready_tick()
     msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
     alert(msg, title=mg.gm_id_title)
     anfang = time.time()
