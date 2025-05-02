@@ -30,7 +30,7 @@ components:
         spacing:
           padding: [null, '4', null, '4']
         text: clear db
-        visible: true
+        visible: false
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - layout_properties: {grid_position: 'PINTXY,NRIAQC'}
       name: yr_from_mod
