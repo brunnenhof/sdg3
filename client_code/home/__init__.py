@@ -731,11 +731,11 @@ class home(homeTemplate):
         alert("ready to run model")
       else:
         ### give some sort of waiting msg
-        if step == 2:
+        if step == 1:
           self.wait_for_run_after_submit.content = mg.after_submit_tx
         elif step == 123:
           msg = mg.p_advance_to_2_tx
-        elif len(rows) == 456:
+        elif step == 456:
           msg = mg.p_advance_to_3_tx
       self.p_advance_to_next_round.text = msg
       row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
