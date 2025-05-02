@@ -745,6 +745,9 @@ class home(homeTemplate):
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     print(cid_cookie)
     row = app_tables.games_log.get(game_id=cid_cookie)
+    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2035 to 2040
+      n = Notification(mg.not_all_submitted_gm_tx, timeout=7)
+      return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
@@ -754,6 +757,11 @@ class home(homeTemplate):
     elif row['gm_status'] == 456:
       von = 2060
       bis = 2100
+    else:
+      abc = str(row['gm_status'])
+      abc2 = "row['gm_status'] not correct "+abc
+      alert(abc2)
+      return
     self.gm_card_wait_1_info.visible = False
     self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
