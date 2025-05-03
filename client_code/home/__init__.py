@@ -902,9 +902,6 @@ class home(homeTemplate):
     pol_list = list(sd.values())
     return pol_list
 
-  def randval(self, p, pl):
-    pass
-
   def get_randGLbias_for_pol(self, pol, pl, tl, gl):
     idx = pl.index(pol)
     gle = gl[idx]
@@ -970,32 +967,38 @@ class home(homeTemplate):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
 
-  
+  def my_all_submit(self, reg, round):
+    cid = mg.my_game_id
+    reg = mg.my_reg
+
+    pass
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     cid = mg.my_game_id
+    reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
     gmStatus = row['gm_status']
     row = app_tables.cookies.get(game_id=cid)
-    if gmStatus == 4: ## all submitted, before run 2025 to 2040
-      all_regs_submitted = (row['r1sub'] == 10)
-      if not all_regs_submitted:
-        # not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
-        n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
-        n.show()
-      else:
-        # all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
-        n=Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+    rowp = app_tables.step_done.get(game_id=cid, reg=reg)
+    regStatus = rowp['p_step_done']
+    if regStatus == 3:
+      ### my_reg has submitted
+      if gmStatus == 4:
+        ### all regs have submitted for round 2025 to 2040
+        n = Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
         self.pcgd_plot_card.visible = False
         self.dec_card.visible = False
         n.show()
-elif gmStatus == 7: ## all submitted, before run 2040 to 2060
-      all_regs_submitted = (row['r2sub'] == 10)
-    elif gmStatus == 9: ## all submitted, before run 2060 to 2100
-      all_regs_submitted = (row['r2sub'] == 10)
+        return
+      else:
+        n = Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+        n.show()
+      return
     else:
-      alert("pcgd_avance_click gmStatus NOT 4 | 7 | 10") 
+      ### my_reg has submitted
+      elif regStatus == 5:
+      pass
 
 
   def tick_gm_round_ready_tick(self, **event_args):
