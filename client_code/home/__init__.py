@@ -806,10 +806,12 @@ class home(homeTemplate):
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
     self.gm_card_wait_1_rp.visible = False
+    self.gm_wait_kickoff_r1.visible = False
+    self.gm_wait_kickoff_r1_rp.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
-    print(cid_cookie)
+    print("gm_start_round_click "+ str(cid_cookie))
     row = app_tables.games_log.get(game_id=cid_cookie)
-    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2035 to 2040
+    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(mg.not_all_submitted_gm_tx, timeout=7)
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
@@ -829,44 +831,33 @@ class home(homeTemplate):
       abc2 = "row['gm_status'] not correct " + abc
       alert(abc2)
       return
-    self.gm_card_wait_1_info.visible = False
-    self.gm_card_wait_1_temp_title.visible = False
+    self.gm_card_wait_1_info.visible = True
+    # running_model_tx = "... advancing the model ..."
+    # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
+    self.gm_card_wait_1_info.text = mg.gm_wait_round_started_tx
+#    self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_start_round.visible = False
-    self.gm_card_wait_1_rp.visible = True
-    self.gm_card_wait_1_info.text = mg.gm_wait_round_started_tx
-      ## hide wait card
-    self.card_fut.visible = False
+    self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
-      ## show run card
-    self.wait_for_run_after_submit.visible = True
-    self.wait_for_run_after_submit.content = mg.after_submit_tx
-    if runde == 1:
-      self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
-    elif runde == 2:
-      self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
-    elif runde == 3:
-      self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
-    n = Notification("off to run the model", timeout=4)
-    n.show()
     self.task = anvil.server.call('launch_ugregmod', cid_cookie, von, bis)
 #      make something visible
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
-      n= Notification("Model is done", timeout=3)
-      n.show()
+      # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row['gm_status'] = 6 ## first round successfully done
+        self.gm_start_round.text = mg.gm_start_round_tx_2
       elif runde == 2:
         row['gm_status'] = 8
+        self.gm_start_round.text = mg.gm_start_round_tx_3
       elif runde == 3:
         row['gm_status'] = 10
-      ### reset everything for next round ...
-      ### for gm
-      ### for all players
+      ### what happens at the GM when the round is done?
+      
 
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the 
@@ -995,16 +986,16 @@ class home(homeTemplate):
     else:
       alert("pcgd_avance_click gmStatus NOT 4 | 7 | 10") 
     if not all_regs_submitted:
+      # not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
       n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      self.pcgd_plot_card.visible = False
+      self.dec_card.visible = True
       n.show()
     else:
-      if gmStatus==6: ## round 1 is done
-        role = mg.my_ministry
-        reg = mg.my_reg
-        runde = 2
-        yr = 2040
-        self.do_non_future(cid, role, reg, runde, yr)
-      
+      # all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
+      n=Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n.show()
+
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
