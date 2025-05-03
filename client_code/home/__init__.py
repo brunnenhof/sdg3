@@ -848,9 +848,12 @@ class home(homeTemplate):
     else: ## model is done
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx
+      time.sleep(15)
+      self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row['gm_status'] = 6 ## first round successfully done
+        self.gm_start_round.visible = True
         self.gm_start_round.text = mg.gm_start_round_tx_2
       elif runde == 2:
         row['gm_status'] = 8
