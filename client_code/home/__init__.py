@@ -782,7 +782,7 @@ class home(homeTemplate):
         if runde == 2:
           row['gm_status'] = 7 ## off to run 2040 to 2060
         if runde == 3:
-          row['gm_status'] = 7 ## off to run 2060 to 2100
+          row['gm_status'] = 9 ## off to run 2060 to 2100
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
         self.test_model.visible = False  ## this is a debug button
@@ -813,6 +813,7 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid_cookie)
     if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(mg.not_all_submitted_gm_tx, timeout=7)
+      n.show()
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
@@ -834,8 +835,8 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.visible = True
     # running_model_tx = "... advancing the model ..."
     # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
-    self.gm_card_wait_1_info.text = mg.gm_wait_round_started_tx
-#    self.gm_card_wait_1_temp_title.visible = False
+    self.gm_card_wait_1_info.content = mg.gm_wait_round_started_tx
+    self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_start_round.visible = False
     self.gm_card_wait_1_rp.visible = False
@@ -846,7 +847,7 @@ class home(homeTemplate):
       pass
     else: ## model is done
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
-      self.gm_card_wait_1_info.text = mg.gm_wait_round_done_tx
+      self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row['gm_status'] = 6 ## first round successfully done
