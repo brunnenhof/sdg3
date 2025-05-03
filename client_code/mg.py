@@ -150,7 +150,7 @@ gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to
 gm_card_wait_1_btn_check_tx = 'Check LogIn'
 gm_card_wait_1_btn_kick_off_round_1_tx = 'Ready to advance the model for the next round?'
 gm_wait_kickoff_r1_tx = 'Still waiting for the region(s) below to submit their decisions ... You may want to ask if they need help ...'
-gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
+gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the "Get the results ... " or "Check if the game leader ..." button.'
 gm_wait_round_done_tx2 = 'The model has been advanced. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future shuold submit their regional decisions. Tell them how much time they have.'
 sim_success_tx = '...the model has been advanced.'
 sim_success_title_tx = 'Success'
@@ -174,6 +174,7 @@ pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
 show_hide_plots_hide_tx = "Hide graphs"
 show_hide_plots_show_tx = "Show graphs"
 pcgd_advance_tx = "Check if the game leader has advanced the model ..."
+pcgd_info_after_rd1_tx = "The model has been simulated until 2040. Again, in the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry!\nStudy all your indicators, see how they develop over the years. *Given your policy choices, did you expect something different? Are surprised?* Again, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, and in light of what happenend in the last round, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
 
 dec_info_tx = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."
 dec_title_tx = "Set your policies"

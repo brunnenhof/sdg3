@@ -467,10 +467,10 @@ class home(homeTemplate):
     if r == 4:
       runde = 1
       yr = 2025
-    elif r == 6:
+    elif r == 7:
       runde = 2
       yr = 2040
-    elif r == 8:
+    elif r == 9:
       runde = 3
       yr = 2060
     elif r == 10:
@@ -861,11 +861,12 @@ class home(homeTemplate):
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        row['gm_status'] = 6 ## first round successfully done
+        row['gm_status'] = 7 ## first round successfully done
         self.gm_start_round.visible = True
-        self.gm_start_round.text = mg.gm_start_round_tx_2
+        self.gm_start_round.text = mg.gm_start_round_tx_2 + " gm_start_round_click ln 866"
+        anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
-        row['gm_status'] = 8
+        row['gm_status'] = 9
         self.gm_start_round.text = mg.gm_start_round_tx_3
       elif runde == 3:
         row['gm_status'] = 10
@@ -1034,6 +1035,7 @@ class home(homeTemplate):
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
+    my_cid = mg.my_game_id
     cid = mg.my_game_id
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
@@ -1053,16 +1055,17 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    if gmStatus == 6:
+    if gmStatus == 7:
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = "pcgd_title"
-      self.pcgd_info_rd1.content = "pcgd_info_rd1"
+      self.pcgd_title.text = my_cid + ', ' + reg + ', '+ mg.my_ministry + ' thisOK?'
+      self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
+      self.plot_card_rp.visible = True
       self.dec_card.visible = True 
       role = mg.my_ministry
       yr, runde = self.get_runde(cid)
