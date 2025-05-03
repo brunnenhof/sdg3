@@ -967,9 +967,55 @@ class home(homeTemplate):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
 
+  def all_submit(self, cid, runde):
+    rowc = app_tables.cookies.get(game_id=cid)
+    if runde == 1:
+      if rowc['r1sub'] == 10:
+        return True 
+      else:
+        return False 
+    if runde == 2:
+      if rowc['r2sub'] == 10:
+        return True 
+      else:
+        return False 
+    if runde == 3:
+      if rowc['r3sub'] == 10:
+        return True 
+      else:
+        return False 
+        
   def my_all_submit(self, reg, round):
     cid = mg.my_game_id
     reg = mg.my_reg
+    row = app_tables.games_log.get(game_id=cid)
+    rowc = app_tables.cookies.get(game_id=cid)
+    rowp = app_tables.step_done.get(game_id=cid, reg=reg)
+    regStatus = rowp['p_step_done']
+    gmStatus = row['gm_status']
+    if gmStatus == 4:
+      if self.all_submit(cid, 1):
+        return 1 ## r1 all submit
+      else:
+        return 2 ## r1 still some regs to submit
+        
+      return 6 ## r1 has been run
+    if gmStatus == 6:
+      return 6 ## r1 has been run
+    if gmStatus == 6:
+      return 6 ## r1 has been run
+    if round == 1:
+      if rowc['r1sub'] == 10:
+        return 1
+    if round == 2:
+      if rowc['r2sub'] == 10:
+        return 2
+    if round == 3:
+      if rowc['r3sub'] == 10:
+        return 3
+
+    
+      
 
     pass
   def pcgd_advance_click(self, **event_args):
@@ -995,10 +1041,10 @@ class home(homeTemplate):
         n = Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
         n.show()
       return
-    else:
-      ### my_reg has submitted
-      elif regStatus == 5:
-      pass
+#    else:
+      ### my_reg has submitted#
+      #elif regStatus == 5:
+      #pass
 
 
   def tick_gm_round_ready_tick(self, **event_args):
