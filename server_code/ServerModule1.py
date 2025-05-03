@@ -380,7 +380,6 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
 
 @anvil.server.callable
 def budget_to_db(yr, cid):
-  print('IN budget_to_db ... '+cid+' '+str(yr))
   regs = mg.regs
   if yr == 2025:
     app_tables.budget.delete_all_rows()
@@ -389,6 +388,7 @@ def budget_to_db(yr, cid):
     mdf_bud = mdf_bud[320:1440, :]
     rx = 1440 - 321
     runde = 1
+    print('IN budget_to_db ... '+cid+' '+str(yr)+' '+str(runde)+' rx='+str(rx))    
   elif yr == 2040:
     runde = 2
     s_row = app_tables.game_files.get(game_id=cid, yr=2040)
@@ -396,6 +396,7 @@ def budget_to_db(yr, cid):
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
     mdf_bud = mdf_bud[320:1920, :]
     rx = 1920 - 321
+    print('IN budget_to_db ... '+cid+' '+str(yr)+' '+str(runde)+' rx='+str(rx))    
   elif yr == 2060:
     runde = 3
     s_row = app_tables.game_files.get(game_id=cid, yr=2060)
@@ -403,9 +404,11 @@ def budget_to_db(yr, cid):
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
     mdf_bud = mdf_bud[320:2560, :]
     rx = 2560 - 321
+    print('IN budget_to_db ... '+cid+' '+str(yr)+' '+str(runde)+' rx='+str(rx))    
   elif yr == 2100:
     runde = 4
     rx = 3840 - 321
+    print('IN budget_to_db ... '+cid+' '+str(yr)+' '+str(runde)+' rx='+str(rx))    
   else:
     print("Forgot to add reading later mdfs")
   ba = []
@@ -413,8 +416,8 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(0,10):
     ba.append(mdf_bud[rx, idx + i])
-#  print('IN put_budget ... ba ')
-#  print(ba)
+  print('IN put_budget ... Budget_for_all_TA_per_region')
+  print(ba)
   cpov = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_poverty_policy')
   idx = rowx['col_idx']

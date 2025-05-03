@@ -470,10 +470,10 @@ class home(homeTemplate):
     elif r == 7:
       runde = 2
       yr = 2040
-    elif r == 9:
+    elif r == 10:
       runde = 3
       yr = 2060
-    elif r == 10:
+    elif r == 12:
       runde = 4
       yr = 2100
     else:
@@ -785,9 +785,9 @@ class home(homeTemplate):
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
         if runde == 2:
-          row['gm_status'] = 7 ## off to run 2040 to 2060
+          row['gm_status'] = 7 ## all regs submitted for 2040 to 2060
         if runde == 3:
-          row['gm_status'] = 9 ## off to run 2060 to 2100
+          row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
         self.test_model.visible = False  ## this is a debug button
@@ -816,7 +816,8 @@ class home(homeTemplate):
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     print("gm_start_round_click "+ str(cid_cookie))
     row = app_tables.games_log.get(game_id=cid_cookie)
-    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
+    if row['gm_status'] not in [5,7,10]:
+#    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(mg.not_all_submitted_gm_tx, timeout=7)
       n.show()
       return
@@ -832,7 +833,7 @@ class home(homeTemplate):
       von = 2040
       bis = 2060
       runde = 2
-    elif row['gm_status'] == 9:
+    elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
@@ -861,7 +862,7 @@ class home(homeTemplate):
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        row['gm_status'] = 7 ## first round successfully done
+        row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = mg.gm_start_round_tx_2 + " gm_start_round_click ln 866"
         anvil.server.call('budget_to_db', 2040, cid_cookie)
