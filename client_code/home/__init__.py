@@ -600,7 +600,7 @@ class home(homeTemplate):
       self.card_food_fut.visible = True
       self.card_ineq_fut.visible = True
       self.card_pov_fut.visible = True
-      
+      self.pcgd_plot_card.visible = True
       self.submit_numbers.visible = False
       f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
       self.pov_rep_panel.visible = True
