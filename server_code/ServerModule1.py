@@ -158,7 +158,7 @@ def set_npbp(cid, npbp):
   row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
 #  app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
-  print(pol_list)
+#  print(pol_list)
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
 #  print(tltl_list)
   gl_list = [r['gl'] for r in app_tables.policies.search()]
@@ -202,7 +202,7 @@ def set_npbp(cid, npbp):
   rs.update(gm_status=4)
 
 def read_mdfplay25(datei, runde):
-#  print('APRIL IN read_mdfplay25 loading: ' + datei)
+  print('APRIL IN read_mdfplay25 loading: ' + datei)
   f = data_files[datei]
   mdf_play = np.load(f)
   if runde == 1:
@@ -336,7 +336,7 @@ def build_plot(var_row, regidx, cap, cid, runde):
     lx = idx # find location of variable in mdf
   else:
     lx = idx + regidx # find location of variable in mdf with reg offset
-  print(var_l+' '+str(lx))
+#  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
 #  dfv_pd = pd.DataFrame(dfv)
 #  print(dfv_pd)
@@ -353,7 +353,7 @@ def launch_create_plots_for_slots(game_id, reg, ta, runde):
 
 def get_all_vars_for_ta(ta):
   ta1 = mg.pov_to_Poverty[ta]
-  print('get_all_vars_for_ta +++++ '+ta1)
+#  print('get_all_vars_for_ta +++++ '+ta1)
   v_row = app_tables.sdg_vars.search(ta=ta1)
   vars = [r['vensim_name'] for r in app_tables.sdg_vars.search(ta=ta1)]
   return vars, v_row
@@ -363,6 +363,8 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
     cid = game_id
     if runde == 1:
       yr = 2025
+    elif runde == 2:
+      yr = 2040
     else:
       print('In put_plots_for_slots: We dont know which runde')
   # generate a dictionary of 
@@ -416,8 +418,8 @@ def budget_to_db(yr, cid):
   idx = rowx['col_idx']
   for i in range(0,10):
     ba.append(mdf_bud[rx, idx + i])
-  print('IN put_budget ... Budget_for_all_TA_per_region')
-  print(ba)
+#  print('IN put_budget ... Budget_for_all_TA_per_region')
+#  print(ba)
   cpov = []
   rowx = app_tables.mdf_play_vars.get(var_name='Cost_per_regional_poverty_policy')
   idx = rowx['col_idx']
@@ -459,7 +461,7 @@ def budget_to_db(yr, cid):
 #  print(cener)
 
   for i in range(0,10):
-    print("a")
+    print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
     app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i],
           c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
 
@@ -469,7 +471,7 @@ def get_policy_budgets(reg, ta, yr, cid):
   pol_list = []
   pols = app_tables.policies.search(ta=TA)
   for pol in pols:
-    print(pol)
+#    print(pol)
     pol_name = pol['name']
     pol_expl = pol['expl']
     pol_tltl = pol['tltl']
@@ -2204,8 +2206,8 @@ def ugregmod(game_id, von, bis):
       print("von not 2025 | 2040 | 2060")
     mdf_play_full = read_mdfplay_full('mdf_play.npy', runde)
     nun = datetime.datetime.now()
-    print('loaded mdf_play full.npy')
-    print(nun)
+#    print('loaded mdf_play full.npy')
+#    print(nun)
     ff = data_files['ch.npy']
     ch = np.load(ff)
 #    ch = np.load('ch.npy')
@@ -13986,18 +13988,18 @@ def build_plot_test(var_row, regidx, cap, cid, runde):
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
-  print('starting new plot ...')
-  print('... build plot 272 var_l: ' + var_l)
+#  print('starting new plot ...')
+#  print('... build plot 272 var_l: ' + var_l)
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
-  print('--- build plot 274 rowx: on next line')
+#  print('--- build plot 274 rowx: on next line')
   print (rowx)
   idx = rowx['col_idx']
-  print(idx)
+#  print(idx)
   if varx in[19, 21, 22, 35]: # global variable
     lx = idx # find location of variable in mdf
   else:
     lx = idx + regidx # find location of variable in mdf with reg offset
-  print(var_l+' '+str(lx))
+#  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
   dfv_pd = pd.DataFrame(dfv)
 #  print(dfv_pd)
