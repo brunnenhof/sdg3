@@ -317,11 +317,14 @@ db_schema:
     - admin_ui: {width: 99}
       name: p_state
       type: number
-    - admin_ui: {width: 113}
+    - admin_ui: {order: 3, width: 93}
       name: ta
       type: string
     - admin_ui: {width: 127}
       name: gm_state
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: submitted
       type: number
     server: full
     title: state_of_play

@@ -916,7 +916,7 @@ class home(homeTemplate):
     w = random.uniform(floor + mid, gle)
     if w < floor or w > gle:
       oops = 2
-    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+#    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
     return w
 
   def test_model_top_click(self, **event_args):
@@ -970,6 +970,7 @@ class home(homeTemplate):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
 
+  
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
@@ -979,22 +980,22 @@ class home(homeTemplate):
     row = app_tables.cookies.get(game_id=cid)
     if gmStatus == 4: ## all submitted, before run 2025 to 2040
       all_regs_submitted = (row['r1sub'] == 10)
-    elif gmStatus == 7: ## all submitted, before run 2040 to 2060
+      if not all_regs_submitted:
+        # not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
+        n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+        n.show()
+      else:
+        # all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
+        n=Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+        self.pcgd_plot_card.visible = False
+        self.dec_card.visible = False
+        n.show()
+elif gmStatus == 7: ## all submitted, before run 2040 to 2060
       all_regs_submitted = (row['r2sub'] == 10)
     elif gmStatus == 9: ## all submitted, before run 2060 to 2100
       all_regs_submitted = (row['r2sub'] == 10)
     else:
       alert("pcgd_avance_click gmStatus NOT 4 | 7 | 10") 
-    if not all_regs_submitted:
-      # not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
-      n=Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
-      self.pcgd_plot_card.visible = False
-      self.dec_card.visible = True
-      n.show()
-    else:
-      # all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
-      n=Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
-      n.show()
 
 
   def tick_gm_round_ready_tick(self, **event_args):
