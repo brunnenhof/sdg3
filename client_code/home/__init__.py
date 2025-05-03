@@ -1052,11 +1052,13 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = ""
-      self.pcgd_info_rd1.content = ""
+      self.pcgd_title.text = "pcgd_title"
+      self.pcgd_info_rd1.content = "pcgd_info_rd1"
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
       self.dec_card.visible = True 
+      role = mg.my_ministry
+      yr, runde = self.get_runde(cid)
       self.do_future(cid, role, reg, runde, yr)
       return
     # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
