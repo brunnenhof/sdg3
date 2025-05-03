@@ -824,6 +824,10 @@ class home(homeTemplate):
       von = 2025
       bis = 2040
       runde = 1
+    elif row['gm_status'] == 6:
+      n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
+      n.show()
+      return
     elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
@@ -876,12 +880,15 @@ class home(homeTemplate):
     if row['gm_status'] == 5:
       alert(mg.p_waiting_model_run_tx, title=mg.waiting_tx)
     ### prepare graphs and decisions for round 2 if gm_status == 2
-    elif row['gm_status'] == 6:
-      alert("not coded yet ...")
-#      self.do_future(cid, role, reg, runde, yr)
+    elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
       reg = mg.my_reg
       runde = 2
       yr = 2040
+      self.do_future(cid, 'fut', reg, runde, yr)
+    elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
+      reg = mg.my_reg
+      runde = 3
+      yr = 2060
       self.do_future(cid, 'fut', reg, runde, yr)
 
   def test_model_click(self, **event_args):
@@ -1059,7 +1066,7 @@ class home(homeTemplate):
       self.dec_card.visible = True 
       role = mg.my_ministry
       yr, runde = self.get_runde(cid)
-      self.do_future(cid, role, reg, runde, yr)
+      self.do_non_future(cid, role, reg, runde, yr)
       return
     # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
 
