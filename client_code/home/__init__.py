@@ -467,17 +467,17 @@ class home(homeTemplate):
     if r == 4:
       runde = 1
       yr = 2025
-    elif r == 2:
+    elif r == 6:
       runde = 2
       yr = 2040
-    elif r == 3:
+    elif r == 8:
       runde = 3
       yr = 2060
-    elif r == 4:
+    elif r == 10:
       runde = 4
       yr = 2100
     else:
-      print("runde is NOT in 1,2,3,4")
+      print("r is NOT in 6,6,8,10")
     return yr, runde
 
   def pcr_submit_click(self, **event_args):
@@ -512,6 +512,8 @@ class home(homeTemplate):
       while not self.task.is_completed():
         pass
       else: ## background is done
+        ### get runde, yr
+        yr, runde = self.get_runde(cid)
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         if role == 'fut':
@@ -522,11 +524,9 @@ class home(homeTemplate):
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
         self.pcgd_info_rd1.visible = True
-        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=1, reg=reg, ta=role)]
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
 
-        ### get runde, yr
-        yr, runde = self.get_runde(cid)
         anvil.server.call('budget_to_db', yr, cid)
         within_budget = False
         if role == 'fut':
@@ -545,6 +545,7 @@ class home(homeTemplate):
       pass
       
   def do_non_future(self, cid, role, reg, runde, yr):
+    print("in do_NON_future ie TAs "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
     self.dec_card.visible = True
     self.pcgd_advance.visible = True
     pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid)
@@ -566,7 +567,11 @@ class home(homeTemplate):
     self.dec_card.visible = False
     self.card_fut.visible = True
     ## check if all your regional ministers have logged in
-    all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
+    ## ToDo when game is restarted from suspension this must be done differently.
+    if runde == 1:
+      all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
+    else:
+      all_colleauges_logged_in = True
     if not all_colleauges_logged_in:
       self.fut_not_all_logged_in.visible = True
       self.fut_bud_lb1.visible = False
@@ -1036,16 +1041,23 @@ class home(homeTemplate):
       n = Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
       n.show()
       return
+#    if gmStatus == 6:
+#      ### waiting for GM to start round 2025 to 2040
+#      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
+#      n.show()
+#      return
     if gmStatus == 6:
-      ### waiting for GM to start round 2025 to 2040
-      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
-      n.show()
-      return
-    if gmStatus == 7:
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
       # prepare TA card for new round
+      self.p_card_graf_dec.visible = True 
+      self.pcgd_title.text = ""
+      self.pcgd_info_rd1.content = ""
+      self.pcgd_advance.visible = True 
+      self.pcgd_plot_card.visible = True 
+      self.dec_card.visible = True 
+      self.do_future(cid, role, reg, runde, yr)
       return
     # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
 

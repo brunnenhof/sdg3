@@ -380,24 +380,34 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
 
 @anvil.server.callable
 def budget_to_db(yr, cid):
-#  print('IN budget_to_db ...')
-  app_tables.budget.delete_all_rows()
+  print('IN budget_to_db ... '+cid+' '+str(yr))
   regs = mg.regs
   if yr == 2025:
+    app_tables.budget.delete_all_rows()
+    f = data_files['mdf_play.npy']
+    mdf_bud = np.load(f)
+    mdf_bud = mdf_bud[320:1440, :]
     rx = 1440 - 321
     runde = 1
   elif yr == 2040:
     runde = 2
+    s_row = app_tables.game_files.get(game_id=cid, yr=2040)
+    s_row_elem = s_row['mdf_play']
+    mdf_bud = pickle.loads(s_row_elem.get_bytes())
+    mdf_bud = mdf_bud[320:1920, :]
     rx = 1920 - 321
   elif yr == 2060:
     runde = 3
+    s_row = app_tables.game_files.get(game_id=cid, yr=2060)
+    s_row_elem = s_row['mdf_play']
+    mdf_bud = pickle.loads(s_row_elem.get_bytes())
+    mdf_bud = mdf_bud[320:2560, :]
     rx = 2560 - 321
   elif yr == 2100:
     runde = 4
     rx = 3840 - 321
   else:
     print("Forgot to add reading later mdfs")
-  mdf_bud = read_mdfplay25('mdf_play.npy', runde)
   ba = []
   rowx = app_tables.mdf_play_vars.get(var_name='Budget_for_all_TA_per_region')
   idx = rowx['col_idx']
@@ -13963,7 +13973,12 @@ def build_plot_test(var_row, regidx, cap, cid, runde):
   # find out for which round
   if runde == 1:
     yr = 2025
-  mdf_play = read_mdfplay25('mdf_play.npy', runde)
+    mdf_play = read_mdfplay25('mdf_play.npy', runde)  
+  elif runde == 2:
+    yr = 2040
+  elif runde == 3:
+    yr = 2060
+
   var_l = var_row['vensim_name']
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
