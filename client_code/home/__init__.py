@@ -1054,7 +1054,7 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    if gmStatus == 7:
+    if gmStatus == 6:
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
