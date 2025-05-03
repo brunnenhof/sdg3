@@ -467,7 +467,7 @@ class home(homeTemplate):
     if r == 4:
       runde = 1
       yr = 2025
-    elif r == 7:
+    elif r == 6:
       runde = 2
       yr = 2040
     elif r == 10:
@@ -856,7 +856,7 @@ class home(homeTemplate):
     else: ## model is done
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx
-      time.sleep(15)
+      time.sleep(5)
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
@@ -1060,7 +1060,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = my_cid + ', ' + reg + ', '+ mg.my_ministry + ' thisOK?'
+      self.pcgd_title.text = "PLAYER BOARD: " + mg.my_personal_game_id + ', ' + mg.reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry] + ' OK?'
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
