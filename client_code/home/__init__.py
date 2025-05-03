@@ -1013,11 +1013,8 @@ class home(homeTemplate):
     if round == 3:
       if rowc['r3sub'] == 10:
         return 3
-
-    
-      
-
     pass
+    
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
@@ -1025,6 +1022,30 @@ class home(homeTemplate):
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
     gmStatus = row['gm_status']
+    if gmStatus == 4:
+      ### NOT all regs have submitted for round 2025 to 2040
+      n = Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n.show()
+      return
+    if gmStatus == 5:
+      ### all regs HAVE submitted for round 2025 to 2040
+      n = Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n.show()
+      return
+    if gmStatus == 6:
+      ### waiting for GM to start round 2025 to 2040
+      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
+      n.show()
+      return
+    if gmStatus == 7:
+      ### round 2025 to 2040 ran successfully
+      n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
+      n.show()
+      # prepare TA card for new round
+      return
+    # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
+
+
     row = app_tables.cookies.get(game_id=cid)
     rowp = app_tables.step_done.get(game_id=cid, reg=reg)
     regStatus = rowp['p_step_done']
