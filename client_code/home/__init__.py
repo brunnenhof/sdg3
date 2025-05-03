@@ -520,17 +520,15 @@ class home(homeTemplate):
           self.card_fut.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
           self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+          anvil.server.call('budget_to_db', yr, cid)
         else:
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
-
-        anvil.server.call('budget_to_db', yr, cid)
-        within_budget = False
         if role == 'fut':
-          within_budget = self.do_future(cid, role, reg, runde, yr )
+          self.do_future(cid, role, reg, runde, yr )
         else:
           self.do_non_future(cid, role, reg, runde, yr)      
     dauer = round(time.time() - anfang, 0)
