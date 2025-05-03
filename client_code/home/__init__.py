@@ -730,7 +730,7 @@ class home(homeTemplate):
       return False
     
   def submit_numbers_click(self, **event_args):
-    # Display a large popup with a title and three buttons.
+    # First, confirm submission
     result = alert(content=mg.confirm_submit_tx,
                title=mg.confirm_title_tx,
                large=True,
@@ -739,39 +739,69 @@ class home(homeTemplate):
     if result == 'NO':
       n = Notification(mg.nothing_submitted_tx)
       n.show()
-    else: ## reg DID submit numbers
+    else: ## submission confirmed, reg DID submit numbers
       my_cid = mg.my_personal_game_id
-      print(my_cid)
+#      print(my_cid)
       cid = mg.my_game_id
-      print(cid)
+#      print(cid)
       yr, runde = self.get_runde(cid)
-      role = 'fut'
+      role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
-      print(reg)
+#      print(reg)
       row = app_tables.step_done.get(game_id=cid, reg=reg)
       pStepDone = row['p_step_done']
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
+      ## show confirmation alert
       self.cid_reg_role_info.text = my_cid + '  + ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
-      anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
+      ## bump cookie for this round r_sub by one
+      if runde == 1:
+        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
+      elif runde == 2:
+        anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
+      elif runde == 3:
+        anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
       ### update steps
-      if not self.all_reg_submitted(cid_cookie, pStepDone):
+      if not self.all_reg_submitted(cid_cookie, pStepDone): ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
-        row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
+        if runde == 1:
+          row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
+        elif runde == 2:
+          row2.update(p_step_done=5) ## the region submitted decisions for round 2040- 2060
+        elif runde == 3:
+          row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
         n = Notification(mg.not_all_submitted_p_tx, timeout=7)
         n.show() 
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
+        if runde == 2:
+          row['gm_status'] = 7 ## off to run 2040 to 2060
+        if runde == 3:
+          row['gm_status'] = 7 ## off to run 2060 to 2100
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
-        self.test_model.visible = False
-        self.wait_for_run_after_submit.text = ""
-        self.p_advance_to_next_round.text = ""
+        self.test_model.visible = False  ## this is a debug button
+        ## give feedback
+        ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
+        self.card_fut.visible = False
+        self.p_after_submit.visible = True
+        self.wait_for_run_after_submit.content = mg.after_submit_tx
+        if runde == 1:
+          # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
+          self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
+        elif runde == 2:
+          # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
+          self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
+        elif runde == 3:
+          # p_advance_to_2_tx = "Get the results until the end of the century"
+          self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
+#p_waiting_model_run_tx = "... still waiting for the GM to advance the model ..."
+#waiting_tx = "Waiting ..."
 
   def gm_start_round_click(self, **event_args):
     ## first, check if all regions have submitted
@@ -948,7 +978,6 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call('fe_keepalive')
-    
 
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
