@@ -506,7 +506,6 @@ class home(homeTemplate):
       congrats = mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
       alert(congrats, title=mg.pcr_submit_title)
-
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1)
       self.pcgd_generating.visible = True
 #      make something visible
@@ -872,66 +871,42 @@ class home(homeTemplate):
       ### what happens at the GM when the round is done?
       
   def do_future_after_run(self, cid, role, reg, runde, yr):
-    print("in do_future_after_run "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
-    self.pcgd_advance.visible = False
-    self.dec_card.visible = False
+    print("arrived in do_future_after_run "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
     self.card_fut.visible = True
-    ## check if all your regional ministers have logged in
-    ## ToDo when game is restarted from suspension this must be done differently.
-    if runde == 1:
-      all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
-    else:
-      all_colleauges_logged_in = True
-    if not all_colleauges_logged_in:
-      self.fut_not_all_logged_in.visible = True
-      self.fut_bud_lb1.visible = False
-      self.fut_bud_lb2.visible = False
-      self.fut_but_lb3.visible = False
-      self.fut_bud_amount.visible = False
-      self.fut_invest.visible = False
-      self.fut_invest_pct.visible = False
-      self.refresh_numbers.visible = True
-      self.submit_numbers.visible = False
-      self.card_emp_fut.visible = False
-      self.card_ener_fut.visible = False
-      self.card_food_fut.visible = False
-      self.card_ineq_fut.visible = False
-      self.card_pov_fut.visible = False
-    else:
-      self.fut_not_all_logged_in.visible = False
-      self.fut_bud_lb1.visible = True
-      self.fut_bud_lb2.visible = True
-      self.fut_but_lb3.visible = True
-      self.fut_bud_amount.visible = True
-      self.fut_invest.visible = True
-      self.fut_invest_pct.visible = True
-      self.refresh_numbers.visible = True
-      self.submit_numbers.visible = True
-      self.card_emp_fut.visible = True
-      self.card_ener_fut.visible = True
-      self.card_food_fut.visible = True
-      self.card_ineq_fut.visible = True
-      self.card_pov_fut.visible = True
-      self.pcgd_plot_card.visible = True
-      self.submit_numbers.visible = False
-      f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
-      self.pov_rep_panel.visible = True
-      self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-      self.pov_rep_panel.items = fut_pov_list
-      self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-      self.cpf_rp_ineq.items = fut_ineq_list    
-      self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-      self.cpf_rp_emp.items = fut_emp_list    
-      self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-      self.cpf_food_rp.items = fut_food_list    
-      self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-      self.cpf_ener_rp.items = fut_ener_list    
-      if within_budget:
+    self.dec_card.visible = False
+    self.pcgd_plot_card.visible = True
+    slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+    self.plot_card_rp.items = slots
+    self.fut_bud_lb1.visible = True
+    self.fut_bud_lb2.visible = True
+    self.fut_but_lb3.visible = True
+    self.fut_bud_amount.visible = True
+    self.fut_invest.visible = True
+    self.fut_invest_pct.visible = True
+    self.refresh_numbers.visible = True
+    self.submit_numbers.visible = True
+    self.card_emp_fut.visible = True
+    self.card_ener_fut.visible = True
+    self.card_food_fut.visible = True
+    self.card_ineq_fut.visible = True
+    self.card_pov_fut.visible = True
+    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
+    self.pov_rep_panel.visible = True
+    self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
+    self.pov_rep_panel.items = fut_pov_list
+    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+    self.cpf_rp_ineq.items = fut_ineq_list    
+    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+    self.cpf_rp_emp.items = fut_emp_list    
+    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+    self.cpf_food_rp.items = fut_food_list    
+    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+    self.cpf_ener_rp.items = fut_ener_list    
+    if within_budget:
         self.submit_numbers.visible = True
-      else:
+    else:
         self.submit_numbers.visible = False
-      return within_budget
-    pass
+    return within_budget
     
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the 
@@ -944,6 +919,7 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
+      print("off to do_future_after_run with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
       self.do_future_after_run(cid, 'fut', reg, runde, yr)
     elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
       reg = mg.my_reg
@@ -1116,6 +1092,7 @@ class home(homeTemplate):
 #      n.show()
 #      return
     if gmStatus == 6:
+      print("in pcgd_advance_click 6")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
@@ -1131,7 +1108,8 @@ class home(homeTemplate):
       role = mg.my_ministry
       yr, runde = self.get_runde(cid)
 ###
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
+      for ro in mg.roles:
+        self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = "Generating graphs until 2040 and decision sheet for 2040"
     #      make something visible
