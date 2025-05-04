@@ -856,13 +856,13 @@ class home(homeTemplate):
     else: ## model is done
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx
-      time.sleep(5)
+      time.sleep(2)
       self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
-        self.gm_start_round.text = mg.gm_start_round_tx_2 + " gm_start_round_click ln 866"
+        self.gm_start_round.text = mg.gm_start_round_tx_2
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
         row['gm_status'] = 9
@@ -883,10 +883,10 @@ class home(homeTemplate):
       runde = 2
       yr = 2040
       print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
-###########
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
+      self.pcr_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
@@ -905,14 +905,33 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr )
-
-###########
-      
     elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
       yr = 2060
-      self.do_future(cid, 'fut', reg, runde, yr)
+      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
+      self.p_card_graf_dec.visible = True
+      self.p_choose_role.visible = False
+      self.dec_card.visible = False
+      self.pcr_submit.visible = False
+      role = 'fut'
+      self.pcgd_title.text = mg.fut_title_tx2
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.pcgd_generating.visible = True
+      #      make something visible
+      while not self.task.is_completed():
+        pass
+      else: ## background is done
+        ### get runde, yr
+        self.pcgd_generating.visible = False
+        self.pcgd_plot_card.visible = True
+        self.card_fut.visible = True
+        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
+        self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+        self.pcgd_info_rd1.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+        self.plot_card_rp.items = slots
+        self.do_future(cid, role, reg, runde, yr )
 
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
@@ -1079,7 +1098,11 @@ class home(homeTemplate):
 #      n.show()
 #      return
     if gmStatus == 6:
-      print("in pcgd_advance_click 6")
+      rc = app_tables.cookies.get(game_id=cid)
+      if rc['r2sub'] < 10:
+        n = Notification(mg.not_to_2060, style="warning")
+        n.show()
+      print("pcgd_advance_tx")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
