@@ -869,47 +869,9 @@ class home(homeTemplate):
       elif runde == 3:
         row['gm_status'] = 10
       ### what happens at the GM when the round is done?
-      
-  def do_future_after_run(self, cid, role, reg, runde, yr):
-    print("arrived in do_future_after_run "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
-    self.card_fut.visible = True
-    self.dec_card.visible = False
-    self.pcgd_plot_card.visible = True
-    slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
-    self.plot_card_rp.items = slots
-    self.fut_bud_lb1.visible = True
-    self.fut_bud_lb2.visible = True
-    self.fut_but_lb3.visible = True
-    self.fut_bud_amount.visible = True
-    self.fut_invest.visible = True
-    self.fut_invest_pct.visible = True
-    self.refresh_numbers.visible = True
-    self.submit_numbers.visible = True
-    self.card_emp_fut.visible = True
-    self.card_ener_fut.visible = True
-    self.card_food_fut.visible = True
-    self.card_ineq_fut.visible = True
-    self.card_pov_fut.visible = True
-    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
-    self.pov_rep_panel.visible = True
-    self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-    self.pov_rep_panel.items = fut_pov_list
-    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-    self.cpf_rp_ineq.items = fut_ineq_list    
-    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-    self.cpf_rp_emp.items = fut_emp_list    
-    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-    self.cpf_food_rp.items = fut_food_list    
-    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-    self.cpf_ener_rp.items = fut_ener_list    
-    if within_budget:
-        self.submit_numbers.visible = True
-    else:
-        self.submit_numbers.visible = False
-    return within_budget
-    
+        
   def p_advance_to_next_round_click(self, **event_args):
-    # Get the results until the end of the 
+    # Get the results until the end of the for FUT
     cid = mg.my_game_id
     row = app_tables.games_log.get(game_id=cid)
     if row['gm_status'] == 5:
@@ -919,13 +881,13 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
-      print("off to do_future_after_run with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
-      self.do_future_after_run(cid, 'fut', reg, runde, yr)
+      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
+      self.do_future(cid, 'fut', reg, runde, yr)
     elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
       yr = 2060
-      self.do_future_after_run(cid, 'fut', reg, runde, yr)
+      self.do_future(cid, 'fut', reg, runde, yr)
 
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
@@ -1106,19 +1068,19 @@ class home(homeTemplate):
       self.plot_card_rp.visible = True
       self.dec_card.visible = True 
       role = mg.my_ministry
+      print("mg.my_ministry= "+role)
       yr, runde = self.get_runde(cid)
-###
-      for ro in mg.roles:
-        self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = "Generating graphs until 2040 and decision sheet for 2040"
-    #      make something visible
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
       while not self.task.is_completed():
         pass
-      else: ## background is done
+      else: ## launch_create_plots_for_slots is done
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         if role == 'fut':
+          self.dec_card.visible = False
+          self.pcgd_info_rd1.visible = True
           self.card_fut.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
           self.fut_info.content = mg.pcgd_rd1_info_fut_tx
