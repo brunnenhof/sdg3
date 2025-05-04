@@ -796,7 +796,7 @@ class home(homeTemplate):
         ## give feedback
         ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
         self.card_fut.visible = False
-        self.p_after_submit.visible = False
+        self.p_after_submit.visible = True
         self.wait_for_run_after_submit.content = mg.after_submit_tx
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
@@ -890,7 +890,7 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
-      self.pcr_submit.visible = False
+      self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
@@ -917,7 +917,7 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
-      self.pcr_after_submit.visible = False
+      self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
