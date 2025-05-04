@@ -1131,7 +1131,7 @@ class home(homeTemplate):
       rf = app_tables.game_files.get(game_id=cid, yr=2060)
       print("pcgd_advance_click -- check if data for 2060 exists")
       print(rf)
-      if rf is not None:
+      if rf is None:
         n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx)
         n.show()
         return
