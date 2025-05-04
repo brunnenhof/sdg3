@@ -962,6 +962,34 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr )
+    elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
+      reg = mg.my_reg
+      runde = 3
+      yr = 2100
+      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
+      self.p_card_graf_dec.visible = True
+      self.p_choose_role.visible = False
+      self.dec_card.visible = False
+      self.card_fut.visible = False
+      self.p_after_submit.visible = False
+      role = 'fut'
+      self.pcgd_title.text = mg.fut_title_tx2
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.pcgd_generating.visible = True
+      #      make something visible
+      while not self.task.is_completed():
+        pass
+      else: ## background is done
+        ### get runde, yr
+        self.pcgd_generating.visible = False
+        self.pcgd_plot_card.visible = True
+        self.card_fut.visible = False ## no more budget at the end
+        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_end
+        self.fut_info.content = mg.pcgd_rd1_info_end_tx
+        self.pcgd_info_rd1.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+        self.plot_card_rp.items = slots
+        self.do_future(cid, role, reg, runde, yr )
 
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
@@ -1231,10 +1259,9 @@ class home(homeTemplate):
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
-    if gmStatus == 10: ## 2040 to 2060 successfully run
+    if gmStatus == 12: ## 2060 to 2100 successfully run
       print("pcgd_advance_tx -- gmStatus is "+str(gmStatus))
       anfang = time.time()
-      ### round 2040 to 2060 ran successfully
       n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
       # prepare TA card for new round
@@ -1244,7 +1271,7 @@ class home(homeTemplate):
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
-      self.dec_card.visible = True 
+      self.dec_card.visible = False 
       role = mg.my_ministry
       print("mg.my_ministry= "+role)
       yr, runde = self.get_runde(cid)
@@ -1263,7 +1290,7 @@ class home(homeTemplate):
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
           self.fut_info.content = mg.pcgd_rd1_info_fut_tx
         else:
-          self.dec_card.visible = True
+          self.dec_card.visible = False
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
           self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
