@@ -602,23 +602,25 @@ class home(homeTemplate):
       self.card_pov_fut.visible = True
       self.pcgd_plot_card.visible = True
       self.submit_numbers.visible = False
-      f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
-      self.pov_rep_panel.visible = True
-      self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-      self.pov_rep_panel.items = fut_pov_list
-      self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-      self.cpf_rp_ineq.items = fut_ineq_list    
-      self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-      self.cpf_rp_emp.items = fut_emp_list    
-      self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-      self.cpf_food_rp.items = fut_food_list    
-      self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-      self.cpf_ener_rp.items = fut_ener_list    
-      if within_budget:
-        self.submit_numbers.visible = True
-      else:
-        self.submit_numbers.visible = False
-      return within_budget
+      if not yr == 2100:
+        f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
+        self.pov_rep_panel.visible = True
+        self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
+        self.pov_rep_panel.items = fut_pov_list
+        self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+        self.cpf_rp_ineq.items = fut_ineq_list    
+        self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+        self.cpf_rp_emp.items = fut_emp_list    
+        self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+        self.cpf_food_rp.items = fut_food_list    
+        self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+        self.cpf_ener_rp.items = fut_ener_list    
+        if within_budget:
+          self.submit_numbers.visible = True
+        else:
+          self.submit_numbers.visible = False
+        return within_budget
+      return True 
 
   def calc_cost_home_tot(self, pct, tltl, gl, maxc):
     cost = 0
@@ -1260,7 +1262,7 @@ class home(homeTemplate):
       self.top_duration.text = dauer
       return
     if gmStatus == 12: ## 2060 to 2100 successfully run
-      print("pcgd_advance_tx -- gmStatus is "+str(gmStatus))
+      print("pcgd_advance_tx ++++++ gmStatus is "+str(gmStatus))
       anfang = time.time()
       n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
