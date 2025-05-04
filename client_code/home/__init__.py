@@ -853,7 +853,7 @@ class home(homeTemplate):
       von = 2040
       bis = 2060
       runde = 2
-    elif row['gm_status'] == 9:
+    elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
