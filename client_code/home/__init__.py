@@ -545,6 +545,8 @@ class home(homeTemplate):
       
   def do_non_future(self, cid, role, reg, runde, yr):
     print("in do_NON_future ie TAs "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
+    if yr == 2100:
+      return
     self.dec_card.visible = True
     self.pcgd_advance.visible = True
     pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid)
@@ -977,7 +979,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1272,7 +1274,7 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = True 
       self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + mg.reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
-      self.pcgd_advance.visible = True 
+      self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
       self.dec_card.visible = False 
