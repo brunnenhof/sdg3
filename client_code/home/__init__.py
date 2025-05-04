@@ -830,6 +830,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
+    self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     print("gm_start_round_click "+ str(cid_cookie))
     row = app_tables.games_log.get(game_id=cid_cookie)
