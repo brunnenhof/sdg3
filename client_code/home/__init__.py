@@ -1121,6 +1121,7 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
+    print("pcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus))
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
@@ -1128,9 +1129,9 @@ class home(homeTemplate):
         n.show()
         return
       rf = app_tables.game_files.get(game_id=cid, yr=2060)
-      print("pcgd_advance_click check if data for 2060 exists")
+      print("pcgd_advance_click -- check if data for 2060 exists")
       print(rf)
-      if not isinstance( rf ):
+      if rf is not None:
         n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx)
         n.show()
         return
