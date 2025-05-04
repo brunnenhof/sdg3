@@ -913,7 +913,7 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
-      self.pcr_submit.visible = False
+      self.pcr_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
