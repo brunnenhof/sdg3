@@ -761,15 +761,28 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
       ## bump cookie for this round r_sub by one
+      all_regs_sub = False
       if runde == 1:
-        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie)        
+        print("submit_numbers bump cookie runde="+str(runde))
+        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
+        rc = app_tables.cookies.get(game_id=cid_cookie)
+        if rc['r1sub'] == 10:
+          all_regs_sub = True
       elif runde == 2:
+        print("submit_numbers bump cookie runde="+str(runde))
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
+        rc = app_tables.cookies.get(game_id=cid_cookie)
+        if rc['r2sub'] == 10:
+          all_regs_sub = True
       elif runde == 3:
+        print("submit_numbers bump cookie runde="+str(runde))
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
+        rc = app_tables.cookies.get(game_id=cid_cookie)
+        if rc['r3sub'] == 10:
+          all_regs_sub = True
       ### update steps
 
-      if not self.all_reg_submitted(cid_cookie, pStepDone): ## there is at least one region (of players) that has not yet submitted
+      if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         if runde == 1:
           row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
@@ -790,6 +803,8 @@ class home(homeTemplate):
           row['gm_status'] = 7 ## all regs submitted for 2040 to 2060
         if row['gm_status'] == 9:
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
+        rg = app_tables.games_log.get(game_id=cid_cookie)
+        print("in submit_numbers_click, updated gmStatus "+str(rg['gm_status']))
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
         self.test_model.visible = False  ## this is a debug button
@@ -835,7 +850,7 @@ class home(homeTemplate):
       von = 2040
       bis = 2060
       runde = 2
-    elif row['gm_status'] == 10:
+    elif row['gm_status'] == 9:
       von = 2060
       bis = 2100
       runde = 3
@@ -869,10 +884,15 @@ class home(homeTemplate):
         self.gm_start_round.text = mg.gm_start_round_tx_2
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
+        self.gm_start_round.visible = True
         row['gm_status'] = 9
         self.gm_start_round.text = mg.gm_start_round_tx_3
+        anvil.server.call('budget_to_db', 2060, cid_cookie)
       elif runde == 3:
-        row['gm_status'] = 10
+        self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx3
+#        self.gm_start_round.visible = True
+        row['gm_status'] = 12
+#        anvil.server.call('budget_to_db', 2060, cid_cookie)
       ### what happens at the GM when the round is done?
         
   def p_advance_to_next_round_click(self, **event_args):
@@ -1049,6 +1069,7 @@ class home(homeTemplate):
         return False 
         
   def my_all_submit(self, reg, round):
+    ## a dead def, never called
     cid = mg.my_game_id
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
@@ -1061,7 +1082,6 @@ class home(homeTemplate):
         return 1 ## r1 all submit
       else:
         return 2 ## r1 still some regs to submit
-        
       return 6 ## r1 has been run
     if gmStatus == 6:
       return 6 ## r1 has been run
