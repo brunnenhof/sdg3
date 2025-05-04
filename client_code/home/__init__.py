@@ -530,6 +530,7 @@ class home(homeTemplate):
         if role == 'fut':
           self.do_future(cid, role, reg, runde, yr )
         else:
+          pass ## dont show policies on last round
           self.do_non_future(cid, role, reg, runde, yr)      
     dauer = round(time.time() - anfang, 0)
     self.top_duration.text = dauer
@@ -1262,6 +1263,7 @@ class home(homeTemplate):
       self.top_duration.text = dauer
       return
     if gmStatus == 12: ## 2060 to 2100 successfully run
+      print("+++++++++++++++++++++++++++++")
       print("pcgd_advance_tx ++++++ gmStatus is "+str(gmStatus))
       anfang = time.time()
       n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
@@ -1279,7 +1281,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = mg.pcgd_generating_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4)
       while not self.task.is_completed():
         pass
       else: ## launch_create_plots_for_slots is done
@@ -1298,6 +1300,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
+          print()
           self.do_future(cid, role, reg, runde, yr )
         else:
           self.do_non_future(cid, role, reg, runde, yr)      
