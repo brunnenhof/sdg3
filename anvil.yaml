@@ -141,7 +141,7 @@ db_schema:
     server: search
     title: ministries
   plots:
-    client: search
+    client: full
     columns:
     - admin_ui: {width: 116}
       name: game_id

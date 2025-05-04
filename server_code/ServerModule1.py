@@ -26,18 +26,23 @@ def fe_keepalive():
   
 @anvil.server.callable
 def generate_id():
-  not_allowed = ['FUCK', 'SHIT', 'NSU']
+  not_allowed = ['FUCK', 'SHIT', 'NSU', 'AFD', 'CDU', 'CSU', 'BSW', 'FDP', 'NPD']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
+  while cid in not_allowed:
+    cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   a = random.randint(10, 99)
   while a == 88:
     a = random.randint(10, 99)
   cid = cid + '-' + str(a) 
   while app_tables.games_log.has_row(q.like(cid)):
     cid = ''.join(random.choices(string.ascii_uppercase, k=4))
+    while cid in not_allowed:
+      cid = ''.join(random.choices(string.ascii_uppercase, k=4))
     a = random.randint(10, 99)
     while a == 88:
       a = random.randint(10, 99)
     cid = cid + '-' + str(a) 
+  budget_to_db(2025, cid)
   return f"{cid}"
 
 @anvil.server.callable

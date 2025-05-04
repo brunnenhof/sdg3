@@ -117,7 +117,7 @@ class home(homeTemplate):
 
   def top_start_game_click(self, **event_args):
     with Notification("Clearing DBs ..."):
-      self.test_model_top_click()
+      self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
@@ -520,7 +520,6 @@ class home(homeTemplate):
           self.card_fut.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
           self.fut_info.content = mg.pcgd_rd1_info_fut_tx
-          anvil.server.call('budget_to_db', yr, cid)
         else:
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
@@ -939,6 +938,7 @@ class home(homeTemplate):
     app_tables.step_done.delete_all_rows()
     app_tables.roles_assign.delete_all_rows()
     app_tables.game_files.delete_all_rows()
+    app_tables.plots.delete_all_rows()
     rows = app_tables.games_log.search(game_id=q.not_("TEST"))
     for row in rows:
       row.delete()
@@ -1055,6 +1055,7 @@ class home(homeTemplate):
 #      n.show()
 #      return
     if gmStatus == 6:
+      anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
@@ -1068,10 +1069,34 @@ class home(homeTemplate):
       self.dec_card.visible = True 
       role = mg.my_ministry
       yr, runde = self.get_runde(cid)
-      self.do_non_future(cid, role, reg, runde, yr)
+###
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
+      self.pcgd_generating.visible = True
+      self.pcgd_generating.text = "Generating graphs until 2040 and decision sheet for 2040"
+    #      make something visible
+      while not self.task.is_completed():
+        pass
+      else: ## background is done
+        self.pcgd_generating.visible = False
+        self.pcgd_plot_card.visible = True
+        if role == 'fut':
+          self.card_fut.visible = True
+          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
+          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+        else:
+          self.dec_card.visible = True
+          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+        self.plot_card_rp.items = slots
+        if role == 'fut':
+          self.do_future(cid, role, reg, runde, yr )
+        else:
+          self.do_non_future(cid, role, reg, runde, yr)      
+      dauer = round(time.time() - anfang, 0)
+      self.top_duration.text = dauer
       return
-    # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
-
+###      
 
     row = app_tables.cookies.get(game_id=cid)
     rowp = app_tables.step_done.get(game_id=cid, reg=reg)
