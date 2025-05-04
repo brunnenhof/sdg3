@@ -51,6 +51,7 @@ def get_game_id_from_cookie():
 
 @anvil.server.callable
 def set_cookie_sub(r, val, cid):
+  print("server set_cookie_sub "+r+' '+cid+' '+str(val))
   row = app_tables.cookies.get(game_id=cid)
   if r == 'r1':
     last_val = row['r1sub']
@@ -59,11 +60,12 @@ def set_cookie_sub(r, val, cid):
   elif r == 'r2':
     last_val = row['r2sub']
     new_val = last_val + val
-    row.update(r1sub = new_val)
+    print("server set_cookie_sub "+r+' '+cid+' '+str(val)+' '+str(last_val)+' '+str(new_val))
+    row['r2sub'] = new_val
   elif r == 'r3':
     last_val = row['r3sub']
     new_val = last_val + val
-    row.update(r1sub = new_val)
+    row.update(r3sub = new_val)
 
 @anvil.server.callable
 def launch_set_roles(game_id):

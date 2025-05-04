@@ -769,7 +769,7 @@ class home(homeTemplate):
         if rc['r1sub'] == 10:
           all_regs_sub = True
       elif runde == 2:
-        print("submit_numbers bump cookie runde="+str(runde))
+        print("submit_numbers bump cookie runde="+str(runde)+' '+cid_cookie)
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
