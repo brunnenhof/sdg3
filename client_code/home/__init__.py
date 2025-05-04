@@ -886,20 +886,23 @@ class home(homeTemplate):
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
         self.gm_start_round.visible = True
-        row['gm_status'] = 9
+        row['gm_status'] = 10
         self.gm_start_round.text = mg.gm_start_round_tx_3
         anvil.server.call('budget_to_db', 2060, cid_cookie)
+        print("gm_start_round:: "+str(runde)+' gm_status=10')
       elif runde == 3:
-        self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx3
-#        self.gm_start_round.visible = True
+        self.gm_start_round.visible = True
         row['gm_status'] = 12
-#        anvil.server.call('budget_to_db', 2060, cid_cookie)
-      ### what happens at the GM when the round is done?
-        
+        self.gm_start_round.text = mg.gm_start_round_tx_3
+        anvil.server.call('budget_to_db', 2100, cid_cookie)
+        print("gm_start_round:: "+str(runde)+' gm_status=12')
+
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the for FUT
     cid = mg.my_game_id
     row = app_tables.games_log.get(game_id=cid)
+    print("in p_advance_to_next_round_click")
+    print("in p_advance_to_next_round_click -> 3rd line "+cid+' fut '+mg.my_reg+' '+str(row['gm_status']))
     if row['gm_status'] == 5:
       alert(mg.p_waiting_model_run_tx, title=mg.waiting_tx)
     ### prepare graphs and decisions for round 2 if gm_status == 2
@@ -930,7 +933,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr )
-    elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
+    elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
       yr = 2060
