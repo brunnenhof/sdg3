@@ -1102,6 +1102,7 @@ class home(homeTemplate):
       if rc['r2sub'] < 10:
         n = Notification(mg.not_to_2060, style="warning")
         n.show()
+        return
       print("pcgd_advance_tx")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
@@ -1145,29 +1146,6 @@ class home(homeTemplate):
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
-###      
-
-    row = app_tables.cookies.get(game_id=cid)
-    rowp = app_tables.step_done.get(game_id=cid, reg=reg)
-    regStatus = rowp['p_step_done']
-    if regStatus == 3:
-      ### my_reg has submitted
-      if gmStatus == 4:
-        ### all regs have submitted for round 2025 to 2040
-        n = Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
-        self.pcgd_plot_card.visible = False
-        self.dec_card.visible = False
-        n.show()
-        return
-      else:
-        n = Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
-        n.show()
-      return
-#    else:
-      ### my_reg has submitted#
-      #elif regStatus == 5:
-      #pass
-
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
