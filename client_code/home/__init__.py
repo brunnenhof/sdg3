@@ -1128,17 +1128,10 @@ class home(homeTemplate):
         n = Notification(mg.not_to_2060, style="warning")
         n.show()
         return
-      rf = app_tables.game_files.get(game_id=cid, yr=2060)
-      print("pcgd_advance_click -- check if data for 2060 exists")
-      print(rf)
-      if rf is None:
-        n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx)
-        n.show()
-        return
       print("pcgd_advance_tx")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(mg.sim_success_tx, timeout=5, title=mg.sim_success_title_tx, style="success")
+      n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
