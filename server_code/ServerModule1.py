@@ -74,7 +74,6 @@ def launch_set_roles(game_id):
 @anvil.server.background_task
 def set_roles(game_id):
 #  app_tables.roles_assign.delete_all_rows()
-  app_tables.budget.delete_all_rows()
   regs = mg.regs
   pols = [r['abbr'] for r in app_tables.policies.search()]
   for runde in range(1,4):
@@ -466,8 +465,7 @@ def budget_to_db(yr, cid):
 
   for i in range(0,10):
     print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
-    app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i],
-          c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
+    app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i], c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
 
 @anvil.server.callable
 def get_policy_budgets(reg, ta, yr, cid):
