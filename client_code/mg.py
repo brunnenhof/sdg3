@@ -160,7 +160,7 @@ pcgd_generating_tx1 = "Generating graphs until 2040 and decision sheet for 2040"
 pcgd_generating_tx2 = "Generating graphs until 2060 and decision sheet for 2060"
 pcgd_generating_tx3 = "Generating graphs until 2100"
 
-gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
+gm_wait_round_started_tx = 'The simulation started. Please wait until it is done...'
 gm_start_round_tx_2 = "Check if all regions are ready to advance to 2060 ..."
 gm_start_round_tx_3 = "Check if all regions are ready to advance to 2100 ..."
 waiting_for_gm_to_start_round = "... for simulation to start ..."
@@ -181,7 +181,7 @@ pcgd_rd1_info_fut_tx = "As Minister for the Future, you see the big picture. You
 pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
 show_hide_plots_hide_tx = "Hide graphs"
 show_hide_plots_show_tx = "Show graphs"
-pcgd_advance_tx = "Check if the game leader has advanced the model ..."
+pcgd_advance_tx = "Check if the model has been advanced"
 pcgd_info_after_rd1_tx = "The model has been simulated until 2040. Again, in the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry!\nStudy all your indicators, see how they develop over the years. *Given your policy choices, did you expect something different? Are surprised?* Again, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, and in light of what happenend in the last round, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
 not_to_2060 = "The model has not yet been advanced to 2060."
 dec_info_tx = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."

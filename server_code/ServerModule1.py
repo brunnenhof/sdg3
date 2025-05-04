@@ -214,6 +214,10 @@ def read_mdfplay25(datei, runde):
     mdf_play = mdf_play[320:1440, :]
   elif runde == 2:
     mdf_play = mdf_play[320:1920, :]
+  elif runde == 3:
+    mdf_play = mdf_play[320:2560, :]
+  elif runde == 4:
+    mdf_play = mdf_play[320:3840, :]
   return mdf_play
 
 def read_mdfplay_full(datei, runde):
@@ -343,8 +347,8 @@ def build_plot(var_row, regidx, cap, cid, runde):
     lx = idx + regidx # find location of variable in mdf with reg offset
 #  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
-#  dfv_pd = pd.DataFrame(dfv)
-#  print(dfv_pd)
+  dfv_pd = pd.DataFrame(dfv)
+  print(dfv_pd)
   cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
