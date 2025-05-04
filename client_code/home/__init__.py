@@ -471,7 +471,7 @@ class home(homeTemplate):
     elif r == 6:
       runde = 2
       yr = 2040
-    elif r == 9:
+    elif r == 10:
       runde = 3
       yr = 2060
     elif r == 12:
