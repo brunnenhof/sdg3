@@ -893,10 +893,10 @@ class home(homeTemplate):
         anvil.server.call('budget_to_db', 2060, cid_cookie)
         print("gm_start_round:: "+str(runde)+' gm_status=10')
       elif runde == 3:
-        self.gm_start_round.visible = True
+        self.gm_start_round.visible = False
         row['gm_status'] = 12
         self.gm_start_round.text = mg.gm_start_round_tx_3
-        anvil.server.call('budget_to_db', 2100, cid_cookie)
+#        anvil.server.call('budget_to_db', 2100, cid_cookie)
         print("gm_start_round:: "+str(runde)+' gm_status=12')
 
   def p_advance_to_next_round_click(self, **event_args):
