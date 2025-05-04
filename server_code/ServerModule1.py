@@ -370,6 +370,10 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
       yr = 2025
     elif runde == 2:
       yr = 2040
+    elif runde == 3:
+      yr = 2060
+    elif runde == 4:
+      yr = 2100
     else:
       print('In put_plots_for_slots: We dont know which runde')
   # generate a dictionary of 
