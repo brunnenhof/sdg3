@@ -1107,6 +1107,11 @@ class home(homeTemplate):
         n = Notification(mg.not_to_2060, style="warning")
         n.show()
         return
+      rf = app_tables.game_files.get(game_id=cid, yr=2060)
+      if not isinstance( rf, anvil._server.LiveObjectProxy ):
+        n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx)
+        n.show()
+        return
       print("pcgd_advance_tx")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
