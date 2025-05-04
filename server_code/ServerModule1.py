@@ -42,7 +42,6 @@ def generate_id():
     while a == 88:
       a = random.randint(10, 99)
     cid = cid + '-' + str(a) 
-  budget_to_db(2025, cid)
   return f"{cid}"
 
 @anvil.server.callable

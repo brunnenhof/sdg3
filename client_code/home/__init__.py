@@ -119,6 +119,7 @@ class home(homeTemplate):
     with Notification("Clearing DBs ..."):
       self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
+    anvil.server.call('budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
