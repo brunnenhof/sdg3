@@ -502,6 +502,7 @@ class home(homeTemplate):
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
       self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
+      mg.fut_title_tx2 = self.pcgd_title.text
       your_game_id = cid + "-" + str(wrx) + str(wmx)
       congrats = mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
@@ -882,7 +883,31 @@ class home(homeTemplate):
       runde = 2
       yr = 2040
       print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
-      self.do_future(cid, 'fut', reg, runde, yr)
+###########
+      self.p_card_graf_dec.visible = True
+      self.p_choose_role.visible = False
+      self.dec_card.visible = False
+      role = 'fut'
+      self.pcgd_title.text = mg.fut_title_tx2
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
+      self.pcgd_generating.visible = True
+      #      make something visible
+      while not self.task.is_completed():
+        pass
+      else: ## background is done
+        ### get runde, yr
+        self.pcgd_generating.visible = False
+        self.pcgd_plot_card.visible = True
+        self.card_fut.visible = True
+        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
+        self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+        self.pcgd_info_rd1.visible = True
+        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+        self.plot_card_rp.items = slots
+        self.do_future(cid, role, reg, runde, yr )
+
+###########
+      
     elif row['gm_status'] == 8: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3

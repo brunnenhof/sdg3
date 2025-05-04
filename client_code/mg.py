@@ -164,6 +164,7 @@ setup_npbp_label_tx = 'Hold on, all roles are being prepared ...'
 #    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
 pcr_submit_title = "Congratulations!"
 pcr_submit_msg1 = "You have been confirmed as "
+fut_title_tx2 = ""
 pcr_submit_msg2 = ' in '
 pcr_submit_msg3 = 'Your personal Game ID is: '
 player_board_tx = "PLAYER BOARD: "
