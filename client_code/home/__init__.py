@@ -1128,7 +1128,9 @@ class home(homeTemplate):
         n.show()
         return
       rf = app_tables.game_files.get(game_id=cid, yr=2060)
-      if not isinstance( rf, anvil._server.LiveObjectProxy ):
+      print("pcgd_advance_click check if data for 2060 exists")
+      print(rf)
+      if not isinstance( rf ):
         n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx)
         n.show()
         return
