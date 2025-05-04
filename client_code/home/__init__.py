@@ -768,6 +768,7 @@ class home(homeTemplate):
       elif runde == 3:
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
       ### update steps
+
       if not self.all_reg_submitted(cid_cookie, pStepDone): ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         if runde == 1:
@@ -780,11 +781,14 @@ class home(homeTemplate):
         n.show() 
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
+        print("in submit_numbers_click, all HAVE sub gmStatus "+str(row['gm_status']))
+        rc = app_tables.cookies.get(game_id=cid_cookie)
+        print("rXsub " + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub']) + ' ')
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
-        if runde == 2:
+        if row['gm_status'] == 6:
           row['gm_status'] = 7 ## all regs submitted for 2040 to 2060
-        if runde == 3:
+        if row['gm_status'] == 9:
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
         n = Notification(mg.all_submitted_p_tx, timeout=7)
         n.show()
@@ -1099,7 +1103,7 @@ class home(homeTemplate):
 #      return
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
-      if rc['r2sub'] < 10:
+      if rc['r1sub'] < 10:
         n = Notification(mg.not_to_2060, style="warning")
         n.show()
         return
