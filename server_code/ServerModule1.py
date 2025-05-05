@@ -587,8 +587,8 @@ def get_sorted_pol_list(cid, runde, pol):
   myKeys.sort()
   sd = {i: dic[i] for i in myKeys}
   pol_list = list(sd.values())
-#  print(cid+' '+str(runde)+' '+pol)
-#  print(pol_list)
+  print(cid+' '+str(runde)+' '+pol)
+  print(pol_list)
   return pol_list
 
 @anvil.server.background_task
@@ -897,105 +897,103 @@ def ugregmod(game_id, von, bis):
 #    ExPS_R2_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 #    ExPS_R1_via_Excel = [0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
-    """
-    ExPS_R1_via_Excel = [77.64, 0, 0, 0, 0, 0, 0, 0, 0, 73.36]
-    ExPS_R2_via_Excel = [84.71, 0, 0, 0, 0, 0, 0, 0, 0, 62.96]
-    ExPS_R3_via_Excel = [58.33, 0, 0, 0, 0, 0, 0, 0, 0, 88.49]
-    LPB_R1_via_Excel = [25.64, 0, 0, 0, 0, 0, 0, 0, 0, 24.59]
-    LPB_R2_via_Excel = [25.25, 0, 0, 0, 0, 0, 0, 0, 0, 15.54]
-    LPB_R3_via_Excel = [16.32, 0, 0, 0, 0, 0, 0, 0, 0, 27.71]
-    LPBsplit_R1_via_Excel = [76.95, 0, 0, 0, 0, 0, 0, 0, 0, 69.09]
-    LPBsplit_R2_via_Excel = [78.66, 0, 0, 0, 0, 0, 0, 0, 0, 75.29]
-    LPBsplit_R3_via_Excel = [78.03, 0, 0, 0, 0, 0, 0, 0, 0, 86.93]
-    LPBgrant_R1_via_Excel = [60.23, 0, 0, 0, 0, 0, 0, 0, 0, 53.01]
-    LPBgrant_R2_via_Excel = [76.34, 0, 0, 0, 0, 0, 0, 0, 0, 69.73]
-    LPBgrant_R3_via_Excel = [75.77, 0, 0, 0, 0, 0, 0, 0, 0, 99.15]
-    FMPLDD_R1_via_Excel = [73.27, 0, 0, 0, 0, 0, 0, 0, 0, 77.3]
-    FMPLDD_R2_via_Excel = [73.73, 0, 0, 0, 0, 0, 0, 0, 0, 49.96]
-    FMPLDD_R3_via_Excel = [50.59, 0, 0, 0, 0, 0, 0, 0, 0, 51.2]
-    TOW_R1_via_Excel = [77.03, 0, 0, 0, 0, 0, 0, 0, 0, 79.3]
-    TOW_R2_via_Excel = [41.59, 0, 0, 0, 0, 0, 0, 0, 0, 69.54]
-    TOW_R3_via_Excel = [48.77, 0, 0, 0, 0, 0, 0, 0, 0, 43.53]
-    FPGDC_R1_via_Excel = [84.4, 0, 0, 0, 0, 0, 0, 0, 0, 58.04]
-    FPGDC_R2_via_Excel = [78.24, 0, 0, 0, 0, 0, 0, 0, 0, 68.25]
-    FPGDC_R3_via_Excel = [58.15, 0, 0, 0, 0, 0, 0, 0, 0, 55.88]
-    Lfrac_R1_via_Excel = [90.49, 0, 0, 0, 0, 0, 0, 0, 0, 98.64]
-    Lfrac_R2_via_Excel = [73.83, 0, 0, 0, 0, 0, 0, 0, 0, 61.94]
-    Lfrac_R3_via_Excel = [56.77, 0, 0, 0, 0, 0, 0, 0, 0, 79.22]
-    SSGDR_R1_via_Excel = [3.66, 1, 1, 1, 1, 1, 1, 1, 1, 3.06]
-    SSGDR_R2_via_Excel = [3.31, 1, 1, 1, 1, 1, 1, 1, 1, 3.84]
-    SSGDR_R3_via_Excel = [4.51, 1, 1, 1, 1, 1, 1, 1, 1, 3.47]
-    XtaxFrac_R1_via_Excel = [70.21, 50, 50, 50, 50, 50, 50, 50, 50, 75.86]
-    XtaxFrac_R2_via_Excel = [84.62, 50, 50, 50, 50, 50, 50, 50, 50, 83.68]
-    XtaxFrac_R3_via_Excel = [71.19, 50, 50, 50, 50, 50, 50, 50, 50, 70.6]
-    StrUP_R1_via_Excel = [1.51, 0, 0, 0, 0, 0, 0, 0, 0, 2.74]
-    StrUP_R2_via_Excel = [2.51, 0, 0, 0, 0, 0, 0, 0, 0, 1.92]
-    StrUP_R3_via_Excel = [2.91, 0, 0, 0, 0, 0, 0, 0, 0, 2.74]
-    Wreaction_R1_via_Excel = [2.5, 0, 0, 0, 0, 0, 0, 0, 0, 2.23]
-    Wreaction_R2_via_Excel = [2.54, 0, 0, 0, 0, 0, 0, 0, 0, 1.95]
-    Wreaction_R3_via_Excel = [2.62, 0, 0, 0, 0, 0, 0, 0, 0, 1.93]
-    XtaxCom_R1_via_Excel = [2.58, 0, 0, 0, 0, 0, 0, 0, 0, 4.97]
-    XtaxCom_R2_via_Excel = [4.61, 0, 0, 0, 0, 0, 0, 0, 0, 3.38]
-    XtaxCom_R3_via_Excel = [2.51, 0, 0, 0, 0, 0, 0, 0, 0, 4.69]
-    ICTR_R1_via_Excel = [6.73, 0, 0, 0, 0, 0, 0, 0, 0, 5.92]
-    ICTR_R2_via_Excel = [6.71, 0, 0, 0, 0, 0, 0, 0, 0, 6.03]
-    ICTR_R3_via_Excel = [5.78, 0, 0, 0, 0, 0, 0, 0, 0, 5.17]
-    IOITR_R1_via_Excel = [8.71, 0, 0, 0, 0, 0, 0, 0, 0, 6.5]
-    IOITR_R2_via_Excel = [9.74, 0, 0, 0, 0, 0, 0, 0, 0, 8.92]
-    IOITR_R3_via_Excel = [6.72, 0, 0, 0, 0, 0, 0, 0, 0, 9.87]
-    IWITR_R1_via_Excel = [8.87, 0, 0, 0, 0, 0, 0, 0, 0, 6.24]
-    IWITR_R2_via_Excel = [6.34, 0, 0, 0, 0, 0, 0, 0, 0, 6.47]
-    IWITR_R3_via_Excel = [6.1, 0, 0, 0, 0, 0, 0, 0, 0, 8.56]
-    Ctax_R1_via_Excel = [64.87, 0, 0, 0, 0, 0, 0, 0, 0, 61.81]
-    Ctax_R2_via_Excel = [72.62, 0, 0, 0, 0, 0, 0, 0, 0, 79.01]
-    Ctax_R3_via_Excel = [74.57, 0, 0, 0, 0, 0, 0, 0, 0, 87.66]
-    SGRPI_R1_via_Excel = [25.72, 0, 0, 0, 0, 0, 0, 0, 0, 45.73]
-    SGRPI_R2_via_Excel = [46.18, 0, 0, 0, 0, 0, 0, 0, 0, 46.05]
-    SGRPI_R3_via_Excel = [37.37, 0, 0, 0, 0, 0, 0, 0, 0, 33.38]
-    FEHC_R1_via_Excel = [9.81, 0, 0, 0, 0, 0, 0, 0, 0, 5.3]
-    FEHC_R2_via_Excel = [5.09, 0, 0, 0, 0, 0, 0, 0, 0, 6.03]
-    FEHC_R3_via_Excel = [7.6, 0, 0, 0, 0, 0, 0, 0, 0, 8.44]
-    XtaxRateEmp_R1_via_Excel = [3.43, 0, 0, 0, 0, 0, 0, 0, 0, 2.77]
-    XtaxRateEmp_R2_via_Excel = [3.07, 0, 0, 0, 0, 0, 0, 0, 0, 3.44]
-    XtaxRateEmp_R3_via_Excel = [3.41, 0, 0, 0, 0, 0, 0, 0, 0, 3.94]
-    SGMP_R1_via_Excel = [7.32, 0, 0, 0, 0, 0, 0, 0, 0, 9.32]
-    SGMP_R2_via_Excel = [9.56, 0, 0, 0, 0, 0, 0, 0, 0, 6.61]
-    SGMP_R3_via_Excel = [5.19, 0, 0, 0, 0, 0, 0, 0, 0, 5.58]
-    FWRP_R1_via_Excel = [46.72, 0, 0, 0, 0, 0, 0, 0, 0, 72.64]
-    FWRP_R2_via_Excel = [65.29, 0, 0, 0, 0, 0, 0, 0, 0, 49.5]
-    FWRP_R3_via_Excel = [67.57, 0, 0, 0, 0, 0, 0, 0, 0, 59.73]
-    FLWR_R1_via_Excel = [50.19, 0, 0, 0, 0, 0, 0, 0, 0, 56.95]
-    FLWR_R2_via_Excel = [61.09, 0, 0, 0, 0, 0, 0, 0, 0, 79.95]
-    FLWR_R3_via_Excel = [51.01, 0, 0, 0, 0, 0, 0, 0, 0, 74.72]
-    RMDR_R1_via_Excel = [74.23, 0, 0, 0, 0, 0, 0, 0, 0, 89.52]
-    RMDR_R2_via_Excel = [70.68, 0, 0, 0, 0, 0, 0, 0, 0, 56.49]
-    RMDR_R3_via_Excel = [86.22, 0, 0, 0, 0, 0, 0, 0, 0, 65.78]
-    RIPLGF_R1_via_Excel = [39.33, 0, 0, 0, 0, 0, 0, 0, 0, 38.61]
-    RIPLGF_R2_via_Excel = [44.24, 0, 0, 0, 0, 0, 0, 0, 0, 49.99]
-    RIPLGF_R3_via_Excel = [44.41, 0, 0, 0, 0, 0, 0, 0, 0, 28.45]
-    FC_R1_via_Excel = [87.22, 0, 0, 0, 0, 0, 0, 0, 0, 63.56]
-    FC_R2_via_Excel = [87.07, 0, 0, 0, 0, 0, 0, 0, 0, 77.93]
-    FC_R3_via_Excel = [61.98, 0, 0, 0, 0, 0, 0, 0, 0, 46.46]
-    REFOREST_R1_via_Excel = [1.52, 0, 0, 0, 0, 0, 0, 0, 0, 1.61]
-    REFOREST_R2_via_Excel = [2.73, 0, 0, 0, 0, 0, 0, 0, 0, 2.96]
-    REFOREST_R3_via_Excel = [2.14, 0, 0, 0, 0, 0, 0, 0, 0, 2.68]
-    FTPEE_R1_via_Excel = [2.41, 1, 1, 1, 1, 1, 1, 1, 1, 2.45]
-    FTPEE_R2_via_Excel = [1.77, 1, 1, 1, 1, 1, 1, 1, 1, 2.48]
-    FTPEE_R3_via_Excel = [1.99, 1, 1, 1, 1, 1, 1, 1, 1, 1.87]
-    NEP_R1_via_Excel = [54.79, 0, 0, 0, 0, 0, 0, 0, 0, 59.37]
-    NEP_R2_via_Excel = [92.06, 0, 0, 0, 0, 0, 0, 0, 0, 90.93]
-    NEP_R3_via_Excel = [59, 0, 0, 0, 0, 0, 0, 0, 0, 72.16]
-    ISPV_R1_via_Excel = [90.4, 50, 50, 50, 50, 50, 50, 50, 50, 89.78]
-    ISPV_R2_via_Excel = [88.95, 50, 50, 50, 50, 50, 50, 50, 50, 85.69]
-    ISPV_R3_via_Excel = [85.8, 50, 50, 50, 50, 50, 50, 50, 50, 80.13]
-    CCS_R1_via_Excel = [45.18, 0, 0, 0, 0, 0, 0, 0, 0, 42.64]
-    CCS_R2_via_Excel = [61.47, 0, 0, 0, 0, 0, 0, 0, 0, 76.64]
-    CCS_R3_via_Excel = [56.82, 0, 0, 0, 0, 0, 0, 0, 0, 55.78]
-    DAC_R1_via_Excel = [1.26, 0, 0, 0, 0, 0, 0, 0, 0, 1.07]
-    DAC_R2_via_Excel = [1.41, 0, 0, 0, 0, 0, 0, 0, 0, 0.98]
-    DAC_R3_via_Excel = [0.81, 0, 0, 0, 0, 0, 0, 0, 0, 1.03]
-    """
-    
+#    ExPS_R1_via_Excel = [77.64, 0, 0, 0, 0, 0, 0, 0, 0, 73.36]
+#    ExPS_R2_via_Excel = [84.71, 0, 0, 0, 0, 0, 0, 0, 0, 62.96]
+#    ExPS_R3_via_Excel = [58.33, 0, 0, 0, 0, 0, 0, 0, 0, 88.49]
+#    LPB_R1_via_Excel = [25.64, 0, 0, 0, 0, 0, 0, 0, 0, 24.59]
+#    LPB_R2_via_Excel = [25.25, 0, 0, 0, 0, 0, 0, 0, 0, 15.54]
+#    LPB_R3_via_Excel = [16.32, 0, 0, 0, 0, 0, 0, 0, 0, 27.71]
+#    LPBsplit_R1_via_Excel = [76.95, 0, 0, 0, 0, 0, 0, 0, 0, 69.09]
+#    LPBsplit_R2_via_Excel = [78.66, 0, 0, 0, 0, 0, 0, 0, 0, 75.29]
+#    LPBsplit_R3_via_Excel = [78.03, 0, 0, 0, 0, 0, 0, 0, 0, 86.93]
+#    LPBgrant_R1_via_Excel = [60.23, 0, 0, 0, 0, 0, 0, 0, 0, 53.01]
+#    LPBgrant_R2_via_Excel = [76.34, 0, 0, 0, 0, 0, 0, 0, 0, 69.73]
+#    LPBgrant_R3_via_Excel = [75.77, 0, 0, 0, 0, 0, 0, 0, 0, 99.15]
+#    FMPLDD_R1_via_Excel = [73.27, 0, 0, 0, 0, 0, 0, 0, 0, 77.3]
+#    FMPLDD_R2_via_Excel = [73.73, 0, 0, 0, 0, 0, 0, 0, 0, 49.96]
+#    FMPLDD_R3_via_Excel = [50.59, 0, 0, 0, 0, 0, 0, 0, 0, 51.2]
+#    TOW_R1_via_Excel = [77.03, 0, 0, 0, 0, 0, 0, 0, 0, 79.3]
+#    TOW_R2_via_Excel = [41.59, 0, 0, 0, 0, 0, 0, 0, 0, 69.54]
+#    TOW_R3_via_Excel = [48.77, 0, 0, 0, 0, 0, 0, 0, 0, 43.53]
+#    FPGDC_R1_via_Excel = [84.4, 0, 0, 0, 0, 0, 0, 0, 0, 58.04]
+#    FPGDC_R2_via_Excel = [78.24, 0, 0, 0, 0, 0, 0, 0, 0, 68.25]
+#    FPGDC_R3_via_Excel = [58.15, 0, 0, 0, 0, 0, 0, 0, 0, 55.88]
+#    Lfrac_R1_via_Excel = [90.49, 0, 0, 0, 0, 0, 0, 0, 0, 98.64]
+#    Lfrac_R2_via_Excel = [73.83, 0, 0, 0, 0, 0, 0, 0, 0, 61.94]
+#    Lfrac_R3_via_Excel = [56.77, 0, 0, 0, 0, 0, 0, 0, 0, 79.22]
+#    SSGDR_R1_via_Excel = [3.66, 1, 1, 1, 1, 1, 1, 1, 1, 3.06]
+#    SSGDR_R2_via_Excel = [3.31, 1, 1, 1, 1, 1, 1, 1, 1, 3.84]
+#    SSGDR_R3_via_Excel = [4.51, 1, 1, 1, 1, 1, 1, 1, 1, 3.47]
+#    XtaxFrac_R1_via_Excel = [70.21, 50, 50, 50, 50, 50, 50, 50, 50, 75.86]
+#    XtaxFrac_R2_via_Excel = [84.62, 50, 50, 50, 50, 50, 50, 50, 50, 83.68]
+#    XtaxFrac_R3_via_Excel = [71.19, 50, 50, 50, 50, 50, 50, 50, 50, 70.6]
+#    StrUP_R1_via_Excel = [1.51, 0, 0, 0, 0, 0, 0, 0, 0, 2.74]
+#    StrUP_R2_via_Excel = [2.51, 0, 0, 0, 0, 0, 0, 0, 0, 1.92]
+#    StrUP_R3_via_Excel = [2.91, 0, 0, 0, 0, 0, 0, 0, 0, 2.74]
+#    Wreaction_R1_via_Excel = [2.5, 0, 0, 0, 0, 0, 0, 0, 0, 2.23]
+#    Wreaction_R2_via_Excel = [2.54, 0, 0, 0, 0, 0, 0, 0, 0, 1.95]
+#    Wreaction_R3_via_Excel = [2.62, 0, 0, 0, 0, 0, 0, 0, 0, 1.93]
+#    XtaxCom_R1_via_Excel = [2.58, 0, 0, 0, 0, 0, 0, 0, 0, 4.97]
+#    XtaxCom_R2_via_Excel = [4.61, 0, 0, 0, 0, 0, 0, 0, 0, 3.38]
+#    XtaxCom_R3_via_Excel = [2.51, 0, 0, 0, 0, 0, 0, 0, 0, 4.69]
+#    ICTR_R1_via_Excel = [6.73, 0, 0, 0, 0, 0, 0, 0, 0, 5.92]
+#    ICTR_R2_via_Excel = [6.71, 0, 0, 0, 0, 0, 0, 0, 0, 6.03]
+#    ICTR_R3_via_Excel = [5.78, 0, 0, 0, 0, 0, 0, 0, 0, 5.17]
+#    IOITR_R1_via_Excel = [8.71, 0, 0, 0, 0, 0, 0, 0, 0, 6.5]
+#    IOITR_R2_via_Excel = [9.74, 0, 0, 0, 0, 0, 0, 0, 0, 8.92]
+#    IOITR_R3_via_Excel = [6.72, 0, 0, 0, 0, 0, 0, 0, 0, 9.87]
+#    IWITR_R1_via_Excel = [8.87, 0, 0, 0, 0, 0, 0, 0, 0, 6.24]
+#    IWITR_R2_via_Excel = [6.34, 0, 0, 0, 0, 0, 0, 0, 0, 6.47]
+#    IWITR_R3_via_Excel = [6.1, 0, 0, 0, 0, 0, 0, 0, 0, 8.56]
+#    Ctax_R1_via_Excel = [64.87, 0, 0, 0, 0, 0, 0, 0, 0, 61.81]
+#    Ctax_R2_via_Excel = [72.62, 0, 0, 0, 0, 0, 0, 0, 0, 79.01]
+#    Ctax_R3_via_Excel = [74.57, 0, 0, 0, 0, 0, 0, 0, 0, 87.66]
+#    SGRPI_R1_via_Excel = [25.72, 0, 0, 0, 0, 0, 0, 0, 0, 45.73]
+#    SGRPI_R2_via_Excel = [46.18, 0, 0, 0, 0, 0, 0, 0, 0, 46.05]
+#    SGRPI_R3_via_Excel = [37.37, 0, 0, 0, 0, 0, 0, 0, 0, 33.38]
+#    FEHC_R1_via_Excel = [9.81, 0, 0, 0, 0, 0, 0, 0, 0, 5.3]
+#    FEHC_R2_via_Excel = [5.09, 0, 0, 0, 0, 0, 0, 0, 0, 6.03]
+#    FEHC_R3_via_Excel = [7.6, 0, 0, 0, 0, 0, 0, 0, 0, 8.44]
+#    XtaxRateEmp_R1_via_Excel = [3.43, 0, 0, 0, 0, 0, 0, 0, 0, 2.77]
+#    XtaxRateEmp_R2_via_Excel = [3.07, 0, 0, 0, 0, 0, 0, 0, 0, 3.44]
+#    XtaxRateEmp_R3_via_Excel = [3.41, 0, 0, 0, 0, 0, 0, 0, 0, 3.94]
+#    SGMP_R1_via_Excel = [7.32, 0, 0, 0, 0, 0, 0, 0, 0, 9.32]
+#    SGMP_R2_via_Excel = [9.56, 0, 0, 0, 0, 0, 0, 0, 0, 6.61]
+#    SGMP_R3_via_Excel = [5.19, 0, 0, 0, 0, 0, 0, 0, 0, 5.58]
+#    FWRP_R1_via_Excel = [46.72, 0, 0, 0, 0, 0, 0, 0, 0, 72.64]
+#    FWRP_R2_via_Excel = [65.29, 0, 0, 0, 0, 0, 0, 0, 0, 49.5]
+#    FWRP_R3_via_Excel = [67.57, 0, 0, 0, 0, 0, 0, 0, 0, 59.73]
+#    FLWR_R1_via_Excel = [50.19, 0, 0, 0, 0, 0, 0, 0, 0, 56.95]
+#    FLWR_R2_via_Excel = [61.09, 0, 0, 0, 0, 0, 0, 0, 0, 79.95]
+#    FLWR_R3_via_Excel = [51.01, 0, 0, 0, 0, 0, 0, 0, 0, 74.72]
+#    RMDR_R1_via_Excel = [74.23, 0, 0, 0, 0, 0, 0, 0, 0, 89.52]
+#    RMDR_R2_via_Excel = [70.68, 0, 0, 0, 0, 0, 0, 0, 0, 56.49]
+#    RMDR_R3_via_Excel = [86.22, 0, 0, 0, 0, 0, 0, 0, 0, 65.78]
+#    RIPLGF_R1_via_Excel = [39.33, 0, 0, 0, 0, 0, 0, 0, 0, 38.61]
+#    RIPLGF_R2_via_Excel = [44.24, 0, 0, 0, 0, 0, 0, 0, 0, 49.99]
+#    RIPLGF_R3_via_Excel = [44.41, 0, 0, 0, 0, 0, 0, 0, 0, 28.45]
+#    FC_R1_via_Excel = [87.22, 0, 0, 0, 0, 0, 0, 0, 0, 63.56]
+#    FC_R2_via_Excel = [87.07, 0, 0, 0, 0, 0, 0, 0, 0, 77.93]
+#    FC_R3_via_Excel = [61.98, 0, 0, 0, 0, 0, 0, 0, 0, 46.46]
+#    REFOREST_R1_via_Excel = [1.52, 0, 0, 0, 0, 0, 0, 0, 0, 1.61]
+#    REFOREST_R2_via_Excel = [2.73, 0, 0, 0, 0, 0, 0, 0, 0, 2.96]
+#    REFOREST_R3_via_Excel = [2.14, 0, 0, 0, 0, 0, 0, 0, 0, 2.68]
+#    FTPEE_R1_via_Excel = [2.41, 1, 1, 1, 1, 1, 1, 1, 1, 2.45]
+#    FTPEE_R2_via_Excel = [1.77, 1, 1, 1, 1, 1, 1, 1, 1, 2.48]
+#    FTPEE_R3_via_Excel = [1.99, 1, 1, 1, 1, 1, 1, 1, 1, 1.87]
+#    NEP_R1_via_Excel = [54.79, 0, 0, 0, 0, 0, 0, 0, 0, 59.37]
+#    NEP_R2_via_Excel = [92.06, 0, 0, 0, 0, 0, 0, 0, 0, 90.93]
+#    NEP_R3_via_Excel = [59, 0, 0, 0, 0, 0, 0, 0, 0, 72.16]
+#    ISPV_R1_via_Excel = [90.4, 50, 50, 50, 50, 50, 50, 50, 50, 89.78]
+#    ISPV_R2_via_Excel = [88.95, 50, 50, 50, 50, 50, 50, 50, 50, 85.69]
+#    ISPV_R3_via_Excel = [85.8, 50, 50, 50, 50, 50, 50, 50, 50, 80.13]
+#    CCS_R1_via_Excel = [45.18, 0, 0, 0, 0, 0, 0, 0, 0, 42.64]
+#    CCS_R2_via_Excel = [61.47, 0, 0, 0, 0, 0, 0, 0, 0, 76.64]
+#    CCS_R3_via_Excel = [56.82, 0, 0, 0, 0, 0, 0, 0, 0, 55.78]
+#    DAC_R1_via_Excel = [1.26, 0, 0, 0, 0, 0, 0, 0, 0, 1.07]
+#    DAC_R2_via_Excel = [1.41, 0, 0, 0, 0, 0, 0, 0, 0, 0.98]
+#    DAC_R3_via_Excel = [0.81, 0, 0, 0, 0, 0, 0, 0, 0, 1.03]
+#    
 #    Capital_output_ratio_in_1980 = ([3, 8, 1.6, 8, 8, 6, 4, 5, 3, 8])
     Employed_in_1980 = ([103, 139, 494, 41, 322, 114, 92, 163, 194, 128])
     SoE_of_inventory_on_indicated_hours_worked_index = ([-1, -1, -0.6, -1, -1, -1, -1, -1, -1, -1])
@@ -2255,6 +2253,7 @@ def ugregmod(game_id, von, bis):
         mdf[0, :] = row_start
         start_tick_in_mdf_play = int((von - 1980) / dt + 1)
         end_tick = int((bis - von) / dt + 1)
+        print("r1 start_tick_in_mdf_play "+str(start_tick_in_mdf_play)+' bis '+str(end_tick))
     elif von == 2040 and bis == 2060:
         howlong = 60
         s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
@@ -2276,6 +2275,7 @@ def ugregmod(game_id, von, bis):
         mdf[0, :] = row_start
         start_tick_in_mdf_play = int((von - 1980) / dt + 1)
         end_tick = int((bis - von) / dt + 1)
+        print("r2 start_tick_in_mdf_play "+str(start_tick_in_mdf_play)+' bis '+str(end_tick))
     elif von == 2060 and bis == 2100:
         howlong = 21
         s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
@@ -2302,6 +2302,7 @@ def ugregmod(game_id, von, bis):
         mdf[0, :] = row_start
         start_tick_in_mdf_play = int((von - 1980) / dt + 1)
         end_tick = int((bis - von) / dt + 1)
+        print("r3 start_tick_in_mdf_play "+str(start_tick_in_mdf_play)+' bis '+str(end_tick))
     else:
         print('We have a problem in def run_game with von and bis')
 
@@ -13809,27 +13810,18 @@ def ugregmod(game_id, von, bis):
     if howlong == 40:
       mdf_play = mdf_new_full[0:1920, :]
       row2040 = mdf[480, :]
-      amo = anvil.BlobMedia(
-                  'text/plain', 
-                  pickle.dumps( row2040 ) ,
-                )
+      amo = anvil.BlobMedia('text/plain', pickle.dumps( row2040 ) ,)
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2040)
     elif howlong == 60:
       mdf_play = mdf_new_full[0:2560, :]
       row2060 = mdf[640, :]
-      amo = anvil.BlobMedia(
-                  'text/plain', 
-                  pickle.dumps( row2060 ) ,
-                )
+      amo = anvil.BlobMedia('text/plain', pickle.dumps( row2060 ) ,)
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2060)
     elif howlong == 21:
       row2100 = mdf[1280, :]
-      amo = anvil.BlobMedia(
-                  'text/plain', 
-                  pickle.dumps( row2100 ) ,
-                )
+      amo = anvil.BlobMedia('text/plain', pickle.dumps( row2100 ) ,)
       amo2 = anvil.BlobMedia('text/plain', pickle.dumps( mdf_new_full ) ,)
       app_tables.game_files.add_row(game_id=game_id, start_row_data=amo, mdf_play= amo2, version=datetime.datetime.now(), yr=2100)
 
