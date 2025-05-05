@@ -307,6 +307,7 @@ class home(homeTemplate):
       self.gm_start_round.visible = True
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
+      self.gm_start_round.visible = True
     else:
       slots = []
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
