@@ -1013,6 +1013,7 @@ class home(homeTemplate):
       self.fut_bud_amount.visible = False
       self.fut_invest.visible = False
       self.fut_invest_pct.visible = False
+      self.refresh_numbers.visible = False
     else:
       self.card_emp_fut.visible = True 
       self.card_ener_fut.visible = True
@@ -1025,7 +1026,8 @@ class home(homeTemplate):
       self.fut_bud_amount.visible = True
       self.fut_invest.visible = True
       self.fut_invest_pct.visible = True
-
+      self.refresh_numbers.visible = True
+      
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
     n.show()
