@@ -998,6 +998,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr )
+        self.fut_detail('hide')
 
   def fut_detail(self, hs):
     if hs == 'hide':
