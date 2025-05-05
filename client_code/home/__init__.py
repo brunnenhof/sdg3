@@ -970,7 +970,7 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr )
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
-      runde = 3
+      runde = 4
       yr = 2100
       print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
       self.p_card_graf_dec.visible = True
@@ -993,9 +993,36 @@ class home(homeTemplate):
         self.pcgd_info_rd1.content = mg.pcgd_rd1_info_end
         self.fut_info.content = mg.pcgd_rd1_info_end_tx
         self.pcgd_info_rd1.visible = True
+        self.fut_detail('hide')
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr )
+
+  def fut_detail(self, hs):
+    if hs == 'hide':
+      self.card_emp_fut.visible = False
+      self.card_ener_fut.visible = False
+      self.card_food_fut.visible = False
+      self.card_ineq_fut.visible = False
+      self.card_pov_fut.visible = False
+      self.fut_bud_lb1.visible = False
+      self.fut_bud_lb2.visible = False
+      self.fut_but_lb3.visible = False
+      self.fut_bud_amount.visible = False
+      self.fut_invest.visible = False
+      self.fut_invest_pct.visible = False
+    else:
+      self.card_emp_fut.visible = True 
+      self.card_ener_fut.visible = True
+      self.card_food_fut.visible = True
+      self.card_ineq_fut.visible = True
+      self.card_pov_fut.visible = True
+      self.fut_bud_lb1.visible = True
+      self.fut_bud_lb2.visible = True
+      self.fut_but_lb3.visible = True
+      self.fut_bud_amount.visible = True
+      self.fut_invest.visible = True
+      self.fut_invest_pct.visible = True
 
   def test_model_click(self, **event_args):
     n= Notification("off to run the model from test_model_click", timeout=4)
