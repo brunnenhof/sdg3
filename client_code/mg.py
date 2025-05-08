@@ -446,3 +446,10 @@ not_all_submitted_p_tx = "Not all regions have submitted their decisions, your g
 not_all_submitted_gm_tx = "Not all regions have submitted their decisions ..."
 all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
 running_model_tx = "... advancing the model ..."
+
+credits_btn_tx = "Credits"
+credits_tx = "The model we use is the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to the Lemon Tree."
+credits_title = "Standing on shoulders of giants ..."
+choose_lang_tx = "Change the language"
+choose_lang_tx_de = "Ändern der Sprache"
+choose_lang_tx_fr = "Changer de langue"

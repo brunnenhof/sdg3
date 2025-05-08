@@ -17,6 +17,15 @@ from . import mg
 import math
 import json
 import pickle
+import locale
+
+#
+@anvil.server.callable
+def get_locale():
+  loc = locale.getlocale()
+  loc1 = str(loc[0])
+  loc2 = loc1.split('_')
+  return loc2[0], loc2[1]
 
 @anvil.server.callable
 def fe_keepalive():

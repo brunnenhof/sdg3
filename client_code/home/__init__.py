@@ -25,6 +25,38 @@ class home(homeTemplate):
     ###
 #    row = app_tables.cookies.get()
 #    row.update(gm_step=0)
+    my_loc, my_loc2 = anvil.server.call('get_locale')
+#    self.show_text.text = my_loc + ' ' + my_loc2
+    my_loc = 'fr'
+    if my_loc == 'en':
+      t1 = (" English", 1)
+      t2 = (" Deutsch - Sie", 2)
+      t3 = (" Deutsch - Du", 3)
+      t4 = (" Français", 4)
+    elif my_loc == 'de':
+      t3 = (" English", 1)
+      t1 = (" Deutsch - Sie", 2)
+      t2 = (" Deutsch - Du", 3)
+      t4 = (" Français", 4)
+    elif my_loc == 'fr':
+      t2 = (" English", 1)
+      t3 = (" Deutsch - Sie", 2)
+      t4 = (" Deutsch - Du", 3)
+      t1 = (" Français", 4)
+    else:
+      t1 = (" English", 1)
+      t2 = (" Deutsch - Sie", 2)
+      t3 = (" Deutsch - Du", 3)
+      t4 = (" Français", 4)
+
+    self.dropdown_menu_1.items = [t1, t2, t3, t4]
+    if my_loc == 'en':
+      self.dropdown_menu_1.label = mg.choose_lang_tx
+    elif my_loc == 'de':
+      self.dropdown_menu_1.label = mg.choose_lang_tx_de
+    elif my_loc == 'fr':
+      self.dropdown_menu_1.label = mg.choose_lang_tx_fr
+      
     self.tick_gm_round_ready.interval = 0
     self.timer_1.interval = 152
     self.timer_1_tick()
@@ -102,8 +134,8 @@ class home(homeTemplate):
     self.cpf_ener_lb.text = mg.cfener_tx
     self.cpf_ener_lb2.text = mg.cfener_lb_tx 
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
+    self.credits.text = mg.credits_btn_tx
 
-    self.dropdown_menu_1.items = [("2025-2040", 1), ("2040-2060", 2), ("2060-2100", 3)]
 
   def top_btn_thanks_click(self, **event_args):
     alert(content=mg.top_thanks_msg, title=mg.top_thanks_title, large=True)
@@ -116,6 +148,15 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
+    t = TextBox(placeholder="Enter the code to start a game")
+    alert(content=t,
+      title="Enter code")
+    print(f"You entered: {t.text}")
+    code = t.text.upper()
+    if not code == 'LTG-ND':
+      alert("Wrong code, check with whoever knows the code")
+      return
+      pass
     with Notification("Clearing DBs ..."):
       self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
@@ -1083,6 +1124,8 @@ class home(homeTemplate):
 
   def dropdown_menu_1_change(self, **event_args):
     """This method is called when an item is selected"""
+    if self.dropdown_menu_1.selected_value == 1: ## english
+      pass
     if self.dropdown_menu_1.selected_value == 1:
       print(self.dropdown_menu_1.selected_value)      
       app_tables.game_files.delete_all_rows()
@@ -1352,7 +1395,10 @@ class home(homeTemplate):
     else:
       self.gm_card_wait_1_btn_check.visible = True
       self.gm_start_round.visible = False
-      
+
+  def credits_click(self, **event_args):
+    alert(mg.credits_tx, title=mg.credits_title)
+
 
      
 

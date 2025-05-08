@@ -23,7 +23,7 @@ components:
         align: center
         appearance: elevated
         spacing:
-          padding: [null, '4', null, '4']
+          padding: [null, '0', null, '0']
         text: clear db
         visible: false
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
@@ -33,13 +33,21 @@ components:
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
     - data_bindings:
       - {code: '', property: items, writeback: false}
+      - {code: 'self.item[''t1'']', property: placeholder, writeback: false}
       event_bindings: {change: dropdown_menu_1_change}
       layout_properties: {grid_position: 'PINTXY,YKYYBF'}
       name: dropdown_menu_1
       properties:
+        appearance: outlined
+        icon: mi:language
+        icon_color: theme:Primary
         items: ['"Round 1", "Round 2","Round 3"']
+        label_bold: true
+        margin: [null, '4', null, '4']
         placeholder: Model testing
-        visible: false
+        selected_bold: true
+        selected_text_color: theme:Primary
+        visible: true
       type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
     - layout_properties: {grid_position: 'VYOQIA,GULAQJ'}
       name: top_entry_label
@@ -47,7 +55,7 @@ components:
       type: Label
     layout_properties: {grid_position: 'RLGLYI,VVXMFZ'}
     name: top_entry
-    properties: {role: outlined-card}
+    properties: {col_widths: '{"HDMYCU":12,"XDTWPY":12,"ZFDBLZ":6,"NRIAQC":10,"YKYYBF":20}', role: outlined-card}
     type: ColumnPanel
   - event_bindings: {tick: tick_gm_round_ready_tick}
     layout_properties: {grid_position: 'XCCMNU,SQKRBN'}
@@ -754,7 +762,17 @@ components:
       bold: true
       spacing:
         padding: [null, '8', null, '8']
-      text: button_1
+      text: thanks
+    type: Button
+  - event_bindings: {click: credits_click}
+    layout_properties: {}
+    name: credits
+    properties:
+      bold: true
+      role: null
+      spacing:
+        padding: [null, '8', null, '8']
+      text: credits
     type: Button
   - event_bindings: {click: top_btn_poc_click}
     layout_properties: {}
@@ -763,7 +781,7 @@ components:
       bold: true
       spacing:
         padding: [null, '8', null, '8']
-      text: button_1
+      text: poc
     type: Button
   - event_bindings: {click: top_btn_help_click}
     layout_properties: {}
@@ -772,7 +790,7 @@ components:
       bold: true
       spacing:
         padding: [null, '8', null, '8']
-      text: button_1
+      text: help
     type: Button
   - event_bindings: {change: file_loader_1_change}
     layout_properties: {}
