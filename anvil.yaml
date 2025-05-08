@@ -267,10 +267,10 @@ db_schema:
     - admin_ui: {width: 88}
       name: id
       type: number
-    - admin_ui: {width: 94}
+    - admin_ui: {order: 1, width: 72}
       name: sdg_nbr
       type: number
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 2, width: 143}
       name: indicator
       type: string
     - admin_ui: {width: 200}
