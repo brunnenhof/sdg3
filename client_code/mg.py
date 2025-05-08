@@ -31,6 +31,15 @@ ro_nbr = [0, 1, 2, 3, 4, 5]
 regs = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
 re_nbr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+Pov_to_pov = {
+  "Poverty": "pov",
+  "Inequality": "ineq",
+  "Empowerment": "emp",
+  "Food": "food",
+  "Energy": "ener",
+  "Future": "fut"
+}
+
 reg_to_longreg = {
   "us" : "USA",
   "af" : "Africa, South of Sahara",
@@ -59,14 +68,7 @@ pov_to_Poverty = {
   "ener": "Energy",
   "fut": "Future"
 }
-Pov_to_pov = {
-  "Poverty": "pov",
-  "Inequality": "ineq",
-  "Empowerment": "emp",
-  "Food": "food",
-  "Energy": "ener",
-  "Future": "fut"
-}
+
 pol_to_ta = {"CCS" : "Energy",
 "TOW" : "Poverty",
 "FPGDC" : "Poverty",
