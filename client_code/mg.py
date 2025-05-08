@@ -39,7 +39,50 @@ Pov_to_pov = {
   "Energy": "ener",
   "Future": "fut"
 }
+pov_to_Poverty = {
+  "pov": "Poverty",
+  "ineq": "Inequality",
+  "emp": "Empowerment",
+  "food": "Food",
+  "ener": "Energy",
+  "fut": "Future"
+}
 
+pol_to_ta = {"CCS" : "Energy",
+             "TOW" : "Poverty",
+             "FPGDC" : "Poverty",
+             "RMDR" : "Food",
+             "REFOREST" : "Food",
+             "FTPEE" : "Energy",
+             "LPBsplit" : "Poverty",
+             "ExPS" : "Poverty",
+             "FMPLDD" : "Poverty",
+             "StrUP" : "Inequality",
+             "Wreaction" : "Inequality",
+             "SGMP" : "Empowerment",
+             "FWRP" : "Food",
+             "ICTR" : "Inequality",
+             "XtaxCom" : "Inequality",
+             "Lfrac" : "Poverty",
+             "IOITR" : "Inequality",
+             "IWITR" : "Inequality",
+             "SGRPI" : "Inequality",
+             "FEHC" : "Empowerment",
+             "XtaxRateEmp" : "Empowerment",
+             "FLWR" : "Food",
+             "RIPLGF" : "Food",
+             "FC" : "Food",
+             "NEP" : "Energy",
+             "Ctax" : "Inequality",
+             "DAC" : "Energy",
+             "XtaxFrac" : "Inequality",
+             "LPBgrant" : "Poverty",
+             "LPB" : "Poverty",
+             "SSGDR" : "Poverty",
+             "ISPV" : "Energy"
+            }
+
+##################
 reg_to_longreg = {
   "us" : "USA",
   "af" : "Africa, South of Sahara",
@@ -59,48 +102,6 @@ ta_to_longmini = {
   "food" : "Minister for Food & Agriculture",
   "ener" : "Minister for Energy",
   "fut" : "Minister for the Future"
-}
-pov_to_Poverty = {
-  "pov": "Poverty",
-  "ineq": "Inequality",
-  "emp": "Empowerment",
-  "food": "Food",
-  "ener": "Energy",
-  "fut": "Future"
-}
-
-pol_to_ta = {"CCS" : "Energy",
-"TOW" : "Poverty",
-"FPGDC" : "Poverty",
-"RMDR" : "Food",
-"REFOREST" : "Food",
-"FTPEE" : "Energy",
-"LPBsplit" : "Poverty",
-"ExPS" : "Poverty",
-"FMPLDD" : "Poverty",
-"StrUP" : "Inequality",
-"Wreaction" : "Inequality",
-"SGMP" : "Empowerment",
-"FWRP" : "Food",
-"ICTR" : "Inequality",
-"XtaxCom" : "Inequality",
-"Lfrac" : "Poverty",
-"IOITR" : "Inequality",
-"IWITR" : "Inequality",
-"SGRPI" : "Inequality",
-"FEHC" : "Empowerment",
-"XtaxRateEmp" : "Empowerment",
-"FLWR" : "Food",
-"RIPLGF" : "Food",
-"FC" : "Food",
-"NEP" : "Energy",
-"Ctax" : "Inequality",
-"DAC" : "Energy",
-"XtaxFrac" : "Inequality",
-"LPBgrant" : "Poverty",
-"LPB" : "Poverty",
-"SSGDR" : "Poverty",
-"ISPV" : "Energy"
 }
 
 pol_to_expl = {
