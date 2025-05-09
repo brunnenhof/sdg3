@@ -296,7 +296,7 @@ sdgvarID_to_sdg = {
   "38" : "Social trust"
 }
 
-top_title = 'END-times'
+top_title = 'LT Game'
 top_btn_thanks = 'Thanks'
 top_btn_start = 'Start a new game as organizer'
 top_btn_join = 'JOIN a game as player'
