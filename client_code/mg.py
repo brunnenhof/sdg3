@@ -81,9 +81,35 @@ pol_to_ta = {"CCS" : "Energy",
              "SSGDR" : "Poverty",
              "ISPV" : "Energy"
             }
+plot_glob_mg = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
+                'Planetary risk']
+plot_reg_mg = ['Energy footprint pp', 'Fraction of population undernourished',
+               'Cost_per_regional_poverty_policy',
+               'RoC in Forest land', 'Total energy use per GDP',
+               'Years of schooling', 'All SDG Scores', 'RoC Populated land', 'Public services pp',
+               'Safe sanitation',
+               'Smoothed RoC in GDPpp', 'Fraction of population below existential minimum',
+               'Regenerative cropland fraction',
+               'Total government revenue as a proportion of GDP', 'El from wind and PV',
+               'Labour share of GDP',
+               'Cropland', 'Smoothed Social tension index with trust effect', 'LPB investment share',
+               'Food footprint kgN ppy',
+               'Life expectancy at birth', 'GenderEquality', 'Social trust',
+               'Total CO2 emissions', 'Safe water', 'Access to electricity',
+               'Carbon intensity', 'Disposable income pp post tax pre loan impact', 'Population',
+               'Average wellbeing index',
+               'Local private and govt investment share', 'Unemployment rate smoothed',
+               'Renewable energy share in the total final energy consumption', 'GDP USED',
+               'Nitrogen use per ha',
+               'Budget_for_all_TA_per_region', 'Cost_per_regional_inequality_policy',
+               'Cost_per_regional_empowerment_policy',
+               'Cost_per_regional_food_policy', 'Cost_per_regional_energy_policy']
+my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
 
-##################
-reg_to_longreg = {
+#############
+############# English
+#############
+reg_to_longreg_en = {
   "us" : "USA",
   "af" : "Africa, South of Sahara",
   "cn" : "China",
@@ -95,7 +121,7 @@ reg_to_longreg = {
   "eu" : "Europe",
   "se" : "Southeast Asia"
 }
-ta_to_longmini = {
+ta_to_longmini_en = {
   "pov" : "Minister against Poverty",
   "ineq" : "Minister against Inequality",
   "emp" : "Minister for Empowerment",
@@ -103,13 +129,12 @@ ta_to_longmini = {
   "ener" : "Minister for Energy",
   "fut" : "Minister for the Future"
 }
-
-pol_to_expl = {
+pol_to_expl_en = {
   "CCS" : "Percent of fossil use to be equipped with carbon capture and storage (CCS) at source.  This means that you still emit CO2 but it does not get to the atmosphere, where it causes warming,  because you capture it and store it underground.",
   "TOW" : "0 means no wealth tax,  80 means 80% of accrued owners wealth is taxed away each year,  50: half of it",
   "FPGDC" : "Cancels a percentage of Govt debt outstanding to public lenders. 0 means nothing is cancelled,  100 all is cancelled,  50 half is cancelled --- in the policy start year",
   "RMDR" : "Change in diet, esp. a reduction in red meat consumption. 0 means red meat is consumed as before, 50 means 50% is replaced with lab meat, 100 means 100% is replaced with lab meat  i.e. no more red meat is 'produced' by intensive livestock farming  aka factory farming.",
-  "REFOREST" : "Policy to reforest land, i.e. plant new trees. 0 means no reforestation, 1 means you increase the forest area by 1‰ / yr (that is 1 promille), 3 = you increase the forest area by 3‰ / yr",
+  "REFOREST" : "Policy to reforest land, i.e. plant new trees. 0 means no reforestation, 1 means you increase the forest area by 1â€° / yr (that is 1 promille), 3 = you increase the forest area by 3â€° / yr",
   "FTPEE" : "Annual percentage increase in energy efficiency; 1% per yr is the historical value over the last 40 years. Beware of the power of compound interest!",
   "LPBsplit" : "0 means all LBP funding goes to consumption (eg child support,  subsidies for food or energy,  etc.)  100 means all goes to public investment like infrastructure,  security,  etc. NOTE This only has an effect if LPB is NOT set to zero",
   "ExPS" : "Cancels a percentage of Govt debt outstanding to private lenders --- in the policy start year",
@@ -138,7 +163,7 @@ pol_to_expl = {
   "SSGDR" : "You can stretch repayment into the future  so that each year you pay less,  but you do have to pay for a longer time. 1 means no stretching - 2 doubles repayment time  - 3 trebles repayment time - and so on",
   "ISPV" : "Percent of electricity generation from renewable sources (40% is what we managed to achieve in the past)"
 }
-pol_to_name = {
+pol_to_name_en = {
   "CCS" : "CCS: Carbon capture and storage at source",
   "TOW" : "Taxing Owners Wealth",
   "FPGDC" : "Cancel debt from public lenders",
@@ -172,7 +197,7 @@ pol_to_name = {
   "SSGDR" : "Stretch repayment",
   "ISPV" : "Invest in Renewables"
 }
-sdgvarID_to_subtitle = {
+sdgvarID_to_subtitle_en = {
   "13" : "Worker disposable income (1000 $/person-year)",
   "18" : "Fertilizer use per capita (Mt/y)",
   "26" : "Population (million people)",
@@ -213,7 +238,7 @@ sdgvarID_to_subtitle = {
   "39" : "nan",
   "38" : "nan"
 }
-sdgvarID_to_indicator = {
+sdgvarID_to_indicator_en = {
   "13" : "Worker disposable income (1000 USD/person-year)",
   "18" : "Fertilizer use per capita (Mt/y)",
   "26" : "Population (million people)",
@@ -254,7 +279,7 @@ sdgvarID_to_indicator = {
   "39" : "(index)",
   "38" : "(index)"
 }
-sdgvarID_to_sdg = {
+sdgvarID_to_sdg_en = {
   "13" : "Decent work and economic growth",
   "18" : "Responsible consumption and production",
   "26" : "Total population",
@@ -295,165 +320,132 @@ sdgvarID_to_sdg = {
   "39" : "Social tension",
   "38" : "Social trust"
 }
-
-top_title = 'LT Game'
-top_btn_thanks = 'Thanks'
-top_btn_start = 'Start a new game as organizer'
-top_btn_join = 'JOIN a game as player'
-top_btn_help = 'Help'
-top_join_game = 'JOIN a game as player'
-top_start_game = 'Start a game as organizer'
-p_lb_choose_game = 'There are more than one open games. First select the one you want to join, then press the JOIN button:'
-p_btn_select_game = 'JOIN'
-gm_id_msg1 = "Your game ID is "
-gm_id_msg2 =". Make a note of it and tell your players."
-gm_id_title="Your game ID:"
-top_thanks_msg ="... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers."
-top_thanks_title="Thank you ... "
-top_roles_setup_msg ="Roles template has been set up for "
-title_you_are_joining = "You are joining: "
-msg_game_not_started = "The game organizer has not yet started a game. Please wait until he/she does ..."
-msg_gm_board = "Game Organizer Board"
-msg_gm_board_info = "**Now, click on *all* the regions *not* played by your players (eg if there are not enough players for all roles)**"
-cb_us_tx = 'USA'
-cb_af_tx = 'Africa, South of Sahara'
-cb_cn_tx = 'China'
-cb_me_tx = 'Middle East - North Africa'
-cb_sa_tx = 'South Asia'
-cb_la_tx = 'Latin America'
-cb_pa_tx = 'Pacific Rim'
-cb_ec_tx = 'East Europe - Central Asia'
-cb_eu_tx = 'Europe'
-cb_se_tx = 'Southeast Asia'
-cb_pov_tx = 'Poverty'
-cb_ineq_tx = 'Inequality'
-cb_emp_tx = 'Empowerment'
-cb_food_tx = 'Food & agriculture'
-cb_ener_tx = 'Energy'
-cb_fut_tx = 'Future'
-pcr_title_tx = 'Player Board Game '
-pcr_col_left_title_tx = 'First, log into your region ...'
-pcr_col_right_title_tx = '... then into your role as minister ...'
-pcr_submit_tx = 'Once you have logged in to both your region and your ministry, click here to submit your choice'
-fut_not_all_logged_in_tx = "Not all of your regional ministerial colleagues have logged in yet. Wait until they have done so."
-no_active_game_to_join_tx = "no active game to join ... the game organizer has to start one"
-
-gm_reg_npbp_tx = 'When you are done (and sure), click this button'
-top_entry_label_tx = 'Hold on, setting up all the necessary slots, templates and tables for the game ...'
-gm_card_wait_1_temp_title_tx = 'Still waiting for the following ministers to log in ... Ask if they need help ...'
-gm_card_wait_1_temp_title_tx2 = 'All logged in! By clicking on the "Ready to advance" button, you can check if all your regions have submitted their policies. Tell them how much time they still have.'
-gm_card_wait_1_info_tx = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. Check repeatedly if all your players have logged in by clicking the **Check LogIn** button. Once they are ready to proceed to the next round **---** *this will take some time!* **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet."
-gm_card_wait_1_btn_check_tx = 'Check LogIn'
-gm_card_wait_1_btn_kick_off_round_1_tx = 'Ready to advance the model for the next round?'
-gm_wait_kickoff_r1_tx = 'Still waiting for the region(s) below to submit their decisions ... You may want to ask if they need help ...'
-gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the \n"Get the results ... " or \n"Check if the game leader ..." button.'
-gm_wait_round_done_tx2 = 'The model has been advanced. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future should submit their regional decisions. Tell them how much time they have.'
-gm_wait_round_done_tx3 = 'The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing.'
-sim_success_tx1 = '...the model ran successfully to 2040, but we are waiting for the decisions for 2040-2060.\nHave you set all your policy decisions?'
-sim_success_tx1 = '...the model ran successfully to 2060, but we are waiting for the decisions for 2060-2100.\nHave you set all your policy decisions?'
-sim_success_title_tx = 'Waiting'
-pcgd_generating_tx1 = "Generating graphs until 2040 and decision sheet for 2040"
-pcgd_generating_tx2 = "Generating graphs until 2060 and decision sheet for 2060"
-pcgd_generating_tx3 = "Generating graphs until 2100"
-
-gm_wait_round_started_tx = 'The simulation started. Please wait until it is done...'
-gm_start_round_tx_2 = "Check if all regions are ready to advance to 2060 ..."
-gm_start_round_tx_3 = "Check if all regions are ready to advance to 2100 ..."
-waiting_for_gm_to_start_round = "... for simulation to start ..."
-gm_wait_sub2_tx = "... for all submissions for the round 2040 to 2060 ..."
-gm_wait_sub3_tx = "... for all submissions for the round 2060 to 2100 ..."
-setup_npbp_label_tx = 'Hold on, all roles are being prepared ...'
-#    msg = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
-pcr_submit_title = "Congratulations!"
-pcr_submit_msg1 = "You have been confirmed as "
-fut_title_tx2 = ""
-pcr_submit_msg2 = ' in '
-pcr_submit_msg3 = 'Your personal Game ID is: '
-player_board_tx = "Player Board: "
-
-pcgd_rd1_info_tx = "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
-pcgd_rd1_info_short = "Together with your ministerial team, you are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to see the investment plans of your colleagues. Make sure they are within your regional budget. More instructions are below the graphs."
-pcgd_rd1_info_end = "**Outfade**"
-pcgd_rd1_info_fut_tx = "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet. \nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note:* if the Submit button does not show, it is because your region is above the the budget.\nMoney amounts are in constant (2025) Giga $ per year. A 'Giga' is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde."
-pcgd_rd1_info_end_tx = "pcgd_rd1_info_end_tx *outtake*"
-pcgd_generating_tx = "... generating your graphs and decisionsheet ..."
-show_hide_plots_hide_tx = "Hide graphs"
-show_hide_plots_show_tx = "Show graphs"
-pcgd_advance_tx = "Check if the model has been advanced  "
-pcgd_info_after_rd1_tx = "The model has been simulated until 2040. Again, in the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry!\nStudy all your indicators, see how they develop over the years. *Given your policy choices, did you expect something different? Are surprised?* Again, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, and in light of what happenend in the last round, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
-not_to_2060 = "The model has not yet been advanced to 2060."
-dec_info_tx = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."
-dec_title_tx = "Set your policies"
-
-fut_info_tx = "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note:* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde."
-fut_bud_lb1_tx = "Your total budget:"
-fut_bud_lb2_tx = "All the investment plans of all your fellow ministers summed up:"
-fut_bud_lb3_tx = "Investment plans as % of your budget"
-cfpov_tx = "Poverty"
-cfpov_lb_tx = "Regional investment plans against poverty:"
-cfineq_tx = "Inequality"
-cfineq_lb_tx = "Regional investment plans against inequality:"
-cfemp_tx = "Empowerment"
-cfemp_lb_tx = "Regional investment plans for empowerment:"
-cffood_tx = "Food & agriculture"
-cffood_lb_tx = "Regional investment for food and agriculture:"
-cfener_tx = "Energy"
-cfener_lb_tx = "Regional investment for energy:"
-refresh_numbers_tx = "RFRESH numbers"
-submit_numbers_tx = "SUBMIT numbers"
-
-confirm_submit_tx = "Yes to submit, No to go back"
-confirm_title_tx = "Last chance to go back."
-confirm_buttons_tx = [
-                 ("Yes", "YES"),
-                 ("No", "NO")
-               ]
-after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
-nothing_submitted_tx = "Nothing was submitted ..."
-p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
-p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-2100 - your grandchildren's future"
-p_advance_to_2_tx = "Get the results until the end of the century"
-p_waiting_model_run_tx = "... still waiting for the GM to advance the model ..."
-waiting_tx = "Waiting ..."
-
-plot_glob_mg = ['Temp surface anomaly compared to 1850 degC', 'pH in surface', 'TROP with normal cover',
-                          'Planetary risk']
-plot_reg_mg = ['Energy footprint pp', 'Fraction of population undernourished',
-                'Cost_per_regional_poverty_policy',
-                'RoC in Forest land', 'Total energy use per GDP',
-                'Years of schooling', 'All SDG Scores', 'RoC Populated land', 'Public services pp',
-                'Safe sanitation',
-                'Smoothed RoC in GDPpp', 'Fraction of population below existential minimum',
-                'Regenerative cropland fraction',
-                'Total government revenue as a proportion of GDP', 'El from wind and PV',
-                'Labour share of GDP',
-                'Cropland', 'Smoothed Social tension index with trust effect', 'LPB investment share',
-                'Food footprint kgN ppy',
-                'Life expectancy at birth', 'GenderEquality', 'Social trust',
-                'Total CO2 emissions', 'Safe water', 'Access to electricity',
-                'Carbon intensity', 'Disposable income pp post tax pre loan impact', 'Population',
-                'Average wellbeing index',
-                'Local private and govt investment share', 'Unemployment rate smoothed',
-                'Renewable energy share in the total final energy consumption', 'GDP USED',
-                'Nitrogen use per ha',
-                'Budget_for_all_TA_per_region', 'Cost_per_regional_inequality_policy',
-                'Cost_per_regional_empowerment_policy',
-                'Cost_per_regional_food_policy', 'Cost_per_regional_energy_policy']
-my_col_mg = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green', 'orange']
-
-not_all_submitted_tx = "Not all regions have submitted their decisions ..."
-not_all_submitted_p_tx = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
-not_all_submitted_gm_tx = "Not all regions have submitted their decisions ..."
-all_submitted_p_tx = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
-running_model_tx = "... advancing the model ..."
-
-credits_btn_tx = "Credits"
+top_title_en = 'LT Game'
+top_btn_thanks_en = 'Thanks'
+top_btn_start_en = 'Start a new game as organizer'
+top_btn_join_en = 'JOIN a game as player'
+top_btn_help_en = 'Help'
+top_join_game_en = 'JOIN a game as player'
+top_start_game_en = 'Start a game as organizer'
+p_lb_choose_game_en = 'There are more than one open games. First select the one you want to join, then press the JOIN button:'
+p_btn_select_game_en = 'JOIN'
+gm_id_msg1_en = "Your game ID is "
+gm_id_msg2_en = ". Make a note of it and tell your players."
+gm_id_title_en = "Your game ID:"
+top_thanks_msg_en = "... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers."
+top_thanks_title_en = "Thank you ... "
+top_roles_setup_msg_en = "Roles template has been set up for "
+title_you_are_joining_en = "You are joining: "
+msg_game_not_started_en = "The game organizer has not yet started a game. Please wait until he/she does ..."
+msg_gm_board_en = "Game Organizer Board"
+msg_gm_board_info_en = "**Now, click on *all* the regions *not* played by your players (eg if there are not enough players for all roles)**"
+cb_us_tx_en = 'USA'
+cb_af_tx_en = 'Africa, South of Sahara'
+cb_cn_tx_en = 'China'
+cb_me_tx_en = 'Middle East - North Africa'
+cb_sa_tx_en = 'South Asia'
+cb_la_tx_en = 'Latin America'
+cb_pa_tx_en = 'Pacific Rim'
+cb_ec_tx_en = 'East Europe - Central Asia'
+cb_eu_tx_en = 'Europe'
+cb_se_tx_en = 'Southeast Asia'
+cb_pov_tx_en = 'Poverty'
+cb_ineq_tx_en = 'Inequality'
+cb_emp_tx_en = 'Empowerment'
+cb_food_tx_en = 'Food & agriculture'
+cb_ener_tx_en = 'Energy'
+cb_fut_tx_en = 'Future'
+pcr_title_tx_en = 'Player Board Game '
+pcr_col_left_title_tx_en = 'First, log into your region ...'
+pcr_col_right_title_tx_en = '... then into your role as minister ...'
+pcr_submit_tx_en = 'Once you have logged in to both your region and your ministry, click here to submit your choice'
+fut_not_all_logged_in_tx_en = "Not all of your regional ministerial colleagues have logged in yet. Wait until they have done so."
+no_active_game_to_join_tx_en = "no active game to join ... the game organizer has to start one"
+gm_reg_npbp_tx_en = 'When you are done (and sure), click this button'
+top_entry_label_tx_en = 'Hold on, setting up all the necessary slots, templates and tables for the game ...'
+gm_card_wait_1_temp_title_tx_en = 'Still waiting for the following ministers to log in ... Ask if they need help ...'
+gm_card_wait_1_temp_title_tx2_en = 'All logged in! By clicking on the "Ready to advance" button, you can check if all your regions have submitted their policies. Tell them how much time they still have.'
+gm_card_wait_1_info_tx_en = "All roles have been set up now. \nTell your players to log in, to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. Check repeatedly if all your players have logged in by clicking the **Check LogIn** button. Once they are ready to proceed to the next round **---** *this will take some time!* **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet."
+gm_card_wait_1_btn_check_tx_en = 'Check LogIn'
+gm_card_wait_1_btn_kick_off_round_1_tx_en = 'Ready to advance the model for the next round?'
+gm_wait_kickoff_r1_tx_en = 'Still waiting for the region(s) below to submit their decisions ... You may want to ask if they need help ...'
+gm_wait_round_done_tx_en = 'The model has been advanced. Tell your players to click on the \n"Get the results ... " or \n"Check if the game leader ..." button.'
+gm_wait_round_done_tx2_en = 'The model has been advanced. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future should submit their regional decisions. Tell them how much time they have.'
+gm_wait_round_done_tx3_en = 'The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing.'
+sim_success_tx1_en = '...the model ran successfully to 2040, but we are waiting for the decisions for 2040-2060.\nHave you set all your policy decisions?'
+sim_success_tx1_en = '...the model ran successfully to 2060, but we are waiting for the decisions for 2060-2100.\nHave you set all your policy decisions?'
+sim_success_title_tx_en = 'Waiting'
+pcgd_generating_tx1_en = "Generating graphs until 2040 and decision sheet for 2040"
+pcgd_generating_tx2_en = "Generating graphs until 2060 and decision sheet for 2060"
+pcgd_generating_tx3_en = "Generating graphs until 2100"
+gm_wait_round_started_tx_en = 'The simulation started. Please wait until it is done...'
+gm_start_round_tx_2_en = "Check if all regions are ready to advance to 2060 ..."
+gm_start_round_tx_3_en = "Check if all regions are ready to advance to 2100 ..."
+waiting_for_gm_to_start_round_en = "... for simulation to start ..."
+gm_wait_sub2_tx_en = "... for all submissions for the round 2040 to 2060 ..."
+gm_wait_sub3_tx_en = "... for all submissions for the round 2060 to 2100 ..."
+setup_npbp_label_tx_en = 'Hold on, all roles are being prepared ...'
+#  msg_en = 'Role assignments are set up ... Now tell your players to join game ' + cid + ' and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040'
+pcr_submit_title_en = "Congratulations!"
+pcr_submit_msg1_en = "You have been confirmed as "
+fut_title_tx2_en = ""
+pcr_submit_msg2_en = ' in '
+pcr_submit_msg3_en = 'Your personal Game ID is: '
+player_board_tx_en = "Player Board: "
+pcgd_rd1_info_tx_en = "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
+pcgd_rd1_info_short_en = "Together with your ministerial team, you are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to see the investment plans of your colleagues. Make sure they are within your regional budget. More instructions are below the graphs."
+pcgd_rd1_info_end_en = "**Outfade**"
+pcgd_rd1_info_fut_tx_en = "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet. \nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note:* if the Submit button does not show, it is because your region is above the the budget.\nMoney amounts are in constant (2025) Giga $ per year. A 'Giga' is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde."
+pcgd_rd1_info_end_tx_en = "pcgd_rd1_info_end_tx *outtake*"
+pcgd_generating_tx_en = "... generating your graphs and decisionsheet ..."
+show_hide_plots_hide_tx_en = "Hide graphs"
+show_hide_plots_show_tx_en = "Show graphs"
+pcgd_advance_tx_en = "Check if the model has been advanced "
+pcgd_info_after_rd1_tx_en = "The model has been simulated until 2040. Again, in the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry!\nStudy all your indicators, see how they develop over the years. *Given your policy choices, did you expect something different? Are surprised?* Again, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, and in light of what happenend in the last round, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round."
+not_to_2060_en = "The model has not yet been advanced to 2060."
+dec_info_tx_en = "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round."
+dec_title_tx_en = "Set your policies"
+fut_info_tx_en = "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note:* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde."
+fut_bud_lb1_tx_en = "Your total budget:"
+fut_bud_lb2_tx_en = "All the investment plans of all your fellow ministers summed up:"
+fut_bud_lb3_tx_en = "Investment plans as % of your budget"
+cfpov_tx_en = "Poverty"
+cfpov_lb_tx_en = "Regional investment plans against poverty:"
+cfineq_tx_en = "Inequality"
+cfineq_lb_tx_en = "Regional investment plans against inequality:"
+cfemp_tx_en = "Empowerment"
+cfemp_lb_tx_en = "Regional investment plans for empowerment:"
+cffood_tx_en = "Food & agriculture"
+cffood_lb_tx_en = "Regional investment for food and agriculture:"
+cfener_tx_en = "Energy"
+cfener_lb_tx_en = "Regional investment for energy:"
+refresh_numbers_tx_en = "RFRESH numbers"
+submit_numbers_tx_en = "SUBMIT numbers"
+confirm_submit_tx_en = "Yes to submit, No to go back"
+confirm_title_tx_en = "Last chance to go back."
+confirm_buttons_tx_en = [  ("Yes", "YES"),  ("No", "NO")]
+after_submit_tx_en = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
+nothing_submitted_tx_en = "Nothing was submitted ..."
+p_advance_to_next_round_tx_en = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
+p_advance_to_1_tx_en = "Get the results until 2060 and the decision sheet for 2060-2100 - your grandchildren's future"
+p_advance_to_2_tx_en = "Get the results until the end of the century"
+p_waiting_model_run_tx_en = "... still waiting for the GM to advance the model ..."
+waiting_tx_en = "Waiting ..."
+not_all_submitted_tx_en = "Not all regions have submitted their decisions ..."
+not_all_submitted_p_tx_en = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
+not_all_submitted_gm_tx_en = "Not all regions have submitted their decisions ..."
+all_submitted_p_tx_en = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
+running_model_tx_en = "... advancing the model ..."
+not_all_submitted_tx_en = "Not all regions have submitted their decisions ..."
+not_all_submitted_p_tx_en = "Not all regions have submitted their decisions, your game leader knows who we are waiting for ..."
+not_all_submitted_gm_tx_en = "Not all regions have submitted their decisions ..."
+all_submitted_p_tx_en = "ALL regions HAVE submitted their decisions, your game leader will advance the model shortly and let you know when your results are ready"
+running_model_tx_en = "... advancing the model ..."
+credits_btn_tx_en = "Credits"
 credits_tx_en = "The model we use is the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ..."
-credits_title = "Standing on shoulders of giants ..."
-choose_lang_tx = "Change the language"
-choose_lang_tx_de_sie = "Ändern der Sprache"
-choose_lang_tx_de_du = "Ändere die Sprache"
-choose_lang_tx_fr = "Changer de langue"
+credits_title_en = "Standing on shoulders of giants ..."
+choose_lang_tx_en = "Change the language"
+
 
 #######
 ####### Deutsch SIE
@@ -701,10 +693,10 @@ cb_se_tx_de_sie = 'Südostasien'
 cb_pov_tx_de_sie = 'Armut'
 cb_ineq_tx_de_sie = 'Ungleichheit'
 cb_emp_tx_de_sie = 'Ermächtigung'
-cb_food_tx_de_sie = 'Lebensmittel und Landwirtschaft'
+cb_food_tx_de_sie = 'Nahrung und Landwirtschaft'
 cb_ener_tx_de_sie = 'Energie'
 cb_fut_tx_de_sie = 'Zukunft'
-pcr_title_tx_de_sie = 'Spieler-Brett
+pcr_title_tx_de_sie = 'Spieler-Brett'
 pcr_col_left_title_tx_de_sie = "Melden Sie sich zunächst in Ihrer Region an ..."
 pcr_col_right_title_tx_de_sie = '... dann in Ihrer Rolle als Minister:in ...'
 pcr_submit_tx_de_sie = "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier."
@@ -744,7 +736,7 @@ player_board_tx_de_sie = "Spieltafel: "
 pcgd_rd1_info_tx_de_sie = "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger in der nächsten Runde hoffentlich zu verbessern."
 pcgd_rd1_info_short_de_sie = "Gemeinsam mit Ihrem Minister:innen Team tragen Sie die Verantwortung, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Grafiken ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Liegt sie im **roten** Bereich, besteht Grund zur Sorge & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\ nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten, um die Investitionspläne Ihrer Kollegen:innen zu sehen. Stellen Sie sicher, dass diese im Rahmen Ihres regionalen Budgets liegen. Weitere Anweisungen finden Sie unter den Grafiken."
 pcgd_rd1_info_end_de_sie = "**Ausblenden**"
-pcgd_rd1_info_fut_tx_de_sie = "Als ZukunftsMinister:in haben Sie den Ãœberblick. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kollegen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kollegen ein & **achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Ãœbermitteln* klicken! (*Hinweis:* Wenn die Schaltfläche "Ãœbermitteln" nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein "Giga" entspricht 1.000.000.000 & US-Amerikaner nennen dies eine Billion, andere eine Milliarde.)
+pcgd_rd1_info_fut_tx_de_sie = "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kollegen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kollegen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Übermitteln* klicken! (*Hinweis:* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 & US-Amerikaner nennen dies eine Billion, andere eine Milliarde.)"
 pcgd_rd1_info_end_tx_de_sie = "pcgd_rd1_info_end_tx *Ausgang*"
 pcgd_generating_tx_de_sie = "... Ihre Diagramme und Entscheidungsblätter werden generiert..."
 show_hide_plots_hide_tx_de_sie = "Diagramme ausblenden"
@@ -754,7 +746,7 @@ pcgd_info_after_rd1_tx_de_sie = "Das Modell wurde bis 2040 fortgeschrieben. Auch
 not_to_2060_de_sie = "Das Modell wurde noch nicht bis zum Jahr 2060 fortgeschrieben."
 dec_info_tx_de_sie = "Nachdem Sie die Situation Ihrer Bevölkerung analysiert haben, müssen Sie verschiedene Massnahmen ergreifen, um das Leben Ihrer Bevölkerung **und** die Gesundheit des Planeten zu verbessern. Sie wissen, dass Menschen auf einem kranken Planeten nicht leben können. Sie legen die Massnahmen fest, indem Sie die Schieberegler ziehen. Nach Abstimmung mit Ihren Minister:innenkollegen stellen Sie den Schieberegler für jede Massnahme ein. \n\nJede Massnahme ist mit **Investitionskosten** verbunden. Stellen Sie den Schieberegler auf das Minimum, entstehen keine Kosten. Stellen Sie den Schieberegler auf das Maximum, werden die vollen Investitionskosten fällig. Stellen Sie den Schieberegler irgendwo zwischen Minimum und Maximum ein, werden die anteiligen Investitionskosten fällig. Ihre Region verfügt ausserdem über ein Budget für **alle** Investitionen **aller** Minister:innen. \n\nSollten Sie das Budget überschreiten, wird Ihr Kollege, der/die Minister:in für die Zukunft, Sie darüber informieren, und Sie müssen mit Ihren Kollegen:innen neu verhandeln, bis die gesamten regionalen Investitionen unter oder gleich dem Budget liegen.\n\nWenn das Kabinett Ihrer Region **a)** innerhalb des Budgets liegt und **b)** Sie **alle** mit Ihren Entscheidungen zufrieden sind, wird der/die ZukunftsMinister:in alle Ihre Entscheidungen dem/der Spielleiter:in übermitteln, damit das Modell für die nächste Runde fortgeschrieben wird."
 dec_title_tx_de_sie = "Entscheiden Sie über ihre Massnahmen"
-fut_info_tx_de_sie = "Als ZukunftsMinister:in haben Sie den Ãœberblick. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kollegen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kollegen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Ãœbermitteln* klicken! (*Hinweis:* Wenn die Schaltfläche "Ãœbermitteln" nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 ----- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.)
+fut_info_tx_de_sie = "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kollegen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kollegen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Ãœbermitteln* klicken! (*Hinweis:* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde."
 fut_bud_lb1_tx_de_sie = "Ihr Gesamtbudget:"
 fut_bud_lb2_tx_de_sie = "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst:"
 fut_bud_lb3_tx_de_sie = "Investitionspläne als % Ihres Budgets"
@@ -764,35 +756,36 @@ cfineq_tx_de_sie = "Ungleichheit"
 cfineq_lb_tx_de_sie = "Regionale Investitionspläne gegen Ungleichheit:"
 cfemp_tx_de_sie = "Empowerment/Befähigung"
 cfemp_lb_tx_de_sie = "Regionale Investitionspläne zur Stärkung der Selbstbestimmung:"
-cffood_tx_de_sie = "Lebensmittel und Landwirtschaft"
+cffood_tx_de_sie = "Ernährung und Landwirtschaft"
 cffood_lb_tx_de_sie = "Regionale Investitionen für Ernährung und Landwirtschaft:"
 cfener_tx_de_sie = "Energie"
-cfener_lb_tx_de_sie = "Regionale Investitionen für Energie:"
+cfener_lb_tx_de_sie = "Regionale Investitionen für die Energiewende:"
 refresh_numbers_tx_de_sie = "Zahlen aktualisieren"
 submit_numbers_tx_de_sie = "Zahlen übermitteln"
 confirm_submit_tx_de_sie = "Ja zum Absenden, Nein zum Zurückgehen"
 confirm_title_tx_de_sie = "Letzte Chance zurückzugehen."
-confirm_buttons_tx_de_sie = [
-  ("Ja", "YES"),
-  ("Nein", "NO")
-]
-after_submit_tx_de_sie = "Die Entscheidungen Ihrer Region wurden übermittelt & danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas Zeit in Anspruch nehmen ..."
-nothing_submitted_tx_de_sie = "Es wurde nichts übermittelt ..."
-p_advance_to_next_round_tx_de_sie = "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - Die Zukunft Ihrer Kinder"
+confirm_buttons_tx_de_sie = [  ("Ja", "YES"),  ("Nein", "NO") ]
+after_submit_tx_de_sie = "Die Entscheidungen Ihrer Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ..."
+nothing_submitted_tx_de_sie = "Es wurde nichts übermittelt"
+p_advance_to_next_round_tx_de_sie = "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder"
 p_advance_to_1_tx_de_sie = "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Ihrer Enkelkinder"
 p_advance_to_2_tx_de_sie = "Ergebnisse bis zum Ende des Jahrhunderts laden"
-p_waiting_model_run_tx_de_sie = "... warten immer noch darauf, dass der/die Spielleiter:in das Modell fortschreibt ..."
+p_waiting_model_run_tx_de_sie = "wir warten immer noch darauf, dass der/die Spielleiter:in das Modell fortschreibt"
 waiting_tx_de_sie = "Warten ..."
 not_all_submitted_tx_de_sie = "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt ..."
-not_all_submitted_p_tx_de_sie = "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, Ihr:e Spielleiter:in weiss, auf wen wir warten ..."
-not_all_submitted_gm_tx_de_sie = "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt ..."
-all_submitted_p_tx_de_sie = "ALLE Regionen HABEN ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn Ihre Ergebnisse vorliegen."
+not_all_submitted_p_tx_de_sie = "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, ihr:e Spielleiter:in weiss, auf wen wir warten ..."
+not_all_submitted_gm_tx_de_sie = "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt"
+all_submitted_p_tx_de_sie = "ALLE Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn Ihre Ergebnisse vorliegen."
 running_model_tx_de_sie = "... das Modell fortschreiben ..."
+
+choose_lang_tx_de_sie = "Ändern der Sprache"
 
 #######
 ####### Deutsch DU
 #######
+choose_lang_tx_de_du = "Ändere die Sprache"
 
 #######
 ####### Francais
 #######
+choose_lang_tx_fr = "Changer de langue"

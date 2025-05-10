@@ -14,20 +14,16 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Any code you write here will run before the form opens.
-    ### during dev, keep db small
-    ### in production comment out the next 4 lines and only delete once game is closed
-    ### in games_log
+    self.tick_gm_round_ready.interval = 0
+    self.timer_1.interval = 152
+    self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
 #    app_tables.roles_assign.delete_all_rows()
-    ###
-#    row = app_tables.cookies.get()
-#    row.update(gm_step=0)
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'fr'
+    #    my_loc = 'fr'
     if my_loc == 'en':
       t1 = (" English", 1)
       t2 = (" Deutsch - Sie", 2)
@@ -49,17 +45,37 @@ class home(homeTemplate):
       t3 = (" Deutsch - Du", 3)
       t4 = (" Français", 4)
 
-    self.dropdown_menu_1.items = [t1, t2, t3, t4]
-    if my_loc == 'en':
-      self.dropdown_menu_1.label = mg.choose_lang_tx
-    elif my_loc == 'de':
-      self.dropdown_menu_1.label = mg.choose_lang_tx_de
-    elif my_loc == 'fr':
-      self.dropdown_menu_1.label = mg.choose_lang_tx_fr
-      
-    self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 152
-    self.timer_1_tick()
+    self.choose_lang.items = [t1, t2, t3, t4]
+
+  def set_lang(self, loc):
+    if loc == 1:
+      teks = mg.teks_en
+    elif loc == 2:
+      teks = mg.teks_de_sie
+    elif loc == 3:
+      teks = mg.teks_de_du
+    elif loc == 4:
+      teks = mg.teks_fr
+    return teks
+
+  def choose_lang_change(self, **event_args):
+    print(self.choose_lang.selected_value)
+    """This method is called when an item is selected"""
+    my_lang = self.choose_lang.selected_value
+#    my_lang = self.set_lang(self.choose_lang.selected_value)
+    if my_lang == 1: ## English
+      self.top_title.text = mg.top_title_en
+    elif my_lang == 2: ## _de_sie
+      self.top_title.text = mg.top_title_de_sie
+    elif my_lang == 3: ## _de_du
+      alert("Die informellen Du Texte existieren noch nicht, wir greifen auf die formellen Sie Texte zurück.", title="Sprache fehlt")
+      self.top_title.text = mg.top_title_de_sie
+    elif my_lang == 4: ## _fr
+      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
+      self.top_title.text = mg.top_title_en
+
+    self.show_greeting.text = my_teks
+
     self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
