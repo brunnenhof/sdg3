@@ -45,7 +45,7 @@ class home(homeTemplate):
       t3 = (" Deutsch - Du", 3)
       t4 = (" Français", 4)
 
-    self.choose_lang.items = [t1, t2, t3, t4]
+    self.lang_dd_menu.items = [t1, t2, t3, t4]
 
   def set_lang(self, loc):
     if loc == 1:
@@ -65,18 +65,24 @@ class home(homeTemplate):
 #    my_lang = self.set_lang(self.choose_lang.selected_value)
     if my_lang == 1: ## English
       self.top_title.text = mg.top_title_en
+      self.lang_rich_tx.text = mg.lang_info_en
+      self.lang_lets_go.text = mg.lang_lets_go_en
     elif my_lang == 2: ## _de_sie
       self.top_title.text = mg.top_title_de_sie
+      self.lang_rich_tx.text = mg.lang_info_de_sie
+      self.lang_lets_go.text = mg.lang_lets_go_de_sie
     elif my_lang == 3: ## _de_du
       alert("Die informellen Du Texte existieren noch nicht, wir greifen auf die formellen Sie Texte zurück.", title="Sprache fehlt")
       self.top_title.text = mg.top_title_de_sie
+      self.lang_rich_tx.text = mg.lang_info_de_du
+      self.lang_lets_go.text = mg.lang_lets_go_de_du
     elif my_lang == 4: ## _fr
       alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
       self.top_title.text = mg.top_title_en
+      self.lang_rich_tx.text = mg.lang_info_fr
+      self.lang_lets_go.text = mg.lang_lets_go_fr
 
-    self.show_greeting.text = my_teks
-
-    self.top_title.text = mg.top_title
+  """self.top_title.text = mg.top_title
     self.top_btn_help.text = mg.top_btn_help
     self.top_btn_thanks.text = mg.top_btn_thanks
     self.top_btn_poc.text = 'PoC'
@@ -151,7 +157,7 @@ class home(homeTemplate):
     self.cpf_ener_lb2.text = mg.cfener_lb_tx 
     self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
     self.credits.text = mg.credits_btn_tx
-
+  """
   def set_lang(self, my_loc):
     if my_loc == 2:
       self.top_btn_help.text = mg.top_btn_help_de_sie
@@ -1216,7 +1222,7 @@ class home(homeTemplate):
     for row in rows:
       row.delete()
 
-  def dropdown_menu_1_change(self, **event_args):
+  def lang_dd_menu_change(self, **event_args):
     """This method is called when an item is selected"""
     if self.dropdown_menu_1.selected_value == 1: ## english
       pass

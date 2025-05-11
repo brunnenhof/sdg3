@@ -6,6 +6,37 @@ components:
     properties: {interval: 52}
     type: Timer
   - components:
+    - layout_properties: {grid_position: 'IMGJJY,OXSAAI'}
+      name: lang_rich_tx
+      properties: {}
+      type: RichText
+    - data_bindings:
+      - {code: '', property: items, writeback: false}
+      - {code: 'self.item[''t1'']', property: placeholder, writeback: false}
+      event_bindings: {change: lang_dd_menu_change}
+      layout_properties: {grid_position: 'IMGJJY,CHFQFX'}
+      name: lang_dd_menu
+      properties:
+        appearance: outlined
+        icon: mi:language
+        icon_color: theme:Primary
+        items: ['"Round 1", "Round 2","Round 3"']
+        label_bold: true
+        margin: [null, '4', null, '4']
+        placeholder: Model testing
+        selected_bold: true
+        selected_text_color: theme:Primary
+        visible: true
+      type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
+    - layout_properties: {grid_position: 'YCEBZG,HLYRVB'}
+      name: lang_lets_go
+      properties: {appearance: elevated, bold: true, icon: ''}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    layout_properties: {grid_position: 'WNWPMJ,HMUEQS'}
+    name: lang_card
+    properties: {background: yellow, border: yellow, col_widths: '{"OXSAAI":40,"CHFQFX":20}', foreground: 'theme:Primary', role: elevated-card}
+    type: ColumnPanel
+  - components:
     - event_bindings: {click: top_start_game_click}
       layout_properties: {grid_position: 'PINTXY,HDMYCU'}
       name: top_start_game
@@ -31,31 +62,13 @@ components:
       name: yr_from_mod
       properties: {align: center, visible: false}
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
-    - data_bindings:
-      - {code: '', property: items, writeback: false}
-      - {code: 'self.item[''t1'']', property: placeholder, writeback: false}
-      event_bindings: {change: dropdown_menu_1_change}
-      layout_properties: {grid_position: 'PINTXY,YKYYBF'}
-      name: dropdown_menu_1
-      properties:
-        appearance: outlined
-        icon: mi:language
-        icon_color: theme:Primary
-        items: ['"Round 1", "Round 2","Round 3"']
-        label_bold: true
-        margin: [null, '4', null, '4']
-        placeholder: Model testing
-        selected_bold: true
-        selected_text_color: theme:Primary
-        visible: true
-      type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
     - layout_properties: {grid_position: 'VYOQIA,GULAQJ'}
       name: top_entry_label
       properties: {align: center, bold: true, visible: false}
       type: Label
     layout_properties: {grid_position: 'RLGLYI,VVXMFZ'}
     name: top_entry
-    properties: {col_widths: '{"HDMYCU":12,"XDTWPY":12,"ZFDBLZ":6,"NRIAQC":10,"YKYYBF":20}', role: outlined-card}
+    properties: {col_widths: '{"HDMYCU":12,"XDTWPY":12,"ZFDBLZ":6,"NRIAQC":10}', role: outlined-card, visible: false}
     type: ColumnPanel
   - event_bindings: {tick: tick_gm_round_ready_tick}
     layout_properties: {grid_position: 'XCCMNU,SQKRBN'}

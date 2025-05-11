@@ -445,8 +445,8 @@ credits_btn_tx_en = "Credits"
 credits_tx_en = "The model we use is the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ..."
 credits_title_en = "Standing on shoulders of giants ..."
 choose_lang_tx_en = "Change the language"
-
-
+lang_info_en = "Welcome to the .. Game. First, the language. If English is fine, just click on the *Let's Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know."
+lang_lets_go_en = "Let's go"
 #######
 ####### Deutsch SIE
 #######
@@ -779,13 +779,18 @@ all_submitted_p_tx_de_sie = "ALLE Regionen haben jetzt ihre Entscheidungen über
 running_model_tx_de_sie = "... das Modell fortschreiben ..."
 
 choose_lang_tx_de_sie = "Ändern der Sprache"
+lang_info_de_sie = "Willkommen zum ... Spiel. Zuerst die Sprache. Wenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los geht's*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen."
+lang_lets_go_de_sie = "Los geht's"
 
 #######
 ####### Deutsch DU
 #######
 choose_lang_tx_de_du = "Ändere die Sprache"
-
+lang_info_de_du = "Willkommen zum ... Spiel. Zuerst die Sprache. Wenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los geht's*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen."
+lang_lets_go_de_du = "Los geht's"
 #######
 ####### Francais
 #######
 choose_lang_tx_fr = "Changer de langue"
+lang_info_fr = "Bienvenue dans le jeu. Tout d'abord, choisissez la langue. Si le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir."
+lang_lets_go_fr = "Allons-y"
