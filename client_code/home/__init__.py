@@ -30,20 +30,17 @@ class home(homeTemplate):
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
       self.lang_dd_menu.label = "Change the language"
-      placeholder = "English"
     elif my_loc == 'de':
       t3 = ("English", 1)
       t1 = ("Deutsch - Sie", 2)
       t2 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
-      placeholder = "Deutsch - Sie"
       self.lang_dd_menu.label = "Ändern Sie die Sprache"
     elif my_loc == 'fr':
       t2 = ("English", 1)
       t3 = ("Deutsch - Sie", 2)
       t4 = ("Deutsch - Du", 3)
       t1 = ("Français", 4)
-      placeholder = "Français"
       self.lang_dd_menu.label = "Modifier la langue"
     else:
       t1 = ("English", 1)
@@ -51,10 +48,8 @@ class home(homeTemplate):
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
       self.lang_dd_menu.label = "Change the language"
-      placeholder = "English"
 
     self.lang_dd_menu.items = [t1, t2, t3, t4]
-    self.lang_dd_menu.placeholder = placeholder
     if my_loc == 'en': ## English
       mg.my_lang = 1
       self.top_title.text = mg.top_title_en
@@ -1279,21 +1274,21 @@ class home(homeTemplate):
     for row in rows:
       row.delete()
 
-  def lang_dd_menu_change(self, **event_args):
+  def lang_dd_menu_changeOLD(self, **event_args):
     """This method is called when an item is selected"""
-    if self.dropdown_menu_1.selected_value == 1: ## english
+    if self.lang_dd_menu.selected_value == 1: ## english
       pass
-    if self.dropdown_menu_1.selected_value == 1:
-      print(self.dropdown_menu_1.selected_value)      
+    if self.lang_dd_menu.selected_value == 1:
+      print(self.lang_dd_menu.selected_value)      
       app_tables.game_files.delete_all_rows()
       von = 2025
       bis = 2040
-    elif self.dropdown_menu_1.selected_value == 2:
-      print(self.dropdown_menu_1.selected_value)       
+    elif self.lang_dd_menu.selected_value == 2:
+      print(self.lang_dd_menu.selected_value)       
       von = 2040
       bis = 2060
     else:
-      print(self.dropdown_menu_1.selected_value)       
+      print(self.lang_dd_menu.selected_value)       
       von = 2060
       bis = 2100
     cid = mg.my_game_id
@@ -1313,7 +1308,7 @@ class home(homeTemplate):
       abc = 'Using ' +str(dauer)+' sec to run the model successfully from '+str(von)+' to '+str(bis)
       alert(abc)
       self.card_test_plot.visible = True
-      anvil.server.call('fill_test_plots', self.dropdown_menu_1.selected_value, "QTO-53")
+      anvil.server.call('fill_test_plots', self.lang_dd_menu.selected_value, "QTO-53")
       slots = [{key: r[key] for key in ["title", "fig1"]} for r in app_tables.test_plots.search(game_id= cid)]
       self.card_test_plot_rp.items = slots
 
