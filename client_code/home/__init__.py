@@ -23,29 +23,68 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    #    my_loc = 'fr'
+    my_loc = 'de'
     if my_loc == 'en':
-      t1 = (" English", 1)
-      t2 = (" Deutsch - Sie", 2)
-      t3 = (" Deutsch - Du", 3)
-      t4 = (" Français", 4)
+      t1 = ("English", 1)
+      t2 = ("Deutsch - Sie", 2)
+      t3 = ("Deutsch - Du", 3)
+      t4 = ("Français", 4)
+      placeholder = "English"
     elif my_loc == 'de':
-      t3 = (" English", 1)
-      t1 = (" Deutsch - Sie", 2)
-      t2 = (" Deutsch - Du", 3)
-      t4 = (" Français", 4)
+      t3 = ("English", 1)
+      t1 = ("Deutsch - Sie", 2)
+      t2 = ("Deutsch - Du", 3)
+      t4 = ("Français", 4)
+      placeholder = "Deutsch - Sie"
     elif my_loc == 'fr':
-      t2 = (" English", 1)
-      t3 = (" Deutsch - Sie", 2)
-      t4 = (" Deutsch - Du", 3)
-      t1 = (" Français", 4)
+      t2 = ("English", 1)
+      t3 = ("Deutsch - Sie", 2)
+      t4 = ("Deutsch - Du", 3)
+      t1 = ("Français", 4)
+      placeholder = "Français"
     else:
-      t1 = (" English", 1)
-      t2 = (" Deutsch - Sie", 2)
-      t3 = (" Deutsch - Du", 3)
-      t4 = (" Français", 4)
+      t1 = ("English", 1)
+      t2 = ("Deutsch - Sie", 2)
+      t3 = ("Deutsch - Du", 3)
+      t4 = ("Français", 4)
+      placeholder = "English"
 
     self.lang_dd_menu.items = [t1, t2, t3, t4]
+    self.lang_dd_menu.placeholder = placeholder
+    if my_loc == 'en': ## English
+      self.top_title.text = mg.top_title_en
+      self.top_btn_help.text = mg.top_btn_help_en
+      self.top_btn_thanks.text = mg.top_btn_thanks_en
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_en
+      self.lang_rich_tx.content = mg.lang_info_en
+      self.lang_lets_go.text = mg.lang_lets_go_en
+    elif my_loc == 'de': ## _de_sie
+      self.top_title.text = mg.top_title_de_sie
+      self.top_btn_help.text = mg.top_btn_help_de_sie
+      self.top_btn_thanks.text = mg.top_btn_thanks_de_sie
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_en
+      self.lang_rich_tx.content = mg.lang_info_de_sie
+      self.lang_lets_go.text = mg.lang_lets_go_de_sie
+    elif my_loc == 'fr': ## _fr
+      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
+      self.top_title.text = mg.top_title_fr
+      self.top_btn_help.text = mg.top_btn_help_fr
+      self.top_btn_thanks.text = mg.top_btn_thanks_fr
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_fr
+      self.lang_rich_tx.content = mg.lang_info_fr
+      self.lang_lets_go.text = mg.lang_lets_go_fr
+    else:
+      self.top_title.text = mg.top_title_en
+      self.top_btn_help.text = mg.top_btn_help_en
+      self.top_btn_thanks.text = mg.top_btn_thanks_en
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_en
+      self.lang_rich_tx.content = mg.lang_info_en
+      self.lang_lets_go.text = mg.lang_lets_go_en
+
 
   def set_lang(self, loc):
     if loc == 1:
@@ -58,11 +97,11 @@ class home(homeTemplate):
       teks = mg.teks_fr
     return teks
 
-  def choose_lang_change(self, **event_args):
-    print(self.choose_lang.selected_value)
+  def lang_dd_menu_change(self, **event_args):
+    print(self.lang_dd_menug.selected_value)
     """This method is called when an item is selected"""
-    my_lang = self.choose_lang.selected_value
-#    my_lang = self.set_lang(self.choose_lang.selected_value)
+    my_lang = self.lang_dd_menu.selected_value
+    #    my_lang = self.set_lang(self.lang_dd_menu.selected_value)
     if my_lang == 1: ## English
       self.top_title.text = mg.top_title_en
       self.lang_rich_tx.text = mg.lang_info_en
