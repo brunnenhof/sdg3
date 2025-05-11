@@ -15,7 +15,7 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 152
+    self.timer_1.interval = 15227
     self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -23,12 +23,13 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'de'
+    my_loc = 'en'
     if my_loc == 'en':
       t1 = ("English", 1)
       t2 = ("Deutsch - Sie", 2)
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
+      self.lang_dd_menu.label = "Change the language"
       placeholder = "English"
     elif my_loc == 'de':
       t3 = ("English", 1)
@@ -36,22 +37,26 @@ class home(homeTemplate):
       t2 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
       placeholder = "Deutsch - Sie"
+      self.lang_dd_menu.label = "Ändern Sie die Sprache"
     elif my_loc == 'fr':
       t2 = ("English", 1)
       t3 = ("Deutsch - Sie", 2)
       t4 = ("Deutsch - Du", 3)
       t1 = ("Français", 4)
       placeholder = "Français"
+      self.lang_dd_menu.label = "Modifier la langue"
     else:
       t1 = ("English", 1)
       t2 = ("Deutsch - Sie", 2)
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
+      self.lang_dd_menu.label = "Change the language"
       placeholder = "English"
 
     self.lang_dd_menu.items = [t1, t2, t3, t4]
     self.lang_dd_menu.placeholder = placeholder
     if my_loc == 'en': ## English
+      mg.my_loc = 1
       self.top_title.text = mg.top_title_en
       self.top_btn_help.text = mg.top_btn_help_en
       self.top_btn_thanks.text = mg.top_btn_thanks_en
@@ -60,6 +65,7 @@ class home(homeTemplate):
       self.lang_rich_tx.content = mg.lang_info_en
       self.lang_lets_go.text = mg.lang_lets_go_en
     elif my_loc == 'de': ## _de_sie
+      mg.my_loc = 2
       self.top_title.text = mg.top_title_de_sie
       self.top_btn_help.text = mg.top_btn_help_de_sie
       self.top_btn_thanks.text = mg.top_btn_thanks_de_sie
@@ -68,7 +74,7 @@ class home(homeTemplate):
       self.lang_rich_tx.content = mg.lang_info_de_sie
       self.lang_lets_go.text = mg.lang_lets_go_de_sie
     elif my_loc == 'fr': ## _fr
-      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
+      mg.my_loc = 4
       self.top_title.text = mg.top_title_fr
       self.top_btn_help.text = mg.top_btn_help_fr
       self.top_btn_thanks.text = mg.top_btn_thanks_fr
@@ -76,7 +82,9 @@ class home(homeTemplate):
       self.credits.text = mg.credits_btn_tx_fr
       self.lang_rich_tx.content = mg.lang_info_fr
       self.lang_lets_go.text = mg.lang_lets_go_fr
+      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
     else:
+      mg.my_loc = 1
       self.top_title.text = mg.top_title_en
       self.top_btn_help.text = mg.top_btn_help_en
       self.top_btn_thanks.text = mg.top_btn_thanks_en
@@ -85,118 +93,55 @@ class home(homeTemplate):
       self.lang_rich_tx.content = mg.lang_info_en
       self.lang_lets_go.text = mg.lang_lets_go_en
 
-
-  def set_lang(self, loc):
-    if loc == 1:
-      teks = mg.teks_en
-    elif loc == 2:
-      teks = mg.teks_de_sie
-    elif loc == 3:
-      teks = mg.teks_de_du
-    elif loc == 4:
-      teks = mg.teks_fr
-    return teks
-
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menug.selected_value)
     """This method is called when an item is selected"""
     my_lang = self.lang_dd_menu.selected_value
     #    my_lang = self.set_lang(self.lang_dd_menu.selected_value)
+    mg.my_loc = my_lang
     if my_lang == 1: ## English
       self.top_title.text = mg.top_title_en
-      self.lang_rich_tx.text = mg.lang_info_en
+      self.top_btn_help.text = mg.top_btn_help_en
+      self.top_btn_thanks.text = mg.top_btn_thanks_en
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_en
+      self.lang_rich_tx.content = mg.lang_info_en
       self.lang_lets_go.text = mg.lang_lets_go_en
+      self.lang_dd_menu.label = "Change the language"
+      self.set_lang(1)
     elif my_lang == 2: ## _de_sie
       self.top_title.text = mg.top_title_de_sie
-      self.lang_rich_tx.text = mg.lang_info_de_sie
+      self.top_btn_help.text = mg.top_btn_help_de_sie
+      self.top_btn_thanks.text = mg.top_btn_thanks_de_sie
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_en
+      self.lang_rich_tx.content = mg.lang_info_de_sie
       self.lang_lets_go.text = mg.lang_lets_go_de_sie
+      self.lang_dd_menu.label = "Ändern Sie die Sprache"
+      self.set_lang(2)
     elif my_lang == 3: ## _de_du
-      alert("Die informellen Du Texte existieren noch nicht, wir greifen auf die formellen Sie Texte zurück.", title="Sprache fehlt")
-      self.top_title.text = mg.top_title_de_sie
-      self.lang_rich_tx.text = mg.lang_info_de_du
+      self.top_title.text = mg.top_title_de_du
+      self.top_btn_help.text = mg.top_btn_help_de_du
+      self.top_btn_thanks.text = mg.top_btn_thanks_de_du
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_du
+      self.lang_rich_tx.content = mg.lang_info_de_du
       self.lang_lets_go.text = mg.lang_lets_go_de_du
+      self.lang_dd_menu.label = "Ändere die Sprache"
+      alert("Die informellen Du Texte existieren noch nicht, wir greifen auf die formellen Sie Texte zurück.", title="Sprache fehlt")
+      self.set_lang(2) ## once we have DU set to 3
     elif my_lang == 4: ## _fr
-      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
-      self.top_title.text = mg.top_title_en
-      self.lang_rich_tx.text = mg.lang_info_fr
+      self.top_title.text = mg.top_title_fr
+      self.top_btn_help.text = mg.top_btn_help_fr
+      self.top_btn_thanks.text = mg.top_btn_thanks_fr
+      self.top_btn_poc.text = "PoC"
+      self.credits.text = mg.credits_btn_tx_fr
+      self.lang_rich_tx.content = mg.lang_info_fr
       self.lang_lets_go.text = mg.lang_lets_go_fr
-
-  """self.top_title.text = mg.top_title
-    self.top_btn_help.text = mg.top_btn_help
-    self.top_btn_thanks.text = mg.top_btn_thanks
-    self.top_btn_poc.text = 'PoC'
-    self.top_join_game.text = mg.top_join_game
-    self.top_start_game.text = mg.top_start_game
-    self.p_lb_choose_game.text = mg.p_lb_choose_game
-    self.p_btn_select_game.text = mg.p_btn_select_game
-    self.gm_board.text = mg.msg_gm_board
-    self.gm_board_info.content = mg.msg_gm_board_info
-    self.cb_af.text = mg.cb_af_tx
-    self.cb_us.text = mg.cb_us_tx
-    self.cb_cn.text = mg.cb_cn_tx
-    self.cb_me.text = mg.cb_me_tx
-    self.cb_sa.text = mg.cb_sa_tx
-    self.cb_la.text = mg.cb_la_tx
-    self.cb_pa.text = mg.cb_pa_tx
-    self.cb_ec.text = mg.cb_ec_tx
-    self.cb_eu.text = mg.cb_eu_tx
-    self.cb_se.text = mg.cb_se_tx
-    self.gm_reg_npbp.text = mg.gm_reg_npbp_tx
-    self.gm_card_wait_1_info.content = mg.gm_card_wait_1_info_tx
-    self.gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx
-    self.gm_start_round.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx
-    self.setup_npbp_label.text = mg.setup_npbp_label_tx
-    self.pcr_rb_af.text = mg.cb_af_tx
-    self.pcr_rb_us.text = mg.cb_us_tx
-    self.pcr_rb_cn.text = mg.cb_cn_tx
-    self.pcr_rb_me.text = mg.cb_me_tx
-    self.pcr_rb_sa.text = mg.cb_sa_tx
-    self.pcr_rb_la.text = mg.cb_la_tx
-    self.pcr_rb_pa.text = mg.cb_pa_tx
-    self.pcr_rb_ec.text = mg.cb_ec_tx
-    self.pcr_rb_eu.text = mg.cb_eu_tx
-    self.pcr_rb_se.text = mg.cb_se_tx
-
-    self.pcr_rb_pov.text = mg.cb_pov_tx
-    self.pcr_rb_ineq.text = mg.cb_ineq_tx
-    self.pcr_rb_emp.text = mg.cb_emp_tx
-    self.pcr_rb_food.text = mg.cb_food_tx
-    self.pcr_rb_ener.text = mg.cb_ener_tx
-    self.pcr_rb_fut.text = mg.cb_fut_tx
-
-    self.pcr_title.text = mg.pcr_title_tx
-    self.pcr_col_left_title.text = mg.pcr_col_left_title_tx
-    self.pcr_col_right_title.text = mg.pcr_col_right_title_tx
-    self.pcr_submit.text = mg.pcr_submit_tx
-    self.fut_not_all_logged_in.text = mg.fut_not_all_logged_in_tx
-#    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
-#    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
-    self.pcgd_title.text = mg.pcr_title_tx
-    self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
-    self.pcgd_generating.text = mg.pcgd_generating_tx
-    self.dec_info.content = mg.dec_info_tx
-    self.dec_title.text = mg.dec_title_tx
-    self.pcgd_advance.text = mg.pcgd_advance_tx
-
-    self.refresh_numbers.text = mg.refresh_numbers_tx
-    self.submit_numbers.text = mg.submit_numbers_tx
-    self.fut_info.content = mg.fut_info_tx 
-    self.fut_bud_lb1.text = mg.fut_bud_lb1_tx 
-    self.fut_bud_lb2.text = mg.fut_bud_lb2_tx 
-    self.fut_but_lb3.text = mg.fut_bud_lb3_tx 
-    self.cpf_lb.text = mg.cfpov_tx
-    self.cpf_lb2.text = mg.cfpov_lb_tx 
-    self.cpf_ineq_lb.text = mg.cfineq_tx
-    self.cpf_ineq_lb2.text = mg.cfineq_lb_tx 
-    self.cpf_emp_lb.text = mg.cfemp_tx
-    self.cpf_emp_lb2.text = mg.cfemp_lb_tx 
-    self.cpf_food_lb.text = mg.cffood_tx
-    self.cpf_food_lb2.text = mg.cffood_lb_tx 
-    self.cpf_ener_lb.text = mg.cfener_tx
-    self.cpf_ener_lb2.text = mg.cfener_lb_tx 
-    self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx
-    self.credits.text = mg.credits_btn_tx
-  """
+      self.lang_dd_menu.label = "Modifier la langue"
+      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
+      self.set_lang(1)  ## once we have FR set to 4
+      
   def set_lang(self, my_loc):
     if my_loc == 2:
       self.top_btn_help.text = mg.top_btn_help_de_sie
@@ -1301,7 +1246,7 @@ class home(homeTemplate):
 
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-    dummy=anvil.server.call('fe_keepalive')
+    dummy=anvil.server.call_s('fe_keepalive')
 
   def all_submit(self, cid, runde):
     rowc = app_tables.cookies.get(game_id=cid)

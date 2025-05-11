@@ -12,16 +12,18 @@ components:
       type: RichText
     - data_bindings:
       - {code: '', property: items, writeback: false}
-      - {code: 'self.item[''t1'']', property: placeholder, writeback: false}
+      - {code: '', property: placeholder, writeback: false}
       event_bindings: {change: lang_dd_menu_change}
       layout_properties: {grid_position: 'IMGJJY,CHFQFX'}
       name: lang_dd_menu
       properties:
         appearance: outlined
+        background_color: '#E0FFE0'
         icon: mi:language
         icon_color: theme:Primary
         items: ['"Round 1", "Round 2","Round 3"']
         label_bold: true
+        label_italic: true
         margin: [null, '4', null, '4']
         placeholder: Model testing
         selected_bold: true
