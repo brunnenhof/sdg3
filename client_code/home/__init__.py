@@ -291,11 +291,11 @@ class home(homeTemplate):
     cpf_ener_lb2.text = mg.cfener_lb_tx_de_sie 
     gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx_de_sie
     credits.text = mg.credits_btn_tx_de_sie
-  else:
-    alert("no language "+str(my_loc))
+#  else:
+#    alert("no language "+str(my_loc))
     
   def top_btn_thanks_click(self, **event_args):
-    alert(content=self.top_thanks_msg, title=self.top_thanks_title, large=True)
+    alert(content=top_thanks_msg, title=top_thanks_title, large=True)
 
   def top_btn_poc_click(self, **event_args):
     alert("Neither the user interface nor the server code is elegant nor efficient. Contact us if you can help making either or all better.",
