@@ -66,10 +66,10 @@ reg_to_longreg_la_str = [
 ]
 reg_to_longreg_pa_str = [
   "Pacific Rim",
-  "Pazifischer Raum",
-  "Pazifischer Raum",
-  "Pacific Rim", 
-  "Pacific Rim", 
+  "Pazifische Anrainerstaaten ",
+  "Pazifische Anrainerstaaten ",
+  "Pays riverains du Pacifique ", 
+  "Landene rundt Stillehavet ", 
   " _last_"
 ]
 reg_to_longreg_ec_str = [
@@ -1674,24 +1674,24 @@ gm_id_msg1_str = [
   "Your game ID is ",
   "Ihre Spiel-ID ist ",
   "Ihre Spiel-ID ist ",
-  "Votre jeu d'identité est", 
-  "Din spill -ID er", 
+  "Votre jeu d'identité est ", 
+  "Din spill -ID er ", 
   " _last_"
 ]
 gm_id_msg2_str = [
-  ". Make a note of it and tell your players. ",
-  ". Notieren Sie die ID und geben Sie sie an ihre Spieler weiter. ",
-  ". Notieren Sie die ID und geben Sie sie an ihre Spieler weiter. ",
-  ". En prendre une note et dire à vos joueurs.", 
-  ". Noter det og fortell spillerne dine.", 
+  ". Make a note of it. ",
+  ". Notieren Sie die ID. ",
+  ". Notiere die ID. ",
+  ". En prendre une note.", 
+  ". Noter det.", 
   " _last_"
 ]
 gm_id_title_str = [
-  "Your game ID is ",
-  "Ihre Spiel-ID ist ",
-  "Ihre Spiel-ID ist ",
-  "Votre jeu d'identité est", 
-  "Din spill -ID er", 
+  "Your game ID",
+  "Ihre Spiel-ID",
+  "Ihre Spiel-ID",
+  "Votre jeu d'identité", 
+  "Din spill-ID", 
   " _last_"
 ]
 top_thanks_msg_str = [
@@ -1714,16 +1714,16 @@ top_roles_setup_msg_str = [
   "Roles template has been set up for ",
   "Rollenvorlage wurde eingerichtet für ",
   "Rollenvorlage wurde eingerichtet für ",
-  "Le modèle de rôles a été configuré pour", 
-  "Roller mal er satt opp for", 
+  "Le modèle de rôles a été configuré pour ", 
+  "Roller mal er satt opp for ", 
   " _last_"
 ]
 title_you_are_joining_str = [
   "You are joining ",
   "Sie treten bei - ",
   "Sie treten bei - ",
-  "Vous rejoignez", 
-  "Du blir med", 
+  "Vous rejoignez ", 
+  "Du blir med ", 
   " _last_"
 ]
 msg_game_not_started_str = [
@@ -1735,19 +1735,19 @@ msg_game_not_started_str = [
   " _last_"
 ]
 msg_gm_board_head_str = [
-  "Game Organizer Board ",
-  "Spielleiter:in-Brett ",
-  "Spielleiter:in-Brett ",
-  "Game Organizer Board", 
-  "Game Organizer Board", 
+  "Game Organizer Board for ",
+  "Spielleiter:in-Brett für ",
+  "Spielleiter:in-Brett für ",
+  "Tableau de jeu pour ", 
+  "Hovedspillbrett for ", 
   " _last_"
 ]
 msg_gm_board_info_str = [
-  "**Now, click on *all* the regions *not* played by your players (eg if there are not enough players for all roles)** ",
-  "**Klicken Sie jetzt auf *alle* Regionen, die *nicht* von Ihren Spielern gespielt werden (z. B. wenn nicht genügend Spieler für alle Rollen vorhanden sind)** ",
-  "**Klicken Sie jetzt auf *alle* Regionen, die *nicht* von Ihren Spielern gespielt werden (z. B. wenn nicht genügend Spieler für alle Rollen vorhanden sind)** ",
-  "** Maintenant, cliquez sur * toutes * les régions * pas * jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles) **", 
-  "** Nå, klikk på*alle*regionene*ikke*spilt av spillerne dine (f.eks. Hvis det ikke er nok spillere for alle roller) **", 
+  "Now, click on **all** the regions **not** played by your players (eg if there are not enough players for all roles)",
+  "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
+  "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
+  "Maintenant, cliquez sur * toutes * les régions * pas * jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles)", 
+  "Nå, klikk på **alle** regionene **ikke** spilt av spillerne dine (f.eks. Hvis det ikke er nok spillere for alle roller)", 
   " _last_"
 ]
 cb_us_tx_str = [
@@ -1803,10 +1803,10 @@ cb_la_tx_str = [
 
 cb_pa_tx_str = [
   "Pacific Rim ",
-  "Pazifischer Raum ",
-  "Pazifischer Raum ",
-  "Pacific Rim ", 
-  "Pacific Rim", 
+  "Pazifische Anrainerstaaten ",
+  "Pazifische Anrainerstaaten ",
+  "Pays riverains du Pacifique ", 
+  "Landene rundt Stillehavet ", 
   " _last_"
 ]
 
@@ -2173,7 +2173,7 @@ msg_ro_str = [
 pcr_submit_title_str = [
     "Congratulations! ",
     "Herzlichen Glückwunsch! ",
-    "Herzlichen Glückwunsch! ",
+    "Glückwunsch! ",
     "Félicitations! ",
     "Gratulerer! ",
     " _last_"
@@ -2182,7 +2182,7 @@ pcr_submit_title_str = [
 pcr_submit_msg1_str = [
     "You have been confirmed as ",
     "Sie wurden bestätigt als ",
-    "Sie wurden bestätigt als ",
+    "Du wurdest bestätigt als ",
     "Vous avez été confirmé comme ",
     "Du er bekreftet som ",
     " _last_"
@@ -2210,8 +2210,8 @@ player_board_tx_str = [
     "Player Board - ",
     "Spieler:innen Board ",
     "Spieler:innen Board ",
-    "Player Board -", 
-    "Player Board -", 
+    "Tableau des joueurs-", 
+    "Spillerbrett-", 
     " _last_"
     ]
  
@@ -2634,7 +2634,7 @@ lang_info_str = [
     "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. ",
     "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. ",
     "Bienvenue dans le jeu. **Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. ",
-  "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed." ,
+    "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed." ,
     " _last_"
     ]
 
@@ -2654,11 +2654,11 @@ lang_avail_items = [
   "Norsk-Bokmål"
 ]
 enter_code_tx = [
-  "Enter the code to start a game",
-  "Geben Sie den Kode ein um ein Spiel zu starten",
-  "Gib den Kode ein um ein Spiel zu starten",
-  "Entrez le code pour commencer un jeu",
-  "Skriv inn koden for å starte et spill",
+  "Start-code, please",
+  "Start-Kode, bitte",
+  "Start-Kode, bitte",
+  "Code de démarrage, s'il vous plaît",
+  "Start-kode, vær så snilll",
   "_last_"
 ]  
 enter_code_title_tx = [
@@ -2671,8 +2671,17 @@ enter_code_title_tx = [
 ]  
 wrong_code_tx = [
   "Wrong code, check with whoever knows the code",
-  "Falscher Code, fragen Sie denjenigen, der den Code kennt",
-  "Falscher Code, frage denjenigen, der den Code kennt",
+  "Falscher Code, fragen Sie jemanden, der den Code kennt",
+  "Falscher Code, frage jemanden, der den Code kennt",
   "Code erroné, vérifier auprès de la personne qui connaît le code",
   "Feil kode, sjekk med den som kan koden",
+  "_last_"
+]
+top_entry_label_str = [
+  "Hold on, setting up all the necessary slots, templates and tables for the game ...",
+  "Einen Moment, aller für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Einen Moment, aller für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Attendez, mettre en place tous les emplacements, modèles et tables nécessaires pour le jeu ...",
+  "Vent litt, sette opp alle nødvendige spor, maler og tabeller for spillet ...",
+  "_last_"
 ]

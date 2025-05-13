@@ -24,7 +24,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-#    my_loc = 'zu'
+    my_loc = 'no'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -84,7 +84,7 @@ class home(homeTemplate):
     if my_lox == 3:
       alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
     elif my_lox == 4:
-      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Unnskyld")
+      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Beklager")
     elif my_lox == 2:
       alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
     elif my_lox > 4:
@@ -119,82 +119,10 @@ class home(homeTemplate):
     elif my_lox > 4:
       alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
 
-  """
-  my_loc = mg.my_lang
-  top_thanks_msg = lu.top_btn_thanks_str[my_loc]
-  top_thanks_title = mg.top_thanks_title_en
-    top_btn_help.text = mg.top_btn_help_en
-    top_btn_thanks.text = mg.top_btn_thanks_en
-    top_btn_poc.text = 'PoC'
-    top_join_game.text = mg.top_join_game_en
-    top_start_game.text = mg.top_start_game_en
-    p_lb_choose_game.text = mg.p_lb_choose_game_en
-    p_btn_select_game.text = mg.p_btn_select_game_en
-    gm_board.text = mg.msg_gm_board_en
-    gm_board_info.content = mg.msg_gm_board_info_en
-    cb_af.text = mg.cb_af_tx_en
-    cb_us.text = mg.cb_us_tx_en
-    cb_cn.text = mg.cb_cn_tx_en
-    cb_me.text = mg.cb_me_tx_en
-    cb_sa.text = mg.cb_sa_tx_en
-    cb_la.text = mg.cb_la_tx_en
-    cb_pa.text = mg.cb_pa_tx_en
-    cb_ec.text = mg.cb_ec_tx_en
-    cb_eu.text = mg.cb_eu_tx_en
-    cb_se.text = mg.cb_se_tx_en
-    gm_reg_npbp.text = mg.gm_reg_npbp_tx_en
-    gm_card_wait_1_info.content = mg.gm_card_wait_1_info_tx_en
-    gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx_en
-    gm_start_round.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx_en
-    setup_npbp_label.text = mg.setup_npbp_label_tx_en
-    pcr_rb_af.text = mg.cb_af_tx_en
-    pcr_rb_us.text = mg.cb_us_tx_en
-    pcr_rb_cn.text = mg.cb_cn_tx_en
-    pcr_rb_me.text = mg.cb_me_tx_en
-    pcr_rb_sa.text = mg.cb_sa_tx_en
-    pcr_rb_la.text = mg.cb_la_tx_en
-    pcr_rb_pa.text = mg.cb_pa_tx_en
-    pcr_rb_ec.text = mg.cb_ec_tx_en
-    pcr_rb_eu.text = mg.cb_eu_tx_en
-    pcr_rb_se.text = mg.cb_se_tx_en
-    pcr_rb_pov.text = mg.cb_pov_tx_en
-    pcr_rb_ineq.text = mg.cb_ineq_tx_en
-    pcr_rb_emp.text = mg.cb_emp_tx_en
-    pcr_rb_food.text = mg.cb_food_tx_en
-    pcr_rb_ener.text = mg.cb_ener_tx_en
-    pcr_rb_fut.text = mg.cb_fut_tx_en
-    pcr_title.text = mg.pcr_title_tx_en
-    pcr_col_left_title.text = mg.pcr_col_left_title_tx_en
-    pcr_col_right_title.text = mg.pcr_col_right_title_tx_en
-    pcr_submit.text = mg.pcr_submit_tx_en
-    fut_not_all_logged_in.text = mg.fut_not_all_logged_in_tx_en
-      #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
-      #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
-    pcgd_title.text = mg.pcr_title_tx_en
-    pcgd_info_rd1.content = mg.pcgd_rd1_info_tx_en
-    pcgd_generating.text = mg.pcgd_generating_tx_en
-    dec_info.content = mg.dec_info_tx_en
-    dec_title.text = mg.dec_title_tx_en
-    pcgd_advance.text = mg.pcgd_advance_tx_en
-    refresh_numbers.text = mg.refresh_numbers_tx_en
-    submit_numbers.text = mg.submit_numbers_tx_en
-    fut_info.content = mg.fut_info_tx_en
-    fut_bud_lb1.text = mg.fut_bud_lb1_tx_en
-    fut_bud_lb2.text = mg.fut_bud_lb2_tx_en 
-    fut_but_lb3.text = mg.fut_bud_lb3_tx_en 
-    cpf_lb.text = mg.cfpov_tx_en
-    cpf_lb2.text = mg.cfpov_lb_tx_en 
-    cpf_ineq_lb.text = mg.cfineq_tx_en
-    cpf_ineq_lb2.text = mg.cfineq_lb_tx_en 
-    cpf_emp_lb.text = mg.cfemp_tx_en
-    cpf_emp_lb2.text = mg.cfemp_lb_tx_en 
-    cpf_food_lb.text = mg.cffood_tx_en
-    cpf_food_lb2.text = mg.cffood_lb_tx_en 
-    cpf_ener_lb.text = mg.cfener_tx_en
-    cpf_ener_lb2.text = mg.cfener_lb_tx_en 
-    gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx_en
-    credits.text = mg.credits_btn_tx_en
-  """  
+  my_lox = mg.my_lang
+#  p_btn_select_game.text = mg.p_btn_select_game_en
+#  gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
+    
   def top_btn_thanks_click(self, **event_args):
     my_lox = mg.my_lang
     alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox], large=True)
@@ -207,17 +135,81 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
+  def set_lang(self, my_lox):
+    self.cb_af.text = lu.cb_af_tx_str[my_lox]
+    self.cb_us.text = lu.cb_us_tx_str[my_lox]
+    self.cb_cn.text = lu.cb_cn_tx_str[my_lox]
+    self.cb_me.text = lu.cb_me_tx_str[my_lox]
+    self.cb_sa.text = lu.cb_sa_tx_str[my_lox]
+    self.cb_la.text = lu.cb_la_tx_str[my_lox]
+    self.cb_pa.text = lu.cb_pa_tx_str[my_lox]
+    self.cb_ec.text = lu.cb_ec_tx_str[my_lox]
+    self.cb_eu.text = lu.cb_eu_tx_str[my_lox]
+    self.cb_se.text = lu.cb_se_tx_str[my_lox]
+    self.gm_reg_npbp.text = lu.gm_reg_npbp_tx_str[my_lox]
+    self.gm_card_wait_1_info.content = lu.gm_card_wait_1_info_tx_str[my_lox]
+    self.gm_card_wait_1_btn_check.text = lu.gm_card_wait_1_btn_check_tx_str[my_lox]
+    self.gm_start_round.text = lu.gm_card_wait_1_btn_kick_off_round_1_tx_str[my_lox]
+    self.setup_npbp_label.text = lu.setup_npbp_label_tx_str[my_lox]
+    self.pcr_rb_af.text = lu.cb_af_tx_str[my_lox]
+    self.pcr_rb_us.text = lu.cb_us_tx_str[my_lox]
+    self.pcr_rb_cn.text = lu.cb_cn_tx_str[my_lox]
+    self.pcr_rb_me.text = lu.cb_me_tx_str[my_lox]
+    self.pcr_rb_sa.text = lu.cb_sa_tx_str[my_lox]
+    self.pcr_rb_la.text = lu.cb_la_tx_str[my_lox]
+    self.pcr_rb_pa.text = lu.cb_pa_tx_str[my_lox]
+    self.pcr_rb_ec.text = lu.cb_ec_tx_str[my_lox]
+    self.pcr_rb_eu.text = lu.cb_eu_tx_str[my_lox]
+    self.pcr_rb_se.text = lu.cb_se_tx_str[my_lox]
+    self.pcr_rb_pov.text = lu.cb_pov_tx_str[my_lox]
+    self.pcr_rb_ineq.text = lu.cb_ineq_tx_str[my_lox]
+    self.pcr_rb_emp.text = lu.cb_emp_tx_str[my_lox]
+    self.pcr_rb_food.text = lu.cb_food_tx_str[my_lox]
+    self.pcr_rb_ener.text = lu.cbener_tx_str[my_lox]
+    self.pcr_rb_fut.text = lu.cb_fut_tx_str[my_lox]
+    self.pcr_title.text = lu.pcr_title_tx_str[my_lox]
+    self.pcr_col_left_title.text = lu.pcr_col_left_title_tx_str[my_lox]
+    self.pcr_col_right_title.text = lu.pcr_col_right_title_tx_str[my_lox]
+    self.pcr_submit.text = lu.pcr_submit_tx_str[my_lox]
+    self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[my_lox]
+    #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
+    #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
+    self.pcgd_title.text = lu.pcr_title_tx_str[my_lox]
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[my_lox]
+    self.pcgd_generating.text = lu.pcgd_generating_tx4_str[my_lox]
+    self.dec_info.content = lu.dec_info_tx_str[my_lox]
+    self.dec_title.text = lu.dec_title_tx_str[my_lox]
+    self.pcgd_advance.text = lu.pcgd_advance_tx_str[my_lox]
+    self.refresh_numbers.text = lu.refresh_numbers_tx_str[my_lox]
+    self.submit_numbers.text = lu.submit_numbers_tx_str[my_lox]
+    self.fut_info.content = lu.fut_info_tx_str[my_lox]
+    self.fut_bud_lb1.text = lu.fut_bud_lb1_tx_str[my_lox]
+    self.fut_bud_lb2.text = lu.fut_bud_lb2_tx_str[my_lox]
+    self.fut_but_lb3.text = lu.fut_bud_lb3_tx_str[my_lox]
+    self.cpf_lb.text = lu.cfpov_tx_str[my_lox]
+    self.cpf_lb2.text = lu.cfpov_lb_tx_str[my_lox]
+    self.cpf_ineq_lb.text = lu.cfineq_tx_str[my_lox]
+    self.cpf_ineq_lb2.text = lu.cfineq_lb_tx_str[my_lox]
+    self.cpf_emp_lb.text = lu.cfemp_tx_str[my_lox]
+    self.cpf_emp_lb2.text = lu.cfemp_lb_tx_str[my_lox]
+    self.cpf_food_lb.text = lu.cffood_tx_str[my_lox]
+    self.cpf_food_lb2.text = lu.cffood_lb_tx_str[my_lox]
+    self.cpf_ener_lb.text = lu.cfener_tx_str[my_lox]
+    self.cpf_ener_lb2.text = lu.cfener_lb_tx_str[my_lox]
+    self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx1_str[my_lox]
+    self.gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
+#    self.credits.text = lu.credits_btn_tx_str[my_lox]
+  
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     t = TextBox(placeholder=lu.enter_code_tx[my_lox])
-    alert(content=t,
-          title=lu.enter_code_title_tx[my_lox])
+    alert(content=t,title=lu.enter_code_title_tx[my_lox])
     print(f"You entered: {t.text}")
     code = t.text.upper()
-    if not code == 'LTG-ND':
+#    if not code == 'LTG-ND':
+    if not code == '':
       alert(lu.wrong_code_tx[my_lox])
       return
-      pass
     with Notification("Clearing DBs ..."):
       self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
@@ -230,21 +222,22 @@ class home(homeTemplate):
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
     self.tick_gm_round_ready.interval = 0
     # self.tick_gm_round_ready_tick()
-    msg = mg.gm_id_msg1 + game_id + mg.gm_id_msg2
-    alert(msg, title=mg.gm_id_title)
+    msg = lu.gm_id_msg1_str[my_lox] + game_id + lu.gm_id_msg2_str[my_lox]
+    alert(msg, title=lu.gm_id_title_str[my_lox])
     anfang = time.time()
     self.task = anvil.server.call('launch_set_roles', game_id)
     self.top_entry_label.visible = True
     while not self.task.is_completed():
-      self.top_entry_label.text = mg.top_entry_label_tx
+      self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     else:
       ende = time.time()
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
-#      self.seconds.textcolor = '#FFD6D6'
+      self.seconds.textcolor = 'red'
       self.top_entry.visible = False
-      self.gm_board.text = mg.msg_gm_board + '  for '+game_id
+      self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
       self.gm_role_reg.visible = True
+      self.set_lang(my_lox)
 
   def check_rnsub(self, cid):
     ## ToDo
