@@ -1,6 +1,7 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
 from .. import mg
+from .. import lu
 import webbrowser
 import anvil.server
 import anvil.tables as tables
@@ -29,24 +30,35 @@ class home(homeTemplate):
       t2 = ("Deutsch - Sie", 2)
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
+      t5 = ("Norsk-Bokmål", 5)
       self.lang_dd_menu.label = "Change the language"
     elif my_loc == 'de':
       t3 = ("English", 1)
       t1 = ("Deutsch - Sie", 2)
       t2 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
+      t5 = ("Norsk-Bokmål", 5)
       self.lang_dd_menu.label = "Ändern Sie die Sprache"
     elif my_loc == 'fr':
       t2 = ("English", 1)
       t3 = ("Deutsch - Sie", 2)
       t4 = ("Deutsch - Du", 3)
       t1 = ("Français", 4)
+      t5 = ("Norsk-Bokmål", 5)
       self.lang_dd_menu.label = "Modifier la langue"
+    elif my_loc == 'no':
+      t2 = ("English", 1)
+      t3 = ("Deutsch - Sie", 2)
+      t4 = ("Deutsch - Du", 3)
+      t5 = ("Français", 4)
+      t1 = ("Norsk-Bokmål", 5)
+      self.lang_dd_menu.label = "Endre språk"
     else:
       t1 = ("English", 1)
       t2 = ("Deutsch - Sie", 2)
       t3 = ("Deutsch - Du", 3)
       t4 = ("Français", 4)
+      t5 = ("Norsk-Bokmål", 5)
       self.lang_dd_menu.label = "Change the language"
 
     self.lang_dd_menu.items = [t1, t2, t3, t4]
@@ -137,9 +149,8 @@ class home(homeTemplate):
       self.set_lang(1)  ## once we have FR set to 4
       
   my_loc = mg.my_lang
-  if my_loc == 1:
-    top_thanks_msg = mg.top_thanks_msg_en
-    top_thanks_title = mg.top_thanks_title_en
+  top_thanks_msg = lu.top_btn_thanks_str[my_loc]
+  top_thanks_title = mg.top_thanks_title_en
     top_btn_help.text = mg.top_btn_help_en
     top_btn_thanks.text = mg.top_btn_thanks_en
     top_btn_poc.text = 'PoC'
@@ -211,83 +222,6 @@ class home(homeTemplate):
     cpf_ener_lb2.text = mg.cfener_lb_tx_en 
     gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx_en
     credits.text = mg.credits_btn_tx_en
-  elif my_loc == 2:
-    top_btn_help.text = mg.top_btn_help_de_sie
-    top_btn_thanks.text = mg.top_btn_thanks
-    top_btn_poc.text = 'PoC'
-    top_join_game.text = mg.top_join_game_de_sie
-    top_start_game.text = mg.top_start_game_de_sie
-    p_lb_choose_game.text = mg.p_lb_choose_game_de_sie
-    p_btn_select_game.text = mg.p_btn_select_game_de_sie
-    gm_board.text = mg.msg_gm_board_de_sie
-    gm_board_info.content = mg.msg_gm_board_info_de_sie
-    cb_af.text = mg.cb_af_tx_de_sie
-    cb_us.text = mg.cb_us_tx_de_sie
-    cb_cn.text = mg.cb_cn_tx_de_sie
-    cb_me.text = mg.cb_me_tx_de_sie
-    cb_sa.text = mg.cb_sa_tx_de_sie
-    cb_la.text = mg.cb_la_tx_de_sie
-    cb_pa.text = mg.cb_pa_tx_de_sie
-    cb_ec.text = mg.cb_ec_tx_de_sie
-    cb_eu.text = mg.cb_eu_tx_de_sie
-    cb_se.text = mg.cb_se_tx_de_sie
-    gm_reg_npbp.text = mg.gm_reg_npbp_tx_de_sie
-    gm_card_wait_1_info.content = mg.gm_card_wait_1_info_tx_de_sie
-    gm_card_wait_1_btn_check.text = mg.gm_card_wait_1_btn_check_tx_de_sie
-    gm_start_round.text = mg.gm_card_wait_1_btn_kick_off_round_1_tx_de_sie
-    setup_npbp_label.text = mg.setup_npbp_label_tx_de_sie
-    pcr_rb_af.text = mg.cb_af_tx_de_sie
-    pcr_rb_us.text = mg.cb_us_tx_de_sie
-    pcr_rb_cn.text = mg.cb_cn_tx_de_sie
-    pcr_rb_me.text = mg.cb_me_tx_de_sie
-    pcr_rb_sa.text = mg.cb_sa_tx_de_sie
-    pcr_rb_la.text = mg.cb_la_tx_de_sie
-    pcr_rb_pa.text = mg.cb_pa_tx_de_sie
-    pcr_rb_ec.text = mg.cb_ec_tx_de_sie
-    pcr_rb_eu.text = mg.cb_eu_tx_de_sie
-    pcr_rb_se.text = mg.cb_se_tx_de_sie
-
-    pcr_rb_pov.text = mg.cb_pov_tx_de_sie
-    pcr_rb_ineq.text = mg.cb_ineq_tx_de_sie
-    pcr_rb_emp.text = mg.cb_emp_tx_de_sie
-    pcr_rb_food.text = mg.cb_food_tx_de_sie
-    pcr_rb_ener.text = mg.cb_ener_tx_de_sie
-    pcr_rb_fut.text = mg.cb_fut_tx_de_sie
-
-    self.pcr_title.text = mg.pcr_title_tx_de_sie
-    pcr_col_left_title.text = mg.pcr_col_left_title_tx_de_sie
-    pcr_col_right_title.text = mg.pcr_col_right_title_tx_de_sie
-    pcr_submit.text = mg.pcr_submit_tx_de_sie
-    fut_not_all_logged_in.text = mg.fut_not_all_logged_in_tx_de_sie
-    #    self.pcr_submit_msg1.text = mg.pcr_submit_msg1
-    #    self.pcr_submit_msg2.text = mg.pcr_submit_msg2
-    pcgd_title.text = mg.pcr_title_tx_de_sie
-    pcgd_info_rd1.content = mg.pcgd_rd1_info_tx_de_sie
-    pcgd_generating.text = mg.pcgd_generating_tx_de_sie
-    dec_info.content = mg.dec_info_tx_de_sie
-    dec_title.text = mg.dec_title_tx_de_sie
-    pcgd_advance.text = mg.pcgd_advance_tx_de_sie
-
-    refresh_numbers.text = mg.refresh_numbers_tx_de_sie
-    submit_numbers.text = mg.submit_numbers_tx_de_sie
-    fut_info.content = mg.fut_info_tx_de_sie
-    fut_bud_lb1.text = mg.fut_bud_lb1_tx_de_sie
-    fut_bud_lb2.text = mg.fut_bud_lb2_tx_de_sie 
-    fut_but_lb3.text = mg.fut_bud_lb3_tx_de_sie 
-    cpf_lb.text = mg.cfpov_tx_de_sie
-    cpf_lb2.text = mg.cfpov_lb_tx_de_sie 
-    cpf_ineq_lb.text = mg.cfineq_tx_de_sie
-    cpf_ineq_lb2.text = mg.cfineq_lb_tx_de_sie 
-    cpf_emp_lb.text = mg.cfemp_tx_de_sie
-    cpf_emp_lb2.text = mg.cfemp_lb_tx_de_sie 
-    cpf_food_lb.text = mg.cffood_tx_de_sie
-    cpf_food_lb2.text = mg.cffood_lb_tx_de_sie 
-    cpf_ener_lb.text = mg.cfener_tx_de_sie
-    cpf_ener_lb2.text = mg.cfener_lb_tx_de_sie 
-    gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx_de_sie
-    credits.text = mg.credits_btn_tx_de_sie
-#  else:
-#    alert("no language "+str(my_loc))
     
   def top_btn_thanks_click(self, **event_args):
     alert(content=top_thanks_msg, title=top_thanks_title, large=True)
