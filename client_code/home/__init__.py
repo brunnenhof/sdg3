@@ -26,128 +26,98 @@ class home(homeTemplate):
 #    self.show_text.text = my_loc + ' ' + my_loc2
     my_loc = 'en'
     if my_loc == 'en':
-      t1 = ("English", 1)
-      t2 = ("Deutsch - Sie", 2)
-      t3 = ("Deutsch - Du", 3)
-      t4 = ("Français", 4)
-      t5 = ("Norsk-Bokmål", 5)
+      t1 = ("English", 0)
+      t2 = ("Deutsch - Sie", 1)
+      t3 = ("Deutsch - Du", 2)
+      t4 = ("Français", 3)
+      t5 = ("Norsk-Bokmål", 4)
+      my_lox = 0
       self.lang_dd_menu.label = "Change the language"
+      self.lang_dd_menu.placeholder = "English"
     elif my_loc == 'de':
-      t3 = ("English", 1)
-      t1 = ("Deutsch - Sie", 2)
-      t2 = ("Deutsch - Du", 3)
-      t4 = ("Français", 4)
-      t5 = ("Norsk-Bokmål", 5)
+      t3 = ("English", 0)
+      t1 = ("Deutsch - Sie", 1)
+      t2 = ("Deutsch - Du", 2)
+      t4 = ("Français", 3)
+      t5 = ("Norsk-Bokmål", 4)
+      my_lox = 1      
       self.lang_dd_menu.label = "Ändern Sie die Sprache"
+      self.lang_dd_menu.placeholder = "Deutsch-Sie"
     elif my_loc == 'fr':
-      t2 = ("English", 1)
-      t3 = ("Deutsch - Sie", 2)
-      t4 = ("Deutsch - Du", 3)
-      t1 = ("Français", 4)
-      t5 = ("Norsk-Bokmål", 5)
+      t2 = ("English", 0)
+      t3 = ("Deutsch - Sie", 1)
+      t4 = ("Deutsch - Du", 2)
+      t1 = ("Français", 3)
+      t5 = ("Norsk-Bokmål", 4)
+      my_lox = 3
       self.lang_dd_menu.label = "Modifier la langue"
+      self.lang_dd_menu.placeholder = "Français"
     elif my_loc == 'no':
-      t2 = ("English", 1)
-      t3 = ("Deutsch - Sie", 2)
-      t4 = ("Deutsch - Du", 3)
-      t5 = ("Français", 4)
-      t1 = ("Norsk-Bokmål", 5)
+      t2 = ("English", 0)
+      t3 = ("Deutsch - Sie", 1)
+      t4 = ("Deutsch - Du", 2)
+      t5 = ("Français", 3)
+      t1 = ("Norsk-Bokmål", 4)
+      my_lox = 4      
       self.lang_dd_menu.label = "Endre språk"
+      self.lang_dd_menu.placeholder = "Norsk-Bokmål"
     else:
-      t1 = ("English", 1)
-      t2 = ("Deutsch - Sie", 2)
-      t3 = ("Deutsch - Du", 3)
-      t4 = ("Français", 4)
-      t5 = ("Norsk-Bokmål", 5)
+      t1 = ("English", 0)
+      t2 = ("Deutsch - Sie", 1)
+      t3 = ("Deutsch - Du", 2)
+      t4 = ("Français", 3)
+      t5 = ("Norsk-Bokmål", 4)
+      my_lox = 0
       self.lang_dd_menu.label = "Change the language"
-
-    self.lang_dd_menu.items = [t1, t2, t3, t4]
-    if my_loc == 'en': ## English
-      mg.my_lang = 1
-      self.top_title.text = mg.top_title_en
-      self.top_btn_help.text = mg.top_btn_help_en
-      self.top_btn_thanks.text = mg.top_btn_thanks_en
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_en
-      self.lang_rich_tx.content = mg.lang_info_en
-      self.lang_lets_go.text = mg.lang_lets_go_en
-    elif my_loc == 'de': ## _de_sie
-      mg.my_lang = 2
-      self.top_title.text = mg.top_title_de_sie
-      self.top_btn_help.text = mg.top_btn_help_de_sie
-      self.top_btn_thanks.text = mg.top_btn_thanks_de_sie
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_en
-      self.lang_rich_tx.content = mg.lang_info_de_sie
-      self.lang_lets_go.text = mg.lang_lets_go_de_sie
-    elif my_loc == 'fr': ## _fr
-      mg.my_lang = 4
-      self.top_title.text = mg.top_title_fr
-      self.top_btn_help.text = mg.top_btn_help_fr
-      self.top_btn_thanks.text = mg.top_btn_thanks_fr
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_fr
-      self.lang_rich_tx.content = mg.lang_info_fr
-      self.lang_lets_go.text = mg.lang_lets_go_fr
-      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
-    else:
-      mg.my_lang = 1
-      self.top_title.text = mg.top_title_en
-      self.top_btn_help.text = mg.top_btn_help_en
-      self.top_btn_thanks.text = mg.top_btn_thanks_en
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_en
-      self.lang_rich_tx.content = mg.lang_info_en
-      self.lang_lets_go.text = mg.lang_lets_go_en
+  
+    self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
+    mg.my_lang = my_lox
+    self.top_title.text = lu.top_title_str[my_lox]
+    self.top_btn_help.text = lu.top_btn_help_str[my_lox]
+    self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.top_btn_poc.text = "PoC"
+    self.credits.text = lu.credits_btn_tx_str[my_lox]
+    self.lang_rich_tx.content = lu.lang_info_str[my_lox]
+    self.lang_lets_go.text = lu.lang_lets_go_tx[my_lox]
+    if my_lox == 3:
+      alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
+    elif my_lox == 4:
+      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Unnskyld")
+    elif my_lox == 2:
+      alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
+    elif my_lox > 4:
+      alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
 
   def lang_dd_menu_change(self, **event_args):
-    print(self.lang_dd_menug.selected_value)
+    print(self.lang_dd_menu.selected_value)
     """This method is called when an item is selected"""
-    #    my_lang = self.set_lang(self.lang_dd_menu.selected_value)
-    mg.my_lang = self.lang_dd_menu.selected_value
-    if self.lang_dd_menu.selected_value == 1: ## English
-      self.top_title.text = mg.top_title_en
-      self.top_btn_help.text = mg.top_btn_help_en
-      self.top_btn_thanks.text = mg.top_btn_thanks_en
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_en
-      self.lang_rich_tx.content = mg.lang_info_en
-      self.lang_lets_go.text = mg.lang_lets_go_en
-      self.lang_dd_menu.label = "Change the language"
-      self.set_lang(1)
-    elif self.lang_dd_menu.selected_value == 2: ## _de_sie
-      self.top_title.text = mg.top_title_de_sie
-      self.top_btn_help.text = mg.top_btn_help_de_sie
-      self.top_btn_thanks.text = mg.top_btn_thanks_de_sie
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_en
-      self.lang_rich_tx.content = mg.lang_info_de_sie
-      self.lang_lets_go.text = mg.lang_lets_go_de_sie
-      self.lang_dd_menu.label = "Ändern Sie die Sprache"
-      self.set_lang(2)
-    elif self.lang_dd_menu.selected_value == 3: ## _de_du
-      self.top_title.text = mg.top_title_de_du
-      self.top_btn_help.text = mg.top_btn_help_de_du
-      self.top_btn_thanks.text = mg.top_btn_thanks_de_du
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_du
-      self.lang_rich_tx.content = mg.lang_info_de_du
-      self.lang_lets_go.text = mg.lang_lets_go_de_du
-      self.lang_dd_menu.label = "Ändere die Sprache"
-      alert("Die informellen Du Texte existieren noch nicht, wir greifen auf die formellen Sie Texte zurück.", title="Sprache fehlt")
-      self.set_lang(2) ## once we have DU set to 3
-    elif self.lang_dd_menu.selected_value == 4: ## _fr
-      self.top_title.text = mg.top_title_fr
-      self.top_btn_help.text = mg.top_btn_help_fr
-      self.top_btn_thanks.text = mg.top_btn_thanks_fr
-      self.top_btn_poc.text = "PoC"
-      self.credits.text = mg.credits_btn_tx_fr
-      self.lang_rich_tx.content = mg.lang_info_fr
-      self.lang_lets_go.text = mg.lang_lets_go_fr
-      self.lang_dd_menu.label = "Modifier la langue"
-      alert("Les textes en français n'existent pas encore, nous nous rabattons sur l'anglais.", title="Langue manquante")
-      self.set_lang(1)  ## once we have FR set to 4
-      
+    print(self.lang_dd_menu.selected_value)
+    mg.my_lang = int(self.lang_dd_menu.selected_value)
+    my_lox = mg.my_lang
+    print('my_lox ' + str(my_lox))
+    print(lu.lang_avail_items[my_lox])
+    self.lang_dd_menu.placeholder = lu.lang_avail_items[my_lox]
+    self.top_title.text = lu.top_title_str[my_lox]
+    self.top_btn_help.text = lu.top_btn_help_str[my_lox]
+    self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.top_btn_poc.text = "PoC"
+    self.credits.text = lu.credits_btn_tx_str[my_lox]
+    self.lang_rich_tx.content = lu.lang_info_str[my_lox]
+    self.lang_lets_go.text = lu.lang_lets_go_tx[my_lox]
+#    self.lang_dd_menu.items = lu.lang_avail_items
+    self.lang_rich_tx.content = lu.lang_info_str[my_lox]
+    self.lang_dd_menu.label = lu.lang_dd_menu_tx_str[my_lox]
+
+    if my_lox == 3:
+      alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
+    elif my_lox == 4:
+      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Unnskyld")
+    elif my_lox == 2:
+      alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
+    elif my_lox > 4:
+      alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
+
+  """
   my_loc = mg.my_lang
   top_thanks_msg = lu.top_btn_thanks_str[my_loc]
   top_thanks_title = mg.top_thanks_title_en
@@ -222,25 +192,28 @@ class home(homeTemplate):
     cpf_ener_lb2.text = mg.cfener_lb_tx_en 
     gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx_en
     credits.text = mg.credits_btn_tx_en
-    
+  """  
   def top_btn_thanks_click(self, **event_args):
-    alert(content=top_thanks_msg, title=top_thanks_title, large=True)
+    my_lox = mg.my_lang
+    alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox], large=True)
 
   def top_btn_poc_click(self, **event_args):
-    alert("Neither the user interface nor the server code is elegant nor efficient. Contact us if you can help making either or all better.",
+    alert("Neither the user interface nor the server code is elegant, nor efficient, nor 'pythonic'. Contact us if you can help making anything better.",
          title="So far, this app is a Proof of Concept")
 
   def top_btn_help_click(self, **event_args):
+    my_lox = mg.my_lang
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def top_start_game_click(self, **event_args):
-    t = TextBox(placeholder="Enter the code to start a game")
+    my_lox = mg.my_lang
+    t = TextBox(placeholder=lu.enter_code_tx[my_lox])
     alert(content=t,
-      title="Enter code")
+          title=lu.enter_code_title_tx[my_lox])
     print(f"You entered: {t.text}")
     code = t.text.upper()
     if not code == 'LTG-ND':
-      alert("Wrong code, check with whoever knows the code")
+      alert(lu.wrong_code_tx[my_lox])
       return
       pass
     with Notification("Clearing DBs ..."):

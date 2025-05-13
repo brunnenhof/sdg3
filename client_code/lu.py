@@ -1599,19 +1599,19 @@ sdgvarID_to_sdg_38_str = [
   " _last_"
 ]
 top_title_str = [
-  "LT Game "
-  "Das LT Spiel "
-  "Das LT Spiel "
-  "Le Jeu LT "
-  "LT-spill" 
+  "LT Game ",
+  "Das LT Spiel ",
+  "Das LT Spiel ",
+  "Le Jeu LT ",
+  "LT-spill", 
   " _last_"
 ]
 top_btn_thanks_str = [
-  "Thanks "
-  "Danke "
-  "Danke "
-  "Merci "
-  "Takk" 
+  "Thanks ",
+  "Danke ",
+  "Danke ",
+  "Merci ",
+  "Takk", 
   " _last_"
 ]
 top_btn_start_str = [
@@ -1631,11 +1631,11 @@ top_btn_join_str = [
   " _last_"
 ]
 top_btn_help_str = [
-  "Help "
-  "Hilfe "
-  "Hilfe "
-  "Laide "
-  "Hjelp" 
+  "Help ",
+  "Hilfe ",
+  "Hilfe ",
+  "Laide ",
+  "Hjelp" ,
   " _last_"
 ]
 top_join_game_str = [
@@ -2638,3 +2638,41 @@ lang_info_str = [
     " _last_"
     ]
 
+lang_lets_go_tx = [
+  "Let's go",
+  "Los geht's",
+  "Los geht's",
+  "Allons-y",
+  "La oss gå",
+  "_last_"
+]
+lang_avail_items = [
+  "English",
+  "Deutsch-Sie",
+  "Deutsch-Du",
+  "Français",
+  "Norsk-Bokmål"
+]
+enter_code_tx = [
+  "Enter the code to start a game",
+  "Geben Sie den Kode ein um ein Spiel zu starten",
+  "Gib den Kode ein um ein Spiel zu starten",
+  "Entrez le code pour commencer un jeu",
+  "Skriv inn koden for å starte et spill",
+  "_last_"
+]  
+enter_code_title_tx = [
+  "Enter code",
+  "Kode eingeben",
+  "Kode eingeben",
+  "Entrer le code",
+  "Skriv inn kode",
+  "_last_"
+]  
+wrong_code_tx = [
+  "Wrong code, check with whoever knows the code",
+  "Falscher Code, fragen Sie denjenigen, der den Code kennt",
+  "Falscher Code, frage denjenigen, der den Code kennt",
+  "Code erroné, vérifier auprès de la personne qui connaît le code",
+  "Feil kode, sjekk med den som kan koden",
+]

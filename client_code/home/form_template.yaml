@@ -36,7 +36,7 @@ components:
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     layout_properties: {grid_position: 'WNWPMJ,HMUEQS'}
     name: lang_card
-    properties: {background: yellow, border: yellow, col_widths: '{"OXSAAI":40,"CHFQFX":20}', foreground: 'theme:Primary', role: elevated-card}
+    properties: {background: '#ffff66', border: yellow, col_widths: '{"OXSAAI":40,"CHFQFX":20}', foreground: 'theme:Primary', role: elevated-card}
     type: ColumnPanel
   - components:
     - event_bindings: {click: top_start_game_click}
