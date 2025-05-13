@@ -210,8 +210,8 @@ class home(homeTemplate):
     if not code == '':
       alert(lu.wrong_code_tx[my_lox])
       return
-    with Notification("Clearing DBs ..."):
-      self.test_model_top_click() ## clearind DBs at the start
+#    with Notification("Clearing DBs ..."):
+    self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
@@ -390,7 +390,12 @@ class home(homeTemplate):
     self.set_regs_invisible()
     self.set_avail_regs()
     self.p_choose_role.visible =True
-    
+
+  def do_reg_to_longreg(self, reg):
+    lx = mg.my_lang
+    if reg == 'us':
+      return mg.reg_to_longreg_us_str[lx]
+      
   def gm_card_wait_1_btn_check_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde+1
@@ -408,7 +413,7 @@ class home(homeTemplate):
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
 #    res = list({d[key] for d in slots2 if key in d})
       for row in rows:
-        longreg = mg.reg_to_longreg[row['reg']]
+        longreg = self.do_reg_to_longreg(row['reg'])
         longrole = mg.ta_to_longmini[row['role']]
         slot = {'reg' : longreg, 'ta': longrole}
         if slot not in slots:
