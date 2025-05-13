@@ -16,7 +16,7 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 15227
+    self.timer_1.interval = 1527
     self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -24,7 +24,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'en'
+#    my_loc = 'zu'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -68,6 +68,8 @@ class home(homeTemplate):
       t4 = ("Français", 3)
       t5 = ("Norsk-Bokmål", 4)
       my_lox = 0
+      alert("We have not yet translated the texts and prompts to your language. As a fallback, we are using English. If you want to help translating, please get in touch.", title="Apologies")
+      self.lang_dd_menu.placeholder = "English"
       self.lang_dd_menu.label = "Change the language"
   
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
@@ -1456,7 +1458,16 @@ class home(homeTemplate):
       self.gm_start_round.visible = False
 
   def credits_click(self, **event_args):
-    alert(mg.credits_tx, title=mg.credits_title)
+    my_lox = mg.my_lang
+    alert(lu.credits_tx_str[my_lox], title=lu.credits_title_str[my_lox])
+
+  def lang_lets_go_click(self, **event_args):
+    """This method is called when the component is clicked."""
+    my_lox = mg.my_lang
+    self.lang_card.visible = False
+    self.top_entry.visible = True 
+    self.top_join_game.text = lu.top_join_game_str[my_lox]
+    self.top_start_game.text = lu.top_start_game_str[my_lox]
 
 
      

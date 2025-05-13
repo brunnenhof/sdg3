@@ -1695,11 +1695,11 @@ gm_id_title_str = [
   " _last_"
 ]
 top_thanks_msg_str = [
-  "... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler during April 2024 taught by René Langohr, and all the beta testers. ",
+  "... to our Alpha testers, the students in the SW101 course at the Realschule Baesweiler, Germany during April 2024 taught by René Langohr, and all the beta testers. ",
   "... an unsere Alpha-Tester, die Schüler des Kurses SW101 an der Realschule Baesweiler im April 2024, der von René Langohr unterrichtet wird, und alle Beta-Tester. ",
   "... an unsere Alpha-Tester, die Schüler des Kurses SW101 an der Realschule Baesweiler im April 2024, der von René Langohr unterrichtet wird, und alle Beta-Tester. ",
-  "... À nos testeurs alpha, les étudiants du cours SW101 au Realschule Baesweiler en avril 2024 enseigné par René Langohr, et tous les testeurs bêta.", 
-  "... Til våre alfa -testere, studentene i SW101 -kurset på Realschule Baesweiler i løpet av april 2024 undervist av René Langohr, og alle betatestere.", 
+  "... À nos testeurs alpha, les étudiants du cours SW101 au Realschule Baesweiler, Allemagne, en avril 2024 enseigné par René Langohr, et tous les testeurs bêta.", 
+  "... Til våre alfa -testere, studentene i SW101-kurset på Realschule Baesweiler i Tyskland i løpet av april 2024 undervist av René Langohr, og alle betatestere.", 
   " _last_"
 ]
 top_thanks_title_str = [
@@ -2630,11 +2630,11 @@ lang_dd_menu_tx_str = [
     ]
  
 lang_info_str = [
-    "Welcome to the .. Game. First, the language. \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. ",
-    "Willkommen zum ... Spiel. Zuerst die Sprache. \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. ",
-    "Willkommen zum ... Spiel. Zuerst die Sprache. \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. ",
-    "Bienvenue dans le jeu. Tout dabord, choisissez la langue. \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. ",
-  "Velkommen til .. Spillet. For det første er språket. \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed." ,
+    "Welcome to the .. Game. **First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. ",
+    "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. ",
+    "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. ",
+    "Bienvenue dans le jeu. **Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. ",
+  "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed." ,
     " _last_"
     ]
 
