@@ -1472,13 +1472,24 @@ class home(homeTemplate):
     ## correct game_id and gm_status = 4
     lx = mg.my_lang
     self.p_enter_id.character_limit = 8
+    self.p_enter_id.focus()
     val = self.p_enter_id.text.upper()
     rows = app_tables.games_log.get(game_id=val, gm_status=4)
     if rows is None:
-      alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx],
-        large=True,
-            buttons=lu.join_game_alert[lx]
-      )
+      enter_game_id = alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx],
+            large=True,buttons=[(lu.jga_t[lx], True), (lu.jga_f[lx], False)])
+      if not enter_game_id:
+        self.p_cp_choose_game.visible = False 
+        self.top_entry.visible = True 
       return
+    game_id_chosen = val
+    mg.my_game_id = game_id_chosen
+    self.set_lang(lx)
+#    row = app_tables.status.get(game_id=game_id_chosen)
+#    row.update(p_status=1) # he / she chose a game
+    self.p_cp_choose_game.visible = False
+#    self.card_select_reg_role.visible = True
+    self.p_enter_id.visible = False 
     self.top_entry.visible = False
+    self.p_choose_role.visible = True
     self.show_roles(rows['game_id'])

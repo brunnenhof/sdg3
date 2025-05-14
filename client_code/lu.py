@@ -7,7 +7,15 @@ from anvil.tables import app_tables
 ######### lu = language used
 #########
 
-confirm_buttons_tx_str = [
+confirm_buttons_tx_t = [
+  "[ (Yes, YES), (No, NO)] ", # en
+  "[ (Ja, YES), (Nein, NO) ] ", # de-Sie
+  "[ (Ja, YES), (Nein, NO) ] ", # de-Du
+  "[ (Oui, YES), (Non, NO) ] ", # fr
+  "[ (Ja, YES), (Nei, NO) ] ", # no
+  "confirm_buttons_tx_de_sie _skip_"
+]
+confirm_buttons_tx_f = [
   "[ (Yes, YES), (No, NO)] ", # en
   "[ (Ja, YES), (Nein, NO) ] ", # de-Sie
   "[ (Ja, YES), (Nein, NO) ] ", # de-Du
@@ -16,14 +24,23 @@ confirm_buttons_tx_str = [
   "confirm_buttons_tx_de_sie _skip_"
 ]
 
-join_game_alert = [
-  '[("Try another ID", True), ("Cancel Join", False)]',
-  '[("Andere ID ausprobieren", True), ("Beitritt abbrechen", False)]',
-  '[("Andere ID ausprobieren", True), ("Beitritt abbrechen", False)]',
-  '[("Essayer un autre ID", True), ("Annuler Joindre", False)]',
-  '[("Prøv en ny ID", True), ("Avbryt Bli med", False)]',
-  '_skip_'
+jga_t = [
+  "Try another ID",
+  "Andere ID ausprobieren",
+  "Andere ID ausprobieren",
+  "Essayer un autre ID",
+  "Prøv en ny ID",
+  "_skip_"
 ]
+jga_f = [
+  "Cancel Joining",
+  "Beitritt abbrechen", 
+  "Beitritt abbrechen", 
+  "Annuler Joindre",
+  "Avbryt",
+  "_skip_"
+]
+
 reg_to_longreg_us_str = [
   "USA",
   "USA",
