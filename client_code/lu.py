@@ -1655,19 +1655,27 @@ top_start_game_str = [
   " _last_"
 ]
 p_lb_choose_game_str = [
-  "There are more than one open games. First select the one you want to join, then press the JOIN button: ",
-  "Es sind mehrere Spiele geöffnet. Wählen Sie zunächst das Spiel aus, dem Sie beitreten möchten, und klicken Sie dann auf die Schaltfläche TEILNEHMEN ",
-  "Es sind mehrere Spiele geöffnet. Wählen Sie zunächst das Spiel aus, dem Sie beitreten möchten, und klicken Sie dann auf die Schaltfläche TEILNEHMEN ",
-  "Il y a plus d'un jeu ouvert. Sélectionnez d'abord celui que vous souhaitez rejoindre, puis appuyez sur le bouton Join:", 
-  "Det er mer enn ett åpne spill. Velg først den du vil bli med, og trykk deretter på Join -knappen:", 
+  "Enter the game ID. Your game organizer will tell you what it is. Finish your entry by pressing <Enter>",
+  "Geben Sie die Spiel-ID ein. Ihr:e Spielleiter:in sagt Ihnen, wie sie lautet. Beenden Sie Ihre Eingabe durch <Eingabe> klicken.",
+  "Gib Deone Spiel-ID ein. Dein:e Spielleiter:in sagt Dir, wie sie lautet. Beende Deine Eingabe durch <Eingabe> klicken.",
+  "Saisissez l'identifiant du jeu. Votre organisateur de jeu vous dira de quoi il s'agit. Terminez votre saisie en appuyant sur <Enter>.", 
+  "Skriv inn spill-ID-en. Spillarrangøren din vil fortelle deg hva det er. Avslutt inntastingen ved å trykke <Enter>.", 
   " _last_"
 ]
-p_btn_select_game_str = [
-  "JOIN ",
-  "TEILNEHMEN ",
-  "TEILNEHMEN ",
-  "REJOINDRE ", 
-  "Bli med", 
+p_enter_id_str = [ # placeholder
+  "Enter the game ID",
+  "Geben Sie die Spiel ID ein",
+  "Gib die Spiel ID ein",
+  "Saisissez l'ID du jeu", 
+  "Skriv inn spill-ID", 
+  " _last_"
+]
+no_such_game_str = [
+  "This game ID does not exist or has not been started.",
+  "This ID does not exist or has not been started.",
+  "This ID does not exist or has not been started.",
+  "This ID does not exist or has not been started.",
+  "This ID does not exist or has not been started.",
   " _last_"
 ]
 gm_id_msg1_str = [
@@ -2598,7 +2606,7 @@ credits_btn_tx_str = [
     "Credits ",
     "Credits ",
     "Les crédits ",
-    "Kreditter" ,
+    "Credits" ,
     " _last_"
     ]
  
@@ -2630,11 +2638,11 @@ lang_dd_menu_tx_str = [
     ]
  
 lang_info_str = [
-    "Welcome to the .. Game. **First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. ",
-    "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. ",
-    "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. ",
-    "Bienvenue dans le jeu. **Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. ",
-    "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed." ,
+  "Welcome to the .. Game. **First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
+  "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
+  "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. \nlang at blue minus way dot net",
+  "Bienvenue dans le jeu. **Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
+    "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
     " _last_"
     ]
 
@@ -2655,16 +2663,16 @@ lang_avail_items = [
 ]
 enter_code_tx = [
   "Start-code, please",
-  "Start-Kode, bitte",
-  "Start-Kode, bitte",
+  "Start-Code, bitte",
+  "Start-Code, bitte",
   "Code de démarrage, s'il vous plaît",
-  "Start-kode, vær så snilll",
+  "Start-Code, vær så snilll",
   "_last_"
 ]  
 enter_code_title_tx = [
   "Enter code",
-  "Kode eingeben",
-  "Kode eingeben",
+  "Code eingeben",
+  "Code eingeben",
   "Entrer le code",
   "Skriv inn kode",
   "_last_"

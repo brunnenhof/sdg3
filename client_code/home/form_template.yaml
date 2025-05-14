@@ -68,18 +68,15 @@ components:
       name: p_lb_choose_game
       properties: {}
       type: Label
-    - layout_properties: {grid_position: 'FCDJNG,JGEVBC'}
-      name: p_dd_select_game
-      properties: {}
-      type: DropDown
-    - event_bindings: {click: p_btn_select_game_click}
-      layout_properties: {grid_position: 'AJJBNE,FTSODT'}
-      name: p_btn_select_game
-      properties: {role: elevated-button, text: button_1}
-      type: Button
+    - event_bindings: {pressed_enter: p_enter_id_pressed_enter}
+      layout_properties: {grid_position: 'FCDJNG,HWWBAL'}
+      name: p_enter_id
+      properties:
+        margin: [-0.7692307692307692, null, '0', null]
+      type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
     layout_properties: {grid_position: 'WEAXJJ,FMNFHY'}
     name: p_cp_choose_game
-    properties: {background: '#e8f4d5', role: outlined-card, visible: false}
+    properties: {background: '#e8f4d5', col_widths: '{"KWKUWY":40,"HWWBAL":20}', role: outlined-card, visible: false}
     type: ColumnPanel
   - components:
     - layout_properties: {grid_position: 'VWQIJD,CEDEHU'}

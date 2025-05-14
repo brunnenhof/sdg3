@@ -259,37 +259,12 @@ class home(homeTemplate):
     return len(open_games), open_games
 
   def top_join_game_click(self, **event_args):
-    rows = app_tables.games_log.search()
-    if len(rows) == 1 and rows[0]['game_id'] == 'TEST':
-      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
-      n.show()
-      return
-    lenopen, open = self.any_open_games(len(rows))
-    if lenopen == 0:
-      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooops...')
-      n.show()
-      return
-    self.top_entry.visible = False
-#    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(3)))
-    how_many_new = len(app_tables.games_log.search(gm_status=4))
-    print(how_many_new)
-    if how_many_new > 1:
-      self.p_cp_choose_game.visible = True
-      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0, gm_status=1)]
-#      cid = self.p_dd_select_game.selected_value["game_id"]
-#      alert(cid)
-    elif how_many_new == 1:
-      row = app_tables.games_log.get(gm_status=4)
-#      alert(row['game_id'], title=mg.title_you_are_joining)
-      mg.my_game_id = row['game_id']
-#      row.update(p_status=1)
-      ccid = row['game_id']
-      self.show_roles(row['game_id'])
-    else:
-      alert(mg.msg_game_not_started)
-      self.top_entry.visible = True
-      self.p_cp_choose_game.visible = False
-
+    lx = mg.my_lang
+    self.lang_card.visible = False 
+    self.p_cp_choose_game.visible = True 
+    self.p_lb_choose_game.text = lu.p_lb_choose_game_str[lx]
+    self.p_enter_id.placeholder = lu.p_enter_id_str[lx]
+    self.p_enter_id.focus()
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
 #    print(f"The file's name is: {file.name}")
@@ -353,8 +328,9 @@ class home(homeTemplate):
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
     self.set_regs_invisible()
+    lx = mg.my_lang
     cid = mg.my_game_id
-    msg = mg.pcr_title_tx + ': '+cid
+    msg = lu.pcr_title_tx_str[lx] + ': '+cid
     self.pcr_title.text = msg
     runde = mg.game_runde
     regs = mg.regs
@@ -391,11 +367,44 @@ class home(homeTemplate):
     self.set_avail_regs()
     self.p_choose_role.visible =True
 
+  def do_ta_to_longmini(self, role):
+    lx = mg.my_lang
+    if role == 'pov':
+      return lu.ta_to_longmini_pov_str[lx]
+    if role == 'ineq':
+      return lu.ta_to_longmini_ineq_str[lx]
+    if role == 'emp':
+      return lu.ta_to_longmini_emp_str[lx]
+    if role == 'food':
+      return lu.ta_to_longmini_food_str[lx]
+    if role == 'ener':
+      return lu.ta_to_longmini_ener_str[lx]
+    if role == 'fut':
+      return lu.ta_to_longmini_fut_str[lx]
+
   def do_reg_to_longreg(self, reg):
     lx = mg.my_lang
     if reg == 'us':
-      return mg.reg_to_longreg_us_str[lx]
-      
+      return lu.reg_to_longreg_us_str[lx]
+    if reg == 'af':
+      return lu.reg_to_longreg_af_str[lx]
+    if reg == 'cn':
+      return lu.reg_to_longreg_cn_str[lx]
+    if reg == 'me':
+      return lu.reg_to_longreg_me_str[lx]
+    if reg == 'pa':
+      return lu.reg_to_longreg_pa_str[lx]
+    if reg == 'la':
+      return lu.reg_to_longreg_la_str[lx]
+    if reg == 'sa':
+      return lu.reg_to_longreg_sa_str[lx]
+    if reg == 'ec':
+      return lu.reg_to_longreg_ec_str[lx]
+    if reg == 'eu':
+      return lu.reg_to_longreg_eu_str[lx]
+    if reg == 'se':
+      return lu.reg_to_longreg_se_str[lx]
+
   def gm_card_wait_1_btn_check_click(self, **event_args):
     cid = mg.my_game_id
     runde = mg.game_runde+1
@@ -414,7 +423,7 @@ class home(homeTemplate):
 #    res = list({d[key] for d in slots2 if key in d})
       for row in rows:
         longreg = self.do_reg_to_longreg(row['reg'])
-        longrole = mg.ta_to_longmini[row['role']]
+        longrole = self.do_ta_to_longmini(row['role'])
         slot = {'reg' : longreg, 'ta': longrole}
         if slot not in slots:
           slots.append(slot)
@@ -587,9 +596,9 @@ class home(homeTemplate):
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
-    reglong = mg.reg_to_longreg[reg]
+    reglong = self.do_reg_to_longreg[reg]
     role = mg.my_ministry
-    rolelong = mg.ta_to_longmini[role]
+    rolelong = self.do_ta_to_longmini[role]
     cid = mg.my_game_id
 #    alert('reg is '+reg+' role is '+role)
     regs = mg.regs
@@ -864,7 +873,7 @@ class home(homeTemplate):
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
       ## show confirmation alert
-      self.cid_reg_role_info.text = my_cid + '  + ' + mg.reg_to_longreg[reg] + '  - ' + mg.ta_to_longmini[role]
+      self.cid_reg_role_info.text = my_cid + '  + ' + self.do_reg_to_longreg[reg] + '  - ' + self.do_ta_to_longmini[role]
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
@@ -1308,7 +1317,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + mg.reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1362,7 +1371,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + mg.reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1406,7 +1415,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + mg.reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 
@@ -1466,6 +1475,42 @@ class home(homeTemplate):
     self.top_entry.visible = True 
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_start_game.text = lu.top_start_game_str[my_lox]
+
+  def p_enter_id_pressed_enter(self, **event_args):
+    ## correct game_id and gm_status = 4
+    self.p_enter_id.character_limit = 8
+    val = self.p_enter_id.text
+    rows = app_tables.games_log.get(game_id=val, gm_status=4)
+    if len(rows) != 1:
+      alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx])
+      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
+      n.show()
+      return
+    lenopen, open = self.any_open_games(len(rows))
+    if lenopen == 0:
+      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooops...')
+      n.show()
+      return
+    self.top_entry.visible = False
+    #    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(3)))
+    how_many_new = len(app_tables.games_log.search(gm_status=4))
+    print(how_many_new)
+    if how_many_new > 1:
+      self.p_cp_choose_game.visible = True
+      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0, gm_status=1)]
+    #      cid = self.p_dd_select_game.selected_value["game_id"]
+    #      alert(cid)
+    elif how_many_new == 1:
+      row = app_tables.games_log.get(gm_status=4)
+      #      alert(row['game_id'], title=mg.title_you_are_joining)
+      mg.my_game_id = row['game_id']
+      #      row.update(p_status=1)
+      ccid = row['game_id']
+      self.show_roles(row['game_id'])
+    else:
+      alert(mg.msg_game_not_started)
+      self.top_entry.visible = True
+      self.p_cp_choose_game.visible = False
 
 
      
