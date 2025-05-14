@@ -143,7 +143,7 @@ ta_to_longmini_emp_str = [
   "Minister:in für Empowerment/Befähigung",
   "Minister:in für Empowerment/Befähigung",
   "Ministre de l'autonomisation", 
-  "Minister for empowerment", 
+  "Minister for Empowerment/Myndiggjøring", 
   " _last_"
 ]
 ta_to_longmini_food_str = [
@@ -1901,7 +1901,7 @@ cb_emp_tx_str = [
   "Empowerment/Befähigung ",
   "Empowerment/Befähigung ",
   "Autonomisation ", 
-  "Empowerment", 
+  "Empowerment/Myndiggjøring", 
   " _last_"
 ]
 
@@ -1946,7 +1946,7 @@ pcr_col_left_title_tx_str = [
   "Melden Sie sich zunächst in Ihrer Region an ... ",
   "Melden Sie sich zunächst in Ihrer Region an ... ",
   "Tout d'abord, connectez-vous à votre région ...", 
-  "Logg inn i regionen din ...", 
+  "Først, logg inn i regionen din ...", 
   " _last_"
 ]
 
@@ -2258,8 +2258,8 @@ player_board_tx_str = [
  
 pcgd_rd1_info_tx_str = [
     "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round. ",
-    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger in der nächsten Runde hoffentlich zu verbessern. ",
-    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger in der nächsten Runde hoffentlich zu verbessern. ",
+    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, verfolgen Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
+    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchau Dir alle Deine Indikatoren an, verfolge deren Entwicklung über die Jahre und tausche Disch mit Kollegen:innen, zunächst in Deiner Region, aber auch in den anderen Regionen, aus.\nWenn Du soweit bist, scrolle nach unten zu den Entscheidungen, die Du als Minister:in treffen musst, um das Leben Deiner Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
     "Vous avez la responsabilité d'améliorer la vie de votre peuple. Dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter - l'agitation sociale, voire pire, est au coin de la rue!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, faites défiler vers le bas jusqu'aux décisions que vous devez prendre en tant que ministre pour, espérons-le, améliorer la vie de vos citoyens au cours du prochain cycle de négociations. ",
     "Du er ansvarlig for å forbedre livene til ditt folk. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, blar du ned til beslutningene du må ta som minister, som forhåpentligvis vil forbedre livene til innbyggerne dine i neste runde. ",
     " _last_"
@@ -2459,7 +2459,7 @@ cfemp_lb_tx_str = [
     "Regionale Investitionspläne zur Stärkung der Selbstbestimmung ",
     "Regionale Investitionspläne zur Stärkung der Selbstbestimmung ",
     "Plans d'investissement régionaux pour l'autonomisation", 
-    "Regionale investeringsplaner for empowerment", 
+  "Regionale investeringsplaner for empowerment / myndiggjøring", 
     " _last_"
     ]
  

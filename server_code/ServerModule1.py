@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import anvil.mpl_util
 import anvil.tz
 from . import mg
+from . import lu
 import math
 import json
 import pickle
@@ -329,7 +330,171 @@ def make_png(df, row, pyidx, end_yr, my_title):
     plt.box(False)
     return anvil.mpl_util.plot_image()
 
-def build_plot(var_row, regidx, cap, cid, runde):
+def get_title_from_lu(x, lang):
+  if x == 1:
+    return lu.sdgvarID_to_sdg_1_str[lang]
+  if x == 2:
+    return lu.sdgvarID_to_sdg_2_str[lang]
+  if x == 3:
+    return lu.sdgvarID_to_sdg_3_str[lang]
+  if x == 4:
+    return lu.sdgvarID_to_sdg_4_str[lang]
+  if x == 5:
+    return lu.sdgvarID_to_sdg_5_str[lang]
+  if x == 6:
+    return lu.sdgvarID_to_sdg_6_str[lang]
+  if x == 7:
+    return lu.sdgvarID_to_sdg_7_str[lang]
+  if x == 8:
+    return lu.sdgvarID_to_sdg_8_str[lang]
+  if x == 9:
+    return lu.sdgvarID_to_sdg_9_str[lang]
+  if x == 10:
+    return lu.sdgvarID_to_sdg_10_str[lang]
+  if x == 11:
+    return lu.sdgvarID_to_sdg_11_str[lang]
+  if x == 12:
+    return lu.sdgvarID_to_sdg_12_str[lang]
+  if x == 13:
+    return lu.sdgvarID_to_sdg_13_str[lang]
+  if x == 14:
+    return lu.sdgvarID_to_sdg_14_str[lang]
+  if x == 15:
+    return lu.sdgvarID_to_sdg_15_str[lang]
+  if x == 16:
+    return lu.sdgvarID_to_sdg_16_str[lang]
+  if x == 17:
+    return lu.sdgvarID_to_sdg_17_str[lang]
+  if x == 18:
+    return lu.sdgvarID_to_sdg_18_str[lang]
+  if x == 19:
+    return lu.sdgvarID_to_sdg_19_str[lang]
+  if x == 20:
+    return lu.sdgvarID_to_sdg_20_str[lang]
+  if x == 21:
+    return lu.sdgvarID_to_sdg_21_str[lang]
+  if x == 22:
+    return lu.sdgvarID_to_sdg_22_str[lang]
+  if x == 23:
+    return lu.sdgvarID_to_sdg_23_str[lang]
+  if x == 24:
+    return lu.sdgvarID_to_sdg_24_str[lang]
+  if x == 25:
+    return lu.sdgvarID_to_sdg_25_str[lang]
+  if x == 26:
+    return lu.sdgvarID_to_sdg_26_str[lang]
+  if x == 27:
+    return lu.sdgvarID_to_sdg_27_str[lang]
+  if x == 28:
+    return lu.sdgvarID_to_sdg_28_str[lang]
+  if x == 29:
+    return lu.sdgvarID_to_sdg_29_str[lang]
+  if x == 30:
+    return lu.sdgvarID_to_sdg_30_str[lang]
+  if x == 31:
+    return lu.sdgvarID_to_sdg_31_str[lang]
+  if x == 32:
+    return lu.sdgvarID_to_sdg_32_str[lang]
+  if x == 33:
+    return lu.sdgvarID_to_sdg_33_str[lang]
+  if x == 34:
+    return lu.sdgvarID_to_sdg_34_str[lang]
+  if x == 35:
+    return lu.sdgvarID_to_sdg_35_str[lang]
+  if x == 36:
+    return lu.sdgvarID_to_sdg_36_str[lang]
+  if x == 37:
+    return lu.sdgvarID_to_sdg_37_str[lang]
+  if x == 38:
+    return lu.sdgvarID_to_sdg_38_str[lang]
+  if x == 39:
+    return lu.sdgvarID_to_sdg_39_str[lang]
+  if x == 40:
+    return lu.sdgvarID_to_sdg_40_str[lang]
+
+def get_indicator_from_lu(x, lang):
+  if x == 1:
+    return lu.sdgvarID_to_indicator_1_str[lang]
+  if x == 2:
+    return lu.sdgvarID_to_indicator_2_str[lang]
+  if x == 3:
+    return lu.sdgvarID_to_indicator_3_str[lang]
+  if x == 4:
+    return lu.sdgvarID_to_indicator_4_str[lang]
+  if x == 5:
+    return lu.sdgvarID_to_indicator_5_str[lang]
+  if x == 6:
+    return lu.sdgvarID_to_indicator_6_str[lang]
+  if x == 7:
+    return lu.sdgvarID_to_indicator_7_str[lang]
+  if x == 8:
+    return lu.sdgvarID_to_indicator_8_str[lang]
+  if x == 9:
+    return lu.sdgvarID_to_indicator_9_str[lang]
+  if x == 10:
+    return lu.sdgvarID_to_indicator_10_str[lang]
+  if x == 11:
+    return lu.sdgvarID_to_indicator_11_str[lang]
+  if x == 12:
+    return lu.sdgvarID_to_indicator_12_str[lang]
+  if x == 13:
+    return lu.sdgvarID_to_indicator_13_str[lang]
+  if x == 14:
+    return lu.sdgvarID_to_indicator_14_str[lang]
+  if x == 15:
+    return lu.sdgvarID_to_indicator_15_str[lang]
+  if x == 16:
+    return lu.sdgvarID_to_indicator_16_str[lang]
+  if x == 17:
+    return lu.sdgvarID_to_indicator_17_str[lang]
+  if x == 18:
+    return lu.sdgvarID_to_indicator_18_str[lang]
+  if x == 19:
+    return lu.sdgvarID_to_indicator_19_str[lang]
+  if x == 20:
+    return lu.sdgvarID_to_indicator_20_str[lang]
+  if x == 21:
+    return lu.sdgvarID_to_indicator_21_str[lang]
+  if x == 22:
+    return lu.sdgvarID_to_indicator_22_str[lang]
+  if x == 23:
+    return lu.sdgvarID_to_indicator_23_str[lang]
+  if x == 24:
+    return lu.sdgvarID_to_indicator_24_str[lang]
+  if x == 25:
+    return lu.sdgvarID_to_indicator_25_str[lang]
+  if x == 26:
+    return lu.sdgvarID_to_indicator_26_str[lang]
+  if x == 27:
+    return lu.sdgvarID_to_indicator_27_str[lang]
+  if x == 28:
+    return lu.sdgvarID_to_indicator_28_str[lang]
+  if x == 29:
+    return lu.sdgvarID_to_indicator_29_str[lang]
+  if x == 30:
+    return lu.sdgvarID_to_indicator_30_str[lang]
+  if x == 31:
+    return lu.sdgvarID_to_indicator_31_str[lang]
+  if x == 32:
+    return lu.sdgvarID_to_indicator_32_str[lang]
+  if x == 33:
+    return lu.sdgvarID_to_indicator_33_str[lang]
+  if x == 34:
+    return lu.sdgvarID_to_indicator_34_str[lang]
+  if x == 35:
+    return lu.sdgvarID_to_indicator_35_str[lang]
+  if x == 36:
+    return lu.sdgvarID_to_indicator_36_str[lang]
+  if x == 37:
+    return lu.sdgvarID_to_indicator_37_str[lang]
+  if x == 38:
+    return lu.sdgvarID_to_indicator_38_str[lang]
+  if x == 39:
+    return lu.sdgvarID_to_indicator_39_str[lang]
+  if x == 40:
+    return lu.sdgvarID_to_indicator_40_str[lang]
+
+def build_plot(var_row, regidx, cap, cid, runde, lang):
   # find out for which round
   if runde == 1:
     yr = 2025
@@ -356,17 +521,22 @@ def build_plot(var_row, regidx, cap, cid, runde):
     lx = idx + regidx # find location of variable in mdf with reg offset
 #  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
-  dfv_pd = pd.DataFrame(dfv)
-  print(dfv_pd)
-  cur_title = 'ETI-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
-  cur_sub = var_row['indicator']
+#  dfv_pd = pd.DataFrame(dfv)
+#  print(dfv_pd)
+  which_sdg = int(var_row['sdg_nbr'])
+  my_title = get_title_from_lu(which_sdg, lang)
+  
+  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' + my_title
+#  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
+  cur_sub = get_indicator_from_lu(which_sdg, lang)
+#  cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
   fdz = {'title' : cur_title, 'subtitle' : cur_sub, 'fig' : cur_fig, 'cap' : cap}
   return fdz
 
 @anvil.server.callable
-def launch_create_plots_for_slots(game_id, reg, ta, runde):
-  task = anvil.server.launch_background_task('create_plots_for_slots', game_id, reg, ta, runde)
+def launch_create_plots_for_slots(game_id, reg, ta, runde, lang):
+  task = anvil.server.launch_background_task('create_plots_for_slots', game_id, reg, ta, runde, lang)
   return task
 
 def get_all_vars_for_ta(ta):
@@ -377,7 +547,7 @@ def get_all_vars_for_ta(ta):
   return vars, v_row
 
 @anvil.server.background_task
-def create_plots_for_slots(game_id, region, single_ta, runde):
+def create_plots_for_slots(game_id, region, single_ta, runde, lang):
     cid = game_id
     if runde == 1:
       yr = 2025
@@ -394,10 +564,10 @@ def create_plots_for_slots(game_id, region, single_ta, runde):
     regidx = int(regrow['pyidx'])
     my_time = datetime.datetime.now().strftime("%a %d %b %G")
     foot1 = 'mov240906 mppy GAME e4a 10reg.mdl'
-    cap = foot1 + ' on ' + my_time
+    cap = foot1 + ' - ' + my_time
     vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
     for var_row in vars_info_rows:
-      fdz = build_plot(var_row, regidx, cap, cid, runde)
+      fdz = build_plot(var_row, regidx, cap, cid, runde, lang)
 #      print(fdz)
       app_tables.plots.add_row(game_id=game_id, title=fdz['title'], subtitle=fdz['subtitle'],
                               fig=fdz['fig'], cap=cap, runde=runde, ta=single_ta, reg=region)

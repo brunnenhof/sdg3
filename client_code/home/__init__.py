@@ -584,13 +584,14 @@ class home(homeTemplate):
     return yr, runde
 
   def pcr_submit_click(self, **event_args):
+    lx = mg.my_lang
     anfang = time.time()
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
-    reglong = self.do_reg_to_longreg[reg]
+    reglong = self.do_reg_to_longreg(reg)
     role = mg.my_ministry
-    rolelong = self.do_ta_to_longmini[role]
+    rolelong = self.do_ta_to_longmini(role)
     cid = mg.my_game_id
 #    alert('reg is '+reg+' role is '+role)
     regs = mg.regs
@@ -606,10 +607,10 @@ class home(homeTemplate):
       self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
       mg.fut_title_tx2 = self.pcgd_title.text
       your_game_id = cid + "-" + str(wrx) + str(wmx)
-      congrats = mg.pcr_submit_msg1 + rolelong + mg.pcr_submit_msg2 + reglong + ".\n" + mg.pcr_submit_msg3 + "\n" + your_game_id 
+      congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id 
       mg.my_personal_game_id = your_game_id
-      alert(congrats, title=mg.pcr_submit_title)
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1)
+      alert(congrats, title=lu.pcr_submit_title_str[lx])
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1, lx)
       self.pcgd_generating.visible = True
 #      make something visible
       while not self.task.is_completed():
@@ -621,11 +622,11 @@ class home(homeTemplate):
         self.pcgd_plot_card.visible = True
         if role == 'fut':
           self.card_fut.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         else:
           self.dec_card.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
@@ -865,7 +866,7 @@ class home(homeTemplate):
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
       ## show confirmation alert
-      self.cid_reg_role_info.text = my_cid + '  + ' + self.do_reg_to_longreg[reg] + '  - ' + self.do_ta_to_longmini[role]
+      self.cid_reg_role_info.text = my_cid + '  + ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
@@ -1010,6 +1011,7 @@ class home(homeTemplate):
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the for FUT
     cid = mg.my_game_id
+    lx = mg.my_lang
     row = app_tables.games_log.get(game_id=cid)
     print("in p_advance_to_next_round_click")
     print("in p_advance_to_next_round_click -> 3rd line "+cid+' fut '+mg.my_reg+' '+str(row['gm_status']))
@@ -1027,7 +1029,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1054,7 +1056,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1082,7 +1084,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.pcgd_title.text = mg.fut_title_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1276,6 +1278,7 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     my_cid = mg.my_game_id
+    lx = mg.my_lang
     cid = mg.my_game_id
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
@@ -1309,7 +1312,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1320,7 +1323,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = mg.pcgd_generating_tx1
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       while not self.task.is_completed():
         pass
       else: ## launch_create_plots_for_slots is done
@@ -1363,7 +1366,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1374,7 +1377,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = mg.pcgd_generating_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       while not self.task.is_completed():
         pass
       else: ## launch_create_plots_for_slots is done
@@ -1407,7 +1410,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg[reg] + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
       self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 
@@ -1418,7 +1421,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = mg.pcgd_generating_tx2
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4)
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       while not self.task.is_completed():
         pass
       else: ## launch_create_plots_for_slots is done
