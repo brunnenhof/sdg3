@@ -248,19 +248,11 @@ class home(homeTemplate):
     else:
       return True
   
-  def any_open_games(self, g_nbr):
-    rows = app_tables.games_log.search()
-    open_games = []
-    for i in range(1,g_nbr):
-      if rows[i]['closed'] == None:
-        cid = rows[i]['game_id']
-        if self.check_rnsub(cid):
-          open_games.append(cid)
-    return len(open_games), open_games
-
   def top_join_game_click(self, **event_args):
     lx = mg.my_lang
     self.lang_card.visible = False 
+    self.top_entry.visible = False
+#    self.top_join_game.visible = False
     self.p_cp_choose_game.visible = True 
     self.p_lb_choose_game.text = lu.p_lb_choose_game_str[lx]
     self.p_enter_id.placeholder = lu.p_enter_id_str[lx]
@@ -1478,41 +1470,15 @@ class home(homeTemplate):
 
   def p_enter_id_pressed_enter(self, **event_args):
     ## correct game_id and gm_status = 4
+    lx = mg.my_lang
     self.p_enter_id.character_limit = 8
-    val = self.p_enter_id.text
+    val = self.p_enter_id.text.upper()
     rows = app_tables.games_log.get(game_id=val, gm_status=4)
-    if len(rows) != 1:
-      alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx])
-      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooopps...')
-      n.show()
-      return
-    lenopen, open = self.any_open_games(len(rows))
-    if lenopen == 0:
-      n = Notification(mg.no_active_game_to_join_tx, timeout=7, title='Ooops...')
-      n.show()
+    if rows is None:
+      alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx],
+        large=True,
+            buttons=lu.join_game_alert[lx]
+      )
       return
     self.top_entry.visible = False
-    #    how_many_new = len(app_tables.games_log.search(gm_status=q.greater_than(3)))
-    how_many_new = len(app_tables.games_log.search(gm_status=4))
-    print(how_many_new)
-    if how_many_new > 1:
-      self.p_cp_choose_game.visible = True
-      self.p_dd_select_game.items = [(row["game_id"], row) for row in app_tables.status.search(game_status=1, p_status=0, gm_status=1)]
-    #      cid = self.p_dd_select_game.selected_value["game_id"]
-    #      alert(cid)
-    elif how_many_new == 1:
-      row = app_tables.games_log.get(gm_status=4)
-      #      alert(row['game_id'], title=mg.title_you_are_joining)
-      mg.my_game_id = row['game_id']
-      #      row.update(p_status=1)
-      ccid = row['game_id']
-      self.show_roles(row['game_id'])
-    else:
-      alert(mg.msg_game_not_started)
-      self.top_entry.visible = True
-      self.p_cp_choose_game.visible = False
-
-
-     
-
-      
+    self.show_roles(rows['game_id'])

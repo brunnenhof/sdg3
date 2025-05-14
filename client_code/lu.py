@@ -16,6 +16,14 @@ confirm_buttons_tx_str = [
   "confirm_buttons_tx_de_sie _skip_"
 ]
 
+join_game_alert = [
+  '[("Try another ID", True), ("Cancel Join", False)]',
+  '[("Andere ID ausprobieren", True), ("Beitritt abbrechen", False)]',
+  '[("Andere ID ausprobieren", True), ("Beitritt abbrechen", False)]',
+  '[("Essayer un autre ID", True), ("Annuler Joindre", False)]',
+  '[("Prøv en ny ID", True), ("Avbryt Bli med", False)]',
+  '_skip_'
+]
 reg_to_longreg_us_str = [
   "USA",
   "USA",
@@ -1671,11 +1679,19 @@ p_enter_id_str = [ # placeholder
   " _last_"
 ]
 no_such_game_str = [
-  "This game ID does not exist or has not been started.",
-  "This ID does not exist or has not been started.",
-  "This ID does not exist or has not been started.",
-  "This ID does not exist or has not been started.",
-  "This ID does not exist or has not been started.",
+  "This game ID does not exist or a game with this ID has not been started.",
+  "Diese Spiel-ID existiert nicht oder ein Spiel mit dieser ID wurde noch nicht gestartet.",
+  "Diese Spiel-ID existiert nicht oder ein Spiel mit dieser ID wurde noch nicht gestartet.",
+  "Cet identifiant de jeu n'existe pas ou un jeu avec cet identifiant n'a pas été lancé.",
+  "Denne spill-ID-en finnes ikke, eller et spill med denne ID-en har ikke blitt startet.",
+  " _last_"
+]
+nsg_t = [
+  "ID issue",
+  "ID-Problem",
+  "ID-Problem",
+  "Problème d'ID",
+  "ID-problem",
   " _last_"
 ]
 gm_id_msg1_str = [
@@ -1734,7 +1750,7 @@ title_you_are_joining_str = [
   "Du blir med ", 
   " _last_"
 ]
-msg_game_not_started_str = [
+msg_game_not_started_str = [  ##  not needed
   "The game organizer has not yet started a game. Please wait until he/she does ... ",
   "Der/Die Spielleiter:in hat noch kein Spiel gestartet. Bitte warten Sie, bis er/sie das tut ... ",
   "Der/Die Spielleiter:in hat noch kein Spiel gestartet. Bitte warten Sie, bis er/sie das tut ... ",
@@ -1944,7 +1960,7 @@ fut_not_all_logged_in_tx_str = [
   " _last_"
 ]
 
-no_active_game_to_join_tx_str = [
+no_active_game_to_join_tx_str = [ ## not needed
   "no active game to join ... the game organizer has to start one ",
   "Kein aktives Spiel zum Beitreten ... der/die Spielleiter:in muss erst eins starten ",
   "Kein aktives Spiel zum Beitreten ... der/die Spielleiter:in muss erst eins starten ",
