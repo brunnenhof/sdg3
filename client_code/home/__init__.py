@@ -647,12 +647,13 @@ class home(homeTemplate):
       pass
       
   def do_non_future(self, cid, role, reg, runde, yr):
-    print("in do_NON_future ie TAs "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
+    lang = mg.my_lang
+    print("in do_NON_future ie TAs "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)+' lang:'+str(lang))
     if yr == 2100:
       return
     self.dec_card.visible = True
     self.pcgd_advance.visible = True
-    pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid)
+    pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid, lang)
 #      print(pol_list)
     self.dec_rp.items = pol_list
 
@@ -842,13 +843,13 @@ class home(homeTemplate):
     
   def submit_numbers_click(self, **event_args):
     # First, confirm submission
-    result = alert(content=mg.confirm_submit_tx,
-               title=mg.confirm_title_tx,
-               large=True,
-               buttons= mg.confirm_buttons_tx
-                  )
-    if result == 'NO':
-      n = Notification(mg.nothing_submitted_tx)
+    lx = mg.my_lang
+    result = alert(content=lu.confirm_submit_tx_str[lx],
+                   title=lu.confirm_title_tx_str[lx],
+                  large=False,
+                  buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)])
+    if not result :
+      n = Notification(lu.nothing_submitted_tx_str[lx])
       n.show()
     else: ## submission confirmed, reg DID submit numbers
       my_cid = mg.my_personal_game_id

@@ -217,7 +217,7 @@ def set_npbp(cid, npbp):
   rs.update(gm_status=4)
 
 def read_mdfplay25(datei, runde):
-  print('APRIL IN read_mdfplay25 loading: ' + datei)
+#  print('APRIL IN read_mdfplay25 loading: ' + datei)
   f = data_files[datei]
   mdf_play = np.load(f)
   if runde == 1:
@@ -331,6 +331,8 @@ def make_png(df, row, pyidx, end_yr, my_title):
     return anvil.mpl_util.plot_image()
 
 def get_title_from_lu(x, lang):
+  if x == 0:
+    return lu.sdgvarID_to_sdg_0_str[lang]
   if x == 1:
     return lu.sdgvarID_to_sdg_1_str[lang]
   if x == 2:
@@ -413,6 +415,8 @@ def get_title_from_lu(x, lang):
     return lu.sdgvarID_to_sdg_40_str[lang]
 
 def get_indicator_from_lu(x, lang):
+  if x == 0:
+    return lu.sdgvarID_to_indicator_0_str[lang]
   if x == 1:
     return lu.sdgvarID_to_indicator_1_str[lang]
   if x == 2:
@@ -509,7 +513,6 @@ def build_plot(var_row, regidx, cap, cid, runde, lang):
   var_l = var_l.replace(" ", "_") # vensim uses underscores not whitespace in variable name
   varx = var_row['id']
 #  print('starting new plot ...')
-#  print('... build plot 272 var_l: ' + var_l)
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
 #  print('--- build plot 274 rowx: on next line')
 #  print (rowx)
@@ -525,11 +528,11 @@ def build_plot(var_row, regidx, cap, cid, runde, lang):
 #  print(dfv_pd)
   which_sdg = int(var_row['sdg_nbr'])
   my_title = get_title_from_lu(which_sdg, lang)
-  
   cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' + my_title
 #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = get_indicator_from_lu(which_sdg, lang)
-#  cur_sub = var_row['indicator']
+  print('... build plot var_l: ' + var_l, ' which_sdg='+str(which_sdg)+' my_title='+my_title+' sub='+cur_sub)
+  #  cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
   fdz = {'title' : cur_title, 'subtitle' : cur_sub, 'fig' : cur_fig, 'cap' : cap}
   return fdz
@@ -656,18 +659,153 @@ def budget_to_db(yr, cid):
     print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
     app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i], c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
 
+def get_pol_expl_lang(pol, lang):
+  if pol == 'ExPS':
+    return lu.pol_to_expl_ExPS_str[lang]
+  if pol == 'CCS':
+    return lu.pol_to_expl_CCS_str[lang]
+  if pol == 'TOW':
+    return lu.pol_to_expl_TOW_str[lang]
+  if pol == 'FPGDC':
+    return lu.pol_to_expl_FPGDC_str[lang]
+  if pol == 'RMDR':
+    return lu.pol_to_expl_RMDR_str[lang]
+  if pol == 'REFOREST':
+    return lu.pol_to_expl_REFOREST_str[lang]
+  if pol == 'FTPEE':
+    return lu.pol_to_expl_FTPEE_str[lang]
+  if pol == 'LPBsplit':
+    return lu.pol_to_expl_LPBsplit_str[lang]
+  if pol == 'FMPLDD':
+    return lu.pol_to_expl_FMPLDD_str[lang]
+  if pol == 'StrUP':
+    return lu.pol_to_expl_StrUP_str[lang]
+  if pol == 'Wreaction':
+    return lu.pol_to_expl_Wreaction_str[lang]
+  if pol == 'SGMP':
+    return lu.pol_to_expl_SGMP_str[lang]
+  if pol == 'FWRP':
+    return lu.pol_to_expl_FWRP_str[lang]
+  if pol == 'ICTR':
+    return lu.pol_to_expl_ICTR_str[lang]
+  if pol == 'XtaxCom':
+    return lu.pol_to_expl_XtaxCom_str[lang]
+  if pol == 'Lfrac':
+    return lu.pol_to_expl_Lfrac_str[lang]
+  if pol == 'IOITR':
+    return lu.pol_to_expl_IOITR_str[lang]
+  if pol == 'IWITR':
+    return lu.pol_to_expl_IWITR_str[lang]
+  if pol == 'SGRPI':
+    return lu.pol_to_expl_SGRPI_str[lang]
+  if pol == 'FEHC':
+    return lu.pol_to_expl_FEHC_str[lang]
+  if pol == 'XtaxRateEmp':
+    return lu.pol_to_expl_XtaxRateEmp_str[lang]
+  if pol == 'FLWR':
+    return lu.pol_to_expl_FLWR_str[lang]
+  if pol == 'RIPLGF':
+    return lu.pol_to_expl_RIPLGF_str[lang]
+  if pol == 'FC':
+    return lu.pol_to_expl_FC_str[lang]
+  if pol == 'NEP':
+    return lu.pol_to_expl_NEP_str[lang]
+  if pol == 'Ctax':
+    return lu.pol_to_expl_Ctax_str[lang]
+  if pol == 'DAC':
+    return lu.pol_to_expl_DAC_str[lang]
+  if pol == 'XtaxFrac':
+    return lu.pol_to_expl_XtaxFrac_str[lang]
+  if pol == 'LPBgrant':
+    return lu.pol_to_expl_LPBgrantS_str[lang]
+  if pol == 'LPB':
+    return lu.pol_to_expl_LPB_str[lang]
+  if pol == 'SSGDR':
+    return lu.pol_to_expl_SSGDR_str[lang]
+  if pol == 'ISPV':
+    return lu.pol_to_expl_ISPV_str[lang]
+
+def get_pol_name_lang(pol, lang):
+  if pol == 'ExPS':
+    return lu.pol_to_name_ExPS_str[lang]
+  if pol == 'CCS':
+    return lu.pol_to_name_CCS_str[lang]
+  if pol == 'TOW':
+    return lu.pol_to_name_TOW_str[lang]
+  if pol == 'FPGDC':
+    return lu.pol_to_name_FPGDC_str[lang]
+  if pol == 'RMDR':
+    return lu.pol_to_name_RMDR_str[lang]
+  if pol == 'REFOREST':
+    return lu.pol_to_name_REFOREST_str[lang]
+  if pol == 'FTPEE':
+    return lu.pol_to_name_FTPEE_str[lang]
+  if pol == 'LPBsplit':
+    return lu.pol_to_name_LPBsplit_str[lang]
+  if pol == 'FMPLDD':
+    return lu.pol_to_name_FMPLDD_str[lang]
+  if pol == 'StrUP':
+    return lu.pol_to_name_StrUP_str[lang]
+  if pol == 'Wreaction':
+    return lu.pol_to_name_Wreaction_str[lang]
+  if pol == 'SGMP':
+    return lu.pol_to_name_SGMP_str[lang]
+  if pol == 'FWRP':
+    return lu.pol_to_name_FWRP_str[lang]
+  if pol == 'ICTR':
+    return lu.pol_to_name_ICTR_str[lang]
+  if pol == 'XtaxCom':
+    return lu.pol_to_name_XtaxCom_str[lang]
+  if pol == 'Lfrac':
+    return lu.pol_to_name_Lfrac_str[lang]
+  if pol == 'IOITR':
+    return lu.pol_to_name_IOITR_str[lang]
+  if pol == 'IWITR':
+    return lu.pol_to_name_IWITR_str[lang]
+  if pol == 'SGRPI':
+    return lu.pol_to_name_SGRPI_str[lang]
+  if pol == 'FEHC':
+    return lu.pol_to_name_FEHC_str[lang]
+  if pol == 'XtaxRateEmp':
+    return lu.pol_to_name_XtaxRateEmp_str[lang]
+  if pol == 'FLWR':
+    return lu.pol_to_name_FLWR_str[lang]
+  if pol == 'RIPLGF':
+    return lu.pol_to_name_RIPLGF_str[lang]
+  if pol == 'FC':
+    return lu.pol_to_name_FC_str[lang]
+  if pol == 'NEP':
+    return lu.pol_to_name_NEP_str[lang]
+  if pol == 'Ctax':
+    return lu.pol_to_name_Ctax_str[lang]
+  if pol == 'DAC':
+    return lu.pol_to_name_DAC_str[lang]
+  if pol == 'XtaxFrac':
+    return lu.pol_to_name_XtaxFrac_str[lang]
+  if pol == 'LPBgrant':
+    return lu.pol_to_name_LPBgrantS_str[lang]
+  if pol == 'LPB':
+    return lu.pol_to_name_LPB_str[lang]
+  if pol == 'SSGDR':
+    return lu.pol_to_name_SSGDR_str[lang]
+  if pol == 'ISPV':
+    return lu.pol_to_name_ISPV_str[lang]
+
 @anvil.server.callable
-def get_policy_budgets(reg, ta, yr, cid):
+def get_policy_budgets(reg, ta, yr, cid, lang):
   TA = mg.pov_to_Poverty[ta]
   pol_list = []
   pols = app_tables.policies.search(ta=TA)
   for pol in pols:
 #    print(pol)
-    pol_name = pol['name']
-    pol_expl = pol['expl']
+    pol_abbr = pol['abbr']
+    pol_name = get_pol_name_lang(pol_abbr, lang)
+#    pol_name = pol['name']
+    pol_expl = get_pol_expl_lang(pol_abbr, lang)
+#    pol_expl = pol['expl']
     pol_tltl = pol['tltl']
     pol_gl = pol['gl']
-    pol_abbr = pol['abbr']
+
     fdz = {'pol_name' : pol_name, 'pol_expl' : pol_expl, 'pol_tltl' : pol_tltl, 'pol_gl' : pol_gl, 'pol_abbr' : pol_abbr}
     pol_list.append(fdz)
   return pol_list
