@@ -243,16 +243,16 @@ pol_to_expl_FMPLDD_str = [
 ]
 pol_to_expl_StrUP_str = [
   "In any economy the national income is shared between owners and workers. This policy changes the share going to workers. 1 multiplies the share with 1%, 2 with 2%, etc",
-  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
-  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
+  "In jeder Volkswirtschaft wird das nationale Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Massnahme verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
+  "In jeder Volkswirtschaft wird das nationale Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Massnahme verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
   "Dans toute économie, le revenu national est partagé entre les propriétaires et les travailleurs. Cette politique modifie la part des travailleurs. 1 multiplie la part avec 1%, 2 avec 2%, etc", 
   "I enhver økonomi deles nasjonalinntekten mellom eiere og arbeidere. Denne politikken endrer andelen som går til arbeidere. 1 multipliserer andelen med 1%, 2 med 2%, osv." ,
   "_last_"
 ]
 pol_to_expl_Wreaction_str = [
   "In any economy there is a power struggle between workers and owners about the share of national income each gets. This policy strenghtens the workers negotiation position. 1 by 1% 2 by 2% etc.",
-  "In jeder Volkswirtschaft gibt es einen Machtkampf zwischen Arbeitnehmern und Eigentümern um den Anteil am Gesamteinkommen den jeder erhält. Diese Politik stärkt die Verhandlungsposition der Arbeitnehmer. 1 um 1 % 2 um 2 % usw.",
-  "In jeder Volkswirtschaft gibt es einen Machtkampf zwischen Arbeitnehmern und Eigentümern um den Anteil am Gesamteinkommen den jeder erhält. Diese Politik stärkt die Verhandlungsposition der Arbeitnehmer. 1 um 1 % 2 um 2 % usw.",
+  "In jeder Volkswirtschaft gibt es einen Machtkampf zwischen Arbeitnehmern und Eigentümern um den Anteil am Gesamteinkommen den jeder erhält. Diese Massnahme stärkt die Verhandlungsposition der Arbeitnehmer. 1 um 1 % 2 um 2 % usw.",
+  "In jeder Volkswirtschaft gibt es einen Machtkampf zwischen Arbeitnehmern und Eigentümern um den Anteil am Gesamteinkommen den jeder erhält. Diese Massnahme stärkt die Verhandlungsposition der Arbeitnehmer. 1 um 1 % 2 um 2 % usw.",
   "Dans toute économie, il y a une lutte de pouvoir entre les travailleurs et les propriétaires sur la part du revenu national chacun. Cette politique saisit la position de négociation des travailleurs. 1 par 1% 2 par 2% etc.", 
   "I enhver økonomi er det en maktkamp mellom arbeidere og eiere om andelen av nasjonalinntektene hver får. Denne politikken er i arbeidstakernes forhandlingsposisjon. 1 med 1% 2 med 2% etc.", 
   "_last_"
@@ -315,8 +315,8 @@ pol_to_expl_IWITR_str = [
 ]
 pol_to_expl_SGRPI_str = [
   "Governments choose how to use their spending - primarily for consumption (eg child support subsidies for food or energy etc.) or for public investment (education health care infrastructure etc.) This policy shifts spending from consumption to investment. 0 means no shift 10= 10% of consumption shifted to investment 25 = 25 % of consumption shifted to investment etc",
-  "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Politik verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
-  "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Politik verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
+  "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Massnahme verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
+  "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Massnahme verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
   "Les gouvernements choisissent comment utiliser leurs dépenses - principalement pour la consommation (par exemple, les subventions à la pension alimentaire pour enfants pour l'alimentation ou l'énergie, etc.) ou pour l'investissement public (infrastructure de soins de santé éducative, etc.) Cette politique passe de la consommation à l'investissement. 0 signifie aucun changement 10 = 10% de la consommation passée à l'investissement 25 = 25% de la consommation décalée à l'investissement et 10%", 
   "Regjeringer velger hvordan de skal bruke utgiftene sine - først og fremst til konsum (f.eks. Barnebidragsubsidier til mat eller energi etc.) eller for offentlige investeringer (utdanningshelseinfrastruktur osv.) Denne policyen flytter utgiftene fra forbruk til investering. 0 betyr ingen skift 10 = 10 % av forbruket skiftet til investering 25 = 25 % av forbruket skiftet til investering osv." ,
   "_last_"
@@ -347,8 +347,8 @@ pol_to_expl_FLWR_str = [
 ]
 pol_to_expl_RIPLGF_str = [
   "Reduction in food imports. 0 means no reduction 10=10% reduction 50=50% reduction This policy reduces food available from elsewhere but strenghtens local producers",
-  "Reduzierung der Lebensmittelimporte. 0 bedeutet keine Reduzierung 10=10% Reduzierung 50=50% Reduzierung. Diese Politik reduziert die Verfügbarkeit von Lebensmitteln aus anderen Ländern stärkt aber die lokalen Produzenten.",
-  "Reduzierung der Lebensmittelimporte. 0 bedeutet keine Reduzierung 10=10% Reduzierung 50=50% Reduzierung. Diese Politik reduziert die Verfügbarkeit von Lebensmitteln aus anderen Ländern stärkt aber die lokalen Produzenten.",
+  "Reduzierung der Lebensmittelimporte. 0 bedeutet keine Reduzierung 10=10% Reduzierung 50=50% Reduzierung. Diese Massnahme reduziert die Verfügbarkeit von Lebensmitteln aus anderen Ländern stärkt aber die lokalen Produzenten.",
+  "Reduzierung der Lebensmittelimporte. 0 bedeutet keine Reduzierung 10=10% Reduzierung 50=50% Reduzierung. Diese Massnahme reduziert die Verfügbarkeit von Lebensmitteln aus anderen Ländern stärkt aber die lokalen Produzenten.",
   "Réduction des importations de denrées alimentaires. 0 signifie aucune réduction 10=10% de réduction 50=50% de réduction. Cette politique réduit la disponibilité des aliments provenant d'autres pays mais renforce les producteurs locaux.",
   "Reduksjon av matimport. 0 betyr ingen reduksjon 10=10 % reduksjon 50=50 % reduksjon. Denne politikken reduserer tilgangen på mat fra andre land, men styrker lokale produsenter.",
   "_last_"
@@ -1664,8 +1664,8 @@ top_btn_start_str = [
 ]
 top_btn_join_str = [
   "JOIN a game as player ",
-  "Als Spieler einem Spiel beitreten ",
-  "Als Spieler einem Spiel beitreten ",
+  "Als Spieler:in einem Spiel beitreten ",
+  "Als Spieler:in einem Spiel beitreten ",
   "Rejoignez un jeu en tant que joueur", 
   "Bli med på et spill som spiller", 
   "_last_"
@@ -1680,8 +1680,8 @@ top_btn_help_str = [
 ]
 top_join_game_str = [
   "JOIN a game as player ",
-  "Als Spieler einem Spiel beitreten ",
-  "Als Spieler einem Spiel beitreten ",
+  "Als Spieler:in einem Spiel beitreten ",
+  "Als Spieler:in einem Spiel beitreten ",
   "Rejoignez un jeu en tant que joueur", 
   "Bli med på et spill som spiller", 
   "_last_"

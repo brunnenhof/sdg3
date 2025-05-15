@@ -740,6 +740,8 @@ class home(homeTemplate):
     return cost
 
   def get_all_pol_to_names(self, ab, lx):
+    print(' -------------  get_all_pol_to_names')
+    print(ab)
     abs = []
     for a in ab:
       if a == 'ExPS':
@@ -749,7 +751,7 @@ class home(homeTemplate):
       elif a == 'TOW':
         abs.append(lu.pol_to_name_TOW_str[lx])
       elif a == 'FPGDC':
-        a.append(lu.pol_to_name_FPGDC_str[lx])
+        abs.append(lu.pol_to_name_FPGDC_str[lx])
       elif a == 'RMDR':
         abs.append(lu.pol_to_name_RMDR_str[lx])
       elif a == 'REFOREST':
@@ -811,30 +813,36 @@ class home(homeTemplate):
                
   def calc_cost_home_ta(self, pct, tltl, gl, maxc, ta):
     lx = mg.my_lang
+    print('---------')
+    print('calc_cost_home ' + ta + ' maxc=' + str(maxc))
     # get_names
     if ta == 'pov':
       abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Poverty')]
       names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'ineq':
-      abbrs = [r['name'] for r in app_tables.policies.search(ta='Inequality')]
+      abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Inequality')]
       names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'emp':
-      abbrs = [r['name'] for r in app_tables.policies.search(ta='Empowerment')]
+      abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Empowerment')]
       names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'food':
-      abbrs = [r['name'] for r in app_tables.policies.search(ta='Food')]
+      abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Food')]
       names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'ener':
-      abbrs = [r['name'] for r in app_tables.policies.search(ta='Energy')]
+      abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Energy')]
       names = self.get_all_pol_to_names(abbrs, lx)
+    print('len_pct '+ str(len(pct)))
+    print(names)
     slots = []
     for i in range(0, len(pct)):
+        print('i='+str(i))
         nw = pct[i] - tltl[i]
         nb = 0
         nt = gl[i] - tltl[i]
         pct_of_range = nw / (nt - nb)
         cost = round(maxc * pct_of_range, 2)
         slot = {'pol_name' : names[i], 'pol_amount': cost}
+        print(slot)
         slots.append(slot)
     return slots
 
