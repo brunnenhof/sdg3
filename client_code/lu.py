@@ -935,8 +935,8 @@ sdgvarID_to_subtitle_27_str = [
   "Labour share of GDP (%)",
   "Arbeitnehmeranteil am BIP (%)",
   "Arbeitnehmeranteil am BIP (%)",
-  "Part de main-d'œuvre du PIB (%)", 
-  "Arbeidsandel av BNP (%)", 
+  "Part des travailleurs dans le PIB (%)", 
+  "Arbeidstakernes andel av BNP (%)", 
   "_last_"
 ]
 sdgvarID_to_subtitle_28_str = [
