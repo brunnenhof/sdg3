@@ -36,7 +36,7 @@ def fe_keepalive():
   
 @anvil.server.callable
 def generate_id():
-  not_allowed = ['FUCK', 'SHIT', 'NSU', 'AFD', 'CDU', 'CSU', 'BSW', 'FDP', 'NPD']
+  not_allowed = ['FUCK', 'SHIT', 'NSU', 'AFD', 'CDU', 'CSU', 'BSW', 'FDP', 'NPD', 'FDJ']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   while cid in not_allowed:
     cid = ''.join(random.choices(string.ascii_uppercase, k=3))

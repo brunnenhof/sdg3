@@ -24,7 +24,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'no'
+#    my_loc = 'no'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -751,6 +751,8 @@ class home(homeTemplate):
       names = [r['name'] for r in app_tables.policies.search(ta='Food')]
     elif ta == 'ener':
       names = [r['name'] for r in app_tables.policies.search(ta='Energy')]
+    print(type(names))
+    print(names)
     
     slots = []
     for i in range(0, len(pct)):
