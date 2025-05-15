@@ -173,7 +173,7 @@ pol_to_expl_CCS_str = [
   "Percent of fossil use to be equipped with carbon capture and storage (CCS) at source. This means that you still emit CO2 but it does not get to the atmosphere where it causes warming because you capture it and store it underground.",
   "Prozentsatz der fossilen Brennstoffe der mit CO2-Abscheidung und -Speicherung (CCS) an der Quelle ausgestattet werden soll. Das bedeutet dass zwar weiterhin CO2 ausgestossen wird dieses aber nicht in die Atmosphäre gelangt wo es Erwärmung verursacht weil es vorher abgeschieden und unter der Erde gespeichert wird.",
   "Prozentsatz der fossilen Brennstoffe der mit CO2-Abscheidung und -Speicherung (CCS) an der Quelle ausgestattet werden soll. Das bedeutet dass zwar weiterhin CO2 ausgestossen wird dieses aber nicht in die Atmosphäre gelangt wo es Erwärmung verursacht weil es vorher abgeschieden und unter der Erde gespeichert wird.",
-  "Pourcentage de combustibles fossiles devant être équipés d'un système de captage et de stockage du CO2 (CSC) à la source. Cela signifie que le CO2 continue d'être émis, mais qu'il n'est pas rejeté dans l'atmosphère où il provoque un réchauffement, car il est préalablement capturé et stocké dans le sol." 
+  "Pourcentage de combustibles fossiles devant être équipés d'un système de captage et de stockage du CO2 (CSC) à la source. Cela signifie que le CO2 continue d'être émis, mais qu'il n'est pas rejeté dans l'atmosphère où il provoque un réchauffement, car il est préalablement capturé et stocké dans le sol." ,
   "Prosent av fossil bruk til å være utstyrt med karbonfangst og lagring (CCS) ved kilden. Dette betyr at du fremdeles avgir CO2, men det kommer ikke til atmosfæren der det forårsaker oppvarming fordi du fanger den og lagrer den under jorden.", 
   "_last_"
 ]
@@ -202,11 +202,11 @@ pol_to_expl_RMDR_str = [
   "_last_"
 ]
 pol_to_expl_REFOREST_str = [
-  "Policy to reforest land i.e. plant new trees. 0 means no reforestation 1 means you increase the forest area by 1â€° / yr (that is 1 promille) 3 = you increase the forest area by 3â€° / yr",
-  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 â€° / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 â€° / Jahr",
-  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 â€° / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 â€° / Jahr",
-  "La politique de reboisement des terres, c'est-à-dire les nouveaux arbres de plante. 0 signifie qu'aucune reboisement 1 signifie que vous augmentez la zone forestière de 1 - 1 ans (c'est 1 Promille) 3 = vous augmentez la zone forestière de 3 - 3 ans / année", 
-  "Tiltak til Reforest land, dvs. plante nye trær. 0 betyr ingen skogplanting 1 betyr at du øker skogområdet med 1 € ° / år (det vil si 1 promille) 3 = du øker skogområdet med 3 € ° / år", 
+  "Policy to reforest land i.e. plant new trees. 0 means no reforestation 1 means you increase the forest area by 1 ‰ / yr (that is 1 promille) 3 = you increase the forest area by 3‰/yr",
+  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 ‰ / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 ‰ / Jahr",
+  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 ‰ / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 ‰ / Jahr",
+  "La politique de reboisement des terres, c'est-à-dire les nouveaux arbres de plante. 0 signifie qu'aucune reboisement 1 signifie que vous augmentez la zone forestière de 1 ‰/an (c'est 1 Promille) 3 = vous augmentez la zone forestière de 3 ‰/an", 
+  "Tiltak til Reforest land, dvs. plante nye trær. 0 betyr ingen skogplanting 1 betyr at du øker skogområdet med 1 ‰/år (det vil si 1 promille) 3 = du øker skogområdet med 3 ‰/år", 
   "_last_"
 ]
 pol_to_expl_FTPEE_str = [
@@ -221,8 +221,8 @@ pol_to_expl_LPBsplit_str = [
   "0 means all LBP funding goes to consumption (eg child support subsidies for food or energy etc.) 100 means all goes to public investment like infrastructure security etc. NOTE This only has an effect if LPB is NOT set to zero",
   "0 bedeutet dass die gesamte LBP-Finanzierung in den Konsum fliesst (z. B. Kindergeld Subventionen für Lebensmittel oder Energie usw.). 100 bedeutet dass die gesamte Finanzierung in öffentliche Investitionen wie Infrastruktur Sicherheit usw. fliesst. HINWEIS Diese Massnahme hat nur dann eine Auswirkung wenn LPB NICHT auf Null gesetzt ist.",
   "0 bedeutet dass die gesamte LBP-Finanzierung in den Konsum fliesst (z. B. Kindergeld Subventionen für Lebensmittel oder Energie usw.). 100 bedeutet dass die gesamte Finanzierung in öffentliche Investitionen wie Infrastruktur Sicherheit usw. fliesst. HINWEIS Diese Massnahme hat nur dann eine Auswirkung wenn LPB NICHT auf Null gesetzt ist.",
-  "0 signifie que tous les fonds LBP vont à la consommation (par exemple, les subventions aux enfants pour l'alimentation ou l'énergie, etc.) 100 signifie que tous les fonds vont à l'investissement public, comme la sécurité des infrastructures, etc. REMARQUE Ceci n'a d'effet que si le LPB n'est PAS fixé à zéro." 
-  "0 betyr at alle LBP-midler går til forbruk (f.eks. støtte til mat, energi osv.). 100 betyr at alle midler går til offentlige investeringer, f.eks. sikring av infrastruktur osv. MERK Dette har bare effekt hvis LPB IKKE er satt til null." 
+  "0 signifie que tous les fonds LBP vont à la consommation (par exemple, les subventions aux enfants pour l'alimentation ou l'énergie, etc.) 100 signifie que tous les fonds vont à l'investissement public, comme la sécurité des infrastructures, etc. REMARQUE Ceci n'a d'effet que si le LPB n'est PAS fixé à zéro.", 
+  "0 betyr at alle LBP-midler går til forbruk (f.eks. støtte til mat, energi osv.). 100 betyr at alle midler går til offentlige investeringer, f.eks. sikring av infrastruktur osv. MERK Dette har bare effekt hvis LPB IKKE er satt til null." ,
   "_last_"
 ]
 pol_to_expl_ExPS_str = [
@@ -242,11 +242,11 @@ pol_to_expl_FMPLDD_str = [
   "_last_"
 ]
 pol_to_expl_StrUP_str = [
-  "In any economy the national income is shared between owners and workers. This policy changes the share going to workers. 1 multiplies the share with 1% 2 with 2% etc",
-  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 % 2 mit 2 % usw.",
-  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 % 2 mit 2 % usw.",
-  "Dans toute économie, le revenu national est partagé entre les propriétaires et les travailleurs. Cette politique modifie la part des travailleurs. 1 multiplie la part avec 1% 2 avec 2% etc", 
-  "I enhver økonomi deles nasjonalinntekten mellom eiere og arbeidere. Denne politikken endrer andelen som går til arbeidere. 1 multipliserer andelen med 1% 2 med 2% osv." 
+  "In any economy the national income is shared between owners and workers. This policy changes the share going to workers. 1 multiplies the share with 1%, 2 with 2%, etc",
+  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
+  "In jeder Volkswirtschaft wird das Gesamtseinkommen zwischen Eigentümern und Arbeitnehmern aufgeteilt. Diese Politik verändert den Anteil der den Arbeitnehmern zusteht. 1 multipliziert den Anteil mit 1 %, 2 mit 2 %, usw.",
+  "Dans toute économie, le revenu national est partagé entre les propriétaires et les travailleurs. Cette politique modifie la part des travailleurs. 1 multiplie la part avec 1%, 2 avec 2%, etc", 
+  "I enhver økonomi deles nasjonalinntekten mellom eiere og arbeidere. Denne politikken endrer andelen som går til arbeidere. 1 multipliserer andelen med 1%, 2 med 2%, osv." ,
   "_last_"
 ]
 pol_to_expl_Wreaction_str = [
@@ -285,8 +285,8 @@ pol_to_expl_XtaxCom_str = [
   "A universal basic dividend is created when a state taxes common goods like fishing rights mining rights the right to use airwaves etc. This policy sets this tax as a percent of GDP i.e. 0 = 0 % of GDP i.e. nothing; 5 = 5 % of GDP; 3 = 3 % of GDP money is transferred to general govt tax revenue.",
   "Eine universelle Grunddividende entsteht wenn ein Staat öffentliche Güter wie Fischereirechte Bergbaurechte das Recht zur Nutzung des Frequenzsprektrums usw. besteuert. Diese Richtlinie legt diese Steuer als Prozentsatz des BIP fest d. h. 0 = 0 % des BIP also nichts; 5 = 5 % des BIP; 3 = 3 % des BIP. Das Geld wird in die allgemeinen Steuereinnahmen des Staates überführt.",
   "Eine universelle Grunddividende entsteht wenn ein Staat öffentliche Güter wie Fischereirechte Bergbaurechte das Recht zur Nutzung des Frequenzsprektrums usw. besteuert. Diese Richtlinie legt diese Steuer als Prozentsatz des BIP fest d. h. 0 = 0 % des BIP also nichts; 5 = 5 % des BIP; 3 = 3 % des BIP. Das Geld wird in die allgemeinen Steuereinnahmen des Staates überführt.",
-  "Un dividende de base universel est créé lorsqu'un État taxait des biens communs comme les droits des droits des droits de pêche le droit d'utiliser les ondes, etc. Cette politique établit cette taxe en pourcentage du PIB, soit 0 = 0% du PIB, c'est-à-dire que rien; 5 = 5% du PIB; 3 = 3% de l'argent du PIB est transféré au revenu fiscal général de GOVT.", 
-  "Et universelt grunnleggende utbytte opprettes når en stat skatter vanlige varer som fiskerettigheter gruvedrift rettigheter til å bruke luftbølger osv. Denne policyen setter denne skatten som en prosent av BNP, dvs. 0 = 0 % av BNP, dvs. ingenting; 5 = 5 % av BNP; 3 = 3 % av BNP -penger blir overført til generell Govt -inntekt." 
+  "Un dividende de base universel est créé lorsqu'un État taxait des biens communs comme les droits des droits des droits de pêche le droit d'utiliser les ondes, etc. Cette politique établit cette taxe en pourcentage du PIB, soit 0 = 0% du PIB, c'est-à-dire que rien; 5 = 5% du PIB; 3 = 3% de l'argent du PIB est transféré au revenu fiscal général de l'État.", 
+  "Et universelt grunnleggende utbytte opprettes når en stat skatter vanlige varer som fiskerettigheter gruvedrift rettigheter til å bruke luftbølger osv. Denne policyen setter denne skatten som en prosent av BNP, dvs. 0 = 0 % av BNP, dvs. ingenting; 5 = 5 % av BNP; 3 = 3 % av BNP -penger blir overført til generell inntekt av staten.", 
   "_last_"
 ]
 pol_to_expl_Lfrac_str = [
@@ -317,8 +317,8 @@ pol_to_expl_SGRPI_str = [
   "Governments choose how to use their spending - primarily for consumption (eg child support subsidies for food or energy etc.) or for public investment (education health care infrastructure etc.) This policy shifts spending from consumption to investment. 0 means no shift 10= 10% of consumption shifted to investment 25 = 25 % of consumption shifted to investment etc",
   "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Politik verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
   "Regierungen entscheiden wie sie ihre Ausgaben einsetzen - vorrangig für Konsum (z. B. Kindergeld Subventionen für Nahrungsmittel oder Energie usw.) oder für öffentliche Investitionen (Bildung Gesundheitswesen Infrastruktur usw.). Diese Politik verlagert die Ausgaben vom Konsum auf Investitionen. 0 bedeutet keine Verschiebung 10 = 10 % des Konsums werden auf Investitionen umgeleitet 25 = 25 % des Konsums werden auf Investitionen umgeleitet usw.",
-  "Les gouvernements choisissent comment utiliser leurs dépenses - principalement pour la consommation (par exemple, les subventions à la pension alimentaire pour enfants pour l'alimentation ou l'énergie, etc.) ou pour l'investissement public (infrastructure de soins de santé éducative, etc.) Cette politique passe de la consommation à l'investissement. 0 signifie aucun changement 10 = 10% de la consommation passée à l'investissement 25 = 25% de la consommation décalée à l'investissement et 10%" 
-  "Regjeringer velger hvordan de skal bruke utgiftene sine - først og fremst til konsum (f.eks. Barnebidragsubsidier til mat eller energi etc.) eller for offentlige investeringer (utdanningshelseinfrastruktur osv.) Denne policyen flytter utgiftene fra forbruk til investering. 0 betyr ingen skift 10 = 10 % av forbruket skiftet til investering 25 = 25 % av forbruket skiftet til investering osv." 
+  "Les gouvernements choisissent comment utiliser leurs dépenses - principalement pour la consommation (par exemple, les subventions à la pension alimentaire pour enfants pour l'alimentation ou l'énergie, etc.) ou pour l'investissement public (infrastructure de soins de santé éducative, etc.) Cette politique passe de la consommation à l'investissement. 0 signifie aucun changement 10 = 10% de la consommation passée à l'investissement 25 = 25% de la consommation décalée à l'investissement et 10%", 
+  "Regjeringer velger hvordan de skal bruke utgiftene sine - først og fremst til konsum (f.eks. Barnebidragsubsidier til mat eller energi etc.) eller for offentlige investeringer (utdanningshelseinfrastruktur osv.) Denne policyen flytter utgiftene fra forbruk til investering. 0 betyr ingen skift 10 = 10 % av forbruket skiftet til investering 25 = 25 % av forbruket skiftet til investering osv." ,
   "_last_"
 ]
 pol_to_expl_FEHC_str = [
@@ -342,7 +342,7 @@ pol_to_expl_FLWR_str = [
   "Hier legen Sie den Prozentsatz Ihrer Ackerfläche fest der regenerativ bearbeitet wird (geringe oder keine Bodenbearbeitung geringe oder keine Dünge- und Pestizidverwendung usw.). 50 bedeutet dass 50 % der Ackerfläche regenerativ bearbeitet werden 100 = 100 % der Ackerfläche werden regenerativ bearbeitet usw. 0 lässt alles so wie es ist.",
   "Hier legen Sie den Prozentsatz Ihrer Ackerfläche fest der regenerativ bearbeitet wird (geringe oder keine Bodenbearbeitung geringe oder keine Dünge- und Pestizidverwendung usw.). 50 bedeutet dass 50 % der Ackerfläche regenerativ bearbeitet werden 100 = 100 % der Ackerfläche werden regenerativ bearbeitet usw. 0 lässt alles so wie es ist.",
   "Ici, vous décidez que le pourcentage de vos terres cultivées qui est travaillé de manière régénérative (faible ou pas de travail bas ou pas d'engrais et de pesticides, etc.) 50 signifie que 50% de terres cultivées fonctionnantes sont régénérativement 100 = 100% des terres cultivées sont travaillées de manière régénérative, etc. 0 laisse les choses telles qu'elles sont.", 
-  "Her angir du hvor stor prosentandel av åkerarealet som dyrkes med regenerative metoder (liten eller ingen jordbearbeiding, liten eller ingen bruk av kunstgjødsel og plantevernmidler osv.) 50 betyr at 50 % av åkerarealet dyrkes regenerativt 100 = 100 % av åkerarealet dyrkes regenerativt, osv. 0 betyr at alt er som det er." 
+  "Her angir du hvor stor prosentandel av åkerarealet som dyrkes med regenerative metoder (liten eller ingen jordbearbeiding, liten eller ingen bruk av kunstgjødsel og plantevernmidler osv.) 50 betyr at 50 % av åkerarealet dyrkes regenerativt 100 = 100 % av åkerarealet dyrkes regenerativt, osv. 0 betyr at alt er som det er." ,
   "_last_"
 ]
 pol_to_expl_RIPLGF_str = [
@@ -439,22 +439,22 @@ pol_to_name_TOW_str = [
   "Besteuerung des Vermögens von Superreichen",
   "Besteuerung des Vermögens von Superreichen",
   "Taxer la richesse des propriétaires", 
-  "Beskatte eiere rikdom", 
+  "Skattlegging av de superrikes formue", 
   "_last_"
 ]
 pol_to_name_FPGDC_str = [
   "Cancel debt from public lenders",
   "Schuldenerlass von öffentlichen Kreditgebern",
   "Schuldenerlass von öffentlichen Kreditgebern",
-  "Annuler la dette des prêteurs publics", 
-  "Avbryt gjeld fra offentlige långivere", 
+  "Annulation de la dette des prêteurs publics", 
+  "Ettergivelse av gjeld fra offentlige långivere", 
   "_last_"
 ]
 pol_to_name_RMDR_str = [
   "Change diets",
   "Ernährung umstellen",
   "Ernährung umstellen",
-  "Changer les régimes", 
+  "Changer de régime alimentaire", 
   "Endre dietter", 
   "_last_"
 ]
@@ -463,7 +463,7 @@ pol_to_name_REFOREST_str = [
   "Wiederaufforstung",
   "Wiederaufforstung",
   "Reboisement", 
-  "Skobling", 
+  "Gjenplanting av skog", 
   "_last_"
 ]
 pol_to_name_FTPEE_str = [
@@ -475,11 +475,11 @@ pol_to_name_FTPEE_str = [
   "_last_"
 ]
 pol_to_name_LPBsplit_str = [
-  "LPB",
+  "Breakdown of the use of funds by public-sector lenders (LPB)",
   "Aufteilung der Mittelverwendung öffentlicher Kreditgeber (LPB)",
   "Aufteilung der Mittelverwendung öffentlicher Kreditgeber (LPB)",
-  "LPB", 
-  "LPB", 
+  "Répartition de l'utilisation des fonds des prêteurs publics (LPB)", 
+  "Fordeling av offentlige långiveres bruk av midler (LPB)", 
   "_last_"
 ]
 pol_to_name_ExPS_str = [
@@ -494,8 +494,8 @@ pol_to_name_FMPLDD_str = [
   "Fraction of credit with private lenders NOT drawn down per y",
   "Anteil der Kredite bei privaten Kreditgebern die pro Jahr NICHT in Anspruch genommen werden",
   "Anteil der Kredite bei privaten Kreditgebern die pro Jahr NICHT in Anspruch genommen werden",
-  "Fraction du crédit avec des prêteurs privés non abaissés par y", 
-  "Brøkdel av kreditt med private långivere som ikke er trukket ned per y", 
+  "Fraction du crédit avec des prêteurs privés non abaissés par année", 
+  "Brøkdel av kreditt med private långivere som ikke er trukket ned per år", 
   "_last_"
 ]
 pol_to_name_StrUP_str = [
@@ -540,10 +540,10 @@ pol_to_name_ICTR_str = [
 ]
 pol_to_name_XtaxCom_str = [
   "Introduce a Universal basic dividend",
-  "Einführung einer allgemeine Grunddividende",
-  "Einführung einer allgemeine Grunddividende",
-  "Introduire un dividende de base universel", 
-  "Introdusere et universelt grunnleggende utbytte", 
+  "Einführung eines allgemeinen Grundeinkommen",
+  "Einführung eines allgemeinen Grundeinkommen",
+  "Introduction d'un revenu de base universel", 
+  "Innføring av en universell grunninntekt", 
   "_last_"
 ]
 pol_to_name_Lfrac_str = [
@@ -575,7 +575,7 @@ pol_to_name_SGRPI_str = [
   "Staatliche Ausgaben auf Investitionen umstellen",
   "Staatliche Ausgaben auf Investitionen umstellen",
   "Déplacer les dépenses du gouvernement vers l'investissement", 
-  "Skift Govt -utgifter til investering", 
+  "Omlegging av offentlige utgifter til investeringer", 
   "_last_"
 ]
 pol_to_name_FEHC_str = [
@@ -590,8 +590,8 @@ pol_to_name_XtaxRateEmp_str = [
   "Female leadership",
   "Förderung weiblicher Führungskräfte",
   "Förderung weiblicher Führungskräfte",
-  "Leadership féminin", 
-  "Kvinnelig ledelse", 
+  "Promotion des femmes cadres", 
+  "Mer kvinnelig ledelse", 
   "_last_"
 ]
 pol_to_name_FLWR_str = [
@@ -612,8 +612,8 @@ pol_to_name_RIPLGF_str = [
 ]
 pol_to_name_FC_str = [
   "Max forest cutting",
-  "Waldrodung",
-  "Waldrodung",
+  "Max Waldrodung",
+  "Max Waldrodung",
   "Coute maximale de la forêt", 
   "Max skogskjæring", 
   "_last_"
@@ -685,8 +685,8 @@ pol_to_name_ISPV_str = [
 
 sdgvarID_to_subtitle_13_str = [
   "Worker disposable income (1000 $/person-year)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 $/Personenjahr)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 $/Personenjahr)",
+  "Verfügbares Einkommen der Arbeitnehmer (1000 $/Personen-jahr)",
+  "Verfügbares Einkommen der Arbeitnehmer (1000 $/Personen-jahr)",
   "Revenu disponible des travailleurs (1000 $/personne-année)", 
   "Arbeiderens disponible inntekt (1000 $/person-år)", 
   "_last_"
@@ -695,8 +695,8 @@ sdgvarID_to_subtitle_18_str = [
   "Fertilizer use per capita (Mt/y)",
   "Düngemittelverbrauch pro Kopf (Mt/Jahr)",
   "Düngemittelverbrauch pro Kopf (Mt/Jahr)",
-  "Utilisation des engrais par habitant (MT/A)", 
-  "Gjødselbruk per innbygger (mt/y)", 
+  "Utilisation des engrais par habitant (Mt/anné)", 
+  "Gjødselbruk per innbygger (mt/år)", 
   "_last_"
 ]
 sdgvarID_to_subtitle_26_str = [
@@ -724,11 +724,11 @@ sdgvarID_to_subtitle_20_str = [
   "_last_"
 ]
 sdgvarID_to_subtitle_29_str = [
-  "Number of SDGs met 17 can be met",
-  "Anzahl der erreichten SDGs 17 können maximal erreicht werden",
-  "Anzahl der erreichten SDGs 17 können maximal erreicht werden",
-  "Le nombre de ODD rencontrés 17 peut être satisfait", 
-  "Antall SDG -er møtt 17 kan oppfylles", 
+  "Number of SDGs, met 17 can be met",
+  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
+  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
+  "Le nombre de ODD rencontrés, 17 peut être satisfait", 
+  "Antall SDG-er møtt, 17 kan oppfylles", 
   "_last_"
 ]
 sdgvarID_to_subtitle_4_str = [
@@ -797,10 +797,10 @@ sdgvarID_to_subtitle_16_str = [
 ]
 sdgvarID_to_subtitle_17_str = [
   "Emissions per person (tCO2/p/y)",
-  "Emissionen pro Person (tCO2/p/a)",
-  "Emissionen pro Person (tCO2/p/a)",
-  "Émissions par personne (TCO2 / P / Y)", 
-  "Utslipp per person (TCO2/P/Y)", 
+  "Emissionen pro Person (tCO2/p/J)",
+  "Emissionen pro Person (tCO2/p/J)",
+  "Émissions par personne (tCO2/P/A)", 
+  "Utslipp per person (tCO2/P/år)", 
   "_last_"
 ]
 sdgvarID_to_subtitle_34_str = [
@@ -823,15 +823,15 @@ sdgvarID_to_subtitle_21_str = [
   "Ocean surface pH",
   "pH-Wert der Meeresoberfläche",
   "pH-Wert der Meeresoberfläche",
-  "PH de la surface de l'océan", 
-  "Ocean Surface Ph", 
+  "pH de la surface de la mer", 
+  "pH-verdien på havoverflaten", 
   "_last_"
 ]
 sdgvarID_to_subtitle_12_str = [
   "Energy intensity in terms of primary energy and GDP (kWh/$)",
   "Energieintensität in Bezug auf Primärenergie und BIP (kWh/$)",
   "Energieintensität in Bezug auf Primärenergie und BIP (kWh/$)",
-  "Intensité énergétique en termes d'énergie primaire et de PIB (kwh / $)", 
+  "Intensité énergétique en termes d'énergie primaire et de PIB (kwh/$)", 
   "Energiintensitet når det gjelder primær energi og BNP (kWh/$)", 
   "_last_"
 ]
@@ -919,7 +919,7 @@ sdgvarID_to_subtitle_15_str = [
   "Carbon intensity of production (kgCO2/$)",
   "Kohlenstoffintensität der Produktion (kgCO2/$)",
   "Kohlenstoffintensität der Produktion (kgCO2/$)",
-  "Intensité du carbone de la production (KGCO2 / $)", 
+  "Intensité du carbone de la production (KGCO2/$)", 
   "Karbonintensitet i produksjonen (KGCO2/$)", 
   "_last_"
 ]

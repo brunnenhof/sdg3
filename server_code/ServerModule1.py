@@ -526,7 +526,8 @@ def build_plot(var_row, regidx, cap, cid, runde, lang):
   dfv = mdf_play[:, [0, lx]]
 #  dfv_pd = pd.DataFrame(dfv)
 #  print(dfv_pd)
-  which_sdg = int(var_row['sdg_nbr'])
+#  which_sdg = int(var_row['sdg_nbr'])
+  which_sdg = int(var_row['id'])
   my_title = get_title_from_lu(which_sdg, lang)
   cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' + my_title
 #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
@@ -717,7 +718,7 @@ def get_pol_expl_lang(pol, lang):
   if pol == 'XtaxFrac':
     return lu.pol_to_expl_XtaxFrac_str[lang]
   if pol == 'LPBgrant':
-    return lu.pol_to_expl_LPBgrantS_str[lang]
+    return lu.pol_to_expl_LPBgrant_str[lang]
   if pol == 'LPB':
     return lu.pol_to_expl_LPB_str[lang]
   if pol == 'SSGDR':
@@ -783,7 +784,7 @@ def get_pol_name_lang(pol, lang):
   if pol == 'XtaxFrac':
     return lu.pol_to_name_XtaxFrac_str[lang]
   if pol == 'LPBgrant':
-    return lu.pol_to_name_LPBgrantS_str[lang]
+    return lu.pol_to_name_LPBgrant_str[lang]
   if pol == 'LPB':
     return lu.pol_to_name_LPB_str[lang]
   if pol == 'SSGDR':
