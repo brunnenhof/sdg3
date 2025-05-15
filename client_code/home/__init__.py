@@ -631,10 +631,10 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
-          self.do_future(cid, role, reg, runde, yr )
+          self.do_future(cid, role, reg, runde, yr, lx )
         else:
           pass ## dont show policies on last round
-          self.do_non_future(cid, role, reg, runde, yr)      
+          self.do_non_future(cid, role, reg, runde, yr, lx)      
     dauer = round(time.time() - anfang, 0)
     self.top_duration.text = dauer
 
@@ -646,7 +646,7 @@ class home(homeTemplate):
     if self.show_hide_plots.selected is False:
       pass
       
-  def do_non_future(self, cid, role, reg, runde, yr):
+  def do_non_future(self, cid, role, reg, runde, yr, lx):
     lang = mg.my_lang
     print("in do_NON_future ie TAs "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)+' lang:'+str(lang))
     if yr == 2100:
@@ -666,7 +666,7 @@ class home(homeTemplate):
     else:
       return False
     
-  def do_future(self, cid, role, reg, runde, yr):
+  def do_future(self, cid, role, reg, runde, yr, lx):
     print("in do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
@@ -739,21 +739,94 @@ class home(homeTemplate):
       cost += maxc * pct_of_range
     return cost
 
+  def get_all_pol_to_names(self, ab, lx):
+    abs = []
+    for a in ab:
+      if a == 'ExPS':
+        abs.append(lu.pol_to_name_ExPS_str[lx])
+      elif a == 'CCS':
+        abs.append(lu.pol_to_name_CCS_str[lx])
+      elif a == 'TOW':
+        abs.append(lu.pol_to_name_TOW_str[lx])
+      elif a == 'FPGDC':
+        a.append(lu.pol_to_name_FPGDC_str[lx])
+      elif a == 'RMDR':
+        abs.append(lu.pol_to_name_RMDR_str[lx])
+      elif a == 'REFOREST':
+        abs.append(lu.pol_to_name_REFOREST_str[lx])
+      elif a == 'FTPEE':
+        abs.append(lu.pol_to_name_FTPEE_str[lx])
+      elif a == 'LPBsplit':
+        abs.append(lu.pol_to_name_LPBsplit_str[lx])
+      elif a == 'FMPLDD':
+        abs.append(lu.pol_to_name_FMPLDD_str[lx])
+      elif a == 'StrUP':
+        abs.append(lu.pol_to_name_StrUP_str[lx])
+      elif a == 'Wreaction':
+        abs.append(lu.pol_to_name_Wreaction_str[lx])
+      elif a == 'SGMP':
+        abs.append(lu.pol_to_name_SGMP_str[lx])
+      elif a == 'FWRP':
+        abs.append(lu.pol_to_name_FWRP_str[lx])
+      elif a == 'ICTR':
+        abs.append(lu.pol_to_name_ICTR_str[lx])
+      elif a == 'XtaxCom':
+        abs.append(lu.pol_to_name_XtaxCom_str[lx])
+      elif a == 'Lfrac':
+        abs.append(lu.pol_to_name_Lfrac_str[lx])
+      elif a == 'IOITR':
+        abs.append(lu.pol_to_name_IOITR_str[lx])
+      elif a == 'IWITR':
+        abs.append(lu.pol_to_name_IWITR_str[lx])
+      elif a == 'SGRPI':
+        abs.append(lu.pol_to_name_SGRPI_str[lx])
+      elif a == 'FEHC':
+        abs.append(lu.pol_to_name_FEHC_str[lx])
+      elif a == 'XtaxRateEmp':
+        abs.append(lu.pol_to_name_XtaxRateEmp_str[lx])
+      elif a == 'FLWR':
+        abs.append(lu.pol_to_name_FLWR_str[lx])
+      elif a == 'RIPLGF':
+        abs.append(lu.pol_to_name_RIPLGF_str[lx])
+      elif a == 'FC':
+        abs.append(lu.pol_to_name_FC_str[lx])
+      elif a == 'NEP':
+        abs.append(lu.pol_to_name_NEP_str[lx])
+      elif a == 'Ctax':
+        abs.append(lu.pol_to_name_Ctax_str[lx])
+      elif a == 'DAC':
+        abs.append(lu.pol_to_name_DAC_str[lx])
+      elif a == 'XtaxFrac':
+        abs.append(lu.pol_to_name_XtaxFrac_str[lx])
+      elif a == 'LPBgrant':
+        abs.append(lu.pol_to_name_LPBgrant_str[lx])
+      elif a == 'LPB':
+        abs.append(lu.pol_to_name_LPB_str[lx])
+      elif a == 'SSGDR':
+        abs.append(lu.pol_to_name_SSGDR_str[lx])
+      elif a == 'ISPV':
+        abs.append(lu.pol_to_name_ISPV_str[lx])
+    return abs
+
+               
   def calc_cost_home_ta(self, pct, tltl, gl, maxc, ta):
+    lx = mg.my_lang
     # get_names
     if ta == 'pov':
-      names = [r['name'] for r in app_tables.policies.search(ta='Poverty')]
+      abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Poverty')]
+      names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'ineq':
-      names = [r['name'] for r in app_tables.policies.search(ta='Inequality')]
+      abbrs = [r['name'] for r in app_tables.policies.search(ta='Inequality')]
+      names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'emp':
-      names = [r['name'] for r in app_tables.policies.search(ta='Empowerment')]
+      abbrs = [r['name'] for r in app_tables.policies.search(ta='Empowerment')]
+      names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'food':
-      names = [r['name'] for r in app_tables.policies.search(ta='Food')]
+      abbrs = [r['name'] for r in app_tables.policies.search(ta='Food')]
+      names = self.get_all_pol_to_names(abbrs, lx)
     elif ta == 'ener':
-      names = [r['name'] for r in app_tables.policies.search(ta='Energy')]
-    print(type(names))
-    print(names)
-    
+      abbrs = [r['name'] for r in app_tables.policies.search(ta='Energy')]
+      names = self.get_all_pol_to_names(abbrs, lx)
     slots = []
     for i in range(0, len(pct)):
         nw = pct[i] - tltl[i]
@@ -830,11 +903,12 @@ class home(homeTemplate):
     return costs_by_ta, pov_list, ineq_list, emp_list, food_list, ener_list, within_budget
 
   def refresh_numbers_click(self, **event_args):
+    lx = mg.my_lang
     cid = mg.my_game_id
     role = 'fut'
     reg = mg.my_reg
     yr, runde = self.get_runde(cid)
-    self.do_future(cid, role, reg, runde, yr)
+    self.do_future(cid, role, reg, runde, yr,lx)
 
   def all_reg_submitted(self, cid, step):
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.any_of(step, 99))
@@ -1047,7 +1121,7 @@ class home(homeTemplate):
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr )
+        self.do_future(cid, role, reg, runde, yr,lx )
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
@@ -1074,7 +1148,7 @@ class home(homeTemplate):
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr )
+        self.do_future(cid, role, reg, runde, yr ,lx)
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4
@@ -1103,7 +1177,7 @@ class home(homeTemplate):
         self.fut_detail('hide')
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr )
+        self.do_future(cid, role, reg, runde, yr, lx )
         self.fut_detail('hide')
 
   def fut_detail(self, hs):
@@ -1288,12 +1362,12 @@ class home(homeTemplate):
     gmStatus = row['gm_status']
     if gmStatus == 4:
       ### NOT all regs have submitted for round 2025 to 2040
-      n = Notification(mg.not_all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       return
     if gmStatus == 5:
       ### all regs HAVE submitted for round 2025 to 2040
-      n = Notification(mg.all_submitted_p_tx, timeout=5, title=mg.waiting_tx, style="info")
+      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       return
 #    if gmStatus == 6:
@@ -1305,18 +1379,18 @@ class home(homeTemplate):
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
-        n = Notification(mg.not_to_2060, style="warning")
+        n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
         return
       print("pcgd_advance_tx")
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
+      n = Notification(lu.sim_success_tx40_str[lx], timeout=5, title=lg.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
       self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
-      self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
+      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
@@ -1325,7 +1399,7 @@ class home(homeTemplate):
       print("mg.my_ministry= "+role)
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
-      self.pcgd_generating.text = mg.pcgd_generating_tx1
+      self.pcgd_generating.text = lu.pcgd_generating_tx1_str[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       while not self.task.is_completed():
         pass
@@ -1336,41 +1410,41 @@ class home(homeTemplate):
           self.dec_card.visible = False
           self.pcgd_info_rd1.visible = True
           self.card_fut.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         else:
           self.dec_card.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
-          self.do_future(cid, role, reg, runde, yr )
+          self.do_future(cid, role, reg, runde, yr ,lx)
         else:
-          self.do_non_future(cid, role, reg, runde, yr)      
+          self.do_non_future(cid, role, reg, runde, yr, lx)      
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
     if gmStatus == 7:  ## waiting for decisions until 2060
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r2sub'] < 10:
-        n = Notification(mg.not_to_2060, style="warning")
+        n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
         return
       else:
-        n = Notification(mg.all_submitted_p_tx, timeout=7, style="info")
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7, style="info")
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
       print("pcgd_advance_tx -- gmStatus is "+str(gmStatus))
       anfang = time.time()
       ### round 2040 to 2060 ran successfully
-      n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
+      n = Notification(lu.sim_success_tx60_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
-      self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
@@ -1379,7 +1453,7 @@ class home(homeTemplate):
       print("mg.my_ministry= "+role)
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
-      self.pcgd_generating.text = mg.pcgd_generating_tx2
+      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       while not self.task.is_completed():
         pass
@@ -1390,18 +1464,18 @@ class home(homeTemplate):
           self.dec_card.visible = False
           self.pcgd_info_rd1.visible = True
           self.card_fut.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         else:
           self.dec_card.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
-          self.do_future(cid, role, reg, runde, yr )
+          self.do_future(cid, role, reg, runde, yr, lx )
         else:
-          self.do_non_future(cid, role, reg, runde, yr)      
+          self.do_non_future(cid, role, reg, runde, yr, lx)      
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
@@ -1444,9 +1518,9 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         if role == 'fut':
           print()
-          self.do_future(cid, role, reg, runde, yr )
+          self.do_future(cid, role, reg, runde, yr, lx )
         else:
-          self.do_non_future(cid, role, reg, runde, yr)      
+          self.do_non_future(cid, role, reg, runde, yr, lx)      
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
