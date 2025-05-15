@@ -776,7 +776,7 @@ sdgvarID_to_subtitle_30_str = [
   "Anteil privater und staatlicher Investitionen (% des BIP)",
   "Anteil privater und staatlicher Investitionen (% des BIP)",
   "Part d'investissement privé et gouvernemental (% du PIB)", 
-  "Privat og Govt investeringsandel (% av BNP)", 
+  "Andel private og offentlige investeringer (% av BNP)", 
   "_last_"
 ]
 sdgvarID_to_subtitle_9_str = [
@@ -807,8 +807,8 @@ sdgvarID_to_subtitle_34_str = [
   "Donor and off balance-sheet investment share (% of GDP)",
   "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
   "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
-  "Donateur et partage d'investissement hors bilan (% du PIB)", 
-  "Donor og Off Balance-ark investeringsandel (% av BNP)", 
+  "Part des donateurs et des investissements hors bilan (% du PIB)", 
+  "Andel av donor- og ikke-balanseførte investeringer (% av BNP)", 
   "_last_"
 ]
 sdgvarID_to_subtitle_14_str = [
