@@ -985,7 +985,7 @@ class home(homeTemplate):
           row2.update(p_step_done=5) ## the region submitted decisions for round 2040- 2060
         elif runde == 3:
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
-        n = Notification(mg.not_all_submitted_p_tx, timeout=7)
+        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=7)
         n.show() 
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
@@ -1000,23 +1000,23 @@ class home(homeTemplate):
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
         rg = app_tables.games_log.get(game_id=cid_cookie)
         print("in submit_numbers_click, updated gmStatus "+str(rg['gm_status']))
-        n = Notification(mg.all_submitted_p_tx, timeout=7)
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
         n.show()
         self.test_model.visible = False  ## this is a debug button
         ## give feedback
         ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
         self.card_fut.visible = False
         self.p_after_submit.visible = True
-        self.wait_for_run_after_submit.content = mg.after_submit_tx
+        self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
-          self.p_advance_to_next_round.text = mg.p_advance_to_next_round_tx
+          self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
         elif runde == 2:
           # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
-          self.p_advance_to_next_round.text = mg.p_advance_to_1_tx
+          self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
-          self.p_advance_to_next_round.text = mg.p_advance_to_2_tx
+          self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
 #p_waiting_model_run_tx = "... still waiting for the GM to advance the model ..."
 #waiting_tx = "Waiting ..."
 
@@ -1268,44 +1268,6 @@ class home(homeTemplate):
     rows = app_tables.games_log.search(game_id=q.not_("TEST"))
     for row in rows:
       row.delete()
-
-  def lang_dd_menu_changeOLD(self, **event_args):
-    """This method is called when an item is selected"""
-    if self.lang_dd_menu.selected_value == 1: ## english
-      pass
-    if self.lang_dd_menu.selected_value == 1:
-      print(self.lang_dd_menu.selected_value)      
-      app_tables.game_files.delete_all_rows()
-      von = 2025
-      bis = 2040
-    elif self.lang_dd_menu.selected_value == 2:
-      print(self.lang_dd_menu.selected_value)       
-      von = 2040
-      bis = 2060
-    else:
-      print(self.lang_dd_menu.selected_value)       
-      von = 2060
-      bis = 2100
-    cid = mg.my_game_id
-    cid = "QTO-53"
-    anfang = time.time()
-    self.yr_from_mod.visible = True
-    self.task = anvil.server.call('launch_ugregmod', cid, von, bis)
-#      make something visible
-    while not self.task.is_completed(): # model still running
-      yr = self.task.get_state(['Year'])
-      self.yr_from_mod.text = yr
-      pass
-    else: ## model is done
-      self.yr_from_mod.visible = False
-      ende = time.time()
-      dauer = round(ende - anfang, 0)
-      abc = 'Using ' +str(dauer)+' sec to run the model successfully from '+str(von)+' to '+str(bis)
-      alert(abc)
-      self.card_test_plot.visible = True
-      anvil.server.call('fill_test_plots', self.lang_dd_menu.selected_value, "QTO-53")
-      slots = [{key: r[key] for key in ["title", "fig1"]} for r in app_tables.test_plots.search(game_id= cid)]
-      self.card_test_plot_rp.items = slots
 
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""

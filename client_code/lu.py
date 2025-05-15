@@ -2542,11 +2542,11 @@ confirm_submit_tx_str = [
     ]
  
 confirm_title_tx_str = [
-    "Last chance to go back. ",
-    "Letzte Chance zurückzugehen. ",
-    "Letzte Chance zurückzugehen. ",
-    "Dernière chance de retourner.", 
-    "Siste sjanse til å gå tilbake.", 
+    "Really hand it in?",
+    "Wirklich abgeben?",
+    "Wirklich abgeben?",
+    "Vraiment les donner?", 
+    "Virkelig levere det inn?", 
     "_last_"
     ]
 
