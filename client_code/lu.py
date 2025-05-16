@@ -1736,7 +1736,7 @@ gm_id_msg1_str = [
 ]
 gm_id_msg2_str = [
   ". Make a note of it. ",
-  ". Notieren Sie die ID. ",
+  ". Notieren Sie sich die ID. ",
   ". Notiere die ID. ",
   ". En prendre une note.", 
   ". Noter det.", 
@@ -2735,9 +2735,9 @@ wrong_code_tx = [
 ]
 top_entry_label_str = [
   "Hold on, setting up all the necessary slots, templates and tables for the game ...",
-  "Einen Moment, aller für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
-  "Einen Moment, aller für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
   "Attendez, mettre en place tous les emplacements, modèles et tables nécessaires pour le jeu ...",
-  "Vent litt, sette opp alle nødvendige spor, maler og tabeller for spillet ...",
+  "Vent litt, vi sette opp alle nødvendige spor, maler og tabeller for spillet ...",
   "_last_"
 ]
