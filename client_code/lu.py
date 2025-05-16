@@ -39,6 +39,22 @@ nbr_confirm_f = [
   "Nei",
   "_last_"
 ]
+poc_title = [
+  "So far, this app is a Proof of Concept",
+  "Bislang ist diese Anwendung nur ein Proof of Concept",
+  "Bislang ist diese Anwendung nur ein Proof of Concept",
+  "Pour l'instant, cette application n'est qu'une preuve de concept",
+  "Så langt er denne applikasjonen bare et proof of concept",
+  "_last_"
+]
+poc_str = [
+  "Neither the user interface nor the server code is elegant, nor efficient, nor 'pythonic'. Contact us if you can help making it better.",
+  "Weder die Benutzeroberfläche noch der Servercode sind elegant, effizient oder 'pythonisch'. Kontaktieren Sie uns, wenn Sie helfen können, es besser zu machen.",
+  "Weder die Benutzeroberfläche noch der Servercode sind elegant, effizient oder 'pythonisch'. Kontaktieren Sie uns, wenn Sie helfen können, es besser zu machen.",
+  "Ni l'interface utilisateur ni le code du serveur ne sont élégants, efficaces ou 'pythoniques'. Contactez-nous si vous pouvez nous aider à les améliorer.",
+  "Verken brukergrensesnittet eller serverkoden er elegant, effektiv eller 'pythonisk'. Kontakt oss hvis du kan hjelpe oss med å gjøre det bedre.",
+  "_last_"
+]
 reg_to_longreg_us_str = [
   "USA",
   "USA",
@@ -365,8 +381,8 @@ pol_to_expl_NEP_str = [
   "Percent of fossil fuel (oil gas and coal) *not* used for electricity generation (mobility heating industrial use etc.) that you want to electrify.",
   "Prozentsatz der fossilen Brennstoffe (Öl Gas und Kohle) die *nicht* zur Stromerzeugung (Mobilität Heizung industrielle Nutzung usw.) verwendet werden und die Sie elektrifizieren möchten.",
   "Prozentsatz der fossilen Brennstoffe (Öl Gas und Kohle) die *nicht* zur Stromerzeugung (Mobilität Heizung industrielle Nutzung usw.) verwendet werden und die Sie elektrifizieren möchten.",
-  "Pourcentage de combustibles fossiles (gaz pétrolier et charbon) * Pas * utilisé pour la production d'électricité (mobilité chauffant à usage industriel, etc.) que vous souhaitez électrifier.", 
-  "Prosent av fossilt brensel (oljegass og kull) * ikke * brukt til elektrisitetsproduksjon (Mobilitetsoppvarming av industriell bruk osv.) Som du vil elektrifisere.", 
+  "Pourcentage de combustibles fossiles (gaz pétrolier et charbon) *Pas* utilisé pour la production d'électricité (mobilité chauffant à usage industriel, etc.) que vous souhaitez électrifier.", 
+  "Prosent av fossilt brensel (oljegass og kull) *ikke* brukt til elektrisitetsproduksjon (Mobilitetsoppvarming av industriell bruk osv.) Som du vil elektrifisere.", 
   "_last_"
 ]
 pol_to_expl_Ctax_str = [
@@ -389,8 +405,8 @@ pol_to_expl_XtaxFrac_str = [
   "The percentage of *extra* taxes paid by owners (owners pay 50% of extra taxes even under TLTL) I.e. 90 means owners pay 90 % of extra taxes 70 means owners pay 70 % of extra taxes etc. Extra taxes are those for empowerment and to give women equal pay.",
   "Der Prozentsatz der *zusätzlichen* Steuern die von Eigentümern gezahlt werden (Eigentümer zahlen 50 % der zusätzlichen Steuern sogar unter TLTL). D. h. 90 bedeutet dass Eigentümer 90 % der zusätzlichen Steuern zahlen 70 bedeutet dass Eigentümer 70 % der zusätzlichen Steuern zahlen usw. Zusätzliche Steuern dienen der Stärkung der Selbstbestimmung und der gleichen Bezahlung von Frauen.",
   "Der Prozentsatz der *zusätzlichen* Steuern die von Eigentümern gezahlt werden (Eigentümer zahlen 50 % der zusätzlichen Steuern sogar unter TLTL). D. h. 90 bedeutet dass Eigentümer 90 % der zusätzlichen Steuern zahlen 70 bedeutet dass Eigentümer 70 % der zusätzlichen Steuern zahlen usw. Zusätzliche Steuern dienen der Stärkung der Selbstbestimmung und der gleichen Bezahlung von Frauen.",
-  "Le pourcentage de * taxes supplémentaires * payées par les propriétaires (les propriétaires paient 50% des taxes supplémentaires même en vertu de TLTL), soit 90 moyens de payer 90% des taxes supplémentaires 70 signifie que les propriétaires paient 70% des taxes supplémentaires, etc. Les taxes supplémentaires sont celles pour l'autonomisation et pour donner aux femmes une rémunération égale.", 
-  "Andelen * ekstra * skatter betalt av eiere (eiere betaler 50 % av ekstra skatter selv under tltl), dvs. 90 betyr at eiere betaler 90 % av ekstra skatter 70 betyr at eiere betaler 70 % av ekstra skatter osv. Ekstra skatter er dem for myndighet og for å gi kvinner like lønn.", 
+  "Le pourcentage de *taxes supplémentaires* payées par les propriétaires (les propriétaires paient 50% des taxes supplémentaires même en vertu de TLTL), soit 90 moyens de payer 90% des taxes supplémentaires 70 signifie que les propriétaires paient 70% des taxes supplémentaires, etc. Les taxes supplémentaires sont celles pour l'autonomisation et pour donner aux femmes une rémunération égale.", 
+  "Andelen *ekstra* skatter betalt av eiere (eiere betaler 50 % av ekstra skatter selv under tltl), dvs. 90 betyr at eiere betaler 90 % av ekstra skatter 70 betyr at eiere betaler 70 % av ekstra skatter osv. Ekstra skatter er dem for myndighet og for å gi kvinner like lønn.", 
   "_last_"
 ]
 pol_to_expl_LPBgrant_str = [
@@ -1802,7 +1818,7 @@ msg_gm_board_info_str = [
   "Now, click on **all** the regions **not** played by your players (eg if there are not enough players for all roles)",
   "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
   "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
-  "Maintenant, cliquez sur * toutes * les régions * pas * jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles)", 
+  "Maintenant, cliquez sur *toutes* les régions *pas* jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles)", 
   "Nå, klikk på **alle** regionene **ikke** spilt av spillerne dine (f.eks. Hvis det ikke er nok spillere for alle roller)", 
   "_last_"
 ]
@@ -2311,8 +2327,8 @@ pcgd_rd1_infoend_tx_str = [
     "pcgd_rd1:info_end_tx *outtake* ",
     "pcgd_rd1:info_end_tx *Ausgang* ",
     "pcgd_rd1:info_end_tx *Ausgang* ",
-    "pcgd_rd1: info_end_tx * sortant *", 
-    "PCGD_RD1: INFO_END_TX * UTTAKE *", 
+    "pcgd_rd1: info_end_tx *sortant *", 
+    "PCGD_RD1: INFO_END_TX *UTTAKE *", 
     "_last_"
     ]
  
@@ -2357,7 +2373,7 @@ pcgd_info_after_rd1_tx_str = [
     "Das Modell wurde bis 2040 fortgeschrieben. Auch in den folgenden Grafiken ist alles gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, besteht Grund zur Sorge!\nSchauen Sie sich Sie alle Ihre Indikatoren und beobachten Sie, wie sie sich im Laufe der Jahre entwickeln. *Haben Sie angesichts Ihrer politischen Entscheidungen etwas anderes erwartet? Sind Sie überrascht?* Besprechen Sie dies erneut mit Kollegen:innen, zuerst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind und im Lichte der Ergebnisse der letzten Runde, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um hoffentlich das Leben Ihrer Bürger in der nächsten Runde zu verbessern. ",
     "Das Modell wurde bis 2040 fortgeschrieben. Auch in den folgenden Grafiken ist alles gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, besteht Grund zur Sorge!\nSchauen Sie sich Sie alle Ihre Indikatoren und beobachten Sie, wie sie sich im Laufe der Jahre entwickeln. *Haben Sie angesichts Ihrer politischen Entscheidungen etwas anderes erwartet? Sind Sie überrascht?* Besprechen Sie dies erneut mit Kollegen:innen, zuerst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind und im Lichte der Ergebnisse der letzten Runde, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um hoffentlich das Leben Ihrer Bürger in der nächsten Runde zu verbessern. ",
     "Le modèle a été simulé jusqu'en 2040. Encore une fois, dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans. *Etant donné vos choix politiques, vous attendiez-vous à quelque chose de différent ? Une fois encore, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, et à la lumière de ce qui s'est passé lors du dernier tour, faites défiler les décisions que vous devez prendre en tant que ministre et qui, nous l'espérons, amélioreront la vie de vos citoyens lors du prochain tour.  ",
-    "Modellen er simulert frem til 2040. Igjen, i grafene nedenfor er det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, bør du bekymre deg! \nStuder alle indikatorene dine, se hvordan de utvikler seg over årene. * Hadde du forventet noe annet med tanke på dine politiske valg? Diskuter igjen med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, og i lys av det som skjedde i forrige runde, kan du bla deg ned til de beslutningene du som minister må ta som forhåpentligvis kan forbedre livene til innbyggerne dine i neste runde.  " 
+    "Modellen er simulert frem til 2040. Igjen, i grafene nedenfor er det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, bør du bekymre deg! \nStuder alle indikatorene dine, se hvordan de utvikler seg over årene.Hadde du forventet noe annet med tanke på dine politiske valg? Diskuter igjen med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, og i lys av det som skjedde i forrige runde, kan du bla deg ned til de beslutningene du som minister må ta som forhåpentligvis kan forbedre livene til innbyggerne dine i neste runde.  " 
     "_last_"
     ]
  

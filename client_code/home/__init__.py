@@ -128,8 +128,9 @@ class home(homeTemplate):
     alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox], large=True)
 
   def top_btn_poc_click(self, **event_args):
-    alert("Neither the user interface nor the server code is elegant, nor efficient, nor 'pythonic'. Contact us if you can help making anything better.",
-         title="So far, this app is a Proof of Concept")
+    lx = mg.my_lang
+    alert(lu.poc_str[lx],
+         title=lu.poc_title[lx])
 
   def top_btn_help_click(self, **event_args):
     my_lox = mg.my_lang
