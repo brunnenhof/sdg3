@@ -955,7 +955,7 @@ class home(homeTemplate):
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
       ## show confirmation alert
-      self.cid_reg_role_info.text = my_cid + '  + ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
+      self.cid_reg_role_info.text = my_cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
@@ -982,6 +982,7 @@ class home(homeTemplate):
       ### update steps
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+      self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         if runde == 1:
