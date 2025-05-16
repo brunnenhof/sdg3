@@ -1818,7 +1818,7 @@ msg_gm_board_info_str = [
   "Now, click on **all** the regions **not** played by your players (eg if there are not enough players for all roles)",
   "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
   "Klicken Sie jetzt auf **alle** Regionen, die **nicht** von Ihren Spielern gespielt werden (z.B. wenn nicht genügend Spieler:innen für alle Rollen vorhanden sind)",
-  "Maintenant, cliquez sur *toutes* les régions *pas* jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles)", 
+  "Maintenant, cliquez sur **toutes** les régions **pas** jouées par vos joueurs (par exemple s'il n'y a pas assez de joueurs pour tous les rôles)", 
   "Nå, klikk på **alle** regionene **ikke** spilt av spillerne dine (f.eks. Hvis det ikke er nok spillere for alle roller)", 
   "_last_"
 ]

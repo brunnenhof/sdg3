@@ -10,6 +10,7 @@ from anvil.tables import app_tables
 import time
 import datetime
 import random
+from time import strftime, localtime
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -24,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'de'
+    my_loc = 'fr'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -125,7 +126,7 @@ class home(homeTemplate):
     
   def top_btn_thanks_click(self, **event_args):
     my_lox = mg.my_lang
-    alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox], large=True)
+    alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox])
 
   def top_btn_poc_click(self, **event_args):
     lx = mg.my_lang
@@ -1277,7 +1278,7 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call_s('fe_keepalive')
-    print(time.time())
+    print(strftime('%Y-%m-%d %H:%M:%S', localtime(time.time())))
 
   def all_submit(self, cid, runde):
     rowc = app_tables.cookies.get(game_id=cid)
@@ -1533,7 +1534,7 @@ class home(homeTemplate):
     rows = app_tables.games_log.get(game_id=val, gm_status=4)
     if rows is None:
       enter_game_id = alert(lu.no_such_game_str[lx],title=lu.nsg_t[lx],
-            large=True,buttons=[(lu.jga_t[lx], True), (lu.jga_f[lx], False)])
+            buttons=[(lu.jga_t[lx], True), (lu.jga_f[lx], False)])
       if not enter_game_id:
         self.p_cp_choose_game.visible = False 
         self.top_entry.visible = True 
