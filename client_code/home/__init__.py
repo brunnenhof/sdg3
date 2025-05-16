@@ -646,7 +646,7 @@ class home(homeTemplate):
     """This method is called when the button is clicked"""
     self.show_hide_plots.visible = True
     self.show_hide_plots.selected = False
-    self.show_hide_plots.text = mg.show_hide_plots_hide_tx
+    self.show_hide_plots.text = lu.show_hide_plots_hide_tx_str[lx]
     if self.show_hide_plots.selected is False:
       pass
       
@@ -1065,7 +1065,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.visible = True
     # running_model_tx = "... advancing the model ..."
     # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
-    self.gm_card_wait_1_info.content = mg.gm_wait_round_started_tx
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_started_tx_str[lx]
     self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_start_round.visible = False
@@ -1077,26 +1077,26 @@ class home(homeTemplate):
       pass
     else: ## model is done
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
-      self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx
+      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       time.sleep(2)
-      self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx2
+      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
-        self.gm_start_round.text = mg.gm_start_round_tx_2
+        self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
         self.gm_start_round.visible = True
         row['gm_status'] = 10
-        self.gm_start_round.text = mg.gm_start_round_tx_3
+        self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
         print("gm_start_round:: "+str(runde)+' gm_status=10')
       elif runde == 3:
-        self.gm_card_wait_1_info.content = mg.gm_wait_round_done_tx3
+        self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
         row['gm_status'] = 12
-        self.gm_start_round.text = mg.gm_start_round_tx_3
+        self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
 #        anvil.server.call('budget_to_db', 2100, cid_cookie)
         print("gm_start_round:: "+str(runde)+' gm_status=12')
 
@@ -1120,7 +1120,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = mg.fut_title_tx2
+      self.pcgd_title.text = "self.pcgd_title.text"
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1131,8 +1131,8 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         self.card_fut.visible = True
-        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-        self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
@@ -1147,7 +1147,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = mg.fut_title_tx2
+      self.pcgd_title.text = "self.pcgd_title.text line 1150"
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1158,8 +1158,8 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         self.card_fut.visible = True
-        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-        self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
@@ -1175,7 +1175,7 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = mg.fut_title_tx2
+      self.pcgd_title.text = "self.pcgd_title.text line 1178"
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1186,8 +1186,8 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         self.card_fut.visible = False ## no more budget at the end
-        self.pcgd_info_rd1.content = mg.pcgd_rd1_info_end
-        self.fut_info.content = mg.pcgd_rd1_info_end_tx
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_str[lx]
+        self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
         self.pcgd_info_rd1.visible = True
         self.fut_detail('hide')
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
@@ -1367,7 +1367,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1465,8 +1465,8 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = mg.player_board_tx + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
-      self.pcgd_info_rd1.content = mg.pcgd_info_after_rd1_tx
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
@@ -1475,7 +1475,7 @@ class home(homeTemplate):
       print("mg.my_ministry= "+role)
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
-      self.pcgd_generating.text = mg.pcgd_generating_tx2
+      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       while not self.task.is_completed():
         pass
@@ -1486,11 +1486,11 @@ class home(homeTemplate):
           self.dec_card.visible = False
           self.pcgd_info_rd1.visible = True
           self.card_fut.visible = True
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_short
-          self.fut_info.content = mg.pcgd_rd1_info_fut_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         else:
           self.dec_card.visible = False
-          self.pcgd_info_rd1.content = mg.pcgd_rd1_info_tx
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
