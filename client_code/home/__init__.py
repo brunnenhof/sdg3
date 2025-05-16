@@ -25,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'fr'
+#    my_loc = 'fr'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -1004,7 +1004,6 @@ class home(homeTemplate):
         if row['gm_status'] == 9:
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
         rg = app_tables.games_log.get(game_id=cid_cookie)
-        print("in submit_numbers_click, updated gmStatus "+str(rg['gm_status']))
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
         n.show()
         self.test_model.visible = False  ## this is a debug button
@@ -1013,6 +1012,7 @@ class home(homeTemplate):
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True 
         self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
+        print("in submit_numbers_click, updated gmStatus "+str(rg['gm_status']) + ' btn_txt:' + lu.p_advance_to_next_round_wait_str[lx])
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]

@@ -2611,7 +2611,7 @@ p_advance_to_2_tx_str = [
     "_last_"
     ]
 p_advance_to_next_round_wait_str = [
-  "Waiting for model advance ...",
+  "Waiting for model to be advanced ...",
   "Warten auf die Fortschreibung des Modells ...",
   "Warten auf die Fortschreibung des Modells ...",
   "En attente de la mise à jour du modèle ...",

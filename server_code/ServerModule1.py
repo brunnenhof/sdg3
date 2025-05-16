@@ -658,7 +658,7 @@ def budget_to_db(yr, cid):
 #  print(cener)
 
   for i in range(0,10):
-    print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
+#    print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
     app_tables.budget.add_row(yr=yr, game_id=cid,reg=regs[i], runde=runde, bud_all_tas = ba[i], c_pov=cpov[i], c_ineq=cineq[i], c_emp=cemp[i], c_food=cfood[i], c_ener=cener[i])
 
 def get_pol_expl_lang(pol, lang):
