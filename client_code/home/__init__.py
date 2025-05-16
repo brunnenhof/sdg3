@@ -398,16 +398,18 @@ class home(homeTemplate):
       return lu.reg_to_longreg_se_str[lx]
 
   def gm_card_wait_1_btn_check_click(self, **event_args):
+    lx = mg.my_lang
     cid = mg.my_game_id
     runde = mg.game_runde+1
     self.gm_card_wait_1_btn_check.visible = True
     self.gm_start_round.visible = False
+    self.gm_wait_kickoff_r1.visible = False 
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_start_round.visible = True
       self.gm_card_wait_1_rp.visible = False
-      self.gm_card_wait_1_temp_title.text = mg.gm_card_wait_1_temp_title_tx2
+      self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
       self.gm_start_round.visible = True
     else:
       slots = []
@@ -1022,6 +1024,7 @@ class home(homeTemplate):
 #waiting_tx = "Waiting ..."
 
   def gm_start_round_click(self, **event_args):
+    lx = mg.my_lang
     ## first, check if all regions have submitted
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1.visible = False
@@ -1032,7 +1035,7 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid_cookie)
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
-      n = Notification(mg.not_all_submitted_gm_tx, timeout=7)
+      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
@@ -1102,7 +1105,7 @@ class home(homeTemplate):
     print("in p_advance_to_next_round_click")
     print("in p_advance_to_next_round_click -> 3rd line "+cid+' fut '+mg.my_reg+' '+str(row['gm_status']))
     if row['gm_status'] == 5:
-      alert(mg.p_waiting_model_run_tx, title=mg.waiting_tx)
+      alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
       reg = mg.my_reg
