@@ -976,7 +976,8 @@ class home(homeTemplate):
         if rc['r3sub'] == 10:
           all_regs_sub = True
       ### update steps
-
+      self.p_after_submit.visible = True
+      self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         if runde == 1:
@@ -1006,8 +1007,7 @@ class home(homeTemplate):
         ## give feedback
         ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
         self.card_fut.visible = False
-        self.p_after_submit.visible = True
-        self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+        self.p_advance_to_next_round.visible = True 
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
