@@ -736,6 +736,10 @@ components:
   type: ColumnPanel
 - components:
   - layout_properties: {}
+    name: err_msg
+    properties: {bold: true}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - layout_properties: {}
     name: top_duration
     properties: {font_size: 11, text_color: 'theme:Primary Container'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text

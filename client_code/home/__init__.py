@@ -25,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-#    my_loc = 'fr'
+#    my_loc = 'zu'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -204,6 +204,7 @@ class home(homeTemplate):
   
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
+    self.top_join_game.visible = False 
     t = TextBox(placeholder=lu.enter_code_tx[my_lox])
     alert(content=t,title=lu.enter_code_title_tx[my_lox])
     print(f"You entered: {t.text}")
@@ -232,6 +233,7 @@ class home(homeTemplate):
     while not self.task.is_completed():
       self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     else:
+      self.set_lang(my_lox)
       ende = time.time()
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
@@ -239,7 +241,22 @@ class home(homeTemplate):
       self.top_entry.visible = False
       self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
       self.gm_role_reg.visible = True
-      self.set_lang(my_lox)
+      self.seconds.visible = True
+      self.gm_board_info.visible = True
+      self.gm_cp_not_played.visible = True
+      self.setup_npbp_label.visible = False
+      ## deselect all regions
+      self.cb_us.checked = False
+      self.cb_af.checked = False
+      self.cb_cn.checked = False
+      self.cb_me.checked = False
+      self.cb_sa.checked = False
+      self.cb_pa.checked = False
+      self.cb_la.checked = False
+      self.cb_ec.checked = False
+      self.cb_eu.checked = False
+      self.cb_se.checked = False
+      a=2
 
   def check_rnsub(self, cid):
     ## ToDo
@@ -259,6 +276,7 @@ class home(homeTemplate):
     self.p_lb_choose_game.text = lu.p_lb_choose_game_str[lx]
     self.p_enter_id.placeholder = lu.p_enter_id_str[lx]
     self.p_enter_id.focus()
+    
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
 #    print(f"The file's name is: {file.name}")
@@ -284,6 +302,7 @@ class home(homeTemplate):
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
+    lx = mg.my_lang
     self.gm_cp_not_played.visible = False
     self.gm_board_info.visible = False
     self.setup_npbp_label.visible = True
@@ -309,6 +328,14 @@ class home(homeTemplate):
     if self.cb_se.checked:
       npbp.append('se')
     anfang = time.time()
+    if len(npbp) == 10:
+      alert(lu.need_one_reg[lx], title=lu.need_one_reg_title[lx])
+      self.gm_role_reg.visible = False 
+      self.top_entry.visible = True 
+      self.top_start_game.visible = True 
+      self.top_entry_label.visible = False 
+#      self.test_model_top_click() ## clearind DBs at the start
+      return
     self.task = anvil.server.call('launch_set_npbp', cid, npbp)
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
@@ -1040,6 +1067,7 @@ class home(homeTemplate):
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
+      self.gm_start_round.visible = False
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025

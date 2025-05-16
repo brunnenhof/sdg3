@@ -1655,13 +1655,30 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "LT Game ",
-  "Das LT Spiel ",
-  "Das LT Spiel ",
-  "Le Jeu LT ",
-  "LT-spill", 
+  "LT Game v0.2",
+  "Das LT Spiel v0.2",
+  "Das LT Spiel v0.2",
+  "Le Jeu LT v0.2",
+  "LT-spill v0.2", 
   "_last_"
 ]
+need_one_reg = [
+  "You need at least one region played by human players.",
+  "Sie benötigen mindestens eine Region, die von Menschen gespielt wird.",
+  "Du brauchst mindestens eine Region, die von Menschen gespielt wird.",
+  "Vous avez besoin d'au moins une région jouée par des joueurs humains.",
+  "Du trenger minst én region som spilles av menneskelige spillere.",
+    "_last_"
+]
+need_one_reg_title = [
+  "No players?",
+  "Keine Spieler:innen?",
+  "Keine Spieler:innen?",
+  "Pas de joueurs ?",
+  "Ingen medspillere?",
+  "_last_"
+]
+
 top_btn_thanks_str = [
   "Thanks ",
   "Danke ",
@@ -1713,7 +1730,7 @@ top_start_game_str = [
 p_lb_choose_game_str = [
   "Enter the game ID. Your game organizer will tell you what it is. Finish your entry by pressing <Enter>",
   "Geben Sie die Spiel-ID ein. Ihr:e Spielleiter:in sagt Ihnen, wie sie lautet. Beenden Sie Ihre Eingabe durch <Eingabe> klicken.",
-  "Gib Deone Spiel-ID ein. Dein:e Spielleiter:in sagt Dir, wie sie lautet. Beende Deine Eingabe durch <Eingabe> klicken.",
+  "Gib Deine Spiel-ID ein. Dein:e Spielleiter:in sagt Dir, wie sie lautet. Beende Deine Eingabe durch <Eingabe> klicken.",
   "Saisissez l'identifiant du jeu. Votre organisateur de jeu vous dira de quoi il s'agit. Terminez votre saisie en appuyant sur <Enter>.", 
   "Skriv inn spill-ID-en. Spillarrangøren din vil fortelle deg hva det er. Avslutt inntastingen ved å trykke <Enter>.", 
   "_last_"
@@ -2558,11 +2575,11 @@ confirm_submit_tx_str = [
     ]
  
 confirm_title_tx_str = [
-    "Really hand it in?",
-    "Wirklich abgeben?",
-    "Wirklich abgeben?",
-    "Vraiment les donner?", 
-    "Virkelig levere det inn?", 
+    "Really submit the decisions?",
+    "Die Entscheidungen wirklich einreichen??",
+    "Die Entscheidungen wirklich einreichen??",
+    "Soumettre vraiment les décisions ?", 
+    "Skal du virkelig sende inn avgjørelsene?", 
     "_last_"
     ]
 
