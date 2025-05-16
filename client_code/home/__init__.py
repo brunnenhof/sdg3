@@ -1110,6 +1110,7 @@ class home(homeTemplate):
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
+        print("gm_start_round_click runde="+ str(runde))
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
@@ -1148,7 +1149,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = "self.pcgd_title.text"
+      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1175,7 +1176,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = "self.pcgd_title.text line 1150"
+      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1203,7 +1204,7 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.pcgd_title.text = "self.pcgd_title.text line 1178"
+      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
       #      make something visible

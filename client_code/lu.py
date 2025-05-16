@@ -2107,20 +2107,20 @@ gm_wait_kickoff_r1_tx_str = [
 ]
 
 gm_wait_round_done_tx0_str = [
-  "The model has been advanced. Tell your players to click on the \nGet the results ...  or \nCheck if the game leader ... button. ",
-  "Das Modell wurde fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
-  "Das Modell wurde fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
-  "Le modèle a été actualisé. Dites à vos joueurs de cliquer sur le bouton « Obtenir les résultats... » ou « Vérifier si le meneur de jeu...",
-  "Modellen har blitt oppdatert. Be spillerne dine om å klikke på knappen \nFå resultatene ... eller \nSjekk om spillederen ....",
+  "The model has been advanced to 2040. Tell your players to click on the \nGet the results ...  or \nCheck if the game leader ... button. ",
+  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
+  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
+  "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton « Obtenir les résultats... » ou « Vérifier si le meneur de jeu...",
+  "Modellen har blitt oppdatert frem til 2040. Be spillerne dine om å klikke på knappen \nFå resultatene ... eller \nSjekk om spillederen ....",
   "_last_"
 ]
 
 gm_wait_round_done_tx2_str = [
-  "The model has been advanced. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future should submit their regional decisions. Tell them how much time they have. ",
-  "Das Modell wurde fortgeschrieben. Bitten Sie Ihre Spieler:innen, die Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles in die richtige Richtung? Sind sie zufrieden?\nAnschliessend sollten sie über die Massnahmen für die nächste Runde entscheiden. Sobald sie bereit sind, sollte der/die ZukunftsMinister:in die regionalen Entscheidungen übermitteln. Sagen sie deutlich, wie viel Zeit ihnen zur Verfügung steht. ",
-  "Das Modell wurde fortgeschrieben. Bitten Sie Ihre Spieler:innen, die Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles in die richtige Richtung? Sind sie zufrieden?\nAnschliessend sollten sie über die Massnahmen für die nächste Runde entscheiden. Sobald sie bereit sind, sollte der/die ZukunftsMinister:in die regionalen Entscheidungen übermitteln. Sagen sie deutlich, wie viel Zeit ihnen zur Verfügung steht. ",
-  "Le modèle a été avancé. Demandez à vos joueurs d'étudier leurs résultats et d'en discuter, au sein des régions et entre elles. Les choses vont-elles dans le bon sens ? \nEnsuite, ils doivent décider des politiques pour le prochain tour. Lorsqu'ils seront prêts, le ministre de l'Avenir leur soumettra leurs décisions régionales. Indiquez-leur le temps dont ils disposent. ",
-  "Modellen har blitt kjørt framover videreutviklet. Be spillerne studere og diskutere resultatene, både innenfor og mellom regionene. Går det riktig vei? \nSå skal de bestemme seg for politikken for neste runde. Når de er klare, skal fremtidsministeren sende inn de regionale beslutningene. Fortell dem hvor mye tid de har. ",
+  "The model has been advanced to 2060. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future should submit their regional decisions. Tell them how much time they have. ",
+  "Das Modell wurde bis 2060 fortgeschrieben. Bitten Sie Ihre Spieler:innen, die Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles in die richtige Richtung? Sind sie zufrieden?\nAnschliessend sollten sie über die Massnahmen für die nächste Runde entscheiden. Sobald sie bereit sind, sollte der/die ZukunftsMinister:in die regionalen Entscheidungen übermitteln. Sagen sie deutlich, wie viel Zeit ihnen zur Verfügung steht. ",
+  "Das Modell wurde bis 2060 fortgeschrieben. Bitten Sie Ihre Spieler:innen, die Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles in die richtige Richtung? Sind sie zufrieden?\nAnschliessend sollten sie über die Massnahmen für die nächste Runde entscheiden. Sobald sie bereit sind, sollte der/die ZukunftsMinister:in die regionalen Entscheidungen übermitteln. Sagen sie deutlich, wie viel Zeit ihnen zur Verfügung steht. ",
+  "Le modèle a été avancé jusqu'en 2040. Demandez à vos joueurs d'étudier leurs résultats et d'en discuter, au sein des régions et entre elles. Les choses vont-elles dans le bon sens ? \nEnsuite, ils doivent décider des politiques pour le prochain tour. Lorsqu'ils seront prêts, le ministre de l'Avenir leur soumettra leurs décisions régionales. Indiquez-leur le temps dont ils disposent. ",
+  "Modellen har blitt kjørt framover frem til 2060. Be spillerne studere og diskutere resultatene, både innenfor og mellom regionene. Går det riktig vei? \nSå skal de bestemme seg for politikken for neste runde. Når de er klare, skal fremtidsministeren sende inn de regionale beslutningene. Fortell dem hvor mye tid de har. ",
   "_last_"
 ]
 
@@ -2140,6 +2140,30 @@ sim_success_tx40_str = [
   "...le modèle a fonctionné avec succès jusqu'en 2040, mais nous attendons les décisions pour 2040-2060.\nAvez-vous pris toutes vos décisions politiques? ",
   "...modellen kjørte vellykket frem til 2040, men vi venter på beslutningene for 2040-2060.\nHar dere tatt alle de politiske beslutningene?  ",
   "_last_"
+]
+p_info_40_fut = [
+  "\nBelow are the model results until 2040.",
+  "\nNachfolgend die Ergebnisse bis 2040.",
+  "\nWeiter unten die Ergebnisse bis 2040.",
+  "\nVoici les résultats jusqu'en 2040.",
+  "\nNedenfor vises resultatene frem til 2040.",
+  "_last_"  
+]
+p_info_60_fut = [
+  "\nBelow are the model results until 2060.",
+  "\nNachfolgend die Ergebnisse bis 2060.",
+  "\nWeiter unten die Ergebnisse bis 2060.",
+  "\nVoici les résultats jusqu'en 2060.",
+  "\nNedenfor vises resultatene frem til 2060.",
+  "_last_"  
+]
+p_info_21_fut = [
+  "\nBelow are the model results until 2100.",
+  "\nNachfolgend die Ergebnisse bis 2100.",
+  "\nWeiter unten die Ergebnisse bis 2100.",
+  "\nVoici les résultats jusqu'en 2100.",
+  "\nNedenfor vises resultatene frem til 2100.",
+  "_last_"  
 ]
 
 sim_success_tx60_str = [
