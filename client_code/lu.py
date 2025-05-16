@@ -2594,7 +2594,14 @@ p_advance_to_2_tx_str = [
     "Få resultatene til slutten av århundret", 
     "_last_"
     ]
- 
+p_advance_to_next_round_wait_str = [
+  "Waiting for model advance ...",
+  "Warten auf die Fortschreibung des Modells ...",
+  "Warten auf die Fortschreibung des Modells ...",
+  "En attente de la mise à jour du modèle ...",
+  "Venter på at modellen skal oppdateres ...",
+  "_last_"
+]
 p_waiting_model_run_tx_str = [
     "... still waiting for the game organizer to advance the model ... ",
     "wir warten immer noch darauf, dass der/die Spielleiter:in das Modell fortschreibt ",

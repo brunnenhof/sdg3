@@ -16,7 +16,7 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 1527
+    self.timer_1.interval = 152
     self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -1008,6 +1008,7 @@ class home(homeTemplate):
         ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True 
+        self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
