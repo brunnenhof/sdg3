@@ -1034,7 +1034,7 @@ class home(homeTemplate):
         rg = app_tables.games_log.get(game_id=cid_cookie)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
         n.show()
-        self.test_model.visible = False  ## this is a debug button
+#        self.test_model.visible = False  ## this is a debug button
         ## give feedback
         ## after_submit_tx = "Your region's decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ..."
         self.card_fut.visible = False
