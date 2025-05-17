@@ -278,7 +278,7 @@ def make_png(df, row, pyidx, end_yr, my_title):
         ymax = plot_max
     abc_name = app_tables.regions.get(pyidx=pyidx)
     my_lab = abc_name['name']
-    abc = [ '#09B1CD', '#B45F06', '#CC0000', '#10FDFD', '#FCCE87', '#C90076', '#42D104', '#DC88B9', '#BFFA38', '#FF9321']
+    abc = [ '#435df4', '#b95c39', '#ff0000', '#ff37f6', '#ff9300', '#ad00ff', '#00ff0c', '#008a0f', '#00ffbf', '#00b2ff']
     my_colhex = abc[pyidx]
 
     plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
