@@ -1066,8 +1066,8 @@ class home(homeTemplate):
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
-      print("gm_status'] not in [5,7,10] ")
-      self.gm_start_round.visible = False
+      print("gm_status' not in [5,7,10] ")
+      self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
