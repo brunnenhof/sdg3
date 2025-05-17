@@ -1060,33 +1060,38 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1_rp.visible = False
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
-    print("gm_start_round_click "+ str(cid_cookie))
     row = app_tables.games_log.get(game_id=cid_cookie)
+    print("gm_start_round_click "+ str(cid_cookie) + ' gm_status=' + str(row['gm_status']))
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
+      print("gm_status'] not in [5,7,10] ")
       self.gm_start_round.visible = False
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
       runde = 1
+      print("gm_status'] == 5")
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
+      print("gm_status'] == 6")
       return
     elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
       runde = 2
+      print("gm_status'] == 7")
     elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
+      print("gm_status'] == 7")      
     else:
-      abc = str(row['gm_status'])
-      abc2 = "row['gm_status'] not correct " + abc
+      abc1 = str(row['gm_status'])
+      abc2 = "row['gm_status'] not correct " + abc1
       alert(abc2)
       return
     self.gm_card_wait_1_info.visible = True
@@ -1103,6 +1108,7 @@ class home(homeTemplate):
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
+      print("launch_ugregmod done")
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       time.sleep(2)
@@ -1112,6 +1118,7 @@ class home(homeTemplate):
         print("gm_start_round_click runde="+ str(runde))
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
+        print("gm_start_round.visible = True")
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
