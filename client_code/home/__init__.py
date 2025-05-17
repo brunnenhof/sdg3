@@ -436,7 +436,6 @@ class home(homeTemplate):
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
       self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round.visible = True
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
       self.gm_start_round.visible = True
