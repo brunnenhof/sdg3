@@ -277,7 +277,8 @@ def make_png(df, row, pyidx, end_yr, my_title):
         ymin = plot_min
         ymax = plot_max
     abc = app_tables.regions.get(pyidx=pyidx)
-    my_colhex = abc['colhex']
+    abc = [ '#09B1CD', '#B45F06', '#CC0000', '#10FDFD', '#FCCE87', '#C90076', '#42D104', '#DC88B9', '#BFFA38', '#FF9321']
+    my_colhex = abc[pyidx]
     my_lab = abc['name']
     plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
     if end_yr==2025:
@@ -291,7 +292,7 @@ def make_png(df, row, pyidx, end_yr, my_title):
     else:
       print("problem with yr_picks")
     ys = pick(yr_picks, x, y)
-    plt.scatter(x, ys, color=my_colhex, s=300, alpha=0.55)
+    plt.scatter(x, ys, color=my_colhex, s=200, alpha=0.65)
     if int(row['lowerbetter']) == 1:
         grn_min = row['ymin']  # 8
         grn_max = row['green']  # vars_df.iloc[varx, 4]
