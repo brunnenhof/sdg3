@@ -276,10 +276,11 @@ def make_png(df, row, pyidx, end_yr, my_title):
     if int(row['id']) in [21]:  # pH  |
         ymin = plot_min
         ymax = plot_max
-    abc = app_tables.regions.get(pyidx=pyidx)
+    abc_name = app_tables.regions.get(pyidx=pyidx)
+    my_lab = abc_name['name']
     abc = [ '#09B1CD', '#B45F06', '#CC0000', '#10FDFD', '#FCCE87', '#C90076', '#42D104', '#DC88B9', '#BFFA38', '#FF9321']
     my_colhex = abc[pyidx]
-    my_lab = abc['name']
+
     plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
     if end_yr==2025:
       yr_picks = mg.yr_picks_start
