@@ -1150,12 +1150,13 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2040"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde=2 role="+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr=2040'
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
@@ -1178,12 +1179,13 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 3
       yr = 2060
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr='+str(yr)
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
@@ -1206,13 +1208,14 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 4
       yr = 2100
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr='+str(yr)
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
