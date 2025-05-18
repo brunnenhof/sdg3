@@ -697,7 +697,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = self.err_msg.text + "\nin do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)
+    self.err_msg.text = self.err_msg.text + "\n-------\nin do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -1585,3 +1585,9 @@ class home(homeTemplate):
     self.top_entry.visible = False
     self.p_choose_role.visible = True
     self.show_roles(rows['game_id'])
+
+  def switch_1_change(self, **event_args):
+    if self.switch_1.selected:
+      self.err_msg.visible = True
+    else:
+      self.err_msg.visible = False

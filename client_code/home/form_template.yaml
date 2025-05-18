@@ -739,6 +739,11 @@ components:
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components:
+  - event_bindings: {change: switch_1_change}
+    layout_properties: {}
+    name: switch_1
+    properties: {selected: true, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Switch
   - layout_properties: {}
     name: top_duration
     properties: {font_size: 11, text_color: 'theme:Primary Container'}
