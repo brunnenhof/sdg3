@@ -1076,7 +1076,13 @@ class home(homeTemplate):
       von = 2025
       bis = 2040
       runde = 1
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"
+      row = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row['r1sub']
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5 rxsub="+str(rxsub)
+      if rxsub < 10:
+        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        n.show()
+        return
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
@@ -1086,12 +1092,24 @@ class home(homeTemplate):
       von = 2040
       bis = 2060
       runde = 2
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"
+      row = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row['r2sub']
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7 rxsub="+str(rxsub)
+      if rxsub < 10:
+        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        n.show()
+        return
     elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10"      
+      row = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row['r3sub']
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10 rxsub="+str(rxsub)
+      if rxsub < 10:
+        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        n.show()
+        return
     else:
       abc1 = str(row['gm_status'])
       abc2 = "row['gm_status'] not correct " + abc1
