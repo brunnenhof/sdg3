@@ -1082,10 +1082,12 @@ class home(homeTemplate):
       if rxsub < 10:
         n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
+        self.gm_start_round.visible = True
         return
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
+#      self.gm_start_round.visible = True      
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
       return
     elif row['gm_status'] == 7:
@@ -1098,6 +1100,7 @@ class home(homeTemplate):
       if rxsub < 10:
         n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
+        self.gm_start_round.visible = True        
         return
     elif row['gm_status'] == 10:
       von = 2060
@@ -1109,6 +1112,7 @@ class home(homeTemplate):
       if rxsub < 10:
         n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
+        self.gm_start_round.visible = True        
         return
     else:
       abc1 = str(row['gm_status'])
@@ -1133,7 +1137,7 @@ class home(homeTemplate):
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       time.sleep(2)
-      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
+      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         self.err_msg.text = self.err_msg.text + "\n++ gm_start_round_click runde="+ str(runde)+' gm_status=6'
@@ -1142,6 +1146,7 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
+        self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
         row['gm_status'] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
