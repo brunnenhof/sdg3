@@ -697,7 +697,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr, lx):
-    print("in do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr))
+    self.err_msg.text = self.err_msg.text + "\nin do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -753,6 +753,7 @@ class home(homeTemplate):
         self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
         self.cpf_ener_rp.items = fut_ener_list    
         if within_budget:
+          self.submit_numbers.text = lu.submit_numbers_tx_str[lx] + str(yr)
           self.submit_numbers.visible = True
         else:
           self.submit_numbers.visible = False
@@ -1061,34 +1062,34 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    print("gm_start_round_click "+ str(cid_cookie) + ' gm_status=' + str(row['gm_status']))
+    self.err_msg.text = self.err_msg.text + "\ngm_start_round_click "+ str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
-      print("gm_status' not in [5,7,10] ")
+      self.err_msg.text = self.err_msg.text + "\ngm_status' not in [5,7,10] "
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
       runde = 1
-      print("gm_status'] == 5")
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
-      print("gm_status'] == 6")
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
       return
     elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
       runde = 2
-      print("gm_status'] == 7")
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"
     elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
-      print("gm_status'] == 7")      
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"      
     else:
       abc1 = str(row['gm_status'])
       abc2 = "row['gm_status'] not correct " + abc1
@@ -1108,17 +1109,16 @@ class home(homeTemplate):
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
-      print("launch_ugregmod done")
+      self.err_msg.text = self.err_msg.text + "\nlaunch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       time.sleep(2)
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        print("gm_start_round_click runde="+ str(runde))
+        self.err_msg.text = self.err_msg.text + "\ngm_start_round_click runde="+ str(runde)
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
-        print("gm_start_round.visible = True")
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
       elif runde == 2:
@@ -1126,14 +1126,14 @@ class home(homeTemplate):
         row['gm_status'] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
-        print("gm_start_round:: "+str(runde)+' gm_status=10')
+        self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=10'
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
         row['gm_status'] = 12
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
 #        anvil.server.call('budget_to_db', 2100, cid_cookie)
-        print("gm_start_round:: "+str(runde)+' gm_status=12')
+        self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
 
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the for FUT
@@ -1221,7 +1221,7 @@ class home(homeTemplate):
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
         self.card_fut.visible = False ## no more budget at the end
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_str[lx]
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_infoend_tx_str[lx]
         self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
         self.pcgd_info_rd1.visible = True
         self.fut_detail('hide')
@@ -1388,17 +1388,17 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    print("pcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus))
+    self.err_msg.text = "pcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
         n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
         return
-      print("pcgd_advance_tx")
+      self.err_msg.text = self.err_msg.text + "npcgd_advance_tx"
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(lu.sim_success_tx40_str[lx], timeout=5, title=lg.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx40_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1449,7 +1449,7 @@ class home(homeTemplate):
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
-      print("pcgd_advance_tx -- gmStatus is "+str(gmStatus))
+      self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx -- gmStatus is "+str(gmStatus)
       anfang = time.time()
       ### round 2040 to 2060 ran successfully
       n = Notification(lu.sim_success_tx60_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
@@ -1493,10 +1493,9 @@ class home(homeTemplate):
       self.top_duration.text = dauer
       return
     if gmStatus == 12: ## 2060 to 2100 successfully run
-      print("+++++++++++++++++++++++++++++")
-      print("pcgd_advance_tx ++++++ gmStatus is "+str(gmStatus))
+      self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus is "+str(gmStatus)
       anfang = time.time()
-      n = Notification(mg.sim_success_tx1, timeout=5, title=mg.sim_success_title_tx, style="success")
+      n = Notification(lu.sim_success_tx21_str[lx], timeout=5, title=lu.sim_success_title_txend_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 

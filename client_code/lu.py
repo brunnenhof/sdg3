@@ -1655,11 +1655,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.2",
-  "Das WK Spiel v0.2",
-  "Das WK Spiel v0.2",
-  "Le Jeu OL v0.2",
-  "FL-spill v0.2", 
+  "OC Game v0.2a",
+  "Das WK Spiel v0.2a",
+  "Das WK Spiel v0.2a",
+  "Le Jeu OL v0.2a",
+  "FL-spill v0.2a", 
   "_last_"
 ]
 need_one_reg = [
@@ -2141,6 +2141,15 @@ sim_success_tx40_str = [
   "...modellen kjørte vellykket frem til 2040, men vi venter på beslutningene for 2040-2060.\nHar dere tatt alle de politiske beslutningene?  ",
   "_last_"
 ]
+sim_success_tx21_str = [
+  "...the model ran successfully to the end, 2100 ",
+  "...das Modell lief erfolgreich bis zum Schluss, dem Jahr 2100 ",
+  "...das Modell lief erfolgreich bis zum Schluss, dem Jahr 2100 ",
+  "...le modèle a fonctionné avec succès jusqu'à la fin, l'année 2100",
+  "...modellen kjørte med suksess frem til slutten av år 2100",
+  "_last_"
+]
+
 p_info_40_fut = [
   "\nBelow are the model results until 2040.",
   "\nNachfolgend die Ergebnisse bis 2040.",
@@ -2176,11 +2185,19 @@ sim_success_tx60_str = [
 ]
 
 sim_success_title_tx_str = [
-  "Waiting ",
-  "Warten ",
-  "Warten ",
-  "En attendant ", 
-  "Venter ",
+  "Success ",
+  "Erfolgreich ",
+  "Erfolgreich ",
+  "Réussite ", 
+  "Vellykket ",
+  "_last_"
+]
+sim_success_title_txend_str = [
+  "Success ",
+  "Erfolgreich ",
+  "Erfolgreich ",
+  "Réussite ", 
+  "Vellykket ",
   "_last_"
 ]
 
@@ -2365,14 +2382,22 @@ pcgd_rd1_info_fut_tx_str = [
     ]
  
 pcgd_rd1_infoend_tx_str = [
-    "pcgd_rd1:info_end_tx *outtake* ",
-    "pcgd_rd1:info_end_tx *Ausgang* ",
-    "pcgd_rd1:info_end_tx *Ausgang* ",
-    "pcgd_rd1: info_end_tx *sortant *", 
-    "PCGD_RD1: INFO_END_TX *UTTAKE *", 
+    "The game is done, the song is over, thought I'd something more to say. © Pink Floyd",
+    "Das Spiel ist vorbei, der Song ist zu Ende, ich dachte, ich hätte noch etwas zu sagen. © Pink Floyd",
+    "Das Spiel ist vorbei, der Song ist zu Ende, ich dachte, ich hätte noch etwas zu sagen. © Pink Floyd",
+    "Le jeu est terminé, la chanson est finie, j'ai pensé que j'avais quelque chose de plus à dire.  © Pink Floyd", 
+    "Spillet er over, sangen er over, tenkte jeg hadde noe mer å si.  © Pink Floyd", 
     "_last_"
     ]
- 
+
+pcgd_rd1_info_end_tx_str = [
+  "The model has reached the end. The game is over. Shed your role and come back to the here and now. What happened in the game? What surprised you? What irritated  you? What was too complicated? Too easy? What made you think? What did you realize that you had not noticed before? Would you like to be a minister in real life?",
+  "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Legen Sie Ihre Rolle ab und kehren Sie ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Sie überrascht? Was hat Sie irritiert? Was war zu kompliziert? Zu einfach? Was hat Sie zum Nachdenken gebracht? Was ist Ihnen aufgefallen, was Sie vorher nicht bemerkt haben? Würden Sie im wirklichen Leben gerne Minister:in sein?",
+  "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Lege Deine ab und kehre ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Dich überrascht? Was hat Dich irritiert? Was hat Dich zum Nachdenken gebracht? Was ist Dir aufgefallen, dass Du vorher nicht bemerkt hattest? Würdest Du im wirklichen Leben gerne Minister:in sein?",
+  "Le modèle est arrivé au bout. Le jeu est terminé. Débarrassez-vous de votre rôle et revenez dans l'ici et le maintenant. Que s'est-il passé pendant le jeu ? Qu'est-ce qui vous a surpris ? Qu'est-ce qui vous a irrité ? Qu'est-ce qui était trop compliqué ? Trop facile ? Qu'est-ce qui vous a fait réfléchir ? Qu'avez-vous réalisé que vous n'aviez pas remarqué auparavant ? Aimeriez-vous être ministre dans la vraie vie ?",
+  "Modellen har nådd slutten. Spillet er over. Legg av deg rollen og kom tilbake til her og nå. Hva skjedde i spillet? Hva overrasket deg? Hva irriterte deg? Hva var for komplisert? For enkelt? Hva fikk deg til å tenke? Hva gikk opp for deg som du ikke hadde lagt merke til før? Kunne du tenke deg å være medlem av regjeringen i virkeligheten?",
+    "_last_"  
+]
 pcgd_generating_tx4_str = [
     "... generating your graphs and decisionsheet ... ",
     "... Ihre Diagramme und Entscheidungsblätter werden generiert... ",
@@ -2581,11 +2606,11 @@ refresh_numbers_tx_str = [
     ]
  
 submit_numbers_tx_str = [
-    "SUBMIT numbers ",
-    "Zahlen übermitteln ",
-    "Zahlen übermitteln ",
-    "Soumettre des numéros", 
-    "Send inn tall", 
+    "SUBMIT numbers for ",
+    "Zahlen übermitteln für ",
+    "Zahlen übermitteln für ",
+    "Soumettre des numéros pour ", 
+    "Send inn tall for ", 
     "_last_"
     ]
  
@@ -2630,7 +2655,7 @@ p_advance_to_next_round_tx_str = [
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
     "Obtenez les résultats jusqu'en 2040 et la feuille de décision pour 2040-2060 - votre avenir pour enfants", 
-    "Få resultatene til 2040 og beslutningsarket for 2040-2060 - din Childrens Future", 
+    "Få resultatene til 2040 og beslutningsarket for 2040-2060 - fremtiden til barna dine", 
     "_last_"
     ]
  
