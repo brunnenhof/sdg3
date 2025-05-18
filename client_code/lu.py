@@ -2134,11 +2134,11 @@ gm_wait_round_done_tx3_str = [
 ]
 
 sim_success_tx40_str = [
-  "...the model ran successfully to 2040, but we are waiting for the decisions for 2040-2060.\nHave you set all your policy decisions? ",
-  "...das Modell lief erfolgreich bis 2040, aber wir warten noch auf alle Entscheidungen für 2040-2060.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
-  "...das Modell lief erfolgreich bis 2040, aber wir warten noch auf alle Entscheidungen für 2040-2060.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
-  "...le modèle a fonctionné avec succès jusqu'en 2040, mais nous attendons les décisions pour 2040-2060.\nAvez-vous pris toutes vos décisions politiques? ",
-  "...modellen kjørte vellykket frem til 2040, men vi venter på beslutningene for 2040-2060.\nHar dere tatt alle de politiske beslutningene?  ",
+  "...the model ran successfully to 2040. Now we are waiting for the decisions for 2040-2060.\nHave you set all your policy decisions? ",
+  "...das Modell lief erfolgreich bis 2040. Jetzt warten wir noch auf alle Entscheidungen für 2040-2060.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
+  "...das Modell lief erfolgreich bis 2040. Jetzt warten wir noch auf alle Entscheidungen für 2040-2060.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
+  "...le modèle a fonctionné avec succès jusqu'en 2040. Maintenant, on attend les décisions pour 2040-2060.\nAvez-vous pris toutes vos décisions politiques? ",
+  "...modellen kjørte vellykket frem til 2040. Nå venter vi fortsatt på beslutningene for 2040-2060.\nHar dere tatt alle de politiske beslutningene?  ",
   "_last_"
 ]
 sim_success_tx21_str = [
@@ -2176,11 +2176,11 @@ p_info_21_fut = [
 ]
 
 sim_success_tx60_str = [
-  "...the model ran successfully to 2060, but we are waiting for the decisions for 2060-2100.\nHave you set all your policy decisions? ",
-  "...das Modell lief erfolgreich bis 2060, aber wir warten noch auf alle Entscheidungen für 2060-2100.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
-  "...das Modell lief erfolgreich bis 2060, aber wir warten noch auf alle Entscheidungen für 2060-2100.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
-  "...le modèle a fonctionné avec succès jusqu'en 2060, mais nous attendons les décisions pour 2060-2100.\nAvez-vous pris toutes vos décisions politiques ?",
-  "...modellen kjørte vellykket frem til 2060, men vi venter på beslutningene for 2060-2100.\nHar du tatt alle policybeslutningene dine?",
+  "...the model ran successfully to 2060. Now we are waiting for the decisions for 2060-2100.\nHave you set all your policy decisions? ",
+  "...das Modell lief erfolgreich bis 2060. Jetzt warten wir noch auf alle Entscheidungen für 2060-2100.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
+  "...das Modell lief erfolgreich bis 2060. Jetzt warten wir noch auf alle Entscheidungen für 2060-2100.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
+  "...le modèle a fonctionné avec succès jusqu'en 2060. Maintenant, on attend les décisions pour 2060-2100.\nAvez-vous pris toutes vos décisions politiques ?",
+  "...modellen kjørte vellykket frem til 2060. Nå venter vi fremdeles på beslutningene for 2060-2100.\nHar du tatt alle policybeslutningene dine?",
   "_last_"
 ]
 
@@ -2625,8 +2625,8 @@ confirm_submit_tx_str = [
  
 confirm_title_tx_str = [
     "Really submit the decisions?",
-    "Die Entscheidungen wirklich einreichen??",
-    "Die Entscheidungen wirklich einreichen??",
+    "Die Entscheidungen wirklich einreichen?",
+    "Die Entscheidungen wirklich einreichen?",
     "Soumettre vraiment les décisions ?", 
     "Skal du virkelig sende inn avgjørelsene?", 
     "_last_"
