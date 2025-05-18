@@ -1024,16 +1024,15 @@ class home(homeTemplate):
         rc = app_tables.cookies.get(game_id=cid_cookie)
         self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::ALL submit  gmStatus=" + str(row['gm_status']) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 4:
-          new_gm_status = 5
           row['gm_status'] = 5 ## off to run 2025 to 2040
+          self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 6:
-          new_gm_status = 7          
           row['gm_status'] = 7 ## all regs submitted for 2040 to 2060
+          self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=6 NEW gmstatus=7"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 9:
-          new_gm_status = 10          
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
+          self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         rg = app_tables.games_log.get(game_id=cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::NEW gmStatus=" + str(new_gm_status)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
@@ -1042,7 +1041,7 @@ class home(homeTemplate):
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True 
         self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click:: p_advance_to_next_round_wait_str:" + lu.p_advance_to_next_round_wait_str[lx]
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click:: p_advance_to_next_round_wait_str:" + lu.p_advance_to_next_round_wait_str[lx]
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
