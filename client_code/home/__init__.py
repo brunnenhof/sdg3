@@ -11,6 +11,7 @@ import time
 import datetime
 import random
 from time import strftime, localtime
+import sys
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -697,7 +698,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = self.err_msg.text + "\n-------\nin do_future "+cid+' '+reg+' '+role+' '+str(runde)+' '+str(yr)
+    self.err_msg.text = self.err_msg.text + "\n-------\nentering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -771,8 +772,8 @@ class home(homeTemplate):
     return cost
 
   def get_all_pol_to_names(self, ab, lx):
-    print(' -------------  get_all_pol_to_names')
-    print(ab)
+#    print(' -------------  get_all_pol_to_names')
+#    print(ab)
     abs = []
     for a in ab:
       if a == 'ExPS':
@@ -844,8 +845,7 @@ class home(homeTemplate):
                
   def calc_cost_home_ta(self, pct, tltl, gl, maxc, ta):
     lx = mg.my_lang
-    print('---------')
-    print('calc_cost_home ' + ta + ' maxc=' + str(maxc))
+    self.err_msg.text = self.err_msg.text + "\n-------\nentering calc_cost_home_ta with ta=" + ta + ' maxc=' + str(maxc)
     # get_names
     if ta == 'pov':
       abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Poverty')]
@@ -862,18 +862,18 @@ class home(homeTemplate):
     elif ta == 'ener':
       abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Energy')]
       names = self.get_all_pol_to_names(abbrs, lx)
-    print('len_pct '+ str(len(pct)))
-    print(names)
+#    print('len_pct '+ str(len(pct)))
+#    print(names)
     slots = []
     for i in range(0, len(pct)):
-        print('i='+str(i))
+#        print('i='+str(i))
         nw = pct[i] - tltl[i]
         nb = 0
         nt = gl[i] - tltl[i]
         pct_of_range = nw / (nt - nb)
         cost = round(maxc * pct_of_range, 2)
+        self.err_msg.text = self.err_msg.text + "\n--\niside calc_cost_home_ta pol_name=" + names[i] + ' pol_amount=' + str(cost)
         slot = {'pol_name' : names[i], 'pol_amount': cost}
-        print(slot)
         slots.append(slot)
     return slots
 
@@ -968,15 +968,11 @@ class home(homeTemplate):
       n.show()
     else: ## submission confirmed, reg DID submit numbers
       my_cid = mg.my_personal_game_id
-#      print(my_cid)
       cid = mg.my_game_id
-#      print(cid)
       yr, runde = self.get_runde(cid)
-      print("--------")
-      print("submit_numbers_click "+str(yr)+' '+str(runde))
+      self.err_msg.text = self.err_msg.text + "\n--------\nentering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
-#      print(reg)
       row = app_tables.step_done.get(game_id=cid, reg=reg)
       pStepDone = row['p_step_done']
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
@@ -989,19 +985,19 @@ class home(homeTemplate):
       ## bump cookie for this round r_sub by one
       all_regs_sub = False
       if runde == 1:
-        print("submit_numbers bump cookie runde="+str(runde))
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r1sub'] == 10:
           all_regs_sub = True
       elif runde == 2:
-        print("submit_numbers bump cookie runde="+str(runde)+' '+cid_cookie)
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
           all_regs_sub = True
       elif runde == 3:
-        print("submit_numbers bump cookie runde="+str(runde))
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r3sub'] == 10:
@@ -1013,25 +1009,32 @@ class home(homeTemplate):
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
         row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
         if runde == 1:
+          my_p_step_done = 3
           row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
         elif runde == 2:
+          my_p_step_done = 5
           row2.update(p_step_done=5) ## the region submitted decisions for round 2040- 2060
         elif runde == 3:
+          my_p_step_done = 7
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
         n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=7)
         n.show() 
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
-        print("in submit_numbers_click, all HAVE sub gmStatus "+str(row['gm_status']))
         rc = app_tables.cookies.get(game_id=cid_cookie)
-        print("rXsub " + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub']) + ' ')
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::ALL submit  gmStatus=" + str(row['gm_status']) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 4:
+          new_gm_status = 5
           row['gm_status'] = 5 ## off to run 2025 to 2040
         if row['gm_status'] == 6:
+          new_gm_status = 7          
           row['gm_status'] = 7 ## all regs submitted for 2040 to 2060
         if row['gm_status'] == 9:
+          new_gm_status = 10          
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
         rg = app_tables.games_log.get(game_id=cid_cookie)
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::NEW gmStatus=" + str(new_gm_status)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
@@ -1040,7 +1043,7 @@ class home(homeTemplate):
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True 
         self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-        print("in submit_numbers_click, updated gmStatus "+str(rg['gm_status']) + ' btn_txt:' + lu.p_advance_to_next_round_wait_str[lx])
+        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click:: p_advance_to_next_round_wait_str:" + lu.p_advance_to_next_round_wait_str[lx]
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
@@ -1062,34 +1065,40 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = self.err_msg.text + "\ngm_start_round_click "+ str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
+    lnno = str(sys._getframe().f_lineno)
+    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line="+lnno+ ' '+ str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
-      self.err_msg.text = self.err_msg.text + "\ngm_status' not in [5,7,10] "
+      lnno = str(sys._getframe().f_lineno)
+      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line="+lnno
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
       runde = 1
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"
+      lnno = str(sys._getframe().f_lineno)
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"+lnno
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
+      lnno = str(sys._getframe().f_lineno)
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"+lnno
       return
     elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
       runde = 2
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"
+      lnno = str(sys._getframe().f_lineno)      
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"+lnno
     elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"      
+      lnno = str(sys._getframe().f_lineno)
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10"+lnno      
     else:
       abc1 = str(row['gm_status'])
       abc2 = "row['gm_status'] not correct " + abc1
@@ -1109,14 +1118,14 @@ class home(homeTemplate):
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
-      self.err_msg.text = self.err_msg.text + "\nlaunch_ugregmod done"
+      self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       time.sleep(2)
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        self.err_msg.text = self.err_msg.text + "\ngm_start_round_click runde="+ str(runde)
+        self.err_msg.text = self.err_msg.text + "\n++ gm_start_round_click runde="+ str(runde)+' gm_status=6'
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
@@ -1126,7 +1135,7 @@ class home(homeTemplate):
         row['gm_status'] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=10'
+        self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10'
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
@@ -1140,21 +1149,20 @@ class home(homeTemplate):
     cid = mg.my_game_id
     lx = mg.my_lang
     row = app_tables.games_log.get(game_id=cid)
-    print("in p_advance_to_next_round_click")
-    print("in p_advance_to_next_round_click -> 3rd line "+cid+' fut '+mg.my_reg+' '+str(row['gm_status']))
     if row['gm_status'] == 5:
+      self.err_msg.text = self.err_msg.text + "\n------- entering p_advance_to_next_round_click:: gm_status="+str(row['gm_status'])
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
       reg = mg.my_reg
       runde = 2
       yr = 2040
-      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
@@ -1172,16 +1180,18 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr,lx )
+        lnno = str(sys._getframe().f_lineno)        
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
       yr = 2060
-      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
@@ -1199,17 +1209,19 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
+        lnno = str(sys._getframe().f_lineno)        
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4
       yr = 2100
-      print("in p_advance_to_next_round_click -> do_future with "+cid+' fut '+reg+' '+str(runde)+' '+str(yr))
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status']+' reg='+reg+' yr='+str(yr))
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
@@ -1228,6 +1240,8 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr, lx )
+        lnno = str(sys._getframe().f_lineno)        
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
         self.fut_detail('hide')
 
   def fut_detail(self, hs):
