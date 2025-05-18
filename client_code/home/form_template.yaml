@@ -7,7 +7,7 @@ components:
     type: Timer
   - layout_properties: {grid_position: 'CEQOPJ,EJBPKN'}
     name: err_msg
-    properties: {appearance: outlined, character_limit: 9999, text: 'Err_txt-1 = '}
+    properties: {appearance: outlined, character_limit: 9999, text: Debug messages ...}
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextArea
   - components:
     - layout_properties: {grid_position: 'IMGJJY,OXSAAI'}

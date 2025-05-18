@@ -11,7 +11,6 @@ import time
 import datetime
 import random
 from time import strftime, localtime
-import sys
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -872,7 +871,7 @@ class home(homeTemplate):
         nt = gl[i] - tltl[i]
         pct_of_range = nw / (nt - nb)
         cost = round(maxc * pct_of_range, 2)
-        self.err_msg.text = self.err_msg.text + "\n--\niside calc_cost_home_ta pol_name=" + names[i] + ' pol_amount=' + str(cost)
+        self.err_msg.text = self.err_msg.text + "\n-- inside calc_cost_home_ta pol_name=" + names[i] + ' pol_amount=' + str(cost)
         slot = {'pol_name' : names[i], 'pol_amount': cost}
         slots.append(slot)
     return slots
@@ -1065,40 +1064,34 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    lnno = str(sys._getframe().f_lineno)
-    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line="+lnno+ ' '+ str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
+    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line= (1067) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
-      lnno = str(sys._getframe().f_lineno)
-      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line="+lnno
+      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line="
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
       von = 2025
       bis = 2040
       runde = 1
-      lnno = str(sys._getframe().f_lineno)
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"+lnno
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5"
     elif row['gm_status'] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
-      lnno = str(sys._getframe().f_lineno)
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"+lnno
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
       return
     elif row['gm_status'] == 7:
       von = 2040
       bis = 2060
       runde = 2
-      lnno = str(sys._getframe().f_lineno)      
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"+lnno
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7"
     elif row['gm_status'] == 10:
       von = 2060
       bis = 2100
       runde = 3
-      lnno = str(sys._getframe().f_lineno)
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10"+lnno      
+      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10"      
     else:
       abc1 = str(row['gm_status'])
       abc2 = "row['gm_status'] not correct " + abc1
@@ -1180,8 +1173,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr,lx )
-        lnno = str(sys._getframe().f_lineno)        
-        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
@@ -1209,8 +1201,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
-        lnno = str(sys._getframe().f_lineno)        
-        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1204)"
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4
@@ -1240,8 +1231,7 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr, lx )
-        lnno = str(sys._getframe().f_lineno)        
-        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future "+lnno
+        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future(1234) "
         self.fut_detail('hide')
 
   def fut_detail(self, hs):
