@@ -1402,7 +1402,7 @@ class home(homeTemplate):
         n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
         return
-      self.err_msg.text = self.err_msg.text + "npcgd_advance_tx"
+      self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(lu.sim_success_tx40_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
