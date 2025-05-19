@@ -341,6 +341,45 @@ def make_png(df, row, pyidx, end_yr, my_title):
     plt.box(False)
     return anvil.mpl_util.plot_image()
 
+def get_longrole_from_lu(x, lang):
+  if x == 'pov':
+    return lu.ta_to_longmini_pov_str[lang]
+  if x == 'ineq':
+    return lu.ta_to_longmini_ineq_str[lang]
+  if x == 'emp':
+    return lu.ta_to_longmini_emp_str[lang]
+  if x == 'food':
+    return lu.ta_to_longmini_food_str[lang]
+  if x == 'ener':
+    return lu.ta_to_longmini_ener_str[lang]
+  if x == 'fut':
+    return lu.ta_to_longmini_fut_str[lang]
+
+def get_longreg_from_lu(x, lang):
+  if x == 'us':
+    return lu.reg_to_longreg_us_str[lang]
+  if x == 'us':
+    return lu.reg_to_longreg_us_str[lang]
+  if x == 'af':
+    return lu.reg_to_longreg_af_str[lang]
+  if x == 'cn':
+    return lu.reg_to_longreg_cn_str[lang]
+  if x == 'me':
+    return lu.reg_to_longreg_me_str[lang]
+  if x == 'sa':
+    return lu.reg_to_longreg_sa_str[lang]
+  if x == 'la':
+    return lu.reg_to_longreg_la_str[lang]
+  if x == 'pa':
+    return lu.reg_to_longreg_pa_str[lang]
+  if x == 'ec':
+    return lu.reg_to_longreg_ec_str[lang]
+  if x == 'eu':
+    return lu.reg_to_longreg_se_str[lang]
+  if x == 'se':
+    return lu.reg_to_longreg_us_str[lang]
+  pass
+  
 def get_title_from_lu(x, lang):
   if x == 0:
     return lu.sdgvarID_to_sdg_0_str[lang]
@@ -509,7 +548,7 @@ def get_indicator_from_lu(x, lang):
   if x == 40:
     return lu.sdgvarID_to_indicator_40_str[lang]
 
-def build_plot(var_row, regidx, cap, cid, runde, lang):
+def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   # find out for which round
   if runde == 1:
     yr = 2025
@@ -539,8 +578,10 @@ def build_plot(var_row, regidx, cap, cid, runde, lang):
 #  print(dfv_pd)
 #  which_sdg = int(var_row['sdg_nbr'])
   which_sdg = int(var_row['id'])
+  longreg = get_longreg_from_lu(reg, lang)
+  longrole = get_longrole_from_lu(role, lang)
   my_title = get_title_from_lu(which_sdg, lang)
-  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' + my_title
+  cur_title = 'WK-' + str(int(var_row['sdg_nbr'])) + ': ' + my_title+', '+longreg+', '+longrole
 #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = get_indicator_from_lu(which_sdg, lang)
   print('... build plot var_l: ' + var_l, ' which_sdg='+str(which_sdg)+' my_title='+my_title+' sub='+cur_sub)
@@ -583,7 +624,7 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
     cap = foot1 + ' - ' + my_time
     vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
     for var_row in vars_info_rows:
-      fdz = build_plot(var_row, regidx, cap, cid, runde, lang)
+      fdz = build_plot(var_row, regidx, cap, cid, runde, lang, region, single_ta)
 #      print(fdz)
       app_tables.plots.add_row(game_id=game_id, title=fdz['title'], subtitle=fdz['subtitle'],
                               fig=fdz['fig'], cap=cap, runde=runde, ta=single_ta, reg=region)

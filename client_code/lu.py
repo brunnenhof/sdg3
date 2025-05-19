@@ -132,7 +132,7 @@ reg_to_longreg_se_str = [
   "Südostasien",
   "Südostasien",
   "Asie du Sud-Est", 
-  "Sørøst -Asia", 
+  "Sørøst-Asia", 
   "_last_"
 ]
 
@@ -2658,7 +2658,7 @@ not_all_looked_at_title = [
   "_last_"
 ]
 not_all_looked_at_tx = [
-  "Not all your regional miniterial colleagues have looked at their results.",
+  "Not all your regional ministerial colleagues have looked at their results.",
   "Noch haben sich alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
   "Noch haben sich alle Deine regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
   "Tous vos collègues ministres régionaux n'ont pas encore consulté leurs résultats.",

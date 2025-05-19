@@ -1053,6 +1053,7 @@ class home(homeTemplate):
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
     for ug in range(0, len(mg.dbg_info)):
       self.err_msg.text = self.err_msg.text + '\n' + mg.dbg_info[ug]
+    mg.dbg_info = []
 
 
   def gm_start_round_click(self, **event_args):
@@ -1415,6 +1416,8 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
+    self.plot_card_rp.visible = False
+    self.dec_card.visible = False
     my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id
