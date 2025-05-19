@@ -1063,12 +1063,12 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line= (1067) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
+    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line= (1066) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
       n.show()
-      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line="
+      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line=1071"
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
@@ -1158,6 +1158,8 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
 #        anvil.server.call('budget_to_db', 2100, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
+        row_closed = app_tables.games_log.get(game_id=cid_cookie)
+        row_closed['closed'] = datetime.datetime.now()
 
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the run for FUT
@@ -1573,7 +1575,7 @@ class home(homeTemplate):
           self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
         else:
           self.dec_card.visible = False
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
           self.pcgd_info_rd1.visible = True
           row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=3)
           row_looked_at['looked_at'] = True
