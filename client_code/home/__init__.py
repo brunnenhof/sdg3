@@ -1160,7 +1160,9 @@ class home(homeTemplate):
         self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
 
   def p_advance_to_next_round_click(self, **event_args):
-    # Get the results until the end of the for FUT
+    # Get the results until the end of the run for FUT
+    # pcgd_advance (for non_fut) must set something for the current reg
+    # and only if 5 have set it can fut advance
     cid = mg.my_game_id
     lx = mg.my_lang
     row = app_tables.games_log.get(game_id=cid)
@@ -1172,6 +1174,10 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
+      if len(rows_looked_at) < 5:
+        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2040"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
@@ -1201,6 +1207,10 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 3
       yr = 2060
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=True)
+      if len(rows_looked_at) < 5:
+        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
@@ -1230,6 +1240,10 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 4
       yr = 2100
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=True)
+      if len(rows_looked_at) < 5:
+        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
@@ -1336,6 +1350,7 @@ class home(homeTemplate):
     app_tables.roles_assign.delete_all_rows()
     app_tables.game_files.delete_all_rows()
     app_tables.plots.delete_all_rows()
+    app_tables.pcgd_advance_looked_at.delete_all_rows()
     rows = app_tables.games_log.search(game_id=q.not_("TEST"))
     for row in rows:
       row.delete()
@@ -1396,6 +1411,7 @@ class home(homeTemplate):
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
+    # something needs to be set here, by re and round and ta
     my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id
@@ -1458,6 +1474,8 @@ class home(homeTemplate):
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
+          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=1)
+          row_looked_at['looked_at'] = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
@@ -1512,6 +1530,8 @@ class home(homeTemplate):
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
+          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=2)
+          row_looked_at['looked_at'] = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
@@ -1555,6 +1575,8 @@ class home(homeTemplate):
           self.dec_card.visible = False
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
+          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=3)
+          row_looked_at['looked_at'] = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':

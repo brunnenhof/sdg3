@@ -165,7 +165,7 @@ ta_to_longmini_food_str = [
   "Minister:in für Ernährung und Landwirtschaft",
   "Minister:in für Ernährung und Landwirtschaft",
   "Ministre de l'alimentation et de l'agriculture", 
-  "Minister for Food & Agriculture", 
+  "Minister for ernæring og landbruk", 
   "_last_"
 ]
 ta_to_longmini_ener_str = [
@@ -1958,7 +1958,7 @@ cb_food_tx_str = [
   "Ernährung und Landwirtschaft ",
   "Ernährung und Landwirtschaft ",
   "Nourriture et agriculture", 
-  "Food & Agriculture", 
+  "Mat og landbruk", 
   "_last_"
 ]
 
@@ -2649,7 +2649,22 @@ nothing_submitted_tx_str = [
     "Ingenting ble sendt inn ...", 
     "_last_"
     ]
- 
+not_all_looked_at_title = [
+  "Your regional colleagues aren't ready",
+  "Die Kollegen:innen in Ihrer Region sind noch nicht so weit",
+  "Die Kollegen in Deiner Region sind noch nicht so weit",
+  "Les collègues de votre région ne sont pas encore prêts",
+  "Vos collèges régionaux ne sont pas prêts",
+  "_last_"
+]
+not_all_looked_at_tx = [
+  "Not all your regional miniterial colleagues have looked at their results.",
+  "Noch haben sich alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
+  "Noch haben sich alle Deine regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
+  "Tous vos collègues ministres régionaux n'ont pas encore consulté leurs résultats.",
+  "Alle dine regionale ministerkolleger har ennå ikke sett på resultatene sine.",
+  "_last_"
+]
 p_advance_to_next_round_tx_str = [
     "Get the results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",

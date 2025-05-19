@@ -143,6 +143,26 @@ db_schema:
       type: string
     server: search
     title: ministries
+  pcgd_advance_looked_at:
+    client: full
+    columns:
+    - admin_ui: {order: 1, width: 130}
+      name: round
+      type: number
+    - admin_ui: {order: 4, width: 131}
+      name: looked_at
+      type: bool
+    - admin_ui: {order: 5, width: 134}
+      name: game_id
+      type: string
+    - admin_ui: {order: 6, width: 138}
+      name: reg
+      type: string
+    - admin_ui: {order: 7, width: 113}
+      name: ta
+      type: string
+    server: full
+    title: pcgd_advance_looked_at
   plots:
     client: full
     columns:
@@ -388,5 +408,8 @@ services:
 - client_config: {}
   server_config: {file_table: files}
   source: /runtime/services/anvil/files.yml
+- client_config: {}
+  server_config: {test_mode: true}
+  source: /runtime/services/anvil/email.yml
 startup: {module: home, type: form}
 startup_form: null

@@ -1,3 +1,4 @@
+import anvil.email
 import anvil.files
 from anvil.files import data_files
 import anvil.tables as tables
@@ -173,13 +174,9 @@ def set_npbp(cid, npbp):
   row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
 #  app_tables.step_done.delete_all_rows()
   pol_list = [r['abbr'] for r in app_tables.policies.search()]
-#  print(pol_list)
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
-#  print(tltl_list)
   gl_list = [r['gl'] for r in app_tables.policies.search()]
-#  print(gl_list)
   regs = mg.regs
-#  print(w_list)
   for re in regs: # set up step_done
     if re in npbp:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
@@ -192,6 +189,13 @@ def set_npbp(cid, npbp):
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
 #      else:
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
+  tas = ['pov', 'ineq', 'emp', 'food', 'ener']
+  for runde in range(1,4):  # set up roles_assign
+    for re in regs:
+      for ta in tas:
+        if re not in npbp:
+          app_tables.pcgd_advance_looked_at.add_row(game_id=cid,reg=re, round=runde, ta=ta, looked_at=False)
+
   for runde in range(1,4):  # set up roles_assign
     for re in regs:
       j = 0
@@ -215,6 +219,11 @@ def set_npbp(cid, npbp):
         row.update(taken=0)
   rs = app_tables.games_log.get(game_id=cid)
   rs.update(gm_status=4)
+  ### ToDo in production un comment
+  #anvil.email.send(from_name = "OC game", 
+  #                 to = "post@blue-way.net",
+  #                 subject = "New game started",
+  #                 text = "Game "+cid+" was started")
 
 def read_mdfplay25(datei, runde):
 #  print('APRIL IN read_mdfplay25 loading: ' + datei)
