@@ -2107,7 +2107,7 @@ gm_wait_kickoff_r1_tx_str = [
 ]
 
 gm_wait_round_done_tx0_str = [
-  "The model has been advanced to 2040. Tell your players to click on the \nGet the results ...  or \nCheck if the game leader ... button. ",
+  "The model has been advanced to 2040. Tell your players to click on the \nGet the results ...  or \nCheck if all regions ... button. ",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen ... oder \nÜberprüfen, ob der/die Spielleiter:in ... zu klicken. ",
   "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton « Obtenir les résultats... » ou « Vérifier si le meneur de jeu...",
