@@ -13,6 +13,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    dbg_infol = []
     self.pol_tx_area.text = self.item['pol_expl']
     self.pol_name.text = self.item['pol_name']
     self.slide_min.text = self.item['pol_tltl']
@@ -45,8 +46,9 @@ class dec_rp_template(dec_rp_templateTemplate):
     # set wert
     pol = self.pol_abbr.text
     row = app_tables.roles_assign.get(game_id=cid,pol=pol,round=runde, role=ta, reg=reg)
-    print (row)
+#    print (row)
     row['wert'] = float(self.slider_1.value)
     self.slide_val.text = self.slider_1.value
-
+    self.dbg_infol.append("\n---update pol value "+cid+' pol='+pol+' round='+str(runde)+' role='+ta+' reg='+reg+' value='+str(self.slider_1.value))
+    mg.dgb_info = self.dbg_infol
 

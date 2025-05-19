@@ -17,7 +17,7 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 152
+    self.timer_1.interval = 104
     self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -871,7 +871,7 @@ class home(homeTemplate):
         nt = gl[i] - tltl[i]
         pct_of_range = nw / (nt - nb)
         cost = round(maxc * pct_of_range, 2)
-        self.err_msg.text = self.err_msg.text + "\n-- inside calc_cost_home_ta pol_name=" + names[i] + ' pol_amount=' + str(cost)
+#        self.err_msg.text = self.err_msg.text + "\n-- inside calc_cost_home_ta pol_name=" + names[i] + ' pol_amount=' + str(cost)
         slot = {'pol_name' : names[i], 'pol_amount': cost}
         slots.append(slot)
     return slots
@@ -1051,8 +1051,9 @@ class home(homeTemplate):
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-#p_waiting_model_run_tx = "... still waiting for the GM to advance the model ..."
-#waiting_tx = "Waiting ..."
+    for ug in range(0, len(mg.dbg_info)):
+      self.err_msg.text = self.err_msg.text + '\n' + mg.dbg_info[ug]
+
 
   def gm_start_round_click(self, **event_args):
     lx = mg.my_lang

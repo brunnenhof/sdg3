@@ -14,6 +14,7 @@ my_personal_game_id = ''
 my_lang = ''
 my_step = 0
 game_runde = 0
+dbg_info = []
 end_yr_start = 2025
 end_yr_r1 = 2040
 end_yr_r2 = 2060
