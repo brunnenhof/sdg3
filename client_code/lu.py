@@ -2247,11 +2247,11 @@ gm_wait_sub3_tx_str = [
     ]
  
 setup_npbp_label_tx_str = [
-    "Hold on, all roles are being prepared ... ",
-    "Warten Sie bis alle Rollen vorbereitet sind ... ",
-    "Warten Sie bis alle Rollen vorbereitet sind ... ",
-    "Attendez, tous les rôles sont préparés ...", 
-    "Hold på, alle roller blir forberedt ...", 
+    "Please hold on, all roles are being prepared ... ",
+    "Bitte warten Sie bis alle Rollen vorbereitet sind ... ",
+    "Warte bitte bis alle Rollen vorbereitet sind ... ",
+    "S'il vous plaît, attendez, tous les rôles sont préparés ...", 
+    "Vennligst hold på, alle roller blir forberedt ...", 
     "_last_"
     ]
  

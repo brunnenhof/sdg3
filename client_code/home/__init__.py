@@ -25,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-#    my_loc = 'zu'
+    my_loc = 'de'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -1089,7 +1089,7 @@ class home(homeTemplate):
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
 
-      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4)
+      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4, style="warning")
       n.show()
       self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
       self.gm_start_round.visible = True
@@ -1100,7 +1100,7 @@ class home(homeTemplate):
       runde = 1
       row = app_tables.cookies.get(game_id=cid_cookie)
       rxsub = row['r1sub']
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5 rxsub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\ngm_status= 5 rxsub="+str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1114,7 +1114,7 @@ class home(homeTemplate):
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
 #      self.gm_start_round.visible = True      
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
+      self.err_msg.text = self.err_msg.text + "\ngm_status= 6"
       return
     elif row['gm_status'] == 7:
       von = 2040
@@ -1122,7 +1122,7 @@ class home(homeTemplate):
       runde = 2
       row = app_tables.cookies.get(game_id=cid_cookie)
       rxsub = row['r2sub']
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7 rxsub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\ngm_status= 7 rxsub="+str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1138,7 +1138,7 @@ class home(homeTemplate):
       runde = 3
       row = app_tables.cookies.get(game_id=cid_cookie)
       rxsub = row['r3sub']
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10 rxsub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\ngm_status= 10 rxsub="+str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1200,26 +1200,20 @@ class home(homeTemplate):
     l1 = []
     for r in rows_looked_at:
       ta = r['ta']
-      if ta == 'us':
-        longta = lu.reg_to_longreg_us_str[lx]
-      elif ta == 'af':
-        longta = lu.reg_to_longreg_af_str[lx]
-      elif ta == 'cn':
-        longta = lu.reg_to_longreg_cn_str[lx]
-      elif ta == 'me':
-        longta = lu.reg_to_longreg_me_str[lx]
-      elif ta == 'sa':
-        longta = lu.reg_to_longreg_sa_str[lx]
-      elif ta == 'la':
-        longta = lu.reg_to_longreg_la_str[lx]
-      elif ta == 'pa':
-        longta = lu.reg_to_longreg_pa_str[lx]
-      elif ta == 'ec':
-        longta = lu.reg_to_longreg_ec_str[lx]
-      elif ta == 'eu':
-        longta = lu.reg_to_longreg_eu_str[lx]
-      elif ta == 'se':
-        longta = lu.reg_to_longreg_se_str[lx]
+      self.err_msg.text = self.err_msg.text + '\n--- get_not_looked_at '+ta+' land='+str(lx)
+      if ta == 'pov':
+        longta = lu.ta_to_longmini_pov_str[lx]
+      elif ta == 'ineq':
+        longta = lu.ta_to_longmini_ineq_str[lx]
+      elif ta == 'emp':
+        longta = lu.ta_to_longmini_emp_str[lx]
+      elif ta == 'food':
+        longta = lu.ta_to_longmini_food_str[lx]
+      elif ta == 'ener':
+        longta = lu.ta_to_longmini_ener_str[lx]
+      elif ta == 'fut':
+        longta = lu.ta_to_longmini_fut_str[lx]
+      self.err_msg.text = self.err_msg.text + '\n--- longta '+longta
       l1.append(longta)
     return l1
     
@@ -1513,7 +1507,7 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    self.err_msg.text = "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
+    self.err_msg.text = self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
