@@ -1164,6 +1164,9 @@ class home(homeTemplate):
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 
+  def get_not_looked_at(self, **event_args):
+    pass
+    
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the run for FUT
     # pcgd_advance (for non_fut) must set something for the current reg
