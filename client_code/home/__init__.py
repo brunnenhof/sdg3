@@ -200,6 +200,7 @@ class home(homeTemplate):
     self.cpf_ener_lb2.text = lu.cfener_lb_tx_str[my_lox]
     self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx1_str[my_lox]
     self.gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
+    self.show_hide_plots.tooltip = lu.show_hide_plots_tx[my_lox]
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
   
   def top_start_game_click(self, **event_args):
@@ -697,7 +698,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = self.err_msg.text + "\n-------\nentering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
+    self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -844,7 +845,7 @@ class home(homeTemplate):
                
   def calc_cost_home_ta(self, pct, tltl, gl, maxc, ta):
     lx = mg.my_lang
-    self.err_msg.text = self.err_msg.text + "\n-------\nentering calc_cost_home_ta with ta=" + ta + ' maxc=' + str(maxc)
+    self.err_msg.text = self.err_msg.text + "\n-------entering calc_cost_home_ta with ta=" + ta + ' maxc=' + str(maxc)
     # get_names
     if ta == 'pov':
       abbrs = [r['abbr'] for r in app_tables.policies.search(ta='Poverty')]
@@ -969,7 +970,7 @@ class home(homeTemplate):
       my_cid = mg.my_personal_game_id
       cid = mg.my_game_id
       yr, runde = self.get_runde(cid)
-      self.err_msg.text = self.err_msg.text + "\n--------\nentering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
+      self.err_msg.text = self.err_msg.text + "\n--------entering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
       row = app_tables.step_done.get(game_id=cid, reg=reg)
@@ -984,19 +985,19 @@ class home(homeTemplate):
       ## bump cookie for this round r_sub by one
       all_regs_sub = False
       if runde == 1:
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r1sub'] == 10:
           all_regs_sub = True
       elif runde == 2:
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
           all_regs_sub = True
       elif runde == 3:
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r3sub'] == 10:
@@ -1016,13 +1017,13 @@ class home(homeTemplate):
         elif runde == 3:
           my_p_step_done = 7
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
-        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=7)
+        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=3)
         n.show() 
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         rc = app_tables.cookies.get(game_id=cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\n---\ninside submit_numbers_click::ALL submit  gmStatus=" + str(row['gm_status']) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::ALL submit  gmStatus=" + str(row['gm_status']) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
@@ -1033,7 +1034,7 @@ class home(homeTemplate):
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         rg = app_tables.games_log.get(game_id=cid_cookie)
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7)
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
         ## give feedback
@@ -1052,7 +1053,7 @@ class home(homeTemplate):
           # p_advance_to_2_tx = "Get the results until the end of the century"
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
     for ug in range(0, len(mg.dbg_info)):
-      self.err_msg.text = self.err_msg.text + '\n' + mg.dbg_info[ug]
+      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
     mg.dbg_info = []
 
 
@@ -1065,12 +1066,12 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = self.err_msg.text + "\n--------\nentering gm_start_round_click line= (1066) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
+    self.err_msg.text = self.err_msg.text + "\n--------entering gm_start_round_click line= (1066) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
-      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=7)
+      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4)
       n.show()
-      self.err_msg.text = self.err_msg.text + "\n--\ninside gm_status' not in [5,7,10] line=1071"
+      self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1071"
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
@@ -1314,7 +1315,7 @@ class home(homeTemplate):
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
-      Notification("Model is done", timeout=7)
+      Notification("Model is done", timeout=3)
 
   def get_sorted_pol_list(self, runde, pol):
     r_to_x = {
@@ -1439,7 +1440,7 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    self.err_msg.text = "pcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
+    self.err_msg.text = "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
@@ -1498,7 +1499,7 @@ class home(homeTemplate):
         n.show()
         return
       else:
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=7, style="info")
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, style="info")
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
@@ -1648,3 +1649,11 @@ class home(homeTemplate):
       self.err_msg.visible = True
     else:
       self.err_msg.visible = False
+
+  def show_hide_plots_change(self, **event_args):
+    if self.show_hide_plots.selected:
+      self.dec_card.visible = True
+      self.card_fut.visible = True
+    else:
+      self.dec_card.visible = False
+      self.card_fut.visible = False

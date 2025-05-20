@@ -55,6 +55,14 @@ poc_str = [
   "Verken brukergrensesnittet eller serverkoden er elegant, effektiv eller 'pythonisk'. Kontakt oss hvis du kan hjelpe oss med å gjøre det bedre.",
   "_last_"
 ]
+show_hide_plots_tx = [
+  "Toggle show / hide graphs and decision sheet",
+  "Ein- und Ausblenden von Diagrammen und Entscheidungs-schiebern",
+  "Ein- und Ausblenden von Diagrammen und Entscheidungs-schiebern",
+  "Afficher / masquer les graphiques et la feuille de décision", 
+  "Veksle mellom å vise/skjule grafer og beslutningsark", 
+  "_last_"
+]
 reg_to_longreg_us_str = [
   "USA",
   "USA",
