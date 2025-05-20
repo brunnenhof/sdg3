@@ -1768,11 +1768,11 @@ gm_id_msg1_str = [
   "_last_"
 ]
 gm_id_msg2_str = [
-  ". Make a note of it. ",
-  ". Notieren Sie sich die ID. ",
-  ". Notiere die ID. ",
-  ". En prendre une note.", 
-  ". Noter det.", 
+  ". Please, make a note of it. ",
+  ". Bitte notieren Sie sich die ID. ",
+  ". Notiere dir bitte die ID. ",
+  ". Veuillez noter l'ID.", 
+  ". Vennligst noter ID-en.", 
   "_last_"
 ]
 gm_id_title_str = [
@@ -2799,10 +2799,10 @@ wrong_code_tx = [
   "_last_"
 ]
 top_entry_label_str = [
-  "Hold on, setting up all the necessary slots, templates and tables for the game ...",
-  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
-  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
-  "Attendez, mettre en place tous les emplacements, modèles et tables nécessaires pour le jeu ...",
-  "Vent litt, vi sette opp alle nødvendige spor, maler og tabeller for spillet ...",
+  "Hold on, setting up all the necessary internal slots, templates and tables for the game ...",
+  "Einen Moment, alle für das Spiel notwendigen internen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Einen Moment, alle für das Spiel notwendigen internen Slots, Vorlagen und Tabellen werden generiert ...",
+  "Un instant, tous les slots internes, modèles et tableaux nécessaires au jeu sont générés ...",
+  "Vent litt, vi sette opp alle interne nødvendige spor, maler og tabeller for spillet ...",
   "_last_"
 ]

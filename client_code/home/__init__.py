@@ -206,15 +206,19 @@ class home(homeTemplate):
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     self.top_join_game.visible = False 
+    self.top_start_game.visible = False 
     t = TextBox(placeholder=lu.enter_code_tx[my_lox])
     alert(content=t,title=lu.enter_code_title_tx[my_lox])
-    print(f"You entered: {t.text}")
+#    print(f"You entered: {t.text}")
     code = t.text.upper()
 #    if not code == 'LTG-ND':
     if not code == '':
       alert(lu.wrong_code_tx[my_lox])
+      self.top_start_game.visible = True 
       return
 #    with Notification("Clearing DBs ..."):
+    self.top_entry_label.visible = True
+    self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
