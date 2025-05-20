@@ -1363,7 +1363,7 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call_s('fe_keepalive')
-    print(strftime('%Y-%m-%d %H:%M:%S', localtime(time.time())))
+    self.err_msg.text =  self.err_msg.text + '-- ticking away -- '+strftime('%Y-%m-%d %H:%M:%S', localtime(time.time()))
 
   def all_submit(self, cid, runde):
     rowc = app_tables.cookies.get(game_id=cid)
