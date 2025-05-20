@@ -143,7 +143,6 @@ reg_to_longreg_se_str = [
   "Sørøst-Asia", 
   "_last_"
 ]
-
 ta_to_longmini_pov_str = [
   "Minister against Poverty",
   "Minister:in gegen Armut",
@@ -192,7 +191,6 @@ ta_to_longmini_fut_str = [
   "Minister for fremtiden", 
   "_last_"
 ]
-
 pol_to_expl_CCS_str = [
   "Percent of fossil use to be equipped with carbon capture and storage (CCS) at source. This means that you still emit CO2 but it does not get to the atmosphere where it causes warming because you capture it and store it underground.",
   "Prozentsatz der fossilen Brennstoffe der mit CO2-Abscheidung und -Speicherung (CCS) an der Quelle ausgestattet werden soll. Das bedeutet dass zwar weiterhin CO2 ausgestossen wird dieses aber nicht in die Atmosphäre gelangt wo es Erwärmung verursacht weil es vorher abgeschieden und unter der Erde gespeichert wird.",
@@ -449,7 +447,6 @@ pol_to_expl_ISPV_str = [
   "Prosent av elektrisitetsproduksjon fra fornybare kilder (40% er det vi klarte å oppnå tidligere)", 
   "_last_"
 ]
-
 pol_to_name_CCS_str = [
   "CCS is Carbon capture and storage at source",
   "CCS ist die CO2-Abscheidung und -Speicherung an der Quelle",
@@ -700,13 +697,12 @@ pol_to_name_SSGDR_str = [
 ]
 pol_to_name_ISPV_str = [
   "Invest in Renewables",
-  "In Erneuerbare Energien investieren",
-  "In Erneuerbare Energien investieren",
+  "In erneuerbare Energien investieren",
+  "In erneuerbare Energien investieren",
   "Investir dans les énergies renouvelables", 
   "Invester i fornybar energi", 
   "_last_"
 ]
-
 sdgvarID_to_subtitle_13_str = [
   "Worker disposable income (1000 $/person-year)",
   "Verfügbares Einkommen der Arbeitnehmer (1000 $/Personen-jahr)",
@@ -1019,7 +1015,6 @@ sdgvarID_to_subtitle_38_str = [
   "Nan", 
   "_last_"
 ]
-
 sdgvarID_to_indicator_13_str = [
   "Worker disposable income (1000 USD/person-year)",
   "Verfügbares Einkommen der Arbeitnehmer (1000 USD/Personenjahr)",
@@ -1348,8 +1343,6 @@ sdgvarID_to_indicator_0_str = [
   "Millioner mennesker", 
   "_last_"
 ]
-
-
 sdgvarID_to_sdg_13_str = [
   "Decent work and economic growth",
   "Menschenwürdige Arbeit und Wirtschaftswachstum",
@@ -1663,11 +1656,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.2a",
-  "Das WK Spiel v0.2a",
-  "Das WK Spiel v0.2a",
-  "Le Jeu OL v0.2a",
-  "FL-spill v0.2a", 
+  "OC Game v0.2c",
+  "Das WK Spiel v0.2c",
+  "Das WK Spiel v0.2c",
+  "Le Jeu OL v0.2c",
+  "FL-spill v0.2c", 
   "_last_"
 ]
 need_one_reg = [
@@ -1686,7 +1679,6 @@ need_one_reg_title = [
   "Ingen medspillere?",
   "_last_"
 ]
-
 top_btn_thanks_str = [
   "Thanks ",
   "Danke ",
@@ -1879,7 +1871,6 @@ cb_me_tx_str = [
   "Midtøsten - Nord -Afrika", 
   "_last_"
 ]
-
 cb_sa_tx_str = [
   "South Asia ",
   "Südasien ",
@@ -1888,7 +1879,6 @@ cb_sa_tx_str = [
   "Sør -Asia", 
   "_last_"
 ]
-
 cb_la_tx_str = [
   "Latin America ",
   "Lateinamerika ",
@@ -1897,7 +1887,6 @@ cb_la_tx_str = [
   "Latin -Amerika", 
   "_last_"
 ]
-
 cb_pa_tx_str = [
   "Pacific Rim ",
   "Pazifische Anrainerstaaten ",
@@ -1906,7 +1895,6 @@ cb_pa_tx_str = [
   "Landene rundt Stillehavet ", 
   "_last_"
 ]
-
 cb_ec_tx_str = [
   "East Europe - Central Asia ",
   "Osteuropa & Zentralasien ",
@@ -1915,7 +1903,6 @@ cb_ec_tx_str = [
   "Øst -Europa - Sentral -Asia", 
   "_last_"
 ]
-
 cb_eu_tx_str = [
   "Europe ",
   "Europa ",
@@ -1924,7 +1911,6 @@ cb_eu_tx_str = [
   "Europa", 
   "_last_"
 ]
-
 cb_se_tx_str = [
   "Southeast Asia ",
   "Südostasien ",
@@ -1933,7 +1919,6 @@ cb_se_tx_str = [
   "Sørøst -Asia", 
   "_last_"
 ]
-
 cb_pov_tx_str = [
   "Poverty ",
   "Armut ",
@@ -1942,7 +1927,6 @@ cb_pov_tx_str = [
   "Fattigdom", 
   "_last_"
 ]
-
 cb_ineq_tx_str = [
   "Inequality ",
   "Ungleichheit ",
@@ -1951,7 +1935,6 @@ cb_ineq_tx_str = [
   "Ulikhet", 
   "_last_"
 ]
-
 cb_emp_tx_str = [
   "Empowerment ",
   "Empowerment/Befähigung ",
@@ -1960,7 +1943,6 @@ cb_emp_tx_str = [
   "Empowerment/Myndiggjøring", 
   "_last_"
 ]
-
 cb_food_tx_str = [
   "Food & agriculture ",
   "Ernährung und Landwirtschaft ",
@@ -1969,7 +1951,6 @@ cb_food_tx_str = [
   "Mat og landbruk", 
   "_last_"
 ]
-
 cbener_tx_str = [
   "Energy ",
   "Energie ",
@@ -1978,7 +1959,6 @@ cbener_tx_str = [
   "Energi", 
   "_last_"
 ]
-
 cb_fut_tx_str = [
   "Future ",
   "Zukunft ",
@@ -1987,7 +1967,6 @@ cb_fut_tx_str = [
   "Fremtid", 
   "_last_"
 ]
-
 pcr_title_tx_str = [
   "Player Board Game ",
   "Spieler-Brett ",
@@ -1996,7 +1975,6 @@ pcr_title_tx_str = [
   "Player Board Game", 
   "_last_"
 ]
-
 pcr_col_left_title_tx_str = [
   "First, log into your region ... ",
   "Melden Sie sich zunächst in Ihrer Region an ... ",
@@ -2005,7 +1983,6 @@ pcr_col_left_title_tx_str = [
   "Først, logg inn i regionen din ...", 
   "_last_"
 ]
-
 pcr_col_right_title_tx_str = [
   "... then into your role as minister ... ",
   "... dann in Ihrer Rolle als Minister:in ... ",
@@ -2014,7 +1991,6 @@ pcr_col_right_title_tx_str = [
   "... så inn i din rolle som minister ...", 
   "_last_"
 ]
-
 pcr_submit_tx_str = [
   "Once you have logged in to both your region and your ministry, click here to submit your choice ",
   "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier. ",
@@ -2023,7 +1999,6 @@ pcr_submit_tx_str = [
   "Når du har logget deg inn i både regionen og departementet ditt, klikker du her for å sende inn ditt valg ",
   "_last_"
 ]
-
 fut_not_all_logged_in_tx_str = [
   "Not all of your regional ministerial colleagues have logged in yet. Wait until they have done so. ",
   "Noch sind nicht alle Ihrer regionalen Ministerkolleg:innen eingeloggt. Warten Sie, bis sie das getan haben. ",
@@ -2032,7 +2007,6 @@ fut_not_all_logged_in_tx_str = [
   "Ikke alle dine regionale ministerkolleger har logget inn ennå. Vent til de har gjort det.", 
   "_last_"
 ]
-
 no_active_game_to_join_tx_str = [ ## not needed
   "no active game to join ... the game organizer has to start one ",
   "Kein aktives Spiel zum Beitreten ... der/die Spielleiter:in muss erst eins starten ",
@@ -2041,7 +2015,6 @@ no_active_game_to_join_tx_str = [ ## not needed
   "intet aktivt spill å bli med ... spillarrangøren må starte en", 
   "_last_"
 ]
-
 gm_reg_npbp_tx_str = [
   "When you are done (and sure), click this button ",
   "Wenn Sie fertig (und sicher) sind, klicken Sie auf diese Schaltfläche. ",
@@ -2050,7 +2023,6 @@ gm_reg_npbp_tx_str = [
   "Når du er ferdig (og sikker), klikker du på denne knappen", 
   "_last_"
 ]
-
 topentry_label_tx_str = [
   "Hold on, setting up all the necessary slots, templates and tables for the game ... ",
   "Moment, alle erforderlichen Slots, Vorlagen und Tabellen für das Spiel werden eingerichtet ... ",
@@ -2059,7 +2031,6 @@ topentry_label_tx_str = [
   "Hold på, sette opp alle nødvendige spor, maler og tabeller for spillet ...", 
   "_last_"
 ]
-
 gm_card_wait_1_temp_title_tx1_str = [
   "Still waiting for the following ministers to log in ... Ask if they need help ... ",
   "Wir warten immer noch darauf, dass sich die folgenden Minister:innen anmelden ... Fragen Sie, ob sie Hilfe benötigen ... ",
@@ -2068,7 +2039,6 @@ gm_card_wait_1_temp_title_tx1_str = [
   "Venter fortsatt på at følgende ministre skal logge inn ... spør om de trenger hjelp ...", 
   "_last_"
 ]
-
 gm_card_wait_1_temp_title_tx2_str = [
   "All logged in! By clicking on the Ready to advance button, you can check if all your regions have submitted their policies. Tell them how much time they still have. ",
   "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
@@ -2077,7 +2047,6 @@ gm_card_wait_1_temp_title_tx2_str = [
   "Alt logget inn! Ved å klikke på Ready to Advance -knappen, kan du sjekke om alle regionene dine har sendt inn retningslinjene sine. Fortell dem hvor mye tid de fortsatt har.", 
   "_last_"
 ]
-
 gm_card_wait_1_info_tx_str = [
   "All roles have been set up now. Tell your players to log in **now**, using the Game ID shown above. \nInstruct them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. \nCheck repeatedly if all your players have logged in by clicking the **Check LogIn** button. \nOnce they are ready to proceed to the next round **---** this will take some time! **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet. ",
   "Alle Rollen sind nun eingerichtet. Bitten Sie Ihre Spieler, sich **jetzt** mit der Spiel ID, die oben angezeigt wird, einzuloggen. \nSagen Sie Ihnen, sie sollen den Zustand ihrer Region in den letzten 45 Jahren betrachten und ihre Entscheidungen zur Verbesserung des Lebens ihrer Bevölkerung ausdiskutieren. \nÜberprüfen Sie wiederholt, ob sich alle Ihre Spieler:innen angemeldet haben, indem Sie auf die Schaltfläche **Anmeldungen prüfen** klicken. \nSobald sie bereit sind, mit der nächsten Runde fortzufahren, **---** das kann dauern! **---** klicken Sie auf die Schaltfläche **Modell für die nächste Runde laufen lassen**. Wenn die Schaltfläche *Modell für die nächste Runde laufen lassen* **nicht** angezeigt wird, sind Ihre Spieler noch nicht soweit. ",
@@ -2086,7 +2055,6 @@ gm_card_wait_1_info_tx_str = [
   "Alle rollene er satt opp nå. Be spillerne dine om å logge inn **nå** ved å bruke spill-ID-en som er vist ovenfor. \nBe dem om å se på tilstanden i regionen sin de siste 45 årene og diskutere beslutningene de må tar for å forbedre livet til folket sitt. \nSjekk gjentatte ganger om alle spillerne har logget inn ved å klikke på knappen **Sjekk innlogging**. \nNår de er klare til å gå videre til neste runde **---** dette vil ta litt tid! **---** klikk på knappen **Oppdater modellen til neste runde**. Hvis knappen *Oppdater* ikke vises, er ikke spillerne dine klare ennå.",
   "_last_"
 ]
-
 gm_card_wait_1_btn_check_tx_str = [
   "Check LogIn ",
   "Anmeldungen prüfen ",
@@ -2095,7 +2063,6 @@ gm_card_wait_1_btn_check_tx_str = [
   "Sjekk innlogging", 
   "_last_"
 ]
-
 gm_card_wait_1_btn_kick_off_round_1_tx_str = [
   "Ready to advance the model for the next round? ",
   "Modell für die nächste Runde laufen lassen ",
@@ -2104,7 +2071,6 @@ gm_card_wait_1_btn_kick_off_round_1_tx_str = [
   "Klar til å fremme modellen for neste runde?", 
   "_last_"
 ]
-
 gm_wait_kickoff_r1_tx_str = [
   "Still waiting for the region(s) below to submit their decisions ... You may want to ask if they need help ... ",
   "Warten immer noch darauf, dass die unten aufgeführten Regionen ihre Entscheidungen übermitteln ... Sie können fragen, ob sie Hilfe benötigen ... ",
@@ -2113,7 +2079,6 @@ gm_wait_kickoff_r1_tx_str = [
   "Venter fortsatt på regionen (e) nedenfor for å sende inn beslutningene sine ... Det kan være lurt å spørre om de trenger hjelp ...", 
   "_last_"
 ]
-
 gm_wait_round_done_tx0_str = [
   "The model has been advanced to 2040. Tell your players to click on the \nGet the results...  or \nCheck if all regions... button. ",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen... oder \nÜberprüfen, ob der/die Spielleiter:in... zu klicken. ",
@@ -2122,7 +2087,6 @@ gm_wait_round_done_tx0_str = [
   "Modellen har blitt oppdatert frem til 2040. Be spillerne dine om å klikke på knappen \nFå resultatene... eller \nSjekk om spillederen....",
   "_last_"
 ]
-
 gm_wait_round_done_tx2_str = [
   "The model has been advanced to 2060. Tell your players to study and discuss their results, within and between regions. Are things going the right way? \nThen, they should decide on the policies for the next round. When they are ready, the Minister for the Future should submit their regional decisions. Tell them how much time they have. ",
   "Das Modell wurde bis 2060 fortgeschrieben. Bitten Sie Ihre Spieler:innen, die Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles in die richtige Richtung? Sind sie zufrieden?\nAnschliessend sollten sie über die Massnahmen für die nächste Runde entscheiden. Sobald sie bereit sind, sollte der/die ZukunftsMinister:in die regionalen Entscheidungen übermitteln. Sagen sie deutlich, wie viel Zeit ihnen zur Verfügung steht. ",
@@ -2131,16 +2095,14 @@ gm_wait_round_done_tx2_str = [
   "Modellen har blitt kjørt framover frem til 2060. Be spillerne studere og diskutere resultatene, både innenfor og mellom regionene. Går det riktig vei? \nSå skal de bestemme seg for politikken for neste runde. Når de er klare, skal fremtidsministeren sende inn de regionale beslutningene. Fortell dem hvor mye tid de har. ",
   "_last_"
 ]
-
 gm_wait_round_done_tx3_str = [
-  "The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing. ",
-  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung. ",
-  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung. ",
-  "Le modèle a été mis à jour jusqu'à la fin, en 2100. Demandez à vos joueurs de regarder et de discuter de leurs résultats dans et entre les régions. Tout se déroule-t-il comme prévu ? Sont-ils satisfaits ? Leurs citoyens sont-ils satisfaits ? La Terre est-elle encore habitable ? \nEnfin, ramenez-les hors du jeu, ici et maintenant, et commencez le débriefing. ",
-  "Modellen ble oppdatert frem til slutten av år 2100. Be spillerne dine se på og diskutere resultatene innad i og mellom regionene. Går alt etter planen? Er de fornøyde? Er innbyggerne fornøyde? Er jorden fortsatt beboelig? \nTil slutt tar du dem ut av spillet og tilbake til her og nå, og begynner debriefingen. ",
+  "The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing.\nThanks for playing - much appreciated!\nFeedback? Send to post at blue minus way dot net\n\nBye-bye",
+  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen ihre Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nAuf Wiedersehen",
+  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen Deine Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nCiao",
+  "Le modèle a été mis à jour jusqu'à la fin, en 2100. Demandez à vos joueurs de regarder et de discuter de leurs résultats dans et entre les régions. Tout se déroule-t-il comme prévu ? Sont-ils satisfaits ? Leurs citoyens sont-ils satisfaits ? La Terre est-elle encore habitable ? \nEnfin, ramenez-les hors du jeu, ici et maintenant, et commencez le débriefing.\nMerci de jouer - nous apprécions votre temps et votre engagement!\nRéponse? Envoyez-le à post at blue minus way dot net.\n\nAu revoir",
+  "Modellen ble oppdatert frem til slutten av år 2100. Be spillerne dine se på og diskutere resultatene innad i og mellom regionene. Går alt etter planen? Er de fornøyde? Er innbyggerne fornøyde? Er jorden fortsatt beboelig? \nTil slutt tar du dem ut av spillet og tilbake til her og nå, og begynner debriefingen.\nTakk for at du har spillet - vi setter pris på din tid og innsats! \nTilbakemeldinger? Vennligst send til post at blue minus way dot net\n\nHa det bra",
   "_last_"
 ]
-
 sim_success_tx40_str = [
   "...the model ran successfully to 2040. Now we are waiting for the decisions for 2040-2060.\nHave you set all your policy decisions? ",
   "...das Modell lief erfolgreich bis 2040. Jetzt warten wir noch auf alle Entscheidungen für 2040-2060.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
@@ -2157,7 +2119,6 @@ sim_success_tx21_str = [
   "...modellen kjørte med suksess frem til slutten av år 2100",
   "_last_"
 ]
-
 p_info_40_fut = [
   "\nBelow are the model results until 2040.",
   "\nNachfolgend die Ergebnisse bis 2040.",
@@ -2182,7 +2143,6 @@ p_info_21_fut = [
   "\nNedenfor vises resultatene frem til 2100.",
   "_last_"  
 ]
-
 sim_success_tx60_str = [
   "...the model ran successfully to 2060. Now we are waiting for the decisions for 2060-2100.\nHave you set all your policy decisions? ",
   "...das Modell lief erfolgreich bis 2060. Jetzt warten wir noch auf alle Entscheidungen für 2060-2100.\nHaben Sie alle Ihre politischen Entscheidungen getroffen? ",
@@ -2191,7 +2151,6 @@ sim_success_tx60_str = [
   "...modellen kjørte vellykket frem til 2060. Nå venter vi fremdeles på beslutningene for 2060-2100.\nHar du tatt alle policybeslutningene dine?",
   "_last_"
 ]
-
 sim_success_title_tx_str = [
   "Success ",
   "Erfolgreich ",
@@ -2208,7 +2167,6 @@ sim_success_title_txend_str = [
   "Vellykket ",
   "_last_"
 ]
-
 pcgd_generating_tx1_str = [
   "Generating graphs until 2040 and decision sheet for 2040 ",
   "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
@@ -2217,7 +2175,6 @@ pcgd_generating_tx1_str = [
   "Generere grafer til 2040 og beslutningsark for 2040", 
   "_last_"
 ]
-
 pcgd_generating_tx2_str = [
   "Generating graphs until 2060 and decision sheet for 2060 ",
   "Diagramme bis 2060 und Entscheidungsblatt für 2060 werden erstellt ",
@@ -2226,7 +2183,6 @@ pcgd_generating_tx2_str = [
   "Generere grafer til 2060 og beslutningsark for 2060", 
   "_last_"
 ]
-
 pcgd_generating_tx3_str = [
   "Generating graphs until 2100 ",
     " Diagramme bis 2100 werden erstellt ",
@@ -2397,7 +2353,6 @@ pcgd_rd1_infoend_tx_str = [
     "Spillet er over, sangen er over, tenkte jeg hadde noe mer å si.  © Pink Floyd", 
     "_last_"
     ]
-
 pcgd_rd1_info_end_tx_str = [
   "The model has reached the end. The game is over. Shed your role and come back to the here and now. What happened in the game? What surprised you? What irritated  you? What was too complicated? Too easy? What made you think? What did you realize that you had not noticed before? Would you like to be a minister in real life?",
   "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Legen Sie Ihre Rolle ab und kehren Sie ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Sie überrascht? Was hat Sie irritiert? Was war zu kompliziert? Zu einfach? Was hat Sie zum Nachdenken gebracht? Was ist Ihnen aufgefallen, was Sie vorher nicht bemerkt haben? Würden Sie im wirklichen Leben gerne Minister:in sein?",
@@ -2461,7 +2416,7 @@ not_to_2060_str = [
     ]
  
 dec_info_tx_str = [
-    "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game leader so that the model can be advanced for the next round. ",
+    "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game organizer so that the model can be advanced for the next round. ",
     "Nachdem Sie die Situation Ihrer Bevölkerung analysiert haben, müssen Sie verschiedene Massnahmen ergreifen, um das Leben Ihrer Bevölkerung **und** die Gesundheit des Planeten zu verbessern. Sie wissen, dass Menschen auf einem kranken Planeten nicht leben können. Sie legen die Massnahmen fest, indem Sie die Schieberegler ziehen. Nach Abstimmung mit Ihren Minister:innenkollegen stellen Sie den Schieberegler für jede Massnahme ein. \n\nJede Massnahme ist mit **Investitionskosten** verbunden. Stellen Sie den Schieberegler auf das Minimum, entstehen keine Kosten. Stellen Sie den Schieberegler auf das Maximum, werden die vollen Investitionskosten fällig. Stellen Sie den Schieberegler irgendwo zwischen Minimum und Maximum ein, werden die anteiligen Investitionskosten fällig. Ihre Region verfügt ausserdem über ein Budget für **alle** Investitionen **aller** Minister:innen. \n\nSollten Sie das Budget überschreiten, wird Ihr Kollege, der/die Minister:in für die Zukunft, Sie darüber informieren, und Sie müssen mit Ihren Kollegen:innen neu verhandeln, bis die gesamten regionalen Investitionen unter oder gleich dem Budget liegen.\n\nWenn das Kabinett Ihrer Region **a)** innerhalb des Budgets liegt und **b)** Sie **alle** mit Ihren Entscheidungen zufrieden sind, wird der/die ZukunftsMinister:in alle Ihre Entscheidungen dem/der Spielleiter:in übermitteln, damit das Modell für die nächste Runde fortgeschrieben wird. ",
     "Nachdem Sie die Situation Ihrer Bevölkerung analysiert haben, müssen Sie verschiedene Massnahmen ergreifen, um das Leben Ihrer Bevölkerung **und** die Gesundheit des Planeten zu verbessern. Sie wissen, dass Menschen auf einem kranken Planeten nicht leben können. Sie legen die Massnahmen fest, indem Sie die Schieberegler ziehen. Nach Abstimmung mit Ihren Minister:innenkollegen stellen Sie den Schieberegler für jede Massnahme ein. \n\nJede Massnahme ist mit **Investitionskosten** verbunden. Stellen Sie den Schieberegler auf das Minimum, entstehen keine Kosten. Stellen Sie den Schieberegler auf das Maximum, werden die vollen Investitionskosten fällig. Stellen Sie den Schieberegler irgendwo zwischen Minimum und Maximum ein, werden die anteiligen Investitionskosten fällig. Ihre Region verfügt ausserdem über ein Budget für **alle** Investitionen **aller** Minister:innen. \n\nSollten Sie das Budget überschreiten, wird Ihr Kollege, der/die Minister:in für die Zukunft, Sie darüber informieren, und Sie müssen mit Ihren Kollegen:innen neu verhandeln, bis die gesamten regionalen Investitionen unter oder gleich dem Budget liegen.\n\nWenn das Kabinett Ihrer Region **a)** innerhalb des Budgets liegt und **b)** Sie **alle** mit Ihren Entscheidungen zufrieden sind, wird der/die ZukunftsMinister:in alle Ihre Entscheidungen dem/der Spielleiter:in übermitteln, damit das Modell für die nächste Runde fortgeschrieben wird. ",
     "Après avoir examiné la situation de votre peuple, vous devez mettre en œuvre plusieurs politiques pour améliorer la vie de votre peuple **et** la santé de la planète. Vous savez que les gens ne peuvent pas prospérer sur une planète malade. Vous définissez la politique en tirant sur les curseurs. Après vous être coordonné avec vos collègues ministres, réglez le curseur de chaque politique. \n\nChaque politique a un **coût d'investissement**. Si vous réglez le curseur au minimum, il n'y a pas de coût, si vous réglez le curseur au maximum, le coût total de l'investissement est dû. Si vous placez le curseur entre le minimum et le maximum, le coût d'investissement est calculé au prorata. Votre région dispose également d'un budget pour **tous** les investissements de **tous** les ministères. \n\nSi vous dépassez le budget, votre collègue, le ministre de l'avenir, vous le dira et vous devrez renégocier avec vos collègues, jusqu'à ce que l'investissement régional total soit inférieur ou égal au budget. \n\nLorsque le cabinet de votre région est **a)** dans les limites du budget et **b)** que vous êtes **tous** satisfaits de vos choix, le ministre de l'avenir soumettra toutes vos décisions au meneur de jeu afin que le modèle puisse être avancé pour le prochain tour. ",
@@ -2639,7 +2594,6 @@ confirm_title_tx_str = [
     "Skal du virkelig sende inn avgjørelsene?", 
     "_last_"
     ]
-
 after_submit_tx_str = [
     "Your regions decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ... ",
     "Die Entscheidungen Ihrer Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ... ",
@@ -2726,7 +2680,7 @@ waiting_tx_str = [
     ]
  
 nicht_all_sub_p_tx_str = [
-    "Not all regions have submitted their decisions, your game leader knows who we are waiting for ... ",
+    "Not all regions have submitted their decisions, your game organizer knows who we are waiting for ... ",
     "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, ihr:e Spielleiter:in weiss, auf wen wir warten ... ",
     "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, ihr:e Spielleiter:in weiss, auf wen wir warten ... ",
     "Toutes les régions n'ont pas soumis leurs décisions, votre chef de jeu sait qui nous attendons ...", 
@@ -2805,7 +2759,6 @@ lang_info_str = [
     "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
     "_last_"
     ]
-
 lang_lets_go_tx = [
   "Let's go",
   "Los geht's",
