@@ -1164,7 +1164,12 @@ class home(homeTemplate):
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 
-  def get_not_looked_at(self, **event_args):
+  def get_not_looked_at(self, rows_looked_at):
+    l = []
+    for r in rows_looked_at:
+      ta = r['ta']
+      longta = lu.reg_to_longreg_us_str
+      l.append(r['ta'])
     pass
     
   def p_advance_to_next_round_click(self, **event_args):
@@ -1184,6 +1189,7 @@ class home(homeTemplate):
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
       if len(rows_looked_at) < 5:
+        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
         return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2040"
