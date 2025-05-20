@@ -1417,14 +1417,13 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
-    self.plot_card_rp.visible = False
-    self.dec_card.visible = False
     my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
     gmStatus = row['gm_status']
+    self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus="+str(gmStatus)
     if gmStatus == 4:
       ### NOT all regs have submitted for round 2025 to 2040
       n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
@@ -1434,6 +1433,8 @@ class home(homeTemplate):
       ### all regs HAVE submitted for round 2025 to 2040
       n = Notification(lu.all_submitted_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
       n.show()
+      self.plot_card_rp.visible = False
+      self.dec_card.visible = False
       return
 #    if gmStatus == 6:
 #      ### waiting for GM to start round 2025 to 2040
@@ -1450,7 +1451,7 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(lu.sim_success_tx40_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx40_str[lx], timeout=3, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
