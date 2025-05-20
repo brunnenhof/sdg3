@@ -1652,8 +1652,8 @@ class home(homeTemplate):
 
   def show_hide_plots_change(self, **event_args):
     if self.show_hide_plots.selected:
+      self.plot_card_rp.visible = True
       self.dec_card.visible = True
-      self.card_fut.visible = True
     else:
+      self.plot_card_rp.visible = False
       self.dec_card.visible = False
-      self.card_fut.visible = False

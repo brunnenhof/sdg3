@@ -519,8 +519,10 @@ components:
       name: show_hide_plots
       properties:
         align: center
+        enabled: false
         margin: ['4', '', '4', '']
         selected_background_color: theme:Primary
+        visible: false
       type: form:dep_srfw5i6mu5hwvt:_Components.Switch
     - components:
       - layout_properties: {grid_position: 'IQOCKP,CIDKMO'}
