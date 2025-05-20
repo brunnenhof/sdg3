@@ -1120,7 +1120,11 @@ class home(homeTemplate):
       rxsub = row['r2sub']
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7 rxsub="+str(rxsub)
       if rxsub < 10:
-        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
+        lmsg = lu.nicht_all_sub_gm_tx_str[lx]
+        for ii in range(0, len(not_all_sub_list)):
+          lmsg = lmsg + "\n" + not_all_sub_list[ii]
+        n = Notification(lmsg, style="warning", timeout=4)
         n.show()
         self.gm_start_round.visible = True        
         return
@@ -1132,6 +1136,11 @@ class home(homeTemplate):
       rxsub = row['r3sub']
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10 rxsub="+str(rxsub)
       if rxsub < 10:
+        not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
+        lmsg = lu.nicht_all_sub_gm_tx_str[lx]
+        for ii in range(0, len(not_all_sub_list)):
+          lmsg = lmsg + "\n" + not_all_sub_list[ii]
+        n = Notification(lmsg, style="warning", timeout=4)
         n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
         self.gm_start_round.visible = True        
@@ -1157,8 +1166,6 @@ class home(homeTemplate):
     else: ## model is done
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
-      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
-      time.sleep(2)
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
