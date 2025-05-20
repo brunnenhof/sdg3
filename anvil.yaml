@@ -301,8 +301,8 @@ db_schema:
     title: to_reg_loogedin
 dependencies: []
 metadata: {description: m3 theme because of dropdown, logo_img: 'asset:BlueWay_logo_512x512.png'}
-name: sdg3
-package_name: sdg3
+name: sdg4
+package_name: sdg4
 renamed: true
 runtime_options:
   client_version: '3'
