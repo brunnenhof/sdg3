@@ -1178,6 +1178,8 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
+        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
+        row_ws['run_to_2040_done'] = True
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -1185,6 +1187,8 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10'
+        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
+        row_ws['run_to_2060_done'] = True
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
@@ -1192,6 +1196,8 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
 #        anvil.server.call('budget_to_db', 2100, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
+        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
+        row_ws['run_to_2100_done'] = True
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 

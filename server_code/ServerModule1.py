@@ -189,7 +189,7 @@ def set_npbp(cid, npbp):
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
 #      else:
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
-  tas = ['pov', 'ineq', 'emp', 'food', 'ener']
+  tas = ['pov', 'ineq', 'emp', 'food', 'ener','fut']
   for runde in range(1,4):  # set up pcgd_advance_looked_at
     for re in regs:
       for ta in tas:
