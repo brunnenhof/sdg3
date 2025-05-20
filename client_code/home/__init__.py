@@ -990,18 +990,24 @@ class home(homeTemplate):
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r1sub'] == 10:
           all_regs_sub = True
+        rosub = app_tables.submitted.get(game_id=cid_cookie, round=1,reg=reg)
+        rosub['submitted'] = True
       elif runde == 2:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
           all_regs_sub = True
+        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
+        rosub['submitted'] = True
       elif runde == 3:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r3sub'] == 10:
           all_regs_sub = True
+        rosub = app_tables.submitted.get(game_id=cid_cookie, round=3,reg=reg)
+        rosub['submitted'] = True
       ### update steps
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
@@ -1056,7 +1062,16 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
     mg.dbg_info = []
 
-
+  def get_not_all_sub(self, cid, runde):
+    reg = mg.my_reg
+    rows = app_tables.submitted.search(game_id='',round=runde, reg=reg, submitted=False)
+    not_sub_list = []
+    for r in rows:
+      regshort = r['reg']
+      longreg = do_reg_to_longreg(r['reg'])
+      not_sub_list.append(longreg)
+    pass
+    
   def gm_start_round_click(self, **event_args):
     lx = mg.my_lang
     ## first, check if all regions have submitted
@@ -1069,9 +1084,10 @@ class home(homeTemplate):
     self.err_msg.text = self.err_msg.text + "\n--------entering gm_start_round_click line= (1066) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
+
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4)
       n.show()
-      self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1071"
+      self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
       self.gm_start_round.visible = True
       return
     if row['gm_status'] == 5: ## 2025 to 2040 ready
@@ -1082,7 +1098,11 @@ class home(homeTemplate):
       rxsub = row['r1sub']
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5 rxsub="+str(rxsub)
       if rxsub < 10:
-        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
+        lmsg = lu.nicht_all_sub_gm_tx_str[lx]
+        for ii in range(0, len(not_all_sub_list)):
+          lmsg = lmsg + "\n" + not_all_sub_list[ii]
+        n = Notification(lmsg, style="warning", timeout=4)
         n.show()
         self.gm_start_round.visible = True
         return
@@ -1164,8 +1184,33 @@ class home(homeTemplate):
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 
-  def get_not_looked_at(self, **event_args):
-    pass
+  def get_not_looked_at(self, rows_looked_at):
+    lx = mg.my_lang
+    l1 = []
+    for r in rows_looked_at:
+      ta = r['ta']
+      if ta == 'us':
+        longta = lu.reg_to_longreg_us_str[lx]
+      elif ta == 'af':
+        longta = lu.reg_to_longreg_af_str[lx]
+      elif ta == 'cn':
+        longta = lu.reg_to_longreg_cn_str[lx]
+      elif ta == 'me':
+        longta = lu.reg_to_longreg_me_str[lx]
+      elif ta == 'sa':
+        longta = lu.reg_to_longreg_sa_str[lx]
+      elif ta == 'la':
+        longta = lu.reg_to_longreg_la_str[lx]
+      elif ta == 'pa':
+        longta = lu.reg_to_longreg_pa_str[lx]
+      elif ta == 'ec':
+        longta = lu.reg_to_longreg_ec_str[lx]
+      elif ta == 'eu':
+        longta = lu.reg_to_longreg_eu_str[lx]
+      elif ta == 'se':
+        longta = lu.reg_to_longreg_se_str[lx]
+      l1.append(longta)
+    return l1
     
   def p_advance_to_next_round_click(self, **event_args):
     # Get the results until the end of the run for FUT
@@ -1184,7 +1229,11 @@ class home(homeTemplate):
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
       if len(rows_looked_at) < 5:
-        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+        lmsg = lu.not_all_looked_at_tx[lx]
+        for ii in range(0, len(not_looked_at_list)):
+          lmsg = lmsg + "\n" + not_looked_at_list[ii]
+        alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2040"
       self.p_card_graf_dec.visible = True
@@ -1217,7 +1266,11 @@ class home(homeTemplate):
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=True)
       if len(rows_looked_at) < 5:
-        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+        lmsg = lu.not_all_looked_at_tx[lx]
+        for ii in range(0, len(not_looked_at_list)):
+          lmsg = lmsg + "\n" + not_looked_at_list[ii]
+        alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060"
       self.p_card_graf_dec.visible = True
@@ -1250,7 +1303,11 @@ class home(homeTemplate):
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=True)
       if len(rows_looked_at) < 5:
-        alert(lu.not_all_looked_at_tx[lx], title=lu.not_all_looked_at_title[lx])
+        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+        lmsg = lu.not_all_looked_at_tx[lx]
+        for ii in range(0, len(not_looked_at_list)):
+          lmsg = lmsg + "\n" + not_looked_at_list[ii]
+        alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
@@ -1353,6 +1410,7 @@ class home(homeTemplate):
   def test_model_top_click(self, **event_args):
     ## clear db
     app_tables.cookies.delete_all_rows()
+    app_tables.submitted.delete_all_rows()
     app_tables.state_of_play.delete_all_rows()
     app_tables.step_done.delete_all_rows()
     app_tables.roles_assign.delete_all_rows()

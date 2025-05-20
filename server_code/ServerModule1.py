@@ -62,7 +62,7 @@ def get_game_id_from_cookie():
 
 @anvil.server.callable
 def set_cookie_sub(r, val, cid):
-  print("server set_cookie_sub "+r+' '+cid+' '+str(val))
+#  print("server set_cookie_sub "+r+' '+cid+' '+str(val))
   row = app_tables.cookies.get(game_id=cid)
   if r == 'r1':
     last_val = row['r1sub']
@@ -71,7 +71,7 @@ def set_cookie_sub(r, val, cid):
   elif r == 'r2':
     last_val = row['r2sub']
     new_val = last_val + val
-    print("server set_cookie_sub "+r+' '+cid+' '+str(val)+' '+str(last_val)+' '+str(new_val))
+#    print("server set_cookie_sub "+r+' '+cid+' '+str(val)+' '+str(last_val)+' '+str(new_val))
     row['r2sub'] = new_val
   elif r == 'r3':
     last_val = row['r3sub']
@@ -190,11 +190,15 @@ def set_npbp(cid, npbp):
 #      else:
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
   tas = ['pov', 'ineq', 'emp', 'food', 'ener']
-  for runde in range(1,4):  # set up roles_assign
+  for runde in range(1,4):  # set up pcgd_advance_looked_at
     for re in regs:
       for ta in tas:
         if re not in npbp:
           app_tables.pcgd_advance_looked_at.add_row(game_id=cid,reg=re, round=runde, ta=ta, looked_at=False)
+  for runde in range(1,4):  # set up if submitted by reg and round
+    for re in regs:
+      if re not in npbp:
+        app_tables.submitted.add_row(game_id=cid,reg=re, round=runde, submitted=False)
 
   for runde in range(1,4):  # set up roles_assign
     for re in regs:

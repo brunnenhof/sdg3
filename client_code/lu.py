@@ -2620,11 +2620,11 @@ not_all_looked_at_title = [
   "_last_"
 ]
 not_all_looked_at_tx = [
-  "Not all your regional ministerial colleagues have looked at their results.",
-  "Noch haben sich alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
-  "Noch haben sich alle Deine regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut.",
-  "Tous vos collègues ministres régionaux n'ont pas encore consulté leurs résultats.",
-  "Alle dine regionale ministerkolleger har ennå ikke sett på resultatene sine.",
+  "Not all your regional ministerial colleagues have looked at their results:",
+  "Noch haben sich alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut:",
+  "Noch haben sich alle Deine regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut:",
+  "Tous vos collègues ministres régionaux n'ont pas encore consulté leurs résultats:",
+  "Alle dine regionale ministerkolleger har ennå ikke sett på resultatene sine:",
   "_last_"
 ]
 p_advance_to_next_round_tx_str = [

@@ -368,6 +368,23 @@ db_schema:
       type: number
     server: full
     title: step_done
+  submitted:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 133}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 132}
+      name: reg
+      type: string
+    - admin_ui: {order: 2, width: 149}
+      name: round
+      type: number
+    - admin_ui: {order: 3, width: 150}
+      name: submitted
+      type: bool
+    server: full
+    title: submitted
   test_plots:
     client: search
     columns:
