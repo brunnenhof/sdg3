@@ -1232,8 +1232,8 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
-      if len(rows_looked_at) < 5:
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
+      if len(rows_looked_at) > 0:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]
         for ii in range(0, len(not_looked_at_list)):
@@ -1521,7 +1521,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ self.do_ta_to_longmini(mg.my_ministry)
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1577,7 +1577,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ self.do_ta_to_longmini(mg.my_ministry)
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = True 
       self.pcgd_plot_card.visible = True 
@@ -1622,7 +1622,7 @@ class home(homeTemplate):
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
-      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ mg.pov_to_Poverty[mg.my_ministry]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ self.do_ta_to_longmini(mg.my_ministry)
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 

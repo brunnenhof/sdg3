@@ -362,8 +362,6 @@ def get_longrole_from_lu(x, lang):
 def get_longreg_from_lu(x, lang):
   if x == 'us':
     return lu.reg_to_longreg_us_str[lang]
-  if x == 'us':
-    return lu.reg_to_longreg_us_str[lang]
   if x == 'af':
     return lu.reg_to_longreg_af_str[lang]
   if x == 'cn':
@@ -379,9 +377,9 @@ def get_longreg_from_lu(x, lang):
   if x == 'ec':
     return lu.reg_to_longreg_ec_str[lang]
   if x == 'eu':
-    return lu.reg_to_longreg_se_str[lang]
+    return lu.reg_to_longreg_eu_str[lang]
   if x == 'se':
-    return lu.reg_to_longreg_us_str[lang]
+    return lu.reg_to_longreg_se_str[lang]
   pass
   
 def get_title_from_lu(x, lang):

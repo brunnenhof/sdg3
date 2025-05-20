@@ -131,7 +131,7 @@ reg_to_longreg_eu_str = [
   "Europe",
   "Europa",
   "Europa",
-  "Europe", 
+  "L'Europe", 
   "Europa", 
   "_last_"
 ]
@@ -2621,8 +2621,8 @@ not_all_looked_at_title = [
 ]
 not_all_looked_at_tx = [
   "Not all your regional ministerial colleagues have looked at their results:",
-  "Noch haben sich alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut:",
-  "Noch haben sich alle Deine regionalen Minister:innenkollegen ihre Ergebnisse nicht angeschaut:",
+  "Noch haben sich nicht alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
+  "Noch haben sich nicht alle Deine regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
   "Tous vos collègues ministres régionaux n'ont pas encore consulté leurs résultats:",
   "Alle dine regionale ministerkolleger har ennå ikke sett på resultatene sine:",
   "_last_"
