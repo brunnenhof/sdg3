@@ -1004,6 +1004,7 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
         rosub['submitted'] = True
+        ### check if last round has been submitted, if so, msg, return ...
       elif runde == 3:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
@@ -1163,8 +1164,8 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
-    self.gm_card_wait_1_info.content = ""
-    self.gm_card_wait_1_temp_title.text = ""
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_started_tx_str[lx]
+    self.gm_card_wait_1_temp_title.text = lu.gm_wait_round_started_title_tx_str[lx]
     self.task = anvil.server.call('launch_ugregmod', cid_cookie, von, bis)
 #      make something visible
     while not self.task.is_completed(): # model still running

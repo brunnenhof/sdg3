@@ -2216,6 +2216,14 @@ gm_wait_round_started_tx_str = [
     "Simuleringen startet. Vent til det er gjort ...", 
     "_last_"
     ]
+gm_wait_round_started_title_tx_str = [
+  "Simulating...",
+  "Simulieren... ",
+  "Simulieren... ",
+  "Simuler...", 
+  "Simulerer...", 
+  "_last_"
+]
  
 gm_start_round_tx_2_str = [
     "Check if all regions are ready to advance to 2060 ... ",
