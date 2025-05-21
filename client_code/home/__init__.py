@@ -1065,8 +1065,8 @@ class home(homeTemplate):
           self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
-          row_gm = app_tables.games_log.get(game_id=cid_cookie)
-          row_gm['gm_status'] = 12 # last submitt, but not yet run
+#          row_gm = app_tables.games_log.get(game_id=cid_cookie)
+#          row_gm['gm_status'] = 12 # last submitt, but not yet run
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
 #    for ug in range(0, len(mg.dbg_info)):
 #      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
@@ -1338,8 +1338,6 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
         self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1204)"
-    elif row['gm_status'] == 11:
-      pass## 2060 - 2100 submitted but not yet run
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4
