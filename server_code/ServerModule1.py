@@ -37,7 +37,7 @@ def fe_keepalive():
   
 @anvil.server.callable
 def generate_id():
-  not_allowed = ['FUCK', 'SHIT', 'NSU', 'AFD', 'CDU', 'CSU', 'BSW', 'FDP', 'NPD', 'FDJ', 'XXX', 'FCK', 'FCU','FKU','FKK']
+  not_allowed = ['FUCK', 'SHIT', 'NSU', 'AFD', 'CDU', 'CSU', 'BSW', 'FDP', 'NPD', 'FDJ', 'XXX', 'FCK', 'FCU','FKU','FKK','WTF']
   cid = ''.join(random.choices(string.ascii_uppercase, k=3))
   while cid in not_allowed:
     cid = ''.join(random.choices(string.ascii_uppercase, k=3))
@@ -632,6 +632,11 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
                               fig=fdz['fig'], cap=cap, runde=runde, ta=single_ta, reg=region)
 
 @anvil.server.callable
+def launch_budget_to_db(yr, db):
+  task = budget_to_db(yr, db)
+  return task
+  
+@anvil.server.background_task
 def budget_to_db(yr, cid):
   regs = mg.regs
   if yr == 2025:

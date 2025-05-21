@@ -221,7 +221,7 @@ class home(homeTemplate):
     self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
-    anvil.server.call('budget_to_db', 2025, game_id)
+    anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
@@ -968,7 +968,7 @@ class home(homeTemplate):
                   large=False,
                   buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)])
     if not result :
-      n = Notification(lu.nothing_submitted_tx_str[lx])
+      n = Notification(lu.nothing_submitted_tx_str[lx], title=lu.nothing_submitted_title_str[lx])
       n.show()
     else: ## submission confirmed, reg DID submit numbers
       my_cid = mg.my_personal_game_id
@@ -1027,7 +1027,7 @@ class home(homeTemplate):
         elif runde == 3:
           my_p_step_done = 7
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
-        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=3)
+        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show() 
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
@@ -1044,7 +1044,7 @@ class home(homeTemplate):
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         rg = app_tables.games_log.get(game_id=cid_cookie)
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
         ## give feedback
@@ -1085,11 +1085,11 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     cid_cookie = anvil.server.call('get_game_id_from_cookie')
     row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = self.err_msg.text + "\n--------entering gm_start_round_click line= (1066) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
+    self.err_msg.text = self.err_msg.text + "\n--------entering gm_start_round_click line= (1088) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
 
-      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4, style="warning")
+      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2, style="warning")
       n.show()
       self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
       self.gm_start_round.visible = True
@@ -1106,7 +1106,7 @@ class home(homeTemplate):
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
-        n = Notification(lmsg, style="warning", timeout=4)
+        n = Notification(lmsg, style="warning", timeout=2)
         n.show()
         self.gm_start_round.visible = True
         return
@@ -1128,7 +1128,7 @@ class home(homeTemplate):
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
-        n = Notification(lmsg, style="warning", timeout=4)
+        n = Notification(lmsg, style="warning", timeout=2)
         n.show()
         self.gm_start_round.visible = True        
         return
@@ -1144,7 +1144,7 @@ class home(homeTemplate):
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
-        n = Notification(lmsg, style="warning", timeout=4)
+        n = Notification(lmsg, style="warning", timeout=2)
         n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
         self.gm_start_round.visible = True        
@@ -1163,6 +1163,8 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
+    self.gm_card_wait_1_info.content = ""
+    self.gm_card_wait_1_temp_title.text = ""
     self.task = anvil.server.call('launch_ugregmod', cid_cookie, von, bis)
 #      make something visible
     while not self.task.is_completed(): # model still running
@@ -1177,7 +1179,7 @@ class home(homeTemplate):
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
-        anvil.server.call('budget_to_db', 2040, cid_cookie)
+        anvil.server.call('launch_budget_to_db', 2040, cid_cookie)
 #        row_ws = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie,round=runde, reg=mg.my_reg, ta=mg.my_ministry)
 #        row_ws['looked_at'] = True
       elif runde == 2:
@@ -1185,7 +1187,7 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         row['gm_status'] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
-        anvil.server.call('budget_to_db', 2060, cid_cookie)
+        anvil.server.call('launch_budget_to_db', 2060, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10'
 #        row_ws = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie,round=runde, reg=mg.my_reg, ta=mg.my_ministry)
 #        row_ws['looked_at'] = True
@@ -1206,7 +1208,7 @@ class home(homeTemplate):
     l1 = []
     for r in rows_looked_at:
       ta = r['ta']
-      self.err_msg.text = self.err_msg.text + '\n--- get_not_looked_at '+ta+' land='+str(lx)
+#      self.err_msg.text = self.err_msg.text + '\n--- get_not_looked_at '+ta+' land='+str(lx)
       if ta == 'pov':
         longta = lu.ta_to_longmini_pov_str[lx]
       elif ta == 'ineq':
@@ -1219,7 +1221,7 @@ class home(homeTemplate):
         longta = lu.ta_to_longmini_ener_str[lx]
       elif ta == 'fut':
         longta = lu.ta_to_longmini_fut_str[lx]
-      self.err_msg.text = self.err_msg.text + '\n--- longta '+longta
+#      self.err_msg.text = self.err_msg.text + '\n--- longta '+longta
       l1.append(longta)
     return l1
     
@@ -1241,7 +1243,7 @@ class home(homeTemplate):
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-        lmsg = lu.not_all_looked_at_tx[lx]
+        lmsg = lu.not_all_looked_at_tx[lx]+"\n"
         for ii in range(0, len(not_looked_at_list)):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
@@ -1270,15 +1272,16 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr,lx )
-        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
+#        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       reg = mg.my_reg
       runde = 3
       yr = 2060
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=True)
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
+      self.err_msg.text = self.err_msg.text + "\n\np_advance_to_next_round_click len_la="+str(len(rows_looked_at))+' yr='+str(yr)+' runde='+str(runde)
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-        lmsg = lu.not_all_looked_at_tx[lx]
+        lmsg = lu.not_all_looked_at_tx[lx]+"\n"
         for ii in range(0, len(not_looked_at_list)):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
@@ -1312,10 +1315,10 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 4
       yr = 2100
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=True)
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-        lmsg = lu.not_all_looked_at_tx[lx]
+        lmsg = lu.not_all_looked_at_tx[lx]+"\n"
         for ii in range(0, len(not_looked_at_list)):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
@@ -1378,7 +1381,7 @@ class home(homeTemplate):
       self.refresh_numbers.visible = True
       
   def test_model_click(self, **event_args):
-    n= Notification("off to run the model from test_model_click", timeout=4)
+    n= Notification("off to run the model from test_model_click", timeout=2)
     n.show()
     cid = mg.my_game_id
     self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
@@ -1386,7 +1389,7 @@ class home(homeTemplate):
     while not self.task.is_completed(): # model still running
       pass
     else: ## model is done
-      Notification("Model is done", timeout=3)
+      Notification("Model is done", timeout=2)
 
   def get_sorted_pol_list(self, runde, pol):
     r_to_x = {
@@ -1498,19 +1501,19 @@ class home(homeTemplate):
     self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus="+str(gmStatus)
     if gmStatus == 4:
       ### NOT all regs have submitted for round 2025 to 2040
-      n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
+      n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       return
     if gmStatus == 5:
       ### all regs HAVE submitted for round 2025 to 2040
-      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
+      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
       return
 #    if gmStatus == 6:
 #      ### waiting for GM to start round 2025 to 2040
-#      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
+#      n = Notification(mg.waiting_for_gm_to_start_round, timeout=2, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
     self.err_msg.text = self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
@@ -1528,7 +1531,7 @@ class home(homeTemplate):
         return
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(lu.sim_success_tx40_str[lx], timeout=3, title=lu.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx40_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1577,14 +1580,19 @@ class home(homeTemplate):
         n.show()
         return
       else:
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, style="info")
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, style="info")
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx -- gmStatus is "+str(gmStatus)
+      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=my_cid,reg=reg,ta=mg.my_ministry,round=2)
+      if row_looked_at['looked_at']:
+        n = Notification(lu.nix_neues_tx[lx], title=lu.nix_neues_title[lx], style="info")
+        n.show()
+        return
       anfang = time.time()
       ### round 2040 to 2060 ran successfully
-      n = Notification(lu.sim_success_tx60_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx60_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1628,8 +1636,13 @@ class home(homeTemplate):
       return
     if gmStatus == 12: ## 2060 to 2100 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus is "+str(gmStatus)
+      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=my_cid,reg=reg,ta=mg.my_ministry,round=3)
+      if row_looked_at['looked_at']:
+        n = Notification(lu.nix_neues_tx[lx], title=lu.nix_neues_title[lx], style="info")
+        n.show()
+        return
       anfang = time.time()
-      n = Notification(lu.sim_success_tx21_str[lx], timeout=5, title=lu.sim_success_title_txend_str[lx], style="success")
+      n = Notification(lu.sim_success_tx21_str[lx], timeout=2, title=lu.sim_success_title_txend_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1735,3 +1748,40 @@ class home(homeTemplate):
     else:
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
+
+  def recover_game_click(self, **event_args):
+    ### enter game ID
+    ### if gmStatus = 5 OK
+    lx = mg.my_lang
+    self.lang_card.visible = False 
+    self.top_entry.visible = False
+    self.card_recover.visible = True 
+    self.recover_lb.text = "Enter the game ID you want to recover"
+    self.recover_txbx.placeholder = "game ID to recover"
+    self.recover_txbx.focus()
+
+  def recover_txbx_pressed_enter(self, **event_args):
+    t = self.recover_txbx.text.upper()
+    rows = app_tables.games_log.search(game_id=t)
+    if len(rows) == 1:
+      if rows[0]['gm_status'] == 5:
+        alert("got a recoverable game")
+        self.card_recover.visible = False 
+        self.gm_role_reg.visible = True
+        self.gm_board.visible = False 
+        self.gm_board_info.visible = False ## or content = ""
+        self.cb_us.visible = False 
+        self.cb_af.visible = False 
+        self.cb_cn.visible = False 
+        self.cb_me.visible = False 
+        self.cb_pa.visible = False 
+        self.cb_la.visible = False 
+        self.cb_sa.visible = False 
+        self.cb_ec.visible = False 
+        self.cb_eu.visible = False 
+        self.cb_se.visible = False 
+        self.gm_reg_npbp.visible = False
+        self.gm_card_wait_1.visible = True
+        
+        
+    pass

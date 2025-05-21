@@ -1656,11 +1656,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.2c",
-  "Das WK Spiel v0.2c",
-  "Das WK Spiel v0.2c",
-  "Le Jeu OL v0.2c",
-  "FL-spill v0.2c", 
+  "OC Game v0.2d",
+  "Das WK Spiel v0.2d",
+  "Das WK Spiel v0.2d",
+  "Le Jeu OL v0.2d",
+  "FL-spill v0.2d", 
   "_last_"
 ]
 need_one_reg = [
@@ -2627,6 +2627,15 @@ nothing_submitted_tx_str = [
     "Ingenting ble sendt inn ...", 
     "_last_"
     ]
+nothing_submitted_title_str = [
+  "Returning",
+  "Zurück",
+  "Zurück",
+  "Retourner", 
+  "Ingenting ble sendt inn ...", 
+  "_last_"
+]
+
 not_all_looked_at_title = [
   "Your regional colleagues aren't ready",
   "Die Kollegen:innen in Ihrer Region sind noch nicht so weit",
