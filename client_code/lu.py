@@ -1656,11 +1656,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.2d",
-  "Das WK Spiel v0.2d",
-  "Das WK Spiel v0.2d",
-  "Le Jeu OL v0.2d",
-  "FL-spill v0.2d", 
+  "OC Game v0.2e",
+  "Das WK Spiel v0.2e",
+  "Das WK Spiel v0.2e",
+  "Le Jeu OL v0.2e",
+  "FL-spill v0.2e", 
   "_last_"
 ]
 need_one_reg = [
