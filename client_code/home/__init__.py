@@ -1004,7 +1004,6 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
         rosub['submitted'] = True
-        ### check if last round has been submitted, if so, msg, return ...
       elif runde == 3:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
