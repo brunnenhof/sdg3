@@ -1064,7 +1064,9 @@ class home(homeTemplate):
           # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
         elif runde == 3:
-          # p_advance_to_2_tx = "Get the results until the end of the century"
+          self.err_msg.text = self.err_msg.text + "\n---elif runde == 3: "
+          
+        # p_advance_to_2_tx = "Get the results until the end of the century"
 #          row_gm = app_tables.games_log.get(game_id=cid_cookie)
 #          row_gm['gm_status'] = 12 # last submitt, but not yet run
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
@@ -1292,20 +1294,23 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr,lx )
 #        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
+      self.err_msg.text = self.err_msg.text + "\n\n-- gm_status = 10 runde = 3"
       reg = mg.my_reg
       runde = 3
       yr = 2060
       row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
       if row_sub is None:
+        self.err_msg.text = self.err_msg.text + "\n-- row_sub = NONE"
         n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
         n.show()
         return
       if len(row_sub) < 5:
+        self.err_msg.text = self.err_msg.text + "\n-- len(row_sub) < 5, it is "+str(len(row_sub))
         n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
         n.show()
         return
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
-      self.err_msg.text = self.err_msg.text + "\n\np_advance_to_next_round_click len_la="+str(len(rows_looked_at))+' yr='+str(yr)+' runde='+str(runde)
+      self.err_msg.text = self.err_msg.text + "\n-- len(rows_looked_at) = "+str(len(rows_looked_at))
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]+"\n"
@@ -1313,7 +1318,16 @@ class home(homeTemplate):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060"
+      row_rx = app_tables.cookies.get(game_id=cid)
+      rxsub = row_rx['r3sub']
+      self.err_msg.text = self.err_msg.text + "\ngm_status= 10 rxsub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060 r3sub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\n-- getting looked at for round 3"
+      if rxsub == 10: ## fut is never set
+        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
+        n.show()
+        return
+      self.err_msg.text = self.err_msg.text + "\n-- line 1331"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
