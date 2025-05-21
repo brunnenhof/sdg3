@@ -1007,6 +1007,8 @@ class home(homeTemplate):
           n = Notification(lu.already_submitted_tx[lx], title=lu.already_submitted_title[lx],style="warning")
           n.show()
           return
+        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
+        rosub['submitted'] = True
       elif runde == 3:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
@@ -1075,7 +1077,7 @@ class home(homeTemplate):
     not_sub_list = []
     for r in rows:
       longreg = lu.do_reg_to_longreg(r['reg'])
-      self.err_msg.text = self.err_msg.text + "\nget_not_all_sub longreg="+longreg
+      self.err_msg.text = self.err_msg.text + "\nget_not_all_sub in loop longreg="+longreg
       not_sub_list.append(longreg)
     return not_sub_list
     
@@ -1091,7 +1093,6 @@ class home(homeTemplate):
     self.err_msg.text = self.err_msg.text + "\n--------entering gm_start_round_click line= (1088) " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
-
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2, style="warning")
       n.show()
       self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
@@ -1136,6 +1137,7 @@ class home(homeTemplate):
         self.gm_start_round.visible = True        
         return
     elif row['gm_status'] == 10:
+      self.err_msg.text = "\n-----gm_start_round_click gm_status = 10 " + str(cid_cookie) + ' gm_status=' + str(row['gm_status'])
       von = 2060
       bis = 2100
       runde = 3
@@ -1143,6 +1145,18 @@ class home(homeTemplate):
       rxsub = row['r3sub']
       self.err_msg.text = self.err_msg.text + "\ngm_status= 10 rxsub="+str(rxsub)
       if rxsub < 10:
+        not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
+        lmsg = lu.nicht_all_sub_gm_tx_str[lx]
+        for ii in range(0, len(not_all_sub_list)):
+          lmsg = lmsg + "\n" + not_all_sub_list[ii]
+        n = Notification(lmsg, style="warning", timeout=2)
+        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
+        n.show()
+        self.gm_start_round.visible = True        
+        return
+      row_submitted = app_tables.submitted.search(game_id=cid_cookie, round=runde, submitted=False)
+      self.err_msg.text = "\nlen(row_submitted) " + str(len(row_submitted))
+      if len(row_submitted) > 0:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
@@ -1561,6 +1575,8 @@ class home(homeTemplate):
           self.card_fut.visible = True
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
           self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=1)
+          row_looked_at['looked_at'] = True
         else:
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
@@ -1616,6 +1632,8 @@ class home(homeTemplate):
       else: ## launch_create_plots_for_slots is done
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
+        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=2)
+        row_looked_at['looked_at'] = True
         if role == 'fut':
           self.dec_card.visible = False
           self.pcgd_info_rd1.visible = True
@@ -1626,8 +1644,6 @@ class home(homeTemplate):
           self.dec_card.visible = True
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
           self.pcgd_info_rd1.visible = True
-          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=2)
-          row_looked_at['looked_at'] = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
@@ -1666,6 +1682,8 @@ class home(homeTemplate):
       else: ## launch_create_plots_for_slots is done
         self.pcgd_generating.visible = False
         self.pcgd_plot_card.visible = True
+        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=3)
+        row_looked_at['looked_at'] = True
         if role == 'fut':
           self.dec_card.visible = False
           self.pcgd_info_rd1.visible = True
@@ -1676,8 +1694,6 @@ class home(homeTemplate):
           self.dec_card.visible = False
           self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
           self.pcgd_info_rd1.visible = True
-          row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg= reg, ta=role, round=3)
-          row_looked_at['looked_at'] = True
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         if role == 'fut':
