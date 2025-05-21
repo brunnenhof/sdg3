@@ -54,6 +54,7 @@ components:
           margin: ['0', null, '0', null]
         text: Recover
         text_color: white
+        visible: false
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: top_start_game_click}
       layout_properties: {grid_position: 'PINTXY,HDMYCU'}

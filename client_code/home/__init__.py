@@ -974,7 +974,7 @@ class home(homeTemplate):
       my_cid = mg.my_personal_game_id
       cid = mg.my_game_id
       yr, runde = self.get_runde(cid)
-      self.err_msg.text = self.err_msg.text + "\n--------entering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
+      self.err_msg.text = "\n---entering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
       row = app_tables.step_done.get(game_id=cid, reg=reg)
@@ -989,7 +989,7 @@ class home(homeTemplate):
       ## bump cookie for this round r_sub by one
       all_regs_sub = False
       if runde == 1:
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r1sub'] == 10:
@@ -997,7 +997,7 @@ class home(homeTemplate):
         rosub = app_tables.submitted.get(game_id=cid_cookie, round=1,reg=reg)
         rosub['submitted'] = True
       elif runde == 2:
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
@@ -1007,10 +1007,10 @@ class home(homeTemplate):
           n = Notification(lu.already_submitted_tx[lx], title=lu.already_submitted_title[lx],style="warning")
           n.show()
           return
-        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
+#        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
         rosub['submitted'] = True
       elif runde == 3:
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r3sub'] == 10:
@@ -1034,7 +1034,7 @@ class home(homeTemplate):
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
         n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show() 
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
+        self.err_msg.text = self.err_msg.text + "\n--- not all_regs_sub  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         rc = app_tables.cookies.get(game_id=cid_cookie)
@@ -1048,7 +1048,6 @@ class home(homeTemplate):
         if row['gm_status'] == 9:
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
-        rg = app_tables.games_log.get(game_id=cid_cookie)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
@@ -1057,7 +1056,7 @@ class home(homeTemplate):
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True 
         self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click:: p_advance_to_next_round_wait_str:" + lu.p_advance_to_next_round_wait_str[lx]
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click:: p_advance_to_next_round_wait_str: " + lu.p_advance_to_next_round_wait_str[lx]
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
@@ -1066,10 +1065,12 @@ class home(homeTemplate):
           self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
+          row_gm = app_tables.games_log.get(game_id=cid_cookie)
+          row_gm['gm_status'] = 11 # last submitt, but not yet run
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-    for ug in range(0, len(mg.dbg_info)):
-      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
-    mg.dbg_info = []
+#    for ug in range(0, len(mg.dbg_info)):
+#      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
+#    mg.dbg_info = []
 
   def get_not_all_sub(self, cid, runde):
     reg = mg.my_reg
@@ -1294,6 +1295,15 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 3
       yr = 2060
+      row_sub = app_tables.submitted.get(game_id=cid, reg=reg, round=runde, submitted=True)
+      if row_sub is None:
+        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.submitted_but_not_run_title[lx], style="warning")
+        n.show()
+        return
+      if len(row_sub) == 1:
+        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.submitted_but_not_run_title[lx], style="warning")
+        n.show()
+        return
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
       self.err_msg.text = self.err_msg.text + "\n\np_advance_to_next_round_click len_la="+str(len(rows_looked_at))+' yr='+str(yr)+' runde='+str(runde)
       if len(rows_looked_at) > 1:
@@ -1328,6 +1338,8 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
         self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1204)"
+    elif row['gm_status'] == 11:
+      pass## 2060 - 2100 submitted but not yet run
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4

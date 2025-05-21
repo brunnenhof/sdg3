@@ -2255,6 +2255,23 @@ gm_start_round_tx_3_str = [
     "Sjekk om alle regioner er klare til å gå videre til 2100 ...", 
     "_last_"
     ]
+submitted_but_not_run_tx = [
+  "Decisions have been submitted, but the model has not been run",
+  "Die Entscheidungen wurden übermittelt, aber das Modell wurde noch nicht ausgeführt.",
+  "Die Entscheidungen wurden übermittelt, aber das Modell wurde noch nicht ausgeführt.",
+  "Les décisions ont été transmises, mais le modèle n'a pas encore été exécuté.",
+  "Beslutningene er kommunisert, men modellen er ennå ikke oppdatert.",
+  "_last_"
+]
+submitted_but_not_run_title = [
+  "Waiting for simulation",
+  "Warten auf die Simulation",
+  "Warten auf die Simulation",
+  "En attente de simulation",
+  "Venter på simulering",
+  "_last_"
+]
+
 waiting_for_gm_to_start_round_str = [
     "... for simulation to start ... ",
     "... bis die Simulation beginnt ... ",
