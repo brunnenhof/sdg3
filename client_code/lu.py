@@ -2201,13 +2201,28 @@ pcgd_generating_tx2_str = [
 ]
 pcgd_generating_tx3_str = [
   "Generating graphs until 2100 ",
-    " Diagramme bis 2100 werden erstellt ",
-    " Diagramme bis 2100 werden erstellt ",
-    "Génération de graphiques jusqu'à 2100", 
-    "Generere grafer til 2100", 
-    "_last_"
-    ]
- 
+  " Diagramme bis 2100 werden erstellt ",
+  " Diagramme bis 2100 werden erstellt ",
+  "Génération de graphiques jusqu'à 2100", 
+  "Generere grafer til 2100", 
+  "_last_"
+]
+already_submitted_tx = [
+  "Your numbers have already been submitted for this round",
+  "Sie haben Ihre Zahlen bereits für diese Runde eingereicht",
+  "Du hast Deine Zahlen bereits für diese Runde eingereicht",
+  "Vous avez déjà soumis vos chiffres pour ce tour",
+  "Du har allerede sendt inn tallene dine for denne runden",
+  "_last_"  
+]
+already_submitted_title = [
+  "Already submitted",
+  "Bereits übermittelt",
+  "Bereits übermittelt",
+  "Déjà envoyé",
+  "Allerede innlevert",
+  "_last_"  
+]
 gm_wait_round_started_tx_str = [
     "The simulation started. Please wait until it is done... ",
     "Die Simulation hat begonnen. Bitte warten Sie, bis sie abgeschlossen ist... ",
@@ -2224,7 +2239,6 @@ gm_wait_round_started_title_tx_str = [
   "Simulerer...", 
   "_last_"
 ]
- 
 gm_start_round_tx_2_str = [
     "Check if all regions are ready to advance to 2060 ... ",
     "Überprüfen Sie, ob alle Regionen ihre Massnahmen bis 2060 übermittelt haben ... ",
@@ -2233,7 +2247,6 @@ gm_start_round_tx_2_str = [
     "Sjekk om alle regioner er klare til å gå videre til 2060 ...", 
     "_last_"
     ]
- 
 gm_start_round_tx_3_str = [
     "Check if all regions are ready to advance to 2100 ... ",
     "Überprüfen Sie, ob alle Regionen ihre Massnahmen bis 2100 übermittelt haben ... ",
@@ -2242,7 +2255,6 @@ gm_start_round_tx_3_str = [
     "Sjekk om alle regioner er klare til å gå videre til 2100 ...", 
     "_last_"
     ]
- 
 waiting_for_gm_to_start_round_str = [
     "... for simulation to start ... ",
     "... bis die Simulation beginnt ... ",
@@ -2251,7 +2263,6 @@ waiting_for_gm_to_start_round_str = [
     "... for simulering å starte ...", 
     "_last_"
     ]
- 
 gm_wait_sub2_tx_str = [
     "... for all submissions for the round 2040 to 2060 ... ",
     "... auf alle Massnahmen für die Runde 2040 bis 2060 ... ",
