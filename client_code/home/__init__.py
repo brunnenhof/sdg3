@@ -25,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'fr'
+#    my_loc = 'fr'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -1521,6 +1521,11 @@ class home(homeTemplate):
         n.show()
         return
       self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
+      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=my_cid,reg=reg,ta=mg.my_ministry,round=1)
+      if row_looked_at['looked_at']:
+        n = Notification(lu.nix_neues_tx[lx], title=lu.nix_neues_title[lx], style="info")
+        n.show()
+        return
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(lu.sim_success_tx40_str[lx], timeout=3, title=lu.sim_success_title_tx_str[lx], style="success")

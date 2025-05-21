@@ -2051,7 +2051,7 @@ gm_card_wait_1_info_tx_str = [
   "All roles have been set up now. Tell your players to log in **now**, using the Game ID shown above. \nInstruct them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. \nCheck repeatedly if all your players have logged in by clicking the **Check LogIn** button. \nOnce they are ready to proceed to the next round **---** this will take some time! **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet. ",
   "Alle Rollen sind nun eingerichtet. Bitten Sie Ihre Spieler, sich **jetzt** mit der Spiel ID, die oben angezeigt wird, einzuloggen. \nSagen Sie Ihnen, sie sollen den Zustand ihrer Region in den letzten 45 Jahren betrachten und ihre Entscheidungen zur Verbesserung des Lebens ihrer Bevölkerung ausdiskutieren. \nÜberprüfen Sie wiederholt, ob sich alle Ihre Spieler:innen angemeldet haben, indem Sie auf die Schaltfläche **Anmeldungen prüfen** klicken. \nSobald sie bereit sind, mit der nächsten Runde fortzufahren, **---** das kann dauern! **---** klicken Sie auf die Schaltfläche **Modell für die nächste Runde laufen lassen**. Wenn die Schaltfläche *Modell für die nächste Runde laufen lassen* **nicht** angezeigt wird, sind Ihre Spieler noch nicht soweit. ",
   "Alle Rollen sind nun eingerichtet. Bitten Sie Ihre Spieler, sich **jetzt** mit der Spiel ID, die oben angezeigt wird, einzuloggen. \nSagen Sie Ihnen, sie sollen den Zustand ihrer Region in den letzten 45 Jahren betrachten und ihre Entscheidungen zur Verbesserung des Lebens ihrer Bevölkerung ausdiskutieren. \nÜberprüfen Sie wiederholt, ob sich alle Ihre Spieler:innen angemeldet haben, indem Sie auf die Schaltfläche **Anmeldungen prüfen** klicken. \nSobald sie bereit sind, mit der nächsten Runde fortzufahren, **---** das kann dauern! **---** klicken Sie auf die Schaltfläche **Modell für die nächste Runde laufen lassen**. Wenn die Schaltfläche *Modell für die nächste Runde laufen lassen* **nicht** angezeigt wird, sind Ihre Spieler noch nicht soweit. ",
-  "Tous les rôles ont été définis. Dites à vos joueurs de se connecter **maintenant**, en utilisant l'identifiant de jeu indiqué ci-dessus. \nDemandez-leur d'examiner l'état de leur région au cours des 45 dernières années et de discuter des décisions qu'ils ont prises pour améliorer la vie de leur population. \nVérifiez à plusieurs reprises que tous vos joueurs se sont connectés en cliquant sur le bouton **Vérifier la connexion**. \nUne fois qu'ils sont prêts à passer au tour suivant **---** cela prendra un certain temps! **---** cliquez sur le bouton **Prêt à faire avancer le modèle pour le prochain tour**. Si le bouton *Avancer* n'apparaît pas, c'est que vos joueurs ne sont pas encore prêts.", 
+  "Tous les rôles ont été définis. Dites à vos joueurs de se connecter **maintenant**, en utilisant l'identifiant de jeu indiqué ci-dessus. \nDemandez-leur d'examiner l'état de leur région au cours des 45 dernières années et de discuter des décisions qu'ils ont prises pour améliorer la vie de leur population. \nVérifiez à plusieurs reprises que tous vos joueurs se sont connectés en cliquant sur le bouton **Vérifier les insprictiones**. \nUne fois qu'ils sont prêts à passer au tour suivant **---** cela prendra un certain temps! **---** cliquez sur le bouton **Prêt à faire avancer le modèle pour le prochain tour**. Si le bouton *Avancer* n'apparaît pas, c'est que vos joueurs ne sont pas encore prêts.", 
   "Alle rollene er satt opp nå. Be spillerne dine om å logge inn **nå** ved å bruke spill-ID-en som er vist ovenfor. \nBe dem om å se på tilstanden i regionen sin de siste 45 årene og diskutere beslutningene de må tar for å forbedre livet til folket sitt. \nSjekk gjentatte ganger om alle spillerne har logget inn ved å klikke på knappen **Sjekk innlogging**. \nNår de er klare til å gå videre til neste runde **---** dette vil ta litt tid! **---** klikk på knappen **Oppdater modellen til neste runde**. Hvis knappen *Oppdater* ikke vises, er ikke spillerne dine klare ennå.",
   "_last_"
 ]
@@ -2083,7 +2083,7 @@ gm_wait_round_done_tx0_str = [
   "The model has been advanced to 2040. Tell your players to click on the \nGet the results...  or \nCheck if all regions... button. ",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen... oder \nÜberprüfen, ob der/die Spielleiter:in... zu klicken. ",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \nErgebnisse abrufen... oder \nÜberprüfen, ob der/die Spielleiter:in... zu klicken. ",
-  "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton « Obtenir les résultats... » ou « Vérifier si le meneur de jeu...",
+  "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton «Obtenir les résultats...» ou «Vérifiez si toutes les régions...»",
   "Modellen har blitt oppdatert frem til 2040. Be spillerne dine om å klikke på knappen \nFå resultatene... eller \nSjekk om spillederen....",
   "_last_"
 ]
@@ -2101,6 +2101,22 @@ gm_wait_round_done_tx3_str = [
   "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen Deine Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nCiao",
   "Le modèle a été mis à jour jusqu'à la fin, en 2100. Demandez à vos joueurs de regarder et de discuter de leurs résultats dans et entre les régions. Tout se déroule-t-il comme prévu ? Sont-ils satisfaits ? Leurs citoyens sont-ils satisfaits ? La Terre est-elle encore habitable ? \nEnfin, ramenez-les hors du jeu, ici et maintenant, et commencez le débriefing.\nMerci de jouer - nous apprécions votre temps et votre engagement!\nRéponse? Envoyez-le à post at blue minus way dot net.\n\nAu revoir",
   "Modellen ble oppdatert frem til slutten av år 2100. Be spillerne dine se på og diskutere resultatene innad i og mellom regionene. Går alt etter planen? Er de fornøyde? Er innbyggerne fornøyde? Er jorden fortsatt beboelig? \nTil slutt tar du dem ut av spillet og tilbake til her og nå, og begynner debriefingen.\nTakk for at du har spillet - vi setter pris på din tid og innsats! \nTilbakemeldinger? Vennligst send til post at blue minus way dot net\n\nHa det bra",
+  "_last_"
+]
+nix_neues_tx = [
+  "There is nothing new to report",
+  "Es gibt nichts neues to zeigen",
+  "Es gibt nichts neues to zeigen",
+  "Rien de nouveau à montrer",
+  "Det er ikke noe nytt å vise frem",
+  "_last_"
+]
+nix_neues_title = [
+  "Nothing new",
+  "Nichts neues",
+  "Nichts neues",
+  "Rien de nouveau",
+  "Intet nytt",
   "_last_"
 ]
 sim_success_tx40_str = [
