@@ -2041,8 +2041,8 @@ gm_card_wait_1_temp_title_tx1_str = [
 ]
 gm_card_wait_1_temp_title_tx2_str = [
   "All logged in! By clicking on the Ready to advance button, you can check if all your regions have submitted their policies. Tell them how much time they still have. ",
-  "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
-  "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
+  "Alle sind eingelogged! Klicken Sie auf Modell für die nächste Runde..., um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
+  "Alle sind eingelogged! Klicken Sie auf Modell für die nächste Runde..., um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
   "Tout le monde est connecté ! Cliquez sur Prêt à continuer pour vérifier que toutes vos régions ont envoyé leurs directives. Indiquez-leur le temps qu'il leur reste. ",
   "Alt logget inn! Ved å klikke på Ready to Advance -knappen, kan du sjekke om alle regionene dine har sendt inn retningslinjene sine. Fortell dem hvor mye tid de fortsatt har.", 
   "_last_"
@@ -2051,7 +2051,7 @@ gm_card_wait_1_info_tx_str = [
   "All roles have been set up now. Tell your players to log in **now**, using the Game ID shown above. \nInstruct them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people. \nCheck repeatedly if all your players have logged in by clicking the **Check LogIn** button. \nOnce they are ready to proceed to the next round **---** this will take some time! **---** click on the **Advance the model for the next round** button. If the *advance* button does not show, your players are not ready yet. ",
   "Alle Rollen sind nun eingerichtet. Bitten Sie Ihre Spieler, sich **jetzt** mit der Spiel ID, die oben angezeigt wird, einzuloggen. \nSagen Sie Ihnen, sie sollen den Zustand ihrer Region in den letzten 45 Jahren betrachten und ihre Entscheidungen zur Verbesserung des Lebens ihrer Bevölkerung ausdiskutieren. \nÜberprüfen Sie wiederholt, ob sich alle Ihre Spieler:innen angemeldet haben, indem Sie auf die Schaltfläche **Anmeldungen prüfen** klicken. \nSobald sie bereit sind, mit der nächsten Runde fortzufahren, **---** das kann dauern! **---** klicken Sie auf die Schaltfläche **Modell für die nächste Runde laufen lassen**. Wenn die Schaltfläche *Modell für die nächste Runde laufen lassen* **nicht** angezeigt wird, sind Ihre Spieler noch nicht soweit. ",
   "Alle Rollen sind nun eingerichtet. Bitten Sie Ihre Spieler, sich **jetzt** mit der Spiel ID, die oben angezeigt wird, einzuloggen. \nSagen Sie Ihnen, sie sollen den Zustand ihrer Region in den letzten 45 Jahren betrachten und ihre Entscheidungen zur Verbesserung des Lebens ihrer Bevölkerung ausdiskutieren. \nÜberprüfen Sie wiederholt, ob sich alle Ihre Spieler:innen angemeldet haben, indem Sie auf die Schaltfläche **Anmeldungen prüfen** klicken. \nSobald sie bereit sind, mit der nächsten Runde fortzufahren, **---** das kann dauern! **---** klicken Sie auf die Schaltfläche **Modell für die nächste Runde laufen lassen**. Wenn die Schaltfläche *Modell für die nächste Runde laufen lassen* **nicht** angezeigt wird, sind Ihre Spieler noch nicht soweit. ",
-  "Tous les rôles ont été définis. Dites à vos joueurs de se connecter **maintenant**, en utilisant l'identifiant de jeu indiqué ci-dessus. \nDemandez-leur d'examiner l'état de leur région au cours des 45 dernières années et de discuter des décisions qu'ils ont prises pour améliorer la vie de leur population. \nVérifiez à plusieurs reprises que tous vos joueurs se sont connectés en cliquant sur le bouton **Vérifier la connexion**. \nUne fois qu'ils sont prêts à passer au tour suivant **---** cela prendra un certain temps! **---** cliquez sur le bouton **Avancer le modèle pour le prochain tour**. Si le bouton *Avancer* n'apparaît pas, c'est que vos joueurs ne sont pas encore prêts.", 
+  "Tous les rôles ont été définis. Dites à vos joueurs de se connecter **maintenant**, en utilisant l'identifiant de jeu indiqué ci-dessus. \nDemandez-leur d'examiner l'état de leur région au cours des 45 dernières années et de discuter des décisions qu'ils ont prises pour améliorer la vie de leur population. \nVérifiez à plusieurs reprises que tous vos joueurs se sont connectés en cliquant sur le bouton **Vérifier la connexion**. \nUne fois qu'ils sont prêts à passer au tour suivant **---** cela prendra un certain temps! **---** cliquez sur le bouton **Prêt à faire avancer le modèle pour le prochain tour**. Si le bouton *Avancer* n'apparaît pas, c'est que vos joueurs ne sont pas encore prêts.", 
   "Alle rollene er satt opp nå. Be spillerne dine om å logge inn **nå** ved å bruke spill-ID-en som er vist ovenfor. \nBe dem om å se på tilstanden i regionen sin de siste 45 årene og diskutere beslutningene de må tar for å forbedre livet til folket sitt. \nSjekk gjentatte ganger om alle spillerne har logget inn ved å klikke på knappen **Sjekk innlogging**. \nNår de er klare til å gå videre til neste runde **---** dette vil ta litt tid! **---** klikk på knappen **Oppdater modellen til neste runde**. Hvis knappen *Oppdater* ikke vises, er ikke spillerne dine klare ennå.",
   "_last_"
 ]
@@ -2059,7 +2059,7 @@ gm_card_wait_1_btn_check_tx_str = [
   "Check LogIn ",
   "Anmeldungen prüfen ",
   "Anmeldungen prüfen ",
-  "Vérifier la connexion", 
+  "Vérifier les inscriptions", 
   "Sjekk innlogging", 
   "_last_"
 ]
@@ -2778,7 +2778,7 @@ enter_code_tx = [
   "Start-code, please",
   "Start-Code, bitte",
   "Start-Code, bitte",
-  "Code de démarrage, s'il vous plaît",
+  "Code de départ, s'il vous plaît",
   "Start-Code, vær så snilll",
   "_last_"
 ]  

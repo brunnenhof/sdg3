@@ -25,7 +25,7 @@ class home(homeTemplate):
 #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
-    my_loc = 'de'
+    my_loc = 'fr'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -1178,8 +1178,8 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
-        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
-        row_ws['run_to_2040_done'] = True
+#        row_ws = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie,round=runde, reg=mg.my_reg, ta=mg.my_ministry)
+#        row_ws['looked_at'] = True
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -1187,8 +1187,8 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10'
-        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
-        row_ws['run_to_2060_done'] = True
+#        row_ws = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie,round=runde, reg=mg.my_reg, ta=mg.my_ministry)
+#        row_ws['looked_at'] = True
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
@@ -1196,8 +1196,8 @@ class home(homeTemplate):
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
 #        anvil.server.call('budget_to_db', 2100, cid_cookie)
         self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
-        row_ws = app_tables.looked_at.get(game_id=cid_cookie)
-        row_ws['run_to_2100_done'] = True
+#        row_ws = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie,round=runde, reg=mg.my_reg, ta=mg.my_ministry)
+#        row_ws['looked_at'] = True
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 
@@ -1239,7 +1239,7 @@ class home(homeTemplate):
       runde = 2
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
-      if len(rows_looked_at) > 0:
+      if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]
         for ii in range(0, len(not_looked_at_list)):
@@ -1276,7 +1276,7 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=True)
-      if len(rows_looked_at) < 5:
+      if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]
         for ii in range(0, len(not_looked_at_list)):
@@ -1313,7 +1313,7 @@ class home(homeTemplate):
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=True)
-      if len(rows_looked_at) < 5:
+      if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]
         for ii in range(0, len(not_looked_at_list)):
