@@ -2256,11 +2256,11 @@ gm_start_round_tx_3_str = [
     "_last_"
     ]
 submitted_but_not_run_tx = [
-  "Decisions have been submitted, but the model has not been run",
-  "Die Entscheidungen wurden übermittelt, aber das Modell wurde noch nicht ausgeführt.",
-  "Die Entscheidungen wurden übermittelt, aber das Modell wurde noch nicht ausgeführt.",
-  "Les décisions ont été transmises, mais le modèle n'a pas encore été exécuté.",
-  "Beslutningene er kommunisert, men modellen er ennå ikke oppdatert.",
+  "Decisions have been submitted, the model is being updated, but not all of ministerial team has checked the results",
+  "Die Entscheidungen wurden übermittelt, das Modell wird aktualisiert, aber noch nicht alle Mitglieder des Minister:innenteams haben die Ergebnisse überprüft",
+  "Die Entscheidungen wurden übermittelt, das Modell wird aktualisiert, aber noch nicht alle Mitglieder des Minister:innenteams haben die Ergebnisse überprüft",
+  "Les décisions ont été soumises, le modèle est en cours de mise à jour, mais tous les membres de l'équipe ministérielle n'ont pas encore vérifié les résultats",
+  "Beslutningene er sendt inn, modellen er under oppdatering, men ikke alle i ministerteamet har sjekket resultatene",
   "_last_"
 ]
 submitted_but_not_run_title = [

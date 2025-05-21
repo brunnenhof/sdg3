@@ -1066,7 +1066,7 @@ class home(homeTemplate):
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
           row_gm = app_tables.games_log.get(game_id=cid_cookie)
-          row_gm['gm_status'] = 11 # last submitt, but not yet run
+          row_gm['gm_status'] = 12 # last submitt, but not yet run
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
 #    for ug in range(0, len(mg.dbg_info)):
 #      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
@@ -1295,13 +1295,13 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 3
       yr = 2060
-      row_sub = app_tables.submitted.get(game_id=cid, reg=reg, round=runde, submitted=True)
+      row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
       if row_sub is None:
-        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.submitted_but_not_run_title[lx], style="warning")
+        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
         n.show()
         return
-      if len(row_sub) == 1:
-        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.submitted_but_not_run_title[lx], style="warning")
+      if len(row_sub) < 5:
+        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
         n.show()
         return
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
