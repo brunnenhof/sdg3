@@ -212,7 +212,7 @@ class home(homeTemplate):
 #    print(f"You entered: {t.text}")
     code = t.text.upper()
 #    if not code == 'LTG-ND':
-    if not code == '':
+    if not code == 'FREITAG':
       alert(lu.wrong_code_tx[my_lox])
       self.top_start_game.visible = True 
       return
@@ -1035,7 +1035,6 @@ class home(homeTemplate):
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
         n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show() 
-        self.err_msg.text = self.err_msg.text + "\n--- not all_regs_sub  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         rc = app_tables.cookies.get(game_id=cid_cookie)
@@ -1387,7 +1386,6 @@ class home(homeTemplate):
         row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=3, reg=reg, ta='fut')
         row_looked_at['looked_at'] = True
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
-      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 4
       yr = 2100
@@ -1399,6 +1397,7 @@ class home(homeTemplate):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
+      self.pcgd_advance.visible = False
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False

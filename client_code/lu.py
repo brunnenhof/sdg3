@@ -2096,11 +2096,11 @@ gm_wait_round_done_tx2_str = [
   "_last_"
 ]
 gm_wait_round_done_tx3_str = [
-  "The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing.\nThanks for playing - much appreciated!\nFeedback? Send to post at blue minus way dot net\n\nBye-bye",
-  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen ihre Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nAuf Wiedersehen",
-  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen Deine Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nCiao",
-  "Le modèle a été mis à jour jusqu'à la fin, en 2100. Demandez à vos joueurs de regarder et de discuter de leurs résultats dans et entre les régions. Tout se déroule-t-il comme prévu ? Sont-ils satisfaits ? Leurs citoyens sont-ils satisfaits ? La Terre est-elle encore habitable ? \nEnfin, ramenez-les hors du jeu, ici et maintenant, et commencez le débriefing.\nMerci de jouer - nous apprécions votre temps et votre engagement!\nRéponse? Envoyez-le à post at blue minus way dot net.\n\nAu revoir",
-  "Modellen ble oppdatert frem til slutten av år 2100. Be spillerne dine se på og diskutere resultatene innad i og mellom regionene. Går alt etter planen? Er de fornøyde? Er innbyggerne fornøyde? Er jorden fortsatt beboelig? \nTil slutt tar du dem ut av spillet og tilbake til her og nå, og begynner debriefingen.\nTakk for at du har spillet - vi setter pris på din tid og innsats! \nTilbakemeldinger? Vennligst send til post at blue minus way dot net\n\nHa det bra",
+  "The model has been advanced to the end, the year 2100. Tell your players to study and discuss their results, within and between regions. Are things going the right way? Are they safisfied? Are their citizens satisfied? Is the earth still habitable? \nFinally, take them out of the game back to the here and now; and start your debriefing.\nThanks for playing - much appreciated!\nFeedback? Send to post at blue minus way dot net\n\nBye-bye, it's been our pleasure!",
+  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen ihre Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nAuf Wiedersehen, es war uns eine Freude!",
+  "Das Modell wurde bis zum Ende, dem Jahr 2100, fortgeschrieben. Bitten Sie Ihre Spieler:innen, ihre Ergebnisse innerhalb und zwischen den Regionen anzuschauen und zu diskutieren. Läuft alles nach Plan? Sind sie zufrieden? Sind ihre Bürger zufrieden? Ist die Erde noch bewohnbar? \nZum Schluss nehmen Sie sie aus dem Spiel zurück ins Hier und Jetzt und beginnen Sie mit der Nachbesprechung.\nDanke fürs Spielen - wir schätzen Deine Zeit und Einsatz sehr!\nRückmeldung? Bitte an post at blue minus way dot net\n\nCiao, es war uns eine Freude!",
+  "Le modèle a été mis à jour jusqu'à la fin, en 2100. Demandez à vos joueurs de regarder et de discuter de leurs résultats dans et entre les régions. Tout se déroule-t-il comme prévu ? Sont-ils satisfaits ? Leurs citoyens sont-ils satisfaits ? La Terre est-elle encore habitable ? \nEnfin, ramenez-les hors du jeu, ici et maintenant, et commencez le débriefing.\nMerci de jouer - nous apprécions votre temps et votre engagement!\nRéponse? Envoyez-le à post at blue minus way dot net.\n\nAu revoir, c'était un plaisir !",
+  "Modellen ble oppdatert frem til slutten av år 2100. Be spillerne dine se på og diskutere resultatene innad i og mellom regionene. Går alt etter planen? Er de fornøyde? Er innbyggerne fornøyde? Er jorden fortsatt beboelig? \nTil slutt tar du dem ut av spillet og tilbake til her og nå, og begynner debriefingen.\nTakk for at du har spillet - vi setter pris på din tid og innsats! \nTilbakemeldinger? Vennligst send til post at blue minus way dot net\n\nHa det bra, det var en fornøyelse!",
   "_last_"
 ]
 nix_neues_tx = [
@@ -2697,10 +2697,10 @@ not_all_looked_at_tx = [
   "_last_"
 ]
 not_all_looked_at_7_tx = [
-  "The model is advanced and not all your regional ministerial colleagues have looked at their results:",
-  "Das Modell ist fortgeschrieben und noch haben sich nicht alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
-  "Das Modell ist fortgeschrieben und noch haben sich nicht alle Deine regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
-  "Le modèle est avancé et tous vos collègues ministres régionaux n'ont pas encore examiné leurs résultats:",
+  "The model is advancing, not all your regional ministerial colleagues have looked at their results:",
+  "Das Modell wird fortgeschrieben, noch haben sich nicht alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
+  "Das Modell wird fortgeschrieben, noch haben sich nicht alle Deine regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
+  "Le modèle est avancé, mais tous vos collègues ministres régionaux n'ont pas encore examiné leurs résultats:",
   "Modellen er avansert, men ikke alle dine regionale ministerkolleger har sett på resultatene deres:",
   "_last_"
 ]
