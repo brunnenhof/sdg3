@@ -1314,19 +1314,9 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       role = 'fut'
-      row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
-      if row_sub is None:
-        self.err_msg.text = self.err_msg.text + "\n-- row_sub = NONE"
-        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
-        n.show()
-        return
-      if len(row_sub) < 5:
-        self.err_msg.text = self.err_msg.text + "\n-- len(row_sub) < 5, it is "+str(len(row_sub))
-        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
-        n.show()
-        return
+#####
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
-      self.err_msg.text = self.err_msg.text + "\n-- len(rows_looked_at) = "+str(len(rows_looked_at))
+      self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 3/2060 game_id=<"+cid+'> round=2 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]+"\n"
@@ -1334,22 +1324,43 @@ class home(homeTemplate):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
-      row_rx = app_tables.cookies.get(game_id=cid)
-      rxsub = row_rx['r3sub']
-      self.err_msg.text = self.err_msg.text + "\nln 1333 - gm_status= 10 rxsub="+str(rxsub)
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060 r3sub="+str(rxsub)
-      self.err_msg.text = self.err_msg.text + "\n-- getting looked at for round 3"
-      if rxsub == 10: ## fut is never set
-        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
-        n.show()
-        return
+#####
+#      row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
+#      if row_sub is None:
+#        self.err_msg.text = self.err_msg.text + "\n-- row_sub = NONE"
+#        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
+#        n.show()
+#        return
+#      if len(row_sub) < 5:
+#        self.err_msg.text = self.err_msg.text + "\n-- len(row_sub) < 5, it is "+str(len(row_sub))
+#        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
+#        n.show()
+#        return
+#      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
+#      self.err_msg.text = self.err_msg.text + "\n-- len(rows_looked_at) = "+str(len(rows_looked_at))
+#      if len(rows_looked_at) > 1:
+#        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+#        lmsg = lu.not_all_looked_at_tx[lx]+"\n"
+#        for ii in range(0, len(not_looked_at_list)):
+#          lmsg = lmsg + "\n" + not_looked_at_list[ii]
+#        alert(lmsg, title=lu.not_all_looked_at_title[lx])
+#        return
+#      row_rx = app_tables.cookies.get(game_id=cid)
+#      rxsub = row_rx['r3sub']
+#      self.err_msg.text = self.err_msg.text + "\nln 1333 - gm_status= 10 rxsub="+str(rxsub)
+#      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060 r3sub="+str(rxsub)
+#      self.err_msg.text = self.err_msg.text + "\n-- getting looked at for round 3"
+#      if rxsub == 10: ## fut is never set
+#        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
+#        n.show()
+#        return
       self.err_msg.text = self.err_msg.text + "\n-- line 1331"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr='+str(yr)
+      self.err_msg.text = self.err_msg.text + "\n-- line 1363 inside p_advance_to_next_round_click:: runde=<"+str(runde)+'> role=<'+role+'> gm_status=<'+str(row['gm_status'])+'> reg=<'+reg+'> yr=<'+str(yr)+'>'
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
