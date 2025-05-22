@@ -1025,17 +1025,14 @@ class home(homeTemplate):
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
       self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
+      row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
+      if runde == 1:
+        row2['p_step_done'] = 3 ## the region submitted decisions for round 2025-2040
+      elif runde == 2:
+        row2['p_step_done'] = 5 ## the region submitted decisions for round 2040- 2060
+      elif runde == 3:
+        row2['p_step_done'] = 7  ## the region submitted decisions for round 2060 - 2100
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
-        row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
-        if runde == 1:
-          my_p_step_done = 3
-          row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
-        elif runde == 2:
-          my_p_step_done = 5
-          row2.update(p_step_done=5) ## the region submitted decisions for round 2040- 2060
-        elif runde == 3:
-          my_p_step_done = 7
-          row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
         n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show() 
         self.err_msg.text = self.err_msg.text + "\n--- not all_regs_sub  my_p_step_done=" + str(my_p_step_done)
@@ -1064,20 +1061,14 @@ class home(homeTemplate):
         if runde == 1:
           # p_advance_to_next_round_tx = "Get the results until 2040 and the decision sheet for 2040-2060 - your children's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+          self.err_msg.text = self.err_msg.text + "\n---all_reg_submitted  elif runde == 1: "
         elif runde == 2:
           # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
+          self.err_msg.text = self.err_msg.text + "\n---all_reg_submitted  elif runde == 2: "
         elif runde == 3:
           self.err_msg.text = self.err_msg.text + "\n---all_reg_submitted  elif runde == 3: "
           
-        # p_advance_to_2_tx = "Get the results until the end of the century"
-#          row_gm = app_tables.games_log.get(game_id=cid_cookie)
-#          row_gm['gm_status'] = 12 # last submitt, but not yet run
-          self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-#    for ug in range(0, len(mg.dbg_info)):
-#      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
-#    mg.dbg_info = []
-
   def get_not_all_sub(self, cid, runde):
     reg = mg.my_reg
     rows = app_tables.submitted.search(game_id='',round=runde, reg=reg, submitted=False)
@@ -1316,22 +1307,29 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       role = 'fut'
-      lrr = app_tables.step_done.get(game_id=cid, reg=reg)
-      if lrr['gm_step_done'] is None:
-        n = Notification(lu.lrr_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
-        n.show()
-        return
-#####
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
-      self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 3/2060 game_id=<"+cid+'> round=2 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
-      if len(rows_looked_at) > 1:
-        not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-        lmsg = lu.not_all_looked_at_tx[lx]+"\n"
-        for ii in range(0, len(not_looked_at_list)):
-          lmsg = lmsg + "\n" + not_looked_at_list[ii]
-        alert(lmsg, title=lu.not_all_looked_at_title[lx])
-        return
-#####
+      row_step = app_tables.step_done.get(game_id=cid, reg=reg)
+      row_step_val = row_step['p_step_done']
+      if row_step_val == 7: 
+        rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
+        self.err_msg.text = self.err_msg.text + "\n--ENTERING SPECIAL runde 3/2060 row_step_val=<"+str(row_step_val)+"> game_id=<"+cid+'> round=3 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
+        if len(rows_looked_at) > 1:
+          not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+          lmsg = lu.not_all_looked_at_7_tx[lx]+"\n"
+          for ii in range(0, len(not_looked_at_list)):
+            lmsg = lmsg + "\n" + not_looked_at_list[ii]
+          alert(lmsg, title=lu.not_all_looked_at_title[lx])
+          return
+      else:
+        rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
+        self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 3/2060 game_id=<"+cid+'> round=2 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
+        if len(rows_looked_at) > 1:
+          not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+          lmsg = lu.not_all_looked_at_tx[lx]+"\n"
+          for ii in range(0, len(not_looked_at_list)):
+            lmsg = lmsg + "\n" + not_looked_at_list[ii]
+          alert(lmsg, title=lu.not_all_looked_at_title[lx])
+          return
+
 #      row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
 #      if row_sub is None:
 #        self.err_msg.text = self.err_msg.text + "\n-- row_sub = NONE"
@@ -1361,7 +1359,7 @@ class home(homeTemplate):
 #        n = Notification(lu.submitted_but_not_run_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
 #        n.show()
 #        return
-      self.err_msg.text = self.err_msg.text + "\n-- line 1331"
+      self.err_msg.text = self.err_msg.text + "\n-- line 1362"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
       self.dec_card.visible = False
@@ -1570,6 +1568,7 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
+    self.pcgd_advance.visible = False
     my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id

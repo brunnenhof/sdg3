@@ -2696,6 +2696,14 @@ not_all_looked_at_tx = [
   "Alle dine regionale ministerkolleger har ennå ikke sett på resultatene sine:",
   "_last_"
 ]
+not_all_looked_at_7_tx = [
+  "The model is advanced and not all your regional ministerial colleagues have looked at their results:",
+  "Das Modell ist fortgeschrieben und noch haben sich nicht alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
+  "Das Modell ist fortgeschrieben und noch haben sich nicht alle Deine regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",
+  "Le modèle est avancé et tous vos collègues ministres régionaux n'ont pas encore examiné leurs résultats:",
+  "Modellen er avansert, men ikke alle dine regionale ministerkolleger har sett på resultatene deres:",
+  "_last_"
+]
 p_advance_to_next_round_tx_str = [
     "Get the results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
