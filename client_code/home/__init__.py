@@ -688,11 +688,12 @@ class home(homeTemplate):
     if yr == 2100:
       return
     self.dec_card.visible = True
-    self.pcgd_advance.visible = True
+    self.pcgd_advance.visible = False
     pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid, lang)
 #      print(pol_list)
     self.dec_rp.items = pol_list
-
+    self.pcgd_advance.visible = True
+    
   def check_all_colleagues_logged_in(self, cid, reg, runde):
     rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1, role=q.not_('fut'))
     len_rows = len(rows)
@@ -703,7 +704,7 @@ class home(homeTemplate):
       return False
     
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
+    self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid=<"+cid+'> reg=<'+reg+'> role=<'+role+'> round=<'+str(runde)+'> yr=<'+str(yr)+'>'
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -975,7 +976,7 @@ class home(homeTemplate):
       my_cid = mg.my_personal_game_id
       cid = mg.my_game_id
       yr, runde = self.get_runde(cid)
-      self.err_msg.text = "\n---entering submit_numbers_click yr=" + str(yr) + ' runde=' + str(runde)
+      self.err_msg.text = "\n---entering submit_numbers_click yr=<" + str(yr) + '> runde=<' + str(runde)+'>'
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
       row = app_tables.step_done.get(game_id=cid, reg=reg)
@@ -990,7 +991,7 @@ class home(homeTemplate):
       ## bump cookie for this round r_sub by one
       all_regs_sub = False
       if runde == 1:
-        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=<" + str(runde)+'>'
         anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r1sub'] == 10:
@@ -998,7 +999,7 @@ class home(homeTemplate):
         rosub = app_tables.submitted.get(game_id=cid_cookie, round=1,reg=reg)
         rosub['submitted'] = True
       elif runde == 2:
-        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=<" + str(runde)+'>'
         anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r2sub'] == 10:
@@ -1011,7 +1012,7 @@ class home(homeTemplate):
 #        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
         rosub['submitted'] = True
       elif runde == 3:
-        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=" + str(runde)
+        self.err_msg.text = self.err_msg.text + "\n---submission confirmed  runde=<" + str(runde)+'>'
         anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
         rc = app_tables.cookies.get(game_id=cid_cookie)
         if rc['r3sub'] == 10:
@@ -1271,7 +1272,9 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 2
       yr = 2040
+      role = 'fut'
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
+      self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 2/2040 game_id=<"+cid+'> round=1 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]+"\n"
@@ -1284,7 +1287,6 @@ class home(homeTemplate):
       self.p_choose_role.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = False
-      role = 'fut'
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: runde=2 role="+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr=2040'
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
@@ -1303,12 +1305,15 @@ class home(homeTemplate):
         slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr,lx )
-#        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
+        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=1, reg=reg, ta='fut')
+        row_looked_at['looked_at'] = True
+    #        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\n\n-- gm_status = 10 runde = 3"
       reg = mg.my_reg
       runde = 3
       yr = 2060
+      role = 'fut'
       row_sub = app_tables.pcgd_advance_looked_at.search(game_id=cid, reg=reg, round=2, looked_at=True)
       if row_sub is None:
         self.err_msg.text = self.err_msg.text + "\n-- row_sub = NONE"
@@ -1363,6 +1368,8 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
         self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1204)"
+        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=2, reg=reg, ta='fut')
+        row_looked_at['looked_at'] = True
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
       runde = 4
