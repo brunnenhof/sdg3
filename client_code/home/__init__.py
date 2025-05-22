@@ -1316,8 +1316,8 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       role = 'fut'
-      lrr = app_tables.cookies.get(game_id=cid)
-      if lrr['last_round_run'] is None:
+      lrr = app_tables.step_done.get(game_id=cid, reg=reg)
+      if lrr['gm_step_done'] is None:
         n = Notification(lu.lrr_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
         n.show()
         return
@@ -1393,8 +1393,6 @@ class home(homeTemplate):
       reg = mg.my_reg
       runde = 4
       yr = 2100
-      row_lrr = app_tables.cookies.get(game_id=cid)
-      row_lrr['last_round_run'] = 1
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
