@@ -53,9 +53,12 @@ db_schema:
     - admin_ui: {width: 131}
       name: gm_step
       type: number
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 5, width: 113}
       name: started
       type: bool
+    - admin_ui: {order: 6, width: 115}
+      name: last_round_run
+      type: number
     server: full
     title: cookies
   files:

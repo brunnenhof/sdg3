@@ -2680,6 +2680,14 @@ not_all_looked_at_title = [
   "Vos collèges régionaux ne sont pas prêts",
   "_last_"
 ]
+lrr_tx = [
+  "The model has not yet been run to 2100.",
+  "Das Modell ist noch nicht bis zum Jahr 2100 fortgeschrieben worden.",
+  "Das Modell ist noch nicht bis zum Jahr 2100 fortgeschrieben worden.",
+  "Le modèle n'a pas encore été exécuté jusqu'en 2100.",
+  "Modellen er ennå ikke kjørt frem til 2100.",
+  "_last_"
+]
 not_all_looked_at_tx = [
   "Not all your regional ministerial colleagues have looked at their results:",
   "Noch haben sich nicht alle Ihre regionalen Minister:innenkollegen ihre Ergebnisse angeschaut:",

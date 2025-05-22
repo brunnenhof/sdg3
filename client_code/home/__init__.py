@@ -1269,6 +1269,7 @@ class home(homeTemplate):
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
+      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 2
       yr = 2040
@@ -1310,12 +1311,18 @@ class home(homeTemplate):
     #        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\n\n-- gm_status = 10 runde = 3"
+      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 3
       yr = 2060
       role = 'fut'
+      lrr = app_tables.cookies.get(game_id=cid)
+      if lrr['last_round_run'] is None:
+        n = Notification(lu.lrr_tx[lx], title=lu.waiting_tx_str[lx], style="warning")
+        n.show()
+        return
 #####
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
       self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 3/2060 game_id=<"+cid+'> round=2 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1382,9 +1389,12 @@ class home(homeTemplate):
         row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=3, reg=reg, ta='fut')
         row_looked_at['looked_at'] = True
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
+      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 4
       yr = 2100
+      row_lrr = app_tables.cookies.get(game_id=cid)
+      row_lrr['last_round_run'] = 1
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=False)
       if len(rows_looked_at) > 1:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1601,6 +1611,7 @@ class home(homeTemplate):
         return
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
+      
       n = Notification(lu.sim_success_tx40_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
