@@ -688,7 +688,7 @@ class home(homeTemplate):
     if yr == 2100:
       return
     self.dec_card.visible = True
-    self.pcgd_advance.visible = False
+#    self.pcgd_advance.visible = False
     pol_list = anvil.server.call('get_policy_budgets', reg, role, yr, cid, lang)
 #      print(pol_list)
     self.dec_rp.items = pol_list
@@ -705,7 +705,7 @@ class home(homeTemplate):
     
   def do_future(self, cid, role, reg, runde, yr, lx):
     self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid=<"+cid+'> reg=<'+reg+'> role=<'+role+'> round=<'+str(runde)+'> yr=<'+str(yr)+'>'
-    self.pcgd_advance.visible = False
+#    self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
     ## check if all your regional ministers have logged in
@@ -1259,11 +1259,25 @@ class home(homeTemplate):
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
-      self.pcgd_advance.visible = False
+#      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 2
       yr = 2040
       role = 'fut'
+######
+      row_step = app_tables.step_done.get(game_id=cid, reg=reg)
+      row_step_val = row_step['p_step_done']
+      if row_step_val == 5: 
+        rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=False)
+        self.err_msg.text = self.err_msg.text + "\n--ENTERING SPECIAL runde 3/2040 row_step_val=<"+str(row_step_val)+"> game_id=<"+cid+'> round=2 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
+        if len(rows_looked_at) > 1:
+          not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+          lmsg = lu.not_all_looked_at_7_tx[lx]+"\n"
+          for ii in range(0, len(not_looked_at_list)):
+            lmsg = lmsg + "\n" + not_looked_at_list[ii]
+          alert(lmsg, title=lu.not_all_looked_at_title[lx])
+          return
+######
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
       self.err_msg.text = self.err_msg.text + "\n--ENTERING runde 2/2040 game_id=<"+cid+'> round=1 role=<'+role+'> reg=<'+reg+'> len(rows_looked_at)=<'+str(len(rows_looked_at))+'>'
       if len(rows_looked_at) > 1:
@@ -1301,7 +1315,7 @@ class home(homeTemplate):
     #        self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1176)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\n\n-- gm_status = 10 runde = 3"
-      self.pcgd_advance.visible = False
+#      self.pcgd_advance.visible = False
       reg = mg.my_reg
       runde = 3
       yr = 2060
@@ -1397,7 +1411,7 @@ class home(homeTemplate):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
-      self.pcgd_advance.visible = False
+#      self.pcgd_advance.visible = False
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
@@ -1567,7 +1581,7 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
-    self.pcgd_advance.visible = False
+#    self.pcgd_advance.visible = False
     my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id
@@ -1727,7 +1741,7 @@ class home(homeTemplate):
       self.p_card_graf_dec.visible = True 
       self.pcgd_title.text = lu.player_board_tx_str[lx] + mg.my_personal_game_id + ', ' + self.do_reg_to_longreg(reg) + ', '+ self.do_ta_to_longmini(mg.my_ministry)
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
-      self.pcgd_advance.visible = False 
+#      self.pcgd_advance.visible = False 
       self.pcgd_plot_card.visible = True 
       self.plot_card_rp.visible = True
       self.dec_card.visible = False 
