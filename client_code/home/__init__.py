@@ -515,7 +515,8 @@ class home(homeTemplate):
 
   def reg_clicked(self, reg):
     cid = mg.my_game_id
-    print ('in '+reg+' btn ' + cid)
+    self.err_msg.text = self.err_msg.text + "\n reg_clicked reg="+reg
+#    print ('in '+reg+' btn ' + cid)
     self.pcr_col_right_title.visible = True
     self.pcr_submit.visible = False
     mg.my_reg = reg
@@ -1017,6 +1018,8 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid_cookie, round=3,reg=reg)
         rosub['submitted'] = True
+        ro_sub_reg_role = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie, reg=reg, round=runde, ta='fut')
+        ro_sub_reg_role['looked_at'] = True
       ### update steps
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
@@ -1146,7 +1149,15 @@ class home(homeTemplate):
       runde = 3
       row = app_tables.cookies.get(game_id=cid_cookie)
       rxsub = row['r3sub']
-      self.err_msg.text = self.err_msg.text + "\ngm_status= 10 rxsub="+str(rxsub)
+#      self.err_msg.text = self.err_msg.text + "\nln 1152-gm_status= 10 rxsub="+str(rxsub)+' reg=<'+reg+'> round='+str(runde)+' cid='+cid_cookie
+#      ro_sub_reg_role = app_tables.pcgd_advance_looked_at.get(game_id=cid_cookie, reg=reg, round=runde, ta='fut')
+#      self.err_msg.text = self.err_msg.text + "\ntype(ro_sub_reg_role)="+ str(type(ro_sub_reg_role))
+#      ro_sub_reg_role_la = ro_sub_reg_role['looked_at']
+#      if ro_sub_reg_role_la:
+#        msg = "future runde 3 reg="+reg
+#        n = Notification(msg, title="FIXED ?")
+#        n.show()
+#        return
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1320,7 +1331,7 @@ class home(homeTemplate):
         return
       row_rx = app_tables.cookies.get(game_id=cid)
       rxsub = row_rx['r3sub']
-      self.err_msg.text = self.err_msg.text + "\ngm_status= 10 rxsub="+str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\nln 1333 - gm_status= 10 rxsub="+str(rxsub)
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2060 r3sub="+str(rxsub)
       self.err_msg.text = self.err_msg.text + "\n-- getting looked at for round 3"
       if rxsub == 10: ## fut is never set
