@@ -1411,7 +1411,7 @@ class home(homeTemplate):
           lmsg = lmsg + "\n" + not_looked_at_list[ii]
         alert(lmsg, title=lu.not_all_looked_at_title[lx])
         return
-#      self.pcgd_advance.visible = False
+      self.pcgd_advance.visible = False
       self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click::KICKING OFF to 2100"
       self.p_card_graf_dec.visible = True
       self.p_choose_role.visible = False
