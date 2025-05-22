@@ -1068,7 +1068,7 @@ class home(homeTemplate):
           # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
           self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
         elif runde == 3:
-          self.err_msg.text = self.err_msg.text + "\n---elif runde == 3: "
+          self.err_msg.text = self.err_msg.text + "\n---all_reg_submitted  elif runde == 3: "
           
         # p_advance_to_2_tx = "Get the results until the end of the century"
 #          row_gm = app_tables.games_log.get(game_id=cid_cookie)
@@ -1379,7 +1379,7 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr ,lx)
         self.err_msg.text = self.err_msg.text + "\n-- inside p_advance_to_next_round_click:: AFTER do_future (1204)"
-        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=2, reg=reg, ta='fut')
+        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, round=3, reg=reg, ta='fut')
         row_looked_at['looked_at'] = True
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
       reg = mg.my_reg
