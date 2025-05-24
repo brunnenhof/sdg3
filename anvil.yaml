@@ -172,16 +172,16 @@ db_schema:
     - admin_ui: {width: 116}
       name: game_id
       type: string
-    - admin_ui: {width: 176}
+    - admin_ui: {order: 1, width: 99}
       name: title
       type: string
-    - admin_ui: {width: 145}
+    - admin_ui: {order: 2, width: 97}
       name: subtitle
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 3, width: 110}
       name: cap
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 4, width: 98}
       name: fig
       type: media
     - admin_ui: {order: 5, width: 89}
@@ -371,6 +371,35 @@ db_schema:
       type: number
     server: full
     title: step_done
+  stored_plots:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id_p
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: fig
+      type: media
+    - admin_ui: {order: 2, width: 112}
+      name: runde
+      type: number
+    - admin_ui: {order: 3, width: 101}
+      name: reg
+      type: string
+    - admin_ui: {order: 4, width: 94}
+      name: role
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      name: title
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: sub
+      type: string
+    - admin_ui: {order: 7, width: 200}
+      name: cap
+      type: string
+    server: full
+    title: stored_plots
   submitted:
     client: full
     columns:
@@ -405,6 +434,20 @@ db_schema:
       type: string
     server: full
     title: test_plots
+  where_am_i:
+    client: full
+    columns:
+    - admin_ui: {order: 1, width: 139}
+      name: step
+      type: number
+    - admin_ui: {order: 0, width: 138}
+      name: game_id
+      type: string
+    - admin_ui: {order: 2, width: 123}
+      name: lang
+      type: number
+    server: full
+    title: where_am_i
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}

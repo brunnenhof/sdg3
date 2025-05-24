@@ -170,6 +170,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
 
 @anvil.server.background_task
 def set_npbp(cid, npbp):
+  lx = mg.my_lang
   row = app_tables.cookies.get(game_id=cid)
   row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
 #  app_tables.step_done.delete_all_rows()
@@ -177,11 +178,18 @@ def set_npbp(cid, npbp):
   tltl_list = [r['tltl'] for r in app_tables.policies.search()]
   gl_list = [r['gl'] for r in app_tables.policies.search()]
   regs = mg.regs
+  tas = ['pov', 'ineq', 'emp', 'food', 'ener','fut']
+  app_tables.where_am_i.add_row(game_id=cid, step=0, lang=lx)
   for re in regs: # set up step_done
     if re in npbp:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
     else:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0) # p_state 0: data set up
+      for ta in tas:
+        ta_nbr = mg.ta_to_nbr[ta]
+        reg_nbr = mg.reg_to_nbr[re]
+        cid_p = cid+'-'+str(reg_nbr)+str(ta_nbr)
+        app_tables.where_am_i.add_row(game_id=cid_p, step=0)
   roles = mg.roles
 #  for ro in roles:
 #    for re in regs: # set up step_done
@@ -189,7 +197,7 @@ def set_npbp(cid, npbp):
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
 #      else:
 #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
-  tas = ['pov', 'ineq', 'emp', 'food', 'ener','fut']
+
   for runde in range(1,4):  # set up pcgd_advance_looked_at
     for re in regs:
       for ta in tas:

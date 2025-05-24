@@ -32,7 +32,26 @@ roles = ['pov', 'ineq', 'emp', 'food', 'ener', 'fut']
 ro_nbr = [0, 1, 2, 3, 4, 5]
 regs = ['us', 'af', 'cn', 'me', 'sa', 'la', 'pa', 'ec', 'eu', 'se']
 re_nbr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+ta_to_nbr = {
+  "pov": 0,
+  "ineq": 1,
+  "emp": 2,
+  "food": 3,
+  "ener": 4,
+  "fut": 5
+}
+reg_to_nbr = {
+  "us": 0,
+  "af": 1,
+  "cn": 2,
+  "me": 3,
+  "sa": 4,
+  "la": 5,
+  "pa": 6,
+  "ec": 7,
+  "eu": 8,
+  "se": 9
+}
 Pov_to_pov = {
   "Poverty": "pov",
   "Inequality": "ineq",
