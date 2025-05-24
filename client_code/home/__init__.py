@@ -221,9 +221,16 @@ class home(homeTemplate):
     self.top_entry_label.visible = True
     self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     self.test_model_top_click() ## clearind DBs at the start
-    self.components()
-    for comp in self.components():
-      print (comp)
+    if self.top_entry_label.visible:
+      print("self.top_entry_label.visible IS TRUE")
+    components = self.get_components()
+    print(f"{len(components)} components")
+    for component in components:
+      print(component)
+      c2 = component.get_components()
+      for cc in c2:
+        print(cc)
+#      if component.
     game_id = anvil.server.call('generate_id')
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
