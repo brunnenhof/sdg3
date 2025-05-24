@@ -774,7 +774,7 @@ components:
     name: switch_1
     properties: {selected: false, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}
     type: form:dep_srfw5i6mu5hwvt:_Components.Switch
-  - layout_properties: {}
+  - layout_properties: {width: 48.5384521484375}
     name: top_duration
     properties: {bold: true, font_size: 11, text_color: 'theme:Error'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
