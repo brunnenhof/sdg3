@@ -207,7 +207,7 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
-    t = TextBox(placeholder=lu.enter_code_tx[my_lox])
+    t = TextBox(placeholder=lu.enter_code_tx[my_lox], hide_text=True)
     alert(content=t,title=lu.enter_code_title_tx[my_lox])
 #    print(f"You entered: {t.text}")
     code = t.text.upper()
