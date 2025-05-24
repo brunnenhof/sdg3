@@ -264,7 +264,6 @@ class home(homeTemplate):
       self.cb_ec.checked = False
       self.cb_eu.checked = False
       self.cb_se.checked = False
-      a=2
 
   def check_rnsub(self, cid):
     ## ToDo
@@ -344,7 +343,7 @@ class home(homeTemplate):
       self.top_entry_label.visible = False 
 #      self.test_model_top_click() ## clearind DBs at the start
       return
-    self.task = anvil.server.call('launch_set_npbp', cid, npbp)
+    self.task = anvil.server.call('launch_set_npbp', cid, npbp, lx)
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
     else:

@@ -152,8 +152,8 @@ def upload_csv_sdg_vars(rows, re):
                                subtitle=rr[10], ta=rr[11], pct=int(rr[12]))
 
 @anvil.server.callable
-def launch_set_npbp(game_id, npbp):
-  task = anvil.server.launch_background_task('set_npbp', game_id, npbp)
+def launch_set_npbp(game_id, npbp, lx):
+  task = anvil.server.launch_background_task('set_npbp', game_id, npbp, lx)
   return task
 
 def get_randGLbias_for_pol(pol, pl, tl, gl):
@@ -169,8 +169,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
   return w
 
 @anvil.server.background_task
-def set_npbp(cid, npbp):
-  lx = mg.my_lang
+def set_npbp(cid, npbp,lx):
   row = app_tables.cookies.get(game_id=cid)
   row.update(r1sub=len(npbp), r2sub=len(npbp), r3sub=len(npbp), gm_step=1)
 #  app_tables.step_done.delete_all_rows()
@@ -179,7 +178,7 @@ def set_npbp(cid, npbp):
   gl_list = [r['gl'] for r in app_tables.policies.search()]
   regs = mg.regs
   tas = ['pov', 'ineq', 'emp', 'food', 'ener','fut']
-  app_tables.where_am_i.add_row(game_id=cid, step=0, lang=lx)
+  app_tables.where_am_i.add_row(game_id=cid, step=0, lang=int(lx))
   for re in regs: # set up step_done
     if re in npbp:
       app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99) # p_state 99: played by computer
@@ -189,7 +188,7 @@ def set_npbp(cid, npbp):
         ta_nbr = mg.ta_to_nbr[ta]
         reg_nbr = mg.reg_to_nbr[re]
         cid_p = cid+'-'+str(reg_nbr)+str(ta_nbr)
-        app_tables.where_am_i.add_row(game_id=cid_p, step=0)
+        app_tables.where_am_i.add_row(game_id=cid_p, step=0, lang=int(lx))
   roles = mg.roles
 #  for ro in roles:
 #    for re in regs: # set up step_done
