@@ -434,20 +434,6 @@ db_schema:
       type: string
     server: full
     title: test_plots
-  where_am_i:
-    client: full
-    columns:
-    - admin_ui: {order: 1, width: 139}
-      name: step
-      type: number
-    - admin_ui: {order: 0, width: 138}
-      name: game_id
-      type: string
-    - admin_ui: {order: 2, width: 123}
-      name: lang
-      type: number
-    server: full
-    title: where_am_i
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}

@@ -20,6 +20,7 @@ class home(homeTemplate):
     self.tick_gm_round_ready.interval = 0
     self.timer_1.interval = 104
     self.timer_1_tick()
+    
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
@@ -76,6 +77,15 @@ class home(homeTemplate):
   
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
+    if local_storage.get('language') is not None:
+      local_storage['language'] = my_lox
+    else:
+      local_storage['language'] = my_lox
+    if local_storage.get('gm_step') is not None:
+      local_storage['gm_step'] = 0
+    else:
+      local_storage['gm_step'] = 0
+
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
@@ -225,6 +235,7 @@ class home(homeTemplate):
 #    if self.top_entry_label.visible:
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
+    local_storage['game_id'] = game_id    
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
@@ -348,6 +359,19 @@ class home(homeTemplate):
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
     else:
+      aaa1 = local_storage.get('language')
+      aaa2 = local_storage.get('game_id')
+      aaa3 = local_storage.get('gm_step')
+      for re in mg.my_regs:
+        if re not in npbp:
+          for ro in mg.ro_nbr:
+            regsnbr = mg.reg_to_nbr[re]
+            rrostrkey = str(regsnbr)+str(ro)
+            if local_storage.get('rrostrkey') is not None:
+              print(local_storage.get('rrostrkey'))
+            else:
+              print("local_storage.get('rrostrkey') not yet in browser")
+              local_storage[rrostrkey] = 0
       self.setup_npbp_label.visible = False
       ende = time.time()
       dauer = round(ende - anfang, 0)
@@ -1800,6 +1824,7 @@ class home(homeTemplate):
   def lang_lets_go_click(self, **event_args):
     """This method is called when the component is clicked."""
     my_lox = mg.my_lang
+    local_storage['language'] = my_lox
     self.lang_card.visible = False
     self.top_entry.visible = True 
     self.top_join_game.text = lu.top_join_game_str[my_lox]
