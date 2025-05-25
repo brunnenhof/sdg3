@@ -20,7 +20,14 @@ class home(homeTemplate):
     self.tick_gm_round_ready.interval = 0
     self.timer_1.interval = 104
     self.timer_1_tick()
-    
+    if not local_storage.get('who') == 'gm':
+      local_storage['where'] = 0
+      local_storage['who'] = 'gm'
+    else:
+      if local_storage['where'] == 1:
+        # jump to ....
+        pass
+
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
@@ -81,10 +88,10 @@ class home(homeTemplate):
       local_storage['language'] = my_lox
     else:
       local_storage['language'] = my_lox
-    if local_storage.get('gm_step') is not None:
-      local_storage['gm_step'] = 0
+    if local_storage.get('where') is not None:
+      local_storage['where'] = 1
     else:
-      local_storage['gm_step'] = 0
+      local_storage['where'] = 1
 
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
@@ -216,6 +223,9 @@ class home(homeTemplate):
   
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
+    local_storage['language'] = my_lox
+    local_storage['who'] = 'gm'
+    local_storage['where'] = 2
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
     t = TextBox(placeholder=lu.enter_code_tx[my_lox], hide_text=True)
@@ -236,6 +246,7 @@ class home(homeTemplate):
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
     local_storage['game_id'] = game_id    
+    local_storage['where'] = 3    
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
@@ -361,9 +372,9 @@ class home(homeTemplate):
     else:
       aaa1 = local_storage.get('language')
       aaa2 = local_storage.get('game_id')
-      aaa3 = local_storage.get('gm_step')
+      aaa3 = local_storage.get('where')
       local_storage['who'] = 'gm' # I am the game master
-      local_storage['where'] = 1 # entered npbp
+      local_storage['where'] = 4 # entered npbp
       self.setup_npbp_label.visible = False
       ende = time.time()
       dauer = round(ende - anfang, 0)
