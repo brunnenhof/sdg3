@@ -20,38 +20,41 @@ class home(homeTemplate):
     self.tick_gm_round_ready.interval = 0
     self.timer_1.interval = 104
     self.timer_1_tick()
-    if not local_storage.get('who') == 'gm':
-      local_storage['where'] = 0
-      local_storage['who'] = 'gm'
+    if not local_storage.get('gm_who') == 'gm':
+      local_storage['gm_where'] = 0
+      local_storage['gm_who'] = 'gm'
       self.gm_where.text = 0
     else:
-      if local_storage['where'] == 2:
+      self.gm_where.text = local_storage['gm_where']
+      if local_storage['gm_where'] == 2:
         self.gm_where.text = 2
         lx = local_storage['language']
         self.set_lang(lx)
         self.top_entry.visible = True 
         self.top_start_game.visible = True 
         self.top_join_game.visible = True 
-      elif local_storage['where'] == 3:
+      elif local_storage['gm_where'] == 3:
         self.gm_where.text = 3
         lx = local_storage['language']
         self.set_lang(lx)
         mg.my_game_id = local_storage['game_id']
-        alert("local_storage['where'] == 3")
-      elif local_storage['where'] == 4:
+        alert("local_storage['gm_where'] == 3")
+      elif local_storage['gm_where'] == 4:
         self.gm_where.text = 4
         lx = local_storage['language']
         self.set_lang(lx)
         mg.my_game_id = local_storage['game_id']
-        alert("local_storage['where'] == 4")
-      return
+        alert("local_storage['gm_where'] == 4")
+      elif local_storage['gm_where'] == 1:
+        self.gm_where.text = 1
+        alert("local_storage['gm_where'] == 1")
     if not local_storage.get('is_p'):
-      local_storage['where'] = 0
+      local_storage['p_where'] = 0
       local_storage['is_p'] = True
       self.p_where.text = 0
     else:
-      if local_storage['where'] == 2:
-        self.p_where.text = 0
+      if local_storage['p_where'] == 2:
+        self.p_where.text = 2
         alert("is p 2")
       return
 
@@ -1905,39 +1908,3 @@ class home(homeTemplate):
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
 
-  def recover_game_click(self, **event_args):
-    ### enter game ID
-    ### if gmStatus = 5 OK
-    lx = mg.my_lang
-    self.lang_card.visible = False 
-    self.top_entry.visible = False
-    self.card_recover.visible = True 
-    self.recover_lb.text = "Enter the game ID you want to recover"
-    self.recover_txbx.placeholder = "game ID to recover"
-    self.recover_txbx.focus()
-
-  def recover_txbx_pressed_enter(self, **event_args):
-    t = self.recover_txbx.text.upper()
-    rows = app_tables.games_log.search(game_id=t)
-    if len(rows) == 1:
-      if rows[0]['gm_status'] == 5:
-        alert("got a recoverable game")
-        self.card_recover.visible = False 
-        self.gm_role_reg.visible = True
-        self.gm_board.visible = False 
-        self.gm_board_info.visible = False ## or content = ""
-        self.cb_us.visible = False 
-        self.cb_af.visible = False 
-        self.cb_cn.visible = False 
-        self.cb_me.visible = False 
-        self.cb_pa.visible = False 
-        self.cb_la.visible = False 
-        self.cb_sa.visible = False 
-        self.cb_ec.visible = False 
-        self.cb_eu.visible = False 
-        self.cb_se.visible = False 
-        self.gm_reg_npbp.visible = False
-        self.gm_card_wait_1.visible = True
-        
-        
-    pass
