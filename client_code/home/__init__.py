@@ -11,6 +11,7 @@ import time
 import datetime
 import random
 from time import strftime, localtime
+from anvil_extras.storage import local_storage
 
 class home(homeTemplate):
   def __init__(self, **properties):
