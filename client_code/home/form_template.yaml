@@ -759,17 +759,14 @@ components:
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components:
-  - event_bindings: {click: recover_game_click}
-    name: recover_game
-    properties:
-      appearance: elevated
-      background_color: '#fb0000'
-      spacing:
-        margin: ['0', null, '0', null]
-      text: Recover
-      text_color: white
-      visible: false
-    type: form:dep_srfw5i6mu5hwvt:_Components.Button
+  - layout_properties: {}
+    name: gm_where
+    properties: {bold: true, text: gm_w, text_color: darkred}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - layout_properties: {}
+    name: p_where
+    properties: {bold: true, text: p_w, text_color: darkgreen}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {change: switch_1_change}
     name: switch_1
     properties: {selected: false, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}

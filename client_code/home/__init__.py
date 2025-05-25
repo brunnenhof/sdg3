@@ -23,12 +23,37 @@ class home(homeTemplate):
     if not local_storage.get('who') == 'gm':
       local_storage['where'] = 0
       local_storage['who'] = 'gm'
+      self.gm_where.text = 0
     else:
-      aaaw = local_storage['where']
-      aaagm = local_storage['who']
       if local_storage['where'] == 2:
-        # jump to ....
-        pass
+        self.gm_where.text = 2
+        lx = local_storage['language']
+        self.set_lang(lx)
+        self.top_entry.visible = True 
+        self.top_start_game.visible = True 
+        self.top_join_game.visible = True 
+      elif local_storage['where'] == 3:
+        self.gm_where.text = 3
+        lx = local_storage['language']
+        self.set_lang(lx)
+        mg.my_game_id = local_storage['game_id']
+        alert("local_storage['where'] == 3")
+      elif local_storage['where'] == 4:
+        self.gm_where.text = 4
+        lx = local_storage['language']
+        self.set_lang(lx)
+        mg.my_game_id = local_storage['game_id']
+        alert("local_storage['where'] == 4")
+      return
+    if not local_storage.get('is_p'):
+      local_storage['where'] = 0
+      local_storage['is_p'] = True
+      self.p_where.text = 0
+    else:
+      if local_storage['where'] == 2:
+        self.p_where.text = 0
+        alert("is p 2")
+      return
 
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -92,8 +117,10 @@ class home(homeTemplate):
       local_storage['language'] = my_lox
     if local_storage.get('where') is not None:
       local_storage['where'] = 1
+      self.gm_where.text = 1      
     else:
       local_storage['where'] = 1
+      self.gm_where.text = 1      
 
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
@@ -228,6 +255,7 @@ class home(homeTemplate):
     local_storage['language'] = my_lox
     local_storage['who'] = 'gm'
     local_storage['where'] = 2
+    self.gm_where.text = 2      
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
     t = TextBox(placeholder=lu.enter_code_tx[my_lox], hide_text=True)
@@ -249,6 +277,7 @@ class home(homeTemplate):
     game_id = anvil.server.call('generate_id')
     local_storage['game_id'] = game_id    
     local_storage['where'] = 3    
+    self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
@@ -377,6 +406,7 @@ class home(homeTemplate):
       aaa3 = local_storage.get('where')
       local_storage['who'] = 'gm' # I am the game master
       local_storage['where'] = 4 # entered npbp
+      self.gm_where.text = 4      
       self.setup_npbp_label.visible = False
       ende = time.time()
       dauer = round(ende - anfang, 0)
