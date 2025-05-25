@@ -362,16 +362,8 @@ class home(homeTemplate):
       aaa1 = local_storage.get('language')
       aaa2 = local_storage.get('game_id')
       aaa3 = local_storage.get('gm_step')
-      for re in mg.my_regs:
-        if re not in npbp:
-          for ro in mg.ro_nbr:
-            regsnbr = mg.reg_to_nbr[re]
-            rrostrkey = str(regsnbr)+str(ro)
-            if local_storage.get('rrostrkey') is not None:
-              print(local_storage.get('rrostrkey'))
-            else:
-              print("local_storage.get('rrostrkey') not yet in browser")
-              local_storage[rrostrkey] = 0
+      local_storage['who'] = 'gm' # I am the game master
+      local_storage['where'] = 1 # entered npbp
       self.setup_npbp_label.visible = False
       ende = time.time()
       dauer = round(ende - anfang, 0)
