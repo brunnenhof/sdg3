@@ -24,7 +24,9 @@ class home(homeTemplate):
       local_storage['where'] = 0
       local_storage['who'] = 'gm'
     else:
-      if local_storage['where'] == 1:
+      aaaw = local_storage['where']
+      aaagm = local_storage['who']
+      if local_storage['where'] == 2:
         # jump to ....
         pass
 
