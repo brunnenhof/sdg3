@@ -17,7 +17,6 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.tick_gm_round_ready.interval = 0
     self.timer_1.interval = 104
     self.timer_1_tick()
     if not local_storage.get('gm_who') == 'gm':
@@ -35,15 +34,23 @@ class home(homeTemplate):
         self.top_join_game.visible = True 
       elif local_storage['gm_where'] == 3:
         self.gm_where.text = 3
-        lx = local_storage['language']
-        self.set_lang(lx)
         mg.my_game_id = local_storage['game_id']
+        cid = mg.my_game_id
+        lx = local_storage['language']
+        mg.my_lang = lx
+        self.set_lang(lx)
+        self.show_gm_3(cid, lx)        
         alert("local_storage['gm_where'] == 3")
       elif local_storage['gm_where'] == 4:
-        self.gm_where.text = 4
-        lx = local_storage['language']
-        self.set_lang(lx)
         mg.my_game_id = local_storage['game_id']
+        cid = mg.my_game_id
+        lx = local_storage['language']
+        mg.my_lang = lx
+        lx = mg.my_lang
+        self.set_lang(lx)
+        self.show_gm_3(cid, lx)
+        self.gm_where.text = 4
+
         alert("local_storage['gm_where'] == 4")
       elif local_storage['gm_where'] == 1:
         self.gm_where.text = 1
@@ -252,7 +259,30 @@ class home(homeTemplate):
     self.gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
     self.show_hide_plots.tooltip = lu.show_hide_plots_tx[my_lox]
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
-  
+
+  def show_gm_3(self, game_id, my_lox):
+    self.seconds.textcolor = "darkred"
+    self.top_entry.visible = False
+    self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
+    self.gm_role_reg.visible = True
+    self.seconds.visible = True
+    self.gm_board_info.visible = True
+    self.gm_cp_not_played.visible = True
+    self.setup_npbp_label.visible = False
+    ## deselect all regions
+    self.cb_us.checked = False
+    self.cb_af.checked = False
+    self.cb_cn.checked = False
+    self.cb_me.checked = False
+    self.cb_sa.checked = False
+    self.cb_pa.checked = False
+    self.cb_la.checked = False
+    self.cb_ec.checked = False
+    self.cb_eu.checked = False
+    self.cb_se.checked = False
+
+    pass
+    
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     local_storage['language'] = my_lox
@@ -288,8 +318,6 @@ class home(homeTemplate):
     mg.my_game_id = game_id
     jetzt = datetime.datetime.now()
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
-    self.tick_gm_round_ready.interval = 0
-    # self.tick_gm_round_ready_tick()
     msg = lu.gm_id_msg1_str[my_lox] + game_id + lu.gm_id_msg2_str[my_lox]
     alert(msg, title=lu.gm_id_title_str[my_lox])
     anfang = time.time()
@@ -302,25 +330,7 @@ class home(homeTemplate):
       ende = time.time()
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
-      self.seconds.textcolor = 'red'
-      self.top_entry.visible = False
-      self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
-      self.gm_role_reg.visible = True
-      self.seconds.visible = True
-      self.gm_board_info.visible = True
-      self.gm_cp_not_played.visible = True
-      self.setup_npbp_label.visible = False
-      ## deselect all regions
-      self.cb_us.checked = False
-      self.cb_af.checked = False
-      self.cb_cn.checked = False
-      self.cb_me.checked = False
-      self.cb_sa.checked = False
-      self.cb_pa.checked = False
-      self.cb_la.checked = False
-      self.cb_ec.checked = False
-      self.cb_eu.checked = False
-      self.cb_se.checked = False
+      self.show_gm_3(game_id, my_lox)
 
   def check_rnsub(self, cid):
     ## ToDo
@@ -1843,17 +1853,6 @@ class home(homeTemplate):
       dauer = round(time.time() - anfang, 0)
       self.top_duration.text = dauer
       return
-
-  def tick_gm_round_ready_tick(self, **event_args):
-    """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-    cid = mg.my_game_id
-    row = app_tables.games_log.get(game_id=cid)
-    if row['gm_status'] == 5:
-      self.gm_card_wait_1_btn_check.visible = False
-      self.gm_start_round.visible = True
-    else:
-      self.gm_card_wait_1_btn_check.visible = True
-      self.gm_start_round.visible = False
 
   def credits_click(self, **event_args):
     my_lox = mg.my_lang
