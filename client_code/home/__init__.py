@@ -21,6 +21,12 @@ class home(homeTemplate):
     self.timer_1_tick()
     self.start_lang_local_storage()
     aaa = local_storage
+    gmw = local_storage['gm_where']
+    if gmw == 3:
+      cid = local_storage['gm_id']
+      lx = local_storage['language']
+      self.show_gm_3(cid, lx)
+      pass
 
   def start_lang_local_storage(self, **event_args):
     #    app_tables.cookies.delete_all_rows()
@@ -80,8 +86,12 @@ class home(homeTemplate):
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
     local_storage['language'] = my_lox
-    local_storage['gm_where'] = 1
-    self.gm_where.text = 1      
+    if local_storage.get('gm_where') is None:
+      local_storage['gm_where'] = 1
+      self.gm_where.text = 1      
+    if local_storage.get('gm_where') == 0:
+      local_storage['gm_where'] = 1
+      self.gm_where.text = 1      
 
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
@@ -232,9 +242,8 @@ class home(homeTemplate):
     self.cb_ec.checked = False
     self.cb_eu.checked = False
     self.cb_se.checked = False
+# END   def set_lang(self, my_lox):
 
-    pass
-    
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     self.gm_where.text = 2      
@@ -1855,5 +1864,5 @@ class home(homeTemplate):
   def cls_click(self, **event_args):
     """This method is called when the component is clicked."""
     local_storage.clear()
-    self.gm_where.text = 0
+    self.gm_where.text = 'None'
 
