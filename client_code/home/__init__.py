@@ -19,7 +19,11 @@ class home(homeTemplate):
     self.init_components(**properties)
     self.timer_1.interval = 104104
     self.timer_1_tick()
-    if not local_storage.get('gm_who') == 'gm':
+    local_storage.clear()
+    self.start_lang_local_storage()
+    aaa = local_storage
+    if local_storage.get('gm_who') == 'gm':
+#    if not local_storage.get('gm_who') == 'gm':
       local_storage['gm_where'] = 0
       local_storage['gm_who'] = 'gm'
       self.gm_where.text = 0
@@ -51,28 +55,16 @@ class home(homeTemplate):
         self.gm_card_wait_1.visible = True
 #        self.show_gm_3(cid, lx)
         self.gm_where.text = 4
-
         alert("local_storage['gm_where'] == 4")
-      elif local_storage['gm_where'] == 1:
-        self.gm_where.text = 1
-        alert("local_storage['gm_where'] == 1")
-    if not local_storage.get('is_p'):
-      local_storage['p_where'] = 0
-      local_storage['is_p'] = True
-      self.p_where.text = 0
-    else:
-      if local_storage['p_where'] == 2:
-        self.p_where.text = 2
-        alert("is p 2")
-      return
 
-#    app_tables.cookies.delete_all_rows()
-#    app_tables.state_of_play.delete_all_rows()
-#    app_tables.step_done.delete_all_rows()
-#    app_tables.roles_assign.delete_all_rows()
+  def start_lang_local_storage(self, **event_args):
+    #    app_tables.cookies.delete_all_rows()
+    #    app_tables.state_of_play.delete_all_rows()
+    #    app_tables.step_done.delete_all_rows()
+    #    app_tables.roles_assign.delete_all_rows()
     my_loc, my_loc2 = anvil.server.call('get_locale')
-#    self.show_text.text = my_loc + ' ' + my_loc2
-#    my_loc = 'fr'
+    #    self.show_text.text = my_loc + ' ' + my_loc2
+    #    my_loc = 'fr'
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -119,18 +111,18 @@ class home(homeTemplate):
       alert("We have not yet translated the texts and prompts to your language. As a fallback, we are using English. If you want to help translating, please get in touch.", title="Apologies")
       self.lang_dd_menu.placeholder = "English"
       self.lang_dd_menu.label = "Change the language"
-  
+
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
     if local_storage.get('language') is not None:
       local_storage['language'] = my_lox
     else:
       local_storage['language'] = my_lox
-    if local_storage.get('where') is not None:
-      local_storage['where'] = 1
+    if local_storage.get('gm_where') is not None:
+      local_storage['gm_where'] = 1
       self.gm_where.text = 1      
     else:
-      local_storage['where'] = 1
+      local_storage['gm_where'] = 1
       self.gm_where.text = 1      
 
     self.top_title.text = lu.top_title_str[my_lox]
@@ -288,7 +280,7 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     local_storage['language'] = my_lox
     local_storage['who'] = 'gm'
-    local_storage['where'] = 2
+    local_storage['gm_where'] = 2
     self.gm_where.text = 2      
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
@@ -310,7 +302,7 @@ class home(homeTemplate):
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
     local_storage['game_id'] = game_id    
-    local_storage['where'] = 3    
+    local_storage['gm_where'] = 3    
     self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
@@ -417,9 +409,9 @@ class home(homeTemplate):
     else:
       aaa1 = local_storage.get('language')
       aaa2 = local_storage.get('game_id')
-      aaa3 = local_storage.get('where')
+      aaa3 = local_storage.get('gm_where')
       local_storage['who'] = 'gm' # I am the game master
-      local_storage['where'] = 4 # entered npbp
+      local_storage['gm_where'] = 4 # entered npbp
       self.gm_where.text = 4      
       self.setup_npbp_label.visible = False
       ende = time.time()
