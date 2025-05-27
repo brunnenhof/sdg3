@@ -19,14 +19,17 @@ class home(homeTemplate):
     self.init_components(**properties)
     self.timer_1.interval = 104104
     self.timer_1_tick()
-    self.start_lang_local_storage()
-    aaa = local_storage
-    gmw = local_storage['gm_where']
-    if gmw == 3:
-      cid = local_storage['gm_id']
-      lx = local_storage['language']
-      self.show_gm_3(cid, lx)
-      pass
+    len_store = len(local_storage)
+    if len_store == 0: # ie player openend their browser to play for the first time
+      self.start_lang_local_storage()  
+    else:
+      gmw = local_storage['gm_where']
+      if gmw == 3:
+        self.gm_where.text = local_storage['gm_where']
+        cid = local_storage['gm_id']
+        lx = local_storage['language']
+        self.set_lang(lx)
+        self.show_gm_3(cid, lx)
 
   def start_lang_local_storage(self, **event_args):
     #    app_tables.cookies.delete_all_rows()
@@ -116,6 +119,7 @@ class home(homeTemplate):
     mg.my_lang = int(self.lang_dd_menu.selected_value)
     my_lox = mg.my_lang
     print('my_lox ' + str(my_lox))
+    local_storage['language'] = my_lox
     print(lu.lang_avail_items[my_lox])
     self.lang_dd_menu.placeholder = lu.lang_avail_items[my_lox]
     self.top_title.text = lu.top_title_str[my_lox]
@@ -223,6 +227,7 @@ class home(homeTemplate):
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
 
   def show_gm_3(self, game_id, my_lox):
+    self.lang_card.visible = False
     self.seconds.textcolor = "darkred"
     self.top_entry.visible = False
     self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
@@ -333,8 +338,10 @@ class home(homeTemplate):
     self.card_select_reg_role.visible = True
 
   def gm_reg_npbp_click(self, **event_args):
-    cid = mg.my_game_id
-    lx = mg.my_lang
+    cid = local_storage['gm_id']
+    lx = local_storage['language']
+    mg.my_game_id = cid
+    mg.my_lang = lx
     self.gm_cp_not_played.visible = False
     self.gm_board_info.visible = False
     self.setup_npbp_label.visible = True
