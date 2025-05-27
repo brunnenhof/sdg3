@@ -251,6 +251,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx1_str[my_lox]
     self.gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
     self.show_hide_plots.tooltip = lu.show_hide_plots_tx[my_lox]
+    self.lang_card.background = "#FAFA33"
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
 
   def show_gm_3(self, game_id, my_lox):
@@ -1899,4 +1900,8 @@ class home(homeTemplate):
     else:
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
+
+  def cls_click(self, **event_args):
+    """This method is called when the component is clicked."""
+    local_storage.clear()
 

@@ -748,6 +748,15 @@ components:
     name: p_where
     properties: {bold: true, text: p_w, text_color: darkgreen}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - event_bindings: {click: cls_click}
+    layout_properties: {}
+    name: cls
+    properties:
+      spacing:
+        margin: ['0', null, '5', null]
+        padding: ['0', null, null, null]
+      text: cls
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {change: switch_1_change}
     name: switch_1
     properties: {selected: false, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}
