@@ -17,7 +17,7 @@ class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.timer_1.interval = 104
+    self.timer_1.interval = 104104
     self.timer_1_tick()
     if not local_storage.get('gm_who') == 'gm':
       local_storage['gm_where'] = 0
@@ -48,7 +48,8 @@ class home(homeTemplate):
         mg.my_lang = lx
         lx = mg.my_lang
         self.set_lang(lx)
-        self.show_gm_3(cid, lx)
+        self.gm_card_wait_1.visible = True
+#        self.show_gm_3(cid, lx)
         self.gm_where.text = 4
 
         alert("local_storage['gm_where'] == 4")
@@ -424,7 +425,7 @@ class home(homeTemplate):
       ende = time.time()
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
-    self.gm_card_wait_1.visible = True
+      self.gm_card_wait_1.visible = True
 
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
