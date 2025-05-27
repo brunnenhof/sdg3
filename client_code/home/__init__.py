@@ -19,43 +19,8 @@ class home(homeTemplate):
     self.init_components(**properties)
     self.timer_1.interval = 104104
     self.timer_1_tick()
-    local_storage.clear()
     self.start_lang_local_storage()
     aaa = local_storage
-    if local_storage.get('gm_who') == 'gm':
-#    if not local_storage.get('gm_who') == 'gm':
-      local_storage['gm_where'] = 0
-      local_storage['gm_who'] = 'gm'
-      self.gm_where.text = 0
-    else:
-      self.gm_where.text = local_storage['gm_where']
-      if local_storage['gm_where'] == 2:
-        self.gm_where.text = 2
-        lx = local_storage['language']
-        self.set_lang(lx)
-        self.top_entry.visible = True 
-        self.top_start_game.visible = True 
-        self.top_join_game.visible = True 
-      elif local_storage['gm_where'] == 3:
-        self.gm_where.text = 3
-        mg.my_game_id = local_storage['game_id']
-        cid = mg.my_game_id
-        lx = local_storage['language']
-        mg.my_lang = lx
-        self.set_lang(lx)
-        self.show_gm_3(cid, lx)        
-        alert("local_storage['gm_where'] == 3")
-      elif local_storage['gm_where'] == 4:
-        mg.my_game_id = local_storage['game_id']
-        cid = mg.my_game_id
-        lx = local_storage['language']
-        mg.my_lang = lx
-        lx = mg.my_lang
-        self.set_lang(lx)
-        self.gm_card_wait_1.visible = True
-#        self.show_gm_3(cid, lx)
-        self.gm_where.text = 4
-        alert("local_storage['gm_where'] == 4")
 
   def start_lang_local_storage(self, **event_args):
     #    app_tables.cookies.delete_all_rows()
@@ -114,16 +79,9 @@ class home(homeTemplate):
 
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
-    if local_storage.get('language') is not None:
-      local_storage['language'] = my_lox
-    else:
-      local_storage['language'] = my_lox
-    if local_storage.get('gm_where') is not None:
-      local_storage['gm_where'] = 1
-      self.gm_where.text = 1      
-    else:
-      local_storage['gm_where'] = 1
-      self.gm_where.text = 1      
+    local_storage['language'] = my_lox
+    local_storage['gm_where'] = 1
+    self.gm_where.text = 1      
 
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
@@ -279,9 +237,6 @@ class home(homeTemplate):
     
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
-    local_storage['language'] = my_lox
-    local_storage['who'] = 'gm'
-    local_storage['gm_where'] = 2
     self.gm_where.text = 2      
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
@@ -302,7 +257,7 @@ class home(homeTemplate):
 #    if self.top_entry_label.visible:
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
-    local_storage['game_id'] = game_id    
+    local_storage['gm_id'] = game_id    
     local_storage['gm_where'] = 3    
     self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
@@ -408,10 +363,6 @@ class home(homeTemplate):
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
     else:
-      aaa1 = local_storage.get('language')
-      aaa2 = local_storage.get('game_id')
-      aaa3 = local_storage.get('gm_where')
-      local_storage['who'] = 'gm' # I am the game master
       local_storage['gm_where'] = 4 # entered npbp
       self.gm_where.text = 4      
       self.setup_npbp_label.visible = False
@@ -1904,4 +1855,5 @@ class home(homeTemplate):
   def cls_click(self, **event_args):
     """This method is called when the component is clicked."""
     local_storage.clear()
+    self.gm_where.text = 0
 
