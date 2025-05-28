@@ -268,8 +268,8 @@ class home(homeTemplate):
 #    if self.top_entry_label.visible:
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
-    local_storage['gm_id'] = game_id    
-    local_storage['gm_where'] = 3    
+    email = mg.email
+    app_tables.where.add_row(game_id=game_id,where=3,email=email,lang=my_lox)
     self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
@@ -376,7 +376,10 @@ class home(homeTemplate):
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
     else:
-      local_storage['gm_where'] = 4 # entered npbp
+      email = mg.email
+      cid = mg.my_game_id
+      row = app_tables.where.get(game_id=cid,email=email)
+      row['where'] = 4
       self.gm_where.text = 4      
       self.setup_npbp_label.visible = False
       ende = time.time()
@@ -1821,9 +1824,11 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     cid = mg.my_game_id
     alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
-    user = anvil.users.login_with_form(allow_cancel=True)
+    user = anvil.users.signup_with_form(allow_cancel=True)
+#    user = anvil.users.login_with_form(allow_cancel=True)
     if user is not None:
       app_tables.where.add_row(email=user['email'], game_id=cid, where=2, lang=my_lox)
+      mg.email = user['email']
       self.gm_where.text = 2
       self.lang_card.visible = False
       self.top_entry.visible = True 
