@@ -63,6 +63,31 @@ show_hide_plots_tx = [
   "Veksle mellom å vise/skjule grafer og beslutningsark", 
   "_last_"
 ]
+login_title = [
+  "Login information",
+  "Login information",
+  "Login information",
+  "Informations d'identification",
+  "Informasjon om innlogging",
+  "_last_"
+]
+login_str_gm = [
+  "In order to be able to continue playing the game during game interruptions, whether intentional or unintentional, you must log in so that we can show you the correct page in the game after an interruption.\nYour login e-mail does not have to be your real one. It can be a fantasy address like abc@def.ghi - but the @ sign and the dot must be included. You can choose whatever password you want, even nothing at all! But remember what you enter well - after an interruption you have to enter both exactly the same again.\nWe use the built-in login system of anvil.works which only exists in English, unfortunately we have not yet found out how to translate the prompts.",
+  "Um bei Spiel-unterbrechungen, gewollt oder ungewollt, das Spiel trotzdem weiter spielen zu können, musst Du dich einloggen, damit wir Ihnen nach einer Unterbrechung zielgenau die richtige Seite im Spiel zeigen können.\nIhre Anmelde-e-mail muss nicht ihre richtige sein. Es kann eine Phantasieadresse sein wie abc@def.ghi - aber das @ Zeichen und der Punkt müssen beide enthalten sein. Als Password können sie wählen was sie wollen, auch gar nichts! Aber, merken Sie sich was sie eingeben gut - nach einer Unterbrechung müssen sie beides wieder genauso eingeben.\n Wir nutzen das eingebaute Login-System von anvil.works das nur in English existiert, leider haben wir noch nicht raus gefunden wie man die Prompts übersezt.",
+  "Um bei Spiel-unterbrechungen, gewollt oder ungewollt, das Spiel trotzdem weiter spielen zu können, müssen Sie sich einloggen, damit wir Ihnen nach einer Unterbrechung zielgenau die richtige Seite im Spiel zeigen können.\nIhre Anmelde-e-mail muss nicht ihre richtige sein. Es kann eine Phantasieadresse sein wie abc@def.ghi - aber das @ Zeichen und der Punkt müssen beide enthalten sein. Als Password können sie wählen was sie wollen, auch gar nichts! Aber, merken Sie sich was sie eingeben gut - nach einer Unterbrechung müssen sie beides wieder genauso eingeben.\n Wir nutzen das eingebaute Login-System von anvil.works das nur in English existiert, leider haben wir noch nicht raus gefunden wie man die Prompts übersezt.",
+  "Pour pouvoir continuer à jouer pendant les interruptions du jeu, qu'elles soient intentionnelles ou non, vous devez vous connecter afin que nous puissions vous montrer la bonne page du jeu après une interruption.\nVotre adresse électronique de connexion ne doit pas nécessairement être votre véritable adresse. Il peut s'agir d'une adresse fantaisiste comme abc@def.ghi - mais le signe @ et le point doivent être inclus. Vous pouvez choisir n'importe quel mot de passe, même rien du tout ! Mais souvenez-vous bien de ce que vous entrez - après une interruption, vous devez entrer à nouveau les deux exactement de la même manière.\nNous utilisons le système de connexion intégré d'anvil.works qui n'existe qu'en anglais, malheureusement nous n'avons pas encore trouvé comment traduire les messages-guides.",
+  "",
+  "_last_"
+]
+login_str_p = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "_last_"
+]
+
 reg_to_longreg_us_str = [
   "USA",
   "USA",
