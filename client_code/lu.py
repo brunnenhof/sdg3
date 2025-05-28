@@ -87,6 +87,14 @@ login_str_p = [
   "",
   "_last_"
 ]
+logout_str = [
+  "Sorry to see you go",
+  "Schade, dass Sie uns verlassen",
+  "Schade, dass Du uns verlässt",
+  "Désolé de vous voir partir",
+  "Det er leit å se deg gå",
+  "_last_"
+]
 
 reg_to_longreg_us_str = [
   "USA",

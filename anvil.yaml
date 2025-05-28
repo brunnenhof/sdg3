@@ -434,6 +434,23 @@ db_schema:
       type: string
     server: full
     title: test_plots
+  where:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: email
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: where
+      type: number
+    - admin_ui: {order: 3, width: 200}
+      name: lang
+      type: number
+    server: full
+    title: where
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}

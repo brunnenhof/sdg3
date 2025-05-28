@@ -11,7 +11,7 @@ import time
 import datetime
 import random
 from time import strftime, localtime
-from anvil_extras.storage import local_storage
+import sys
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -19,15 +19,17 @@ class home(homeTemplate):
     self.init_components(**properties)
     self.timer_1.interval = 104104
     self.timer_1_tick()
-    len_store = len(local_storage)
-    if len_store == 0: # ie player openend their browser to play for the first time
-      self.start_lang_local_storage()  
+    user = anvil.users.get_user()
+    if user is None:
+      pass
     else:
-      gmw = local_storage['gm_where']
-      if gmw == 3:
-        self.gm_where.text = local_storage['gm_where']
-        cid = local_storage['gm_id']
-        lx = local_storage['language']
+      ue = user['email']
+      row = app_tables.where.get(email=ue)
+      where = row['where']
+      cid = row['game_id']
+      lx = row['lang']
+      if where == 3:
+        self.gm_where.text = where
         self.set_lang(lx)
         self.show_gm_3(cid, lx)
 
@@ -88,13 +90,7 @@ class home(homeTemplate):
 
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
-    local_storage['language'] = my_lox
-    if local_storage.get('gm_where') is None:
-      local_storage['gm_where'] = 1
-      self.gm_where.text = 1      
-    if local_storage.get('gm_where') == 0:
-      local_storage['gm_where'] = 1
-      self.gm_where.text = 1      
+    self.gm_where.text = 1      
 
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
@@ -118,8 +114,6 @@ class home(homeTemplate):
     print(self.lang_dd_menu.selected_value)
     mg.my_lang = int(self.lang_dd_menu.selected_value)
     my_lox = mg.my_lang
-    print('my_lox ' + str(my_lox))
-    local_storage['language'] = my_lox
     print(lu.lang_avail_items[my_lox])
     self.lang_dd_menu.placeholder = lu.lang_avail_items[my_lox]
     self.top_title.text = lu.top_title_str[my_lox]
@@ -1822,11 +1816,20 @@ class home(homeTemplate):
   def lang_lets_go_click(self, **event_args):
     """This method is called when the component is clicked."""
     my_lox = mg.my_lang
-    local_storage['language'] = my_lox
-    self.lang_card.visible = False
-    self.top_entry.visible = True 
-    self.top_join_game.text = lu.top_join_game_str[my_lox]
-    self.top_start_game.text = lu.top_start_game_str[my_lox]
+    cid = mg.my_game_id
+    alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
+    user = anvil.users.login_with_form()
+    if user is not None:
+      app_tables.where.add_row(email=user['email'], game_id=cid, where=2, lang=my_lox)
+      self.gm_where.text = 2
+      self.lang_card.visible = False
+      self.top_entry.visible = True 
+      self.top_join_game.text = lu.top_join_game_str[my_lox]
+      self.top_start_game.text = lu.top_start_game_str[my_lox]
+    else:
+      n = Notification(lu.logout_str[my_lox])
+      n.show()
+      sys.exit()
 
   def p_enter_id_pressed_enter(self, **event_args):
     ## correct game_id and gm_status = 4
