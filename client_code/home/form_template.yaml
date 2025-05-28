@@ -14,11 +14,16 @@ components:
       name: lang_rich_tx
       properties: {}
       type: RichText
+    - event_bindings: {click: lang_lets_go_click}
+      layout_properties: {grid_position: 'YCEBZG,HLYRVB'}
+      name: lang_lets_go
+      properties: {align: right, appearance: elevated, bold: true, icon: ''}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - data_bindings:
       - {code: '', property: items, writeback: false}
       - {code: '', property: placeholder, writeback: false}
       event_bindings: {change: lang_dd_menu_change}
-      layout_properties: {grid_position: 'IMGJJY,CHFQFX'}
+      layout_properties: {grid_position: 'YCEBZG,XCDBTE'}
       name: lang_dd_menu
       properties:
         appearance: outlined
@@ -34,14 +39,9 @@ components:
         selected_text_color: theme:Primary
         visible: true
       type: form:dep_srfw5i6mu5hwvt:_Components.DropdownMenu
-    - event_bindings: {click: lang_lets_go_click}
-      layout_properties: {grid_position: 'YCEBZG,HLYRVB'}
-      name: lang_lets_go
-      properties: {appearance: elevated, bold: true, icon: ''}
-      type: form:dep_srfw5i6mu5hwvt:_Components.Button
     layout_properties: {grid_position: 'WNWPMJ,HMUEQS'}
     name: lang_card
-    properties: {background: '#ffffb3', border: yellow, col_widths: '{"OXSAAI":45,"CHFQFX":15}', foreground: 'theme:Primary', role: elevated-card}
+    properties: {background: '#ffffb3', border: yellow, col_widths: '{"OXSAAI":45}', foreground: 'theme:Primary', role: elevated-card}
     type: ColumnPanel
   - components:
     - event_bindings: {click: top_start_game_click}
@@ -748,15 +748,6 @@ components:
     name: p_where
     properties: {bold: true, text: p_w, text_color: darkgreen}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
-  - event_bindings: {click: cls_click}
-    layout_properties: {}
-    name: cls
-    properties:
-      spacing:
-        margin: ['0', null, '5', null]
-        padding: ['0', null, null, null]
-      text: cls
-    type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {change: switch_1_change}
     name: switch_1
     properties: {selected: false, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}

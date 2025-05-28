@@ -1,5 +1,6 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
+import anvil.users
 from .. import mg
 from .. import lu
 import webbrowser
@@ -21,6 +22,8 @@ class home(homeTemplate):
     self.timer_1_tick()
     user = anvil.users.get_user()
     if user is None:
+      # do nothing at this point, users will be asked to log in after they chose a language
+      self.start_lang_local_storage()
       pass
     else:
       ue = user['email']
@@ -1870,9 +1873,4 @@ class home(homeTemplate):
     else:
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
-
-  def cls_click(self, **event_args):
-    """This method is called when the component is clicked."""
-    local_storage.clear()
-    self.gm_where.text = 'None'
 
