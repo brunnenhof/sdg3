@@ -461,25 +461,26 @@ db_schema:
     - admin_ui: {order: 7, width: 200}
       name: signed_up
       type: datetime
-    server: full
-    title: Users
-  where:
-    client: full
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: game_id
-      type: string
-    - admin_ui: {order: 1, width: 200}
-      name: email
-      type: string
-    - admin_ui: {order: 2, width: 200}
-      name: where
-      type: number
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 8, width: 200}
       name: lang
       type: number
+    - admin_ui: {order: 9, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 10, width: 200}
+      name: where
+      type: number
+    - admin_ui: {order: 11, width: 200}
+      name: regnbr
+      type: number
+    - admin_ui: {order: 12, width: 200}
+      name: role
+      type: string
+    - admin_ui: {order: 13, width: 200}
+      name: reg
+      type: string
     server: full
-    title: where
+    title: Users
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}

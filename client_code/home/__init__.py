@@ -27,7 +27,7 @@ class home(homeTemplate):
       pass
     else:
       ue = user['email']
-      row = app_tables.where.get(email=ue)
+      row = app_tables.users.get(email=ue)
       where = row['where']
       cid = row['game_id']
       lx = row['lang']
@@ -269,7 +269,10 @@ class home(homeTemplate):
 #      print("self.top_entry_label.visible IS TRUE")
     game_id = anvil.server.call('generate_id')
     email = mg.email
-    app_tables.where.add_row(game_id=game_id,where=3,email=email,lang=my_lox)
+    row = app_tables.users.get(email=email)
+    row['reg'] = 'gm'
+    row['where'] = 3
+    row['lang'] = my_lox
     self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
@@ -378,7 +381,7 @@ class home(homeTemplate):
     else:
       email = mg.email
       cid = mg.my_game_id
-      row = app_tables.where.get(game_id=cid,email=email)
+      row = app_tables.users.get(game_id=cid,email=email)
       row['where'] = 4
       self.gm_where.text = 4      
       self.setup_npbp_label.visible = False
