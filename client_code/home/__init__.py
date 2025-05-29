@@ -57,6 +57,24 @@ class home(homeTemplate):
         self.setup_npbp_label.visible = False  
         self.gm_card_wait_1.visible = True 
 
+  def set_top_row(self, my_lox):
+    self.top_title.text = lu.top_title_str[my_lox]
+    self.top_btn_help.text = lu.top_btn_help_str[my_lox]
+    self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.top_btn_poc.text = "PoC"
+    self.credits.text = lu.credits_btn_tx_str[my_lox]
+    self.lang_rich_tx.content = lu.lang_info_str[my_lox]
+    self.lang_lets_go.text = lu.lang_lets_go_tx[my_lox]
+
+  def alert_languages(self, my_lox):
+    if my_lox == 3:
+      alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
+    elif my_lox == 4:
+      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Beklager")
+    elif my_lox == 2:
+      alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
+    elif my_lox > 4:
+      alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
 
   def start_lang_local_storage(self, **event_args):
     #    app_tables.cookies.delete_all_rows()
@@ -116,24 +134,9 @@ class home(homeTemplate):
     self.lang_dd_menu.items = [t1, t2, t3, t4, t5]
     mg.my_lang = my_lox
     self.gm_where.text = 1      
-
-    
-    self.top_title.text = lu.top_title_str[my_lox]
-    self.top_btn_help.text = lu.top_btn_help_str[my_lox]
-    self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
-    self.top_btn_poc.text = "PoC"
-    self.credits.text = lu.credits_btn_tx_str[my_lox]
-    self.lang_rich_tx.content = lu.lang_info_str[my_lox]
-    self.lang_lets_go.text = lu.lang_lets_go_tx[my_lox]
-    if my_lox == 3:
-      alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
-    elif my_lox == 4:
-      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Beklager")
-    elif my_lox == 2:
-      alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
-    elif my_lox > 4:
-      alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
-
+    self.set_top_row(my_lox)
+    self.alert_languages(my_lox)
+ 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
     """This method is called when an item is selected"""
@@ -152,20 +155,8 @@ class home(homeTemplate):
 #    self.lang_dd_menu.items = lu.lang_avail_items
     self.lang_rich_tx.content = lu.lang_info_str[my_lox]
     self.lang_dd_menu.label = lu.lang_dd_menu_tx_str[my_lox]
+    self.alert_languages(my_lox)
 
-    if my_lox == 3:
-      alert("Les textes en français proviennent de google. Aidez-nous à les améliorer.", title="Pardon")
-    elif my_lox == 4:
-      alert("De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.", title="Unnskyld")
-    elif my_lox == 2:
-      alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
-    elif my_lox > 4:
-      alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
-
-  my_lox = mg.my_lang
-#  p_btn_select_game.text = mg.p_btn_select_game_en
-#  gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
-    
   def top_btn_thanks_click(self, **event_args):
     my_lox = mg.my_lang
     alert(content=lu.top_thanks_msg_str[my_lox], title=lu.top_thanks_title_str[my_lox])
