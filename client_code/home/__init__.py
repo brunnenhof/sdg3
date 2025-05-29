@@ -27,14 +27,18 @@ class home(homeTemplate):
       pass
     else:
       ue = user['email']
-      row = app_tables.users.get(email=ue)
-      where = row['where']
-      cid = row['game_id']
-      lx = row['lang']
+      where = user['where']
+      cid = user['game_id']
+      lx = user['lang']
       if where == 3:
         self.gm_where.text = where
         self.set_lang(lx)
         self.show_gm_3(cid, lx)
+      elif where == 4:
+        self.gm_where.text = where
+        self.set_lang(lx)
+        self.gm_card_wait_1.visible = True        
+
 
   def start_lang_local_storage(self, **event_args):
     #    app_tables.cookies.delete_all_rows()
@@ -248,7 +252,6 @@ class home(homeTemplate):
 
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
-    self.gm_where.text = 2      
     self.top_join_game.visible = False 
     self.top_start_game.visible = False 
     t = TextBox(placeholder=lu.enter_code_tx[my_lox], hide_text=True)
@@ -338,13 +341,9 @@ class home(homeTemplate):
     self.card_select_reg_role.visible = True
 
   def gm_reg_npbp_click(self, **event_args):
-    cid = local_storage['gm_id']
-    lx = local_storage['language']
-    mg.my_game_id = cid
-    mg.my_lang = lx
-    self.gm_cp_not_played.visible = False
-    self.gm_board_info.visible = False
-    self.setup_npbp_label.visible = True
+    email = mg.email
+    row = app_tables.users.get(email=email)
+    lx = row['lang']
     npbp = [] # not played by human players
     if self.cb_us.checked:
       npbp.append('us')
@@ -369,12 +368,12 @@ class home(homeTemplate):
     anfang = time.time()
     if len(npbp) == 10:
       alert(lu.need_one_reg[lx], title=lu.need_one_reg_title[lx])
-      self.gm_role_reg.visible = False 
-      self.top_entry.visible = True 
-      self.top_start_game.visible = True 
-      self.top_entry_label.visible = False 
-#      self.test_model_top_click() ## clearind DBs at the start
       return
+    cid = mg.my_game_id
+    row['game_id'] = cid
+    self.gm_cp_not_played.visible = False
+    self.gm_board_info.visible = False
+    self.setup_npbp_label.visible = True
     self.task = anvil.server.call('launch_set_npbp', cid, npbp, lx)
     while not self.task.is_completed():
       self.setup_npbp_label.visible = True
@@ -1830,7 +1829,10 @@ class home(homeTemplate):
     user = anvil.users.signup_with_form(allow_cancel=True)
 #    user = anvil.users.login_with_form(allow_cancel=True)
     if user is not None:
-      app_tables.where.add_row(email=user['email'], game_id=cid, where=2, lang=my_lox)
+      row = app_tables.users.get(email=user['email'])
+      row['where'] = 2
+      self.gm_where.text = 2      
+      row['lang'] = my_lox
       mg.email = user['email']
       self.gm_where.text = 2
       self.lang_card.visible = False

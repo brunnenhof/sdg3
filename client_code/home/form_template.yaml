@@ -740,7 +740,8 @@ components:
   properties: {col_widths: '{}'}
   type: ColumnPanel
 - components:
-  - layout_properties: {}
+  - data_bindings: []
+    layout_properties: {}
     name: gm_where
     properties: {bold: true, text: gm_w, text_color: darkred}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
