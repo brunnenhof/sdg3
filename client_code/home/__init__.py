@@ -117,6 +117,7 @@ class home(homeTemplate):
     mg.my_lang = my_lox
     self.gm_where.text = 1      
 
+    
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
