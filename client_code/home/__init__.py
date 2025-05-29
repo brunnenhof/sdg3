@@ -249,7 +249,11 @@ class home(homeTemplate):
     self.lang_card.visible = False
     self.seconds.textcolor = "darkred"
     self.top_entry.visible = False
-    self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
+    cid1 = mg.my_game_id
+    email = mg.email
+    user = app_tables.users.get(email=email)
+    cid2 = user['game_id']
+    self.gm_board.text = lu.msg_gm_board_head_str[my_lox] + cid2
     self.gm_role_reg.visible = True
     self.seconds.visible = True
     self.gm_board_info.visible = True
@@ -294,6 +298,7 @@ class home(homeTemplate):
     row['reg'] = 'gm'
     row['where'] = 3
     row['lang'] = my_lox
+    row['game_id'] = game_id
     self.gm_where.text = 3      
     anvil.server.call('launch_budget_to_db', 2025, game_id)
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
