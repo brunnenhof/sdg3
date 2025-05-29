@@ -27,17 +27,35 @@ class home(homeTemplate):
       pass
     else:
       ue = user['email']
+      mg.email = ue
       where = user['where']
       cid = user['game_id']
       lx = user['lang']
+      self.set_lang(lx)
       if where == 3:
         self.gm_where.text = where
-        self.set_lang(lx)
         self.show_gm_3(cid, lx)
       elif where == 4:
         self.gm_where.text = where
-        self.set_lang(lx)
-        self.gm_card_wait_1.visible = True        
+        self.lang_card.visible = False 
+        self.gm_board_info.visible = False 
+        self.gm_role_reg.visible = True 
+        self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+        self.gm_board.visible = True 
+        self.seconds.visible = True 
+        self.gm_reg_npbp.visible = False 
+        self.cb_us.visible = False 
+        self.cb_af.visible = False 
+        self.cb_cn.visible = False 
+        self.cb_me.visible = False 
+        self.cb_sa.visible = False 
+        self.cb_pa.visible = False 
+        self.cb_la.visible = False 
+        self.cb_ec.visible = False 
+        self.cb_eu.visible = False 
+        self.cb_se.visible = False
+        self.setup_npbp_label.visible = False  
+        self.gm_card_wait_1.visible = True 
 
 
   def start_lang_local_storage(self, **event_args):
@@ -431,8 +449,7 @@ class home(homeTemplate):
     self.set_avail_regs()
     self.p_choose_role.visible =True
 
-  def do_ta_to_longmini(self, role):
-    lx = mg.my_lang
+  def do_ta_to_longmini(self, role, lx):
     if role == 'pov':
       return lu.ta_to_longmini_pov_str[lx]
     if role == 'ineq':
@@ -446,8 +463,7 @@ class home(homeTemplate):
     if role == 'fut':
       return lu.ta_to_longmini_fut_str[lx]
 
-  def do_reg_to_longreg(self, reg):
-    lx = mg.my_lang
+  def do_reg_to_longreg(self, reg, lx):
     if reg == 'us':
       return lu.reg_to_longreg_us_str[lx]
     if reg == 'af':
@@ -470,8 +486,10 @@ class home(homeTemplate):
       return lu.reg_to_longreg_se_str[lx]
 
   def gm_card_wait_1_btn_check_click(self, **event_args):
-    lx = mg.my_lang
-    cid = mg.my_game_id
+    email = mg.email
+    user = app_tables.users.get(email=email)
+    lx = user['lang']
+    cid = user['game_id']
     runde = mg.game_runde+1
     self.gm_card_wait_1_btn_check.visible = True
     self.gm_start_round.visible = False
@@ -487,8 +505,8 @@ class home(homeTemplate):
 #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
 #    res = list({d[key] for d in slots2 if key in d})
       for row in rows:
-        longreg = self.do_reg_to_longreg(row['reg'])
-        longrole = self.do_ta_to_longmini(row['role'])
+        longreg = self.do_reg_to_longreg(row['reg'], lx)
+        longrole = self.do_ta_to_longmini(row['role'], lx)
         slot = {'reg' : longreg, 'ta': longrole}
         if slot not in slots:
           slots.append(slot)
@@ -658,15 +676,17 @@ class home(homeTemplate):
     return yr, runde
 
   def pcr_submit_click(self, **event_args):
-    lx = mg.my_lang
+    email = mg.email
+    user = app_tables.users.get(email=email)
+    lx = user['lang']
     anfang = time.time()
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
-    reg = mg.my_reg
-    reglong = self.do_reg_to_longreg(reg)
-    role = mg.my_ministry
+    reg = user['reg']
+    reglong = self.do_reg_to_longreg(reg, lx)
+    role = user['role']
     rolelong = self.do_ta_to_longmini(role)
-    cid = mg.my_game_id
+    cid = user['game_id']
 #    alert('reg is '+reg+' role is '+role)
     regs = mg.regs
     tas = mg.roles

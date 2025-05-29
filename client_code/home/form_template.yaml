@@ -84,7 +84,7 @@ components:
       type: Label
     - layout_properties: {grid_position: 'VWQIJD,ICLRXU'}
       name: seconds
-      properties: {align: right, bold: true, italic: true, text_color: '#E1CFB5'}
+      properties: {align: right, bold: true, italic: true, text_color: magenta}
       type: form:dep_srfw5i6mu5hwvt:_Components.Text
     - layout_properties: {grid_position: 'NETLMM,IYDZPU'}
       name: gm_board_info
