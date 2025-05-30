@@ -1827,22 +1827,16 @@ class home(homeTemplate):
     else:
       n = Notification(lu.logout_str[my_lox], style="danger")
       n.show()
-
-    if user is None:
-      # do nothing at this point, users will be asked to log in after they chose a language
-      self.start_lang_local_storage()
-      pass
-    else:
-      ue = user['email']
-      mg.email = ue
-      where = user['where']
-      cid = user['game_id']
-      lx = user['lang']
-      self.set_lang(lx)
-      if where == 3:
+      return
+    ue = user['email']
+    mg.email = ue
+    where = user['where']
+    cid = user['game_id']
+    lx = user['lang']
+    if where == 3: # gm before npbp
         self.gm_where.text = where
         self.show_gm_3(cid, lx)
-      elif where == 4:
+    elif where == 4: # gm AFTER npbp
         self.gm_where.text = where
         self.lang_card.visible = False 
         self.gm_board_info.visible = False 
@@ -1863,8 +1857,6 @@ class home(homeTemplate):
         self.cb_se.visible = False
         self.setup_npbp_label.visible = False  
         self.gm_card_wait_1.visible = True 
-
-#    user = anvil.users.login_with_form(allow_cancel=True)
 
   def p_enter_id_pressed_enter(self, **event_args):
     ## correct game_id and gm_status = 4
