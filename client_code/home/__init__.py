@@ -23,6 +23,7 @@ class home(homeTemplate):
     self.start_lang_local_storage()
 #    self.set_top_row(mg.my_lang)
     self.set_lang(mg.my_lang)
+    ### here I need to get user and send out various card - visibilities
     self.lang_card.visible = True
     self.user_msg_tx.text = ""
     ### log in
@@ -1808,39 +1809,50 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     alert(lu.credits_tx_str[my_lox], title=lu.credits_title_str[my_lox])
 
-  def user_dbg(self, **event_args):
-    user = anvil.users.get_user()
+  def user_dbg(self, user):
     if user is None:
-      self.user_msg_tx.text = self.user_msg_tx.text + '\nNONE'
+      self.user_msg_tx.text = self.user_msg_tx.text + '\nUser = NONE'
     else:
-      self.user_msg_tx.text = self.user_msg_tx.text + '\ne-mail=' + user['email']  + ' - where=' + str(user['where'])  + ' - reg=' + user['reg']  + ' - game_id=' + user['game_id']
-    return user
-
+      self.user_msg_tx.text = self.user_msg_tx.text + '\ne-mail=' + user['email']  
+      if user['role'] is None:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' role=NONE' 
+      else:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' role='  + user['role'] 
+      if user['game_id'] is None:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' game_id=NONE' 
+      else:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' game_id='  + user['game_id'] 
+      if user['where'] is None:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' where=NONE' 
+      else:
+        self.user_msg_tx.text = self.user_msg_tx.text + ' where='  + str(user['where']) 
 
   def lang_lets_go_click(self, **event_args):
     """This method is called when the component is clicked."""
     my_lox = mg.my_lang
     cid = mg.my_game_id
-    us = self.user_dbg()
-    alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
-    user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
-    if user is not None:
-      row = app_tables.users.get(email=user['email'])
-      row['where'] = 2
-      self.gm_where.text = 2      
-      row['lang'] = my_lox
-      mg.email = user['email']
-      self.gm_where.text = 2
-      self.lang_card.visible = False
-      self.top_entry.visible = True 
-      self.top_join_game.text = lu.top_join_game_str[my_lox]
-      self.top_start_game.text = lu.top_start_game_str[my_lox]
-    else:
-      n = Notification(lu.logout_str[my_lox], style="danger")
-      n.show()
-      return
-    ue = user['email']
-    mg.email = ue
+    user = anvil.users.get_user()
+    self.user_dbg(user)
+    if user is None:
+      alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
+      user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
+      if user is None:
+        n = Notification(lu.logout_str[my_lox], style="danger")
+        n.show()
+        return
+
+    row = app_tables.users.get(email=user['email'])
+    row['where'] = 2
+    row['lang'] = my_lox
+    user = anvil.users.get_user()
+    self.user_dbg(user)
+    mg.email = user['email']
+    self.gm_where.text = 2
+    self.lang_card.visible = False
+    self.top_entry.visible = True 
+    self.top_join_game.text = lu.top_join_game_str[my_lox]
+    self.top_start_game.text = lu.top_start_game_str[my_lox]
+    mg.email = user['email']
     where = user['where']
     cid = user['game_id']
     lx = user['lang']
