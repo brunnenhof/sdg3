@@ -24,6 +24,7 @@ class home(homeTemplate):
 #    self.set_top_row(mg.my_lang)
     self.set_lang(mg.my_lang)
     self.lang_card.visible = True
+    self.user_msg_tx.text = ""
     ### log in
 
   def set_top_row(self, my_lox):
@@ -1807,11 +1808,20 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     alert(lu.credits_tx_str[my_lox], title=lu.credits_title_str[my_lox])
 
+  def user_dbg(self, **event_args):
+    user = anvil.users.get_user()
+    if user is None:
+      self.user_msg_tx.text = self.user_msg_tx.text + '\nNONE'
+    else:
+      self.user_msg_tx.text = self.user_msg_tx.text + '\ne-mail=' + user['email']  + ' - where=' + str(user['where'])  + ' - reg=' + user['reg']  + ' - game_id=' + user['game_id']
+    return user
+
+
   def lang_lets_go_click(self, **event_args):
     """This method is called when the component is clicked."""
     my_lox = mg.my_lang
     cid = mg.my_game_id
-    user = anvil.users.get_user()
+    us = self.user_dbg()
     alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
     user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
     if user is not None:

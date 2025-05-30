@@ -10,6 +10,15 @@ components:
     properties: {appearance: outlined, character_limit: 9999, text: Debug messages ..., visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextArea
   - components:
+    - layout_properties: {grid_position: 'JFNVLP,GXPOZZ'}
+      name: user_msg_tx
+      properties: {}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Text
+    layout_properties: {grid_position: 'FBRRPE,KWIWGK'}
+    name: user_msg
+    properties: {role: outlined-card}
+    type: ColumnPanel
+  - components:
     - layout_properties: {grid_position: 'IMGJJY,OXSAAI'}
       name: lang_rich_tx
       properties: {}
