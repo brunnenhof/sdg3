@@ -20,6 +20,13 @@ class home(homeTemplate):
     self.init_components(**properties)
     self.timer_1.interval = 104104
     self.timer_1_tick()
+    self.start_lang_local_storage()
+#    self.set_top_row(mg.my_lang)
+    self.set_lang(mg.my_lang)
+    self.lang_card.visible = True
+    ### log in
+    
+    user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
     user = anvil.users.get_user()
     if user is None:
       # do nothing at this point, users will be asked to log in after they chose a language
