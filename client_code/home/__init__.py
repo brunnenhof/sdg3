@@ -25,9 +25,22 @@ class home(homeTemplate):
     self.set_lang(mg.my_lang)
     self.lang_card.visible = True
     ### log in
-    
     user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
-    user = anvil.users.get_user()
+    if user is not None:
+      row = app_tables.users.get(email=user['email'])
+      row['where'] = 2
+      self.gm_where.text = 2      
+      row['lang'] = my_lox
+      mg.email = user['email']
+      self.gm_where.text = 2
+      self.lang_card.visible = False
+      self.top_entry.visible = True 
+      self.top_join_game.text = lu.top_join_game_str[my_lox]
+      self.top_start_game.text = lu.top_start_game_str[my_lox]
+    else:
+      n = Notification(lu.logout_str[my_lox], style="danger")
+      n.show()
+
     if user is None:
       # do nothing at this point, users will be asked to log in after they chose a language
       self.start_lang_local_storage()
@@ -1850,22 +1863,7 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     cid = mg.my_game_id
     alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
-    user = anvil.users.signup_with_form(allow_cancel=True)
 #    user = anvil.users.login_with_form(allow_cancel=True)
-    if user is not None:
-      row = app_tables.users.get(email=user['email'])
-      row['where'] = 2
-      self.gm_where.text = 2      
-      row['lang'] = my_lox
-      mg.email = user['email']
-      self.gm_where.text = 2
-      self.lang_card.visible = False
-      self.top_entry.visible = True 
-      self.top_join_game.text = lu.top_join_game_str[my_lox]
-      self.top_start_game.text = lu.top_start_game_str[my_lox]
-    else:
-      n = Notification(lu.logout_str[my_lox], style="danger")
-      n.show()
 
   def p_enter_id_pressed_enter(self, **event_args):
     ## correct game_id and gm_status = 4
