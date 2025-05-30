@@ -25,57 +25,6 @@ class home(homeTemplate):
     self.set_lang(mg.my_lang)
     self.lang_card.visible = True
     ### log in
-    user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
-    if user is not None:
-      row = app_tables.users.get(email=user['email'])
-      row['where'] = 2
-      self.gm_where.text = 2      
-      row['lang'] = my_lox
-      mg.email = user['email']
-      self.gm_where.text = 2
-      self.lang_card.visible = False
-      self.top_entry.visible = True 
-      self.top_join_game.text = lu.top_join_game_str[my_lox]
-      self.top_start_game.text = lu.top_start_game_str[my_lox]
-    else:
-      n = Notification(lu.logout_str[my_lox], style="danger")
-      n.show()
-
-    if user is None:
-      # do nothing at this point, users will be asked to log in after they chose a language
-      self.start_lang_local_storage()
-      pass
-    else:
-      ue = user['email']
-      mg.email = ue
-      where = user['where']
-      cid = user['game_id']
-      lx = user['lang']
-      self.set_lang(lx)
-      if where == 3:
-        self.gm_where.text = where
-        self.show_gm_3(cid, lx)
-      elif where == 4:
-        self.gm_where.text = where
-        self.lang_card.visible = False 
-        self.gm_board_info.visible = False 
-        self.gm_role_reg.visible = True 
-        self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
-        self.gm_board.visible = True 
-        self.seconds.visible = True 
-        self.gm_reg_npbp.visible = False 
-        self.cb_us.visible = False 
-        self.cb_af.visible = False 
-        self.cb_cn.visible = False 
-        self.cb_me.visible = False 
-        self.cb_sa.visible = False 
-        self.cb_pa.visible = False 
-        self.cb_la.visible = False 
-        self.cb_ec.visible = False 
-        self.cb_eu.visible = False 
-        self.cb_se.visible = False
-        self.setup_npbp_label.visible = False  
-        self.gm_card_wait_1.visible = True 
 
   def set_top_row(self, my_lox):
     self.top_title.text = lu.top_title_str[my_lox]
@@ -1863,6 +1812,58 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     cid = mg.my_game_id
     alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
+    user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
+    if user is not None:
+      row = app_tables.users.get(email=user['email'])
+      row['where'] = 2
+      self.gm_where.text = 2      
+      row['lang'] = my_lox
+      mg.email = user['email']
+      self.gm_where.text = 2
+      self.lang_card.visible = False
+      self.top_entry.visible = True 
+      self.top_join_game.text = lu.top_join_game_str[my_lox]
+      self.top_start_game.text = lu.top_start_game_str[my_lox]
+    else:
+      n = Notification(lu.logout_str[my_lox], style="danger")
+      n.show()
+
+    if user is None:
+      # do nothing at this point, users will be asked to log in after they chose a language
+      self.start_lang_local_storage()
+      pass
+    else:
+      ue = user['email']
+      mg.email = ue
+      where = user['where']
+      cid = user['game_id']
+      lx = user['lang']
+      self.set_lang(lx)
+      if where == 3:
+        self.gm_where.text = where
+        self.show_gm_3(cid, lx)
+      elif where == 4:
+        self.gm_where.text = where
+        self.lang_card.visible = False 
+        self.gm_board_info.visible = False 
+        self.gm_role_reg.visible = True 
+        self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+        self.gm_board.visible = True 
+        self.seconds.visible = True 
+        self.gm_reg_npbp.visible = False 
+        self.cb_us.visible = False 
+        self.cb_af.visible = False 
+        self.cb_cn.visible = False 
+        self.cb_me.visible = False 
+        self.cb_sa.visible = False 
+        self.cb_pa.visible = False 
+        self.cb_la.visible = False 
+        self.cb_ec.visible = False 
+        self.cb_eu.visible = False 
+        self.cb_se.visible = False
+        self.setup_npbp_label.visible = False  
+        self.gm_card_wait_1.visible = True 
+
 #    user = anvil.users.login_with_form(allow_cancel=True)
 
   def p_enter_id_pressed_enter(self, **event_args):
