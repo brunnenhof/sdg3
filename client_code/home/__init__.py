@@ -206,12 +206,12 @@ class home(homeTemplate):
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     self.top_join_game.visible = False 
-    t = TextBox(placeholder=lu.enter_code_tx[my_lox])
+    t = TextBox(placeholder=lu.enter_code_tx[my_lox], hide_text=True)
     alert(content=t,title=lu.enter_code_title_tx[my_lox])
     print(f"You entered: {t.text}")
     code = t.text.upper()
 #    if not code == 'LTG-ND':
-    if not code == '':
+    if not code == 'SONNTAG':
       alert(lu.wrong_code_tx[my_lox])
       return
 #    with Notification("Clearing DBs ..."):

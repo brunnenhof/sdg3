@@ -53,9 +53,12 @@ db_schema:
     - admin_ui: {width: 131}
       name: gm_step
       type: number
-    - admin_ui: {width: 200}
+    - admin_ui: {width: 113}
       name: started
       type: bool
+    - admin_ui: {width: 115}
+      name: last_round_run
+      type: number
     server: full
     title: cookies
   files:
@@ -95,22 +98,22 @@ db_schema:
   games_log:
     client: full
     columns:
-    - admin_ui: {order: 0, width: 101}
+    - admin_ui: {width: 101}
       name: game_id
       type: string
-    - admin_ui: {order: 5, width: 87}
+    - admin_ui: {width: 87}
       name: gm_status
       type: number
-    - admin_ui: {order: 7, width: 110}
+    - admin_ui: {width: 110}
       name: started
       type: datetime
-    - admin_ui: {order: 8, width: 153}
+    - admin_ui: {width: 153}
       name: suspended
       type: datetime
-    - admin_ui: {order: 9, width: 138}
+    - admin_ui: {width: 138}
       name: closed
       type: datetime
-    - admin_ui: {order: 10, width: 200}
+    - admin_ui: {width: 200}
       name: language
       type: number
     server: full
@@ -146,21 +149,21 @@ db_schema:
   pcgd_advance_looked_at:
     client: full
     columns:
-    - admin_ui: {order: 1, width: 130}
-      name: round
-      type: number
-    - admin_ui: {order: 4, width: 131}
-      name: looked_at
-      type: bool
-    - admin_ui: {order: 5, width: 134}
+    - admin_ui: {width: 134}
       name: game_id
       type: string
-    - admin_ui: {order: 6, width: 138}
+    - admin_ui: {width: 130}
+      name: round
+      type: number
+    - admin_ui: {width: 138}
       name: reg
       type: string
-    - admin_ui: {order: 7, width: 113}
+    - admin_ui: {width: 113}
       name: ta
       type: string
+    - admin_ui: {width: 131}
+      name: looked_at
+      type: bool
     server: full
     title: pcgd_advance_looked_at
   plots:
@@ -169,25 +172,25 @@ db_schema:
     - admin_ui: {width: 116}
       name: game_id
       type: string
-    - admin_ui: {width: 176}
+    - admin_ui: {width: 99}
       name: title
       type: string
-    - admin_ui: {width: 145}
+    - admin_ui: {width: 97}
       name: subtitle
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {width: 110}
       name: cap
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {width: 98}
       name: fig
       type: media
-    - admin_ui: {order: 5, width: 89}
+    - admin_ui: {width: 89}
       name: runde
       type: number
-    - admin_ui: {order: 6, width: 102}
+    - admin_ui: {width: 102}
       name: ta
       type: string
-    - admin_ui: {order: 7, width: 63}
+    - admin_ui: {width: 63}
       name: reg
       type: string
     server: full
@@ -290,10 +293,10 @@ db_schema:
     - admin_ui: {width: 88}
       name: id
       type: number
-    - admin_ui: {order: 1, width: 72}
+    - admin_ui: {width: 72}
       name: sdg_nbr
       type: number
-    - admin_ui: {order: 2, width: 143}
+    - admin_ui: {width: 143}
       name: indicator
       type: string
     - admin_ui: {width: 200}
@@ -340,13 +343,13 @@ db_schema:
     - admin_ui: {width: 99}
       name: p_state
       type: number
-    - admin_ui: {order: 3, width: 93}
+    - admin_ui: {width: 93}
       name: ta
       type: string
     - admin_ui: {width: 127}
       name: gm_state
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
       name: submitted
       type: number
     server: full
@@ -368,6 +371,52 @@ db_schema:
       type: number
     server: full
     title: step_done
+  stored_plots:
+    client: full
+    columns:
+    - admin_ui: {width: 200}
+      name: game_id_p
+      type: string
+    - admin_ui: {width: 200}
+      name: fig
+      type: media
+    - admin_ui: {width: 112}
+      name: runde
+      type: number
+    - admin_ui: {width: 101}
+      name: reg
+      type: string
+    - admin_ui: {width: 94}
+      name: role
+      type: string
+    - admin_ui: {width: 200}
+      name: title
+      type: string
+    - admin_ui: {width: 200}
+      name: sub
+      type: string
+    - admin_ui: {width: 200}
+      name: cap
+      type: string
+    server: full
+    title: stored_plots
+  submitted:
+    client: full
+    columns:
+    - admin_ui: {width: 133}
+      name: game_id
+      type: string
+    - admin_ui: {width: 132}
+      name: reg
+      type: string
+    - admin_ui: {width: 149}
+      name: round
+      type: number
+    - admin_ui: {width: 150}
+      name: submitted
+      type: bool
+    server: full
+    title: submitted
   test_plots:
     client: search
     columns:
@@ -385,6 +434,53 @@ db_schema:
       type: string
     server: full
     title: test_plots
+  users:
+    client: full
+    columns:
+    - admin_ui: {width: 118}
+      name: email
+      type: string
+    - admin_ui: {width: 122}
+      name: enabled
+      type: bool
+    - admin_ui: {width: 128}
+      name: last_login
+      type: datetime
+    - admin_ui: {width: 138}
+      name: password_hash
+      type: string
+    - admin_ui: {width: 154}
+      name: n_password_failures
+      type: number
+    - admin_ui: {width: 142}
+      name: confirmed_email
+      type: bool
+    - admin_ui: {width: 200}
+      name: remembered_logins
+      type: simpleObject
+    - admin_ui: {width: 200}
+      name: signed_up
+      type: datetime
+    - admin_ui: {width: 200}
+      name: lang
+      type: number
+    - admin_ui: {width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {width: 200}
+      name: where
+      type: number
+    - admin_ui: {width: 200}
+      name: regnbr
+      type: number
+    - admin_ui: {width: 200}
+      name: role
+      type: string
+    - admin_ui: {width: 200}
+      name: reg
+      type: string
+    server: full
+    title: Users
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}
