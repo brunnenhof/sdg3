@@ -1811,6 +1811,7 @@ class home(homeTemplate):
     """This method is called when the component is clicked."""
     my_lox = mg.my_lang
     cid = mg.my_game_id
+    user = anvil.users.get_user()
     alert(lu.login_str_gm[my_lox], title=lu.login_title[my_lox], large=True)
     user = anvil.users.login_with_form(remember_by_default=True, allow_cancel=True)
     if user is not None:
