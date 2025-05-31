@@ -18,7 +18,7 @@ class home(homeTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.tick_gm_round_ready.interval = 0
-    self.timer_1.interval = 104
+    self.timer_1.interval = 104104
     self.timer_1_tick()
 #    app_tables.cookies.delete_all_rows()
 #    app_tables.state_of_play.delete_all_rows()
@@ -30,6 +30,9 @@ class home(homeTemplate):
       wo = user['where']
       if who is None and wo == 2:
         self.show_none_2(user)
+        return
+      if who == 'gm' and wo == 3:
+        self.show_gm_3(user)
         return
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
@@ -106,8 +109,15 @@ class home(homeTemplate):
     self.lang_card.visible = False 
     self.top_entry.visible = True 
     
-    
-    pass
+  def show_gm_32(self, user):
+    lx = user['lang']
+    mg.my_lang = lx
+    cid = user['game_id']
+    mg.my_game_id = cid
+    self.set_lang(lx)
+    self.lang_card.visible = False 
+    self.top_entry.visible = False 
+    self.gm_role_reg.visible = True 
     
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
