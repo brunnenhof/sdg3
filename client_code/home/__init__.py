@@ -109,7 +109,7 @@ class home(homeTemplate):
     self.lang_card.visible = False 
     self.top_entry.visible = True 
     
-  def show_gm_32(self, user):
+  def show_gm_3(self, user):
     lx = user['lang']
     mg.my_lang = lx
     cid = user['game_id']
