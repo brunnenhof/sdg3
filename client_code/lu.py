@@ -1,3 +1,4 @@
+import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -2734,11 +2735,11 @@ credits_tx_str = [
     ]
  
 credits_title_str = [
-    "Standing on shoulders of giants ... ",
+    "Standing on someone's shoulders ... ",
     "Wir stehen auf den Schultern von ... ",
     "Wir stehen auf den Schultern von ... ",
     "Nous nous tenons sur les épaules de ... ",
-    "Stående på skuldre av giganter ..." ,
+    "Stående på skuldre av andre ..." ,
     "_last_"
     ]
  

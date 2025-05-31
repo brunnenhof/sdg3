@@ -1,5 +1,6 @@
 from ._anvil_designer import gm_card_wait_1_tempTemplate
 from anvil import *
+import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q

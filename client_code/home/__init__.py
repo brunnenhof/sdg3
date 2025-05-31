@@ -1,5 +1,6 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
+import anvil.users
 from .. import mg
 from .. import lu
 import webbrowser
@@ -23,6 +24,13 @@ class home(homeTemplate):
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
 #    app_tables.roles_assign.delete_all_rows()
+    user = app_tables.users.get()
+    if user is not None:
+      who = user['reg']
+      wo = user['where']
+      if who is None and wo == 2:
+        self.show_none_2(user)
+        return
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'
@@ -91,6 +99,16 @@ class home(homeTemplate):
     elif my_lox > 4:
       alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
 
+  def show_none_2(self, user):
+    lx = user['lang']
+    mg.my_lang = lx
+    self.set_lang(lx)
+    self.lang_card.visible = False 
+    self.top_entry.visible = True 
+    
+    
+    pass
+    
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
     """This method is called when an item is selected"""
@@ -201,6 +219,12 @@ class home(homeTemplate):
     self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx1_str[my_lox]
     self.gm_board_info.content = lu.msg_gm_board_info_str[my_lox]
     self.show_hide_plots.tooltip = lu.show_hide_plots_tx[my_lox]
+    self.top_start_game.text = lu.top_start_game_str[my_lox]
+    self.top_join_game.text = lu.top_join_game_str[my_lox]
+    self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.top_btn_help.text = lu.top_btn_help_str[my_lox]
+    self.credits.text = lu.credits_btn_tx_str[my_lox]
+    self.top_btn_poc.text = "PoC"
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
   
   def top_start_game_click(self, **event_args):
