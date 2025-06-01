@@ -1743,7 +1743,16 @@ class home(homeTemplate):
     user = anvil.users.get_user()
     if user is None:
       alert(lu.sign_up[my_lox],title=lu.sign_up_title[my_lox], large=True)
-      anvil.users.signup_with_email()
+      user = anvil.users.login_with_form(remember_by_default=False, allow_remembered=False, allow_cancel=True)
+      if user is None:
+        n = Notification(lu.sorry[my_lox],style="warning")
+        n.show()
+        self.navbar_links.visible = False
+        self.bye_card.visible = True 
+        self.lang_card.visible = False 
+        self.top_entry.visible = False 
+        self.bye_tx.text = lu.bye_tx[my_lox]
+        return
     else:
       if user['where'] == 2:
         self.show_none_2()

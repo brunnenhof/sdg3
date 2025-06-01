@@ -7,7 +7,22 @@ from anvil.tables import app_tables
 #########
 ######### lu = language used
 #########
-
+sorry = [
+  "Sorry - to see you go",
+  "Es tut uns leid, dass Sie gehen",
+  "Es tut uns leid, dass Du gehst",
+  "Désolé de vous voir partir",
+  "Beklager - å se deg gå",
+  "_last_"  
+]
+bye_tx = [
+  "Thanks for stopping by - maybe another time ...",
+  "Danke für Ihren Besuch – vielleicht ein anderes Mal ...",
+  "Danke für Deinen Besuch – vielleicht ein anderes Mal ...",
+  "Merci d'être passé, peut-être une autre fois...",
+  "Takk for at du kom innom – kanskje en annen gang ...",
+  "_last_"  
+]
 jga_t = [
   "Try another ID",
   "Andere ID ausprobieren",
@@ -42,8 +57,8 @@ nbr_confirm_f = [
 ]
 sign_up = [
   "The game can be interrupted, by accident or by choice. To rejoin the game at exactely the same page just before the interruption, you need to register with an e-mail and password.\n\nThe e-mail does not have to be your correct one, something like 'p1@b.c' is perfectly OK. But the @-sign and the dot MUST be present. NOTE: If you do use a fantasy address, you will not be able to recover any password you forget.\n\nThe password can be anything. But note both e-mail and password very well - you will need both after any interruption.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einer E-Mail-Adresse und einem Passwort registrieren. \n\nDie E-Mail-Adresse muss nicht Ihre richtige sein, etwas wie „p1@b.c“ ist völlig in Ordnung. Das @-Zeichen und der Punkt MÜSSEN jedoch vorhanden sein. HINWEIS: Wenn Sie eine Fantasie-Adresse verwenden, können Sie ein vergessenes Passwort nicht wiederherstellen. Das Passwort kann beliebig sein. Merken Sie sich jedoch sowohl die E-Mail-Adresse als auch das Passwort gut – Sie benötigen beides, um das Spiel nach einer Unterbrechung fortsetzen zu können.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einer E-Mail-Adresse und einem Passwort registrieren. \n\nDie E-Mail-Adresse muss nicht Ihre richtige sein, etwas wie „p1@b.c“ ist völlig in Ordnung. Das @-Zeichen und der Punkt MÜSSEN jedoch vorhanden sein. HINWEIS: Wenn Sie eine Fantasie-Adresse verwenden, können Sie ein vergessenes Passwort nicht wiederherstellen. Das Passwort kann beliebig sein. Merken Sie sich jedoch sowohl die E-Mail-Adresse als auch das Passwort gut – Sie benötigen beides, um das Spiel nach einer Unterbrechung fortsetzen zu können.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einer E-Mail-Adresse und einem Passwort registrieren. \n\nDie E-Mail-Adresse muss nicht Ihre richtige sein, etwas wie „p1@b.c“ ist völlig in Ordnung. Das @-Zeichen und der Punkt MÜSSEN jedoch vorhanden sein. HINWEIS: Wenn Sie eine Fantasie-Adresse verwenden, können Sie ein vergessenes Passwort nicht wiederherstellen.\n\nDas Passwort kann beliebig sein. Merken Sie sich jedoch sowohl die E-Mail-Adresse als auch das Passwort gut – Sie benötigen beides, um das Spiel nach einer Unterbrechung fortsetzen zu können.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einer E-Mail-Adresse und einem Passwort registrieren. \n\nDie E-Mail-Adresse muss nicht Ihre richtige sein, etwas wie „p1@b.c“ ist völlig in Ordnung. Das @-Zeichen und der Punkt MÜSSEN jedoch vorhanden sein. HINWEIS: Wenn Sie eine Fantasie-Adresse verwenden, können Sie ein vergessenes Passwort nicht wiederherstellen.\n\nDas Passwort kann beliebig sein. Merken Sie sich jedoch sowohl die E-Mail-Adresse als auch das Passwort gut – Sie benötigen beides, um das Spiel nach einer Unterbrechung fortsetzen zu können.",
   "Le jeu peut être interrompu accidentellement ou intentionnellement. Pour reprendre le jeu exactement là où vous l'avez laissé, vous devez vous inscrire avec une adresse e-mail et un mot de passe. \n\nL'adresse e-mail ne doit pas nécessairement être la vôtre, quelque chose comme « p1@b.c » convient parfaitement. Cependant, le signe @ et le point DOIVENT être présents. REMARQUE : si vous utilisez une adresse fictive, vous ne pourrez pas récupérer un mot de passe oublié. \n\nLe mot de passe peut être choisi librement. Cependant, mémorisez bien l'adresse e-mail et le mot de passe, car vous en aurez besoin pour reprendre le jeu après une interruption.",
   "Spillet kan bli avbrutt ved et uhell eller med vilje. For å fortsette spillet akkurat der det ble avbrutt, må du registrere deg med en e-postadresse og et passord. \n\nE-postadressen trenger ikke å være din riktige, noe som «p1@b.c» er helt greit. @-tegnet og punktet MÅ imidlertid være til stede. MERK: Hvis du bruker en fantasiadresse, kan du ikke gjenopprette et glemt passord. \n\nPassordet kan være hvilket som helst. Husk imidlertid både e-postadressen og passordet godt – du trenger begge deler for å kunne fortsette spillet etter en avbrudd.",
   "_last_"  
