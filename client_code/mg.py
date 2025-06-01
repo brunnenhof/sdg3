@@ -13,6 +13,7 @@ my_reg = ''
 my_ministry = ''
 my_personal_game_id = ''
 my_lang = ''
+my_email = ''
 my_step = 0
 game_runde = 0
 dbg_info = []

@@ -106,6 +106,7 @@ class home(homeTemplate):
     lx = user['lang']
     mg.my_lang = lx
     self.set_lang(lx)
+    self.top_title.text = lu.top_title_str[lx]    
     self.lang_card.visible = False 
     self.top_entry.visible = True 
     
@@ -256,6 +257,16 @@ class home(homeTemplate):
     self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
+    user = anvil.users.get_user()
+    if user is not None:
+      em = user['email']
+      row = app_tables.users.get(email=em)
+      row['reg'] = 'gm'
+      row['game_id'] = game_id
+      mg.my_game_id = game_id
+      mg.my_email = em
+    else:
+      alert("top_start_game_click user==None")
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
@@ -390,7 +401,6 @@ class home(homeTemplate):
       em = user['email']
       row = app_tables.users.get(email=em)
       row['where'] = 3
-      row['game_id'] = cid
     else:
       alert("end set_npbp users is NONE")
       
@@ -401,7 +411,6 @@ class home(homeTemplate):
     cid = mg.my_game_id
     msg = lu.pcr_title_tx_str[lx] + ': '+cid
     self.pcr_title.text = msg
-    runde = mg.game_runde
     regs = mg.regs
     for r in regs:
       len_rows_role_assign = len(app_tables.roles_assign.search(game_id=cid, taken=0, reg=r))
@@ -1731,6 +1740,17 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     self.lang_card.visible = False
     self.top_entry.visible = True 
+    user = anvil.users.get_user()
+    if user is None:
+      alert(lu.sign_up[my_lox],title=lu.sign_up_title[my_lox], large=True)
+      anvil.users.signup_with_email()
+    else:
+      if user['where'] == 2:
+        self.show_none_2()
+      elif user['where'] == 3:
+        self.show_gm_3(user)
+      else:
+        alert("lang_lets_go_click where not 2 nor 3")
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_start_game.text = lu.top_start_game_str[my_lox]
 
