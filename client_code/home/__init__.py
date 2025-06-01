@@ -24,10 +24,13 @@ class home(homeTemplate):
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
 #    app_tables.roles_assign.delete_all_rows()
-    user = app_tables.users.get()
+    user = anvil.users.get_user()
+    self.user_dbg(user, '__init__ Home')
     if user is not None:
       who = user['reg']
       wo = user['where']
+      user = anvil.users.get_user()
+      self.user_dbg(user, '__init__ Home 2')
       if who is None and wo == 2:
         self.show_none_2(user)
         return
@@ -101,6 +104,36 @@ class home(homeTemplate):
       alert("Wir haben die Texte und Aufforderungen noch nicht in das informelle Deutsch übersetzt. Solange nutzen wir die formelle 'Sie' Form. Wenn Du helfen möchtest, lass uns das wissen.", title="Entschuldige")
     elif my_lox > 4:
       alert("We have not yet translated the texts and prompts to your language. If you want to help, please get in touch.", title="Apologies")
+
+  def user_dbg(self, u, von):
+    if u is None:
+      self.err_msg.text = self.err_msg.text + '\nuser=NONE from '+von
+    else:
+      if u['email'] is None:
+        em = 'NONE'
+      else:
+        em = u['email']
+      self.err_msg.text = self.err_msg.text + '\nUser: email='+em
+      if u['reg'] is None:
+        re = 'NONE'
+      else:
+        re = u['reg']
+      self.err_msg.text = self.err_msg.text + ' reg='+re
+      if u['where'] is None:
+        we = 'NONE'
+      else:
+        we = str(u['where'])
+      self.err_msg.text = self.err_msg.text + ' where='+we
+      if u['role'] is None:
+        ro = 'NONE'
+      else:
+        ro = u['role']
+      self.err_msg.text = self.err_msg.text + ' role='+ro
+      if u['game_id'] is None:
+        ro = 'NONE'
+      else:
+        ro = u['game_id']
+      self.err_msg.text = self.err_msg.text + ' game_ID='+ro+' '+von
 
   def show_none_2(self, user):
     lx = user['lang']
@@ -258,11 +291,14 @@ class home(homeTemplate):
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
     user = anvil.users.get_user()
+    self.user_dbg(user, 'top_start_game_click')    
     if user is not None:
       em = user['email']
       row = app_tables.users.get(email=em)
       row['reg'] = 'gm'
       row['game_id'] = game_id
+      user = anvil.users.get_user()
+      self.user_dbg(user, 'top_start_game_click ')
       mg.my_game_id = game_id
       mg.my_email = em
     else:
@@ -396,11 +432,14 @@ class home(homeTemplate):
       self.seconds.text = str(dauer)+' sec'
     self.gm_card_wait_1.visible = True
     # update user
-    user = app_tables.users.get()
+    user = anvil.users.get_user()
+    self.user_dbg(user, ' gm_reg_npbp_click')    
     if user is not None:
       em = user['email']
       row = app_tables.users.get(email=em)
       row['where'] = 3
+      user = anvil.users.get_user()
+      self.user_dbg(user, 'gm_reg_npbp_click 2 ')
     else:
       alert("end set_npbp users is NONE")
       
@@ -1741,6 +1780,7 @@ class home(homeTemplate):
     self.lang_card.visible = False
     self.top_entry.visible = True 
     user = anvil.users.get_user()
+    self.user_dbg(user, 'ln 1783 lang_lets_go_click')    
     if user is None:
       alert(lu.sign_up[my_lox],title=lu.sign_up_title[my_lox], large=True)
       user = anvil.users.login_with_form(remember_by_default=False, allow_remembered=False, allow_cancel=True)
