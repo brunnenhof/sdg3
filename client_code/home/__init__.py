@@ -390,6 +390,7 @@ class home(homeTemplate):
       em = user['email']
       row = app_tables.users.get(email=em)
       row['where'] = 3
+      row['game_id'] = cid
     else:
       alert("end set_npbp users is NONE")
       
