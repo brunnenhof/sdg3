@@ -118,6 +118,10 @@ class home(homeTemplate):
     self.lang_card.visible = False 
     self.top_entry.visible = False 
     self.gm_role_reg.visible = True 
+    self.gm_board.text = "self.gm_board.text"
+    self.gm_card_wait_1.visible = True 
+    self.gm_card_wait_1_info.visible = True 
+    self.gm_card_wait_1_btn_check.visible = True 
     
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -380,7 +384,15 @@ class home(homeTemplate):
       dauer = round(ende - anfang, 0)
       self.seconds.text = str(dauer)+' sec'
     self.gm_card_wait_1.visible = True
-
+    # update user
+    user = app_tables.users.get()
+    if user is not None:
+      em = user['email']
+      row = app_tables.users.get(email=em)
+      row['where'] = 3
+    else:
+      alert("end set_npbp users is NONE")
+      
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
     self.set_regs_invisible()
