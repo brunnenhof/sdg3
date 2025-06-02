@@ -166,7 +166,14 @@ err_pwd = [
   "Passordene er ikke de samme.",
   "_last_"
 ]
-
+login_title_tx = [
+  "Log-in",
+  "Einloggen",
+  "Einloggen",
+  "Se connecter",
+  "Logg inn",
+  "_last_"
+]
 poc_title = [
   "So far, this app is a Proof of Concept",
   "Bislang ist diese Anwendung nur ein Proof of Concept",
