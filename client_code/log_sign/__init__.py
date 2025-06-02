@@ -21,8 +21,8 @@ class log_sign(log_signTemplate):
     self.regi_cancel.text = lu.cancel_btn[lx]
     self.new_user = {"ur": '', "pr": ''}
     self.login_title.text = lu.login_title_tx[lx]
-    self.login_u.text = lu.login_u_tx[lx]
-    self.login_p.text = lu.login_p_tx[lx]
+    self.login_u.placeholder = lu.login_u_tx[lx]
+    self.login_p.placeholder = lu.login_p_tx[lx]
     self.login_save.text = lu.login_title_tx[lx]
     self.login_cancel.text = lu.cancel_btn[lx]
     self.login_first.text = lu.login_first_btn[lx]
