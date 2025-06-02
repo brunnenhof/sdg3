@@ -762,11 +762,15 @@ components:
   - event_bindings: {change: switch_1_change}
     layout_properties: {}
     name: switch_1
-    properties: {selected: false, selected_background_color: 'theme:Primary', tooltip: toggles visibility of debug messages}
+    properties:
+      margin: ['', '4', '', '4']
+      selected: false
+      selected_background_color: theme:Primary
+      tooltip: toggles visibility of debug messages
     type: form:dep_srfw5i6mu5hwvt:_Components.Switch
   - layout_properties: {}
     name: top_duration
-    properties: {font_size: 11, text_color: 'theme:Primary Container'}
+    properties: {bold: true, font_size: 11, text: dauer, text_color: darkred}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: top_btn_thanks_click}
     layout_properties: {}
@@ -774,7 +778,8 @@ components:
     properties:
       bold: true
       spacing:
-        padding: [null, '8', null, '8']
+        margin: [null, '0', null, '0']
+        padding: [null, '4', null, '4']
       text: thanks
     type: Button
   - event_bindings: {click: credits_click}
@@ -784,7 +789,8 @@ components:
       bold: true
       role: null
       spacing:
-        padding: [null, '8', null, '8']
+        margin: [null, '0', null, '0']
+        padding: [null, '4', null, '4']
       text: credits
     type: Button
   - event_bindings: {click: top_btn_poc_click}
@@ -793,7 +799,8 @@ components:
     properties:
       bold: true
       spacing:
-        padding: [null, '8', null, '8']
+        margin: [null, '0', null, '0']
+        padding: [null, '4', null, '4']
       text: poc
     type: Button
   - event_bindings: {click: top_btn_help_click}
@@ -802,16 +809,19 @@ components:
     properties:
       bold: true
       spacing:
-        padding: [null, '8', null, '8']
+        margin: [null, '0', null, '0']
+        padding: [null, '4', null, '4']
       text: help
     type: Button
   - event_bindings: {change: file_loader_1_change}
     layout_properties: {}
     name: file_loader_1
     properties:
+      icon: ''
       spacing:
         margin: ['0', null, '0', null]
-        padding: [-1.92, '5', '0', '5']
+        padding: [-1.92, '0', '0', '0']
+      text: Admin
       visible: false
     type: FileLoader
   layout_properties: {slot: nav-right}

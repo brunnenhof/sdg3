@@ -1,0 +1,40 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'YDQYTO,QJGMWR'}
+    name: login_title
+    properties: {bold: true, font_size: 24}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - layout_properties: {grid_position: 'UCDPBV,MAUWIR'}
+    name: login_u
+    properties: {}
+    type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
+  - layout_properties: {grid_position: 'MHDDDV,ECZLFM'}
+    name: login_p
+    properties: {}
+    type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
+  - layout_properties: {grid_position: 'BEFETE,REUQHN'}
+    name: login_err
+    properties: {bold: true, text_color: red}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - layout_properties: {grid_position: 'IFNPJX,BSIIAF'}
+    name: login_save
+    properties: {text: login_save}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
+  - layout_properties: {grid_position: 'IFNPJX,XZNHAS'}
+    name: login_cancel
+    properties: {text: login_cancel}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
+  - layout_properties: {grid_position: 'TNXUHW,OUGHGY'}
+    name: register_first
+    properties: {text: register first, text_color: white}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
+  layout_properties: {grid_position: 'OYTCOK,YPOCVF'}
+  name: log_in
+  properties: {background: '#F3FFFF', foreground: '', role: tonal-card}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'BPWEFH,NMRLQY'}
+  name: register
+  properties: {background: '#C9FFFF', role: tonal-card}
+  type: ColumnPanel
+container: {type: ColumnPanel}
+is_package: true
