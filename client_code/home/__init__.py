@@ -292,17 +292,13 @@ class home(homeTemplate):
     self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
-    user = anvil.users.get_user()
-    self.user_dbg(user, 'top_start_game_click')    
-    if user is not None:
-      em = user['email']
-      row = app_tables.users.get(email=em)
+    em = mg.my_email
+    row = app_tables.nutzer.get(email=em)
+    row_ln = len(row)
+    if row is not None:
       row['reg'] = 'gm'
       row['game_id'] = game_id
-      user = anvil.users.get_user()
-      self.user_dbg(user, 'top_start_game_click ')
       mg.my_game_id = game_id
-      mg.my_email = em
     else:
       alert("top_start_game_click user==None")
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
@@ -1797,6 +1793,7 @@ class home(homeTemplate):
       self.top_entry.visible = False 
       self.bye_tx.text = lu.bye_tx[my_lox]
       return
+    mg.my_email = save_clicked['u']
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_start_game.text = lu.top_start_game_str[my_lox]
 

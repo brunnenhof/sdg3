@@ -57,12 +57,15 @@ class signup(signupTemplate):
       if len(self.text_box_1.text) == 0:
         self.err_user_name.visible = True
         self.err_user_name.text = lu.err_username3[lx]
+        return
       elif len(self.text_box_1.text) > 0 and len(self.text_box_1.text) < 5:
         self.err_user_name.visible = True
         self.err_user_name.text = lu.err_username1[lx]
+        return
       elif len(self.text_box_1.text) > 10:
         self.err_user_name.visible = True
         self.err_user_name.text = lu.err_username2[lx]
+        return
       else:
         n = any(c.isalpha() for c in self.text_box_1.text)
         if not n:
