@@ -1790,36 +1790,13 @@ class home(homeTemplate):
       buttons=[]
     )
     # If the alert returned 'True', the save button was clicked.
-    if save_clicked == 42:
+    if save_clicked == 42: # cancelled
       self.navbar_links.visible = False
       self.bye_card.visible = True 
       self.lang_card.visible = False 
       self.top_entry.visible = False 
       self.bye_tx.text = lu.bye_tx[my_lox]
       return
-
-    a=2    
-    user = anvil.users.get_user()
-    self.user_dbg(user, 'ln 1783 lang_lets_go_click')    
-    if user is None:
-      alert(lu.sign_up[my_lox],title=lu.sign_up_title[my_lox], large=True)
-      user = anvil.users.login_with_form(remember_by_default=False, allow_remembered=False, allow_cancel=True)
-      if user is None:
-        n = Notification(lu.sorry[my_lox],style="warning")
-        n.show()
-        self.navbar_links.visible = False
-        self.bye_card.visible = True 
-        self.lang_card.visible = False 
-        self.top_entry.visible = False 
-        self.bye_tx.text = lu.bye_tx[my_lox]
-        return
-    else:
-      if user['where'] == 2:
-        self.show_none_2()
-      elif user['where'] == 3:
-        self.show_gm_3(user)
-      else:
-        alert("lang_lets_go_click where not 2 nor 3")
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_start_game.text = lu.top_start_game_str[my_lox]
 

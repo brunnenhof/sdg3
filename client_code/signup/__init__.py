@@ -68,7 +68,7 @@ class signup(signupTemplate):
         if not n:
           self.err_user_name.visible = True
           self.err_user_name.text = lu.err_username_alpha[lx]
-      return
+          return
         ## check against database
       usr = self.text_box_1.text
       row = app_tables.nutzer.get(email=usr)
@@ -88,7 +88,7 @@ class signup(signupTemplate):
         self.err_user_name.visible = True
         self.err_user_name.text = lu.err_username_exists[lx]
 
-def cancel_sign_up_click(self, **event_args):
+    def cancel_sign_up_click(self, **event_args):
       lx = mg.my_lang
       self.raise_event("x-close-alert", value=42)
       n = Notification(lu.sorry[lx], style="warning")

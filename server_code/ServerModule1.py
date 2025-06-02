@@ -22,8 +22,8 @@ import pickle
 import locale
 
 @anvil.server.callable
-def nuts_pwd(p, u):
-  bph = hash(p)
+def nuts_pwd(u, p):
+  bph = str(hash(p))
   jetzt = datetime.datetime.now()
   app_tables.nutzer.add_row(email=u, signed_up=jetzt, pwd_hash=bph)
   return 27
