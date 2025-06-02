@@ -78,6 +78,14 @@ cancel_btn = [
   "Avbryt",
   "_last_"
 ]
+login_first_btn  = [
+  "Already registered? Log in",
+  "Bereits registriert? Einloggen",
+  "Bereits registriert? Einloggen",
+  "Déjà inscrit ? Connectez-vous.",
+  "Allerede registrert? Logg inn",
+  "_last_"
+]
 save_btn = [
   "Save",
   "Speichern",
@@ -174,6 +182,23 @@ login_title_tx = [
   "Logg inn",
   "_last_"
 ]
+login_u_tx = [
+  "Enter your username",
+  "Benutzernamen eingeben",
+  "Benutzernamen eingeben",
+  "Entrez votre nom d'utilisateur",
+  "Skriv inn brukernavn",
+  "_last_"
+]
+login_p_tx = [
+  "Enter your password",
+  "Passwort eingeben",
+  "Passwort eingeben",
+  "Entrez votre mot de passe",
+  "Skriv inn passordet ditt",
+  "_last_"
+]
+
 poc_title = [
   "So far, this app is a Proof of Concept",
   "Bislang ist diese Anwendung nur ein Proof of Concept",

@@ -21,6 +21,11 @@ class log_sign(log_signTemplate):
     self.regi_cancel.text = lu.cancel_btn[lx]
     self.new_user = {"ur": '', "pr": ''}
     self.login_title.text = lu.login_title_tx[lx]
+    self.login_u.text = lu.login_u_tx[lx]
+    self.login_p.text = lu.login_p_tx[lx]
+    self.login_save.text = lu.login_title_tx[lx]
+    self.login_cancel.text = lu.cancel_btn[lx]
+    self.login_first.text = lu.login_first_btn[lx]
 
   def login_u_change(self, **event_args):
     """This method is called when the text in this component is edited."""
