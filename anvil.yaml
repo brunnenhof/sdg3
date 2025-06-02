@@ -146,6 +146,38 @@ db_schema:
       type: string
     server: search
     title: ministries
+  nutzer:
+    client: full
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: email
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: signed_up
+      type: datetime
+    - admin_ui: {order: 3, width: 200}
+      name: last_login
+      type: datetime
+    - admin_ui: {order: 4, width: 200}
+      name: lang
+      type: number
+    - admin_ui: {order: 5, width: 200}
+      name: game_id
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: wo
+      type: number
+    - admin_ui: {order: 7, width: 96}
+      name: reg
+      type: string
+    - admin_ui: {order: 8, width: 85}
+      name: role
+      type: string
+    - admin_ui: {order: 9, width: 200}
+      name: pwd_hash
+      type: simpleObject
+    server: full
+    title: nutzer
   pcgd_advance_looked_at:
     client: full
     columns:
@@ -434,53 +466,6 @@ db_schema:
       type: string
     server: full
     title: test_plots
-  users:
-    client: full
-    columns:
-    - admin_ui: {width: 118}
-      name: email
-      type: string
-    - admin_ui: {width: 122}
-      name: enabled
-      type: bool
-    - admin_ui: {width: 128}
-      name: last_login
-      type: datetime
-    - admin_ui: {width: 138}
-      name: password_hash
-      type: string
-    - admin_ui: {width: 154}
-      name: n_password_failures
-      type: number
-    - admin_ui: {width: 142}
-      name: confirmed_email
-      type: bool
-    - admin_ui: {width: 200}
-      name: remembered_logins
-      type: simpleObject
-    - admin_ui: {width: 200}
-      name: signed_up
-      type: datetime
-    - admin_ui: {width: 200}
-      name: lang
-      type: number
-    - admin_ui: {width: 200}
-      name: game_id
-      type: string
-    - admin_ui: {width: 200}
-      name: where
-      type: number
-    - admin_ui: {width: 200}
-      name: regnbr
-      type: number
-    - admin_ui: {width: 200}
-      name: role
-      type: string
-    - admin_ui: {width: 200}
-      name: reg
-      type: string
-    server: full
-    title: Users
 dependencies:
 - dep_id: dep_srfw5i6mu5hwvt
   resolution_hints: {app_id: 4UK6WHQ6UX7AKELK, name: Material 3 Theme, package_name: m3}
@@ -493,6 +478,7 @@ renamed: true
 runtime_options:
   client_version: '3'
   legacy_features: {__dict__: true, bootstrap3: true, class_names: true, root_container: true}
+  server_persist: true
   server_spec: {base: python310-datascience}
   server_spec_disabled: {base: python310-minimal, requirements: ''}
   server_version: python3-full
@@ -507,8 +493,5 @@ services:
 - client_config: {}
   server_config: {test_mode: true}
   source: /runtime/services/anvil/email.yml
-- client_config: {allow_signup: true, confirm_email: false, enable_automatically: true, use_email: true}
-  server_config: {user_table: users}
-  source: /runtime/services/anvil/users.yml
 startup: {module: home, type: form}
 startup_form: null

@@ -1,4 +1,3 @@
-import anvil.users
 import anvil.email
 import anvil.files
 from anvil.files import data_files
@@ -22,6 +21,12 @@ import json
 import pickle
 import locale
 
+@anvil.server.callable
+def nuts_pwd(p, u):
+  bph = hash(p)
+  jetzt = datetime.datetime.now()
+  app_tables.nutzer.add_row(email=u, signed_up=jetzt, pwd_hash=bph)
+  return 27
 #
 @anvil.server.callable
 def get_locale():

@@ -1,6 +1,5 @@
 from ._anvil_designer import homeTemplate
 from anvil import *
-import anvil.users
 from .. import mg
 from .. import lu
 import webbrowser
@@ -12,6 +11,7 @@ import time
 import datetime
 import random
 from time import strftime, localtime
+from ..signup import signup
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -24,19 +24,21 @@ class home(homeTemplate):
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
 #    app_tables.roles_assign.delete_all_rows()
-    user = anvil.users.get_user()
-    self.user_dbg(user, '__init__ Home')
-    if user is not None:
-      who = user['reg']
-      wo = user['where']
-      user = anvil.users.get_user()
-      self.user_dbg(user, '__init__ Home 2')
-      if who is None and wo == 2:
-        self.show_none_2(user)
-        return
-      if who == 'gm' and wo == 3:
-        self.show_gm_3(user)
-        return
+    
+#    user = anvil.users.get_user()
+#    self.user_dbg(user, '__init__ Home')
+#    if user is not None:
+#      who = user['reg']
+#      wo = user['where']
+#      user = anvil.users.get_user()
+#      self.user_dbg(user, '__init__ Home 2')
+#      if who is None and wo == 2:
+#        self.show_none_2(user)
+#        return
+#      if who == 'gm' and wo == 3:
+#        self.show_gm_3(user)
+#        return
+
     my_loc, my_loc2 = anvil.server.call('get_locale')
 #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'
@@ -1779,6 +1781,24 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     self.lang_card.visible = False
     self.top_entry.visible = True 
+    new_user = {}
+    # Open an alert displaying the 'ArticleEdit' Form
+    save_clicked = alert(
+      content=signup(item=new_user),
+      #      title="Sign Up",
+      large=False,
+      buttons=[]
+    )
+    # If the alert returned 'True', the save button was clicked.
+    if save_clicked == 42:
+      self.navbar_links.visible = False
+      self.bye_card.visible = True 
+      self.lang_card.visible = False 
+      self.top_entry.visible = False 
+      self.bye_tx.text = lu.bye_tx[my_lox]
+      return
+
+    a=2    
     user = anvil.users.get_user()
     self.user_dbg(user, 'ln 1783 lang_lets_go_click')    
     if user is None:

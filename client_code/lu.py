@@ -1,4 +1,3 @@
-import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -70,6 +69,102 @@ sign_up_title = [
   "Inscrivez-vous",
   "Registrering",
   "_last_"  
+]
+cancel_btn = [
+  "Cancel",
+  "Abbrechen",
+  "Abbrechen",
+  "Annuler",
+  "Avbryt",
+  "_last_"
+]
+save_btn = [
+  "Save",
+  "Speichern",
+  "Speichern",
+  "Enregistrer",
+  "Lagre",
+  "_last_"
+]
+saved = [
+  "Registration has been saved - thanks",
+  "Die Registrierung wurde gespeichert – vielen Dank.",
+  "Die Registrierung wurde gespeichert – vielen Dank.",
+  "L'inscription a été enregistrée - merci",
+  "Registreringen er lagret – takk",
+  "_last_"
+]
+user_placeholder = [
+  "Enter username",
+  "Benutzername",
+  "Benutzername",
+  "Entrez votre nom d'utilisateur",
+  "brukernavn",
+  "_last_"
+]
+pwd_placeholder = [
+  "Enter password",
+  "Passwort eingeben",
+  "Passwort eingeben",
+  "Entrez le mot de passe",
+  "Skriv inn passord",
+  "_last_"
+]
+pwd_repeat_placeholder = [
+  "Repeat password",
+  "Passwort wiederholen",
+  "Passwort wiederholen",
+  "Répétez le mot de passe",
+  "Gjenta passord",
+  "_last_"
+]
+err_username1 = [
+  "The username must be at least 5 chars long",
+  "Der Benutzername muss mindestens 5 Zeichen lang sein.",
+  "Der Benutzername muss mindestens 5 Zeichen lang sein.",
+  "Le nom d'utilisateur doit comporter au moins 5 caractères.",
+  "Brukernavnet må være minst 5 tegn langt",
+  "_last_"
+]
+err_username2 = [
+  "The username cannot be longer than 10 chars",
+  "Der Benutzername darf nicht länger als 10 Zeichen sein.",
+  "Der Benutzername darf nicht länger als 10 Zeichen sein.",
+  "Le nom d'utilisateur ne peut pas dépasser 10 caractères.",
+  "Brukernavnet kan ikke være lengre enn 10 tegn.",
+  "_last_"
+]
+err_username3 = [
+  "You must enter a username",
+  "Sie müssen einen Benutzernamen eingeben.",
+  "Du musst einen Benutzernamen eingeben.",
+  "Vous devez saisir un nom d'utilisateur.",
+  "Du må oppgi et brukernavn",
+  "_last_"
+]
+err_username_exists = [
+  "The username already exists",
+  "Der Benutzername existiert bereits.",
+  "Der Benutzername existiert bereits.",
+  "Le nom d'utilisateur existe déjà.",
+  "Brukernavnet eksisterer allerede",
+  "_last_"
+]
+err_username_alpha = [
+  "The username cannot be all digits",
+  "Der Benutzername darf nicht ausschließlich aus Ziffern bestehen.",
+  "Der Benutzername darf nicht ausschließlich aus Ziffern bestehen.",
+  "Le nom d'utilisateur ne peut pas être composé uniquement de chiffres.",
+  "Brukernavnet kan ikke bestå av bare tall.",
+  "_last_"
+]
+err_pwd = [
+  "The passwords are not the same",
+  "Die Passwörter sind nicht identisch.",
+  "Die Passwörter stimmen nicht überein.",
+  "Les mots de passe ne sont pas les mêmes.",
+  "Passordene er ikke de samme.",
+  "_last_"
 ]
 
 poc_title = [
