@@ -293,14 +293,15 @@ class home(homeTemplate):
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
     em = mg.my_email
-    row = app_tables.nutzer.get(email=em)
-    row_ln = len(row)
-    if row is not None:
-      row['reg'] = 'gm'
-      row['game_id'] = game_id
+    rows = app_tables.nutzer.search(email=em)
+    row_ln = len(rows)
+    if row_ln == 1:
+      rows[0]['reg'] = 'gm'
+      rows[0]['game_id'] = game_id
+      rows[0]['wo'] = 2
       mg.my_game_id = game_id
     else:
-      alert("top_start_game_click user==None")
+      alert("top_start_game_click row_ln NOT eq 1")
     app_tables.cookies.add_row(game_id=game_id, r1sub=0, r2sub=0, r3sub=0,gm_step=0) ## clean slate
     self.top_start_game.visible = False
     self.top_join_game.visible = False
@@ -430,16 +431,9 @@ class home(homeTemplate):
       self.seconds.text = str(dauer)+' sec'
     self.gm_card_wait_1.visible = True
     # update user
-    user = anvil.users.get_user()
-    self.user_dbg(user, ' gm_reg_npbp_click')    
-    if user is not None:
-      em = user['email']
-      row = app_tables.users.get(email=em)
-      row['where'] = 3
-      user = anvil.users.get_user()
-      self.user_dbg(user, 'gm_reg_npbp_click 2 ')
-    else:
-      alert("end set_npbp users is NONE")
+    em = mg.my_email
+    row = app_tables.nutzer.get(email=em)
+    row['wo'] = 3
       
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
@@ -1777,6 +1771,7 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     self.lang_card.visible = False
     self.top_entry.visible = True 
+    alert(lu.sign_up[my_lox], title=lu.sign_up_title[my_lox], large=True)
     new_user = {}
     # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(

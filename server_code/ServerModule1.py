@@ -25,7 +25,7 @@ import locale
 def nuts_pwd(u, p):
   bph = str(hash(p))
   jetzt = datetime.datetime.now()
-  app_tables.nutzer.add_row(email=u, signed_up=jetzt, pwd_hash=bph)
+  app_tables.nutzer.add_row(email=u, signed_up=jetzt, pwd_hash=bph,wo=1)
   return 27
 #
 @anvil.server.callable
