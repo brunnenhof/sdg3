@@ -83,6 +83,7 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_gm_3(user)
+#      gm_card_wait_1
       pass
     elif wo == 4:
       ##
@@ -201,8 +202,8 @@ class home(homeTemplate):
     self.lang_card.visible = False 
     self.top_entry.visible = False 
     self.gm_role_reg.visible = True 
-    self.gm_board.text = "self.gm_board.text"
-    self.gm_card_wait_1.visible = True 
+    self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+    self.gm_card_wait_1.visible = False  
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
     
