@@ -43,6 +43,7 @@ class log_sign(log_signTemplate):
     lx = 4
     usr = self.login_u.text
     rows = app_tables.nutzer.search(email=usr)
+    lenrows = len(rows)
     if len(rows) == 1:
       pwd = self.login_p.text
       nuts = anvil.server.call('check_nuts', usr, pwd, rows[0]['pwd_hash'])
@@ -56,9 +57,12 @@ class log_sign(log_signTemplate):
       else:
         self.login_err.visible = True
         self.login_err.text = lu.err_pwd_wrong[lx]
+    elif lenrows == 0:
+      self.login_err.visible = True
+      self.login_err.text = lu.err_user_not_exits[lx]
     else:
       self.login_err.visible = True
-      self.login_err.text = lu.err_username_enter[lx]
+      self.login_err.text = lu.err_pwd_wrong[lx]
 
   def login_cancel_click(self, **event_args):
     self.login_err.visible = False
@@ -107,7 +111,7 @@ class log_sign(log_signTemplate):
   def regi_save_click(self, **event_args):
     """This method is called when the component is clicked."""
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     if len(self.regi_user.text) == 0:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username3[lx]

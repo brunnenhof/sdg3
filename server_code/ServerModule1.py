@@ -25,7 +25,7 @@ import locale
 def nuts_pwd(u, p):
   bph = str(hash(p))
   jetzt = datetime.datetime.now()
-  app_tables.nutzer.add_row(email=u, signed_up=jetzt, pwd_hash=bph,wo=1)
+  app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, pwd_hash=bph,wo=1)
   return 27
 #
 @anvil.server.callable
@@ -34,7 +34,7 @@ def check_nuts(u, p, ph):
   if bph == ph:
     jetzt = datetime.datetime.now()
     row = app_tables.nutzer.get(email=u)
-    row['last_login'] = jetzt
+    row['last_login_utc'] = jetzt
     return True 
   else:
     return False

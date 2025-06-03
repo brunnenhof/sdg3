@@ -49,7 +49,7 @@ class home(homeTemplate):
       large=False,
       buttons=[]
     )
-    if save_clicked == 42:
+    if save_clicked == 42 or save_clicked == 342:
       ### left the app
       self.navbar_links.visible = False
       self.bye_card.visible = True 
@@ -57,6 +57,14 @@ class home(homeTemplate):
       self.top_entry.visible = False 
       self.bye_tx.text = lu.bye_tx[lox]
       return
+    else:
+      usr = save_clicked['u']
+      row = app_tables.nutzer.get(email=usr)
+      wo = row['wo']
+      reg = row['reg']
+      role = row['role']
+      game_id = row['game_id']
+      lx = row['lang']
 
     #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'

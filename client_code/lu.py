@@ -54,6 +54,14 @@ nbr_confirm_f = [
   "Nei",
   "_last_"
 ]
+err_user_not_exits = [
+  "A user with this name does not exist",
+  "Ein Benutzer mit diesem Namen existiert nicht.",
+  "Ein Benutzer mit diesem Namen existiert nicht.",
+  "Il n'existe aucun utilisateur portant ce nom.",
+  "Det finnes ingen bruker med dette navnet.",
+  "_last_"
+]
 sign_up = [
   "The game can be interrupted, by accident or by choice. To rejoin the game at exactely the same page just before the interruption, you need to register with a username and password.\n\nBoth can be anything.\n\nBut remember both username and password very well - they cannot be recovered and you will need both after any interruption.",
   "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem Benutzernamen und einem Passwort registrieren. \n\nBeide können beliebig gewählt werden. \n\nMerken Sie sich jedoch sowohl den Benutzernamen als auch das Passwort gut – sie können nicht wiederhergestellt werden und Sie benötigen beide nach einer Unterbrechung.",
