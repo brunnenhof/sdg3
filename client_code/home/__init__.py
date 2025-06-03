@@ -41,6 +41,7 @@ class home(homeTemplate):
 
     my_loc, my_loc2, lox = anvil.server.call('get_locale')
     mg.my_lang = lox
+    alert(lu.sign_up[lox], title=lu.sign_up_title[lox], large=True)
     new_user = {}
     # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(
@@ -70,9 +71,19 @@ class home(homeTemplate):
       ## just registered
       pass
     elif wo == 2:
+      ## gm select npbp
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_none_2(user)
+      pass
+    elif wo == 3:
       ##
       pass
-      
+    elif wo == 4:
+      ##
+      pass
+    
+
     #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'
     if my_loc == 'en':
@@ -1804,24 +1815,9 @@ class home(homeTemplate):
     my_lox = mg.my_lang
     self.lang_card.visible = False
     self.top_entry.visible = True 
-    alert(lu.sign_up[my_lox], title=lu.sign_up_title[my_lox], large=True)
-    new_user = {}
-    # Open an alert displaying the 'ArticleEdit' Form
-    save_clicked = alert(
-      content=log_sign(item=new_user),
-      #      title="Sign Up",
-      large=False,
-      buttons=[]
-    )
-    # If the alert returned 'True', the save button was clicked.
-    if save_clicked == 42: # cancelled
-      self.navbar_links.visible = False
-      self.bye_card.visible = True 
-      self.lang_card.visible = False 
-      self.top_entry.visible = False 
-      self.bye_tx.text = lu.bye_tx[my_lox]
-      return
-    mg.my_email = save_clicked['u']
+    em = mg.my_email
+    row = app_tables.nutzer.get(email=em)
+    row['lang'] = my_lox
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_start_game.text = lu.top_start_game_str[my_lox]
 

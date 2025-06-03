@@ -72,8 +72,8 @@ sign_up = [
 ]
 sign_up_title = [
   "Sign-Up",
-  "Einschreibung",
-  "Einschreibung",
+  "Registrieren",
+  "Registrieren",
   "Inscrivez-vous",
   "Registrering",
   "_last_"  

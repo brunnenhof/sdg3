@@ -12,7 +12,7 @@ class log_sign(log_signTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     self.regi_title.text = lu.sign_up_title[lx]
     self.regi_user.placeholder = lu.user_placeholder[lx]
     self.regi_pwd.placeholder = lu.pwd_placeholder[lx]
@@ -40,7 +40,7 @@ class log_sign(log_signTemplate):
   def login_save_click(self, **event_args):
     self.login_err.visible = False
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     usr = self.login_u.text
     rows = app_tables.nutzer.search(email=usr)
     lenrows = len(rows)
@@ -67,7 +67,7 @@ class log_sign(log_signTemplate):
   def login_cancel_click(self, **event_args):
     self.login_err.visible = False
     lx = mg.my_lang
-    lx = 3
+#    lx = 3
     self.raise_event("x-close-alert", value=342)
     n = Notification(lu.sorry[lx], style="warning")
     n.show()
@@ -80,7 +80,7 @@ class log_sign(log_signTemplate):
   def regi_user_change(self, **event_args):
     self.regi_user_err.visible = False
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     if len(self.regi_user.text) < 5:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username1[lx]
@@ -92,7 +92,7 @@ class log_sign(log_signTemplate):
 
   def regi_pwd_change(self, **event_args):
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     if not self.regi_pwd.text == self.regi_pwd2.text:
       self.regi_pwd_err.visible = True
       self.regi_pwd_err.text = lu.err_pwd[lx]
@@ -101,7 +101,7 @@ class log_sign(log_signTemplate):
 
   def regi_pwd2_change(self, **event_args):
     lx = mg.my_lang
-    lx = 4
+#    lx = 4
     if not self.regi_pwd.text == self.regi_pwd2.text:
       self.regi_pwd_err.visible = True
       self.regi_pwd_err.text = lu.err_pwd[lx]
@@ -151,7 +151,7 @@ class log_sign(log_signTemplate):
 
   def regi_cancel_click(self, **event_args):
     lx = mg.my_lang
-    lx = 3
+#    lx = 3
     self.raise_event("x-close-alert", value=42)
     n = Notification(lu.sorry[lx], style="warning")
     n.show()
