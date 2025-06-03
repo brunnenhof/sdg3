@@ -78,6 +78,15 @@ sign_up_title = [
   "Registrering",
   "_last_"  
 ]
+why_sign_up_title = [
+  "Why Sign-Up",
+  "Warum Registrieren",
+  "Warum Registrieren",
+  "Pourquoi s'inscrire ?",
+  "Hvorfor registrere seg?",
+  "_last_"  
+]
+
 cancel_btn = [
   "Cancel",
   "Abbrechen",

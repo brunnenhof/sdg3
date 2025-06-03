@@ -41,7 +41,7 @@ class home(homeTemplate):
 
     my_loc, my_loc2, lox = anvil.server.call('get_locale')
     mg.my_lang = lox
-    alert(lu.sign_up[lox], title=lu.sign_up_title[lox], large=True)
+    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
     new_user = {}
     # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(
@@ -60,6 +60,7 @@ class home(homeTemplate):
       return
     else:
       usr = save_clicked['u']
+      mg.my_email = usr
       row = app_tables.nutzer.get(email=usr)
       wo = row['wo']
       reg = row['reg']
@@ -69,6 +70,7 @@ class home(homeTemplate):
 
     if wo == 1:
       ## just registered
+      self.do_lang(my_loc)
       pass
     elif wo == 2:
       ## gm select npbp
@@ -83,9 +85,7 @@ class home(homeTemplate):
       ##
       pass
     
-
-    #    self.show_text.text = my_loc + ' ' + my_loc2
-#    my_loc = 'zu'
+  def do_lang(self, my_loc):
     if my_loc == 'en':
       t1 = ("English", 0)
       t2 = ("Deutsch - Sie", 1)
@@ -385,6 +385,9 @@ class home(homeTemplate):
       self.cb_ec.checked = False
       self.cb_eu.checked = False
       self.cb_se.checked = False
+      em = mg.my_email
+      row = app_tables.nutzer.get(email=em)
+      row['wo'] = 3
       a=2
 
   def check_rnsub(self, cid):
@@ -477,7 +480,7 @@ class home(homeTemplate):
     # update user
     em = mg.my_email
     row = app_tables.nutzer.get(email=em)
-    row['wo'] = 3
+    row['wo'] = 4
       
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
