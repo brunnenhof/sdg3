@@ -66,6 +66,13 @@ class home(homeTemplate):
       game_id = row['game_id']
       lx = row['lang']
 
+    if wo == 1:
+      ## just registered
+      pass
+    elif wo == 2:
+      ##
+      pass
+      
     #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'
     if my_loc == 'en':
