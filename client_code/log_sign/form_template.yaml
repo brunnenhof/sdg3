@@ -16,17 +16,17 @@ components:
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
   - layout_properties: {grid_position: 'BEFETE,REUQHN'}
     name: login_err
-    properties: {bold: true, text: login_err, text_color: red, visible: false}
+    properties: {bold: true, font_size: 18, text: login_err, text_color: red, visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: login_save_click}
     layout_properties: {grid_position: 'IFNPJX,BSIIAF'}
     name: login_save
-    properties: {text: login_save}
+    properties: {align: center, text: login_save}
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {click: login_cancel_click}
     layout_properties: {grid_position: 'IFNPJX,XZNHAS'}
     name: login_cancel
-    properties: {text: login_cancel}
+    properties: {align: center, text: login_cancel}
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   layout_properties: {grid_position: 'OYTCOK,YPOCVF'}
   name: log_in
@@ -38,9 +38,17 @@ components:
     properties: {bold: true, font_size: 24, text: regi_title, text_color: 'theme:Primary'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: login_first_click}
-    layout_properties: {grid_position: 'RUXGAQ,COUFHS'}
+    layout_properties: {grid_position: 'PHFOVO,IMLPYL'}
     name: login_first
-    properties: {text: login_first, text_color: white}
+    properties:
+      appearance: text
+      background_color: white
+      bold: true
+      spacing:
+        margin: [null, '0', null, '0']
+        padding: [null, '4', null, '4']
+      text: login_first
+      text_color: darkgreen
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {change: regi_user_change}
     layout_properties: {grid_position: 'JHXUWB,ZHOMDU'}
@@ -49,7 +57,7 @@ components:
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
   - layout_properties: {grid_position: 'YEFKFS,YBOESV'}
     name: regi_user_err
-    properties: {text: regi_user_err, text_color: red, visible: false}
+    properties: {bold: true, font_size: 18, text: regi_user_err, text_color: red, visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {change: regi_pwd_change}
     layout_properties: {grid_position: 'CYSYRY,QXBTYH'}
@@ -63,17 +71,17 @@ components:
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
   - layout_properties: {grid_position: 'HJTDWU,OSVWVA'}
     name: regi_pwd_err
-    properties: {text: regi_pwd_err, text_color: red, visible: false}
+    properties: {bold: true, font_size: 18, text: regi_pwd_err, text_color: red, visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: regi_save_click}
     layout_properties: {grid_position: 'YNNDZY,VKJNJM'}
     name: regi_save
-    properties: {}
+    properties: {align: center}
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {click: regi_cancel_click}
     layout_properties: {grid_position: 'YNNDZY,CWXQIR'}
     name: regi_cancel
-    properties: {}
+    properties: {align: center}
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   layout_properties: {grid_position: 'BPWEFH,NMRLQY'}
   name: register

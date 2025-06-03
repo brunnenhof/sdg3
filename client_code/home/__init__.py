@@ -11,7 +11,7 @@ import time
 import datetime
 import random
 from time import strftime, localtime
-from ..signup import signup
+from ..log_sign import log_sign
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -24,7 +24,7 @@ class home(homeTemplate):
 #    app_tables.state_of_play.delete_all_rows()
 #    app_tables.step_done.delete_all_rows()
 #    app_tables.roles_assign.delete_all_rows()
-    
+
 #    user = anvil.users.get_user()
 #    self.user_dbg(user, '__init__ Home')
 #    if user is not None:
@@ -39,8 +39,26 @@ class home(homeTemplate):
 #        self.show_gm_3(user)
 #        return
 
-    my_loc, my_loc2 = anvil.server.call('get_locale')
-#    self.show_text.text = my_loc + ' ' + my_loc2
+    my_loc, my_loc2, lox = anvil.server.call('get_locale')
+    mg.my_lang = lox
+    new_user = {}
+    # Open an alert displaying the 'ArticleEdit' Form
+    save_clicked = alert(
+      content=log_sign(item=new_user),
+      #      title="Sign Up",
+      large=False,
+      buttons=[]
+    )
+    if save_clicked == 42:
+      ### left the app
+      self.navbar_links.visible = False
+      self.bye_card.visible = True 
+      self.lang_card.visible = False 
+      self.top_entry.visible = False 
+      self.bye_tx.text = lu.bye_tx[lox]
+      return
+
+    #    self.show_text.text = my_loc + ' ' + my_loc2
 #    my_loc = 'zu'
     if my_loc == 'en':
       t1 = ("English", 0)
@@ -1775,7 +1793,7 @@ class home(homeTemplate):
     new_user = {}
     # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(
-      content=signup(item=new_user),
+      content=log_sign(item=new_user),
       #      title="Sign Up",
       large=False,
       buttons=[]

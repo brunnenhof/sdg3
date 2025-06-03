@@ -78,6 +78,15 @@ cancel_btn = [
   "Avbryt",
   "_last_"
 ]
+loggedin = [
+  "Logged in :)",
+  "Angemeldet :)",
+  "Angemeldet :)",
+  "Connecté",
+  "Pålogget",
+  "_last_"
+]
+
 login_first_btn  = [
   "Already registered? Log in",
   "Bereits registriert? Einloggen",
@@ -92,6 +101,22 @@ save_btn = [
   "Speichern",
   "Enregistrer",
   "Lagre",
+  "_last_"
+]
+err_pwd_wrong = [
+  "Wrong password",
+  "Falsches Passwort",
+  "Falsches Passwort",
+  "Mot de passe incorrect",
+  "Feil passord",
+  "_last_"
+]
+err_username_enter  = [
+  "Enter a username to log in",
+  "Geben Sie einen Benutzernamen ein, um sich anzumelden.",
+  "Gibt einen Benutzernamen ein, um dich anzumelden.",
+  "Entrez un nom d'utilisateur pour vous connecter.",
+  "Skriv inn et brukernavn for å logge inn",
   "_last_"
 ]
 saved = [

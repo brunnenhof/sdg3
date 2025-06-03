@@ -29,11 +29,32 @@ def nuts_pwd(u, p):
   return 27
 #
 @anvil.server.callable
+def check_nuts(u, p, ph):
+  bph = str(hash(p))
+  if bph == ph:
+    jetzt = datetime.datetime.now()
+    row = app_tables.nutzer.get(email=u)
+    row['last_login'] = jetzt
+    return True 
+  else:
+    return False
+
+@anvil.server.callable
 def get_locale():
   loc = locale.getlocale()
   loc1 = str(loc[0])
   loc2 = loc1.split('_')
-  return loc2[0], loc2[1]
+  if loc1 == 'en':
+    lox = 0
+  elif loc1 == 'de':
+    lox = 1
+  elif loc1 == 'fr':
+    lox = 3
+  elif loc1 == 'no':
+    lox = 4
+  else:
+    lox = 0
+  return loc2[0], loc2[1], lox
 
 @anvil.server.callable
 def fe_keepalive():
