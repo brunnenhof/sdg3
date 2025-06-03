@@ -86,7 +86,11 @@ class home(homeTemplate):
 #      gm_card_wait_1
       pass
     elif wo == 4:
-      ##
+      ## npbp selected & set up ... waiting for players to log in
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_4(user)
+
       pass
     
   def do_lang(self, my_loc):
