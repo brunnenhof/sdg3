@@ -79,7 +79,10 @@ class home(homeTemplate):
       self.show_none_2(user)
       pass
     elif wo == 3:
-      ##
+      ## select npbp
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_3(user)
       pass
     elif wo == 4:
       ##
