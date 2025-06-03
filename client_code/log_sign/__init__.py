@@ -46,6 +46,11 @@ class log_sign(log_signTemplate):
     lenrows = len(rows)
     if len(rows) == 1:
       pwd = self.login_p.text
+      nhash = rows[0]['pwd_hash']
+      a1 = (type(pwd))
+      a2 = (type(nhash))
+      s = pwd
+      a3 = r'\x' + r'\x'.join(f'{b:02x}' for b in bytes(s, 'utf8'))
       nuts = anvil.server.call('check_nuts', usr, pwd, rows[0]['pwd_hash'])
       if nuts:
         self.new_user['u'] = self.login_u.text

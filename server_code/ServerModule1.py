@@ -30,7 +30,12 @@ def nuts_pwd(u, p):
 #
 @anvil.server.callable
 def check_nuts(u, p, ph):
-  bph = str(hash(p))
+  lenp = len(p)
+  for i in range(0,lenp):
+    print(p[i])
+  if p == 'xx':
+    pass
+  bph = hash(p)
   if bph == ph:
     jetzt = datetime.datetime.now()
     row = app_tables.nutzer.get(email=u)
