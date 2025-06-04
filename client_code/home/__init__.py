@@ -751,7 +751,7 @@ class home(homeTemplate):
   def save_player_choice(self, cid, role, reg):
 #    print ('in save_player_choice: ' + region)
 #    print ('in save_player_choice: ' + ministry)
-    em = mg.email
+#    em = mg.email
     rows = app_tables.roles_assign.search(game_id=cid, role=role, reg=reg)
     for r in rows:
       if r['taken'] == 0:
@@ -763,6 +763,12 @@ class home(homeTemplate):
       else:
         alert("Unfortunately, someone claimed the role before you :( Please choose another one.")
         return False
+    em = mg.my_email
+    row = app_tables.nutzer.get(email=em)
+    row['game_id'] = cid
+    row['reg'] = reg
+    row['role'] = role
+    row['wo'] = 1 
     return True
 
   def get_runde(self, cid):
