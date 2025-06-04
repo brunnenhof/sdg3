@@ -831,7 +831,6 @@ class home(homeTemplate):
     row['wo'] = 2
 
   def pcr_submit_click(self, **event_args):
-    lx = mg.my_lang
     anfang = time.time()
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
@@ -840,50 +839,9 @@ class home(homeTemplate):
     role = mg.my_ministry
     rolelong = self.do_ta_to_longmini(role)
     cid = mg.my_game_id
-#    alert('reg is '+reg+' role is '+role)
-    regs = mg.regs
-    tas = mg.roles
-    #tas = ['poverty', 'inequality', 'empowerment', 'food', 'energy', 'future']
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
-      em = mg.my_email
-      self.p_card_graf_dec.visible = True
-      self.p_choose_role.visible = False
-      self.dec_card.visible = False
-      wrx = mg.regs.index(reg)
-      wmx = mg.roles.index(role)
-      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
-      mg.fut_title_tx2 = self.pcgd_title.text
-      your_game_id = cid + "-" + str(wrx) + str(wmx)
-      congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id 
-      mg.my_personal_game_id = your_game_id
-      alert(congrats, title=lu.pcr_submit_title_str[lx])
-      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1, lx)
-      self.pcgd_generating.visible = True
-#      make something visible
-      while not self.task.is_completed():
-        pass
-      else: ## background is done
-        ### get runde, yr
-        yr, runde = self.get_runde(cid)
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        if role == 'fut':
-          self.card_fut.visible = True
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-        else:
-          self.dec_card.visible = True
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
-        self.pcgd_info_rd1.visible = True
-        slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
-        self.plot_card_rp.items = slots
-        if role == 'fut':
-          self.do_future(cid, role, reg, runde, yr, lx )
-        else:
-          pass ## dont show policies on last round
-          self.do_non_future(cid, role, reg, runde, yr, lx)      
     dauer = round(time.time() - anfang, 0)
     self.top_duration.text = dauer
 
