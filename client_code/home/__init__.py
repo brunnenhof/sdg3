@@ -76,9 +76,7 @@ class home(homeTemplate):
       ## player, NOT fut, round 1 waiting for decisions
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
-      self.show_reg_2(reg, role, lx, game_id)
-      self.show_none_2(user)
-      pass
+      self.show_reg_2(reg, role, lx, game_id, em)
     elif wo == 2:
       ## gm select npbp
       em = mg.my_email
@@ -98,6 +96,10 @@ class home(homeTemplate):
       user = app_tables.nutzer.get(email=em)
       self.show_gm_4(user)
 
+      pass
+
+  def show_reg_2(self, reg, role, lx, game_id, em):
+      # show instructions, graphs, decision sliders 
       pass
     
   def do_lang(self, my_loc):
