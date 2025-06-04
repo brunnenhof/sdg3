@@ -23,6 +23,7 @@ import locale
 
 @anvil.server.callable
 def nuts_pwd(u, p):
+  ## with hash https://kinsta.com/blog/python-hashing/
   bph = p
   jetzt = datetime.datetime.now()
   app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, pwd_hash=bph,wo=1)
@@ -30,11 +31,7 @@ def nuts_pwd(u, p):
 #
 @anvil.server.callable
 def check_nuts(u, p, ph):
-  lenp = len(p)
-  for i in range(0,lenp):
-    print(p[i])
-  if p == 'xx':
-    pass
+  ## with hash https://kinsta.com/blog/python-hashing/
   bph = p
   if bph == ph:
     jetzt = datetime.datetime.now()

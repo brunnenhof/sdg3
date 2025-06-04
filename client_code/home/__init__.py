@@ -210,6 +210,21 @@ class home(homeTemplate):
     self.gm_card_wait_1.visible = False  
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
+
+  def show_gm_4(self, user):
+    lx = user['lang']
+    mg.my_lang = lx
+    cid = user['game_id']
+    mg.my_game_id = cid
+    self.set_lang(lx)
+    self.lang_card.visible = False 
+    self.top_entry.visible = False 
+    self.gm_role_reg.visible = True 
+    self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+    self.gm_card_wait_1.visible = True  
+    self.gm_card_wait_1_info.visible = True 
+    self.gm_card_wait_1_btn_check.visible = True 
+
     
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
