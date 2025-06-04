@@ -18,8 +18,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     self.slide_min.text = self.item['pol_tltl']
     self.slide_max.text = self.item['pol_gl']
     self.pol_abbr.text = self.item['pol_abbr']
-    
-#    self.slide_val.text = self.item['slide_val']
+    self.slide_val.text = self.item['slide_val']
 
   def get_budget_for_region(self, reg, cid, yr):
     lb = app_tables.budget.search(reg=reg, game_id=cid, yr=yr)

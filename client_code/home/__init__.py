@@ -72,6 +72,13 @@ class home(homeTemplate):
       ## just registered
       self.do_lang(my_loc)
       pass
+    elif wo == 2 and not reg == 'gm':
+      ## player, NOT fut, round 1 waiting for decisions
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_reg_2(reg, role, lx, game_id)
+      self.show_none_2(user)
+      pass
     elif wo == 2:
       ## gm select npbp
       em = mg.my_email

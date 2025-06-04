@@ -883,9 +883,19 @@ def get_policy_budgets(reg, ta, yr, cid, lang):
   TA = mg.pov_to_Poverty[ta]
   pol_list = []
   pols = app_tables.policies.search(ta=TA)
+  if yr == 2025:
+    runde = 1
+  elif yr == 2040:
+    runde = 2
+  elif yr == 2060:
+    runde = 3
+  else:
+    pass
   for pol in pols:
 #    print(pol)
     pol_abbr = pol['abbr']
+    slide_val_row = app_tables.roles_assign.get(game_id=cid,reg=reg, role=ta,round=runde,pol=pol_abbr)
+    slide_val = float(slide_val_row['wert'])
     pol_name = get_pol_name_lang(pol_abbr, lang)
 #    pol_name = pol['name']
     pol_expl = get_pol_expl_lang(pol_abbr, lang)
@@ -893,7 +903,7 @@ def get_policy_budgets(reg, ta, yr, cid, lang):
     pol_tltl = pol['tltl']
     pol_gl = pol['gl']
 
-    fdz = {'pol_name' : pol_name, 'pol_expl' : pol_expl, 'pol_tltl' : pol_tltl, 'pol_gl' : pol_gl, 'pol_abbr' : pol_abbr}
+    fdz = {'pol_name' : pol_name, 'pol_expl' : pol_expl, 'pol_tltl' : pol_tltl, 'pol_gl' : pol_gl, 'pol_abbr' : pol_abbr, 'slide_val': slide_val}
     pol_list.append(fdz)
   return pol_list
 
