@@ -15,14 +15,12 @@ class log_sign(log_signTemplate):
 #    lx = 4
     self.regi_title.text = lu.sign_up_title[lx]
     self.regi_user.placeholder = lu.user_placeholder[lx]
-    self.regi_pwd.placeholder = lu.pwd_placeholder[lx]
-    self.regi_pwd2.placeholder = lu.pwd_repeat_placeholder[lx]
     self.regi_save.text = lu.save_btn[lx]
     self.regi_cancel.text = lu.cancel_btn[lx]
+    self.regi_first.text = lu.regi_first_tx[lx]
     self.new_user = {"ur": '', "pr": ''}
     self.login_title.text = lu.login_title_tx[lx]
     self.login_u.placeholder = lu.login_u_tx[lx]
-    self.login_p.placeholder = lu.login_p_tx[lx]
     self.login_save.text = lu.login_title_tx[lx]
     self.login_cancel.text = lu.cancel_btn[lx]
     self.login_first.text = lu.login_first_btn[lx]
@@ -45,29 +43,15 @@ class log_sign(log_signTemplate):
     rows = app_tables.nutzer.search(email=usr)
     lenrows = len(rows)
     if len(rows) == 1:
-      pwd = self.login_p.text
-      nhash = rows[0]['pwd_hash']
-      a1 = (type(pwd))
-      a2 = (type(nhash))
-      s = pwd
-      a3 = r'\x' + r'\x'.join(f'{b:02x}' for b in bytes(s, 'utf8'))
-      nuts = anvil.server.call('check_nuts', usr, pwd, rows[0]['pwd_hash'])
-      if nuts:
-        self.new_user['u'] = self.login_u.text
-        self.new_user['p'] = pwd
-        mg.signup_cancel = False 
-        n = Notification(lu.loggedin[lx], style="success")
-        n.show()
-        self.raise_event("x-close-alert", value=self.new_user)
-      else:
-        self.login_err.visible = True
-        self.login_err.text = lu.err_pwd_wrong[lx]
+      self.new_user['u'] = self.login_u.text
+      mg.signup_cancel = False 
+      n = Notification(lu.loggedin[lx], style="success")
+      n.show()
+      self.raise_event("x-close-alert", value=self.new_user)
     elif lenrows == 0:
       self.login_err.visible = True
       self.login_err.text = lu.err_user_not_exits[lx]
-    else:
-      self.login_err.visible = True
-      self.login_err.text = lu.err_pwd_wrong[lx]
+      self.login_u.focus()
 
   def login_cancel_click(self, **event_args):
     self.login_err.visible = False
@@ -86,32 +70,14 @@ class log_sign(log_signTemplate):
     self.regi_user_err.visible = False
     lx = mg.my_lang
 #    lx = 4
-    if len(self.regi_user.text) < 5:
+    if len(self.regi_user.text) < 3:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username1[lx]
-    elif len(self.regi_user.text) > 10:
+    elif len(self.regi_user.text) > 15:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username2[lx]
     else:
       self.regi_user_err.visible = False
-
-  def regi_pwd_change(self, **event_args):
-    lx = mg.my_lang
-#    lx = 4
-    if not self.regi_pwd.text == self.regi_pwd2.text:
-      self.regi_pwd_err.visible = True
-      self.regi_pwd_err.text = lu.err_pwd[lx]
-    else:
-      self.regi_pwd_err.visible = False      
-
-  def regi_pwd2_change(self, **event_args):
-    lx = mg.my_lang
-#    lx = 4
-    if not self.regi_pwd.text == self.regi_pwd2.text:
-      self.regi_pwd_err.visible = True
-      self.regi_pwd_err.text = lu.err_pwd[lx]
-    else:
-      self.regi_pwd_err.visible = False      
 
   def regi_save_click(self, **event_args):
     """This method is called when the component is clicked."""
@@ -120,36 +86,26 @@ class log_sign(log_signTemplate):
     if len(self.regi_user.text) == 0:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username3[lx]
+      self.regi_user.focus()
       return
-    elif len(self.regi_user.text) > 0 and len(self.regi_user.text) < 5:
+    elif len(self.regi_user.text) > 0 and len(self.regi_user.text) < 3:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username1[lx]
       return
-    elif len(self.regi_user.text) > 10:
+    elif len(self.regi_user.text) > 15:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username2[lx]
       return
-    else:
-      n = any(c.isalpha() for c in self.regi_user.text)
-      if not n:
-        self.regi_user_err.visible = True
-        self.regi_user_err.text = lu.err_username_alpha[lx]
-        return
         ## check against database
     usr = self.regi_user.text
     row = app_tables.nutzer.get(email=usr)
     if row is None:
-      pwd = self.regi_pwd.text
-      nuts_pwd = anvil.server.call('nuts_pwd', usr, pwd)
-      if nuts_pwd == 27:
-        self.new_user['u'] = usr
-        self.new_user['p'] = nuts_pwd
-        mg.signup_cancel = False 
-        n = Notification(lu.saved[lx], style="success")
-        n.show()
-        self.raise_event("x-close-alert", value=self.new_user)
-      else:
-        alert("smothing went wrong with sign_up")
+      res = anvil.server.call('nuts_pwd', usr)
+      self.new_user['u'] = usr
+      mg.signup_cancel = False 
+      n = Notification(lu.saved[lx], style="success")
+      n.show()
+      self.raise_event("x-close-alert", value=self.new_user)
     else:
       self.regi_user_err.visible = True
       self.regi_user_err.text = lu.err_username_exists[lx]
@@ -161,3 +117,9 @@ class log_sign(log_signTemplate):
     n = Notification(lu.sorry[lx], style="warning")
     n.show()
     """This method is called when the component is clicked."""
+
+  def regi_first_click(self, **event_args):
+    self.log_in.visible = False 
+    self.register.visible = True
+    """This method is called when the component is clicked."""
+    pass

@@ -4,14 +4,14 @@ components:
     name: login_title
     properties: {bold: true, font_size: 24, text: login_title, text_color: 'theme:Primary'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - event_bindings: {click: regi_first_click}
+    layout_properties: {grid_position: 'RSEZNA,MALFTK'}
+    name: regi_first
+    properties: {appearance: text, background_color: '#C9FFFF', text_color: darkgreen}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {change: login_u_change}
     layout_properties: {grid_position: 'UCDPBV,MAUWIR'}
     name: login_u
-    properties: {}
-    type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
-  - event_bindings: {change: login_p_change}
-    layout_properties: {grid_position: 'MHDDDV,ECZLFM'}
-    name: login_p
     properties: {}
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
   - layout_properties: {grid_position: 'BEFETE,REUQHN'}
@@ -45,33 +45,19 @@ components:
       background_color: white
       bold: true
       spacing:
-        margin: [null, '0', null, '0']
-        padding: [null, '4', null, '4']
+        margin: [null, '4', null, '4']
+        padding: [null, '8', null, '8']
       text: login_first
       text_color: darkgreen
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {change: regi_user_change}
-    layout_properties: {grid_position: 'JHXUWB,ZHOMDU'}
+    layout_properties: {grid_position: 'JHDZEG,KKAERX'}
     name: regi_user
     properties: {}
     type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
   - layout_properties: {grid_position: 'YEFKFS,YBOESV'}
     name: regi_user_err
     properties: {bold: true, font_size: 18, text: regi_user_err, text_color: red, visible: false}
-    type: form:dep_srfw5i6mu5hwvt:_Components.Text
-  - event_bindings: {change: regi_pwd_change}
-    layout_properties: {grid_position: 'CYSYRY,QXBTYH'}
-    name: regi_pwd
-    properties: {}
-    type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
-  - event_bindings: {change: regi_pwd2_change}
-    layout_properties: {grid_position: 'AZOICV,XDOKFW'}
-    name: regi_pwd2
-    properties: {}
-    type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
-  - layout_properties: {grid_position: 'HJTDWU,OSVWVA'}
-    name: regi_pwd_err
-    properties: {bold: true, font_size: 18, text: regi_pwd_err, text_color: red, visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: regi_save_click}
     layout_properties: {grid_position: 'YNNDZY,VKJNJM'}

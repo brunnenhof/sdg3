@@ -22,24 +22,17 @@ import pickle
 import locale
 
 @anvil.server.callable
-def nuts_pwd(u, p):
+def nuts_pwd(u):
   ## with hash https://kinsta.com/blog/python-hashing/
-  bph = p
   jetzt = datetime.datetime.now()
-  app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, pwd_hash=bph,wo=1)
+  app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, wo=1)
   return 27
-#
+
 @anvil.server.callable
-def check_nuts(u, p, ph):
-  ## with hash https://kinsta.com/blog/python-hashing/
-  bph = p
-  if bph == ph:
-    jetzt = datetime.datetime.now()
-    row = app_tables.nutzer.get(email=u)
-    row['last_login_utc'] = jetzt
-    return True 
-  else:
-    return False
+def loggin(u):
+  row = app_tables.nutzer.get(email=u)
+  jetzt = datetime.datetime.now()  
+  row['last_login_utc'] = jetzt
 
 @anvil.server.callable
 def get_locale():

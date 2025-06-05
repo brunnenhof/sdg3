@@ -216,6 +216,7 @@ class home(homeTemplate):
     self.top_entry.visible = False 
     self.gm_role_reg.visible = True 
     self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+    self.top_title.text = lu.top_title_str[lx]
     self.gm_card_wait_1.visible = False  
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
@@ -230,6 +231,7 @@ class home(homeTemplate):
     self.top_entry.visible = False 
     self.gm_role_reg.visible = True 
     self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+    self.top_title.text = lu.top_title_str[lx]
     self.gm_board_info.visible = False 
     self.gm_reg_npbp.visible = False 
     self.cb_us.visible = False

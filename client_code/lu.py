@@ -54,6 +54,14 @@ nbr_confirm_f = [
   "Nei",
   "_last_"
 ]
+regi_first_tx = [
+  "First register, after all?",
+  "Doch erst registrieren?",
+  "Doch erst registrieren?",
+  "Il faut d'abord s'inscrire, après tout ?",
+  "Først registrere seg, tross alt?",
+  "_last_"
+]
 err_user_not_exits = [
   "A user with this name does not exist",
   "Ein Benutzer mit diesem Namen existiert nicht.",
@@ -63,15 +71,15 @@ err_user_not_exits = [
   "_last_"
 ]
 sign_up = [
-  "The game can be interrupted, by accident or by choice. To rejoin the game at exactely the same page just before the interruption, you need to register with a username and password.\n\nBut remember both username and password very well - they cannot be recovered and you will need both after any interruption.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem Benutzernamen und einem Passwort registrieren.\n\Merken Sie sich jedoch sowohl den Benutzernamen als auch das Passwort gut – sie können nicht wiederhergestellt werden und Sie benötigen beide nach einer Unterbrechung.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem Benutzernamen und einem Passwort registrieren.\n\nMerken Sie sich jedoch sowohl den Benutzernamen als auch das Passwort gut – sie können nicht wiederhergestellt werden und Sie benötigen beide nach einer Unterbrechung.",
-  "Le jeu peut être interrompu, accidentellement ou volontairement. Pour reprendre le jeu exactement à la même page qu'avant l'interruption, vous devez vous inscrire avec un nom d'utilisateur et un mot de passe.\n\nMais mémorisez bien votre nom d'utilisateur et votre mot de passe, car ils ne peuvent pas être récupérés et vous en aurez besoin après chaque interruption.",
-  "Spillet kan avbrytes, enten ved et uhell eller ved valg. For å fortsette spillet på nøyaktig samme side som før avbruddet, må du registrere deg med et brukernavn og passord.\n\nMen husk både brukernavn og passord godt – de kan ikke gjenopprettes, og du trenger begge deler etter et avbrudd.",
+  "The game can be interrupted, by accident or by choice. To rejoin the game at exactly the same page just before the interruption, you need to register with a freely chosen username.\n\nNOTE: Remember the username very well - it cannot be recovered and you will need it after any interruption.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Merken Sie sich den Benutzernamen gut – er kann nicht wiederhergestellt werden und Sie benötigen ihn nach jeder Unterbrechung.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, musst Du dich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Merke Dir den Benutzernamen gut – er kann nicht wiederhergestellt werden und Du benötst ihn nach jeder Unterbrechung.",
+  "Le jeu peut être interrompu, accidentellement ou volontairement. Pour reprendre le jeu exactement à la même page qu'avant l'interruption, Vous devez vous inscrire avec un nom d'utilisateur librement choisi. \n\nREMARQUE : mémorisez bien votre nom d'utilisateur, car il ne peut pas être récupéré et vous en aurez besoin après toute interruption.",
+  "Spillet kan avbrytes, enten ved et uhell eller ved valg. For å fortsette spillet på nøyaktig samme side som før avbruddet, må du registrere deg med et brukernavn fritt valgt.\n\nMERK: Husk brukernavnet godt – det kan ikke gjenopprettes, og du trenger det etter et avbrudd.",
   "_last_"  
 ]
 sign_up_title = [
-  "Sign-Up",
+  "Register",
   "Registrieren",
   "Registrieren",
   "Inscrivez-vous",
@@ -79,9 +87,9 @@ sign_up_title = [
   "_last_"  
 ]
 why_sign_up_title = [
-  "Why Sign-Up",
-  "Warum Registrieren",
-  "Warum Registrieren",
+  "Why register?",
+  "Warum Registrieren?",
+  "Warum Registrieren?",
   "Pourquoi s'inscrire ?",
   "Hvorfor registrere seg?",
   "_last_"  
@@ -120,14 +128,6 @@ save_btn = [
   "Lagre",
   "_last_"
 ]
-err_pwd_wrong = [
-  "Wrong password",
-  "Falsches Passwort",
-  "Falsches Passwort",
-  "Mot de passe incorrect",
-  "Feil passord",
-  "_last_"
-]
 err_username_enter  = [
   "Enter a username to log in",
   "Geben Sie einen Benutzernamen ein, um sich anzumelden.",
@@ -152,36 +152,20 @@ user_placeholder = [
   "brukernavn",
   "_last_"
 ]
-pwd_placeholder = [
-  "Enter password",
-  "Passwort eingeben",
-  "Passwort eingeben",
-  "Entrez le mot de passe",
-  "Skriv inn passord",
-  "_last_"
-]
-pwd_repeat_placeholder = [
-  "Repeat password",
-  "Passwort wiederholen",
-  "Passwort wiederholen",
-  "Répétez le mot de passe",
-  "Gjenta passord",
-  "_last_"
-]
 err_username1 = [
-  "The username must be at least 5 chars long",
-  "Der Benutzername muss mindestens 5 Zeichen lang sein.",
-  "Der Benutzername muss mindestens 5 Zeichen lang sein.",
-  "Le nom d'utilisateur doit comporter au moins 5 caractères.",
-  "Brukernavnet må være minst 5 tegn langt",
+  "The username must be at least 3 chars long",
+  "Der Benutzername muss mindestens 3 Zeichen lang sein.",
+  "Der Benutzername muss mindestens 3 Zeichen lang sein.",
+  "Le nom d'utilisateur doit comporter au moins 3 caractères.",
+  "Brukernavnet må være minst 3 tegn langt",
   "_last_"
 ]
 err_username2 = [
-  "The username cannot be longer than 10 chars",
-  "Der Benutzername darf nicht länger als 10 Zeichen sein.",
-  "Der Benutzername darf nicht länger als 10 Zeichen sein.",
-  "Le nom d'utilisateur ne peut pas dépasser 10 caractères.",
-  "Brukernavnet kan ikke være lengre enn 10 tegn.",
+  "The username cannot be longer than 15 chars",
+  "Der Benutzername darf nicht länger als 15 Zeichen sein.",
+  "Der Benutzername darf nicht länger als 15 Zeichen sein.",
+  "Le nom d'utilisateur ne peut pas dépasser 15 caractères.",
+  "Brukernavnet kan ikke være lengre enn 15 tegn.",
   "_last_"
 ]
 err_username3 = [
@@ -208,14 +192,6 @@ err_username_alpha = [
   "Brukernavnet kan ikke bestå av bare tall.",
   "_last_"
 ]
-err_pwd = [
-  "The passwords are not the same",
-  "Die Passwörter sind nicht identisch.",
-  "Die Passwörter stimmen nicht überein.",
-  "Les mots de passe ne sont pas les mêmes.",
-  "Passordene er ikke de samme.",
-  "_last_"
-]
 login_title_tx = [
   "Log-in",
   "Einloggen",
@@ -232,15 +208,6 @@ login_u_tx = [
   "Skriv inn brukernavn",
   "_last_"
 ]
-login_p_tx = [
-  "Enter your password",
-  "Passwort eingeben",
-  "Passwort eingeben",
-  "Entrez votre mot de passe",
-  "Skriv inn passordet ditt",
-  "_last_"
-]
-
 poc_title = [
   "So far, this app is a Proof of Concept",
   "Bislang ist diese Anwendung nur ein Proof of Concept",
