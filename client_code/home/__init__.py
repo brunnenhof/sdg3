@@ -99,8 +99,9 @@ class home(homeTemplate):
       pass
 
   def show_reg_2(self, reg, role, lx, game_id, em):
+    
       # show instructions, graphs, decision sliders 
-      pass
+    pass
     
   def do_lang(self, my_loc):
     if my_loc == 'en':

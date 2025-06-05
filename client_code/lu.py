@@ -55,11 +55,11 @@ nbr_confirm_f = [
   "_last_"
 ]
 regi_first_tx = [
-  "First register, after all?",
+  "Register, after all?",
   "Doch erst registrieren?",
   "Doch erst registrieren?",
   "Il faut d'abord s'inscrire, après tout ?",
-  "Først registrere seg, tross alt?",
+  "Registrere seg, tross alt?",
   "_last_"
 ]
 err_user_not_exits = [
