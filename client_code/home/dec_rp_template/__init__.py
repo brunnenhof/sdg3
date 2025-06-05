@@ -46,6 +46,7 @@ class dec_rp_template(dec_rp_templateTemplate):
     pol = self.pol_abbr.text
     row = app_tables.roles_assign.get(game_id=cid,pol=pol,round=runde, role=ta, reg=reg)
 #    print (row)
+    abc = float(self.slider_1.value)
     row['wert'] = float(self.slider_1.value)
     self.slide_val.text = self.slider_1.value
     mg.dbg_info.append("\n---update pol value "+cid+' pol='+pol+' round='+str(runde)+' role='+ta+' reg='+reg+' value='+str(self.slider_1.value))

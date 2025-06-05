@@ -29,11 +29,11 @@ components:
       padding: ['4', '8', '4', '8']
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 - data_bindings:
-  - {code: 'self.item[''pol_tltl'']', property: value, writeback: true}
   - {code: 'self.item[''pol_gl'']', property: max, writeback: false}
   - {code: 'self.item[''pol_tltl'']', property: min, writeback: false}
   - {code: '(self.item[''pol_gl''] - self.item[''pol_tltl'']) / 10', property: step, writeback: false}
   - {code: 'self.item[''slide_tip'']', property: tooltip, writeback: false}
+  - {code: '(self.item[''slide_val''])', property: value, writeback: true}
   event_bindings: {change_end: slider_1_change_end}
   layout_properties: {grid_position: 'NGKKWD,YHKNOM JIPJAD,ODCICF'}
   name: slider_1
