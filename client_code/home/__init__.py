@@ -98,10 +98,45 @@ class home(homeTemplate):
 
       pass
 
-  def show_reg_2(self, reg, role, lx, game_id, em):
-    
+  def show_reg_2(self, reg, role, lx, cid, em):
+    self.lang_card.visible = False 
+    self.p_card_graf_dec.visible = True
+    wrx = mg.regs.index(reg)
+    wmx = mg.roles.index(role)
+    self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
+    mg.fut_title_tx2 = self.pcgd_title.text
+    your_game_id = cid + "-" + str(wrx) + str(wmx)
+    reglong = self.do_reg_to_longreg(reg)
+    rolelong = self.do_ta_to_longmini(role)
+    congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id 
+    mg.my_personal_game_id = your_game_id
+#    alert(congrats, title=lu.pcr_submit_title_str[lx])
+    self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 1, lx)
+    self.pcgd_generating.visible = True
+    #      make something visible
+    while not self.task.is_completed():
+      pass
+    else: ## background is done
+      yr, runde = self.get_runde(cid)
+      self.pcgd_generating.visible = False
+      self.pcgd_plot_card.visible = True
+      if role == 'fut':
+        self.card_fut.visible = True
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+      else:
+        self.dec_card.visible = True
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+    self.plot_card_rp.items = slots
+    if role == 'fut':
+      self.do_future(cid, role, reg, runde, yr, lx )
+    else:
+      self.do_non_future(cid, role, reg, runde, yr, lx)
+    row['wo'] = 2
+    a= 2
       # show instructions, graphs, decision sliders 
-    pass
     
   def do_lang(self, my_loc):
     if my_loc == 'en':

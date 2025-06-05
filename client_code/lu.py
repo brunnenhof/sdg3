@@ -71,11 +71,11 @@ err_user_not_exits = [
   "_last_"
 ]
 sign_up = [
-  "The game can be interrupted, by accident or by choice. To rejoin the game at exactly the same page just before the interruption, you need to register with a freely chosen username.\n\nNOTE: Remember the username very well - it cannot be recovered and you will need it after any interruption.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Merken Sie sich den Benutzernamen gut – er kann nicht wiederhergestellt werden und Sie benötigen ihn nach jeder Unterbrechung.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, musst Du dich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Merke Dir den Benutzernamen gut – er kann nicht wiederhergestellt werden und Du benötst ihn nach jeder Unterbrechung.",
-  "Le jeu peut être interrompu, accidentellement ou volontairement. Pour reprendre le jeu exactement à la même page qu'avant l'interruption, Vous devez vous inscrire avec un nom d'utilisateur librement choisi. \n\nREMARQUE : mémorisez bien votre nom d'utilisateur, car il ne peut pas être récupéré et vous en aurez besoin après toute interruption.",
-  "Spillet kan avbrytes, enten ved et uhell eller ved valg. For å fortsette spillet på nøyaktig samme side som før avbruddet, må du registrere deg med et brukernavn fritt valgt.\n\nMERK: Husk brukernavnet godt – det kan ikke gjenopprettes, og du trenger det etter et avbrudd.",
+  "The game can be interrupted, by accident or by choice. To rejoin the game at exactly the same page just before the interruption, you need to register with a freely chosen username.\n\nNOTE: Write down the username, it cannot be recovered and you will need it after any interruption.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Schreiben Sie sich den Benutzernamen auf, da er nicht wiederhergestellt werden kann und Sie ihn nach einer Unterbrechung benötigen.",
+  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, musst Du dich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Schreib Dir den Benutzernamen auf, da er nicht wiederhergestellt werden kann und Du ihn nach einer Unterbrechung benötigst.",
+  "Le jeu peut être interrompu, accidentellement ou volontairement. Pour reprendre le jeu exactement à la même page qu'avant l'interruption, Vous devez vous inscrire avec un nom d'utilisateur librement choisi. \n\nREMARQUE : Notez le nom d'utilisateur, il ne peut pas être récupéré et vous en aurez besoin après toute interruption.",
+  "Spillet kan avbrytes, enten ved et uhell eller ved valg. For å fortsette spillet på nøyaktig samme side som før avbruddet, må du registrere deg med et brukernavn fritt valgt.\n\nMMERK: Skriv ned brukernavnet, det kan ikke gjenopprettes, og du vil trenge det etter eventuelle avbrudd.",
   "_last_"  
 ]
 sign_up_title = [
