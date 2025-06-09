@@ -39,13 +39,13 @@ def get_locale():
   loc = locale.getlocale()
   loc1 = str(loc[0])
   loc2 = loc1.split('_')
-  if loc1 == 'en':
+  if loc2[0] == 'en':
     lox = 0
-  elif loc1 == 'de':
+  elif loc2[0] == 'de':
     lox = 1
-  elif loc1 == 'fr':
+  elif loc2[0] == 'fr':
     lox = 3
-  elif loc1 == 'no':
+  elif loc2[0] == 'no':
     lox = 4
   else:
     lox = 0
