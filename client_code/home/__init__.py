@@ -927,7 +927,42 @@ class home(homeTemplate):
       return True
     else:
       return False
-    
+
+  def set_fut_not_all_logged_in(self, lx):
+    self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[lx]
+    self.fut_not_all_logged_in.visible = True
+    self.fut_bud_lb1.visible = False
+    self.fut_bud_lb2.visible = False
+    self.fut_but_lb3.visible = False
+    self.fut_bud_amount.visible = False
+    self.fut_invest.visible = False
+    self.fut_invest_pct.visible = False
+    self.refresh_numbers.visible = True
+    self.submit_numbers.visible = False
+    self.card_emp_fut.visible = False
+    self.card_ener_fut.visible = False
+    self.card_food_fut.visible = False
+    self.card_ineq_fut.visible = False
+    self.card_pov_fut.visible = False
+
+  def set_fut_all_logged_in(self):
+    self.fut_not_all_logged_in.visible = False
+    self.fut_bud_lb1.visible = True
+    self.fut_bud_lb2.visible = True
+    self.fut_but_lb3.visible = True
+    self.fut_bud_amount.visible = True
+    self.fut_invest.visible = True
+    self.fut_invest_pct.visible = True
+    self.refresh_numbers.visible = True
+    self.submit_numbers.visible = True
+    self.card_emp_fut.visible = True
+    self.card_ener_fut.visible = True
+    self.card_food_fut.visible = True
+    self.card_ineq_fut.visible = True
+    self.card_pov_fut.visible = True
+    self.pcgd_plot_card.visible = True
+    self.submit_numbers.visible = False
+
   def do_future(self, cid, role, reg, runde, yr, lx):
     self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
     self.pcgd_advance.visible = False
@@ -935,42 +970,11 @@ class home(homeTemplate):
     self.card_fut.visible = True
     ## check if all your regional ministers have logged in
     ## ToDo when game is restarted from suspension this must be done differently.
-    if runde == 1:
-      all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
-    else:
-      all_colleauges_logged_in = True
+    all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
     if not all_colleauges_logged_in:
-      self.fut_not_all_logged_in.visible = True
-      self.fut_bud_lb1.visible = False
-      self.fut_bud_lb2.visible = False
-      self.fut_but_lb3.visible = False
-      self.fut_bud_amount.visible = False
-      self.fut_invest.visible = False
-      self.fut_invest_pct.visible = False
-      self.refresh_numbers.visible = True
-      self.submit_numbers.visible = False
-      self.card_emp_fut.visible = False
-      self.card_ener_fut.visible = False
-      self.card_food_fut.visible = False
-      self.card_ineq_fut.visible = False
-      self.card_pov_fut.visible = False
+      self.set_fut_not_all_logged_in(lx)
     else:
-      self.fut_not_all_logged_in.visible = False
-      self.fut_bud_lb1.visible = True
-      self.fut_bud_lb2.visible = True
-      self.fut_but_lb3.visible = True
-      self.fut_bud_amount.visible = True
-      self.fut_invest.visible = True
-      self.fut_invest_pct.visible = True
-      self.refresh_numbers.visible = True
-      self.submit_numbers.visible = True
-      self.card_emp_fut.visible = True
-      self.card_ener_fut.visible = True
-      self.card_food_fut.visible = True
-      self.card_ineq_fut.visible = True
-      self.card_pov_fut.visible = True
-      self.pcgd_plot_card.visible = True
-      self.submit_numbers.visible = False
+      self.set_fut_all_logged_in()
       if not yr == 2100:
         f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
         self.pov_rep_panel.visible = True
