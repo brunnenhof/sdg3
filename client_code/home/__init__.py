@@ -930,6 +930,7 @@ class home(homeTemplate):
 
   def set_fut_not_all_logged_in(self, lx):
     self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[lx]
+    self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]    
     self.fut_not_all_logged_in.visible = True
     self.fut_bud_lb1.visible = False
     self.fut_bud_lb2.visible = False
@@ -945,7 +946,9 @@ class home(homeTemplate):
     self.card_ineq_fut.visible = False
     self.card_pov_fut.visible = False
 
-  def set_fut_all_logged_in(self):
+  def set_fut_all_logged_in(self, lx):
+    self.submit_numbers.text = lu.submit_numbers_tx_str[lx]
+    self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]    
     self.fut_not_all_logged_in.visible = False
     self.fut_bud_lb1.visible = True
     self.fut_bud_lb2.visible = True
@@ -974,7 +977,7 @@ class home(homeTemplate):
     if not all_colleauges_logged_in:
       self.set_fut_not_all_logged_in(lx)
     else:
-      self.set_fut_all_logged_in()
+      self.set_fut_all_logged_in(lx)
       if not yr == 2100:
         f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
         self.pov_rep_panel.visible = True
