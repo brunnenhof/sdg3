@@ -1410,6 +1410,9 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
+        em = mg.email
+        rn = app_tables.nutzer.get(email=em)
+        rn['wo'] = 5 # succesfully ran to 2040
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
