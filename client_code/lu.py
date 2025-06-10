@@ -578,11 +578,11 @@ pol_to_expl_Ctax_str = [
   "_last_"
 ]
 pol_to_expl_DAC_str = [
-  "Capturing CO2 that is already in the atmosphere and storing it underground  - in GtCO2/yr (Giga tons - giga is 10^9); In 2020 regional emissions were roughly as follows - USA 5 Africa south of Sahara 1 China 12 the rest all between 2 and 3 GtCO2/yr. You can capture more than you emit.",
-  "Rückgewinnung von CO2 das sich bereits in der Atmosphäre befindet und dessen unterirdische Speicherung & in GtCO2/Jahr (Gigatonnen & Giga ist 10^9); Im Jahr 2020 betrugen die regionalen Emissionen ungefähr - USA 5 Afrika südlich der Sahara 1 China 12 der Rest jeweils zwischen 2 und 3 GtCO2/Jahr. Man kann mehr rück gewinnen als man ausstösst.",
-  "Rückgewinnung von CO2 das sich bereits in der Atmosphäre befindet und dessen unterirdische Speicherung & in GtCO2/Jahr (Gigatonnen & Giga ist 10^9); Im Jahr 2020 betrugen die regionalen Emissionen ungefähr - USA 5 Afrika südlich der Sahara 1 China 12 der Rest jeweils zwischen 2 und 3 GtCO2/Jahr. Man kann mehr rück gewinnen als man ausstösst.",
-  "Récupération du CO2 déjà présent dans l'atmosphère et son stockage souterrain & en GtCO2/an (gigatonnes & giga est 10^9) ; En 2020, les émissions régionales étaient d'environ - USA 5 Afrique subsaharienne 1 Chine 12 le reste entre 2 et 3 GtCO2/an chacun. On peut gagner plus de recul que l'on n'en émet.",
-  "Gjenvinning av CO2 som allerede er i atmosfæren og lagring i undergrunnen & i GtCO2/år (Gigatonn & Giga er 10^9); I 2020 var de regionale utslippene omtrent - USA 5 Afrika sør for Sahara 1 Kina 12 resten mellom 2 og 3 GtCO2/år hver. Du kan gjenvinne mer enn du slipper ut.",
+  "Capturing CO2 that is already in the atmosphere and storing it underground  - in GtCO2/yr (Giga tons - giga is 10^9); In 2020 regional emissions were roughly as follows: USA 5, Africa south of Sahara 1, China 12, the rest all between 2 and 3 GtCO2/yr. You can capture more than you emit.",
+  "Rückgewinnung von CO2 das sich bereits in der Atmosphäre befindet und dessen unterirdische Speicherung - in GtCO2/Jahr (Gigatonnen - Giga ist 10^9); Im Jahr 2020 betrugen die regionalen Emissionen ungefähr: USA 5, Afrika südlich der Sahara 1, China 12, alle anderen jeweils zwischen 2 und 3 GtCO2/Jahr. Man kann mehr rück gewinnen als man ausstösst.",
+  "Rückgewinnung von CO2 das sich bereits in der Atmosphäre befindet und dessen unterirdische Speicherung - in GtCO2/Jahr (Gigatonnen - Giga ist 10^9); Im Jahr 2020 betrugen die regionalen Emissionen ungefähr: USA 5, Afrika südlich der Sahara 1, China 12, alle anderen jeweils zwischen 2 und 3 GtCO2/Jahr. Man kann mehr rück gewinnen als man ausstösst.",
+  "Récupération du CO2 déjà présent dans l'atmosphère et son stockage souterrain & en GtCO2/an (gigatonnes - giga est 10^9) ; En 2020, les émissions régionales étaient d'environ: USA 5, Afrique subsaharienne 1, Chine 12, le reste entre 2 et 3 GtCO2/an chacun. On peut gagner plus de recul que l'on n'en émet.",
+  "Gjenvinning av CO2 som allerede er i atmosfæren og lagring i undergrunnen & i GtCO2/år (Gigatonn - Giga er 10^9); I 2020 var de regionale utslippene omtrent: USA 5, Afrika sør for Sahara 1, Kina 12, resten mellom 2 og 3 GtCO2/år hver. Du kan gjenvinne mer enn du slipper ut.",
   "_last_"
 ]
 pol_to_expl_XtaxFrac_str = [
@@ -1194,11 +1194,11 @@ sdgvarID_to_subtitle_38_str = [
   "_last_"
 ]
 sdgvarID_to_indicator_13_str = [
-  "Worker disposable income (1000 USD/person-year)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 USD/Personenjahr)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 USD/Personenjahr)",
-  "Revenu disponible des travailleurs (1000 USD / personne-personne)", 
-  "Arbeiderens disponible inntekt (1000 USD/personår)", 
+  "Worker disposable income (1000 USD per person and year)",
+  "Verfügbares Einkommen der Arbeitnehmer (1000 USD pro Person pro Jahr)",
+  "Verfügbares Einkommen der Arbeitnehmer (1000 USD pro Person pro Jahr)",
+  "Revenu disponible des travailleurs (1000 USD par personne et par an)", 
+  "Arbeiderens disponible inntekt (1000 USD per person per år)", 
   "_last_"
 ]
 sdgvarID_to_indicator_18_str = [
@@ -1306,11 +1306,11 @@ sdgvarID_to_indicator_16_str = [
   "_last_"
 ]
 sdgvarID_to_indicator_17_str = [
-  "Emissions per person (tCO2 per person-year)",
-  "Emissionen pro Person (tCO2 pro Personenjahr)",
-  "Emissionen pro Person (tCO2 pro Personenjahr)",
-  "Émissions par personne (TCO2 par personne-année)", 
-  "Utslipp per person (TCO2 per personår)", 
+  "Emissions per person (tCO2 per person and year)",
+  "Emissionen pro Person (tCO2 pro Person pro Jahr)",
+  "Emissionen pro Person (tCO2 pro Person pro Jahr)",
+  "Émissions par personne (tCO2 par personne et par an)", 
+  "Utslipp per person (tCO2 per person per år)", 
   "_last_"
 ]
 sdgvarID_to_indicator_34_str = [
@@ -2490,7 +2490,7 @@ player_board_tx_str = [
 pcgd_rd1_info_tx_str = [
     "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round. ",
     "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, verfolgen Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
-    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchau Dir alle Deine Indikatoren an, verfolge deren Entwicklung über die Jahre und tausche Disch mit Kollegen:innen, zunächst in Deiner Region, aber auch in den anderen Regionen, aus.\nWenn Du soweit bist, scrolle nach unten zu den Entscheidungen, die Du als Minister:in treffen musst, um das Leben Deiner Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
+    "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchau Dir alle Deine Indikatoren an, verfolge deren Entwicklung über die Jahre und tausche Dich mit Kollegen:innen, zunächst in Deiner Region, aber auch in den anderen Regionen, aus.\nWenn Du soweit bist, scrolle nach unten zu den Entscheidungen, die Du als Minister:in treffen musst, um das Leben Deiner Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
     "Vous avez la responsabilité d'améliorer la vie de votre peuple. Dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter - l'agitation sociale, voire pire, est au coin de la rue!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, faites défiler vers le bas jusqu'aux décisions que vous devez prendre en tant que ministre pour, espérons-le, améliorer la vie de vos citoyens au cours du prochain cycle de négociations. ",
     "Du er ansvarlig for å forbedre livene til ditt folk. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, blar du ned til beslutningene du må ta som minister, som forhåpentligvis vil forbedre livene til innbyggerne dine i neste runde. ",
     "_last_"
