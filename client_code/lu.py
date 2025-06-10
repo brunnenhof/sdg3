@@ -2202,11 +2202,11 @@ gm_reg_npbp_tx_str = [
   "_last_"
 ]
 topentry_label_tx_str = [
-  "Hold on, setting up all the necessary slots, templates and tables for the game ... ",
-  "Moment, alle erforderlichen Slots, Vorlagen und Tabellen für das Spiel werden eingerichtet ... ",
-  "Moment, alle erforderlichen Slots, Vorlagen und Tabellen für das Spiel werden eingerichtet ... ",
-  "Attendez, configurant toutes les machines à sous, modèles et tables nécessaires pour le jeu ...", 
-  "Hold på, sette opp alle nødvendige spor, maler og tabeller for spillet ...", 
+  "Hold on, setting up the database for the game ... ",
+  "Moment, die Datenbank für das Spiel wird eingerichtet ... ",
+  "Moment, die Datenbank für das Spiel wird eingerichtet ... ",
+  "Attendez, la base de données du jeu est en cours de configuration ...", 
+  "Hold på, databasen for spillet blir opprettet ...", 
   "_last_"
 ]
 gm_card_wait_1_temp_title_tx1_str = [
