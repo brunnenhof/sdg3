@@ -1248,9 +1248,11 @@ class home(homeTemplate):
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
       ## show confirmation alert
+      row_games_log = app_tables.games_log.get(game_id=cid_cookie)
+      gm_status = row_games_log['gm_status']
       em = mg.my_email
       ro2 = app_tables.nutzer.get(email=em)
-      self.err_msg.text = self.err_msg.text + "\n-------- submit_numbers_click cid=" + (cid_cookie) + ' gm_status=' + str(row['gm_status']) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
+      self.err_msg.text = self.err_msg.text + "\n-------- submit_numbers_click cid=" + (cid_cookie) + ' gm_status=' + str(gm_status) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
       self.cid_reg_role_info.text = my_cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
@@ -1302,7 +1304,7 @@ class home(homeTemplate):
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid_cookie)
         rc = app_tables.cookies.get(game_id=cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::ALL submit  gmStatus=" + str(row['gm_status']) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
+        self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::ALL submit  gmStatus=" + str(gm_status) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
