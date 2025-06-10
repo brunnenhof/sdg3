@@ -68,6 +68,8 @@ class home(homeTemplate):
       game_id = row['game_id']
       lx = row['lang']
 
+#    wo = 5
+#    reg = 'gm'
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -77,6 +79,11 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_reg_2(reg, role, lx, game_id, em)
+    elif wo == 5 and reg == 'gm':
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_5(lx, game_id)
     elif wo == 2:
       ## gm select npbp
       em = mg.my_email
@@ -258,6 +265,18 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
 
+  def set_reg_cb_false(self):
+    self.cb_us.visible = False
+    self.cb_af.visible = False
+    self.cb_cn.visible = False
+    self.cb_me.visible = False
+    self.cb_sa.visible = False
+    self.cb_la.visible = False
+    self.cb_pa.visible = False
+    self.cb_ec.visible = False
+    self.cb_eu.visible = False
+    self.cb_se.visible = False
+
   def show_gm_4(self, user):
     lx = user['lang']
     mg.my_lang = lx
@@ -271,20 +290,33 @@ class home(homeTemplate):
     self.top_title.text = lu.top_title_str[lx]
     self.gm_board_info.visible = False 
     self.gm_reg_npbp.visible = False 
-    self.cb_us.visible = False
-    self.cb_af.visible = False
-    self.cb_cn.visible = False
-    self.cb_me.visible = False
-    self.cb_sa.visible = False
-    self.cb_la.visible = False
-    self.cb_pa.visible = False
-    self.cb_ec.visible = False
-    self.cb_eu.visible = False
-    self.cb_se.visible = False
+    self.set_reg_cb_false()
     self.gm_card_wait_1.visible = True  
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
 
+  def show_gm_5(self, lx, cid):
+      mg.my_lang = lx
+      mg.my_game_id = cid
+      self.set_lang(lx)
+      self.lang_card.visible = False 
+      self.top_entry.visible = False 
+      self.set_reg_cb_false()
+#      gm_card_wait_1_temp_title
+      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
+      self.gm_card_wait_1_rp.visible = False
+      self.gm_wait_kickoff_r1_rp.visible = False
+
+      self.gm_role_reg.visible = True 
+      self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+      self.top_title.text = lu.top_title_str[lx]
+      self.gm_board_info.visible = False 
+      self.gm_reg_npbp.visible = False 
+      self.gm_card_wait_1.visible = True  
+      self.gm_card_wait_1_info.visible = True 
+      self.gm_card_wait_1_btn_check.visible = False 
+      self.gm_start_round.visible = True
+      a=3
     
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -1410,7 +1442,7 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call('budget_to_db', 2040, cid_cookie)
-        em = mg.email
+        em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn['wo'] = 5 # succesfully ran to 2040
       elif runde == 2:

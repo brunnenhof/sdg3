@@ -47,6 +47,7 @@ class log_sign(log_signTemplate):
     if len(rows) == 1:
       self.new_user['u'] = self.login_u.text
       mg.signup_cancel = False 
+      mg.my_email = self.login_u.text
       self.raise_event("x-close-alert", value=self.new_user)
     elif lenrows == 0:
       self.login_err.visible = True
