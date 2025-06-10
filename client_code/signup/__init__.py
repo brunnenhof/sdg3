@@ -82,8 +82,6 @@ class signup(signupTemplate):
           self.new_user['u'] = self.text_box_1.text
           self.new_user['p'] = nuts_pwd
           mg.signup_cancel = False 
-          n = Notification(lu.saved[lx], style="success")
-          n.show()
           self.raise_event("x-close-alert", value=self.new_user)
         else:
           alert("smothing went wrong with sign_up")

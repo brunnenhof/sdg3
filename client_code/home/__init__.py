@@ -403,7 +403,35 @@ class home(homeTemplate):
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.top_btn_poc.text = "PoC"
 #    self.credits.text = lu.credits_btn_tx_str[my_lox]
-  
+
+  def show_npbp_choice(self, my_lox, anfang, game_id):
+    self.set_lang(my_lox)
+    ende = time.time()
+    dauer = round(ende - anfang, 0)
+    self.seconds.text = str(dauer)+' sec'
+    self.seconds.textcolor = 'red'
+    self.top_entry.visible = False
+    self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
+    self.gm_role_reg.visible = True
+    self.seconds.visible = True
+    self.gm_board_info.visible = True
+    self.gm_cp_not_played.visible = True
+    self.setup_npbp_label.visible = False
+    ## deselect all regions
+    self.cb_us.checked = False
+    self.cb_af.checked = False
+    self.cb_cn.checked = False
+    self.cb_me.checked = False
+    self.cb_sa.checked = False
+    self.cb_pa.checked = False
+    self.cb_la.checked = False
+    self.cb_ec.checked = False
+    self.cb_eu.checked = False
+    self.cb_se.checked = False
+    em = mg.my_email
+    row = app_tables.nutzer.get(email=em)
+    row['wo'] = 3
+
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
     self.top_join_game.visible = False 
@@ -445,32 +473,7 @@ class home(homeTemplate):
     while not self.task.is_completed():
       self.top_entry_label.text = lu.top_entry_label_str[my_lox]
     else:
-      self.set_lang(my_lox)
-      ende = time.time()
-      dauer = round(ende - anfang, 0)
-      self.seconds.text = str(dauer)+' sec'
-      self.seconds.textcolor = 'red'
-      self.top_entry.visible = False
-      self.gm_board.text = lu.msg_gm_board_head_str[my_lox] +game_id
-      self.gm_role_reg.visible = True
-      self.seconds.visible = True
-      self.gm_board_info.visible = True
-      self.gm_cp_not_played.visible = True
-      self.setup_npbp_label.visible = False
-      ## deselect all regions
-      self.cb_us.checked = False
-      self.cb_af.checked = False
-      self.cb_cn.checked = False
-      self.cb_me.checked = False
-      self.cb_sa.checked = False
-      self.cb_pa.checked = False
-      self.cb_la.checked = False
-      self.cb_ec.checked = False
-      self.cb_eu.checked = False
-      self.cb_se.checked = False
-      em = mg.my_email
-      row = app_tables.nutzer.get(email=em)
-      row['wo'] = 3
+      self.show_npbp_choice(my_lox, anfang, game_id)
       a=2
 
   def check_rnsub(self, cid):
@@ -549,7 +552,7 @@ class home(homeTemplate):
       self.top_entry.visible = True 
       self.top_start_game.visible = True 
       self.top_entry_label.visible = False 
-#      self.test_model_top_click() ## clearind DBs at the start
+      self.show_npbp_choice(lx, anfang, cid)
       return
     self.task = anvil.server.call('launch_set_npbp', cid, npbp)
     while not self.task.is_completed():
@@ -1251,7 +1254,7 @@ class home(homeTemplate):
         elif runde == 3:
           my_p_step_done = 7
           row2.update(p_step_done=7) ## the region submitted decisions for round 2060 - 2100
-        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=3)
+        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show() 
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
@@ -1268,7 +1271,7 @@ class home(homeTemplate):
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         rg = app_tables.games_log.get(game_id=cid_cookie)
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
         ## give feedback
@@ -1313,7 +1316,7 @@ class home(homeTemplate):
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
 
-      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=4)
+      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2)
       n.show()
       self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
       self.gm_start_round.visible = True
@@ -1330,7 +1333,7 @@ class home(homeTemplate):
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
-        n = Notification(lmsg, style="warning", timeout=4)
+        n = Notification(lmsg, style="warning", timeout=2)
         n.show()
         self.gm_start_round.visible = True
         return
@@ -1352,7 +1355,7 @@ class home(homeTemplate):
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
-        n = Notification(lmsg, style="warning", timeout=4)
+        n = Notification(lmsg, style="warning", timeout=2)
         n.show()
         self.gm_start_round.visible = True        
         return
@@ -1602,7 +1605,7 @@ class home(homeTemplate):
       self.refresh_numbers.visible = True
       
   def test_model_click(self, **event_args):
-    n= Notification("off to run the model from test_model_click", timeout=4)
+    n= Notification("off to run the model from test_model_click", timeout=2)
     n.show()
     cid = mg.my_game_id
     self.task = anvil.server.call('launch_ugregmod', cid, 2025, 2040)
@@ -1722,12 +1725,12 @@ class home(homeTemplate):
     self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus="+str(gmStatus)
     if gmStatus == 4:
       ### NOT all regs have submitted for round 2025 to 2040
-      n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
+      n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       return
     if gmStatus == 5:
       ### all regs HAVE submitted for round 2025 to 2040
-      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=5, title=lu.waiting_tx_str[lx], style="info")
+      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, title=lu.waiting_tx_str[lx], style="info")
       n.show()
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
@@ -1747,7 +1750,7 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
       anfang = time.time()
       ### round 2025 to 2040 ran successfully
-      n = Notification(lu.sim_success_tx40_str[lx], timeout=3, title=lu.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx40_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1796,14 +1799,14 @@ class home(homeTemplate):
         n.show()
         return
       else:
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, style="info")
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, style="info")
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx -- gmStatus is "+str(gmStatus)
       anfang = time.time()
       ### round 2040 to 2060 ran successfully
-      n = Notification(lu.sim_success_tx60_str[lx], timeout=5, title=lu.sim_success_title_tx_str[lx], style="success")
+      n = Notification(lu.sim_success_tx60_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 
@@ -1848,7 +1851,7 @@ class home(homeTemplate):
     if gmStatus == 12: ## 2060 to 2100 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus is "+str(gmStatus)
       anfang = time.time()
-      n = Notification(lu.sim_success_tx21_str[lx], timeout=5, title=lu.sim_success_title_txend_str[lx], style="success")
+      n = Notification(lu.sim_success_tx21_str[lx], timeout=2, title=lu.sim_success_title_txend_str[lx], style="success")
       n.show()
       # prepare TA card for new round
       self.p_card_graf_dec.visible = True 

@@ -18,12 +18,14 @@ class log_sign(log_signTemplate):
     self.regi_save.text = lu.save_btn[lx]
     self.regi_cancel.text = lu.cancel_btn[lx]
     self.regi_first.text = lu.regi_first_tx[lx]
+    self.regi_user.tooltip = lu.regi_user_tt[lx]
     self.new_user = {"ur": '', "pr": ''}
     self.login_title.text = lu.login_title_tx[lx]
     self.login_u.placeholder = lu.login_u_tx[lx]
     self.login_save.text = lu.login_title_tx[lx]
     self.login_cancel.text = lu.cancel_btn[lx]
     self.login_first.text = lu.login_first_btn[lx]
+    
     self.log_in.visible = False 
 
   def login_u_change(self, **event_args):
@@ -45,8 +47,6 @@ class log_sign(log_signTemplate):
     if len(rows) == 1:
       self.new_user['u'] = self.login_u.text
       mg.signup_cancel = False 
-      n = Notification(lu.loggedin[lx], style="success")
-      n.show()
       self.raise_event("x-close-alert", value=self.new_user)
     elif lenrows == 0:
       self.login_err.visible = True
@@ -103,8 +103,6 @@ class log_sign(log_signTemplate):
       res = anvil.server.call('nuts_pwd', usr)
       self.new_user['u'] = usr
       mg.signup_cancel = False 
-      n = Notification(lu.saved[lx], style="success")
-      n.show()
       self.raise_event("x-close-alert", value=self.new_user)
     else:
       self.regi_user_err.visible = True

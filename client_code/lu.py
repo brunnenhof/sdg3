@@ -62,6 +62,15 @@ regi_first_tx = [
   "Registrere seg, tross alt?",
   "_last_"
 ]
+regi_user_tt = [
+  "Why register? Because the game can be interrupted, by accident or by choice. To rejoin the game at exactly the same page just before the interruption, you need a unique username. Write it down, it cannot be recovered.",
+  "Warum registrieren? Weil das Spiel unterbrochen werden kann, entweder versehentlich oder absichtlich. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, benötigen Sie einen eindeutigen Benutzernamen. Schreiben Sie sich ihn auf, da er nicht wiederhergestellt werden kann.",
+  "Warum registrieren? Weil das Spiel unterbrochen werden kann, entweder versehentlich oder absichtlich. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, benötigst Du einen eindeutigen Benutzernamen. Schreib ihn auf, da er nicht wiederhergestellt werden kann.",
+  "Pourquoi s'inscrire ? Parce que le jeu peut être interrompu, accidentellement ou volontairement. Pour rejoindre le jeu exactement à la même page qu'avant l'interruption, vous avez besoin d'un nom d'utilisateur unique. Notez-le, car il ne peut pas être récupéré.",
+  "Hvorfor registrere seg? Fordi spillet kan bli avbrutt, enten ved et uhell eller ved valg. For å kunne fortsette spillet på nøyaktig samme side som før avbruddet, trenger du et unikt brukernavn. Skriv det ned, det kan ikke gjenopprettes.",
+  "_last_"
+]
+
 err_user_not_exits = [
   "A user with this name does not exist",
   "Ein Benutzer mit diesem Namen existiert nicht.",
@@ -71,27 +80,27 @@ err_user_not_exits = [
   "_last_"
 ]
 sign_up = [
-  "The game can be interrupted, by accident or by choice. To rejoin the game at exactly the same page just before the interruption, you need to register with a freely chosen username.\n\nNOTE: Write down the username, it cannot be recovered and you will need it after any interruption.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, müssen Sie sich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Schreiben Sie sich den Benutzernamen auf, da er nicht wiederhergestellt werden kann und Sie ihn nach einer Unterbrechung benötigen.",
-  "Das Spiel kann versehentlich oder absichtlich unterbrochen werden. Um das Spiel genau an der Stelle fortzusetzen, an der es unterbrochen wurde, musst Du dich mit einem frei gewählten Benutzernamen registrieren. \n\nHINWEIS: Schreib Dir den Benutzernamen auf, da er nicht wiederhergestellt werden kann und Du ihn nach einer Unterbrechung benötigst.",
-  "Le jeu peut être interrompu, accidentellement ou volontairement. Pour reprendre le jeu exactement à la même page qu'avant l'interruption, Vous devez vous inscrire avec un nom d'utilisateur librement choisi. \n\nREMARQUE : Notez le nom d'utilisateur, il ne peut pas être récupéré et vous en aurez besoin après toute interruption.",
-  "Spillet kan avbrytes, enten ved et uhell eller ved valg. For å fortsette spillet på nøyaktig samme side som før avbruddet, må du registrere deg med et brukernavn fritt valgt.\n\nMMERK: Skriv ned brukernavnet, det kan ikke gjenopprettes, og du vil trenge det etter eventuelle avbrudd.",
+  "Thanks for taking the time to explore the connections between poverty, inequality, empowerment, food and agriculture, and energy. It is complicated, but not impossible. Because you get to influence the course of -future- history three times: When you take decisions for your own future, then for the future of your children and lastly, for the future of your grandchildren.",
+  "Vielen Dank, dass Sie sich die Zeit genommen haben, die Zusammenhänge zwischen Armut, Ungleichheit, Empowerment, Ernährung und Landwirtschaft sowie Energie zu erkunden. Es ist kompliziert, aber nicht unmöglich. Denn Sie können den Verlauf der Zukunft dreimal beeinflussen: Wenn Sie Entscheidungen für Ihre eigene Zukunft treffen, dann für die Zukunft Ihrer Kinder und schließlich für die Zukunft Ihrer Enkelkinder.",
+  "Vielen Dank, dass Sie sich die Zeit genommen haben, die Zusammenhänge zwischen Armut, Ungleichheit, Empowerment, Ernährung und Landwirtschaft sowie Energie zu erkunden. Es ist kompliziert, aber nicht unmöglich. Denn Sie können den Verlauf der Zukunft dreimal beeinflussen: Wenn Sie Entscheidungen für Ihre eigene Zukunft treffen, dann für die Zukunft Ihrer Kinder und schließlich für die Zukunft Ihrer Enkelkinder.",
+  "Merci d'avoir pris le temps d'explorer les liens entre pauvreté, inégalités, autonomisation, alimentation et agriculture, et énergie. C'est compliqué, mais pas impossible. Car vous pouvez influencer le cours de l'histoire future à trois reprises : lorsque vous prenez des décisions pour votre propre avenir, puis pour celui de vos enfants et enfin pour celui de vos petits-enfants.
+  "Takk for at du tar deg tid til å utforske sammenhengen mellom fattigdom, ulikhet, myndiggjøring, mat og landbruk og energi. Det er komplisert, men ikke umulig. Fordi du kan påvirke løpet av fremtidens historie tre ganger: Når du tar beslutninger for din egen fremtid, deretter for dine barns fremtid og til slutt for dine barnebarns fremtid.",
   "_last_"  
 ]
 sign_up_title = [
-  "Register",
-  "Registrieren",
-  "Registrieren",
-  "Inscrivez-vous",
-  "Registrering",
+  "New registration",
+  "Neu registrieren",
+  "Neu registrieren",
+  "Nouvelle inscription",
+  "Ny registrering",
   "_last_"  
 ]
 why_sign_up_title = [
-  "Why register?",
-  "Warum Registrieren?",
-  "Warum Registrieren?",
-  "Pourquoi s'inscrire ?",
-  "Hvorfor registrere seg?",
+  "Welcome to the Game",
+  "Willkommen zum Spiel",
+  "Willkommen zum Spiel",
+  "Bienvenue dans le jeu",
+  "Velkommen til spillet",
   "_last_"  
 ]
 
@@ -1434,10 +1443,10 @@ sdgvarID_to_indicator_25_str = [
 ]
 sdgvarID_to_indicator_27_str = [
   "Labour share of GDP (%)",
-  "Arbeitsanteil am BIP (%)",
-  "Arbeitsanteil am BIP (%)",
-  "Part de main-d'œuvre du PIB (%)", 
-  "Arbeidsandel av BNP (%)", 
+  "Arbeitnehmeranteil am BIP (%)",
+  "Arbeitnehmeranteil am BIP (%)",
+  "Part des salariés dans le PIB (%)", 
+  "Arbeidstakerandel av BNP (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_28_str = [
@@ -2162,8 +2171,8 @@ pcr_col_right_title_tx_str = [
 ]
 pcr_submit_tx_str = [
   "Once you have logged in to both your region and your ministry, click here to submit your choice ",
-  "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier. ",
-  "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier. ",
+  "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier.",
+  "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier.",
   "Une fois que vous vous êtes connecté à la fois à votre région et à votre ministère, cliquez ici pour soumettre votre choix", 
   "Når du har logget deg inn i både regionen og departementet ditt, klikker du her for å sende inn ditt valg ",
   "_last_"
@@ -2921,12 +2930,12 @@ lang_dd_menu_tx_str = [
     ]
  
 lang_info_str = [
-  "Welcome to the .. Game. **First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
-  "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
-  "Willkommen zum ... Spiel. **Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. \nlang at blue minus way dot net",
-  "Bienvenue dans le jeu. **Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
-    "Velkommen til .. Spillet. **For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
-    "_last_"
+  "**First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
+  "**Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
+  "**Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. \nlang at blue minus way dot net",
+  "**Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
+  "**For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
+  "_last_"
     ]
 lang_lets_go_tx = [
   "Let's go",
