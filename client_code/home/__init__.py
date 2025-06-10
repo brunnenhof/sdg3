@@ -1146,20 +1146,18 @@ class home(homeTemplate):
     cost_food = self.calc_cost_home_tot(pct_food, tltl_food, gl_food, max_cost_food)
     cost_ener = self.calc_cost_home_tot(pct_ener, tltl_ener, gl_ener, max_cost_ener)  
     costs_by_ta = {'cpov' : cost_pov, 'cfood' : cost_food, 'cemp': cost_emp, 'cineq' : cost_ineq, 'cener': cost_ener}
-    total_cost = round(cost_pov + cost_emp + cost_ener + cost_food + cost_ineq, 2)
+    total_cost = round(cost_pov + cost_emp + cost_ener + cost_food + cost_ineq, 1)
     pct_of_budget = total_cost / bud * 100
     self.fut_bud_amount.text = round(bud, 0)
     self.fut_invest.text = total_cost
     within_budget = False
     if pct_of_budget > 100:
-      if pct_of_budget > 101:
-        pct_shown = str(int(pct_of_budget))
-      else:
-        pct_shown = round(pct_of_budget, 1)
+      pct_shown = str(int(pct_of_budget))
       self.fut_bud_amount.foreground = 'red'
       self.fut_invest.foreground = 'red'
       self.fut_invest_pct.foreground = 'red'
-      self.fut_submit_all_pols.visible = False
+      self.submit_numbers.visible = False
+      self.fut_invest_pct.text = pct_shown
     else:
       within_budget = True
       if pct_of_budget > 10:
@@ -1170,7 +1168,7 @@ class home(homeTemplate):
       self.fut_invest_pct.foreground = 'green'
       self.fut_bud_amount.foreground = 'green'
       self.submit_numbers.visible = True
-    self.fut_invest_pct.text = pct_shown
+      self.fut_invest_pct.text = pct_shown
     
     pov_list = self.calc_cost_home_ta(pct_pov, tltl_pov, gl_pov, max_cost_pov, 'pov')
     ineq_list = self.calc_cost_home_ta(pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq, 'ineq')
