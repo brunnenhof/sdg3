@@ -857,7 +857,7 @@ class home(homeTemplate):
   def get_runde(self, cid):
     row = app_tables.games_log.get(game_id=cid)
     r = row['gm_status']
-    if r == 4:
+    if r == 4 or r == 5:
       runde = 1
       yr = 2025
     elif r == 6:
