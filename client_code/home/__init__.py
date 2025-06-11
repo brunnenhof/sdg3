@@ -129,7 +129,9 @@ class home(homeTemplate):
     self.pcgd_generating.visible = False
     self.pcgd_plot_card.visible = True
     if role == 'fut':
-      self.card_fut.visible = True
+      self.card_fut.visible = False
+      self.dec_card.visible = False 
+      self.p_after_submit.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
       self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
     else:
@@ -139,7 +141,8 @@ class home(homeTemplate):
     slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
     self.plot_card_rp.items = slots
     if role == 'fut':
-      self.do_future(cid, role, reg, runde, yr, lx )
+#      self.do_future(cid, role, reg, runde, yr, lx )
+      pass
     else:
       self.do_non_future(cid, role, reg, runde, yr, lx)
 #    row['wo'] = 2
