@@ -122,3 +122,11 @@ class log_sign(log_signTemplate):
     self.register.visible = True
     """This method is called when the component is clicked."""
     pass
+
+  def regi_user_show(self, **event_args):
+    self.regi_user.focus()
+    pass
+
+  def login_u_show(self, **event_args):
+    self.login_u.focus()
+    pass

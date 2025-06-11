@@ -1315,7 +1315,7 @@ class home(homeTemplate):
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
 #        rg = app_tables.games_log.get(game_id=cid_cookie)
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2)
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
         ## give feedback
@@ -1514,7 +1514,8 @@ class home(homeTemplate):
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row['gm_status'] == 6: ## 2025 to 2040 successfully run
-      reg = mg.my_reg
+#      reg = mg.my_reg
+      reg = ro2['reg']
       runde = 2
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
@@ -1551,7 +1552,8 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr,lx )
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
-      reg = mg.my_reg
+      #      reg = mg.my_reg
+      reg = ro2['reg']
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=2, reg=reg, looked_at=True)
@@ -1588,7 +1590,8 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr ,lx)
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1587)"
     elif row['gm_status'] == 12: ## 2060 to 2100 successfully run
-      reg = mg.my_reg
+      #      reg = mg.my_reg
+      reg = ro2['reg']
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=3, reg=reg, looked_at=True)
@@ -1782,9 +1785,9 @@ class home(homeTemplate):
       return
     if gmStatus == 5:
       ### all regs HAVE submitted for round 2025 to 2040
-      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, title=lu.waiting_tx_str[lx], style="info")
+      n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, title=lu.waiting_tx_str[lx], style="info")
       n.show()
-      self.plot_card_rp.visible = False
+      self.plot_card_rp.visible = True
       self.dec_card.visible = False
       return
 #    if gmStatus == 6:
@@ -1851,7 +1854,7 @@ class home(homeTemplate):
         n.show()
         return
       else:
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2, style="info")
+        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, style="info")
         n.show()
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
