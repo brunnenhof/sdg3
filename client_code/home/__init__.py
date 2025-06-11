@@ -122,7 +122,7 @@ class home(homeTemplate):
     self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
-    congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id 
+#    congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id 
     mg.my_personal_game_id = your_game_id
 #    alert(congrats, title=lu.pcr_submit_title_str[lx])
     yr, runde = self.get_runde(cid)
