@@ -141,7 +141,10 @@ class home(homeTemplate):
     slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
     self.plot_card_rp.items = slots
     if role == 'fut':
-#      self.do_future(cid, role, reg, runde, yr, lx )
+      self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
+      self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+      self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+      #      self.do_future(cid, role, reg, runde, yr, lx )
       pass
     else:
       self.do_non_future(cid, role, reg, runde, yr, lx)
