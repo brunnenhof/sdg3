@@ -378,11 +378,11 @@ pol_to_expl_CCS_str = [
   "_last_"
 ]
 pol_to_expl_TOW_str = [
-  "0 means no wealth tax 80 means 80% of accrued owners wealth is taxed away each year 50 half of it",
-  "0 bedeutet keine Vermögenssteuer 80 bedeutet dass jedes Jahr 80 % des angesammelten Vermögens des Eigentümers versteuert werden 50 bedeutet dass die Hälfte davon versteuert wird",
-  "0 bedeutet keine Vermögenssteuer 80 bedeutet dass jedes Jahr 80 % des angesammelten Vermögens des Eigentümers versteuert werden 50 bedeutet dass die Hälfte davon versteuert wird",
-  "0 signifie aucune taxe sur la richesse 80 signifie 80% des propriétaires accumulés La richesse est taxée chaque année 50 moitié", 
-  "0 betyr ingen formuesavgift 80 betyr 80% av påløpte eiere formue beskattes bort hvert år 50 halvparten av det", 
+  "0 means no wealth tax, 80 means 80% of accrued owners wealth is taxed away each year, 50 half of it. If you think of Elon Musk, the richest person in the world who owns roughly 300 billion USD, 0 would let him keep everything, 80 would tax away 240 billion - so he would still have 60 billion(!), and 50 would tax away 150 billion, letting him keep 150 billion - what is fair?",
+  "0 bedeutet keine Vermögenssteuer 80 bedeutet dass jedes Jahr 80 % des angesammelten Vermögens des Eigentümers versteuert werden 50 bedeutet dass die Hälfte davon versteuert wird. Wenn man an Elon Musk denkt, den reichsten Menschen der Welt, der etwa 300 Milliarden US-Dollar besitzt, würde 0 ihm alles lassen, 80 würde 240 Milliarden besteuern – er hätte also noch 60 Milliarden (!) übrig, und 50 würde 150 Milliarden besteuern, sodass er 150 Milliarden behalten könnte – was ist fair?",
+  "0 bedeutet keine Vermögenssteuer 80 bedeutet dass jedes Jahr 80 % des angesammelten Vermögens des Eigentümers versteuert werden 50 bedeutet dass die Hälfte davon versteuert wird. Wenn man an Elon Musk denkt, den reichsten Menschen der Welt, der etwa 300 Milliarden US-Dollar besitzt, würde 0 ihm alles lassen, 80 würde 240 Milliarden besteuern – er hätte also noch 60 Milliarden (!) übrig, und 50 würde 150 Milliarden besteuern, sodass er 150 Milliarden behalten könnte – was ist fair?",
+  "0 signifie aucune taxe sur la richesse 80 signifie 80% des propriétaires accumulés La richesse est taxée chaque année 50 moitié. Si vous pensez à Elon Musk, l'homme le plus riche du monde qui possède environ 300 milliards de dollars, 0 lui permettrait de tout garder, 80 lui ferait payer 240 milliards d'impôts, il lui resterait donc 60 milliards (!), et 50 lui ferait payer 150 milliards d'impôts, lui laissant 150 milliards. Qu'est-ce qui est juste ?", 
+  "0 betyr ingen formuesavgift 80 betyr 80% av påløpte eiere formue beskattes bort hvert år 50 halvparten av det.  Hvis du tenker på Elon Musk, den rikeste personen i verden som eier rundt 300 milliarder dollar, ville 0 la ham beholde alt, 80 ville beskatte 240 milliarder – så han ville fortsatt ha 60 milliarder (!), og 50 ville beskatte 150 milliarder, slik at han kunne beholde 150 milliarder – hva er rettferdig?", 
   "_last_"
 ]
 pol_to_expl_FPGDC_str = [
@@ -2147,8 +2147,8 @@ cb_fut_tx_str = [
 ]
 pcr_title_tx_str = [
   "Player Board Game ",
-  "Spieler-Brett ",
-  "Spieler-Brett ",
+  "SpielerInnen-Brett ",
+  "SpielerInnen-Brett ",
   "Jeu de plateau", 
   "Player Board Game", 
   "_last_"
@@ -2156,7 +2156,7 @@ pcr_title_tx_str = [
 pcr_col_left_title_tx_str = [
   "First, log into your region ... ",
   "Melden Sie sich zunächst in Ihrer Region an ... ",
-  "Melden Sie sich zunächst in Ihrer Region an ... ",
+  "Melde Dich zunächst in Deiner Region an ... ",
   "Tout d'abord, connectez-vous à votre région ...", 
   "Først, logg inn i regionen din ...", 
   "_last_"
@@ -2164,7 +2164,7 @@ pcr_col_left_title_tx_str = [
 pcr_col_right_title_tx_str = [
   "... then into your role as minister ... ",
   "... dann in Ihrer Rolle als Minister:in ... ",
-  "... dann in Ihrer Rolle als Minister:in ... ",
+  "... dann in Deiner Rolle als Minister:in ... ",
   "... puis dans votre rôle de ministre ...", 
   "... så inn i din rolle som minister ...", 
   "_last_"
@@ -2172,15 +2172,15 @@ pcr_col_right_title_tx_str = [
 pcr_submit_tx_str = [
   "Once you have logged in to both your region and your ministry, click here to submit your choice ",
   "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier.",
-  "Nachdem Sie sich sowohl bei Ihrer Region als auch bei Ihrem Ministerium angemeldet haben, klicken Sie hier.",
+  "Nachdem Du dich sowohl bei Deiner Region als auch bei Deinem Ministerium angemeldet haben, klicke hier.",
   "Une fois que vous vous êtes connecté à la fois à votre région et à votre ministère, cliquez ici pour soumettre votre choix", 
   "Når du har logget deg inn i både regionen og departementet ditt, klikker du her for å sende inn ditt valg ",
   "_last_"
 ]
 fut_not_all_logged_in_tx_str = [
   "Not all of your regional ministerial colleagues have logged in yet. Wait until they have done so. ",
-  "Noch sind nicht alle Ihrer regionalen Ministerkolleg:innen eingeloggt. Warten Sie, bis sie das getan haben. ",
-  "Noch sind nicht alle Ihrer regionalen Ministerkolleg:innen eingeloggt. Warten Sie, bis sie das getan haben. ",
+  "Noch sind nicht alle Ihrer regionalen Ministerkolleg:innen eingeloggt. Warten Sie, bis sie soweit sind. ",
+  "Noch sind nicht alle Deiner regionalen Ministerkolleg:innen eingeloggt. Warte, bis sie soweit sind. ",
   "Tous vos collègues ministériels régionaux ne se sont pas encore connectés. Attendez qu'ils l'ont fait.", 
   "Ikke alle dine regionale ministerkolleger har logget inn ennå. Vent til de har gjort det.", 
   "_last_"
@@ -2196,7 +2196,7 @@ no_active_game_to_join_tx_str = [ ## not needed
 gm_reg_npbp_tx_str = [
   "When you are done (and sure), click this button ",
   "Wenn Sie fertig (und sicher) sind, klicken Sie auf diese Schaltfläche. ",
-  "Wenn Sie fertig (und sicher) sind, klicken Sie auf diese Schaltfläche. ",
+  "Wenn DU fertig (und sicher) bist, klicke auf diese Schaltfläche. ",
   "Lorsque vous avez terminé (et bien sûr), cliquez sur ce bouton", 
   "Når du er ferdig (og sikker), klikker du på denne knappen", 
   "_last_"
@@ -2211,8 +2211,8 @@ topentry_label_tx_str = [
 ]
 gm_card_wait_1_temp_title_tx1_str = [
   "Still waiting for the following ministers to log in ... Ask if they need help ... ",
-  "Wir warten immer noch darauf, dass sich die folgenden Minister:innen anmelden ... Fragen Sie, ob sie Hilfe benötigen ... ",
-  "Wir warten immer noch darauf, dass sich die folgenden Minister:innen anmelden ... Fragen Sie, ob sie Hilfe benötigen ... ",
+  "Wir warten immer noch darauf, dass sich die folgenden Minister:innen anmelden ... Fragen Sie, ob sie Hilfe brauchen ... ",
+  "Wir warten immer noch darauf, dass sich die folgenden Minister:innen anmelden ... Frage sie, ob sie Hilfe brauchen ... ",
   "Toujours en attente que les ministres suivants se connectent ... Demandez s'ils ont besoin d'aide ...", 
   "Venter fortsatt på at følgende ministre skal logge inn ... spør om de trenger hjelp ...", 
   "_last_"
@@ -2220,7 +2220,7 @@ gm_card_wait_1_temp_title_tx1_str = [
 gm_card_wait_1_temp_title_tx2_str = [
   "All logged in! By clicking on the Ready to advance button, you can check if all your regions have submitted their policies. Tell them how much time they still have. ",
   "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
-  "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
+  "Alle sind eingelogged! Klicke auf Bereit zum Fortfahren, um zu prüfen, ob alle Regionen ihre Richtlinien übermittelt haben. Teile ihnen mit, wie viel Zeit ihnen noch bleibt. ",
   "Tout le monde est connecté ! Cliquez sur Prêt à continuer pour vérifier que toutes vos régions ont envoyé leurs directives. Indiquez-leur le temps qu'il leur reste. ",
   "Alt logget inn! Ved å klikke på Ready to Advance -knappen, kan du sjekke om alle regionene dine har sendt inn retningslinjene sine. Fortell dem hvor mye tid de fortsatt har.", 
   "_last_"
