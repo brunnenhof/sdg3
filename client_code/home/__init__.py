@@ -503,7 +503,7 @@ class home(homeTemplate):
     self.task = anvil.server.call('launch_set_roles', game_id)
     self.top_entry_label.visible = True
     while not self.task.is_completed():
-      self.top_entry_label.text = lu.top_entry_label_str[my_lox]
+      self.top_entry_label.text = lu.topentry_label_tx_str[my_lox]
     else:
       self.show_npbp_choice(my_lox, anfang, game_id)
       a=2
@@ -1244,7 +1244,7 @@ class home(homeTemplate):
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
       row = app_tables.step_done.get(game_id=cid, reg=reg)
-      pStepDone = row['p_step_done']
+#      pStepDone = row['p_step_done']
       cid_cookie = anvil.server.call('get_game_id_from_cookie')
       print(cid_cookie)
       ## show confirmation alert
@@ -1314,7 +1314,7 @@ class home(homeTemplate):
         if row['gm_status'] == 9:
           row['gm_status'] = 10 ## all regs submitted for 2060 to 2100
           self.err_msg.text = self.err_msg.text + "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
-        rg = app_tables.games_log.get(game_id=cid_cookie)
+#        rg = app_tables.games_log.get(game_id=cid_cookie)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=2)
         n.show()
 #        self.test_model.visible = False  ## this is a debug button
@@ -1342,8 +1342,8 @@ class home(homeTemplate):
     rows = app_tables.submitted.search(game_id='',round=runde, reg=reg, submitted=False)
     not_sub_list = []
     for r in rows:
-      regshort = r['reg']
-      longreg = do_reg_to_longreg(r['reg'])
+#      regshort = r['reg']
+      longreg = self.do_reg_to_longreg(r['reg'])
       not_sub_list.append(longreg)
     pass
     
@@ -1358,7 +1358,7 @@ class home(homeTemplate):
     em = mg.my_email
     ro2 = app_tables.nutzer.get(email=em)
     row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = self.err_msg.text + "\n-------- gm_start_round_click cid=" + (cid_cookie) + ' gm_status=' + str(row['gm_status']) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
+    self.err_msg.text = self.err_msg.text + "\n-------- gm_start_round_click cid=" + (cid_cookie) + ' gm_status=' + str(row['gm_status']) + " runde=??" + " yr=??"+ " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+ro2['game_id'] + " nutzer_reg="+ro2['reg']
     if row['gm_status'] not in [5,7,10]:
 #    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
 
@@ -1508,7 +1508,7 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid)
     em = mg.my_email
     ro2 = app_tables.nutzer.get(email=em)
-    self.err_msg.text = self.err_msg.text + "\n-------- p_advance_to_next_round_click cid=" + (cid) + ' gm_status=' + str(row['gm_status']) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg']) + " nutzer_email="+(ro2['email'])
+    self.err_msg.text = self.err_msg.text + "\n-------- p_advance_to_next_round_click cid=" + (cid) + ' gm_status=' + str(row['gm_status'])  + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg']) + " nutzer_email="+(ro2['email'])
     if row['gm_status'] == 5:
       self.err_msg.text = self.err_msg.text + "\n--: gm_status="+str(row['gm_status'])
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
@@ -1531,7 +1531,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n- runde=2 role="+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr=2040'
+      self.err_msg.text = self.err_msg.text + "\n- runde=2 role="+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
@@ -1568,7 +1568,7 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr='+str(yr)
+      self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
@@ -1606,7 +1606,7 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = 'fut'
-      self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+' yr='+str(yr)
+      self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
       self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
@@ -1693,7 +1693,7 @@ class home(homeTemplate):
     mid = (gle - tle ) / 2
     w = random.uniform(floor + mid, gle)
     if w < floor or w > gle:
-      oops = 2
+      alert(" w < floor or w > gle")
 #    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
     return w
 
@@ -1714,7 +1714,7 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call_s('fe_keepalive')
-    self.err_msg.text =  self.err_msg.text + '-- ticking away -- '+strftime('%Y-%m-%d %H:%M:%S', localtime(time.time()))
+    self.err_msg.text =  self.err_msg.text + '-- ticking away -- '+strftime('%Y-%m-%d %H:%M:%S', localtime(time.time()))+ ' '+dummy
 
   def all_submit(self, cid, runde):
     rowc = app_tables.cookies.get(game_id=cid)
@@ -1737,11 +1737,11 @@ class home(homeTemplate):
   def my_all_submit(self, reg, round):
     ## a dead def, never called
     cid = mg.my_game_id
-    reg = mg.my_reg
+#    reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
     rowc = app_tables.cookies.get(game_id=cid)
-    rowp = app_tables.step_done.get(game_id=cid, reg=reg)
-    regStatus = rowp['p_step_done']
+#    rowp = app_tables.step_done.get(game_id=cid, reg=reg)
+#    regStatus = rowp['p_step_done']
     gmStatus = row['gm_status']
     if gmStatus == 4:
       if self.all_submit(cid, 1):
@@ -1768,7 +1768,7 @@ class home(homeTemplate):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
-    my_cid = mg.my_game_id
+#    my_cid = mg.my_game_id
     lx = mg.my_lang
     cid = mg.my_game_id
     reg = mg.my_reg
