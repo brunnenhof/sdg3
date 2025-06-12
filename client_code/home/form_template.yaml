@@ -11,6 +11,11 @@ components:
       name: reset_db
       properties: {text: reset DBs}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - event_bindings: {click: reset_nutzer_click}
+      layout_properties: {grid_position: 'EXUVGH,CQKNDE'}
+      name: reset_nutzer
+      properties: {text: reset Nutzer}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: adm_leave_click}
       layout_properties: {grid_position: 'EXUVGH,TLGISY'}
       name: adm_leave

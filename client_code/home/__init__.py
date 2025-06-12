@@ -108,8 +108,6 @@ class home(homeTemplate):
       user = app_tables.nutzer.get(email=em)
       self.show_gm_4(user)
 
-      pass
-
   def show_reg_2(self, reg, role, lx, cid, em):
     mg.my_game_id = cid
     mg.my_ministry = role
@@ -1382,8 +1380,6 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid_cookie)
     self.err_msg.text = self.err_msg.text + "\n-------- gm_start_round_click cid=" + (cid_cookie) + ' gm_status=' + str(row['gm_status']) + " runde=??" + " yr=??"+ " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+ro2['game_id'] + " nutzer_reg="+ro2['reg']
     if row['gm_status'] not in [5,7,10]:
-#    if row['gm_status'] == 4: ## waiting for submissions for all regions for 2025 to 2040
-
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2)
       n.show()
       self.err_msg.text = self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
@@ -1468,7 +1464,6 @@ class home(homeTemplate):
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       row = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        self.err_msg.text = self.err_msg.text + "\n++ gm_start_round_click runde="+ str(runde)+' gm_status=6'
         row['gm_status'] = 6 ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
@@ -1476,20 +1471,26 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn['wo'] = 5 # succesfully ran to 2040
+        self.err_msg.text = self.err_msg.text + "\n++ gm_start_round_click runde="+ str(runde)+' gm_status=6 - email='+em
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
         row['gm_status'] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call('budget_to_db', 2060, cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10'
+        em = mg.my_email
+        rn = app_tables.nutzer.get(email=em)
+        rn['wo'] = 7 # succesfully ran to 2060
+        self.err_msg.text = self.err_msg.text + "\ng++ m_start_round:: "+str(runde)+' gm_status=10 - email='+em
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
         row['gm_status'] = 12
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
-#        anvil.server.call('budget_to_db', 2100, cid_cookie)
-        self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12'
+        em = mg.my_email
+        rn = app_tables.nutzer.get(email=em)
+        rn['wo'] = 9 # succesfully ran to 2100
+        self.err_msg.text = self.err_msg.text + "\ngm_start_round:: "+str(runde)+' gm_status=12 - email='+em
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed['closed'] = datetime.datetime.now()
 
@@ -2045,4 +2046,7 @@ class home(homeTemplate):
     self.bye_tx.text = "Admin: Ciao, Ade, Ha det ..."
     """This method is called when the component is clicked."""
     pass
+
+  def reset_nutzer_click(self, **event_args):
+    app_tables.nutzer.delete_all_rows()
 
