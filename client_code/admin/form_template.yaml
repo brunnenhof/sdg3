@@ -1,0 +1,17 @@
+components:
+- layout_properties: {grid_position: 'CACNEZ,ZKXQOB'}
+  name: adm_title
+  properties: {bold: true, icon: 'mi:login', text: Admin Login}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- event_bindings: {pressed_enter: adm_pw_pressed_enter}
+  layout_properties: {grid_position: 'IIZCTO,UQXHSF'}
+  name: adm_pw
+  properties: {}
+  type: form:dep_srfw5i6mu5hwvt:_Components.TextInput.TextBox
+- event_bindings: {click: adm_login_click}
+  layout_properties: {grid_position: 'EVMWEN,XFGAAM'}
+  name: adm_login
+  properties: {text: LogIn}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Button
+container: {type: ColumnPanel}
+is_package: true

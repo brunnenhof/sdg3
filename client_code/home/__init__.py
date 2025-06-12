@@ -12,6 +12,7 @@ import datetime
 import random
 from time import strftime, localtime
 from ..log_sign import log_sign
+from ..admin import admin
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -144,8 +145,21 @@ class home(homeTemplate):
       self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
       self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
-      #      self.do_future(cid, role, reg, runde, yr, lx )
-      pass
+      row_cookies = app_tables.cookies.get(game_id=cid)
+      if runde == 1:
+        if not row_cookies['r1sub'] == 10:
+          self.do_future(cid, role, reg, runde, yr, lx )
+          self.p_after_submit.visible = False
+      elif runde == 2:
+        if not row_cookies['r2sub'] == 10:
+          self.do_future(cid, role, reg, runde, yr, lx )
+          self.p_after_submit.visible = False
+      elif runde == 3:
+        if not row_cookies['r2sub'] == 10:
+          self.do_future(cid, role, reg, runde, yr, lx )
+          self.p_after_submit.visible = False
+      else:
+        alert("show_reg_2: runde not 1 nor 2 nor 3 but "+str(runde))
     else:
       self.do_non_future(cid, role, reg, runde, yr, lx)
 #    row['wo'] = 2
@@ -935,8 +949,8 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
-    dauer = round(time.time() - anfang, 0)
-    self.top_duration.text = dauer
+#    dauer = round(time.time() - anfang, 0)
+#    self.top_duration.text = dauer
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -1809,7 +1823,7 @@ class home(homeTemplate):
         n.show()
         return
       self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
-      anfang = time.time()
+#      anfang = time.time()
       ### round 2025 to 2040 ran successfully
       n = Notification(lu.sim_success_tx40_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
@@ -1850,8 +1864,8 @@ class home(homeTemplate):
           self.do_future(cid, role, reg, runde, yr ,lx)
         else:
           self.do_non_future(cid, role, reg, runde, yr, lx)      
-      dauer = round(time.time() - anfang, 0)
-      self.top_duration.text = dauer
+#      dauer = round(time.time() - anfang, 0)
+#      self.top_duration.text = dauer
       return
     if gmStatus == 7:  ## waiting for decisions until 2060
       rc = app_tables.cookies.get(game_id=cid)
@@ -1865,7 +1879,7 @@ class home(homeTemplate):
         return
     if gmStatus == 10: ## 2040 to 2060 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx -- gmStatus is "+str(gmStatus)
-      anfang = time.time()
+#      anfang = time.time()
       ### round 2040 to 2060 ran successfully
       n = Notification(lu.sim_success_tx60_str[lx], timeout=2, title=lu.sim_success_title_tx_str[lx], style="success")
       n.show()
@@ -1906,12 +1920,12 @@ class home(homeTemplate):
           self.do_future(cid, role, reg, runde, yr, lx )
         else:
           self.do_non_future(cid, role, reg, runde, yr, lx)      
-      dauer = round(time.time() - anfang, 0)
-      self.top_duration.text = dauer
+#      dauer = round(time.time() - anfang, 0)
+#      self.top_duration.text = dauer
       return
     if gmStatus == 12: ## 2060 to 2100 successfully run
       self.err_msg.text = self.err_msg.text + "\npcgd_advance_tx ++ gmStatus is "+str(gmStatus)
-      anfang = time.time()
+#      anfang = time.time()
       n = Notification(lu.sim_success_tx21_str[lx], timeout=2, title=lu.sim_success_title_txend_str[lx], style="success")
       n.show()
       # prepare TA card for new round
@@ -1952,8 +1966,8 @@ class home(homeTemplate):
           self.do_future(cid, role, reg, runde, yr, lx )
         else:
           self.do_non_future(cid, role, reg, runde, yr, lx)      
-      dauer = round(time.time() - anfang, 0)
-      self.top_duration.text = dauer
+#      dauer = round(time.time() - anfang, 0)
+#      self.top_duration.text = dauer
       return
 
   def tick_gm_round_ready_tick(self, **event_args):
@@ -2021,3 +2035,16 @@ class home(homeTemplate):
     else:
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
+
+  def adm_btn_click(self, **event_args):
+    save_clicked = alert(
+      content=admin(),
+        large=False,
+        buttons=[]
+    )
+    if save_clicked:
+      pass
+
+  def reset_db_click(self, **event_args):
+    """This method is called when the component is clicked."""
+    pass

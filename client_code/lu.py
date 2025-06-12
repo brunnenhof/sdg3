@@ -1907,8 +1907,8 @@ top_start_game_str = [
 ]
 p_lb_choose_game_str = [
   "Enter the game ID. Your game organizer will tell you what it is. Finish your entry by pressing <Enter>",
-  "Geben Sie die Spiel-ID ein. Ihr:e Spielleiter:in sagt Ihnen, wie sie lautet. Beenden Sie Ihre Eingabe durch <Eingabe> klicken.",
-  "Gib Deine Spiel-ID ein. Dein:e Spielleiter:in sagt Dir, wie sie lautet. Beende Deine Eingabe durch <Eingabe> klicken.",
+  "Geben Sie die Spiel-ID ein. Ihr:e Spielleiter:in sagt Ihnen, wie sie lautet. Beenden Sie Ihre Eingabe indem Sie auf <Eingabe> drücken.",
+  "Gib Deine Spiel-ID ein. Dein:e Spielleiter:in sagt Dir, wie sie lautet. Beende Deine Eingabe indem Du auf <Eingabe> drückst.",
   "Saisissez l'identifiant du jeu. Votre organisateur de jeu vous dira de quoi il s'agit. Terminez votre saisie en appuyant sur <Enter>.", 
   "Skriv inn spill-ID-en. Spillarrangøren din vil fortelle deg hva det er. Avslutt inntastingen ved å trykke <Enter>.", 
   "_last_"
