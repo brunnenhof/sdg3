@@ -16,10 +16,15 @@ components:
       name: reset_nutzer
       properties: {text: reset Nutzer}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - event_bindings: {click: del_90_click}
+      layout_properties: {grid_position: 'EXUVGH,QCMFOH'}
+      name: del_90
+      properties: {text: del-90}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: adm_leave_click}
       layout_properties: {grid_position: 'EXUVGH,TLGISY'}
       name: adm_leave
-      properties: {text: Leave}
+      properties: {text: done}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     layout_properties: {grid_position: 'UYGBPP,QXMNNF'}
     name: adm_card

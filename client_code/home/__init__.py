@@ -2050,3 +2050,65 @@ class home(homeTemplate):
   def reset_nutzer_click(self, **event_args):
     app_tables.nutzer.delete_all_rows()
 
+  def ok_to_delete(self, nu):
+    len_nu = len(nu)
+    otd = 0 
+    now = datetime.datetime.today()
+    roundedNow = now.replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+    for n in nu:
+      t = n['last_login_utc']
+      if t is None:
+        t = n['signed_up_utc']
+      roundedB = t.replace(hour = 0, minute = 0, second = 0, microsecond = 0)
+      days = (roundedNow - roundedB).days
+      if days + 1 > 90:
+        otd = otd + 1
+    if otd == len_nu: ## 1 gm and 6 nutzer
+      cid = nu['game_id']
+      rows = app_tables.cookies.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.budget.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.game_files.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.games_log.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.plots.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.submitted.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.state_of_play.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.step_done.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.roles_assign.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.pcgd_advance_looked_at.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      rows = app_tables.nutzer.search(game_id=cid)
+      for row in rows:
+        row.delete()
+      alert("Game "+cid+" has been deleted")
+      
+  def del_90_click(self, **event_args):
+    # from games_log get game_ids
+    gids = app_tables.games_log.search()
+    if len(gids) == 1:
+      alert("Nothing to delete")
+      return
+    for gid in gids:
+      if not gid['game_id'] == 'TEST':
+        nutzers = app_tables.nutzer.search(game_id=gid['game_id'])
+        ## last log in > 90 days or game_started > 90 days
+        self.ok_to_delete(nutzers)
+

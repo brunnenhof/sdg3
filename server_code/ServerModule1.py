@@ -248,7 +248,7 @@ def set_npbp(cid, npbp):
   ### ToDo in production un comment
   anvil.email.send(from_name = "OC game", 
                    to = "post@blue-way.net",
-                   subject = "New game started",
+                   subject = "Game started - "+cid,
                    text = "Game "+cid+" was started")
 
 def read_mdfplay25(datei, runde):
