@@ -11,6 +11,11 @@ components:
       name: reset_db
       properties: {text: reset DBs}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - event_bindings: {click: adm_leave_click}
+      layout_properties: {grid_position: 'EXUVGH,TLGISY'}
+      name: adm_leave
+      properties: {text: Leave}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Button
     layout_properties: {grid_position: 'UYGBPP,QXMNNF'}
     name: adm_card
     properties: {role: outlined-card, visible: false}
@@ -778,7 +783,7 @@ components:
       selected_background_color: theme:Primary
       tooltip: toggles visibility of debug messages
     type: form:dep_srfw5i6mu5hwvt:_Components.Switch
-  - event_bindings: {click: adm_btn_click}
+  - event_bindings: {}
     layout_properties: {}
     name: adm_btn
     properties:

@@ -12,7 +12,6 @@ import datetime
 import random
 from time import strftime, localtime
 from ..log_sign import log_sign
-from ..admin import admin
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -58,6 +57,11 @@ class home(homeTemplate):
       self.lang_card.visible = False 
       self.top_entry.visible = False 
       self.bye_tx.text = lu.bye_tx[lox]
+      return
+    elif save_clicked == 'admin':
+      self.adm_card.visible = True 
+      self.navbar_links.visible = False 
+      self.lang_card.visible = False
       return
     else:
       usr = save_clicked['u']
@@ -495,8 +499,6 @@ class home(homeTemplate):
     if not code == '':
       alert(lu.wrong_code_tx[my_lox])
       return
-#    with Notification("Clearing DBs ..."):
-    self.test_model_top_click() ## clearind DBs at the start
     game_id = anvil.server.call('generate_id')
     anvil.server.call('budget_to_db', 2025, game_id)
     em = mg.my_email
@@ -938,7 +940,7 @@ class home(homeTemplate):
     row['wo'] = 2
 
   def pcr_submit_click(self, **event_args):
-    anfang = time.time()
+    #anfang = time.time()
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
@@ -956,7 +958,7 @@ class home(homeTemplate):
     """This method is called when the button is clicked"""
     self.show_hide_plots.visible = True
     self.show_hide_plots.selected = False
-    self.show_hide_plots.text = lu.show_hide_plots_hide_tx_str[lx]
+#    self.show_hide_plots.text = lu.show_hide_plots_hide_tx_str[lx]
     if self.show_hide_plots.selected is False:
       pass
       
@@ -1720,20 +1722,6 @@ class home(homeTemplate):
 #    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
     return w
 
-  def test_model_top_click(self, **event_args):
-    ## clear db
-    app_tables.cookies.delete_all_rows()
-    app_tables.submitted.delete_all_rows()
-    app_tables.state_of_play.delete_all_rows()
-    app_tables.step_done.delete_all_rows()
-    app_tables.roles_assign.delete_all_rows()
-    app_tables.game_files.delete_all_rows()
-    app_tables.plots.delete_all_rows()
-    app_tables.pcgd_advance_looked_at.delete_all_rows()
-    rows = app_tables.games_log.search(game_id=q.not_("TEST"))
-    for row in rows:
-      row.delete()
-
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy=anvil.server.call_s('fe_keepalive')
@@ -2036,15 +2024,25 @@ class home(homeTemplate):
       self.plot_card_rp.visible = False
       self.dec_card.visible = False
 
-  def adm_btn_click(self, **event_args):
-    save_clicked = alert(
-      content=admin(),
-        large=False,
-        buttons=[]
-    )
-    if save_clicked:
-      pass
-
   def reset_db_click(self, **event_args):
+    ## clear db
+    app_tables.cookies.delete_all_rows()
+    app_tables.submitted.delete_all_rows()
+    app_tables.state_of_play.delete_all_rows()
+    app_tables.step_done.delete_all_rows()
+    app_tables.roles_assign.delete_all_rows()
+    app_tables.game_files.delete_all_rows()
+    app_tables.plots.delete_all_rows()
+    app_tables.pcgd_advance_looked_at.delete_all_rows()
+    rows = app_tables.games_log.search(game_id=q.not_("TEST"))
+    for row in rows:
+      row.delete()
+
+  def adm_leave_click(self, **event_args):
+    self.adm_card.visible = False 
+    self.bye_card.background = "orange"
+    self.bye_card.visible = True 
+    self.bye_tx.text = "Admin: Ciao, Ade, Ha det ..."
     """This method is called when the component is clicked."""
     pass
+

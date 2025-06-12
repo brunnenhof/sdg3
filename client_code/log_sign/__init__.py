@@ -132,9 +132,18 @@ class log_sign(log_signTemplate):
     pass
 
   def adm_pw_pressed_enter(self, **event_args):
-    """This method is called when the user presses enter in this component."""
-    pass
+    pw = self.adm_pw.text
+    if pw == 'ft27':
+      self.raise_event("x-close-alert", value='admin')
+    else:
+      n = Notification("Sorry, wrong password", style="Warning")
+      n.show()
 
   def adm_btn_click(self, **event_args):
-    """This method is called when the component is clicked."""
+    self.adm_card2.visible = True
+    self.register.visible = False
+    self.log_in.visible = False
     pass
+ 
+  def adm_pw_show(self, **event_args):
+    self.adm_pw.focus()
