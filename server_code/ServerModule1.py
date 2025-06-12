@@ -246,10 +246,10 @@ def set_npbp(cid, npbp):
   rs = app_tables.games_log.get(game_id=cid)
   rs.update(gm_status=4)
   ### ToDo in production un comment
-  #anvil.email.send(from_name = "OC game", 
-  #                 to = "post@blue-way.net",
-  #                 subject = "New game started",
-  #                 text = "Game "+cid+" was started")
+  anvil.email.send(from_name = "OC game", 
+                   to = "post@blue-way.net",
+                   subject = "New game started",
+                   text = "Game "+cid+" was started")
 
 def read_mdfplay25(datei, runde):
 #  print('APRIL IN read_mdfplay25 loading: ' + datei)
