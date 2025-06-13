@@ -83,7 +83,7 @@ class home(homeTemplate):
       ## success to 2040
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
-      self.show_fut_2(lx, game_id, reg)
+      self.show_fut_2(lx, game_id, reg, role)
 #      self.show_gm_5(lx, game_id)
     elif wo == 2 and not reg == 'gm':
       ## player, NOT fut, round 1 waiting for decisions
@@ -323,28 +323,16 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
 
-    def show_fut_2(self, lx, cid, reg):
+  def show_fut_2(self, lx, cid, reg, role):
       mg.my_lang = lx
       mg.my_game_id = cid
       self.set_lang(lx)
       self.lang_card.visible = False 
       self.top_entry.visible = False 
       self.p_after_submit.visible = True 
-      self.set_reg_cb_false()
-      #      gm_card_wait_1_temp_title
-      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
-      self.gm_card_wait_1_rp.visible = False
-      self.gm_wait_kickoff_r1_rp.visible = False
-
-      self.gm_role_reg.visible = True 
-      self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
-      self.top_title.text = lu.top_title_str[lx]
-      self.gm_board_info.visible = False 
-      self.gm_reg_npbp.visible = False 
-      self.gm_card_wait_1.visible = True  
-      self.gm_card_wait_1_info.visible = True 
-      self.gm_card_wait_1_btn_check.visible = False 
-      self.gm_start_round.visible = True
+      self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
+      self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+      self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def show_gm_5(self, lx, cid):
       mg.my_lang = lx
@@ -1580,7 +1568,20 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.err_msg.text = self.err_msg.text + "\n- runde=2 role="+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
-      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
+      wrx = mg.regs.index(reg)
+      wmx = mg.roles.index(role)
+      reglong = self.do_reg_to_longreg(reg)
+      rolelong = self.do_ta_to_longmini(role)
+      a1 = self.pcgd_title.text
+      a2= cid
+      a3 = str(wrx)
+      a4 = str(wmx)
+      a5 = reglong
+      a6 = rolelong
+      a7 = lu.p_info_40_fut[lx]
+      
+      self.pcgd_title.text = self.pcgd_title.text + ': ' + cid + '-' + str(wrx) + str(wmx) + ',   ' + reglong + ',   ' + rolelong +  lu.p_info_40_fut[lx]
+#      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1618,7 +1619,12 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
-      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
+      wrx = mg.regs.index(reg)
+      wmx = mg.roles.index(role)
+      reglong = self.do_reg_to_longreg(reg)
+      rolelong = self.do_ta_to_longmini(role)
+      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong +  lu.p_info_60_fut[lx]
+#      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1657,7 +1663,12 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = 'fut'
       self.err_msg.text = self.err_msg.text + "\n- runde="+str(runde)+' role='+role+' gm_status='+str(row['gm_status'])+' reg='+reg+ " runde="+str(runde) + " yr="+str(yr)
-      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
+      wrx = mg.regs.index(reg)
+      wmx = mg.roles.index(role)
+      reglong = self.do_reg_to_longreg(reg)
+      rolelong = self.do_ta_to_longmini(role)
+      self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong +  lu.p_info_21_fut[lx]
+#      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
       #      make something visible
