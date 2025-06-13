@@ -1263,16 +1263,16 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       role = 'fut'  ## we're in the Future TA
       reg = mg.my_reg
-      row = app_tables.step_done.get(game_id=cid, reg=reg)
+#      row = app_tables.step_done.get(game_id=cid, reg=reg)
 #      pStepDone = row['p_step_done']
-      cid_cookie = anvil.server.call('get_game_id_from_cookie')
-      print(cid_cookie)
+#      cid_cookie = anvil.server.call('get_game_id_from_cookie')
+#      print(cid_cookie)
       ## show confirmation alert
-      row_games_log = app_tables.games_log.get(game_id=cid_cookie)
+      row_games_log = app_tables.games_log.get(game_id=cid)
       gm_status = row_games_log['gm_status']
       em = mg.my_email
       ro2 = app_tables.nutzer.get(email=em)
-      self.err_msg.text = self.err_msg.text + "\n-------- submit_numbers_click cid=" + (cid_cookie) + ' gm_status=' + str(gm_status) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
+      self.err_msg.text = self.err_msg.text + "\n-------- submit_numbers_click cid=" + (cid) + ' gm_status=' + str(gm_status) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
       self.cid_reg_role_info.text = my_cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
@@ -1281,34 +1281,34 @@ class home(homeTemplate):
       all_regs_sub = False
       if runde == 1:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
-        anvil.server.call('set_cookie_sub', 'r1', 1, cid_cookie) 
-        rc = app_tables.cookies.get(game_id=cid_cookie)
+        anvil.server.call('set_cookie_sub', 'r1', 1, cid) 
+        rc = app_tables.cookies.get(game_id=cid)
         if rc['r1sub'] == 10:
           all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid_cookie, round=1,reg=reg)
+        rosub = app_tables.submitted.get(game_id=cid, round=1,reg=reg)
         rosub['submitted'] = True
       elif runde == 2:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
-        anvil.server.call('set_cookie_sub', 'r2', 1, cid_cookie)        
-        rc = app_tables.cookies.get(game_id=cid_cookie)
+        anvil.server.call('set_cookie_sub', 'r2', 1, cid)        
+        rc = app_tables.cookies.get(game_id=cid)
         if rc['r2sub'] == 10:
           all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid_cookie, round=2,reg=reg)
+        rosub = app_tables.submitted.get(game_id=cid, round=2,reg=reg)
         rosub['submitted'] = True
       elif runde == 3:
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::bump cookie  runde=" + str(runde)
-        anvil.server.call('set_cookie_sub', 'r3', 1, cid_cookie)        
-        rc = app_tables.cookies.get(game_id=cid_cookie)
+        anvil.server.call('set_cookie_sub', 'r3', 1, cid)        
+        rc = app_tables.cookies.get(game_id=cid)
         if rc['r3sub'] == 10:
           all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid_cookie, round=3,reg=reg)
+        rosub = app_tables.submitted.get(game_id=cid, round=3,reg=reg)
         rosub['submitted'] = True
       ### update steps
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
       self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
       if not all_regs_sub: ## there is at least one region (of players) that has not yet submitted
-        row2 = app_tables.step_done.get(game_id=cid_cookie, reg=reg)
+        row2 = app_tables.step_done.get(game_id=cid, reg=reg)
         if runde == 1:
           my_p_step_done = 3
           row2.update(p_step_done=3) ## the region submitted decisions for round 2025-2040
@@ -1322,8 +1322,8 @@ class home(homeTemplate):
         n.show() 
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::step_done  my_p_step_done=" + str(my_p_step_done)
       else:  ## all HAVE submitted
-        row = app_tables.games_log.get(game_id=cid_cookie)
-        rc = app_tables.cookies.get(game_id=cid_cookie)
+        row = app_tables.games_log.get(game_id=cid)
+        rc = app_tables.cookies.get(game_id=cid)
         self.err_msg.text = self.err_msg.text + "\n---inside submit_numbers_click::ALL submit  gmStatus=" + str(gm_status) + "rXsubs:" + str(rc['r1sub']) + ' ' + str(rc['r2sub']) + ' ' + str(rc['r3sub'])
         if row['gm_status'] == 4:
           row['gm_status'] = 5 ## off to run 2025 to 2040
@@ -1374,7 +1374,8 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
     self.gm_start_round.visible = False
-    cid_cookie = anvil.server.call('get_game_id_from_cookie')
+#    cid_cookie = anvil.server.call('get_game_id_from_cookie')
+    cid_cookie = mg.my_game_id
     em = mg.my_email
     ro2 = app_tables.nutzer.get(email=em)
     row = app_tables.games_log.get(game_id=cid_cookie)
@@ -1497,32 +1498,22 @@ class home(homeTemplate):
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
-    lx = ro['email']
+    lx = ro['lang']
     l1 = []
 #    if len(rows_looked_at) == 0:
 #      return l1
     for r in rows_looked_at:
       ta = r['ta']
-      if ta == 'us':
-        longta = lu.reg_to_longreg_us_str[lx]
-      elif ta == 'af':
-        longta = lu.reg_to_longreg_af_str[lx]
-      elif ta == 'cn':
-        longta = lu.reg_to_longreg_cn_str[lx]
-      elif ta == 'me':
-        longta = lu.reg_to_longreg_me_str[lx]
-      elif ta == 'sa':
-        longta = lu.reg_to_longreg_sa_str[lx]
-      elif ta == 'la':
-        longta = lu.reg_to_longreg_la_str[lx]
-      elif ta == 'pa':
-        longta = lu.reg_to_longreg_pa_str[lx]
-      elif ta == 'ec':
-        longta = lu.reg_to_longreg_ec_str[lx]
-      elif ta == 'eu':
-        longta = lu.reg_to_longreg_eu_str[lx]
-      elif ta == 'se':
-        longta = lu.reg_to_longreg_se_str[lx]
+      if ta == 'pov':
+        longta = lu.ta_to_longmini_pov_str[lx]
+      elif ta == 'ineq':
+        longta = lu.ta_to_longmini_ineq_str[lx]
+      elif ta == 'emp':
+        longta = lu.ta_to_longmini_emp_str[lx]
+      elif ta == 'food':
+        longta = lu.ta_to_longmini_food_str[lx]
+      elif ta == 'ener':
+        longta = lu.ta_to_longmini_ener_str[lx]
       l1.append(longta)
     return l1
     
