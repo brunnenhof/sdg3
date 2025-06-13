@@ -79,6 +79,12 @@ class home(homeTemplate):
       ## just registered
       self.do_lang(my_loc)
       pass
+    elif wo == 2 and role == 'fut':
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_fut_2(lx, game_id, reg)
+#      self.show_gm_5(lx, game_id)
     elif wo == 2 and not reg == 'gm':
       ## player, NOT fut, round 1 waiting for decisions
       em = mg.my_email
@@ -316,6 +322,29 @@ class home(homeTemplate):
     self.gm_card_wait_1.visible = True  
     self.gm_card_wait_1_info.visible = True 
     self.gm_card_wait_1_btn_check.visible = True 
+
+    def show_fut_2(self, lx, cid, reg):
+      mg.my_lang = lx
+      mg.my_game_id = cid
+      self.set_lang(lx)
+      self.lang_card.visible = False 
+      self.top_entry.visible = False 
+      self.p_after_submit.visible = True 
+      self.set_reg_cb_false()
+      #      gm_card_wait_1_temp_title
+      self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
+      self.gm_card_wait_1_rp.visible = False
+      self.gm_wait_kickoff_r1_rp.visible = False
+
+      self.gm_role_reg.visible = True 
+      self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
+      self.top_title.text = lu.top_title_str[lx]
+      self.gm_board_info.visible = False 
+      self.gm_reg_npbp.visible = False 
+      self.gm_card_wait_1.visible = True  
+      self.gm_card_wait_1_info.visible = True 
+      self.gm_card_wait_1_btn_check.visible = False 
+      self.gm_start_round.visible = True
 
   def show_gm_5(self, lx, cid):
       mg.my_lang = lx
