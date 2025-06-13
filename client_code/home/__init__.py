@@ -343,9 +343,55 @@ class home(homeTemplate):
     ## show fut info, plots, check if all colleauges has looked at
     ## if yes show submissions, 
     ## if not msg not all have looked at
-    mg.my_lang = lx
+    em = mg.my_email
     mg.my_game_id = cid
-    self.set_lang(lx)
+    mg.my_ministry = role
+    mg.my_reg = reg
+    row = app_tables.nutzer.get(email=em)
+    lx = row['lang']
+    mg.my_lang = lx
+    self.p_card_graf_dec.visible = True
+    self.p_choose_role.visible = False
+    self.dec_card.visible = False
+    wrx = mg.regs.index(reg)
+    wmx = mg.roles.index(role)
+    reglong = self.do_reg_to_longreg(reg)
+    rolelong = self.do_ta_to_longmini(role)
+    self.pcgd_title.text = self.pcgd_title.text + ': ' +cid+'-'+str(wrx)+str(wmx)+',   '+reglong+',   '+rolelong + lu.p_info_40_fut[lx]
+    mg.fut_title_tx2 = self.pcgd_title.text
+    your_game_id = cid + "-" + str(wrx) + str(wmx)
+    mg.my_personal_game_id = your_game_id
+    yr, runde = self.get_runde(cid)
+    self.pcgd_generating.visible = False
+    self.pcgd_plot_card.visible = True
+    if role == 'fut':
+        self.card_fut.visible = True
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+    else:
+        self.dec_card.visible = True
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    slots = [{key: r[key] for key in ["title", "subtitle", "cap", "fig"]} for r in app_tables.plots.search(game_id= cid, runde=runde, reg=reg, ta=role)]
+    self.plot_card_rp.items = slots
+    ### check if all looked at
+    rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
+    if len(rows_looked_at) < 5:
+      not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+      lmsg = lu.not_all_looked_at_tx[lx]
+      for ii in range(0, len(not_looked_at_list)):
+        lmsg = lmsg + "\n" + not_looked_at_list[ii]
+      alert(lmsg, title=lu.not_all_looked_at_title[lx])
+      ## don't show submit
+      self.card_fut.visible = False 
+    else:
+      self.card_fut.visible = True
+      pass
+    if role == 'fut':
+      self.do_future(cid, role, reg, runde, yr, lx )
+    else:
+      self.do_non_future(cid, role, reg, runde, yr, lx)
+    row['wo'] = 3
     self.lang_card.visible = False 
     self.top_entry.visible = False 
     self.p_after_submit.visible = True 
@@ -1053,6 +1099,9 @@ class home(homeTemplate):
     self.card_pov_fut.visible = True
     self.pcgd_plot_card.visible = True
     self.submit_numbers.visible = False
+
+  def get_numbers_for_future(self):
+    pass
 
   def do_future(self, cid, role, reg, runde, yr, lx):
     self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
