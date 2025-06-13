@@ -388,16 +388,13 @@ class home(homeTemplate):
       self.card_fut.visible = True
       pass
     if role == 'fut':
-      self.do_future(cid, role, reg, runde, yr, lx )
-    else:
-      self.do_non_future(cid, role, reg, runde, yr, lx)
-    row['wo'] = 3
+      self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
     self.lang_card.visible = False 
-    self.top_entry.visible = False 
-    self.p_after_submit.visible = True 
-    self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
-    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+#    self.top_entry.visible = False 
+#    self.p_after_submit.visible = True 
+#    self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
+#    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+#    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def show_gm_5(self, lx, cid):
       mg.my_lang = lx
@@ -1100,8 +1097,25 @@ class home(homeTemplate):
     self.pcgd_plot_card.visible = True
     self.submit_numbers.visible = False
 
-  def get_numbers_for_future(self):
-    pass
+  def get_numbers_for_future(self, cid, role, reg, runde, yr,lx):
+    f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
+    self.pov_rep_panel.visible = True
+    self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
+    self.pov_rep_panel.items = fut_pov_list
+    self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
+    self.cpf_rp_ineq.items = fut_ineq_list    
+    self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
+    self.cpf_rp_emp.items = fut_emp_list    
+    self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
+    self.cpf_food_rp.items = fut_food_list    
+    self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
+    self.cpf_ener_rp.items = fut_ener_list    
+    if within_budget:
+      self.submit_numbers.text = lu.submit_numbers_tx_str[lx] + str(yr)
+      self.submit_numbers.visible = True
+    else:
+      self.submit_numbers.visible = False
+    return within_budget
 
   def do_future(self, cid, role, reg, runde, yr, lx):
     self.err_msg.text = self.err_msg.text + "\n-------entering do_future cid="+cid+' reg='+reg+' role='+role+' round='+str(runde)+' yr='+str(yr)
@@ -1116,24 +1130,7 @@ class home(homeTemplate):
     else:
       self.set_fut_all_logged_in(lx)
       if not yr == 2100:
-        f_bud_by_ta, fut_pov_list, fut_ineq_list, fut_emp_list, fut_food_list, fut_ener_list, within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
-        self.pov_rep_panel.visible = True
-        self.tot_inv_pov.text = round(f_bud_by_ta['cpov'], 2)
-        self.pov_rep_panel.items = fut_pov_list
-        self.tot_inv_ineq.text = round(f_bud_by_ta['cineq'], 2)
-        self.cpf_rp_ineq.items = fut_ineq_list    
-        self.tot_inv_emp.text = round(f_bud_by_ta['cemp'], 2)
-        self.cpf_rp_emp.items = fut_emp_list    
-        self.tot_inv_food.text = round(f_bud_by_ta['cfood'], 2)
-        self.cpf_food_rp.items = fut_food_list    
-        self.tot_inv_ener.text = round(f_bud_by_ta['cener'], 2)
-        self.cpf_ener_rp.items = fut_ener_list    
-        if within_budget:
-          self.submit_numbers.text = lu.submit_numbers_tx_str[lx] + str(yr)
-          self.submit_numbers.visible = True
-        else:
-          self.submit_numbers.visible = False
-        return within_budget
+        self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
       return True 
 
   def calc_cost_home_tot(self, pct, tltl, gl, maxc):

@@ -1234,11 +1234,11 @@ sdgvarID_to_indicator_20_str = [
   "_last_"
 ]
 sdgvarID_to_indicator_29_str = [
-  "Number of SDGs met 17 is the maximum",
-  "Anzahl der erreichten SDGs 17 können maximal erreicht werden",
-  "Anzahl der erreichten SDGs 17 können maximal erreicht werden",
-  "Le nombre de ODD Met 17 est le maximum", 
-  "Antall SDG -er møtt 17 er maksimalt", 
+  "Number of SDGs met, 17 is the maximum",
+  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
+  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
+  "Nombre d'ODD atteints, 17 pouvant être atteints au maximum", 
+  "Antall oppnådde SDG-mål, maksimalt 17 kan oppnås", 
   "_last_"
 ]
 sdgvarID_to_indicator_4_str = [
@@ -1253,7 +1253,7 @@ sdgvarID_to_indicator_24_str = [
   "Trust in institutions (1980=1)",
   "Vertrauen in Institutionen (1980=1)",
   "Vertrauen in Institutionen (1980=1)",
-  "Trust in Institutions (1980 = 1)", 
+  "Confiance dans les institutions (1980=1))", 
   "Tillit til institusjoner (1980 = 1)", 
   "_last_"
 ]
@@ -1261,7 +1261,7 @@ sdgvarID_to_indicator_31_str = [
   "Annual rate of change in city area (%)",
   "Jährliche Veränderungsrate der Stadtfläche (%)",
   "Jährliche Veränderungsrate der Stadtfläche (%)",
-  "Taux annuel de variation de la région de la ville (%)", 
+  "Taux de variation annuel de la superficie urbaine (%)", 
   "Årlig endringshastighet i byområdet (%)", 
   "_last_"
 ]
@@ -1269,7 +1269,7 @@ sdgvarID_to_indicator_33_str = [
   "Annual change in forest area (%)",
   "Jährliche Veränderung der Waldfläche (%)",
   "Jährliche Veränderung der Waldfläche (%)",
-  "Changement annuel de la zone forestière (%)", 
+  "Variation annuelle de la superficie forestière (%)", 
   "Årlig endring i skogsområdet (%)", 
   "_last_"
 ]
@@ -1293,8 +1293,8 @@ sdgvarID_to_indicator_9_str = [
   "Fraction of population with access to safe sanitation (%)",
   "Anteil der Bevölkerung mit Zugang zu sicheren Sanitäreinrichtungen (%)",
   "Anteil der Bevölkerung mit Zugang zu sicheren Sanitäreinrichtungen (%)",
-  "Fraction de la population avec accès à l'assainissement sûr (%)", 
-  "Brøkdel av befolkningen med tilgang til sikker sanitet (%)", 
+  "Proportion de la population ayant accès à des installations sanitaires sûres (%)", 
+  "Andel av befolkningen med tilgang til sikre sanitæranlegg (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_16_str = [
@@ -1315,10 +1315,10 @@ sdgvarID_to_indicator_17_str = [
 ]
 sdgvarID_to_indicator_34_str = [
   "Donor and off balance-sheet investment share (% of GDP)",
-  "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
-  "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
-  "Donateur et partage d'investissement hors bilan (% du PIB)", 
-  "Donor og Off Balance-ark investeringsandel (% av BNP)", 
+  "Anteil an Investitionen der von Krediten und ausser-bilanziellen Sondervermögen kommt (% des BIP)",
+  "Anteil an Investitionen der von Krediten und ausser-bilanziellen Sondervermögen kommt (% des BIP)",
+  "Part des investissements provenant de crédits et de fonds spéciaux hors bilan (% du PIB)", 
+  "Andel av investeringer fra lån og spesielle eiendeler utenfor balansen (% av BNP)", 
   "_last_"
 ]
 sdgvarID_to_indicator_14_str = [
@@ -1387,18 +1387,18 @@ sdgvarID_to_indicator_7_str = [
 ]
 sdgvarID_to_indicator_1_str = [
   "Fraction of population living below $6.85 per day (%)",
-  "Anteil der Bevölkerung der weniger als 685 US-Dollar pro Tag verdient (%)",
-  "Anteil der Bevölkerung der weniger als 685 US-Dollar pro Tag verdient (%)",
-  "Fraction de la population vivant en dessous de 6,85 $ par jour (%)", 
-  "Brøkdel av befolkningen som lever under $ 6,85 per dag (%)", 
+  "Anteil der Bevölkerung der weniger als 6,85 US-Dollar pro Tag verdient (%)",
+  "Anteil der Bevölkerung der weniger als 6,85 US-Dollar pro Tag verdient (%)",
+  "Pourcentage de la population gagnant moins de 6,85 dollars par jour (%)", 
+  "Andel av befolkningen som tjener mindre enn 6,85 dollar per dag (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_3_str = [
   "Proportion of agricultural area worked regeneratively (%)",
   "Anteil der regenerativ bewirtschafteten landwirtschaftlichen Fläche (%)",
   "Anteil der regenerativ bewirtschafteten landwirtschaftlichen Fläche (%)",
-  "La proportion de zones agricoles a travaillé de manière régénérative (%)", 
-  "Andel av landbruksområdet fungerte regenerativt (%)", 
+  "Part des surfaces agricoles exploitées selon les principes de l'agriculture régénérative (%)", 
+  "Andel av landbruksarealet som drives på en bærekraftig måte (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_6_str = [
@@ -1413,16 +1413,16 @@ sdgvarID_to_indicator_8_str = [
   "Fraction of population with access to safe water (%)",
   "Anteil der Bevölkerung mit Zugang zu sauberem Wasser (%)",
   "Anteil der Bevölkerung mit Zugang zu sauberem Wasser (%)",
-  "Fraction de la population avec accès à l'eau sûre (%)", 
-  "Brøkdel av befolkningen med tilgang til trygt vann (%)", 
+  "Pourcentage de la population ayant accès à l'eau potable (%)", 
+  "Andel av befolkningen med tilgang til rent vann (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_10_str = [
   "Fraction of population with access to electricity (%)",
   "Anteil der Bevölkerung mit Zugang zu Elektrizität (%)",
   "Anteil der Bevölkerung mit Zugang zu Elektrizität (%)",
-  "Fraction de la population avec accès à l'électricité (%)", 
-  "Brøkdel av befolkningen med tilgang til strøm (%)", 
+  "Pourcentage de la population ayant accès à l'électricité (%)", 
+  "Andel av befolkningen med tilgang til elektrisitet (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_15_str = [
@@ -1453,8 +1453,8 @@ sdgvarID_to_indicator_28_str = [
   "Wind and PV energy electricity (TWh/yr)",
   "Strom aus Wind- und Photovoltaikenergie (TWh/Jahr)",
   "Strom aus Wind- und Photovoltaikenergie (TWh/Jahr)",
-  "Électricité éolienne et énergétique PV (TWH / an)", 
-  "Vind og PV Energy Electricity (TWH/YR)", 
+  "Électricité produite à partir de l'énergie éolienne et photovoltaïque (TWh/an)", 
+  "Strøm fra vind- og solcelleenergi (TWh/år)", 
   "_last_"
 ]
 sdgvarID_to_indicator_37_str = [
@@ -1462,15 +1462,15 @@ sdgvarID_to_indicator_37_str = [
   "Ackerland (Mha)",
   "Ackerland (Mha)",
   "Terres cultivées (MHA)", 
-  "Cropland (MHA)", 
+  "Jordbruksareal (Mha)", 
   "_last_"
 ]
 sdgvarID_to_indicator_11_str = [
   "Wind and PV energy share in total energy consumption (%)",
   "Anteil von Wind- und Photovoltaikenergie am Gesamtenergieverbrauch (%)",
   "Anteil von Wind- und Photovoltaikenergie am Gesamtenergieverbrauch (%)",
-  "Part d'énergie éolienne et PV dans la consommation totale d'énergie (%)", 
-  "Vind- og PV -energiandeler i total energiforbruk (%)", 
+  "Part de l'énergie éolienne et photovoltaïque dans la consommation totale d'énergie (%)", 
+  "Andel vind- og solcelleenergi av det totale energiforbruket (%)", 
   "_last_"
 ]
 sdgvarID_to_indicator_36_str = [
@@ -1483,10 +1483,10 @@ sdgvarID_to_indicator_36_str = [
 ]
 sdgvarID_to_indicator_32_str = [
   "Nitrogen use (kg/ha-year)",
-  "Stickstoffverbrauch (kg/ha-Jahr)",
-  "Stickstoffverbrauch (kg/ha-Jahr)",
-  "Utilisation de l'azote (kg / ha-an)", 
-  "Nitrogenbruk (kg/ha-år)", 
+  "Stickstoffverbrauch (kg pro ha pro Jahr)",
+  "Stickstoffverbrauch (kg pro ha pro Jahr)",
+  "Consommation d'azote (kg par ha et par an)", 
+  "Nitrogenforbruk (kg per hektar per år)", 
   "_last_"
 ]
 sdgvarID_to_indicator_39_str = [
@@ -1509,7 +1509,7 @@ sdgvarID_to_sdg_0_str = [
   "Population",
   "Einwohnerzahl",
   "Einwohnerzahl",
-  "Population", 
+  "nombre d'habitants", 
   "Folketall", 
   "_last_"
 ]
@@ -1610,11 +1610,11 @@ sdgvarID_to_sdg_35_str = [
   "_last_"
 ]
 sdgvarID_to_sdg_30_str = [
-  "Industry innovation and infrastructure",
-  "Industrielle Innovation und Infrastruktur",
-  "Industrielle Innovation und Infrastruktur",
-  "Innovation et infrastructure de l'industrie", 
-  "Industry Innovation and Infrastructure", 
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures", 
+  "Industri, innovasjon og infrastruktur", 
   "_last_"
 ]
 sdgvarID_to_sdg_9_str = [
@@ -1642,11 +1642,11 @@ sdgvarID_to_sdg_17_str = [
   "_last_"
 ]
 sdgvarID_to_sdg_34_str = [
-  "Industry innovation and infrastructure",
-  "Industrielle Innovation und Infrastruktur",
-  "Industrielle Innovation und Infrastruktur",
-  "Innovation et infrastructure de l'industrie", 
-  "Industry Innovation and Infrastructure", 
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures", 
+  "Industri, innovasjon og infrastruktur", 
   "_last_"
 ]
 sdgvarID_to_sdg_14_str = [
@@ -1682,11 +1682,11 @@ sdgvarID_to_sdg_22_str = [
   "_last_"
 ]
 sdgvarID_to_sdg_23_str = [
-  "Peace justice and strong institutions",
-  "Frieden Gerechtigkeit und starke Institutionen",
-  "Frieden Gerechtigkeit und starke Institutionen",
-  "Paix Justice et institutions fortes", 
-  "Fredens rettferdighet og sterke institusjoner", 
+  "Peace, justice and strong institutions",
+  "Frieden, Gerechtigkeit und starke Institutionen",
+  "Frieden, Gerechtigkeit und starke Institutionen",
+  "Paix, Justice et institutions fortes", 
+  "Fred, rettferdighet og sterke institusjoner", 
   "_last_"
 ]
 sdgvarID_to_sdg_2_str = [
@@ -1754,11 +1754,11 @@ sdgvarID_to_sdg_10_str = [
   "_last_"
 ]
 sdgvarID_to_sdg_15_str = [
-  "Industry innovation and infrastructure",
-  "Industrielle Innovation und Infrastruktur",
-  "Industrielle Innovation und Infrastruktur",
-  "Innovation et infrastructure de l'industrie", 
-  "Industry Innovation and Infrastructure", 
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures", 
+  "Industri, innovasjon og infrastruktur", 
   "_last_"
 ]
 sdgvarID_to_sdg_25_str = [
@@ -1790,7 +1790,7 @@ sdgvarID_to_sdg_37_str = [
   "Ackerland",
   "Ackerland",
   "Terres cultivées", 
-  "Cropland", 
+  "jordbruksland", 
   "_last_"
 ]
 sdgvarID_to_sdg_11_str = [
@@ -1834,11 +1834,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.3a",
-  "Das WK Spiel v0.3a",
-  "Das WK Spiel v0.3a",
-  "Le Jeu OL v0.3a",
-  "FL-spill v0.3a", 
+  "OC Game v0.3b",
+  "Das WK Spiel v0.3b",
+  "Das WK Spiel v0.3b",
+  "Le Jeu OL v0.3b",
+  "FL-spill v0.3b", 
   "_last_"
 ]
 need_one_reg = [
@@ -2516,8 +2516,8 @@ pcgd_rd1_infoend_str = [
  
 pcgd_rd1_info_fut_tx_str = [
     "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet. \nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note* if the Submit button does not show, it is because your region is above the the budget.\nMoney amounts are in constant (2025) Giga $ per year. A Giga is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde. ",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.",
+    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Zahlen übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.",
+    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Zahlen übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.",
     "En tant que ministre de l'avenir, vous avez une vue d'ensemble. Vous voyez aussi combien vos collègues ministres de votre région prévoient d'investir au total pour améliorer la vie de vos concitoyens et la santé de la planète. \nC'est **votre** tâche de maintenir l'**investissement régional total** dans les limites du budget. Si l'investissement total est inférieur à 100 % du budget, tout va bien. Toutefois, si vous investissez trop peu, les choses risquent d'empirer, voire de s'aggraver ! Si le total est **supérieur** à 100 % de votre budget, vous devez conseiller à vos collègues ministres de réduire certains de leurs investissements. Il s'agit d'une tâche difficile où vos talents de modérateur sont nécessaires. Bonne chance!\nAu fur et à mesure que vos collègues ministres décident de leurs plans d'investissement, cliquez sur le bouton **Rafraîchir les chiffres** pour voir les choix les plus récents de vos collègues.\nQuand vous êtes prêt, **vous**, en tant que ministre de l'avenir, soumettez les choix politiques de tous vos collègues - **assurez-vous d'obtenir leur accord** avant d'appuyer sur le bouton *Soumettre* ! (*Note* si le bouton Soumettre ne s'affiche pas, c'est que votre région est au-dessus du budget.\n\nLes montants sont en Giga $ constants (2025) par an. Un Giga est égal à 1 000 000 000 ----- Les Américains appellent cela un Billion, d'autres appellent cela une Milliarde. " ,
     "Som fremtidsminister ser du det store bildet. Du ser også hvor mye dine ministerkolleger i din region planlegger å investere totalt for å forbedre livene til ditt folk og helsen til planeten. \nDet er **din** oppgave å holde den **samlet regionale investeringen** innenfor budsjettet. Hvis den *totale investeringen* er **under** 100 % av budsjettet, er alt i orden. Men hvis du investerer for lite, kan ting bli verre, mye verre, muligens! Hvis det er **over** 100 % av budsjettet, må du råde dine ministerkolleger til å redusere noen av sine investeringer. Dette er en vanskelig oppgave der det er behov for dine modererende evner. Lykke til! \nNår ministerkollegene dine bestemmer seg for investeringsplanene sine, klikker du på knappen **Oppdater tall** for å se de mest oppdaterte valgene til kollegene dine.\nNår du er klar, sender **du**, som fremtidsminister, inn de politiske valgene fra alle kollegene dine - **se til at du får alle deres OK** før du trykker på *Send*-knappen! (*Hvis Send-knappen ikke vises, er det fordi din region ligger over budsjettet*).\n\nPengebeløpene er i konstant (2025) Giga $ per år. En Giga er 1 000 000 000 ----- US-amerikanere kaller dette en Billion, andre kaller det en Milliarde. ",
     "_last_"
@@ -2613,8 +2613,8 @@ dec_title_tx_str = [
  
 fut_info_tx_str = [
     "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde. ",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inKolleg:Innen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
+    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zhalen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
+    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inKolleg:Innen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
     "En tant que ministre de l'avenir, vous avez une vision d'ensemble. Vous voyez aussi combien vos collègues ministres de votre région prévoient d'investir au total pour améliorer la vie de vos concitoyens et la santé de la planète.\n\nC'est **votre** tâche de maintenir **l'investissement régional total** dans les limites du budget. Si l'investissement total est inférieur à 100 % du budget, tout va bien. Toutefois, si vous investissez trop peu, les choses risquent d'empirer, voire de s'aggraver!\n\nSi le total est **supérieur** à 100 % de votre budget, vous devez conseiller à vos collègues ministres de réduire certains de leurs investissements. Il s'agit d'une tâche difficile où vos talents de modérateur sont nécessaires. Bonne chance!\nPendant que vos collègues ministres décident de leurs plans d'investissement, cliquez sur le bouton **Rafraîchir les chiffres** pour voir les choix les plus récents de vos collègues.\n\nLorsque vous êtes prêt, **vous**, en tant que ministre de l'avenir, soumettez les choix politiques de tous vos collègues - **assurez-vous d'obtenir leur accord** avant d'appuyer sur le bouton *Soumettre* ! (*Remarque:* si le bouton Soumettre ne s'affiche pas, c'est que votre région est au-dessus du budget.\nLes montants sont en Giga $ constants (2025) par an. Un *Giga* est égal à 1 000 000 000 ----- Les Américains appellent cela un Billion, d'autres appellent cela un Milliarde. " ,
     "Som fremtidsminister ser du det store bildet. Du ser også hvor mye dine ministerkolleger i din region planlegger å investere totalt for å forbedre livene til ditt folk og helsen til planeten. Det er **din** oppgave å holde den **samlet regionale investeringen** innenfor budsjettet. Hvis den *samlet investeringen* er **under** 100 % av budsjettet, er alt i orden. Men hvis du investerer for lite, kan ting bli verre, mye verre, muligens! \n\nHvis den er **over** 100 % av budsjettet, må du råde dine ministerkolleger til å redusere noen av sine investeringer. Dette er en vanskelig oppgave der det er behov for dine modererende evner. Lykke til! \n\nNår ministerkollegene dine bestemmer seg for investeringsplanene sine, klikker du på knappen **Oppdater tall** for å se de mest oppdaterte valgene til kollegene dine.\n\nNNår du er klar, sender **du**, som fremtidsminister, inn de politiske valgene fra alle kollegene dine - **se til at du får alle deres OK** før du trykker på *Send*-knappen! Hvis Send-knappen ikke vises, er det fordi din region ligger over budsjettet. \n\nPengebeløpene er i konstant (2025) Giga $ per år. En *Giga* er 1 000 000 000 --- US-amerikanere kaller dette en Billion, andre kaller det en Milliarde. ",
     "_last_"
