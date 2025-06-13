@@ -1495,8 +1495,12 @@ class home(homeTemplate):
         row_closed['closed'] = datetime.datetime.now()
 
   def get_not_looked_at(self, rows_looked_at):
-    lx = mg.my_lang
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['email']
     l1 = []
+#    if len(rows_looked_at) == 0:
+#      return l1
     for r in rows_looked_at:
       ta = r['ta']
       if ta == 'us':
@@ -1541,8 +1545,8 @@ class home(homeTemplate):
       reg = ro2['reg']
       runde = 2
       yr = 2040
-      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
-      if len(rows_looked_at) < 5:
+      rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=False)
+      if len(rows_looked_at) > 0:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
         lmsg = lu.not_all_looked_at_tx[lx]
         for ii in range(0, len(not_looked_at_list)):
@@ -1804,7 +1808,7 @@ class home(homeTemplate):
 #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
 #      n.show()
 #      return
-    self.err_msg.text = "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
+    self.err_msg.text = self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is="+str(gmStatus)
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc['r1sub'] < 10:
