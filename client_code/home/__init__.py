@@ -79,6 +79,11 @@ class home(homeTemplate):
       ## just registered
       self.do_lang(my_loc)
       pass
+    elif wo == 3 and role == 'fut':
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_fut_3(lx, game_id, reg, role)
     elif wo == 2 and role == 'fut':
       ## success to 2040
       em = mg.my_email
@@ -333,6 +338,20 @@ class home(homeTemplate):
       self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
       self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+
+  def show_fut_3(self, lx, cid, reg, role):
+    ## show fut info, plots, check if all colleauges has looked at
+    ## if yes show submissions, 
+    ## if not msg not all have looked at
+    mg.my_lang = lx
+    mg.my_game_id = cid
+    self.set_lang(lx)
+    self.lang_card.visible = False 
+    self.top_entry.visible = False 
+    self.p_after_submit.visible = True 
+    self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
+    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def show_gm_5(self, lx, cid):
       mg.my_lang = lx
@@ -1275,11 +1294,13 @@ class home(homeTemplate):
       n = Notification(lu.nothing_submitted_tx_str[lx])
       n.show()
     else: ## submission confirmed, reg DID submit numbers
+      em = mg.my_email
+      ro2 = app_tables.nutzer.get(email=em)
       my_cid = mg.my_personal_game_id
-      cid = mg.my_game_id
+      cid = ro2['game_id']
       yr, runde = self.get_runde(cid)
       role = 'fut'  ## we're in the Future TA
-      reg = mg.my_reg
+      reg = ro2['reg']
 #      row = app_tables.step_done.get(game_id=cid, reg=reg)
 #      pStepDone = row['p_step_done']
 #      cid_cookie = anvil.server.call('get_game_id_from_cookie')
@@ -1287,8 +1308,6 @@ class home(homeTemplate):
       ## show confirmation alert
       row_games_log = app_tables.games_log.get(game_id=cid)
       gm_status = row_games_log['gm_status']
-      em = mg.my_email
-      ro2 = app_tables.nutzer.get(email=em)
       self.err_msg.text = self.err_msg.text + "\n-------- submit_numbers_click cid=" + (cid) + ' gm_status=' + str(gm_status) + " runde="+str(runde) + " yr="+str(yr) + " lx="+str(lx)  + " wo="+str(ro2['wo'])  + " nutzer_game_ID="+(ro2['game_id']) + " nutzer_reg="+(ro2['reg'])
       self.cid_reg_role_info.text = my_cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
       self.card_fut.visible = False
@@ -1370,19 +1389,17 @@ class home(homeTemplate):
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-    for ug in range(0, len(mg.dbg_info)):
-      self.err_msg.text = self.err_msg.text + '\n-dbg--' + mg.dbg_info[ug]
-    mg.dbg_info = []
 
   def get_not_all_sub(self, cid, runde):
-    reg = mg.my_reg
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    reg = ro['reg']
     rows = app_tables.submitted.search(game_id='',round=runde, reg=reg, submitted=False)
     not_sub_list = []
     for r in rows:
 #      regshort = r['reg']
       longreg = self.do_reg_to_longreg(r['reg'])
       not_sub_list.append(longreg)
-    pass
     
   def gm_start_round_click(self, **event_args):
     lx = mg.my_lang
@@ -1572,14 +1589,6 @@ class home(homeTemplate):
       wmx = mg.roles.index(role)
       reglong = self.do_reg_to_longreg(reg)
       rolelong = self.do_ta_to_longmini(role)
-      a1 = self.pcgd_title.text
-      a2= cid
-      a3 = str(wrx)
-      a4 = str(wmx)
-      a5 = reglong
-      a6 = rolelong
-      a7 = lu.p_info_40_fut[lx]
-      
       self.pcgd_title.text = self.pcgd_title.text + ': ' + cid + '-' + str(wrx) + str(wmx) + ',   ' + reglong + ',   ' + rolelong +  lu.p_info_40_fut[lx]
 #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, 2, lx)
@@ -1599,6 +1608,9 @@ class home(homeTemplate):
         self.plot_card_rp.items = slots
         self.do_future(cid, role, reg, runde, yr,lx )
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
+        ### update wo
+        ro2['wo'] = 3
+        ro2['wo'] = 3
     elif row['gm_status'] == 10: ## 2040 to 2060 successfully run
       #      reg = mg.my_reg
       reg = ro2['reg']
