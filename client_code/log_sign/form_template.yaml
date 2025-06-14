@@ -50,6 +50,10 @@ components:
       text: login_first
       text_color: darkgreen
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
+  - layout_properties: {grid_position: 'HGSAJA,SWTNOM'}
+    name: regi_info
+    properties: {italic: true}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {change: regi_user_change, show: regi_user_show}
     layout_properties: {grid_position: 'JHDZEG,KKAERX'}
     name: regi_user

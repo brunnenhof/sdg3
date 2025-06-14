@@ -14,6 +14,31 @@ sorry = [
   "Beklager - å se deg gå",
   "_last_"  
 ]
+privacy_str_title_str = [
+  "Privacy",
+  "Privatsphähre",
+  "Privatsphähre",
+  "Confidentialité",
+  "Personvern",
+  "_last_"  
+]
+regi_privacy_str = [
+  "If a game is interrupted, either accidentally or intentionally (for example, because the rounds are played on different days), we need to load the page where the interruption occurred for each player. To do this, we need a unique ID. You choose this yourself. It can consist of any digits, numbers or characters. It must be at least 3 characters long. 90 days after the last log-in whatever you choose as your registration name is deleted, meaning you will then have no more access to the game.",
+  "Sollte ein Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählst Du selbst aus. Sie kann aus irgendwelchen Ziffern, Zahlen oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung wird der von Ihnen gewählte Registrierungsname gelöscht, sodass Sie dann keinen Zugriff mehr auf das Spiel haben.",
+  "Sollte ein Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählen Sie selbst aus. Sie kann aus irgendwelchen Ziffern, Zahlen oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung wird der von Dir gewählte Registrierungsname gelöscht, sodass Du dann keinen Zugriff mehr auf das Spiel haben.",
+  "Si une partie est interrompue, accidentellement ou intentionnellement (par exemple parce que les manches sont jouées à des jours différents), nous devons charger la page où l'interruption s'est produite pour chaque joueur. Pour cela, nous avons besoin d'un identifiant unique. Vous le choisissez vous-même. Il peut être composé de n'importe quels chiffres, nombres ou caractères. Il doit comporter au moins 3 caractères.  90 jours après votre dernière connexion, le nom que vous avez choisi lors de votre inscription sera supprimé, ce qui signifie que vous n'aurez plus accès au jeu.",
+  "Hvis et spill blir avbrutt, enten ved et uhell eller med vilje (for eksempel fordi rundene spilles på forskjellige dager), må vi laste inn siden der avbruddet skjedde for hver spiller. For å gjøre dette trenger vi en unik ID. Du velger denne selv. Den kan bestå av hvilke som helst tall, sifre eller tegn. Den må være minst 3 tegn lang.  90 dager etter siste innlogging blir det du har valgt som registreringsnavn slettet, noe som betyr at du ikke lenger har tilgang til spillet.",
+  "_last_"  
+]
+privacy_str = [
+  "We do not collect any personal data – period! \n\nAll game data will be irrevocably deleted 90 days after the last log-in to a game, including your registration name.",
+  "Wir sammeln keine persönlichen Daten - Punkt! \n\nAlle Spieldaten werden 90 Tage nach der letzten Anmeldung bei einem Spiel unwiderruflich gelöscht, einschließlich Ihres Registrierungsnamens.",
+  "Wir sammeln keine persönlichen Daten - Punkt! \n\nAlle Spieldaten werden 90 Tage nach der letzten Anmeldung bei einem Spiel unwiderruflich gelöscht, einschließlich Ihres Registrierungsnamens.",
+  "Nous ne collectons aucune donnée personnelle, point final ! \n\nToutes les données de jeu seront irrévocablement supprimées 90 jours après la dernière connexion à un jeu, y compris votre nom d'enregistrement.",
+  "Vi samler ikke inn personopplysninger – punktum! \n\nAlle spilldata vil bli slettet uigenkallelig 90 dager etter siste innlogging i et spill, inkludert ditt registreringsnavn.",
+  "_last_"  
+]
+
 bye_tx = [
   "Thanks for stopping by - maybe another time ...",
   "Danke für Ihren Besuch – vielleicht ein anderes Mal ...",

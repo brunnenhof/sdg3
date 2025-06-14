@@ -12,7 +12,7 @@ class log_sign(log_signTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     lx = mg.my_lang
-#    lx = 4
+#    lx = 3
     self.regi_title.text = lu.sign_up_title[lx]
     self.regi_user.placeholder = lu.user_placeholder[lx]
     self.regi_save.text = lu.save_btn[lx]
@@ -25,6 +25,7 @@ class log_sign(log_signTemplate):
     self.login_save.text = lu.login_title_tx[lx]
     self.login_cancel.text = lu.cancel_btn[lx]
     self.login_first.text = lu.login_first_btn[lx]
+    self.regi_info.text = lu.regi_privacy_str[lx]
     
     self.log_in.visible = False 
 

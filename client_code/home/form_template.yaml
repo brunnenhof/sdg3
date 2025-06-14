@@ -793,15 +793,19 @@ components:
       selected_background_color: theme:Primary
       tooltip: toggles visibility of debug messages
     type: form:dep_srfw5i6mu5hwvt:_Components.Switch
-  - event_bindings: {}
+  - event_bindings: {click: privacy_btn_click}
     layout_properties: {}
-    name: adm_btn
+    name: privacy_btn
     properties:
-      appearance: tonal
+      appearance: outlined
+      bold: true
+      border: white
+      role: null
       spacing:
-        margin: ['0', '4', '0', '0']
-        padding: [null, '8', null, '8']
-      text: adm
+        margin: ['0', '0', '0', '0']
+        padding: [null, '0', null, '0']
+      text: privacy
+      text_color: theme:Primary
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {click: top_btn_thanks_click}
     layout_properties: {}
@@ -844,17 +848,6 @@ components:
         padding: [null, '4', null, '4']
       text: help
     type: Button
-  - event_bindings: {change: file_loader_1_change}
-    layout_properties: {}
-    name: file_loader_1
-    properties:
-      icon: ''
-      spacing:
-        margin: ['0', null, '0', null]
-        padding: [-1.92, '0', '0', '0']
-      text: Admin
-      visible: false
-    type: FileLoader
   layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {}

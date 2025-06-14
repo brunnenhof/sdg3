@@ -47,7 +47,7 @@ class home(homeTemplate):
     save_clicked = alert(
       content=log_sign(item=new_user),
       #      title="Sign Up",
-      large=False,
+      large=True,
       buttons=[]
     )
     if save_clicked == 42 or save_clicked == 342:
@@ -232,6 +232,7 @@ class home(homeTemplate):
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.privacy_btn.text = lu.privacy_str_title_str[my_lox]
     self.top_btn_poc.text = "PoC"
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.lang_rich_tx.content = lu.lang_info_str[my_lox]
@@ -431,6 +432,7 @@ class home(homeTemplate):
     self.top_title.text = lu.top_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.privacy_btn.text = lu.privacy_str_title_str[my_lox]
     self.top_btn_poc.text = "PoC"
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.lang_rich_tx.content = lu.lang_info_str[my_lox]
@@ -532,6 +534,7 @@ class home(homeTemplate):
     self.top_start_game.text = lu.top_start_game_str[my_lox]
     self.top_join_game.text = lu.top_join_game_str[my_lox]
     self.top_btn_thanks.text = lu.top_btn_thanks_str[my_lox]
+    self.privacy_btn.text = lu.privacy_str_title_str[my_lox]
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.top_btn_poc.text = "PoC"
@@ -2213,4 +2216,8 @@ class home(homeTemplate):
         nutzers = app_tables.nutzer.search(game_id=gid['game_id'])
         ## last log in > 90 days or game_started > 90 days
         self.ok_to_delete(nutzers)
+
+  def privacy_btn_click(self, **event_args):
+    my_lox = mg.my_lang
+    alert(content=lu.privacy_str[my_lox], title=lu.privacy_str_title_str[my_lox])
 
