@@ -429,27 +429,27 @@ pol_to_expl_TOW_str = [
   "_last_"
 ]
 pol_to_expl_FPGDC_str = [
-  "Cancels a percentage of Govt debt outstanding to public lenders. 0 means nothing is cancelled 100 all is cancelled 50 half is cancelled --- in the policy start year",
-  "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen.",
-  "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen.",
-  "Annule un pourcentage de la dette du gouvernement en circulation aux prêteurs publics. 0 signifie que rien n'est annulé 100 tout est annulé 50 La moitié est annulé --- au cours de l'année de début de la politique", 
-  "Avbestill en prosentandel av utestående statsgjeld til offentlige långivere. 0 betyr at ingenting er kansellert 100 alt er kansellert 50 halvparten er kansellert --- i policyens startår", 
+  "Cancels a percentage of Govt debt outstanding to public lenders. 0 means nothing is cancelled, 100 all is cancelled, 50 half is cancelled --- in the policy start year. Imagine the government ows 180 billion USD to the World Bank - if you enter '30', 180 * .3 = 54 billion is forgiven and the government still ows 126 billion",
+  "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird, 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen. Stellen Sie sich vor, die Regierung schuldet der Weltbank 180 Milliarden US-Dollar – wenn Sie '30' eingeben, werden 180 * 0,3 = 54 Milliarden erlassen, und die Regierung schuldet weiterhin 126 Milliarden.",
+  "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird, 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen. Stell Dir vor, die Regierung schuldet der Weltbank 180 Milliarden US-Dollar – wenn Du '30' eingibst, werden 180 * 0,3 = 54 Milliarden erlassen, und die Regierung schuldet weiterhin 126 Milliarden.",
+  "Annule un pourcentage de la dette du gouvernement en circulation aux prêteurs publics. 0 signifie que rien n'est annulé, 100 tout est annulé, 50 La moitié est annulé --- au cours de l'année de début de la politique. Imaginez que le gouvernement doive 180 milliards de dollars à la Banque mondiale. Si vous entrez « 30 », 180 * 0,3 = 54 milliards sont effacés et le gouvernement doit encore 126 milliards.",
+  "Avbestill en prosentandel av utestående statsgjeld til offentlige långivere. 0 betyr at ingenting er kansellert, 100 alt er kansellert, 50 halvparten er kansellert --- i policyens startår.  Tenk deg at regjeringen skylder Verdensbanken 180 milliarder dollar – hvis du skriver inn «30», blir 180 * 0,3 = 54 milliarder ettergitt, og regjeringen skylder fortsatt 126 milliarder.",
   "_last_"
 ]
 pol_to_expl_RMDR_str = [
-  "Change in diet esp. a reduction in red meat consumption. 0 means red meat is consumed as before 50 means 50% is replaced with lab meat 100 means 100% is replaced with lab meat i.e. no more red meat is 'produced' by intensive livestock farming aka factory farming.",
-  "Ernährungsumstellung insbesondere Reduzierung des Fleischkonsums. 0 bedeutet dass Fleisch wie bisher konsumiert wird 50 bedeutet dass 50 % durch Laborfleisch ersetzt werden 100 bedeutet dass 100 % durch Laborfleisch ersetzt werden d. h. dass in der Massentierhaltung kein Fleisch mehr 'produziert' wird.",
-  "Ernährungsumstellung insbesondere Reduzierung des Fleischkonsums. 0 bedeutet dass Fleisch wie bisher konsumiert wird 50 bedeutet dass 50 % durch Laborfleisch ersetzt werden 100 bedeutet dass 100 % durch Laborfleisch ersetzt werden d. h. dass in der Massentierhaltung kein Fleisch mehr 'produziert' wird.",
-  "Changement de régime en particulier. Une réduction de la consommation de viande rouge. 0 signifie que la viande rouge est consommée comme avant 50 ans signifie que 50% est remplacé par de la viande de laboratoire 100 signifie que 100% est remplacé par de la viande de laboratoire, c'est-à-dire plus de viande rouge n'est` `produite '' par une agriculture de bétail intensive alias agricole.", 
-  "Endring i kosthold, spesielt en reduksjon i rødt kjøttforbruk. 0 betyr at rødt kjøtt blir konsumert, da før 50 betyr 50% erstattes med labmøtt kjøtt 100 betyr 100% erstattes med laboratoriekjøtt, dvs. ikke mer rødt kjøtt blir produsert av intensivt husdyroppdrett aka fabrikkoppdrett.",
+  "Change in diet esp. a reduction in red meat consumption. 0 means red meat is consumed as before, 50 means 50% is replaced with lab meat, 100 means 100% is replaced with lab meat i.e. no more red meat is 'produced' by intensive livestock farming aka factory farming.",
+  "Ernährungsumstellung insbesondere Reduzierung des Fleischkonsums. 0 bedeutet dass Fleisch wie bisher konsumiert wird, 50 bedeutet dass 50 % durch Laborfleisch ersetzt werden, 100 bedeutet dass 100 % durch Laborfleisch ersetzt werden d. h. dass in der Massentierhaltung kein Fleisch mehr 'produziert' wird.",
+  "Ernährungsumstellung insbesondere Reduzierung des Fleischkonsums. 0 bedeutet dass Fleisch wie bisher konsumiert wird, 50 bedeutet dass 50 % durch Laborfleisch ersetzt werden, 100 bedeutet dass 100 % durch Laborfleisch ersetzt werden d. h. dass in der Massentierhaltung kein Fleisch mehr 'produziert' wird.",
+  "Changement de régime en particulier. Une réduction de la consommation de viande rouge. 0 signifie que la viande rouge est consommée comme avant, 50 % signifie que 50% est remplacé par de la viande de laboratoire, 100 signifie que 100% est remplacé par de la viande de laboratoire, c'est-à-dire plus de viande rouge n'est` `produite '' par une agriculture de bétail intensive alias agricole.", 
+  "Endring i kosthold, spesielt en reduksjon i rødt kjøttforbruk. 0 betyr at rødt kjøtt blir konsumert, da før, 50 betyr 50% erstattes med labmøtt kjøtt, 100 betyr 100% erstattes med laboratoriekjøtt, dvs. ikke mer rødt kjøtt blir produsert av intensivt husdyroppdrett aka fabrikkoppdrett.",
   "_last_"
 ]
 pol_to_expl_REFOREST_str = [
-  "Policy to reforest land i.e. plant new trees. 0 means no reforestation 1 means you increase the forest area by 1 ‰ / yr (that is 1 promille) 3 = you increase the forest area by 3‰/yr",
-  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 ‰ / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 ‰ / Jahr",
-  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung 1 bedeutet dass Sie die Waldfläche um 1 ‰ / Jahr (das ist 1 Promille) vergrössern 3 = Sie vergrössern die Waldfläche um 3 ‰ / Jahr",
-  "La politique de reboisement des terres, c'est-à-dire les nouveaux arbres de plante. 0 signifie qu'aucune reboisement 1 signifie que vous augmentez la zone forestière de 1 ‰/an (c'est 1 Promille) 3 = vous augmentez la zone forestière de 3 ‰/an", 
-  "Tiltak til Reforest land, dvs. plante nye trær. 0 betyr ingen skogplanting 1 betyr at du øker skogområdet med 1 ‰/år (det vil si 1 promille) 3 = du øker skogområdet med 3 ‰/år", 
+  "Policy to reforest land i.e. plant new trees. 0 means no reforestation, 1 means you increase the forest area by 1 ‰ per yr (that is 1 promille), 3 = you increase the forest area by 3‰ per yr",
+  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung, 1 bedeutet dass Sie die Waldfläche um 1 ‰ pro Jahr (das ist 1 Promille) vergrössern, 3 = Sie vergrössern die Waldfläche um 3 ‰ pro Jahr",
+  "Massnahme zur Wiederaufforstung d.h. zum Pflanzen neuer Bäume. 0 bedeutet keine Wiederaufforstung, 1 bedeutet dass Sie die Waldfläche um 1 ‰ pro Jahr (das ist 1 Promille) vergrössern, 3 = Sie vergrössern die Waldfläche um 3 ‰ pro Jahr",
+  "La politique de reboisement des terres, c'est-à-dire les nouveaux arbres de plante. 0 signifie qu'aucune reboisement, 1 signifie que vous augmentez la zone forestière de 1 ‰ par an (c'est 1 Promille), 3 = vous augmentez la zone forestière de 3 ‰ par an", 
+  "Tiltak til Reforest land, dvs. plante nye trær. 0 betyr ingen skogplanting, 1 betyr at du øker skogområdet med 1 ‰ per år (det vil si 1 promille), 3 = du øker skogområdet med 3 ‰ per år", 
   "_last_"
 ]
 pol_to_expl_FTPEE_str = [
@@ -2411,8 +2411,7 @@ pcgd_generating_tx3_str = [
     "Génération de graphiques jusqu'à 2100", 
     "Generere grafer til 2100", 
     "_last_"
-    ]
- 
+]
 gm_wait_round_started_tx_str = [
     "The simulation started. Please wait until it is done... ",
     "Die Simulation hat begonnen. Bitte warten Sie, bis sie abgeschlossen ist... ",
@@ -2420,8 +2419,7 @@ gm_wait_round_started_tx_str = [
     "La simulation a commencé. Veuillez attendre que ce soit fait ...", 
     "Simuleringen startet. Vent til det er gjort ...", 
     "_last_"
-    ]
- 
+]
 gm_start_round_tx_2_str = [
     "Check if all regions are ready to advance to 2060 ... ",
     "Überprüfen Sie, ob alle Regionen ihre Massnahmen bis 2060 übermittelt haben ... ",
@@ -2429,8 +2427,7 @@ gm_start_round_tx_2_str = [
     "Vérifiez si toutes les régions sont prêtes à passer à 2060 ...", 
     "Sjekk om alle regioner er klare til å gå videre til 2060 ...", 
     "_last_"
-    ]
- 
+]
 gm_start_round_tx_3_str = [
     "Check if all regions are ready to advance to 2100 ... ",
     "Überprüfen Sie, ob alle Regionen ihre Massnahmen bis 2100 übermittelt haben ... ",
@@ -2438,8 +2435,7 @@ gm_start_round_tx_3_str = [
     "Vérifiez si toutes les régions sont prêtes à passer à 2100 ...", 
     "Sjekk om alle regioner er klare til å gå videre til 2100 ...", 
     "_last_"
-    ]
- 
+]
 waiting_for_gm_to_start_round_str = [
     "... for simulation to start ... ",
     "... bis die Simulation beginnt ... ",
@@ -2447,8 +2443,7 @@ waiting_for_gm_to_start_round_str = [
     "... pour que la simulation commence ...", 
     "... for simulering å starte ...", 
     "_last_"
-    ]
- 
+]
 gm_wait_sub2_tx_str = [
     "... for all submissions for the round 2040 to 2060 ... ",
     "... auf alle Massnahmen für die Runde 2040 bis 2060 ... ",
@@ -2456,8 +2451,7 @@ gm_wait_sub2_tx_str = [
     "... pour toutes les soumissions du tour 2040 à 2060 ...", 
     "... for alle innleveringer for runden 2040 til 2060 ...", 
     "_last_"
-    ]
- 
+]
 gm_wait_sub3_tx_str = [
     "... for all submissions for the round 2060 to 2100 ... ",
     "... auf alle Massnahmen für die Runde 2060 bis 2100 ... ",
@@ -2465,8 +2459,7 @@ gm_wait_sub3_tx_str = [
     "... pour toutes les soumissions du tour 2060 à 2100 ...", 
     "... for alle innleveringer for runden 2060 til 2100 ...", 
     "_last_"
-    ]
- 
+]
 setup_npbp_label_tx_str = [
     "Hold on, all roles are being prepared ... ",
     "Warten Sie bis alle Rollen vorbereitet sind ... ",
@@ -2474,8 +2467,7 @@ setup_npbp_label_tx_str = [
     "Attendez, tous les rôles sont préparés ...", 
     "Hold på, alle roller blir forberedt ...", 
     "_last_"
-    ]
- 
+]
 msg_ro_str = [
     "Role assignments are set up ... Now tell your players to join game  + cid +  and log in to their roles. You need to wait until all players have submitted their decisions for round 1, 2025 to 2040 ",
     "Die Rollenzuweisungen sind eingerichtet ... Sagen Sie Ihren Spielern:innen nun, dass sie dem Spiel  + cid +  beitreten und sich in ihre Rollen einloggen sollen. Sie selbst müssen warten, bis alle Spieler:innen ihre Entscheidungen für Runde 1 (2025 bis 2040) übermittelt haben. ",
@@ -2483,8 +2475,7 @@ msg_ro_str = [
     "Les affectations de rôles sont configurées ... Maintenant, dites à vos joueurs de rejoindre Game + CID + et de vous connecter à leurs rôles. Vous devez attendre que tous les joueurs aient soumis leurs décisions pour le tour 1, 2025 à 2040", 
     "Rolloppgaver er satt opp ... Fortell nå spillerne dine om å bli med på Game + CID + og logge inn på rollene sine. Du må vente til alle spillere har sendt sine beslutninger for runde 1, 2025 til 2040", 
     "_last_"
-    ]
- 
+]
 pcr_submit_title_str = [
     "Congratulations! ",
     "Herzlichen Glückwunsch! ",
@@ -2492,8 +2483,7 @@ pcr_submit_title_str = [
     "Félicitations! ",
     "Gratulerer! ",
     "_last_"
-    ]
- 
+]
 pcr_submit_msg1_str = [
     "You have been confirmed as ",
     "Sie wurden bestätigt als ",
@@ -2501,8 +2491,7 @@ pcr_submit_msg1_str = [
     "Vous avez été confirmé comme ",
     "Du er bekreftet som ",
     "_last_"
-    ]
- 
+]
 pcr_submit_msg2_str = [
     " in ",
     " in ",
@@ -2510,8 +2499,7 @@ pcr_submit_msg2_str = [
     " dans ", 
     " i ",
     "_last_"
-    ]
- 
+]
 pcr_submit_msg3_str = [
     "Your personal Game ID is ",
     "Ihre persönliche Spiel-ID lautet ",
@@ -2519,8 +2507,7 @@ pcr_submit_msg3_str = [
     "Votre identifiant de jeu personnel est ",
     "Din personlige spill-ID er ",
     "_last_"
-    ]
- 
+]
 player_board_tx_str = [
     "Player Board - ",
     "Spieler:innen Board ",
@@ -2528,8 +2515,7 @@ player_board_tx_str = [
     "Tableau des joueurs-", 
     "Spillerbrett-", 
     "_last_"
-    ]
- 
+]
 pcgd_rd1_info_tx_str = [
     "You are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round. ",
     "Sie sind dafür verantwortlich, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Diagrammen ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, müssen Sie sich Sorgen machen, soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, verfolgen Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um das Leben Ihrer Bürger:innen in der nächsten Runde, hoffentlich, zu verbessern. ",
@@ -2537,8 +2523,7 @@ pcgd_rd1_info_tx_str = [
     "Vous avez la responsabilité d'améliorer la vie de votre peuple. Dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter - l'agitation sociale, voire pire, est au coin de la rue!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, faites défiler vers le bas jusqu'aux décisions que vous devez prendre en tant que ministre pour, espérons-le, améliorer la vie de vos citoyens au cours du prochain cycle de négociations. ",
     "Du er ansvarlig for å forbedre livene til ditt folk. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, blar du ned til beslutningene du må ta som minister, som forhåpentligvis vil forbedre livene til innbyggerne dine i neste runde. ",
     "_last_"
-    ]
- 
+]
 pcgd_rd1_info_short_str = [
     "Together with your ministerial team, you are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, scroll down to see the investment plans of your colleagues. Make sure they are within your regional budget. More instructions are below the graphs. ",
     "Gemeinsam mit Ihrem Minister:innen Team tragen Sie die Verantwortung, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Grafiken ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Liegt sie im **roten** Bereich, besteht Grund zur Sorge & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind, scrollen Sie nach unten, um die Investitionspläne Ihrer Kollegen:innen zu sehen. Stellen Sie sicher, dass diese im Rahmen Ihres regionalen Budgets liegen. Weitere Anweisungen finden Sie unter den Grafiken. ",
@@ -2546,8 +2531,7 @@ pcgd_rd1_info_short_str = [
     "Avec votre équipe ministérielle, vous avez la responsabilité d'améliorer la vie de votre peuple. Dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter - les troubles sociaux, et pire encore, sont à nos portes!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, faites défiler vers le bas pour voir les plans d'investissement de vos collègues. Assurez-vous qu'ils correspondent au budget de votre région. D'autres instructions figurent sous les graphiques. ",
     "Sammen med ministerteamet ditt er du ansvarlig for å forbedre livene til folket ditt. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, kan du bla nedover for å se investeringsplanene til kollegene dine. Sørg for at de er innenfor ditt regionale budsjett. Du finner flere instruksjoner under grafene. ",
     "_last_"
-    ]
- 
+]
 pcgd_rd1_infoend_str = [
     "**Outfade** ",
     "pcgd_rd1:info_end_tx *outtake* ",
@@ -2555,8 +2539,7 @@ pcgd_rd1_infoend_str = [
     "pcgd_rd1:info_end_tx *Ausgang* ",
     "** outfade **" ,
     "_last_"
-    ]
- 
+]
 pcgd_rd1_info_fut_tx_str = [
     "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet. \nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note* if the Submit button does not show, it is because your region is above the the budget.\nMoney amounts are in constant (2025) Giga $ per year. A Giga is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde. ",
     "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:innenkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern. \nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu kürzen. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein. **Achten Sie darauf, dass alle ihre Zustimmung geben** bevor Sie auf *Zahlen übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nGeldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde.",
@@ -2564,8 +2547,7 @@ pcgd_rd1_info_fut_tx_str = [
     "En tant que ministre de l'avenir, vous avez une vue d'ensemble. Vous voyez aussi combien vos collègues ministres de votre région prévoient d'investir au total pour améliorer la vie de vos concitoyens et la santé de la planète. \nC'est **votre** tâche de maintenir l'**investissement régional total** dans les limites du budget. Si l'investissement total est inférieur à 100 % du budget, tout va bien. Toutefois, si vous investissez trop peu, les choses risquent d'empirer, voire de s'aggraver ! Si le total est **supérieur** à 100 % de votre budget, vous devez conseiller à vos collègues ministres de réduire certains de leurs investissements. Il s'agit d'une tâche difficile où vos talents de modérateur sont nécessaires. Bonne chance!\nAu fur et à mesure que vos collègues ministres décident de leurs plans d'investissement, cliquez sur le bouton **Rafraîchir les chiffres** pour voir les choix les plus récents de vos collègues.\nQuand vous êtes prêt, **vous**, en tant que ministre de l'avenir, soumettez les choix politiques de tous vos collègues - **assurez-vous d'obtenir leur accord** avant d'appuyer sur le bouton *Soumettre* ! (*Note* si le bouton Soumettre ne s'affiche pas, c'est que votre région est au-dessus du budget.\n\nLes montants sont en Giga $ constants (2025) par an. Un Giga est égal à 1 000 000 000 ----- Les Américains appellent cela un Billion, d'autres appellent cela une Milliarde. " ,
     "Som fremtidsminister ser du det store bildet. Du ser også hvor mye dine ministerkolleger i din region planlegger å investere totalt for å forbedre livene til ditt folk og helsen til planeten. \nDet er **din** oppgave å holde den **samlet regionale investeringen** innenfor budsjettet. Hvis den *totale investeringen* er **under** 100 % av budsjettet, er alt i orden. Men hvis du investerer for lite, kan ting bli verre, mye verre, muligens! Hvis det er **over** 100 % av budsjettet, må du råde dine ministerkolleger til å redusere noen av sine investeringer. Dette er en vanskelig oppgave der det er behov for dine modererende evner. Lykke til! \nNår ministerkollegene dine bestemmer seg for investeringsplanene sine, klikker du på knappen **Oppdater tall** for å se de mest oppdaterte valgene til kollegene dine.\nNår du er klar, sender **du**, som fremtidsminister, inn de politiske valgene fra alle kollegene dine - **se til at du får alle deres OK** før du trykker på *Send*-knappen! (*Hvis Send-knappen ikke vises, er det fordi din region ligger over budsjettet*).\n\nPengebeløpene er i konstant (2025) Giga $ per år. En Giga er 1 000 000 000 ----- US-amerikanere kaller dette en Billion, andre kaller det en Milliarde. ",
     "_last_"
-    ]
- 
+]
 pcgd_rd1_infoend_tx_str = [
     "The game is done, the song is over, thought I'd something more to say. © Pink Floyd",
     "Das Spiel ist vorbei, der Song ist zu Ende, ich dachte, ich hätte noch etwas zu sagen. © Pink Floyd",
@@ -2573,7 +2555,7 @@ pcgd_rd1_infoend_tx_str = [
     "Le jeu est terminé, la chanson est finie, j'ai pensé que j'avais quelque chose de plus à dire.  © Pink Floyd", 
     "Spillet er over, sangen er over, tenkte jeg hadde noe mer å si.  © Pink Floyd", 
     "_last_"
-    ]
+]
 pcgd_rd1_info_end_tx_str = [
   "The model has reached the end. The game is over. Shed your role and come back to the here and now. What happened in the game? What surprised you? What irritated  you? What was too complicated? Too easy? What made you think? What did you realize that you had not noticed before? Would you like to be a minister in real life?",
   "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Legen Sie Ihre Rolle ab und kehren Sie ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Sie überrascht? Was hat Sie irritiert? Was war zu kompliziert? Zu einfach? Was hat Sie zum Nachdenken gebracht? Was ist Ihnen aufgefallen, was Sie vorher nicht bemerkt haben? Würden Sie im wirklichen Leben gerne Minister:in sein?",
@@ -2589,8 +2571,7 @@ pcgd_generating_tx4_str = [
     "... générer vos graphiques et votre feuille de décision ...", 
     "... generere grafene og beslutningsarket ...", 
     "_last_"
-    ]
- 
+]
 show_hide_plots_hide_tx_str = [
     "Hide graphs ",
     "Diagramme ausblenden ",
@@ -2598,8 +2579,7 @@ show_hide_plots_hide_tx_str = [
     "Masquer les graphiques", 
     "Skjul grafer", 
     "_last_"
-    ]
- 
+]
 show_hide_plots_show_tx_str = [
     "Show graphs ",
     "Diagramme anzeigen ",
@@ -2607,8 +2587,7 @@ show_hide_plots_show_tx_str = [
     "Afficher les graphiques", 
     "Vis grafer", 
     "_last_"
-    ]
- 
+]
 pcgd_advance_tx_str = [
     "Check if the model has been advanced ",
     "Überprüfen, ob das Modell fortgeschrieben wurde ",
@@ -2616,8 +2595,7 @@ pcgd_advance_tx_str = [
     "Vérifiez si le modèle a été avancé", 
     "Sjekk om modellen er oppdatert",
     "_last_"
-    ]
- 
+]
 pcgd_info_after_rd1_tx_str = [
     "The model has been simulated until 2040. Again, in the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry!\nStudy all your indicators, see how they develop over the years. *Given your policy choices, did you expect something different? Are surprised?* Again, discuss with colleagues, first in your region, but also in the other regions.\nWhen you are ready, and in light of what happenend in the last round, scroll down to the decisions you need to take as minister that hopefully improve the lives of your citizens in the next round. ",
     "Das Modell wurde bis 2040 fortgeschrieben. Auch in den folgenden Grafiken ist alles gut, wenn die Linie im **grünen** Bereich liegt. Wenn sie im **roten** Bereich liegt, besteht Grund zur Sorge!\nSchauen Sie sich Sie alle Ihre Indikatoren und beobachten Sie, wie sie sich im Laufe der Jahre entwickeln. *Haben Sie angesichts Ihrer politischen Entscheidungen etwas anderes erwartet? Sind Sie überrascht?* Besprechen Sie dies erneut mit Kollegen:innen, zuerst in Ihrer Region, aber auch in den anderen Regionen.\nWenn Sie bereit sind und im Lichte der Ergebnisse der letzten Runde, scrollen Sie nach unten zu den Entscheidungen, die Sie als Minister:in treffen müssen, um hoffentlich das Leben Ihrer Bürger in der nächsten Runde zu verbessern. ",
@@ -2625,8 +2603,7 @@ pcgd_info_after_rd1_tx_str = [
     "Le modèle a été simulé jusqu'en 2040. Encore une fois, dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans. *Etant donné vos choix politiques, vous attendiez-vous à quelque chose de différent ? Une fois encore, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.\nQuand vous êtes prêt, et à la lumière de ce qui s'est passé lors du dernier tour, faites défiler les décisions que vous devez prendre en tant que ministre et qui, nous l'espérons, amélioreront la vie de vos citoyens lors du prochain tour.  ",
     "Modellen er simulert frem til 2040. Igjen, i grafene nedenfor er det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, bør du bekymre deg! \nStuder alle indikatorene dine, se hvordan de utvikler seg over årene.Hadde du forventet noe annet med tanke på dine politiske valg? Diskuter igjen med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, og i lys av det som skjedde i forrige runde, kan du bla deg ned til de beslutningene du som minister må ta som forhåpentligvis kan forbedre livene til innbyggerne dine i neste runde.  " 
     "_last_"
-    ]
- 
+]
 not_to_2060_str = [
     "The model has not yet been advanced to 2060. ",
     "Das Modell wurde noch nicht bis zum Jahr 2060 fortgeschrieben. ",
@@ -2634,8 +2611,7 @@ not_to_2060_str = [
     "Le modèle n'a pas encore été avancé vers 2060.", 
     "Modellen er ennå ikke oppdatert til 2060.",
     "_last_"
-    ]
- 
+]
 dec_info_tx_str = [
     "After looking at the situation for your people, you must enact several policies to improve the lives of your people **and** the health of the planet. You know that people cannot thrive on a sick planet. You set the policy by pulling the sliders. After coordinating with your ministerial colleagues, set the slider for each policy. \n\nEach policy has an **investment cost** attached to it. If you set a slider to its minimum, there is no cost, if you set a slider to its maximum, then the full investment cost is due. If you set the slider somewhere between minimum and maximum, the prorated investment cost is due. Your region also has a budget for **all** investments from **all** ministries. \n\nIf you exceed the budget, your colleague, the Minister for the Future, will tell you so and you must re-negotiate with your colleagues, until the total regional investment is below or equal to the budget.\n\nWhen the cabinet of your region is **a)** within the budget and **b)** you are **all** satisfied with your choices, the Minister for the Future will submit all your decisions to the game organizer so that the model can be advanced for the next round. ",
     "Nachdem Sie die Situation Ihrer Bevölkerung analysiert haben, müssen Sie verschiedene Massnahmen ergreifen, um das Leben Ihrer Bevölkerung **und** die Gesundheit des Planeten zu verbessern. Sie wissen, dass Menschen auf einem kranken Planeten nicht leben können. Sie legen die Massnahmen fest, indem Sie die Schieberegler ziehen. Nach Abstimmung mit Ihren Minister:innenKollegen stellen Sie den Schieberegler für jede Massnahme ein. \n\nJede Massnahme ist mit **Investitionskosten** verbunden. Stellen Sie den Schieberegler auf das Minimum, entstehen keine Kosten. Stellen Sie den Schieberegler auf das Maximum, werden die vollen Investitionskosten fällig. Stellen Sie den Schieberegler irgendwo zwischen Minimum und Maximum ein, werden die anteiligen Investitionskosten fällig. Ihre Region verfügt ausserdem über ein Budget für **alle** Investitionen **aller** Minister:innen. \n\nSollten Sie das Budget überschreiten, wird Ihr Kollege, der/die Minister:in für die Zukunft, Sie darüber informieren, und Sie müssen mit Ihren Kollegen:innen neu verhandeln, bis die gesamten regionalen Investitionen unter oder gleich dem Budget liegen.\n\nWenn das Kabinett Ihrer Region **a)** innerhalb des Budgets liegt und **b)** Sie **alle** mit Ihren Entscheidungen zufrieden sind, wird der/die ZukunftsMinister:in alle Ihre Entscheidungen dem/der Spielleiter:in übermitteln, damit das Modell für die nächste Runde fortgeschrieben wird. ",
@@ -2643,8 +2619,7 @@ dec_info_tx_str = [
     "Après avoir examiné la situation de votre peuple, vous devez mettre en œuvre plusieurs politiques pour améliorer la vie de votre peuple **et** la santé de la planète. Vous savez que les gens ne peuvent pas prospérer sur une planète malade. Vous définissez la politique en tirant sur les curseurs. Après vous être coordonné avec vos collègues ministres, réglez le curseur de chaque politique. \n\nChaque politique a un **coût d'investissement**. Si vous réglez le curseur au minimum, il n'y a pas de coût, si vous réglez le curseur au maximum, le coût total de l'investissement est dû. Si vous placez le curseur entre le minimum et le maximum, le coût d'investissement est calculé au prorata. Votre région dispose également d'un budget pour **tous** les investissements de **tous** les ministères. \n\nSi vous dépassez le budget, votre collègue, le ministre de l'avenir, vous le dira et vous devrez renégocier avec vos collègues, jusqu'à ce que l'investissement régional total soit inférieur ou égal au budget. \n\nLorsque le cabinet de votre région est **a)** dans les limites du budget et **b)** que vous êtes **tous** satisfaits de vos choix, le ministre de l'avenir soumettra toutes vos décisions au meneur de jeu afin que le modèle puisse être avancé pour le prochain tour. ",
     "Etter å ha sett på situasjonen for ditt folk, må du iverksette flere politiske tiltak for å forbedre livene til ditt folk **og** planetens helse. Du vet at mennesker ikke kan trives på en syk planet. Du bestemmer politikken ved å trekke i glidebryterne. Etter å ha koordinert med ministerkollegene dine, stiller du inn glidebryteren for hver politikk. \n\nHver politikk har en **investeringskostnad** knyttet til seg. Hvis du setter en glidebryter på minimum, er det ingen kostnad, og hvis du setter en glidebryter på maksimum, påløper hele investeringskostnaden. Hvis du setter glidebryteren til et sted mellom minimum og maksimum, må du betale den forholdsmessige investeringskostnaden. Regionen din har også et budsjett for **alle** investeringer fra **alle** departementer. \n\nOm du overskrider budsjettet, vil din kollega, fremtidsministeren, fortelle deg det, og du må forhandle på nytt med kollegene dine, helt til den samlet regionale investeringen er under eller lik budsjettet.\n\nNår regjeringen i din region er **a)** innenfor budsjettet og **b)** dere **alle** er fornøyde med valgene deres, vil fremtidsministeren sende alle beslutningene deres til spillederen, slik at modellen kan avansere til neste runde. ",
     "_last_"
-    ]
- 
+]
 dec_title_tx_str = [
     "Set your policies ",
     "Entscheiden Sie über ihre Massnahmen ",
@@ -2652,8 +2627,7 @@ dec_title_tx_str = [
     "Décider de ses mesures ",
     "Bestem deg for tiltak ",
     "_last_"
-    ]
- 
+]
 fut_info_tx_str = [
     "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde. ",
     "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zhalen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
@@ -2661,8 +2635,7 @@ fut_info_tx_str = [
     "En tant que ministre de l'avenir, vous avez une vision d'ensemble. Vous voyez aussi combien vos collègues ministres de votre région prévoient d'investir au total pour améliorer la vie de vos concitoyens et la santé de la planète.\n\nC'est **votre** tâche de maintenir **l'investissement régional total** dans les limites du budget. Si l'investissement total est inférieur à 100 % du budget, tout va bien. Toutefois, si vous investissez trop peu, les choses risquent d'empirer, voire de s'aggraver!\n\nSi le total est **supérieur** à 100 % de votre budget, vous devez conseiller à vos collègues ministres de réduire certains de leurs investissements. Il s'agit d'une tâche difficile où vos talents de modérateur sont nécessaires. Bonne chance!\nPendant que vos collègues ministres décident de leurs plans d'investissement, cliquez sur le bouton **Rafraîchir les chiffres** pour voir les choix les plus récents de vos collègues.\n\nLorsque vous êtes prêt, **vous**, en tant que ministre de l'avenir, soumettez les choix politiques de tous vos collègues - **assurez-vous d'obtenir leur accord** avant d'appuyer sur le bouton *Soumettre* ! (*Remarque:* si le bouton Soumettre ne s'affiche pas, c'est que votre région est au-dessus du budget.\nLes montants sont en Giga $ constants (2025) par an. Un *Giga* est égal à 1 000 000 000 ----- Les Américains appellent cela un Billion, d'autres appellent cela un Milliarde. " ,
     "Som fremtidsminister ser du det store bildet. Du ser også hvor mye dine ministerkolleger i din region planlegger å investere totalt for å forbedre livene til ditt folk og helsen til planeten. Det er **din** oppgave å holde den **samlet regionale investeringen** innenfor budsjettet. Hvis den *samlet investeringen* er **under** 100 % av budsjettet, er alt i orden. Men hvis du investerer for lite, kan ting bli verre, mye verre, muligens! \n\nHvis den er **over** 100 % av budsjettet, må du råde dine ministerkolleger til å redusere noen av sine investeringer. Dette er en vanskelig oppgave der det er behov for dine modererende evner. Lykke til! \n\nNår ministerkollegene dine bestemmer seg for investeringsplanene sine, klikker du på knappen **Oppdater tall** for å se de mest oppdaterte valgene til kollegene dine.\n\nNNår du er klar, sender **du**, som fremtidsminister, inn de politiske valgene fra alle kollegene dine - **se til at du får alle deres OK** før du trykker på *Send*-knappen! Hvis Send-knappen ikke vises, er det fordi din region ligger over budsjettet. \n\nPengebeløpene er i konstant (2025) Giga $ per år. En *Giga* er 1 000 000 000 --- US-amerikanere kaller dette en Billion, andre kaller det en Milliarde. ",
     "_last_"
-    ]
- 
+]
 fut_bud_lb1_tx_str = [
     "Your total budget is ",
     "Ihr Gesamtbudget ist ",
@@ -2670,8 +2643,7 @@ fut_bud_lb1_tx_str = [
     "Votre budget total est", 
     "Det totale budsjettet er", 
     "_last_"
-    ]
- 
+]
 fut_bud_lb2_tx_str = [
     "All the investment plans of all your fellow ministers summed up are ",
     "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
@@ -2679,8 +2651,7 @@ fut_bud_lb2_tx_str = [
     "Tous les plans d'investissement de tous vos collègues ministres résumés sont", 
     "Alle investeringsplanene til alle dine medministre oppsummert er", 
     "_last_"
-    ]
- 
+]
 fut_bud_lb3_tx_str = [
     "Investment plans as % of your budget ",
     "Investitionspläne als % Ihres Budgets ",
@@ -2688,8 +2659,7 @@ fut_bud_lb3_tx_str = [
     "Les plans d'investissement en% de votre budget", 
     "Investeringsplaner som % av budsjettet", 
     "_last_"
-    ]
- 
+]
 cfpov_tx_str = [
     "Poverty ",
     "Armut ",
@@ -2697,8 +2667,7 @@ cfpov_tx_str = [
     "Pauvreté ", 
     "Fattigdom", 
     "_last_"
-    ]
- 
+]
 cfpov_lb_tx_str = [
     "Regional investment plans against poverty ",
     "Regionale Investitionspläne gegen Armut ",
@@ -2706,8 +2675,7 @@ cfpov_lb_tx_str = [
     "Investissement régional prévoit contre la pauvreté", 
     "Regionale investeringsplaner mot fattigdom", 
     "_last_"
-    ]
- 
+]
 cfineq_tx_str = [
     "Inequality ",
     "Ungleichheit ",
@@ -2715,8 +2683,7 @@ cfineq_tx_str = [
     "Inégalité", 
     "Ulikhet", 
     "_last_"
-    ]
- 
+]
 cfineq_lb_tx_str = [
     "Regional investment plans against inequality ",
     "Regionale Investitionspläne gegen Ungleichheit ",
@@ -2724,8 +2691,7 @@ cfineq_lb_tx_str = [
     "Investissement régional prévoit contre les inégalités", 
     "Regionale investeringsplaner mot ulikhet", 
     "_last_"
-    ]
- 
+]
 cfemp_tx_str = [
     "Empowerment ",
     "Empowerment/Befähigung ",
@@ -2733,8 +2699,7 @@ cfemp_tx_str = [
     "Empowerment/autonomisation ",
     "Myndiggjøring/aktivering",
     "_last_"
-    ]
- 
+]
 cfemp_lb_tx_str = [
     "Regional investment plans for empowerment ",
     "Regionale Investitionspläne zur Stärkung der Selbstbestimmung ",
@@ -2742,8 +2707,7 @@ cfemp_lb_tx_str = [
     "Plans d'investissement régionaux pour l'autonomisation", 
   "Regionale investeringsplaner for empowerment / myndiggjøring", 
     "_last_"
-    ]
- 
+]
 cffood_tx_str = [
     "Food & agriculture ",
     "Ernährung und Landwirtschaft ",
@@ -2751,8 +2715,7 @@ cffood_tx_str = [
     "Nourriture et agriculture", 
     "Ernæring og landbruk",
     "_last_"
-    ]
- 
+]
 cffood_lb_tx_str = [
     "Regional investment for food and agriculture ",
     "Regionale Investitionen für Ernährung und Landwirtschaft ",
@@ -2760,8 +2723,7 @@ cffood_lb_tx_str = [
     "Investissement régional pour l'alimentation et l'agriculture", 
     "Regional investering for mat og landbruk", 
     "_last_"
-    ]
- 
+]
 cfener_tx_str = [
     "Energy ",
     "Energie ",
@@ -2769,8 +2731,7 @@ cfener_tx_str = [
     "Énergie ", 
     "Energi", 
     "_last_"
-    ]
- 
+]
 cfener_lb_tx_str = [
     "Regional investment for energy ",
     "Regionale Investitionen für die Energiewende ",
@@ -2778,8 +2739,7 @@ cfener_lb_tx_str = [
     "Investissement régional pour l'énergie", 
     "Regional investering for energi", 
     "_last_"
-    ]
- 
+]
 refresh_numbers_tx_str = [
     "RFRESH numbers ",
     "Zahlen aktualisieren ",
@@ -2787,8 +2747,7 @@ refresh_numbers_tx_str = [
     "Actualiser les chiffres",
     "Oppdater tall",
     "_last_"
-    ]
- 
+]
 submit_numbers_tx_str = [
     "SUBMIT numbers for ",
     "Zahlen übermitteln für ",
@@ -2796,8 +2755,7 @@ submit_numbers_tx_str = [
     "Soumettre des numéros pour ", 
     "Send inn tall for ", 
     "_last_"
-    ]
- 
+]
 confirm_submit_tx_str = [
     "Yes to submit, No to go back ",
     "Ja zum Absenden, Nein zum Zurückgehen ",
@@ -2805,8 +2763,7 @@ confirm_submit_tx_str = [
     "Oui à soumettre, Non pour revenir",
     "Ja å sende inn, Nei å gå tilbake",
     "_last_"
-    ]
- 
+]
 confirm_title_tx_str = [
     "Really submit the decisions?",
     "Die Entscheidungen wirklich einreichen?",
@@ -2814,7 +2771,7 @@ confirm_title_tx_str = [
     "Soumettre vraiment les décisions ?", 
     "Skal du virkelig sende inn avgjørelsene?", 
     "_last_"
-    ]
+]
 after_submit_tx_str = [
     "Your regions decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ... ",
     "Die Entscheidungen Ihrer Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ... ",
@@ -2822,8 +2779,7 @@ after_submit_tx_str = [
     "Vos décisions de régions ont été soumises - merci! \nDès que toutes les régions auront transmis leurs décisions, le modèle sera avancé pour le prochain tour. Cela prendra un peu de temps ...",
     "Dine regioner avgjørelser er sendt inn - takk! \nSå snart alle regionene har sendt inn sine beslutninger, modellen vil bli oppdatert for neste runde. Dette vil ta litt tid ...",
     "_last_"
-    ]
- 
+]
 nothing_submitted_tx_str = [
     "Nothing was submitted ... ",
     "Es wurde nichts übermittelt ",
@@ -2831,7 +2787,7 @@ nothing_submitted_tx_str = [
     "Rien n'a été soumis ...", 
     "Ingenting ble sendt inn ...", 
     "_last_"
-    ]
+]
 not_all_looked_at_title = [
   "Your regional colleagues aren't ready",
   "Die Kollegen:innen in Ihrer Region sind noch nicht so weit",
@@ -2851,21 +2807,19 @@ not_all_looked_at_tx = [
 p_advance_to_next_round_tx_str = [
     "Get the results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
-    "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
+    "Lade Dir die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Deiner Kinder ",
     "Obtenez les résultats jusqu'en 2040 et la feuille de décision pour 2040-2060 - votre avenir pour enfants", 
     "Få resultatene til 2040 og beslutningsarket for 2040-2060 - fremtiden til barna dine", 
     "_last_"
-    ]
- 
+]
 p_advance_to_1_tx_str = [
     "Get the results until 2060 and the decision sheet for 2060-2100 - your grandchildrens future ",
     "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Ihrer Enkelkinder ",
-    "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Ihrer Enkelkinder ",
+    "Lade Dir die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Deiner Enkelkinder ",
     "Obtenez les résultats jusqu'en 2060 et la feuille de décision pour 2060-2100 - l'avenir de vos petits-enfants. ",
     "Få resultatene frem til 2060 og beslutningsarket for 2060-2100 - dine barnebarns fremtid ",
     "_last_"
-    ]
- 
+]
 p_advance_to_2_tx_str = [
     "Get the results until the end of the century ",
     "Ergebnisse bis zum Ende des Jahrhunderts laden ",
@@ -2873,7 +2827,7 @@ p_advance_to_2_tx_str = [
     "Obtenez les résultats jusqu'à la fin du siècle", 
     "Få resultatene til slutten av århundret", 
     "_last_"
-    ]
+]
 p_advance_to_next_round_wait_str = [
   "Waiting for model to be advanced ...",
   "Warten auf die Fortschreibung des Modells ...",
@@ -2889,8 +2843,7 @@ p_waiting_model_run_tx_str = [
     "... toujours en attente que l'organisateur de jeu avance le modèle ...", 
     "... venter fortsatt på at spillarrangøren skal fremme modellen ...", 
     "_last_"
-    ]
- 
+]
 waiting_tx_str = [
     "Waiting ... ",
     "Warten ... ",
@@ -2898,8 +2851,7 @@ waiting_tx_str = [
     "En attendant ... ", 
     "Venter ...", 
     "_last_"
-    ]
- 
+]
 nicht_all_sub_p_tx_str = [
     "Not all regions have submitted their decisions, your game organizer knows who we are waiting for ... ",
     "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, ihr:e Spielleiter:in weiss, auf wen wir warten ... ",
@@ -2907,8 +2859,7 @@ nicht_all_sub_p_tx_str = [
     "Toutes les régions n'ont pas soumis leurs décisions, votre chef de jeu sait qui nous attendons ...", 
     "Ikke alle regioner har sendt sine beslutninger, spilllederen din vet hvem vi venter på ...", 
     "_last_"
-    ]
- 
+]
 nicht_all_sub_gm_tx_str = [
     "Not all regions have submitted their decisions ... ",
     "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt ... ",
@@ -2916,8 +2867,7 @@ nicht_all_sub_gm_tx_str = [
     "Toutes les régions n'ont pas soumis leurs décisions ...", 
     "Ikke alle regioner har sendt sine avgjørelser ...", 
     "_last_"
-    ]
- 
+]
 all_submitted_p_tx_str = [
     "ALL regions HAVE submitted their decisions, your game organizer will advance the model shortly and let you know when your results are ready ",
     "ALLE Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn die Ergebnisse vorliegen. ",
@@ -2925,8 +2875,7 @@ all_submitted_p_tx_str = [
     "Toutes les régions ont soumis leurs décisions, votre chef de jeu fera progresser le modèle sous peu et vous fera savoir quand vos résultats seront prêts", 
     "Alle regioner har sendt sine beslutninger, spilllederen din vil fremme modellen om kort tid og gi deg beskjed når resultatene er klare", 
     "_last_"
-    ]
- 
+]
 running_model_tx_str = [
     "... advancing the model ... ",
     "... das Modell fortschreiben ... ",
@@ -2934,8 +2883,7 @@ running_model_tx_str = [
     "... avancer le modèle ...", 
     "... Fremme modellen ...", 
     "_last_"
-    ]
- 
+]
 credits_btn_tx_str = [
     "Credits ",
     "Credits ",
@@ -2943,8 +2891,7 @@ credits_btn_tx_str = [
     "Les crédits ",
     "Credits" ,
     "_last_"
-    ]
- 
+]
 credits_tx_str = [
     "The model we use is the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ... ",
     "Das von uns verwendete Modell ist das earth4all 10-Regionen Modell und wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works von U Goluke und zahllosen Alpha- und Beta-Testern entwickelt. Die Rechte an dem Spiel liegen bei ... ",
@@ -2952,8 +2899,7 @@ credits_tx_str = [
     "Le modèle que nous utilisons est le modèle earth4all 10-régions et a été développé par U Goluke et PE Stoknes. Il est basé sur le modèle global earth4all développé par J Randers. Le jeu a été développé avec anvil.works par U Goluke et dinnombrables testeurs alpha et bêta. Les droits du jeu sont détenus par ... ",
     "Modellen vi bruker er den regionale Earth4All-modellen utviklet av U Goluke og PE Stoknes. Den er på sin side basert på Earth4all Global Model som J Randers utviklet. Spillet er utviklet med Anvil.Works av U Goluke og utallige alfa- og beta-testere. Rettighetene til spillet tilhører ..." ,
     "_last_"
-    ]
- 
+]
 credits_title_str = [
     "Standing on someone's shoulders ... ",
     "Wir stehen auf den Schultern von ... ",
@@ -2961,8 +2907,7 @@ credits_title_str = [
     "Nous nous tenons sur les épaules de ... ",
     "Stående på skuldre av andre ..." ,
     "_last_"
-    ]
- 
+]
 lang_dd_menu_tx_str = [
     "Change the language ",
     "Ändern Sie die Sprache ",
@@ -2970,8 +2915,7 @@ lang_dd_menu_tx_str = [
     "Changer de langue ",
     "Endre språket" ,
     "_last_"
-    ]
- 
+]
 lang_info_str = [
   "**First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
   "**Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
@@ -2979,7 +2923,7 @@ lang_info_str = [
   "**Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
   "**For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
   "_last_"
-    ]
+]
 lang_lets_go_tx = [
   "Let's go",
   "Los geht's",
@@ -2993,7 +2937,8 @@ lang_avail_items = [
   "Deutsch-Sie",
   "Deutsch-Du",
   "Français",
-  "Norsk-Bokmål"
+  "Norsk-Bokmål",
+  "_last_"  
 ]
 enter_code_tx = [
   "Start-code, please",
@@ -3017,13 +2962,5 @@ wrong_code_tx = [
   "Falscher Code, frage jemanden, der den Code kennt",
   "Code erroné, vérifier auprès de la personne qui connaît le code",
   "Feil kode, sjekk med den som kan koden",
-  "_last_"
-]
-top_entry_label_str = [
-  "Hold on, setting up all the necessary slots, templates and tables for the game ...",
-  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
-  "Einen Moment, alle für das Spiel notwendigen Slots, Vorlagen und Tabellen werden generiert ...",
-  "Attendez, mettre en place tous les emplacements, modèles et tables nécessaires pour le jeu ...",
-  "Vent litt, vi sette opp alle nødvendige spor, maler og tabeller for spillet ...",
   "_last_"
 ]
