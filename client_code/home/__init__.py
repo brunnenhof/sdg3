@@ -625,6 +625,7 @@ class home(homeTemplate):
     self.p_lb_choose_game.text = lu.p_lb_choose_game_str[lx]
     self.p_enter_id.placeholder = lu.p_enter_id_str[lx]
     self.p_enter_id.focus()
+    self.p_enter_id.character_limit = 8
     
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
@@ -2093,6 +2094,14 @@ class home(homeTemplate):
         self.top_entry.visible = True 
       return
     game_id_chosen = val
+    len_rows_role_assign = len(app_tables.roles_assign.search(game_id=game_id_chosen, taken=0))
+    if len_rows_role_assign == 0:
+      alert(lu.all_regions_assigned[lx],title=lu.all_regs_gone_title[lx])
+      self.navbar_links.visible = False 
+      self.p_cp_choose_game.visible = False 
+      self.bye_card.visible = True
+      self.bye_tx.text = lu.bye_tx[lx]
+      return
     mg.my_game_id = game_id_chosen
     self.set_lang(lx)
 #    row = app_tables.status.get(game_id=game_id_chosen)

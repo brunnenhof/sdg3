@@ -20,6 +20,7 @@ bye_tx = [
   "Danke für Deinen Besuch – vielleicht ein anderes Mal ...",
   "Merci d'être passé, peut-être une autre fois...",
   "Takk for at du kom innom – kanskje en annen gang ...",
+  "Bedankt voor uw bezoek – misschien een andere keer ...",
   "_last_"  
 ]
 jga_t = [
@@ -93,6 +94,23 @@ sign_up_title = [
   "Neu registrieren",
   "Nouvelle inscription",
   "Ny registrering",
+  "_last_"  
+]
+all_regions_assigned = [
+  "All regions and roles have been assigned",
+  "Alle Regionen und Rollen wurden zugewiesen.",
+  "Alle Regionen und Rollen wurden zugewiesen.",
+  "Toutes les régions et tous les rôles ont été attribués.",
+  "Alle regioner og roller er tildelt",
+  "Alle regio's en rollen zijn toegewezen.",
+  "_last_"  
+]
+all_regs_gone_title = [
+  "No more region",
+  "Keine Region mehr verfügbar",
+  "Keine Region mehr verfügbar",
+  "Désolé, il n'y a plus de région disponible.",
+  "Ingen flere regioner",
   "_last_"  
 ]
 why_sign_up_title = [
