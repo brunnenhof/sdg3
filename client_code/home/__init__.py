@@ -380,7 +380,7 @@ class home(homeTemplate):
       self.card_ineq_fut.visible = False 
       self.card_pov_fut.visible = False 
       self.submit_numbers.visible = False 
-      self.refresh_numbers.visible = False 
+      self.refresh_numbers.visible = True 
       self.fut_bud_amount.visible = False 
       self.fut_invest.visible = False 
       self.fut_invest_pct.visible = False
@@ -432,6 +432,8 @@ class home(homeTemplate):
     rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
     if len(rows_looked_at) < 5:
       self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[lx]
+      self.fut_not_all_logged_in.visible = True 
+      self.fut_not_all_logged_in.foreground = "red"
       self.show_hide_fut_money('hide')
     else:
       self.fut_not_all_logged_in.text = ""
