@@ -429,7 +429,7 @@ pol_to_expl_TOW_str = [
   "_last_"
 ]
 pol_to_expl_FPGDC_str = [
-  "Cancels a percentage of Govt debt outstanding to public lenders. 0 means nothing is cancelled, 100 all is cancelled, 50 half is cancelled --- in the policy start year. Imagine the government ows 180 billion USD to the World Bank - if you enter '30', 180 * .3 = 54 billion is forgiven and the government still ows 126 billion",
+  "Cancels a percentage of Govt debt outstanding to public lenders. 0 means nothing is cancelled, 100 all is cancelled, 50 half is cancelled --- in the policy start year. Imagine the government owes 180 billion USD to the World Bank - if you enter '30', 180 * .3 = 54 billion is forgiven and the government still owes 126 billion",
   "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird, 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen. Stellen Sie sich vor, die Regierung schuldet der Weltbank 180 Milliarden US-Dollar – wenn Sie '30' eingeben, werden 180 * 0,3 = 54 Milliarden erlassen, und die Regierung schuldet weiterhin 126 Milliarden.",
   "Diese Massnahme erlässt einen Prozentsatz der ausstehenden Staatsschulden gegenüber öffentlichen Kreditgebern. 0 bedeutet dass nichts erlassen wird, 100 bedeutet dass alles erlassen wird 50 bedeutet dass die Hälfte erlassen wird --- im ersten Jahr der Massnahmen. Stell Dir vor, die Regierung schuldet der Weltbank 180 Milliarden US-Dollar – wenn Du '30' eingibst, werden 180 * 0,3 = 54 Milliarden erlassen, und die Regierung schuldet weiterhin 126 Milliarden.",
   "Annule un pourcentage de la dette du gouvernement en circulation aux prêteurs publics. 0 signifie que rien n'est annulé, 100 tout est annulé, 50 La moitié est annulé --- au cours de l'année de début de la politique. Imaginez que le gouvernement doive 180 milliards de dollars à la Banque mondiale. Si vous entrez « 30 », 180 * 0,3 = 54 milliards sont effacés et le gouvernement doit encore 126 milliards.",
@@ -2630,8 +2630,8 @@ dec_title_tx_str = [
 ]
 fut_info_tx_str = [
     "As Minister for the Future, you see the big picture. You also see how much your ministerial colleagues in your region plan to invest in total to improve the lives of your people and the health of the planet.\n\nIt is **your** task to keep the **total regional investment** within the budget. If *total investment* is **below** 100 % of the budget, all is well. Although if you invest too little, things may get worse, much worse possibly!\n\nIf it is **above** 100 % of your budget, you need to advise your ministerial colleagues to reduce some of their investments. This is a difficult task where your moderating skills are needed. Good luck!\n\nAs your ministerial colleagues decide on their investment plans, click on the **Refresh Numbers** button to see the most up to date choices of your colleagues.\n\nWhen you are all ready, **you**, as Minister for the Future, submit the policy choices from all your colleagues - **be sure to get all their OKs** before you hit the *Submit* button! (*Note* if the Submit button does not show, it is because your region is above the the budget.\n\nMoney amounts are in constant (2025) Giga $ per year. A *Giga* is 1,000,000,000 ----- US Americans call this a Billion, others call this a Milliarde. ",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zhalen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
-    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inKolleg:Innen in Ihrer Region insgesamt investieren wollen, um das Leben Ihrer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
+    "Als ZukunftsMinister:in sehen Sie das grosse Ganze. Sie sehen auch, wie viel Ihre Minister:inkollegen in Ihrer Region insgesamt investieren wollen, um das Leben Eurer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Ihre** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investieren Sie jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Ihres Budgets, müssen Sie Ihre Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Ihre Moderationsfähigkeiten gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zhalen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
+    "Als ZukunftsMinister:in siehst Du das grosse Ganze. Du siehst auch, wie viel Deine MinisterKolleg:Innen in Deiner Region insgesamt investieren wollen, um das Leben Eurer Bevölkerung und die Gesundheit des Planeten zu verbessern.\n\nEs ist **Deine** Aufgabe, die **regionalen Gesamtinvestitionen** im Rahmen des Budgets zu halten. Liegen die *Gesamtinvestitionen* **unter** 100 % des Budgets, ist alles in Ordnung. Investiert Ihr jedoch zu wenig, kann es schlimmer werden, möglicherweise sogar noch viel schlimmer!\n\nLiegen sie **über** 100 % Eures Budgets, musst Du Deine Minister:innenkollegen anweisen, ihre Investitionen zu reduzieren. Dies ist eine schwierige Aufgabe, bei der Deine Moderationsfähigkeiten sehr gefragt sind. Viel Erfolg!\n\nWährend Ihre Minister:innenkollegen ihre Investitionspläne beschliessen, klicken Sie wiederholt auf die Schaltfläche **Zahlen aktualisieren**, um die aktuellsten Entscheidungen Ihrer Kolleg:Innen anzuzeigen.\n\nWenn Sie fertig sind, **reichen Sie** als ZukunftsMinister:in die politischen Entscheidungen aller Ihrer Kolleg:Innen ein & **holen Sie sich unbedingt deren Zustimmung**, bevor Sie auf die Schaltfläche *Übermitteln* klicken! (*Hinweis* Wenn die Schaltfläche *Zahlen übermitteln* nicht angezeigt wird, liegt das daran, dass Ihre Region das Budget überschreitet.\n\nDie Geldbeträge werden in konstanten (2025) Giga-Dollar pro Jahr angegeben. Ein *Giga* entspricht 1.000.000.000 --- US-Amerikaner nennen dies eine Billion, andere eine Milliarde. ",
     "En tant que ministre de l'avenir, vous avez une vision d'ensemble. Vous voyez aussi combien vos collègues ministres de votre région prévoient d'investir au total pour améliorer la vie de vos concitoyens et la santé de la planète.\n\nC'est **votre** tâche de maintenir **l'investissement régional total** dans les limites du budget. Si l'investissement total est inférieur à 100 % du budget, tout va bien. Toutefois, si vous investissez trop peu, les choses risquent d'empirer, voire de s'aggraver!\n\nSi le total est **supérieur** à 100 % de votre budget, vous devez conseiller à vos collègues ministres de réduire certains de leurs investissements. Il s'agit d'une tâche difficile où vos talents de modérateur sont nécessaires. Bonne chance!\nPendant que vos collègues ministres décident de leurs plans d'investissement, cliquez sur le bouton **Rafraîchir les chiffres** pour voir les choix les plus récents de vos collègues.\n\nLorsque vous êtes prêt, **vous**, en tant que ministre de l'avenir, soumettez les choix politiques de tous vos collègues - **assurez-vous d'obtenir leur accord** avant d'appuyer sur le bouton *Soumettre* ! (*Remarque:* si le bouton Soumettre ne s'affiche pas, c'est que votre région est au-dessus du budget.\nLes montants sont en Giga $ constants (2025) par an. Un *Giga* est égal à 1 000 000 000 ----- Les Américains appellent cela un Billion, d'autres appellent cela un Milliarde. " ,
     "Som fremtidsminister ser du det store bildet. Du ser også hvor mye dine ministerkolleger i din region planlegger å investere totalt for å forbedre livene til ditt folk og helsen til planeten. Det er **din** oppgave å holde den **samlet regionale investeringen** innenfor budsjettet. Hvis den *samlet investeringen* er **under** 100 % av budsjettet, er alt i orden. Men hvis du investerer for lite, kan ting bli verre, mye verre, muligens! \n\nHvis den er **over** 100 % av budsjettet, må du råde dine ministerkolleger til å redusere noen av sine investeringer. Dette er en vanskelig oppgave der det er behov for dine modererende evner. Lykke til! \n\nNår ministerkollegene dine bestemmer seg for investeringsplanene sine, klikker du på knappen **Oppdater tall** for å se de mest oppdaterte valgene til kollegene dine.\n\nNNår du er klar, sender **du**, som fremtidsminister, inn de politiske valgene fra alle kollegene dine - **se til at du får alle deres OK** før du trykker på *Send*-knappen! Hvis Send-knappen ikke vises, er det fordi din region ligger over budsjettet. \n\nPengebeløpene er i konstant (2025) Giga $ per år. En *Giga* er 1 000 000 000 --- US-amerikanere kaller dette en Billion, andre kaller det en Milliarde. ",
     "_last_"
@@ -2640,24 +2640,24 @@ fut_bud_lb1_tx_str = [
     "Your total budget is ",
     "Ihr Gesamtbudget ist ",
     "Ihr Gesamtbudget ist ",
-    "Votre budget total est", 
-    "Det totale budsjettet er", 
+    "Votre budget total est ", 
+    "Det totale budsjettet er ", 
     "_last_"
 ]
 fut_bud_lb2_tx_str = [
     "All the investment plans of all your fellow ministers summed up are ",
     "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
     "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
-    "Tous les plans d'investissement de tous vos collègues ministres résumés sont", 
-    "Alle investeringsplanene til alle dine medministre oppsummert er", 
+    "Tous les plans d'investissement de tous vos collègues ministres résumés sont ", 
+    "Alle investeringsplanene til alle dine medministre oppsummert er ", 
     "_last_"
 ]
 fut_bud_lb3_tx_str = [
-    "Investment plans as % of your budget ",
-    "Investitionspläne als % Ihres Budgets ",
-    "Investitionspläne als % Ihres Budgets ",
-    "Les plans d'investissement en% de votre budget", 
-    "Investeringsplaner som % av budsjettet", 
+    "All Investment plans as % of your budget ",
+    "Alle Investitionspläne als % Ihres Budgets ",
+    "Alle Investitionspläne als % Ihres Budgets ",
+    "Tous les plans d'investissement combinés en % de votre budget ", 
+    "Alle investeringsplaner samlet som % av budsjettet ditt ", 
     "_last_"
 ]
 cfpov_tx_str = [
@@ -2693,11 +2693,11 @@ cfineq_lb_tx_str = [
     "_last_"
 ]
 cfemp_tx_str = [
-    "Empowerment ",
-    "Empowerment/Befähigung ",
-    "Empowerment/Befähigung ",
-    "Empowerment/autonomisation ",
-    "Myndiggjøring/aktivering",
+    "Empowerment/Equal rights ",
+    "Empowerment/Gleichberechtigung ",
+    "Empowerment/Gleichberechtigung ",
+    "Empowerment/Égalité des droits ",
+    "Myndiggjøring/Like rettigheter",
     "_last_"
 ]
 cfemp_lb_tx_str = [
@@ -2775,7 +2775,7 @@ confirm_title_tx_str = [
 after_submit_tx_str = [
     "Your regions decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ... ",
     "Die Entscheidungen Ihrer Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ... ",
-    "Die Entscheidungen Ihrer Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ... ",
+    "Die Entscheidungen Deiner Region wurden übermittelt - Danke!\nSobald alle Regionen ihre Entscheidungen übermittelt haben, wird das Modell für die nächste Runde fortgeschrieben. Das wird etwas dauern ... ",
     "Vos décisions de régions ont été soumises - merci! \nDès que toutes les régions auront transmis leurs décisions, le modèle sera avancé pour le prochain tour. Cela prendra un peu de temps ...",
     "Dine regioner avgjørelser er sendt inn - takk! \nSå snart alle regionene har sendt inn sine beslutninger, modellen vil bli oppdatert for neste runde. Dette vil ta litt tid ...",
     "_last_"
@@ -2806,16 +2806,16 @@ not_all_looked_at_tx = [
 ]
 p_advance_to_next_round_tx_str = [
     "Get the results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
-    "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Ihrer Kinder ",
-    "Lade Dir die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 - die Zukunft Deiner Kinder ",
+    "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 herunter - die Zukunft Ihrer Kinder ",
+    "Lade Dir die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 herunter - die Zukunft Deiner Kinder ",
     "Obtenez les résultats jusqu'en 2040 et la feuille de décision pour 2040-2060 - votre avenir pour enfants", 
     "Få resultatene til 2040 og beslutningsarket for 2040-2060 - fremtiden til barna dine", 
     "_last_"
 ]
 p_advance_to_1_tx_str = [
     "Get the results until 2060 and the decision sheet for 2060-2100 - your grandchildrens future ",
-    "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Ihrer Enkelkinder ",
-    "Lade Dir die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 - die Zukunft Deiner Enkelkinder ",
+    "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 herunter - die Zukunft Ihrer Enkelkinder ",
+    "Lade Dir die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 herunter - die Zukunft Deiner Enkelkinder ",
     "Obtenez les résultats jusqu'en 2060 et la feuille de décision pour 2060-2100 - l'avenir de vos petits-enfants. ",
     "Få resultatene frem til 2060 og beslutningsarket for 2060-2100 - dine barnebarns fremtid ",
     "_last_"
@@ -2838,8 +2838,8 @@ p_advance_to_next_round_wait_str = [
 ]
 p_waiting_model_run_tx_str = [
     "... still waiting for the game organizer to advance the model ... ",
-    "wir warten immer noch darauf, dass der/die Spielleiter:in das Modell fortschreibt ",
-    "wir warten immer noch darauf, dass der/die Spielleiter:in das Modell fortschreibt ",
+    "wir warten darauf, dass der/die Spielleiter:in das Modell fortschreibt ",
+    "wir warten darauf, dass der/die Spielleiter:in das Modell fortschreibt ",
     "... toujours en attente que l'organisateur de jeu avance le modèle ...", 
     "... venter fortsatt på at spillarrangøren skal fremme modellen ...", 
     "_last_"
@@ -2869,19 +2869,19 @@ nicht_all_sub_gm_tx_str = [
     "_last_"
 ]
 all_submitted_p_tx_str = [
-    "ALL regions HAVE submitted their decisions, your game organizer will advance the model shortly and let you know when your results are ready ",
-    "ALLE Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn die Ergebnisse vorliegen. ",
-    "ALLE Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn die Ergebnisse vorliegen. ",
+    "Now, aLL regions have submitted their decisions, your game organizer will advance the model shortly and let you know when your results are ready ",
+    "Alle Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn die Ergebnisse vorliegen. ",
+    "Alle Regionen haben jetzt ihre Entscheidungen übermittelt. Dein:e Spielleiter:in wird das Modell in Kürze fortschreiben und Dich informieren, wenn die Ergebnisse vorliegen. ",
     "Toutes les régions ont soumis leurs décisions, votre chef de jeu fera progresser le modèle sous peu et vous fera savoir quand vos résultats seront prêts", 
-    "Alle regioner har sendt sine beslutninger, spilllederen din vil fremme modellen om kort tid og gi deg beskjed når resultatene er klare", 
+    "Alle regioner har sendt sine beslutninger, spilllederen din vil modellen viderføre om kort tid og gi deg beskjed når resultatene er klare", 
     "_last_"
 ]
 running_model_tx_str = [
     "... advancing the model ... ",
-    "... das Modell fortschreiben ... ",
-    "... das Modell fortschreiben ... ",
+    "... das Modell wird fortgeschrieben ... ",
+    "... das Modell wird fortgeschrieben ... ",
     "... avancer le modèle ...", 
-    "... Fremme modellen ...", 
+    "... modellen blir videreført ...", 
     "_last_"
 ]
 credits_btn_tx_str = [
@@ -2893,18 +2893,18 @@ credits_btn_tx_str = [
     "_last_"
 ]
 credits_tx_str = [
-    "The model we use is the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ... ",
-    "Das von uns verwendete Modell ist das earth4all 10-Regionen Modell und wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works von U Goluke und zahllosen Alpha- und Beta-Testern entwickelt. Die Rechte an dem Spiel liegen bei ... ",
+    "We use the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ... ",
+    "Wir verwenden das earth4all 10-Regionen Modell und wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works von U Goluke und zahllosen Alpha- und Beta-Testern entwickelt. Die Rechte an dem Spiel liegen bei ... ",
     "Wir nutzen das earth4all 10-Regionen Modell. Es wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works programmiert von U Goluke. Zahllose Alpha- und Beta-Testern haben es getestet, aber an allen Fehlern sind wir schuld. Die Rechte an dem Spiel liegen bei ... ",
-    "Le modèle que nous utilisons est le modèle earth4all 10-régions et a été développé par U Goluke et PE Stoknes. Il est basé sur le modèle global earth4all développé par J Randers. Le jeu a été développé avec anvil.works par U Goluke et dinnombrables testeurs alpha et bêta. Les droits du jeu sont détenus par ... ",
-    "Modellen vi bruker er den regionale Earth4All-modellen utviklet av U Goluke og PE Stoknes. Den er på sin side basert på Earth4all Global Model som J Randers utviklet. Spillet er utviklet med Anvil.Works av U Goluke og utallige alfa- og beta-testere. Rettighetene til spillet tilhører ..." ,
+    "Nous utilisons le modèle régional earth4all développé par U Goluke et PE Stoknes. Il est basé sur le modèle global earth4all développé par J Randers. Le jeu a été développé avec anvil.works par U Goluke et dinnombrables testeurs alpha et bêta. Les droits du jeu sont détenus par ... ",
+    "Vi bruker den regionale Earth4All-modellen utviklet av U Goluke og PE Stoknes. Den er på sin side basert på den Earth4all Global Model som J Randers utviklet. Spillet er utviklet med Anvil.Works av U Goluke og utallige alfa- og beta-testere. Rettighetene til spillet tilhører ..." ,
     "_last_"
 ]
 credits_title_str = [
     "Standing on someone's shoulders ... ",
-    "Wir stehen auf den Schultern von ... ",
-    "Wir stehen auf den Schultern von ... ",
-    "Nous nous tenons sur les épaules de ... ",
+    "Wir stehen auf den Schultern von Anderen ... ",
+    "Wir stehen auf den Schultern von Anderen ... ",
+    "Nous sommes soutenus par les autres ... ",
     "Stående på skuldre av andre ..." ,
     "_last_"
 ]
