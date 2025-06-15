@@ -2766,8 +2766,8 @@ class home(homeTemplate):
           if t < t1:
             t1 = t
         roundedB = t1.replace(hour=0, minute=0, second=0, microsecond=0)
-        days = (roundedNow - roundedB).days - 1
-        if days > 0:
+        days = (roundedNow - roundedB).days + 1
+        if days > 90:
           ## last log in > 90 days or game_started > 90 days
           self.ok_to_delete(cid)
 
