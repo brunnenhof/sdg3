@@ -673,7 +673,7 @@ class home(homeTemplate):
     self.top_start_game.visible = False
     self.top_join_game.visible = False
     mg.my_game_id = game_id
-    jetzt = datetime.datetime.now()
+    jetzt = datetime.now(timezone.utc)
     app_tables.games_log.add_row(game_id=game_id, gm_status=1, started=jetzt)
     self.tick_gm_round_ready.interval = 0
     # self.tick_gm_round_ready_tick()
@@ -1922,7 +1922,7 @@ class home(homeTemplate):
           + em
         )
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
-        row_closed["closed"] = datetime.datetime.now()
+        row_closed["closed"] = datetime.now(timezone.utc)
 
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
