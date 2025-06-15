@@ -16,8 +16,8 @@ sorry = [
 ]
 privacy_str_title_str = [
   "Privacy",
-  "Privatsphähre",
-  "Privatsphähre",
+  "Privatsphäre",
+  "Privatsphäre",
   "Confidentialité",
   "Personvern",
   "_last_"  

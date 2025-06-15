@@ -369,22 +369,77 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.visible = True
     self.gm_card_wait_1_btn_check.visible = True
 
+  def show_hide_fut_money(self, sh):
+    if sh == 'hide':
+      self.fut_bud_lb1.visible = False 
+      self.fut_bud_lb2.visible = False 
+      self.fut_but_lb3.visible = False 
+      self.card_ener_fut.visible = False 
+      self.card_emp_fut.visible = False 
+      self.card_food_fut.visible = False 
+      self.card_ineq_fut.visible = False 
+      self.card_pov_fut.visible = False 
+      self.submit_numbers.visible = False 
+      self.refresh_numbers.visible = False 
+      self.fut_bud_amount.visible = False 
+      self.fut_invest.visible = False 
+      self.fut_invest_pct.visible = False
+    else:
+      self.fut_bud_lb1.visible = True 
+      self.fut_bud_lb2.visible = True 
+      self.fut_but_lb3.visible = True 
+      self.card_ener_fut.visible = True 
+      self.card_emp_fut.visible = True 
+      self.card_food_fut.visible = True 
+      self.card_ineq_fut.visible = True 
+      self.card_pov_fut.visible = True 
+      self.submit_numbers.visible = True 
+      self.refresh_numbers.visible = True 
+      self.fut_bud_amount.visible = True 
+      self.fut_invest.visible = True 
+      self.fut_invest_pct.visible = True
+    
   def show_fut_2(self, lx, cid, reg, role):
     mg.my_lang = lx
     mg.my_game_id = cid
     self.set_lang(lx)
     self.lang_card.visible = False
     self.top_entry.visible = False
-    self.p_after_submit.visible = True
-    self.cid_reg_role_info.text = (
+#    self.p_after_submit.visible = True
+    self.pcgd_title.text = ( lu.pcr_title_tx_str[lx] + ': ' +
       cid
       + "  +++ "
       + self.do_reg_to_longreg(reg)
       + "  - "
       + self.do_ta_to_longmini(role)
     )
-    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+    yr, runde = self.get_runde(cid)
+    self.pcgd_plot_card.visible = True
+    self.card_fut.visible = True
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+    self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    fut_plots = app_tables.plots.search(game_id=cid,ta=role,reg=reg,runde=1)
+    slots = []
+    for fp in fut_plots:
+      slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
+      slots.append(slot)
+    self.plot_card_rp.items = slots
+    self.dec_card.visible = False 
+    ### check if all looked at
+    self.p_card_graf_dec.visible = True 
+    self.pcgd_advance.text = "pcgd_advance"
+    rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
+    if len(rows_looked_at) < 5:
+      self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[lx]
+      self.show_hide_fut_money('hide')
+    else:
+      self.fut_not_all_logged_in.text = ""
+      self.show_hide_fut_money('show')
+    self.lang_card.visible = False
+    
+#    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+#    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def show_fut_3(self, lx, cid, reg, role):
     ## show fut info, plots, check if all colleauges has looked at
