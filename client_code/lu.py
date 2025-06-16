@@ -2893,11 +2893,11 @@ credits_btn_tx_str = [
     "_last_"
 ]
 credits_tx_str = [
-    "We use the regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ... ",
-    "Wir verwenden das earth4all 10-Regionen Modell und wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works von U Goluke und zahllosen Alpha- und Beta-Testern entwickelt. Die Rechte an dem Spiel liegen bei ... ",
-    "Wir nutzen das earth4all 10-Regionen Modell. Es wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works programmiert von U Goluke. Zahllose Alpha- und Beta-Testern haben es getestet, aber an allen Fehlern sind wir schuld. Die Rechte an dem Spiel liegen bei ... ",
-    "Nous utilisons le modèle régional earth4all développé par U Goluke et PE Stoknes. Il est basé sur le modèle global earth4all développé par J Randers. Le jeu a été développé avec anvil.works par U Goluke et dinnombrables testeurs alpha et bêta. Les droits du jeu sont détenus par ... ",
-    "Vi bruker den regionale Earth4All-modellen utviklet av U Goluke og PE Stoknes. Den er på sin side basert på den Earth4all Global Model som J Randers utviklet. Spillet er utviklet med Anvil.Works av U Goluke og utallige alfa- og beta-testere. Rettighetene til spillet tilhører ..." ,
+    "We use the open-source regional earth4all model developed by U Goluke and PE Stoknes. It, in turn, is based on the earth4all global model which J Randers developed. The game has been developed with anvil.works by U Goluke and countless alpha and beta testers. The rights to the game belong to ... ",
+    "Wir verwenden das open-source earth4all 10-Regionen Modell und wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works von U Goluke und zahllosen Alpha- und Beta-Testern entwickelt. Die Rechte an dem Spiel liegen bei ... ",
+    "Wir nutzen das open-source earth4all 10-Regionen Modell. Es wurde von U Goluke und PE Stoknes entwickelt. Es basiert auf dem globalen earth4all-Modell, das J Randers entwickelt hat. Das Spiel wurde mit anvil.works programmiert von U Goluke. Zahllose Alpha- und Beta-Testern haben es getestet, aber an allen Fehlern sind wir schuld. Die Rechte an dem Spiel liegen bei ... ",
+    "Nous utilisons le modèle régional open source earth4all développé par U Goluke et PE Stoknes.. Il est basé sur le modèle global earth4all développé par J Randers. Le jeu a été développé avec anvil.works par U Goluke et dinnombrables testeurs alpha et bêta. Les droits du jeu sont détenus par ... ",
+    "Vi bruker den åpne kildekode-modellen earth4all, utviklet av U Goluke og PE Stoknes. Den er på sin side basert på den Earth4all Global Model som J Randers utviklet. Spillet er utviklet med Anvil.Works av U Goluke og utallige alfa- og beta-testere. Rettighetene til spillet tilhører ..." ,
     "_last_"
 ]
 credits_title_str = [

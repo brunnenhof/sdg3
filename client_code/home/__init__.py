@@ -267,12 +267,12 @@ class home(homeTemplate):
     self.lang_lets_go.text = lu.lang_lets_go_tx[my_lox]
     if my_lox == 3:
       alert(
-        "Les textes en français proviennent de google. Aidez-nous à les améliorer.",
+        "Les textes en français proviennent de google et deepl.com. Aidez-nous à les améliorer.",
         title="Pardon",
       )
     elif my_lox == 4:
       alert(
-        "De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.",
+        "De norske tekstene kommer fra google og deepl.com. Vennligst hjelp oss med å forbedre dem.",
         title="Beklager",
       )
     elif my_lox == 2:
@@ -429,15 +429,16 @@ class home(homeTemplate):
     ### check if all looked at
     self.p_card_graf_dec.visible = True 
     self.pcgd_advance.text = "pcgd_advance"
-    rows_looked_at = app_tables.pcgd_advance_looked_at.search(game_id=cid, round=1, reg=reg, looked_at=True)
-    if len(rows_looked_at) < 5:
+    rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
+    if len(rows) == 0:
+      self.fut_not_all_logged_in.text = ""
+      self.show_hide_fut_money('show')
+      self.refresh_numbers_click()
+    else:
       self.fut_not_all_logged_in.text = lu.fut_not_all_logged_in_tx_str[lx]
       self.fut_not_all_logged_in.visible = True 
       self.fut_not_all_logged_in.foreground = "red"
       self.show_hide_fut_money('hide')
-    else:
-      self.fut_not_all_logged_in.text = ""
-      self.show_hide_fut_money('show')
     self.lang_card.visible = False
     
 #    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
@@ -1213,20 +1214,7 @@ class home(homeTemplate):
 
   def do_non_future(self, cid, role, reg, runde, yr, lx):
     lang = mg.my_lang
-    print(
-      "in do_NON_future ie TAs "
-      + cid
-      + " "
-      + reg
-      + " "
-      + role
-      + " "
-      + str(runde)
-      + " "
-      + str(yr)
-      + " lang:"
-      + str(lang)
-    )
+    print("in do_NON_future ie TAs "+ cid+ " "+ reg+ " "+ role+ " "+ str(runde)+ " "+ str(yr)+ " lang:"+ str(lang))
     if yr == 2100:
       return
     self.dec_card.visible = True
@@ -1236,9 +1224,7 @@ class home(homeTemplate):
     self.dec_rp.items = pol_list
 
   def check_all_colleagues_logged_in(self, cid, reg, runde):
-    rows = app_tables.roles_assign.search(
-      game_id=cid, reg=reg, round=runde, taken=1, role=q.not_("fut")
-    )
+    rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1, role=q.not_("fut"))
     len_rows = len(rows)
     print(len_rows)
     if len(rows) == 32:
@@ -1286,13 +1272,7 @@ class home(homeTemplate):
 
   def get_numbers_for_future(self, cid, role, reg, runde, yr, lx):
     (
-      f_bud_by_ta,
-      fut_pov_list,
-      fut_ineq_list,
-      fut_emp_list,
-      fut_food_list,
-      fut_ener_list,
-      within_budget,
+      f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget,
     ) = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
     self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
@@ -1558,45 +1538,17 @@ class home(homeTemplate):
     ener_list = self.calc_cost_home_ta(
       pct_ener, tltl_ener, gl_ener, max_cost_ener, "ener"
     )
-    return (
-      costs_by_ta,
-      pov_list,
-      ineq_list,
-      emp_list,
-      food_list,
-      ener_list,
-      within_budget,
-    )
+    return (costs_by_ta,pov_list,ineq_list,emp_list,food_list,ener_list,within_budget)
 
   def refresh_numbers_click(self, **event_args):
-    lx = mg.my_lang
-    cid = mg.my_game_id
-    role = "fut"
-    reg = mg.my_reg
-    yr, runde = self.get_runde(cid)
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
-    self.err_msg.text = (
-      self.err_msg.text
-      + "refresh_numbers_click with cid="
-      + cid
-      + " role="
-      + role
-      + " reg="
-      + reg
-      + " runde="
-      + str(runde)
-      + " yr="
-      + str(yr)
-      + " lx="
-      + str(lx)
-      + " wo="
-      + str(ro["wo"])
-      + " nutzer_game_ID="
-      + (ro["game_id"])
-      + " nutzer_reg="
-      + (ro["reg"])
-    )
+    reg = ro['reg']
+    lx = ro['lang']
+    cid = ro['game_id']
+    role = "fut"
+    yr, runde = self.get_runde(cid)
+    self.err_msg.text = (self.err_msg.text+ "refresh_numbers_click with cid="+ cid+ " role="+ role+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro["wo"])+ " nutzer_game_ID="+ (ro["game_id"])+ " nutzer_reg="+ (ro["reg"]))
     self.do_future(cid, role, reg, runde, yr, lx)
 
   def all_reg_submitted(self, cid, step):
