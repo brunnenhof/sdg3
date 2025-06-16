@@ -184,7 +184,7 @@ class home(homeTemplate):
     else:
       self.do_non_future(cid, role, reg, runde, yr, lx)
     #    row['wo'] = 2
-    a = 2
+    pass
     # show instructions, graphs, decision sliders
 
   def do_lang(self, my_loc):
