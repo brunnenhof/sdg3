@@ -717,7 +717,18 @@ def get_all_vars_for_ta(ta):
   vars = [r["vensim_name"] for r in app_tables.sdg_vars.search(ta=ta1)]
   return vars, v_row
 
-
+def plots_exist(game_id, region, single_ta, runde, lang):
+  px = app_tables.plots.search(game_id=game_id, reg=region,ta=single_ta,runde=runde)
+  if len(px) > 0:
+    slots = []
+    for fp in px:
+      slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
+      slots.append(slot)
+    return slots
+    pass
+  else:
+    return False
+  
 @anvil.server.background_task
 def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   cid = game_id
@@ -735,28 +746,18 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   regrow = app_tables.regions.get(abbr=region)
   regidx = int(regrow["pyidx"])
   my_time = datetime.datetime.now().strftime("%a %d %b %G")
+#  sl = plots_exist(game_id, region, single_ta, runde, lang)
+#  if not not sl:
+#    return sl
+#  else:
   print("off to build plot: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
-  if plots_exist():
-    pass
-  else:
-    pass
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
   for var_row in vars_info_rows:
     fdz = build_plot(var_row, regidx, cap, cid, runde, lang, region, single_ta)
-    #      print(fdz)
-    app_tables.plots.add_row(
-      game_id=game_id,
-      title=fdz["title"],
-      subtitle=fdz["subtitle"],
-      fig=fdz["fig"],
-      cap=cap,
-      runde=runde,
-      ta=single_ta,
-      reg=region,
-    )
-
+  #      print(fdz)
+    app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
 
 @anvil.server.callable
 def budget_to_db(yr, cid):
