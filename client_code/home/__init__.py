@@ -269,36 +269,6 @@ class home(homeTemplate):
         title="Apologies",
       )
 
-  def user_dbg(self, u, von):
-    if u is None:
-      self.err_msg.text = self.err_msg.text + "\nuser=NONE from " + von
-    else:
-      if u["email"] is None:
-        em = "NONE"
-      else:
-        em = u["email"]
-      self.err_msg.text = self.err_msg.text + "\nUser: email=" + em
-      if u["reg"] is None:
-        re = "NONE"
-      else:
-        re = u["reg"]
-      self.err_msg.text = self.err_msg.text + " reg=" + re
-      if u["where"] is None:
-        we = "NONE"
-      else:
-        we = str(u["where"])
-      self.err_msg.text = self.err_msg.text + " where=" + we
-      if u["role"] is None:
-        ro = "NONE"
-      else:
-        ro = u["role"]
-      self.err_msg.text = self.err_msg.text + " role=" + ro
-      if u["game_id"] is None:
-        ro = "NONE"
-      else:
-        ro = u["game_id"]
-      self.err_msg.text = self.err_msg.text + " game_ID=" + ro + " " + von
-
   def show_none_2(self, user):
     lx = user["lang"]
     mg.my_lang = lx
@@ -431,63 +401,56 @@ class home(homeTemplate):
     lx = row["lang"]
     mg.my_lang = lx
     self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+    self.cid_reg_role_info.text = (cid+ "  + "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
     self.p_card_graf_dec.visible = False
     self.p_choose_role.visible = False
     self.dec_card.visible = False
-    wrx = mg.regs.index(reg)
-    wmx = mg.roles.index(role)
-    reglong = self.do_reg_to_longreg(reg)
-    rolelong = self.do_ta_to_longmini(role)
-    self.pcgd_title.text = (
-      self.pcgd_title.text
-      + ": "
-      + cid
-      + "-"
-      + str(wrx)
-      + str(wmx)
-      + ",   "
-      + reglong
-      + ",   "
-      + rolelong
-      + lu.p_info_40_fut[lx]
-    )
-    mg.fut_title_tx2 = self.pcgd_title.text
-    your_game_id = cid + "-" + str(wrx) + str(wmx)
-    mg.my_personal_game_id = your_game_id
-    yr, runde = self.get_runde(cid)
-    self.pcgd_generating.visible = False
-    self.pcgd_plot_card.visible = True
-    if role == "fut":
-      self.card_fut.visible = True
-      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-    else:
-      self.dec_card.visible = True
-      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
-    self.pcgd_info_rd1.visible = True
-    slots = [
-      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-    ]
-    self.plot_card_rp.items = slots
-    ### check if all looked at
-    rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-      game_id=cid, round=1, reg=reg, looked_at=True
-    )
-    if len(rows_looked_at) < 5:
-      not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-      lmsg = lu.not_all_looked_at_tx[lx]
-      for ii in range(0, len(not_looked_at_list)):
-        lmsg = lmsg + "\n" + not_looked_at_list[ii]
-      alert(lmsg, title=lu.not_all_looked_at_title[lx])
-      ## don't show submit
-      self.card_fut.visible = False
-    else:
-      self.card_fut.visible = True
-      pass
-    if role == "fut":
-      self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
+    self.p_after_submit.visible = True 
     self.lang_card.visible = False
+    pass
+#    wrx = mg.regs.index(reg)
+#    wmx = mg.roles.index(role)
+#    reglong = self.do_reg_to_longreg(reg)
+#    rolelong = self.do_ta_to_longmini(role)
+#    self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_40_fut[lx])
+#    mg.fut_title_tx2 = self.pcgd_title.text
+#    your_game_id = cid + "-" + str(wrx) + str(wmx)
+#    mg.my_personal_game_id = your_game_id
+#    yr, runde = self.get_runde(cid)
+#    self.pcgd_generating.visible = False
+#    self.pcgd_plot_card.visible = True
+#    if role == "fut":
+#      self.card_fut.visible = True
+#      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+#      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+#    else:
+#      self.dec_card.visible = True
+#      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+#    self.pcgd_info_rd1.visible = True
+#    slots = [
+#      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#    ]
+#    self.plot_card_rp.items = slots
+#    ### check if all looked at
+#    rows_looked_at = app_tables.pcgd_advance_looked_at.search(
+#      game_id=cid, round=1, reg=reg, looked_at=True
+#    )
+#    if len(rows_looked_at) < 5:
+#      not_looked_at_list = self.get_not_looked_at(rows_looked_at)
+#      lmsg = lu.not_all_looked_at_tx[lx]
+#      for ii in range(0, len(not_looked_at_list)):
+#        lmsg = lmsg + "\n" + not_looked_at_list[ii]
+#      alert(lmsg, title=lu.not_all_looked_at_title[lx])
+#      ## don't show submit
+#      self.card_fut.visible = False
+#    else:
+#      self.card_fut.visible = True
+#      pass
+#    if role == "fut":
+#      self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
+#    self.lang_card.visible = False
 
   #    self.top_entry.visible = False
   #    self.p_after_submit.visible = True
@@ -1847,23 +1810,7 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid)
     em = mg.my_email
     ro2 = app_tables.nutzer.get(email=em)
-    self.err_msg.text = (
-      self.err_msg.text
-      + "\n-------- p_advance_to_next_round_click cid="
-      + (cid)
-      + " gm_status="
-      + str(row["gm_status"])
-      + " lx="
-      + str(lx)
-      + " wo="
-      + str(ro2["wo"])
-      + " nutzer_game_ID="
-      + (ro2["game_id"])
-      + " nutzer_reg="
-      + (ro2["reg"])
-      + " nutzer_email="
-      + (ro2["email"])
-    )
+    self.err_msg.text = (self.err_msg.text+ "\n-------- p_advance_to_next_round_click cid="+ (cid)+ " gm_status="+ str(row["gm_status"])+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ (ro2["game_id"])+ " nutzer_reg="+ (ro2["reg"])+ " nutzer_email="+ (ro2["email"]))
     if row["gm_status"] == 5:
       self.err_msg.text = self.err_msg.text + "\n--: gm_status=" + str(row["gm_status"])
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
