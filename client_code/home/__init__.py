@@ -2174,6 +2174,33 @@ class home(homeTemplate):
         slots.append(slot)
     return slots
 
+  def show_pcgd_advance(self, role, reg, lx, cid, runde):
+    self.p_card_graf_dec.visible = True
+    self.pcgd_title.text = (lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry])
+    self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
+    self.pcgd_advance.visible = True
+    self.pcgd_plot_card.visible = True
+    self.plot_card_rp.visible = True
+    self.dec_card.visible = True
+    role = mg.my_ministry
+    yr, runde = self.get_runde(cid)
+    self.pcgd_generating.visible = True
+    self.pcgd_generating.text = lu.pcgd_generating_tx1_str[lx]
+    self.pcgd_generating.visible = False
+    self.pcgd_plot_card.visible = True
+    if role == "fut":
+      self.dec_card.visible = False
+      self.pcgd_info_rd1.visible = True
+      self.card_fut.visible = True
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+    else:
+      self.dec_card.visible = True
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+      self.pcgd_info_rd1.visible = True
+      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=runde)
+      row_looked_at["looked_at"] = True
+
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
@@ -2183,6 +2210,9 @@ class home(homeTemplate):
     cid = mg.my_game_id
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
+    em = mg.my_email
+    ro2 = app_tables.nutzer.get(email=em)
+    role = ro2['role']
     gmStatus = row["gm_status"]
     self.err_msg.text = (
       self.err_msg.text + "\npcgd_advance_tx ++ gmStatus=" + str(gmStatus)
@@ -2214,9 +2244,7 @@ class home(homeTemplate):
     #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
     #      n.show()
     #      return
-    self.err_msg.text = (
-      self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is=" + str(gmStatus)
-    )
+    self.err_msg.text = (self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is=" + str(gmStatus))
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
       if rc["r1sub"] < 10:
@@ -2229,32 +2257,8 @@ class home(homeTemplate):
       n = Notification(lu.sim_success_tx40_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
       # prepare TA card for new round
-      self.p_card_graf_dec.visible = True
-      self.pcgd_title.text = (lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry])
-      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
-      self.pcgd_advance.visible = True
-      self.pcgd_plot_card.visible = True
-      self.plot_card_rp.visible = True
-      self.dec_card.visible = True
-      role = mg.my_ministry
-      print("mg.my_ministry= " + role)
+      self.show_pcgd_advance(role, reg, lx, cid, 1)
       yr, runde = self.get_runde(cid)
-      self.pcgd_generating.visible = True
-      self.pcgd_generating.text = lu.pcgd_generating_tx1_str[lx]
-      self.pcgd_generating.visible = False
-      self.pcgd_plot_card.visible = True
-      if role == "fut":
-        self.dec_card.visible = False
-        self.pcgd_info_rd1.visible = True
-        self.card_fut.visible = True
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-      else:
-        self.dec_card.visible = True
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
-        self.pcgd_info_rd1.visible = True
-        row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=1)
-        row_looked_at["looked_at"] = True
       have_slots = self.plots_exist_home(cid, reg, role, 2, lx)
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
@@ -2292,49 +2296,25 @@ class home(homeTemplate):
       n = Notification(lu.sim_success_tx60_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
       # prepare TA card for new round
-      self.p_card_graf_dec.visible = True
-      self.pcgd_title.text = (lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry])
-      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
-      self.pcgd_advance.visible = True
-      self.pcgd_plot_card.visible = True
-      self.plot_card_rp.visible = True
-      self.dec_card.visible = True
-      role = mg.my_ministry
-      print("mg.my_ministry= " + role)
+      self.show_pcgd_advance(role, reg, lx, cid, 2)
       yr, runde = self.get_runde(cid)
-      self.pcgd_generating.visible = True
-      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
-      self.task = anvil.server.call(
-        "launch_create_plots_for_slots", cid, reg, role, 3, lx
-      )
-      while not self.task.is_completed():
-        pass
-      else:  ## launch_create_plots_for_slots is done
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        if role == "fut":
-          self.dec_card.visible = False
-          self.pcgd_info_rd1.visible = True
-          self.card_fut.visible = True
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-        else:
-          self.dec_card.visible = True
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
-          self.pcgd_info_rd1.visible = True
-          row_looked_at = app_tables.pcgd_advance_looked_at.get(
-            game_id=cid, reg=reg, ta=role, round=2
-          )
-          row_looked_at["looked_at"] = True
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-        ]
-        self.plot_card_rp.items = slots
-        if role == "fut":
-          self.do_future(cid, role, reg, runde, yr, lx)
-        else:
-          self.do_non_future(cid, role, reg, runde, yr, lx)
+      have_slots = self.plots_exist_home(cid, reg, role, 3, lx)
+      if len(have_slots) > 0:
+        self.plot_card_rp.items = have_slots
+      else:
+        self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
+        while not self.task.is_completed():
+          pass
+        else:  ## launch_create_plots_for_slots is done
+          slots = [
+            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+            for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+          ]
+          self.plot_card_rp.items = slots
+      if role == "fut":
+        self.do_future(cid, role, reg, runde, yr, lx)
+      else:
+        self.do_non_future(cid, role, reg, runde, yr, lx)
       #      dauer = round(time.time() - anfang, 0)
       #      self.top_duration.text = dauer
       return
@@ -2343,23 +2323,32 @@ class home(homeTemplate):
         self.err_msg.text + "\npcgd_advance_tx ++ gmStatus is " + str(gmStatus)
       )
       #      anfang = time.time()
-      n = Notification(
-        lu.sim_success_tx21_str[lx],
-        timeout=2,
-        title=lu.sim_success_title_txend_str[lx],
-        style="success",
-      )
+      n = Notification(lu.sim_success_tx21_str[lx],timeout=2,title=lu.sim_success_title_txend_str[lx],style="success")
       n.show()
       # prepare TA card for new round
-      self.p_card_graf_dec.visible = True
-      self.pcgd_title.text = (
-        lu.player_board_tx_str[lx]
-        + mg.my_personal_game_id
-        + ", "
-        + self.do_reg_to_longreg(reg)
-        + ", "
-        + mg.pov_to_Poverty[mg.my_ministry]
-      )
+      self.show_pcgd_advance(role, reg, lx, cid, 3)
+      yr, runde = self.get_runde(cid)
+      have_slots = self.plots_exist_home(cid, reg, role, 4, lx)
+      if len(have_slots) > 0:
+        self.plot_card_rp.items = have_slots
+      else:
+        self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
+        while not self.task.is_completed():
+          pass
+        else:  ## launch_create_plots_for_slots is done
+          slots = [
+            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+            for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+          ]
+          self.plot_card_rp.items = slots
+      if role == "fut":
+        self.do_future(cid, role, reg, runde, yr, lx)
+      else:
+        self.do_non_future(cid, role, reg, runde, yr, lx)
+      #      dauer = round(time.time() - anfang, 0)
+      #      self.top_duration.text = dauer
+      return
+      #### old 12 not used until return below
       self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
       self.pcgd_advance.visible = False
       self.pcgd_plot_card.visible = True
