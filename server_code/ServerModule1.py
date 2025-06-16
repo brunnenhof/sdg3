@@ -735,16 +735,11 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   regrow = app_tables.regions.get(abbr=region)
   regidx = int(regrow["pyidx"])
   my_time = datetime.datetime.now().strftime("%a %d %b %G")
-  print(
-    "off to build plot: regidx?"
-    + str(regidx)
-    + " cid:"
-    + cid
-    + " runde:"
-    + str(runde)
-    + " lang:"
-    + str(lang)
-  )
+  print("off to build plot: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
+  if plots_exist():
+    pass
+  else:
+    pass
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
