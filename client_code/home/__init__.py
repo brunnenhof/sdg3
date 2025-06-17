@@ -1485,6 +1485,13 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     lx = ro['lang']
+    cid = ro['game_id']
+    mg.my_personal_game_id = cid
+    ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
+    gos = ro_gm['gm_open_sub']
+    if gos is None:
+      alert(lu.gos[lx], title=lu.gos_title[lx])
+      return
     result = alert(
       content=lu.confirm_submit_tx_str[lx],
       title=lu.confirm_title_tx_str[lx],
@@ -1497,8 +1504,6 @@ class home(homeTemplate):
     else:  ## submission confirmed, reg DID submit numbers
       em = mg.my_email
       ro2 = app_tables.nutzer.get(email=em)
-      my_cid = mg.my_personal_game_id
-      cid = ro2["game_id"]
       yr, runde = self.get_runde(cid)
       role = "fut"  ## we're in the Future TA
       reg = ro2["reg"]

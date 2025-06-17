@@ -2308,6 +2308,22 @@ gm_wait_kickoff_r1_tx_str = [
   "Venter fortsatt på regionen (e) nedenfor for å sende inn beslutningene sine ... Det kan være lurt å spørre om de trenger hjelp ...", 
   "_last_"
 ]
+gos = [
+  "The game master/mistress has not yet opened the submission of your decisions.",
+  "Der/die Spielleiter:in hat noch nicht die Eingabe Ihrer Entscheidungen freigegeben.",
+  "Der/die Spielleiter:in hat noch nicht die Eingabe Deiner Entscheidungen freigegeben.",
+  "Le/la meneur/euse de jeu n'a pas encore validé vos décisions.",
+  "Spillmesteren har ennå ikke åpnet for innlevering av dine beslutninger.",
+  "_last_"
+]
+gos_title = [
+  "Sorry ...",
+  "Entschuldigung ...",
+  "Entschuldigung ...",
+  "Désolé...",
+  "Beklager ...",
+  "_last_"
+]
 gm_wait_round_done_tx0_str = [
   "The model has been advanced to 2040. Tell your players to click on the \n*Get the results...*  or \n*Check if all ...* button.\nIf you want to accept your players decisions for the next round, check the relevant checkbox. (You may not want to accept decisions right away, for example, if you want to do a debrief / discussion, or if you want to continue the game at a later time, i.e. after lunch, next week, during the next teaching period, etc.)",
   "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \n*Ergebnisse abrufen...* oder \n*Überprüfen, ob ...* zu klicken.\nWenn Sie die Entscheidungen für die nächste Runde annehmen möchten, aktivieren Sie das entsprechende Kontrollkästchen. (Möglicherweise möchten Sie Entscheidungen nicht sofort annehmen, beispielsweise wenn Sie eine Nachbesprechung/Diskussion durchführen möchten oder wenn Sie das Spiel zu einem späteren Zeitpunkt fortsetzen möchten, z. B. nach dem Mittagessen, nächste Woche, während der nächsten Unterrichtsstunde usw.)",
