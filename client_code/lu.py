@@ -2309,11 +2309,11 @@ gm_wait_kickoff_r1_tx_str = [
   "_last_"
 ]
 gos = [
-  "The game master/mistress has not yet opened the submission of your decisions.",
+  "The game master/mistress does yet allow you to submit your decisions.",
   "Der/die Spielleiter:in hat noch nicht die Eingabe Ihrer Entscheidungen freigegeben.",
   "Der/die Spielleiter:in hat noch nicht die Eingabe Deiner Entscheidungen freigegeben.",
-  "Le/la meneur/euse de jeu n'a pas encore validé vos décisions.",
-  "Spillmesteren har ennå ikke åpnet for innlevering av dine beslutninger.",
+  "Le responsable du jeu ne vous autorise pas encore à soumettre vos décisions.",
+  "Spillelederen tillater deg ennå ikke å sende inn dine beslutninger.",
   "_last_"
 ]
 gos_title = [

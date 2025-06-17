@@ -1491,7 +1491,7 @@ class home(homeTemplate):
     mg.my_personal_game_id = cid
     ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
     gos = ro_gm['gm_open_sub']
-    if gos is None:
+    if gos is None or gos == 0:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(
@@ -2545,16 +2545,13 @@ class home(homeTemplate):
   def checkbox_1_change(self, **event_args):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
-    gos = ro['gm_open_sub']
+    ro_wo = ro['wo']
+    gos = ro['gm_open_sub']# gos = gm open for submissions
+    if gos is None:
+      ro['gm_open_sub'] = 0
     if self.checkbox_1.checked:
       self.gm_start_round.visible = True
-      if gos is None:
-        ro['gm_open_sub'] = 2
-      else:
-        ro['gm_open_sub'] = ro['gm_open_sub'] + 1
-    else:
+      ro['gm_open_sub'] = ro['gm_open_sub'] + 1
+    else: ### not checked
       self.gm_start_round.visible = False
-      if gos == 2:
-        ro['gm_open_sub'] = None
-      else:
-        ro['gm_open_sub'] = ro['gm_open_sub'] - 1
+      ro['gm_open_sub'] = ro['gm_open_sub'] - 1
