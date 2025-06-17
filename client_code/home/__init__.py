@@ -1604,35 +1604,19 @@ class home(homeTemplate):
       not_sub_list.append(longreg)
 
   def gm_start_round_click(self, **event_args):
-    lx = mg.my_lang
+    em = mg.my_email
+    ro2 = app_tables.nutzer.get(email=em)
+    lx = ro2['lang']
     ## first, check if all regions have submitted
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
     self.gm_start_round.visible = False
     #    cid_cookie = anvil.server.call('get_game_id_from_cookie')
-    cid_cookie = mg.my_game_id
-    em = mg.my_email
-    ro2 = app_tables.nutzer.get(email=em)
-    row = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = (
-      self.err_msg.text
-      + "\n-------- gm_start_round_click cid="
-      + (cid_cookie)
-      + " gm_status="
-      + str(row["gm_status"])
-      + " runde=??"
-      + " yr=??"
-      + " lx="
-      + str(lx)
-      + " wo="
-      + str(ro2["wo"])
-      + " nutzer_game_ID="
-      + ro2["game_id"]
-      + " nutzer_reg="
-      + ro2["reg"]
-    )
-    if row["gm_status"] not in [5, 7, 10]:
+    cid_cookie = ro2['game_id']
+    row_games_log = app_tables.games_log.get(game_id=cid_cookie)
+    self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ ro2["game_id"]+ " nutzer_reg="+ ro2["reg"])
+    if row_games_log["gm_status"] not in [5, 7, 10]:
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2)
       n.show()
       self.err_msg.text = (
@@ -1640,12 +1624,12 @@ class home(homeTemplate):
       )
       self.gm_start_round.visible = True
       return
-    if row["gm_status"] == 5:  ## 2025 to 2040 ready
+    if row_games_log["gm_status"] == 5:  ## 2025 to 2040 ready
       von = 2025
       bis = 2040
       runde = 1
-      row = app_tables.cookies.get(game_id=cid_cookie)
-      rxsub = row["r1sub"]
+      row_cookies = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row_cookies["r1sub"]
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 5 rxsub=" + str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
@@ -1656,18 +1640,18 @@ class home(homeTemplate):
         n.show()
         self.gm_start_round.visible = True
         return
-    elif row["gm_status"] == 6:
+    elif row_games_log["gm_status"] == 6:
       n = Notification(mg.gm_wait_sub2_tx, title=mg.waiting_tx, style="warning")
       n.show()
       #      self.gm_start_round.visible = True
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 6"
       return
-    elif row["gm_status"] == 7:
+    elif row_games_log["gm_status"] == 7:
       von = 2040
       bis = 2060
       runde = 2
-      row = app_tables.cookies.get(game_id=cid_cookie)
-      rxsub = row["r2sub"]
+      row_cookies = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row_cookies["r2sub"]
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 7 rxsub=" + str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
@@ -1678,12 +1662,12 @@ class home(homeTemplate):
         n.show()
         self.gm_start_round.visible = True
         return
-    elif row["gm_status"] == 10:
+    elif row_games_log["gm_status"] == 10:
       von = 2060
       bis = 2100
       runde = 3
-      row = app_tables.cookies.get(game_id=cid_cookie)
-      rxsub = row["r3sub"]
+      row_cookies = app_tables.cookies.get(game_id=cid_cookie)
+      rxsub = row_cookies["r3sub"]
       self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10 rxsub=" + str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
@@ -1696,8 +1680,8 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         return
     else:
-      abc1 = str(row["gm_status"])
-      abc2 = "row['gm_status'] not correct " + abc1
+      abc1 = str(row_games_log["gm_status"])
+      abc2 = "row_games_log['gm_status'] not correct " + abc1
       alert(abc2)
       return
     self.gm_card_wait_1_info.visible = True
@@ -1717,53 +1701,35 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
-      row = app_tables.games_log.get(game_id=cid_cookie)
+      row_games_log = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
-        row["gm_status"] = 6  ## first round successfully done
+        row_games_log["gm_status"] = 6  ## first round successfully done
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call("budget_to_db", 2040, cid_cookie)
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 5  # succesfully ran to 2040
-        self.err_msg.text = (
-          self.err_msg.text
-          + "\n++ gm_start_round_click runde="
-          + str(runde)
-          + " gm_status=6 - email="
-          + em
-        )
+        self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
-        row["gm_status"] = 10
+        row_games_log["gm_status"] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call("budget_to_db", 2060, cid_cookie)
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 7  # succesfully ran to 2060
-        self.err_msg.text = (
-          self.err_msg.text
-          + "\ng++ m_start_round:: "
-          + str(runde)
-          + " gm_status=10 - email="
-          + em
-        )
+        self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
-        row["gm_status"] = 12
+        row_games_log["gm_status"] = 12
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 9  # succesfully ran to 2100
-        self.err_msg.text = (
-          self.err_msg.text
-          + "\ngm_start_round:: "
-          + str(runde)
-          + " gm_status=12 - email="
-          + em
-        )
+        self.err_msg.text = (self.err_msg.text+ "\ngm_start_round:: "+ str(runde)+ " gm_status=12 - email="+ em)
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
 
