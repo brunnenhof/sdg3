@@ -876,7 +876,9 @@ class home(homeTemplate):
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
       self.gm_start_round.visible = True
-    else:
+      self.checkbox_1.visible = True 
+      self.gm_start_round.visible = False      
+    else: # still some not logged in
       slots = []
       #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
       #    res = list({d[key] for d in slots2 if key in d})
@@ -1510,7 +1512,7 @@ class home(homeTemplate):
       row_games_log = app_tables.games_log.get(game_id=cid)
       gm_status = row_games_log["gm_status"]
       self.err_msg.text = (self.err_msg.text+ "\n-------- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ (ro2["game_id"])+ " nutzer_reg="+ (ro2["reg"]))
-      self.cid_reg_role_info.text = (my_cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+      self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
       self.p_after_submit.visible = True
