@@ -680,16 +680,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   longreg = get_longreg_from_lu(reg, lang)
   longrole = get_longrole_from_lu(role, lang)
   my_title = get_title_from_lu(which_sdg, lang)
-  cur_title = (
-    "WK-"
-    + str(int(var_row["sdg_nbr"]))
-    + ": "
-    + my_title
-    + ", "
-    + longreg
-    + ", "
-    + longrole
-  )
+  cur_title = ("ARG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg+ ", "+ longrole)
   #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = get_indicator_from_lu(which_sdg, lang)
   print(
@@ -701,14 +692,12 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
   return fdz
 
-
 @anvil.server.callable
 def launch_create_plots_for_slots(game_id, reg, ta, runde, lang):
   task = anvil.server.launch_background_task(
     "create_plots_for_slots", game_id, reg, ta, runde, lang
   )
   return task
-
 
 def get_all_vars_for_ta(ta):
   ta1 = mg.pov_to_Poverty[ta]

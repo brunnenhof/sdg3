@@ -56,7 +56,9 @@ class home(homeTemplate):
       role = row["role"]
       game_id = row["game_id"]
       lx = row["lang"]
-
+      if save_clicked["ur"] == 'up':
+        now = datetime.now(timezone.utc)
+        row['last_login_utc'] = now
     #    wo = 5
     #    reg = 'gm'
     if wo == 1:
@@ -478,8 +480,9 @@ class home(homeTemplate):
     self.gm_card_wait_1.visible = True
     self.gm_card_wait_1_info.visible = True
     self.gm_card_wait_1_btn_check.visible = False
-    self.gm_start_round.visible = True
-    a = 3
+    self.gm_start_round.visible = False
+    self.checkbox_1.visible = True
+    pass
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -540,6 +543,7 @@ class home(homeTemplate):
     webbrowser.open_new("http://sdggamehelp.blue-way.net")
 
   def set_lang(self, my_lox):
+    self.checkbox_1.text = lu.checkbox_1_tx[my_lox]
     self.cb_af.text = lu.cb_af_tx_str[my_lox]
     self.cb_us.text = lu.cb_us_tx_str[my_lox]
     self.cb_cn.text = lu.cb_cn_tx_str[my_lox]
@@ -2564,3 +2568,20 @@ class home(homeTemplate):
   def privacy_btn_click(self, **event_args):
     my_lox = mg.my_lang
     alert(content=lu.privacy_str[my_lox], title=lu.privacy_str_title_str[my_lox])
+
+  def checkbox_1_change(self, **event_args):
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    gos = ro['gm_open_sub']
+    if self.checkbox_1.checked:
+      self.gm_start_round.visible = True
+      if gos is None:
+        ro['gm_open_sub'] = 2
+      else:
+        ro['gm_open_sub'] = ro['gm_open_sub'] + 1
+    else:
+      self.gm_start_round.visible = False
+      if gos == 2:
+        ro['gm_open_sub'] = None
+      else:
+        ro['gm_open_sub'] = ro['gm_open_sub'] - 1

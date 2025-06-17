@@ -139,11 +139,11 @@ all_regs_gone_title = [
   "_last_"  
 ]
 why_sign_up_title = [
-  "Welcome to the Alternate Reality Game",
-  "Willkommen zum Alternate-Reality-Spiel",
-  "Willkommen zum Alternate-Reality-Spiel",
+  "Welcome to the Different Reality Game",
+  "Willkommen zum Different-Reality-Spiel",
+  "Willkommen zum Different-Reality-Spiel",
   "Bienvenue dans le jeu en réalité alternée",
-  "Velkommen til en Alternate Reality Game",
+  "Velkommen til en Different Reality Game",
   "_last_"  
 ]
 
@@ -2292,6 +2292,14 @@ gm_card_wait_1_btn_kick_off_round_1_tx_str = [
   "Klar til å fremme modellen for neste runde?", 
   "_last_"
 ]
+checkbox_1_tx = [
+  "Accept decisions for next round",
+  "Entscheidungen für die nächste Runde akzeptieren",
+  "Entscheidungen für die nächste Runde akzeptieren",
+  "Accepter les décisions pour le prochain tour",
+  "Godta avgjørelser for neste runde",
+  "_last_"
+]
 gm_wait_kickoff_r1_tx_str = [
   "Still waiting for the region(s) below to submit their decisions ... You may want to ask if they need help ... ",
   "Warten immer noch darauf, dass die unten aufgeführten Regionen ihre Entscheidungen übermitteln ... Sie können fragen, ob sie Hilfe benötigen ... ",
@@ -2301,11 +2309,11 @@ gm_wait_kickoff_r1_tx_str = [
   "_last_"
 ]
 gm_wait_round_done_tx0_str = [
-  "The model has been advanced to 2040. Tell your players to click on the \n*Get the results...*  or \n*Check if all ...* button. ",
-  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \n*Ergebnisse abrufen...* oder \n*Überprüfen, ob ...* zu klicken. ",
-  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \n*Ergebnisse abrufen...* oder \n*Überprüfen, ob ...* zu klicken. ",
-  "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton «Obtenir les résultats...» ou «Vérifier si le meneur de jeu...»",
-  "Modellen har blitt oppdatert frem til 2040. Be spillerne dine om å klikke på knappen \n*Få resultatene...* eller \n*Sjekk om ...*",
+  "The model has been advanced to 2040. Tell your players to click on the \n*Get the results...*  or \n*Check if all ...* button.\nIf you want to accept your players decisions for the next round, check the relevant checkbox. (You may not want to accept decisions right away, for example, if you want to do a debrief / discussion, or if you want to continue the game at a later time, i.e. after lunch, next week, during the next teaching period, etc.)",
+  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \n*Ergebnisse abrufen...* oder \n*Überprüfen, ob ...* zu klicken.\nWenn Sie die Entscheidungen für die nächste Runde annehmen möchten, aktivieren Sie das entsprechende Kontrollkästchen. (Möglicherweise möchten Sie Entscheidungen nicht sofort annehmen, beispielsweise wenn Sie eine Nachbesprechung/Diskussion durchführen möchten oder wenn Sie das Spiel zu einem späteren Zeitpunkt fortsetzen möchten, z. B. nach dem Mittagessen, nächste Woche, während der nächsten Unterrichtsstunde usw.)",
+  "Das Modell wurde bis 2040 fortgeschrieben. Bitten Sie Ihre Spieler, auf die Schaltfläche \n*Ergebnisse abrufen...* oder \n*Überprüfen, ob ...* zu klicken.\nWenn Sie die Entscheidungen für die nächste Runde annehmen möchten, aktivieren Sie das entsprechende Kontrollkästchen. (Möglicherweise möchten Sie Entscheidungen nicht sofort annehmen, beispielsweise wenn Sie eine Nachbesprechung/Diskussion durchführen möchten oder wenn Sie das Spiel zu einem späteren Zeitpunkt fortsetzen möchten, z. B. nach dem Mittagessen, nächste Woche, während der nächsten Unterrichtsstunde usw.)",
+  "Le modèle a été actualisé jusqu'en 2040. Dites à vos joueurs de cliquer sur le bouton «Obtenir les résultats...» ou «Vérifier si le meneur de jeu...»\nSi vous souhaitez accepter les décisions pour le prochain tour, cochez la case correspondante. (Vous pouvez choisir de ne pas accepter les décisions immédiatement, par exemple si vous souhaitez organiser une réunion/discussion ou si vous souhaitez reprendre le jeu plus tard, par exemple après le déjeuner, la semaine prochaine, pendant le prochain cours, etc.)",
+  "Modellen har blitt oppdatert frem til 2040. Be spillerne dine om å klikke på knappen \n*Få resultatene...* eller \n*Sjekk om ...*\nHvis du ønsker å godta avgjørelsene for neste runde, merker du av i den aktuelle boksen. (Det kan hende du ikke ønsker å godta avgjørelsene med en gang, for eksempel hvis du ønsker å gjennomføre en etterdiskusjon eller hvis du ønsker å fortsette spillet på et senere tidspunkt, f.eks. etter lunsj, neste uke, i neste time osv.)",
   "_last_"
 ]
 gm_wait_round_done_tx2_str = [
