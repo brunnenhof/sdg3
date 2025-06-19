@@ -579,6 +579,24 @@ def get_indicator_from_lu(x, lang):
   if x == 40:
     return lu.sdgvarID_to_indicator_40_str[lang]
 
+def make_png_nat():
+  pass
+  
+def build_plot_nat(var_row, regidx, cap, cid, runde, lang, reg, role, year, nat_idx):
+  if nat_idx == 10:
+    # do the global 
+    return
+  mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
+  dfv = mdf_play[:, [0, nat_idx]]
+  if nat_idx == 405:
+    my_title = lu.nat_graph_1_title[lang]
+    cur_sub = lu.nat_graph_1_subtitle[lang]
+  longreg = 'Global'
+  cur_title = ("DRG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg)
+  cur_fig = make_png(dfv, var_row, regidx, year, cur_sub)
+  fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
+  return fdz
+  
 def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   # find out for which round
   if runde == 1:
