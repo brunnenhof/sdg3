@@ -579,21 +579,131 @@ def get_indicator_from_lu(x, lang):
   if x == 40:
     return lu.sdgvarID_to_indicator_40_str[lang]
 
-def make_png_nat():
+def make_png_nat(df):
+  fig, ax = plt.subplots()
+  x = df[:, 0]
+  y = df[:, 1]
+  data_max = y.max() * 1.1
+  data_min = y.min()
+  plot_max = data_max
+  plot_min = data_min
+  ymin = min(data_min, plot_min)
+  ymax = max(data_max, plot_max)
+  if ymin > 0:
+    ymin = 0
+  if ymax < 0:
+    ymax = 0
+  plt.plot(x, y, color='darkred', linewidth=2.5)
+  plt.ylim(ymin, ymax)
+  plt.grid(color="gainsboro", linestyle="-", linewidth=0.5)
+  plt.box(False)
+  return anvil.mpl_util.plot_image()
+
+def make_png_nat_over(runde):
+  mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
+  dfv = mdf_play[:, [0, nat_idx]]
+def plot_nat_overview(pop, soc, ineq, well, gdppp, temp, mdf_play_nat):
+  df = mdf_play_nat[:, [0, pop, soc, ineq, well, gdppp, temp]]
+  x = df[:, 0]
+  y1 = df[:, 1]
+  y2 = df[:, 2]
+  y3 = df[:, 3]
+  y4 = df[:, 4]
+  y5 = df[:, 5]
+  y6 = df[:, 6]
+  fig, ax1 = plt.subplots(figsize=(12, 8))
+  fig.subplots_adjust(right=.7)
+  fig.subplots_adjust(left=.07)
+  ax1.plot(x, y1, 'red', label='Population', linewidth=4.0)
+  plt.box(False)
+  ax1.set_xlabel('Years')
+  ax1.set_ylabel('Population', color='red')
+  ax1.tick_params('y', colors='red')
+  ax2 = ax1.twinx()
+  ax2.plot(x, y2, 'brown', label='Social tension', linewidth=3.0)
+  ax2.set_ylabel('Social tension', color='brown')
+  ax2.tick_params('y', colors='brown')
+  ax3 = ax1.twinx()
+  ax3.plot(x, y3, 'grey', label='Inequality', linestyle='--', linewidth=5.0)
+  ax3.spines['right'].set_position(('outward', 50))
+  ax3.set_ylabel('Inequality', color='grey')
+  ax3.tick_params('y', colors='grey')
+  ax4 = ax1.twinx()
+  ax4.plot(x, y4, 'green', label='Wellbeing', linewidth=3.0)
+  ax4.spines['right'].set_position(('outward', 100))
+  ax4.set_ylabel('Wellbeing', color='green')
+  ax4.tick_params('y', colors='green')
+  ax5 = ax1.twinx()
+  ax5.plot(x, y5, 'blue', label='GDPpp', linewidth=3.0)
+  ax5.spines['right'].set_position(('outward', 150))
+  ax5.set_ylabel('GDPpp', color='blue')
+  ax5.tick_params('y', colors='blue')
+  ax6 = ax1.twinx()
+  ax6.plot(x, y6, 'black', label='Warming', linewidth=3.0)
+  ax6.spines['right'].set_position(('outward', 200))
+  ax6.set_ylabel('Warming', color='black')
+  ax6.tick_params('y', colors='black')
+
+  lines1, labels1 = ax1.get_legend_handles_labels()
+  lines2, labels2 = ax2.get_legend_handles_labels()
+  lines3, labels3 = ax3.get_legend_handles_labels()
+  lines4, labels4 = ax4.get_legend_handles_labels()
+  lines5, labels5 = ax5.get_legend_handles_labels()
+  lines6, labels6 = ax6.get_legend_handles_labels()
+  lines = lines1 + lines2 + lines3 + lines4 + lines5 + lines6
+  labels = labels1 + labels2 + labels3 + labels4 + labels5 + labels6
+  plt.legend(lines, labels, loc='lower right')
+
+  plt.title('Global Overview')
+  #    plt.grid(True)
+  #    plt.box(False)
+  plt.savefig('foo.pdf', bbox_inches='tight')
+  plt.show()
+
   pass
   
-def build_plot_nat(var_row, regidx, cap, cid, runde, lang, reg, role, year, nat_idx):
-  if nat_idx == 10:
+def build_plot_nat(cap, runde, lang, reg, nat_idx):
+  if nat_idx == 415:
     # do the global 
-    return
+    my_title = lu.nat_graph_9_title[lang]
+    cur_sub = lu.nat_graph_9_subtitle[lang]
+    longreg = 'Global'
+    cur_title = ("DRG: "+ my_title+ ", "+ longreg)
+    cur_fig = make_png_nat_over(runde)
+    fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
+  return fdz
   mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
   dfv = mdf_play[:, [0, nat_idx]]
   if nat_idx == 405:
     my_title = lu.nat_graph_1_title[lang]
     cur_sub = lu.nat_graph_1_subtitle[lang]
+  elif nat_idx == 406:
+    my_title = lu.nat_graph_2_title[lang]
+    cur_sub = lu.nat_graph_2_subtitle[lang]
+  elif nat_idx == 407:
+    my_title = lu.nat_graph_3_title[lang]
+    cur_sub = lu.nat_graph_3_subtitle[lang]
+  elif nat_idx == 408:
+    my_title = lu.nat_graph_4_title[lang]
+    cur_sub = lu.nat_graph_4_subtitle[lang]
+  elif nat_idx == 409:
+    my_title = lu.nat_graph_5_title[lang]
+    cur_sub = lu.nat_graph_5_subtitle[lang]
+  elif nat_idx == 410:
+    my_title = lu.nat_graph_6_title[lang]
+    cur_sub = lu.nat_graph_6_subtitle[lang]
+  elif nat_idx == 411:
+    my_title = lu.nat_graph_7_title[lang]
+    cur_sub = lu.nat_graph_7_subtitle[lang]
+  elif nat_idx == 412:
+    my_title = lu.nat_graph_8_title[lang]
+    cur_sub = lu.nat_graph_8_subtitle[lang]
+  elif nat_idx == 413:
+    my_title = lu.nat_graph_9_title[lang]
+    cur_sub = lu.nat_graph_9_subtitle[lang]
   longreg = 'Global'
-  cur_title = ("DRG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg)
-  cur_fig = make_png(dfv, var_row, regidx, year, cur_sub)
+  cur_title = ("DRG: "+ my_title+ ", "+ longreg)
+  cur_fig = make_png_nat(dfv)
   fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
   return fdz
   
