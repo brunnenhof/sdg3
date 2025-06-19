@@ -797,7 +797,7 @@ def launch_do_gm_graphs(game_id, reg, ta, runde, lang):
   task = anvil.server.launch_background_task("do_gm_graphs", game_id, reg, ta, runde, lang)
   return task
 
-def do_gm_graphs(game_id, region, ta, runde, lang):
+def do_gm_graphs(game_id, region, runde, lang):
   cid = game_id
   if runde == 1:
     yr = 2025

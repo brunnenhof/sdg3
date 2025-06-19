@@ -2465,8 +2465,8 @@ class home(homeTemplate):
       ## show Nathalie's graphs
       if ro['gm_nat_graphs'] is None:
         ## no graphs exist, make the ones for 2025, update gm_nat_graphs to 1, show them
-        game_id, region, ta, runde, lang
-        anvil.server.call('do_gm_graphs', 1) 
+#        game_id, region, runde, lang
+        anvil.server.call('launch_do_gm_graphs', ro['game_id'], 'gm', 1, ro['lang']) 
         slots = [
           {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
           for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')

@@ -1,0 +1,19 @@
+components:
+- layout_properties: {grid_position: 'DAGLHC,HFNNAV'}
+  name: title
+  properties: {}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'XLRXGQ,ZKMJGP'}
+  name: sub_title
+  properties: {font_size: 12}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+- layout_properties: {grid_position: 'UZNXZO,PVYDCC'}
+  name: fig
+  properties: {display_mode: fill_width, spacing_above: none, spacing_below: none}
+  type: Image
+- layout_properties: {grid_position: 'QUJEXT,KOXLKA'}
+  name: cap
+  properties: {align: right, font_size: 11, italic: true}
+  type: form:dep_srfw5i6mu5hwvt:_Components.Text
+container: {type: ColumnPanel}
+is_package: true
