@@ -793,8 +793,8 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
 
 @anvil.server.callable
-def launch_do_gm_graphs(game_id, reg, ta, runde, lang):
-  task = anvil.server.launch_background_task("do_gm_graphs", game_id, reg, ta, runde, lang)
+def launch_do_gm_graphs(game_id, reg, runde, lang):
+  task = anvil.server.launch_background_task("do_gm_graphs", game_id, reg, runde, lang)
   return task
 
 def do_gm_graphs(game_id, region, runde, lang):
