@@ -1083,9 +1083,7 @@ class home(homeTemplate):
     congrats = (lu.pcr_submit_msg1_str[lx]+ rolelong+ lu.pcr_submit_msg2_str[lx]+ reglong+ ".\n"+ lu.pcr_submit_msg3_str[lx]+ "\n"+ your_game_id)
     mg.my_personal_game_id = your_game_id
     alert(congrats, title=lu.pcr_submit_title_str[lx])
-    self.task = anvil.server.call(
-      "launch_create_plots_for_slots", cid, reg, role, 1, lx
-    )
+    self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 1, lx)
     self.pcgd_generating.visible = True
     #      make something visible
     while not self.task.is_completed():
@@ -1792,40 +1790,14 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = "fut"
-      self.err_msg.text = (
-        self.err_msg.text
-        + "\n- runde=2 role="
-        + role
-        + " gm_status="
-        + str(row["gm_status"])
-        + " reg="
-        + reg
-        + " runde="
-        + str(runde)
-        + " yr="
-        + str(yr)
-      )
+      self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
       reglong = self.do_reg_to_longreg(reg)
       rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (
-        self.pcgd_title.text
-        + ": "
-        + cid
-        + "-"
-        + str(wrx)
-        + str(wmx)
-        + ",   "
-        + reglong
-        + ",   "
-        + rolelong
-        + lu.p_info_40_fut[lx]
-      )
+      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_40_fut[lx])
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
-      self.task = anvil.server.call(
-        "launch_create_plots_for_slots", cid, reg, role, 2, lx
-      )
+      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1869,42 +1841,14 @@ class home(homeTemplate):
       self.dec_card.visible = False
       self.p_after_submit.visible = False
       role = "fut"
-      self.err_msg.text = (
-        self.err_msg.text
-        + "\n- runde="
-        + str(runde)
-        + " role="
-        + role
-        + " gm_status="
-        + str(row["gm_status"])
-        + " reg="
-        + reg
-        + " runde="
-        + str(runde)
-        + " yr="
-        + str(yr)
-      )
+      self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
       reglong = self.do_reg_to_longreg(reg)
       rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (
-        self.pcgd_title.text
-        + ": "
-        + cid
-        + "-"
-        + str(wrx)
-        + str(wmx)
-        + ",   "
-        + reglong
-        + ",   "
-        + rolelong
-        + lu.p_info_60_fut[lx]
-      )
+      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_60_fut[lx])
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
-      self.task = anvil.server.call(
-        "launch_create_plots_for_slots", cid, reg, role, 3, lx
-      )
+      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -1946,42 +1890,14 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.p_after_submit.visible = False
       role = "fut"
-      self.err_msg.text = (
-        self.err_msg.text
-        + "\n- runde="
-        + str(runde)
-        + " role="
-        + role
-        + " gm_status="
-        + str(row["gm_status"])
-        + " reg="
-        + reg
-        + " runde="
-        + str(runde)
-        + " yr="
-        + str(yr)
-      )
+      self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       wrx = mg.regs.index(reg)
       wmx = mg.roles.index(role)
       reglong = self.do_reg_to_longreg(reg)
       rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (
-        self.pcgd_title.text
-        + ": "
-        + cid
-        + "-"
-        + str(wrx)
-        + str(wmx)
-        + ",   "
-        + reglong
-        + ",   "
-        + rolelong
-        + lu.p_info_21_fut[lx]
-      )
+      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_21_fut[lx])
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
-      self.task = anvil.server.call(
-        "launch_create_plots_for_slots", cid, reg, role, 4, lx
-      )
+      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
       #      make something visible
       while not self.task.is_completed():
@@ -2336,9 +2252,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.pcgd_generating.visible = True
       self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
-      self.task = anvil.server.call(
-        "launch_create_plots_for_slots", cid, reg, role, 4, lx
-      )
+      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
       while not self.task.is_completed():
         pass
       else:  ## launch_create_plots_for_slots is done
@@ -2546,6 +2460,24 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     ro_wo = ro['wo']
+    is_gm = ro['reg']
+    if is_gm:
+      ## show Nathalie's graphs
+      if ro['gm_nat_graphs'] is None:
+        ## no graphs exist, make the ones for 2025, update gm_nat_graphs to 1, show them
+        anvil.server.call('do_gm_graphs', 1) 
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')
+        ]
+        self.gm_graf_card_rp.items = slots
+        pass
+      
+      elif ro['gm_nat_graphs'] == 1:
+        yr, runde = self.get_runde(ro['game_id'])
+        if runde == 1:
+          pass
+      pass
     gos = ro['gm_open_sub']# gos = gm open for submissions
     if gos is None:
       ro['gm_open_sub'] = 0

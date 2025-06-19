@@ -80,6 +80,166 @@ nbr_confirm_f = [
   "Nei",
   "_last_"
 ]
+nat_graph_1_title = [
+  "Trust in institutions",
+  "Vertrauen in Institutionen",
+  "Vertrauen in Institutionen",
+  "Confiance dans les institutions",
+  "Tillit til institusjoner",
+  "_last_"
+]
+nat_graph_2_title = [
+  "Energy intensity in terms of primary energy & GDP",
+  "Energieintensität in Bezug auf Primärenergie und BIP",
+  "Energieintensität in Bezug auf Primärenergie und BIP",
+  "Intensité énergétique en termes d'énergie primaire et de PIB",
+  "Energiintensitet målt i primærenergi og BNP",
+  "_last_"
+]
+nat_graph_3_title = [
+  "Emissions per person",
+  "Emissionen pro Person",
+  "Emissionen pro Person",
+  "Émissions par personne",
+  "Utslipp per person",
+  "_last_"
+]
+nat_graph_4_title = [
+  "Perceived global warming",
+  "Wahrgenommene globale Erwärmung",
+  "Wahrgenommene globale Erwärmung",
+  "Réchauffement climatique perçu",
+  "Oppfattet global oppvarming",
+  "_last_"
+]
+nat_graph_5_title = [
+  "Average well-being",
+  "Durchschnittliches Wohlergehen",
+  "Durchschnittliches Wohlergehen",
+  "Bien-être moyen",
+  "Gjennomsnittlig trivsel",
+  "_last_"
+]
+nat_graph_6_title = [
+  "Inequality",
+  "Ungleichheit",
+  "Ungleichheit",
+  "Inégalité",
+  "Ulikhet",
+  "_last_"
+]
+nat_graph_7_title = [
+  "Social tension",
+  "Soziale Spannungen",
+  "Soziale Spannungen",
+  "Tension sociale",
+  "Sosiale spenninger",
+  "_last_"
+]
+nat_graph_8_title = [
+  "Nbr of people earning less than 15 000 $/year",
+  "Anzahl der Personen, die weniger als 15.000 $ pro Jahr verdienen",
+  "Anzahl der Personen, die weniger als 15.000 $ pro Jahr verdienen",
+  "Nombre de personnes gagnant moins de 15 000 $ par an",
+  "Antall personer som tjener mindre enn 15 000 dollar per år",
+  "_last_"
+]
+nat_graph_9_title = [
+  "Population",
+  "Bevölkerung",
+  "Bevölkerung",
+  "Population",
+  "Befolkning",
+  "_last_"
+]
+nat_graph_10_title = [
+  "Global Overview",
+  "Globaler Überblick",
+  "Globaler Überblick",
+  "Aperçu global",
+  "Global oversikt",
+  "_last_"
+]
+nat_graph_1_subtitle = [
+  "Global social trust (higher is better)",
+  "Globales soziales Vertrauen (höher ist besser)",
+  "Globales soziales Vertrauen (höher ist besser)",
+  "Confiance sociale mondiale (plus le chiffre est élevé, mieux c'est)",
+  "Global sosial tillit (høyere er bedre)",
+  "_last_"
+]
+nat_graph_2_subtitle = [
+  "Global energy use / Global GDP (kwh/$)",
+  "Globaler Energieverbrauch / Globales BIP (kWh/$)",
+  "Globaler Energieverbrauch / Globales BIP (kWh/$)",
+  "Consommation mondiale d'énergie / PIB mondial (kWh/$)",
+  "Globalt energiforbruk / Globalt BNP (kWh/$)",
+  "_last_"
+]
+nat_graph_3_subtitle = [
+  "Global emissions / Global population (tCO2/person/year)",
+  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr)",
+  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr)",
+  "Émissions mondiales / Population mondiale (tCO2/personne/an)",
+  "Globale utslipp / Global befolkning (tCO2/person/år)",
+  "_last_"
+]
+nat_graph_4_subtitle = [
+  "°C over 1850",
+  "°C über 1850",
+  "°C über 1850",
+  "°C depuis 1850",
+  "°C over 1850",
+  "_last_"
+]
+nat_graph_5_subtitle = [
+  "index (higher is better)",
+  "Index (höher ist besser)",
+  "Index (höher ist besser)",
+  "indice (plus il est élevé, mieux c'est)",
+  "indeks (høyere er bedre)",
+  "_last_"
+]
+nat_graph_6_subtitle = [
+  "index (higher is more unequal)",
+  "Index (je höher, desto ungleicher)",
+  "Index (je höher, desto ungleicher)",
+  "indice (plus il est élevé, plus l'inégalité est grande)",
+  "indeks (høyere er mer ulik)",
+  "_last_"
+]
+nat_graph_7_subtitle = [
+  "index (higher is worse)",
+  "Index (höher ist schlechter)",
+  "Index (höher ist schlechter)",
+  "indice (plus le chiffre est élevé, plus la situation est grave)",
+  "indeks (høyere er dårligere)",
+  "_last_"
+]
+nat_graph_8_subtitle = [
+  "Million people",
+  "Millionen Menschen",
+  "Millionen Menschen",
+  "Des millions de personnes",
+  "Millioner mennesker",
+  "_last_"
+]
+nat_graph_9_subtitle = [
+  "Million people",
+  "Millionen Menschen",
+  "Millionen Menschen",
+  "Des millions de personnes",
+  "Millioner mennesker",
+  "_last_"
+]
+nat_graph_10_subtitle = [
+  "Variable names and scales on the sides",
+  "Variablennamen und Skalen an den Seiten",
+  "Variablennamen und Skalen an den Seiten",
+  "Noms des variables et échelles sur les côtés",
+  "Variabelnavn og skalaer på sidene",
+  "_last_"
+]
 regi_first_tx = [
   "Register, after all?",
   "Doch erst registrieren?",

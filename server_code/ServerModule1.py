@@ -45,23 +45,7 @@ def fe_keepalive():
 
 @anvil.server.callable
 def generate_id():
-  not_allowed = [
-    "FUCK",
-    "SHIT",
-    "NSU",
-    "AFD",
-    "CDU",
-    "CSU",
-    "BSW",
-    "FDP",
-    "NPD",
-    "FDJ",
-    "XXX",
-    "FCK",
-    "FCU",
-    "FKU",
-    "FKK",
-  ]
+  not_allowed = ["FUCK","SHIT","NSU","AFD","CDU","CSU","BSW","FDP","NPD","FDJ","XXX","FCK","FCU","FKU","FKK"]
   cid = "".join(random.choices(string.ascii_uppercase, k=3))
   while cid in not_allowed:
     cid = "".join(random.choices(string.ascii_uppercase, k=3))
@@ -167,15 +151,7 @@ def upload_csv_pols(rows, re):
   for r in range(1, len(rows)):
     r = rows[r]
     rr = r.split(",")
-    app_tables.policies.add_row(
-      id=int(rr[0]),
-      abbr=rr[1],
-      name=rr[2],
-      tltl=float(rr[3]),
-      gl=float(rr[4]),
-      expl=rr[5],
-      ta=rr[6],
-    )
+    app_tables.policies.add_row(id=int(rr[0]),abbr=rr[1],name=rr[2],tltl=float(rr[3]),gl=float(rr[4]),expl=rr[5],ta=rr[6])
 
 
 @anvil.server.callable
@@ -195,21 +171,8 @@ def upload_csv_sdg_vars(rows, re):
     r = rows[r]
     rr = r.split(",")
     print(rr)
-    app_tables.sdg_vars.add_row(
-      id=int(rr[0]),
-      sdg_nbr=int(rr[1]),
-      sdg=rr[2],
-      indicator=rr[3],
-      vensim_name=rr[4],
-      green=float(rr[5]),
-      red=float(rr[6]),
-      lowerbetter=int(rr[7]),
-      ymin=float(rr[8]),
-      ymax=float(rr[9]),
-      subtitle=rr[10],
-      ta=rr[11],
-      pct=int(rr[12]),
-    )
+    app_tables.sdg_vars.add_row(id=int(rr[0]),sdg_nbr=int(rr[1]),sdg=rr[2],indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),
+      red=float(rr[6]),lowerbetter=int(rr[7]),ymin=float(rr[8]),ymax=float(rr[9]),subtitle=rr[10],ta=rr[11],pct=int(rr[12]),)
 
 
 @anvil.server.callable
@@ -249,13 +212,7 @@ def set_npbp(cid, npbp):
       app_tables.step_done.add_row(
         game_id=cid, reg=re, p_step_done=0
       )  # p_state 0: data set up
-  roles = mg.roles
-  #  for ro in roles:
-  #    for re in regs: # set up step_done
-  #      if re in npbp:
-  #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=99, ta=ro) # p_state 99: played by computer
-  #      else:
-  #        app_tables.state_of_play.add_row(game_id=cid, reg=re, p_state=0, ta=ro) # p_state 0: data set up
+#  roles = mg.roles
   tas = ["pov", "ineq", "emp", "food", "ener"]
   for runde in range(1, 4):  # set up pcgd_advance_looked_at
     for re in regs:
@@ -268,15 +225,12 @@ def set_npbp(cid, npbp):
     for re in regs:
       if re not in npbp:
         app_tables.submitted.add_row(game_id=cid, reg=re, round=runde, submitted=False)
-
   for runde in range(1, 4):  # set up roles_assign
     for re in regs:
       j = 0
       for p in pol_list:
         ta = mg.Pov_to_pov[mg.pol_to_ta[p]]
-        row = app_tables.roles_assign.get(
-          game_id=cid, round=runde, reg=re, pol=p, role=ta
-        )
+        row = app_tables.roles_assign.get(game_id=cid, round=runde, reg=re, pol=p, role=ta)
         if re in npbp:
           taken = 2
           w2 = get_randGLbias_for_pol(p, pol_list, tltl_list, gl_list)
@@ -302,7 +256,6 @@ def set_npbp(cid, npbp):
     text="Game " + cid + " was started",
   )
 
-
 def read_mdfplay25(datei, runde):
   #  print('APRIL IN read_mdfplay25 loading: ' + datei)
   f = data_files[datei]
@@ -317,12 +270,10 @@ def read_mdfplay25(datei, runde):
     mdf_play = mdf_play[320:3840, :]
   return mdf_play
 
-
 def read_mdfplay_full(datei, runde):
   f = data_files[datei]
   mdf_play_full = np.load(f)
   return mdf_play_full
-
 
 def pick(ys, x, y):
   o = []
@@ -340,7 +291,6 @@ def pick(ys, x, y):
     else:
       o.append(np.nan)
   return o
-
 
 def make_png(df, row, pyidx, end_yr, my_title):
   fig, ax = plt.subplots()
@@ -368,20 +318,9 @@ def make_png(df, row, pyidx, end_yr, my_title):
     ymax = plot_max
   abc_name = app_tables.regions.get(pyidx=pyidx)
   my_lab = abc_name["name"]
-  abc = [
-    "#435df4",
-    "#b95c39",
-    "#ff0000",
-    "#ff37f6",
-    "#ff9300",
-    "#ad00ff",
-    "#00ff0c",
-    "#008a0f",
-    "#00ffbf",
-    "#00b2ff",
-  ]
+  # hex values for regional lines
+  abc = ["#435df4","#b95c39","#ff0000","#ff37f6","#ff9300","#ad00ff","#00ff0c","#008a0f","#00ffbf","#00b2ff"]
   my_colhex = abc[pyidx]
-
   plt.plot(x, y, color=my_colhex, linewidth=2.5, label=my_lab)
   if end_yr == 2025:
     yr_picks = mg.yr_picks_start
@@ -433,7 +372,6 @@ def make_png(df, row, pyidx, end_yr, my_title):
   plt.box(False)
   return anvil.mpl_util.plot_image()
 
-
 def get_longrole_from_lu(x, lang):
   if x == "pov":
     return lu.ta_to_longmini_pov_str[lang]
@@ -447,7 +385,6 @@ def get_longrole_from_lu(x, lang):
     return lu.ta_to_longmini_ener_str[lang]
   if x == "fut":
     return lu.ta_to_longmini_fut_str[lang]
-
 
 def get_longreg_from_lu(x, lang):
   if x == "us":
@@ -473,7 +410,6 @@ def get_longreg_from_lu(x, lang):
   if x == "se":
     return lu.reg_to_longreg_us_str[lang]
   pass
-
 
 def get_title_from_lu(x, lang):
   if x == 0:
@@ -559,7 +495,6 @@ def get_title_from_lu(x, lang):
   if x == 40:
     return lu.sdgvarID_to_sdg_40_str[lang]
 
-
 def get_indicator_from_lu(x, lang):
   if x == 0:
     return lu.sdgvarID_to_indicator_0_str[lang]
@@ -644,7 +579,6 @@ def get_indicator_from_lu(x, lang):
   if x == 40:
     return lu.sdgvarID_to_indicator_40_str[lang]
 
-
 def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   # find out for which round
   if runde == 1:
@@ -657,9 +591,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
     yr = 2100
   mdf_play = read_mdfplay25("mdf_play.npy", runde)
   var_l = var_row["vensim_name"]
-  var_l = var_l.replace(
-    " ", "_"
-  )  # vensim uses underscores not whitespace in variable name
+  var_l = var_l.replace(" ", "_")  # vensim uses underscores not whitespace in variable name
   varx = var_row["id"]
   #  print('starting new plot ...')
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
@@ -680,13 +612,10 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   longreg = get_longreg_from_lu(reg, lang)
   longrole = get_longrole_from_lu(role, lang)
   my_title = get_title_from_lu(which_sdg, lang)
-  cur_title = ("ARG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg+ ", "+ longrole)
+  cur_title = ("DRG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg+ ", "+ longrole)
   #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = get_indicator_from_lu(which_sdg, lang)
-  print(
-    "... build plot var_l: " + var_l,
-    " which_sdg=" + str(which_sdg) + " my_title=" + my_title + " sub=" + cur_sub,
-  )
+#  print("... build plot var_l: " + var_l," which_sdg=" + str(which_sdg) + " my_title=" + my_title + " sub=" + cur_sub,)
   #  cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
   fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
@@ -694,9 +623,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
 
 @anvil.server.callable
 def launch_create_plots_for_slots(game_id, reg, ta, runde, lang):
-  task = anvil.server.launch_background_task(
-    "create_plots_for_slots", game_id, reg, ta, runde, lang
-  )
+  task = anvil.server.launch_background_task("create_plots_for_slots", game_id, reg, ta, runde, lang)
   return task
 
 def get_all_vars_for_ta(ta):
@@ -739,7 +666,7 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
 #  if not not sl:
 #    return sl
 #  else:
-  print("off to build plot: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
+#  print("off to build plot: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
@@ -748,6 +675,14 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   #      print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
 
+@anvil.server.callable
+def launch_do_gm_graphs(game_id, reg, ta, runde, lang):
+  task = anvil.server.launch_background_task("do_gm_graphs_svr", game_id, reg, ta, runde, lang)
+  return task
+
+def do_gm_graphs_svr(game_id, reg, ta, runde, lang):
+  pass
+  
 @anvil.server.callable
 def budget_to_db(yr, cid):
   regs = mg.regs
