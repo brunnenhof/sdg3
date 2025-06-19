@@ -152,6 +152,14 @@ nat_graph_9_title = [
   "Befolkning",
   "_last_"
 ]
+nat_graph_11_title = [
+  "GDP per person",
+  "BIP pro Kopf",
+  "BIP pro Kopf",
+  "PIB par habitant",
+  "BNP per person",
+  "_last_"
+]
 nat_graph_10_title = [
   "Global Overview",
   "Globaler Überblick",

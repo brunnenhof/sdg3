@@ -599,11 +599,9 @@ def make_png_nat(df):
   plt.box(False)
   return anvil.mpl_util.plot_image()
 
-def make_png_nat_over(runde):
-  mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
-  dfv = mdf_play[:, [0, nat_idx]]
-def plot_nat_overview(pop, soc, ineq, well, gdppp, temp, mdf_play_nat):
-  df = mdf_play_nat[:, [0, pop, soc, ineq, well, gdppp, temp]]
+def make_png_nat_over(runde, lang):
+  mdf_play_nat = read_mdfplay25("mdf_play_nat.npy", runde)
+  df = mdf_play_nat[:, [0, 413, 411, 410, 409, 414, 415]] # this is global pop, soc, ineq, well, gdppp, temp
   x = df[:, 0]
   y1 = df[:, 1]
   y2 = df[:, 2]
@@ -614,36 +612,35 @@ def plot_nat_overview(pop, soc, ineq, well, gdppp, temp, mdf_play_nat):
   fig, ax1 = plt.subplots(figsize=(12, 8))
   fig.subplots_adjust(right=.7)
   fig.subplots_adjust(left=.07)
-  ax1.plot(x, y1, 'red', label='Population', linewidth=4.0)
+  ax1.plot(x, y1, 'red', label=lu.nat_graph_9_title[lang], linewidth=4.0) # 'Population'
   plt.box(False)
-  ax1.set_xlabel('Years')
-  ax1.set_ylabel('Population', color='red')
+  #ax1.set_xlabel('Years')
+  ax1.set_ylabel(lu.nat_graph_9_title[lang], color='red')
   ax1.tick_params('y', colors='red')
   ax2 = ax1.twinx()
-  ax2.plot(x, y2, 'brown', label='Social tension', linewidth=3.0)
-  ax2.set_ylabel('Social tension', color='brown')
+  ax2.plot(x, y2, 'brown', label=lu.nat_graph_7_title[lang], linewidth=3.0) # 'Social tension'
+  ax2.set_ylabel(lu.nat_graph_7_title[lang], color='brown')
   ax2.tick_params('y', colors='brown')
   ax3 = ax1.twinx()
-  ax3.plot(x, y3, 'grey', label='Inequality', linestyle='--', linewidth=5.0)
+  ax3.plot(x, y3, 'grey', label=lu.nat_graph_6_title[lang], linestyle='--', linewidth=5.0) #'Inequality'
   ax3.spines['right'].set_position(('outward', 50))
-  ax3.set_ylabel('Inequality', color='grey')
+  ax3.set_ylabel(lu.nat_graph_6_title[lang], color='grey')
   ax3.tick_params('y', colors='grey')
   ax4 = ax1.twinx()
-  ax4.plot(x, y4, 'green', label='Wellbeing', linewidth=3.0)
+  ax4.plot(x, y4, 'green', label=lu.nat_graph_5_title[lang], linewidth=3.0) #'Wellbeing'
   ax4.spines['right'].set_position(('outward', 100))
-  ax4.set_ylabel('Wellbeing', color='green')
+  ax4.set_ylabel(lu.nat_graph_5_title[lang], color='green')
   ax4.tick_params('y', colors='green')
   ax5 = ax1.twinx()
-  ax5.plot(x, y5, 'blue', label='GDPpp', linewidth=3.0)
+  ax5.plot(x, y5, 'blue', label=lu.nat_graph_11_title[lang], linewidth=3.0) # 'GDPpp'
   ax5.spines['right'].set_position(('outward', 150))
-  ax5.set_ylabel('GDPpp', color='blue')
+  ax5.set_ylabel(lu.nat_graph_9_title[lang], color='blue')
   ax5.tick_params('y', colors='blue')
   ax6 = ax1.twinx()
-  ax6.plot(x, y6, 'black', label='Warming', linewidth=3.0)
+  ax6.plot(x, y6, 'black', label=lu.nat_graph_4_title[lang], linewidth=3.0) # 'Warming'
   ax6.spines['right'].set_position(('outward', 200))
-  ax6.set_ylabel('Warming', color='black')
+  ax6.set_ylabel(lu.nat_graph_4_title[lang], color='black')
   ax6.tick_params('y', colors='black')
-
   lines1, labels1 = ax1.get_legend_handles_labels()
   lines2, labels2 = ax2.get_legend_handles_labels()
   lines3, labels3 = ax3.get_legend_handles_labels()
@@ -653,14 +650,10 @@ def plot_nat_overview(pop, soc, ineq, well, gdppp, temp, mdf_play_nat):
   lines = lines1 + lines2 + lines3 + lines4 + lines5 + lines6
   labels = labels1 + labels2 + labels3 + labels4 + labels5 + labels6
   plt.legend(lines, labels, loc='lower right')
-
-  plt.title('Global Overview')
-  #    plt.grid(True)
-  #    plt.box(False)
-  plt.savefig('foo.pdf', bbox_inches='tight')
-  plt.show()
-
-  pass
+  plt.title(lu.nat_graph_10_title[lang]) # 'Global Overview'
+#  plt.savefig('foo.pdf', bbox_inches='tight')
+#  plt.show()
+  return anvil.mpl_util.plot_image()  
   
 def build_plot_nat(cap, runde, lang, reg, nat_idx):
   if nat_idx == 415:
@@ -669,7 +662,7 @@ def build_plot_nat(cap, runde, lang, reg, nat_idx):
     cur_sub = lu.nat_graph_9_subtitle[lang]
     longreg = 'Global'
     cur_title = ("DRG: "+ my_title+ ", "+ longreg)
-    cur_fig = make_png_nat_over(runde)
+    cur_fig = make_png_nat_over(runde, lang)
     fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
   return fdz
   mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
@@ -790,10 +783,6 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   regrow = app_tables.regions.get(abbr=region)
   regidx = int(regrow["pyidx"])
   my_time = datetime.datetime.now().strftime("%a %d %b %G")
-#  sl = plots_exist(game_id, region, single_ta, runde, lang)
-#  if not not sl:
-#    return sl
-#  else:
 #  print("off to build plot: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
@@ -805,12 +794,31 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
 
 @anvil.server.callable
 def launch_do_gm_graphs(game_id, reg, ta, runde, lang):
-  task = anvil.server.launch_background_task("do_gm_graphs_svr", game_id, reg, ta, runde, lang)
+  task = anvil.server.launch_background_task("do_gm_graphs", game_id, reg, ta, runde, lang)
   return task
 
-def do_gm_graphs_svr(game_id, reg, ta, runde, lang):
-  pass
-  
+def do_gm_graphs(game_id, region, ta, runde, lang):
+  cid = game_id
+  if runde == 1:
+    yr = 2025
+  elif runde == 2:
+    yr = 2040
+  elif runde == 3:
+    yr = 2060
+  elif runde == 4:
+    yr = 2100
+  else:
+    print("In put_plots_for_slots: We dont know which runde")
+  # generate a dictionary of
+  my_time = datetime.datetime.now().strftime("%a %d %b %G")
+  #  print("off to do_gm_graphs: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
+  foot1 = "mov250403 e4a 10reg.mdl"
+  cap = foot1 + " - " + my_time
+  for idx in [405,415]:
+    fdz = build_plot_nat(cap, runde, lang, 'gm', idx, cid)
+    #      print(fdz)
+    app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap, runde=runde, ta='', reg=region)
+
 @anvil.server.callable
 def budget_to_db(yr, cid):
   regs = mg.regs
