@@ -864,6 +864,7 @@ class home(homeTemplate):
       return lu.reg_to_longreg_se_str[lx]
 
   def gm_card_wait_1_btn_check_click(self, **event_args):
+    ## this is the check login button
     lx = mg.my_lang
     cid = mg.my_game_id
     runde = mg.game_runde + 1
@@ -877,7 +878,9 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
       self.gm_start_round.visible = True
       self.checkbox_1.visible = True 
-      self.gm_start_round.visible = False      
+      self.gm_start_round.visible = False 
+      ### show global variables
+      
     else: # still some not logged in
       slots = []
       #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
@@ -2487,8 +2490,8 @@ class home(homeTemplate):
     if gos is None:
       ro['gm_open_sub'] = 0
     if self.checkbox_1.checked:
-      self.gm_start_round.visible = True
+      self.gm_graf_card.visible = True
       ro['gm_open_sub'] = ro['gm_open_sub'] + 1
     else: ### not checked
-      self.gm_start_round.visible = False
+      self.gm_graf_card.visible = False
       ro['gm_open_sub'] = ro['gm_open_sub'] - 1
