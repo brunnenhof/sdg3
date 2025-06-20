@@ -633,12 +633,13 @@ def make_png_nat_over(runde, lang):
 #  plt.savefig('foo.pdf', bbox_inches='tight')
 #  plt.show()
   return anvil.mpl_util.plot_image()  
+  
 # cap, runde, lang, 'gm', idx
 def build_plot_nat(cap, runde, lang, reg, nat_idx):
   if nat_idx == 415:
     # do the global 
     my_title = lu.nat_graph_10_title[lang]
-    cur_sub = lu.nat_graph_11_subtitle[lang]
+    cur_sub = lu.nat_graph_10_subtitle[lang]
     longreg = 'Global'
     cur_title = ("DRG: "+ my_title+ ", "+ longreg)
     cur_fig = make_png_nat_over(runde, lang)

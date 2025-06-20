@@ -879,8 +879,24 @@ class home(homeTemplate):
       self.gm_start_round.visible = True
       self.checkbox_1.visible = True 
       self.gm_start_round.visible = False 
-      ### show global variables
-      
+      ## show Nathalie's graphs
+#      rows = app_tables.plots.search(reg='gm')
+#      for row in rows:
+#        row.delete()
+      if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
+        slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+      else:
+        ## no graphs exist, make the ones for 2025, show them
+        self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
+        while not self.task.is_completed():
+          pass
+        else:  ## background is done
+          slots = [
+            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+            for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+          ]
+      self.gm_graf_card.visible = True 
+      self.gm_graf_card_rp.items = slots  
     else: # still some not logged in
       slots = []
       #    slots2 = [{key: r[key] for key in ["reg", "role"]} for r in app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)]
@@ -2462,36 +2478,12 @@ class home(homeTemplate):
   def checkbox_1_change(self, **event_args):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
-    ro_wo = ro['wo']
-    is_gm = ro['reg']
-    cid = ro['game_id']
-    if is_gm:
-      ## show Nathalie's graphs
-      rows = app_tables.plots.search(reg='gm')
-      for row in rows:
-        row.delete()
-      if ro['gm_nat_graphs'] is None:
-        ## no graphs exist, make the ones for 2025, update gm_nat_graphs to 1, show them
-#        game_id, region, runde, lang
-        anvil.server.call('launch_do_gm_graphs', ro['game_id'], 'gm', 1, ro['lang']) 
-#        rows11 = app_tables.plots.search(game_id=cid,runde=1,reg='gm')
-#        lenrows11 = len(rows11)
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')
-        ]
-        self.gm_graf_card.visible = True 
-        self.gm_graf_card_rp.items = slots  
-      elif ro['gm_nat_graphs'] == 1:
-        yr, runde = self.get_runde(ro['game_id'])
-        if runde == 1:
-          pass
-    gos = ro['gm_open_sub']# gos = gm open for submissions
-    if gos is None:
-      ro['gm_open_sub'] = 0
-    if self.checkbox_1.checked:
-      self.gm_graf_card.visible = True
-      ro['gm_open_sub'] = ro['gm_open_sub'] + 1
-    else: ### not checked
-      self.gm_graf_card.visible = False
-      ro['gm_open_sub'] = ro['gm_open_sub'] - 1
+#    ro_wo = ro['wo']
+#    is_gm = ro['reg']
+#    cid = ro['game_id']
+    if ro['sub_open']:
+      if not self.checkbox_1.checked:
+        ro['sub_open'] = False
+    else:
+      if self.checkbox_1.checked:
+        ro['sub_open'] = True
