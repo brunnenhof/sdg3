@@ -23,11 +23,11 @@ privacy_str_title_str = [
   "_last_"  
 ]
 regi_privacy_str = [
-  "If the game is interrupted, either accidentally or intentionally (for example, because the rounds are played on different days), we need to load the page where the interruption occurred for each player. To do this, we need a unique ID. You choose this yourself. It can consist of any digits, letters or characters. It must be at least 3 characters long. 90 days after the last log-in whatever you choose as your registration name is deleted, meaning you will then have no more access to the game.",
-  "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählst Du selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung wird der von Ihnen gewählte Registrierungsname gelöscht, sodass Sie dann keinen Zugriff mehr auf das Spiel haben.",
-  "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählen Sie selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung wird der von Dir gewählte Registrierungsname gelöscht, sodass Du dann keinen Zugriff mehr auf das Spiel haben.",
-  "Si le partie est interrompue, accidentellement ou intentionnellement (par exemple parce que les manches sont jouées à des jours différents), nous devons charger la page où l'interruption s'est produite pour chaque joueur. Pour cela, nous avons besoin d'un identifiant unique. Vous le choisissez vous-même. Il peut être composé de n'importe quels chiffres, lettres ou caractères. Il doit comporter au moins 3 caractères.  90 jours après votre dernière connexion, le nom que vous avez choisi lors de votre inscription sera supprimé, ce qui signifie que vous n'aurez plus accès au jeu.",
-  "Hvis spillet blir avbrutt, enten ved et uhell eller med vilje (for eksempel fordi rundene spilles på forskjellige dager), må vi laste inn siden der avbruddet skjedde for hver spiller. For å gjøre dette trenger vi en unik ID. Du velger denne selv. Den kan bestå av hvilke som helst tall, bokstaver eller tegn. Den må være minst 3 tegn lang.  90 dager etter siste innlogging blir det du har valgt som registreringsnavn slettet, noe som betyr at du ikke lenger har tilgang til spillet.",
+  "If the game is interrupted, either accidentally or intentionally (for example, because the rounds are played on different days), we need to load the page where the interruption occurred for each player. To do this, we need a unique ID. You choose this yourself. It can consist of any digits, letters or characters. It must be at least 3 characters long. 90 days after the last log-in all data associated with your registration name is completely deleted, meaning neither you, nor nobody else, will be able to access your game data.\nTake good note of what you enter, nothing can be recovered.",
+  "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählst Du selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung werden alle mit Ihrem Registrierungsnamen verbundenen Daten vollständig gelöscht, sodass weder Sie noch andere Personen auf Ihre Spieldaten zugreifen können.\nNotieren Sie sich genau, was Sie eingeben, es gibt keine Möglichkeit der Wiederherstellung.",
+  "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählen Sie selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. Sie muss mindestens 3 Zeichen lang sein.  90 Tage nach der letzten Anmeldung werden alle mit Ihrem Registrierungsnamen verbundenen Daten vollständig gelöscht, sodass weder Sie noch andere Personen auf Ihre Spieldaten zugreifen können.\nNotieren Sie sich genau, was Sie eingeben, es gibt keine Möglichkeit der Wiederherstellung.",
+  "Si le partie est interrompue, accidentellement ou intentionnellement (par exemple parce que les manches sont jouées à des jours différents), nous devons charger la page où l'interruption s'est produite pour chaque joueur. Pour cela, nous avons besoin d'un identifiant unique. Vous le choisissez vous-même. Il peut être composé de n'importe quels chiffres, lettres ou caractères. Il doit comporter au moins 3 caractères.  90 jours après votre dernière connexion, toutes les données associées à votre nom d'utilisateur seront définitivement supprimées, ce qui signifie que ni vous, ni personne d'autre, ne pourrez plus accéder à vos données de jeu.\nPrenez bien note de ce que vous saisissez, rien ne peut être récupéré.",
+  "Hvis spillet blir avbrutt, enten ved et uhell eller med vilje (for eksempel fordi rundene spilles på forskjellige dager), må vi laste inn siden der avbruddet skjedde for hver spiller. For å gjøre dette trenger vi en unik ID. Du velger denne selv. Den kan bestå av hvilke som helst tall, bokstaver eller tegn. Den må være minst 3 tegn lang.  90 dager etter siste innlogging blir alle data knyttet til ditt registreringsnavn fullstendig slettet, noe som betyr at verken du eller noen andre vil kunne få tilgang til spilldataene dine.\nVær nøye med hva du skriver inn, ingenting kan gjenopprettes.",
   "_last_"  
 ]
 privacy_str = [
@@ -2053,11 +2053,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.3b",
-  "Das WK Spiel v0.3b",
-  "Das WK Spiel v0.3b",
-  "Le Jeu OL v0.3b",
-  "FL-spill v0.3b", 
+  "OC Game v0.3c",
+  "Das WK Spiel v0.3c",
+  "Das WK Spiel v0.3c",
+  "Le Jeu OL v0.3c",
+  "FL-spill v0.3c", 
   "_last_"
 ]
 need_one_reg = [

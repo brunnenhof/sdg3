@@ -613,7 +613,7 @@ def make_png_nat_over(runde, lang):
   ax5 = ax1.twinx()
   ax5.plot(x, y5, 'blue', label=lu.nat_graph_11_title[lang], linewidth=3.0) # 'GDPpp'
   ax5.spines['right'].set_position(('outward', 150))
-  ax5.set_ylabel(lu.nat_graph_9_title[lang], color='blue')
+  ax5.set_ylabel(lu.nat_graph_11_title[lang], color='blue')
   ax5.tick_params('y', colors='blue')
   ax6 = ax1.twinx()
   ax6.plot(x, y6, 'black', label=lu.nat_graph_4_title[lang], linewidth=3.0) # 'Warming'
