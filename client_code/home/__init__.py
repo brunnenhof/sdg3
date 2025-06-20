@@ -865,14 +865,22 @@ class home(homeTemplate):
 
   def gm_card_wait_1_btn_check_click(self, **event_args):
     ## this is the check login button
-    lx = mg.my_lang
-    cid = mg.my_game_id
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    sub_open = ro['sub_open']
+    lx = ro['lang']
+    cid = ro['game_id']
     runde = mg.game_runde + 1
     self.gm_card_wait_1_btn_check.visible = True
     self.gm_start_round.visible = False
     self.gm_wait_kickoff_r1.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
+      if sub_open:
+        self.checkbox_1.checked = True
+      else:
+        self.checkbox_1.checked = False
+      self.checkbox_1.visible = True
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
@@ -1627,6 +1635,7 @@ class home(homeTemplate):
     ro2 = app_tables.nutzer.get(email=em)
     lx = ro2['lang']
     ## first, check if all regions have submitted
+    self.gm_graf_card.visible = False
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
@@ -1729,6 +1738,8 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 5  # succesfully ran to 2040
+        ### get nat_grafs ....
+        self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
@@ -2481,9 +2492,15 @@ class home(homeTemplate):
 #    ro_wo = ro['wo']
 #    is_gm = ro['reg']
 #    cid = ro['game_id']
+    sub_open = ro['sub_open']
+    if sub_open:
+      self.checkbox_1.checked = True 
     if ro['sub_open']:
       if not self.checkbox_1.checked:
         ro['sub_open'] = False
+        self.gm_start_round.visible = False 
     else:
       if self.checkbox_1.checked:
+        self.gm_start_round.visible = True 
+        self.checkbox_1.visible = False
         ro['sub_open'] = True
