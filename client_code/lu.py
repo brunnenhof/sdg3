@@ -177,27 +177,27 @@ nat_graph_1_subtitle = [
   "_last_"
 ]
 nat_graph_2_subtitle = [
-  "Global energy use / Global GDP (kwh/$)",
-  "Globaler Energieverbrauch / Globales BIP (kWh/$)",
-  "Globaler Energieverbrauch / Globales BIP (kWh/$)",
-  "Consommation mondiale d'énergie / PIB mondial (kWh/$)",
-  "Globalt energiforbruk / Globalt BNP (kWh/$)",
+  "Global energy use / Global GDP (kwh/$)  - lower is better",
+  "Globaler Energieverbrauch / Globales BIP (kWh/$) - niedriger ist besser",
+  "Globaler Energieverbrauch / Globales BIP (kWh/$) - niedriger ist besser",
+  "Consommation mondiale d'énergie / PIB mondial (kWh/$) - plus bas, mieux c'est",
+  "Globalt energiforbruk / Globalt BNP (kWh/$) - lavere er bedre",
   "_last_"
 ]
 nat_graph_3_subtitle = [
-  "Global emissions / Global population (tCO2/person/year)",
-  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr)",
-  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr)",
-  "Émissions mondiales / Population mondiale (tCO2/personne/an)",
-  "Globale utslipp / Global befolkning (tCO2/person/år)",
+  "Global emissions / Global population (tCO2/person/year) - lower is better",
+  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr) - niedriger ist besser",
+  "Globale Emissionen / Weltbevölkerung (tCO2/Person/Jahr) - niedriger ist besser",
+  "Émissions mondiales / Population mondiale (tCO2/personne/an) - plus bas, mieux c'est",
+  "Globale utslipp / Global befolkning (tCO2/person/år) - lavere er bedre",
   "_last_"
 ]
 nat_graph_4_subtitle = [
-  "°C over 1850",
-  "°C über 1850",
-  "°C über 1850",
-  "°C depuis 1850",
-  "°C over 1850",
+  "°C over 1850 - higher is worse",
+  "°C über 1850 - höher ist schlechter",
+  "°C über 1850 - höher ist schlechter",
+  "°C depuis 1850 - plus c'est élevé, plus c'est mauvais",
+  "°C over 1850 - plus c'est élevé, plus c'est mauvais",
   "_last_"
 ]
 nat_graph_5_subtitle = [
@@ -225,19 +225,19 @@ nat_graph_7_subtitle = [
   "_last_"
 ]
 nat_graph_8_subtitle = [
-  "Million people",
-  "Millionen Menschen",
-  "Millionen Menschen",
-  "Des millions de personnes",
-  "Millioner mennesker",
+  "Million people - lower is better",
+  "Millionen Menschen - niedriger ist besser",
+  "Millionen Menschen - niedriger ist besser",
+  "Des millions de personnes - plus bas, mieux c'est",
+  "Millioner mennesker - lavere er bedre",
   "_last_"
 ]
 nat_graph_9_subtitle = [
-  "Million people",
-  "Millionen Menschen",
-  "Millionen Menschen",
-  "Des millions de personnes",
-  "Millioner mennesker",
+  "Million people - are fewer better or worse?",
+  "Millionen Menschen - Sind weniger besser oder schlechter?",
+  "Millionen Menschen - Sind weniger besser oder schlechter?",
+  "Des millions de personnes - Est-ce que moins, c'est mieux ou pire ?",
+  "Millioner mennesker - Er færre bedre eller dårligere?",
   "_last_"
 ]
 nat_graph_10_subtitle = [
@@ -249,11 +249,11 @@ nat_graph_10_subtitle = [
   "_last_"
 ]
 nat_graph_11_subtitle = [
-  "thousand USD per person per year",
+  "thousand USD per person per year - higher is better",
   "Tausend US-Dollar pro Person und Jahr",
   "Tausend US-Dollar pro Person und Jahr",
   "mille USD par personne et par an",
-  "tusen USD per person per år",
+  "tusen USD per person per år - høyere er bedre",
   "_last_"
 ]
 regi_first_tx = [

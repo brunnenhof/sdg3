@@ -20,14 +20,12 @@ import math
 import json
 import pickle
 
-
 @anvil.server.callable
 def nuts_pwd(u):
   ## with hash https://kinsta.com/blog/python-hashing/
   jetzt = datetime.datetime.now()
   app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, wo=1)
   return 27
-
 
 @anvil.server.callable
 def loggin(u):
@@ -63,12 +61,10 @@ def generate_id():
     cid = cid + "-" + str(a)
   return f"{cid}"
 
-
 @anvil.server.callable
 def get_game_id_from_cookie():
   row = app_tables.cookies.get()
   return row["game_id"]
-
 
 @anvil.server.callable
 def set_cookie_sub(r, val, cid):
@@ -88,12 +84,10 @@ def set_cookie_sub(r, val, cid):
     new_val = last_val + val
     row.update(r3sub=new_val)
 
-
 @anvil.server.callable
 def launch_set_roles(game_id):
   task = anvil.server.launch_background_task("set_roles", game_id)
   return task
-
 
 # @anvil.server.callable
 @anvil.server.background_task
@@ -115,7 +109,6 @@ def set_roles(game_id):
   row = app_tables.games_log.get(game_id=game_id)
   row.update(gm_status=2)
 
-
 @anvil.server.callable
 def upload_csv_reg(rows, re):
   app_tables.policies.delete_all_rows()
@@ -128,7 +121,6 @@ def upload_csv_reg(rows, re):
       id=r0, abbr=rr[1], name=rr[2], col=rr[3], colhex=rr[4], pyidx=r5
     )
 
-
 @anvil.server.callable
 def upload_csv_mini(rows, re):
   for r in range(1, len(rows)):
@@ -136,14 +128,12 @@ def upload_csv_mini(rows, re):
     rr = r.split(",")
     app_tables.ministries.add_row(id=int(rr[0]), ministry=rr[1], long=rr[2], mini=rr[3])
 
-
 @anvil.server.callable
 def upload_csv_sdg(rows, re):
   for r in range(1, len(rows)):
     r = rows[r]
     rr = r.split(",")
     app_tables.sdg.add_row(id=int(rr[0]), sdgNbr=rr[1], sdg=rr[2], sdg_dt=rr[3])
-
 
 @anvil.server.callable
 def upload_csv_pols(rows, re):
@@ -153,7 +143,6 @@ def upload_csv_pols(rows, re):
     rr = r.split(",")
     app_tables.policies.add_row(id=int(rr[0]),abbr=rr[1],name=rr[2],tltl=float(rr[3]),gl=float(rr[4]),expl=rr[5],ta=rr[6])
 
-
 @anvil.server.callable
 def upload_csv_mpv(rows, re):
   app_tables.mdf_play_vars.delete_all_rows()
@@ -162,7 +151,6 @@ def upload_csv_mpv(rows, re):
     rr = r.split(",")
     print(rr)
     app_tables.mdf_play_vars.add_row(var_name=rr[0], col_idx=int(rr[1]))
-
 
 @anvil.server.callable
 def upload_csv_sdg_vars(rows, re):
@@ -174,12 +162,10 @@ def upload_csv_sdg_vars(rows, re):
     app_tables.sdg_vars.add_row(id=int(rr[0]),sdg_nbr=int(rr[1]),sdg=rr[2],indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),
       red=float(rr[6]),lowerbetter=int(rr[7]),ymin=float(rr[8]),ymax=float(rr[9]),subtitle=rr[10],ta=rr[11],pct=int(rr[12]),)
 
-
 @anvil.server.callable
 def launch_set_npbp(game_id, npbp):
   task = anvil.server.launch_background_task("set_npbp", game_id, npbp)
   return task
-
 
 def get_randGLbias_for_pol(pol, pl, tl, gl):
   idx = pl.index(pol)
@@ -193,7 +179,6 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
   #  print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
   return w
 
-
 @anvil.server.background_task
 def set_npbp(cid, npbp):
   row = app_tables.cookies.get(game_id=cid)
@@ -205,22 +190,16 @@ def set_npbp(cid, npbp):
   regs = mg.regs
   for re in regs:  # set up step_done
     if re in npbp:
-      app_tables.step_done.add_row(
-        game_id=cid, reg=re, p_step_done=99
-      )  # p_state 99: played by computer
+      app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=99)  # p_state 99: played by computer
     else:
-      app_tables.step_done.add_row(
-        game_id=cid, reg=re, p_step_done=0
-      )  # p_state 0: data set up
+      app_tables.step_done.add_row(game_id=cid, reg=re, p_step_done=0)  # p_state 0: data set up
 #  roles = mg.roles
   tas = ["pov", "ineq", "emp", "food", "ener"]
   for runde in range(1, 4):  # set up pcgd_advance_looked_at
     for re in regs:
       for ta in tas:
         if re not in npbp:
-          app_tables.pcgd_advance_looked_at.add_row(
-            game_id=cid, reg=re, round=runde, ta=ta, looked_at=False
-          )
+          app_tables.pcgd_advance_looked_at.add_row(game_id=cid, reg=re, round=runde, ta=ta, looked_at=False)
   for runde in range(1, 4):  # set up if submitted by reg and round
     for re in regs:
       if re not in npbp:
@@ -658,8 +637,8 @@ def make_png_nat_over(runde, lang):
 def build_plot_nat(cap, runde, lang, reg, nat_idx):
   if nat_idx == 415:
     # do the global 
-    my_title = lu.nat_graph_9_title[lang]
-    cur_sub = lu.nat_graph_9_subtitle[lang]
+    my_title = lu.nat_graph_10_title[lang]
+    cur_sub = lu.nat_graph_11_subtitle[lang]
     longreg = 'Global'
     cur_title = ("DRG: "+ my_title+ ", "+ longreg)
     cur_fig = make_png_nat_over(runde, lang)
@@ -925,7 +904,6 @@ def budget_to_db(yr, cid):
       c_food=cfood[i],
       c_ener=cener[i],
     )
-
 
 def get_pol_expl_lang(pol, lang):
   if pol == "ExPS":

@@ -2470,21 +2470,19 @@ class home(homeTemplate):
       if ro['gm_nat_graphs'] is None:
         ## no graphs exist, make the ones for 2025, update gm_nat_graphs to 1, show them
 #        game_id, region, runde, lang
-#        def launch_do_gm_graphs(game_id, reg, runde, lang):
         anvil.server.call('launch_do_gm_graphs', ro['game_id'], 'gm', 1, ro['lang']) 
-        rows11 = app_tables.plots.search(game_id=cid,runde=1,reg='gm')
-        lenrows11 = len(rows11)
+#        rows11 = app_tables.plots.search(game_id=cid,runde=1,reg='gm')
+#        lenrows11 = len(rows11)
         slots = [
           {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
           for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')
         ]
-        self.gm_graf_card_rp.items = slots
-      
+        self.gm_graf_card.visible = True 
+        self.gm_graf_card_rp.items = slots  
       elif ro['gm_nat_graphs'] == 1:
         yr, runde = self.get_runde(ro['game_id'])
         if runde == 1:
           pass
-      pass
     gos = ro['gm_open_sub']# gos = gm open for submissions
     if gos is None:
       ro['gm_open_sub'] = 0
