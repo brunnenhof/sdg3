@@ -248,6 +248,14 @@ nat_graph_10_subtitle = [
   "Variabelnavn og skalaer på sidene",
   "_last_"
 ]
+nat_graph_11_subtitle = [
+  "thousand USD per person per year",
+  "Tausend US-Dollar pro Person und Jahr",
+  "Tausend US-Dollar pro Person und Jahr",
+  "mille USD par personne et par an",
+  "tusen USD per person per år",
+  "_last_"
+]
 regi_first_tx = [
   "Register, after all?",
   "Doch erst registrieren?",

@@ -2463,6 +2463,9 @@ class home(homeTemplate):
     is_gm = ro['reg']
     if is_gm:
       ## show Nathalie's graphs
+      rows = app_tables.plots.search(reg='gm')
+      for row in rows:
+        row.delete()
       if ro['gm_nat_graphs'] is None:
         ## no graphs exist, make the ones for 2025, update gm_nat_graphs to 1, show them
 #        game_id, region, runde, lang

@@ -11,7 +11,7 @@ class gm_graf_card_rp_temp(gm_graf_card_rp_tempTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.plot_title.text = self.item['title']
-    self.plot_subtitle.text = self.item['subtitle']
-    self.plot_cap.text = self.item['cap']
-    self.plot_fig.source = self.item['fig']
+    self.title.text = self.item['title']
+    self.sub_title.text = self.item['subtitle']
+    self.cap.text = self.item['cap']
+    self.fig.source = self.item['fig']

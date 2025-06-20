@@ -654,7 +654,7 @@ def make_png_nat_over(runde, lang):
 #  plt.savefig('foo.pdf', bbox_inches='tight')
 #  plt.show()
   return anvil.mpl_util.plot_image()  
-  
+# cap, runde, lang, 'gm', idx
 def build_plot_nat(cap, runde, lang, reg, nat_idx):
   if nat_idx == 415:
     # do the global 
@@ -664,7 +664,7 @@ def build_plot_nat(cap, runde, lang, reg, nat_idx):
     cur_title = ("DRG: "+ my_title+ ", "+ longreg)
     cur_fig = make_png_nat_over(runde, lang)
     fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
-  return fdz
+    return fdz
   mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
   dfv = mdf_play[:, [0, nat_idx]]
   if nat_idx == 405:
@@ -694,6 +694,9 @@ def build_plot_nat(cap, runde, lang, reg, nat_idx):
   elif nat_idx == 413:
     my_title = lu.nat_graph_9_title[lang]
     cur_sub = lu.nat_graph_9_subtitle[lang]
+  elif nat_idx == 414:
+    my_title = lu.nat_graph_11_title[lang]
+    cur_sub = lu.nat_graph_11_subtitle[lang]
   longreg = 'Global'
   cur_title = ("DRG: "+ my_title+ ", "+ longreg)
   cur_fig = make_png_nat(dfv)
@@ -797,6 +800,7 @@ def launch_do_gm_graphs(game_id, reg, runde, lang):
   task = anvil.server.launch_background_task("do_gm_graphs", game_id, reg, runde, lang)
   return task
 
+@anvil.server.background_task
 def do_gm_graphs(game_id, region, runde, lang):
   cid = game_id
   if runde == 1:
@@ -814,9 +818,9 @@ def do_gm_graphs(game_id, region, runde, lang):
   #  print("off to do_gm_graphs: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
-  for idx in [405,415]:
-    fdz = build_plot_nat(cap, runde, lang, 'gm', idx, cid)
-    #      print(fdz)
+  for idx in range(405,415):
+    fdz = build_plot_nat(cap, runde, lang, 'gm', idx)
+    print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap, runde=runde, ta='', reg=region)
 
 @anvil.server.callable
