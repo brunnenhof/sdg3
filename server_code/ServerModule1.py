@@ -818,7 +818,7 @@ def do_gm_graphs(game_id, region, runde, lang):
   #  print("off to do_gm_graphs: regidx?"+ str(regidx)+ " cid:"+ cid+ " runde:"+ str(runde)+ " lang:"+ str(lang))
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
-  for idx in range(405,415):
+  for idx in range(405,416):
     fdz = build_plot_nat(cap, runde, lang, 'gm', idx)
     print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap, runde=runde, ta='', reg=region)

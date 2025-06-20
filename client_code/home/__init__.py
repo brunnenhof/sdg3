@@ -2461,6 +2461,7 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     ro_wo = ro['wo']
     is_gm = ro['reg']
+    cid = ro['game_id']
     if is_gm:
       ## show Nathalie's graphs
       rows = app_tables.plots.search(reg='gm')
@@ -2476,7 +2477,6 @@ class home(homeTemplate):
           for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')
         ]
         self.gm_graf_card_rp.items = slots
-        pass
       
       elif ro['gm_nat_graphs'] == 1:
         yr, runde = self.get_runde(ro['game_id'])
