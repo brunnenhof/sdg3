@@ -2472,6 +2472,8 @@ class home(homeTemplate):
 #        game_id, region, runde, lang
 #        def launch_do_gm_graphs(game_id, reg, runde, lang):
         anvil.server.call('launch_do_gm_graphs', ro['game_id'], 'gm', 1, ro['lang']) 
+        rows11 = app_tables.plots.search(game_id=cid,runde=1,reg='gm')
+        lenrows11 = len(rows11)
         slots = [
           {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
           for r in app_tables.plots.search(game_id=ro['game_id'], runde=1, reg='gm')
