@@ -1453,11 +1453,11 @@ sdgvarID_to_indicator_20_str = [
   "_last_"
 ]
 sdgvarID_to_indicator_29_str = [
-  "Number of SDGs met, 17 is the maximum",
+  "Number of SDGs met, 17 is the most you can meet",
   "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
   "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
-  "Nombre d'ODD atteints, 17 pouvant être atteints au maximum", 
-  "Antall oppnådde SDG-mål, maksimalt 17 kan oppnås", 
+  "Nombre d'ODD atteints, 17 est le maximum que vous pouvez atteindre.", 
+  "Antall oppnådde SDG-mål, 17 er det høyeste du kan nå", 
   "_last_"
 ]
 sdgvarID_to_indicator_4_str = [
@@ -2437,11 +2437,11 @@ gm_card_wait_1_temp_title_tx1_str = [
   "_last_"
 ]
 gm_card_wait_1_temp_title_tx2_str = [
-  "All logged in! By clicking on the Ready to advance button, you can check if all your regions have submitted their policies. Tell them how much time they still have. ",
-  "Alle sind eingelogged! Klicken Sie auf Bereit zum Fortfahren, um zu prüfen, ob alle Ihre Regionen ihre Richtlinien übermittelt haben. Teilen Sie ihnen mit, wie viel Zeit ihnen noch bleibt. ",
-  "Alle sind eingelogged! Klicke auf Bereit zum Fortfahren, um zu prüfen, ob alle Regionen ihre Richtlinien übermittelt haben. Teile ihnen mit, wie viel Zeit ihnen noch bleibt. ",
-  "Tout le monde est connecté ! Cliquez sur Prêt à continuer pour vérifier que toutes vos régions ont envoyé leurs directives. Indiquez-leur le temps qu'il leur reste. ",
-  "Alt logget inn! Ved å klikke på Ready to Advance -knappen, kan du sjekke om alle regionene dine har sendt inn retningslinjene sine. Fortell dem hvor mye tid de fortsatt har.", 
+  "All logged in! When you are ready to accept your players decisions for this round, check the box above. Tell them how much time they have for this step. ",
+  "Alle sind eingelogged! Wenn Sie so weit sind, die Entscheidungen Ihrer Spieler für diese Runde zu übernehmen, aktivieren Sie das Kontrollkästchen oben. Teilen Sie ihnen mit, wie viel Zeit sie haben. ",
+  "Alle sind eingelogged! Wenn Sie so weit sind, die Entscheidungen Ihrer Spieler für diese Runde zu übernehmen, aktivieren Sie das Kontrollkästchen oben. Teilen Sie ihnen mit, wie viel Zeit sie haben. ",
+  "Tout le monde est connecté ! Lorsque vous êtes prêt à accepter les décisions de vos joueurs pour ce tour, cochez la case ci-dessus. Indiquez-leur le temps dont ils disposent pour cette étape.",
+  "Alt logget inn! Når du er klar til å godta spillernes beslutninger for denne runden, aktiverer du avmerkingsboksen øverst. Fortell dem hvor mye tid de har til rådighet for dette trinnet.", 
   "_last_"
 ]
 gm_card_wait_1_info_tx_str = [
@@ -2452,6 +2452,15 @@ gm_card_wait_1_info_tx_str = [
   "Alle roller er nå opprettet. Be spillerne logge inn **nå** ved å bruke spill-ID-en som er vist ovenfor. \nBe dem se på tilstanden i regionen deres de siste 45 årene og diskutere beslutningene de har tatt for å forbedre livene til innbyggerne. \nSjekk gjentatte ganger om alle spillerne har logget inn ved å klikke på **Sjekk innlogging**-knappen. \n\nNår alle har logget seg på, vil du se avmerkingsboksen for å godta spillernes beslutninger for neste runde. Før du merker av i boksen, bør du vurdere om du først vil ha en debriefing/diskusjon, eller om du vil fortsette spillet senere, f.eks. etter lunsj, neste uke, i neste undervisningstime osv.",
   "_last_"
 ]
+after_rdy_submit_gm_card_wait_str = [
+  "All your players logged in.\nTell them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people.\n\nAfter their deliberations all regions are now free to submit their decisions. Once more, tell them how much time they have for this step. When ready, click on the **Ready to advance...** button. The app will tell you if any region is not yet ready.",
+  "Alle Ihre Spieler:innen sind angemeldet.\nBitten Sie sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche **Bereit zum Weitermachen...**. Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
+  "Alle Ihre Spieler:innen sind angemeldet.\nBitte sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche **Bereit zum Weitermachen...**. Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
+  "Tous vos joueurs sont connectés.\nDemandez-leur d'examiner la situation de leur région au cours des 45 dernières années et de discuter de leurs décisions visant à améliorer la vie de leur population.\n\nAprès leurs délibérations, toutes les régions sont désormais libres de soumettre leurs décisions. Une fois de plus, indiquez-leur le temps dont ils disposent pour cette étape. \nLorsque vous êtes prêt, cliquez sur le bouton **Prêt à avancer...**. L'application vous indiquera si une région n'est pas encore prête.",
+  "Alle spillerne dine er logget inn. \nBe dem se på tilstanden i regionen deres de siste 45 årene og diskutere beslutningene de har tatt for å forbedre livene til innbyggerne. \n\nEtter at de har diskutert, kan alle regionene nå sende inn beslutningene sine. Fortell dem igjen hvor mye tid de har til dette trinnet. \nNår du er klar, klikker du på knappen **Klar til å gå videre...**. Appen vil fortelle deg om noen regioner ennå ikke er klare.",
+  "_last_"
+]
+
 gm_card_wait_1_btn_check_tx_str = [
   "Check LogIn ",
   "Anmeldungen prüfen ",
@@ -2485,11 +2494,11 @@ gm_wait_kickoff_r1_tx_str = [
   "_last_"
 ]
 gos = [
-  "The game master/mistress does yet allow you to submit your decisions.",
-  "Der/die Spielleiter:in hat noch nicht die Eingabe Ihrer Entscheidungen freigegeben.",
-  "Der/die Spielleiter:in hat noch nicht die Eingabe Deiner Entscheidungen freigegeben.",
-  "Le responsable du jeu ne vous autorise pas encore à soumettre vos décisions.",
-  "Spillelederen tillater deg ennå ikke å sende inn dine beslutninger.",
+  "The game master/mistress has not yet enabled the transmission of your decisions for this round.",
+  "Der Spielleiter/die Spielleiterin hat die Übermittlung Ihrer Entscheidungen für diese Runde noch nicht freigegeben.",
+  "Der Spielleiter/die Spielleiterin hat die Übermittlung Ihrer Entscheidungen für diese Runde noch nicht freigegeben.",
+  "Le maître/la maîtresse du jeu n'a pas encore activé la transmission de vos décisions pour ce tour.",
+  "Spillmesteren har ennå ikke aktivert overføringen av dine beslutninger for denne runden.",
   "_last_"
 ]
 gos_title = [

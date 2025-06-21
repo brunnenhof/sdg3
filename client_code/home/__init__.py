@@ -876,7 +876,7 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
-      if sub_open:
+      if sub_open == 1:
         self.checkbox_1.checked = True
       else:
         self.checkbox_1.checked = False
@@ -1515,8 +1515,10 @@ class home(homeTemplate):
     cid = ro['game_id']
     mg.my_personal_game_id = cid
     ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
-    gos = ro_gm['gm_open_sub']
-    if gos is None or gos == 0:
+    gos = ro_gm['sub_open']
+    ro_gm_status = app_tables.games_log.get(game_id=cid)
+    gm_status = ro_gm_status['gm_status']
+    if gm_status == 4 and not gos == 1:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(
@@ -2489,18 +2491,17 @@ class home(homeTemplate):
   def checkbox_1_change(self, **event_args):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
+    ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
+    gm_status = ro_gm_status['gm_status']
+    lx = ro['lang']
+    if gm_status == 4:
 #    ro_wo = ro['wo']
 #    is_gm = ro['reg']
 #    cid = ro['game_id']
-    sub_open = ro['sub_open']
-    if sub_open:
-      self.checkbox_1.checked = True 
-    if ro['sub_open']:
-      if not self.checkbox_1.checked:
-        ro['sub_open'] = False
-        self.gm_start_round.visible = False 
-    else:
-      if self.checkbox_1.checked:
-        self.gm_start_round.visible = True 
-        self.checkbox_1.visible = False
-        ro['sub_open'] = True
+      ## update msg
+      self.gm_card_wait_1_temp_title.text = lu.after_rdy_submit_gm_card_wait_str[lx]
+#      self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
+      self.gm_card_wait_1_temp_title_tx2_str.visible = False 
+      self.gm_start_round.visible = True 
+      self.checkbox_1.visible = False
+      ro['sub_open'] = 1
