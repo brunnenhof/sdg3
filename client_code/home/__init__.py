@@ -1853,7 +1853,7 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid)
     em = mg.my_email
     ro_nutzer = app_tables.nutzer.get(email=em)
-    self.err_msg.text = (self.err_msg.text+ "\n-------- p_advance_to_next_round_click cid="+ (cid)+ " gm_status="+ str(row["gm_status"])+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"])+ " nutzer_email="+ (ro_nutzer["email"]))
+    self.err_msg.text = (self.err_msg.text+ "\n---X---- p_advance_to_next_round_click cid="+ (cid)+ " >gm_status="+ str(row["gm_status"])+ " >lx="+ str(lx)+ " >wo="+ str(ro_nutzer["wo"])+ "  >nutzer_game_ID="+ (ro_nutzer["game_id"])+ "  >nutzer_reg="+ (ro_nutzer["reg"])+ "  >nutzer_email="+ (ro_nutzer["email"]))
     if row["gm_status"] == 5:
       self.err_msg.text = self.err_msg.text + "\n--: gm_status=" + str(row["gm_status"])
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
