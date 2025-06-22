@@ -1532,13 +1532,13 @@ class home(homeTemplate):
       n.show()
     else:  ## submission confirmed, reg DID submit numbers
       em = mg.my_email
-      ro2 = app_tables.nutzer.get(email=em)
+      ro_nutzer = app_tables.nutzer.get(email=em)
       yr, runde = self.get_runde(cid)
       role = "fut"  ## we're in the Future TA
-      reg = ro2["reg"]
+      reg = ro_nutzer["reg"]
       row_games_log = app_tables.games_log.get(game_id=cid)
       gm_status = row_games_log["gm_status"]
-      self.err_msg.text = (self.err_msg.text+ "\n-------- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ (ro2["game_id"])+ " nutzer_reg="+ (ro2["reg"]))
+      self.err_msg.text = (self.err_msg.text+ "\n-------- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"]))
       self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
@@ -1553,7 +1553,9 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid, round=1, reg=reg)
         rosub["submitted"] = True
-        ro2['wo'] = 4
+        ro_nutzer['wo'] = 4
+        ro_gm['sub_open'] = 11
+        self.err_msg.text = self.err_msg.text+ "\n-- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=11"
       elif runde == 2:
         self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::bump cookie  runde="+ str(runde))
         anvil.server.call("set_cookie_sub", "r2", 1, cid)
@@ -1562,7 +1564,9 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid, round=2, reg=reg)
         rosub["submitted"] = True
-        ro2['wo'] = 6
+        ro_nutzer['wo'] = 6
+        ro_gm['sub_open'] = 21
+        self.err_msg.text = self.err_msg.text+ "\n-- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=21"
       elif runde == 3:
         self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::bump cookie  runde="+ str(runde))
         anvil.server.call("set_cookie_sub", "r3", 1, cid)
@@ -1571,7 +1575,7 @@ class home(homeTemplate):
           all_regs_sub = True
         rosub = app_tables.submitted.get(game_id=cid, round=3, reg=reg)
         rosub["submitted"] = True
-        ro2['wo'] = 8
+        ro_nutzer['wo'] = 8
         ### update steps
       self.p_after_submit.visible = True
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
@@ -1634,8 +1638,8 @@ class home(homeTemplate):
 
   def gm_start_round_click(self, **event_args):
     em = mg.my_email
-    ro2 = app_tables.nutzer.get(email=em)
-    lx = ro2['lang']
+    ro_nutzer = app_tables.nutzer.get(email=em)
+    lx = ro_nutzer['lang']
     ## first, check if all regions have submitted
     self.gm_graf_card.visible = False
     self.gm_card_wait_1_rp.visible = False
@@ -1643,9 +1647,9 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1_rp.visible = False
     self.gm_start_round.visible = False
     #    cid_cookie = anvil.server.call('get_game_id_from_cookie')
-    cid_cookie = ro2['game_id']
+    cid_cookie = ro_nutzer['game_id']
     row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ ro2["game_id"]+ " nutzer_reg="+ ro2["reg"])
+    self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ ro_nutzer["game_id"]+ " nutzer_reg="+ ro_nutzer["reg"])
     if row_games_log["gm_status"] not in [5, 7, 10]:
       n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2)
       n.show()
@@ -1740,6 +1744,7 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 5  # succesfully ran to 2040
+        ro_nutzer['sub_open'] = 10
         ### get nat_grafs ....
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
@@ -1752,6 +1757,7 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 7  # succesfully ran to 2060
+        ro_nutzer['sub_open'] = 20        
         self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
@@ -1761,6 +1767,7 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 9  # succesfully ran to 2100
+        ro_nutzer['sub_open'] = 30      
         self.err_msg.text = (self.err_msg.text+ "\ngm_start_round:: "+ str(runde)+ " gm_status=12 - email="+ em)
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
@@ -1795,15 +1802,15 @@ class home(homeTemplate):
     lx = mg.my_lang
     row = app_tables.games_log.get(game_id=cid)
     em = mg.my_email
-    ro2 = app_tables.nutzer.get(email=em)
-    self.err_msg.text = (self.err_msg.text+ "\n-------- p_advance_to_next_round_click cid="+ (cid)+ " gm_status="+ str(row["gm_status"])+ " lx="+ str(lx)+ " wo="+ str(ro2["wo"])+ " nutzer_game_ID="+ (ro2["game_id"])+ " nutzer_reg="+ (ro2["reg"])+ " nutzer_email="+ (ro2["email"]))
+    ro_nutzer = app_tables.nutzer.get(email=em)
+    self.err_msg.text = (self.err_msg.text+ "\n-------- p_advance_to_next_round_click cid="+ (cid)+ " gm_status="+ str(row["gm_status"])+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"])+ " nutzer_email="+ (ro_nutzer["email"]))
     if row["gm_status"] == 5:
       self.err_msg.text = self.err_msg.text + "\n--: gm_status=" + str(row["gm_status"])
       alert(lu.p_waiting_model_run_tx_str[lx], title=lu.waiting_tx_str[lx])
     ### prepare graphs and decisions for round 2 if gm_status == 2
     elif row["gm_status"] == 6:  ## 2025 to 2040 successfully run
       #      reg = mg.my_reg
-      reg = ro2["reg"]
+      reg = ro_nutzer["reg"]
       runde = 2
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
@@ -1850,11 +1857,11 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr, lx)
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
         ### update wo
-        ro2["wo"] = 3
-        ro2["wo"] = 3
+        ro_nutzer["wo"] = 3
+        ro_nutzer["wo"] = 3
     elif row["gm_status"] == 10:  ## 2040 to 2060 successfully run
       #      reg = mg.my_reg
-      reg = ro2["reg"]
+      reg = ro_nutzer["reg"]
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
@@ -1902,7 +1909,7 @@ class home(homeTemplate):
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1587)"
     elif row["gm_status"] == 12:  ## 2060 to 2100 successfully run
       #      reg = mg.my_reg
-      reg = ro2["reg"]
+      reg = ro_nutzer["reg"]
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
@@ -2136,8 +2143,8 @@ class home(homeTemplate):
     reg = mg.my_reg
     row = app_tables.games_log.get(game_id=cid)
     em = mg.my_email
-    ro2 = app_tables.nutzer.get(email=em)
-    role = ro2['role']
+    ro_nutzer = app_tables.nutzer.get(email=em)
+    role = ro_nutzer['role']
     gmStatus = row["gm_status"]
     self.err_msg.text = (
       self.err_msg.text + "\npcgd_advance_tx ++ gmStatus=" + str(gmStatus)
@@ -2504,6 +2511,9 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
+    elif ro['sub_open'] == 10:
+      ### first round sucessfully run
+      ro['sub_open'] = 11 ### and now open for submission to round 2
     else:
       alert('gmStatus = '+str(gm_status))
 
