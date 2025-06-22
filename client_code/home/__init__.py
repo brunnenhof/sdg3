@@ -2499,10 +2499,11 @@ class home(homeTemplate):
 #    is_gm = ro['reg']
 #    cid = ro['game_id']
       ## update msg
-      ro['sub_open'] = 1      
-      self.gm_card_wait_1_temp_title.text = lu.after_rdy_submit_gm_card_wait_str[lx]
-#      self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
-      self.gm_card_wait_1_temp_title_tx2.visible = False 
-      self.gm_start_round.visible = True 
-      self.checkbox_1.visible = False
+      ro['sub_open'] = 1   
+      self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]
+      self.gm_card_wait_1_temp_title.visible = False
+      self.checkbox_1.visible = False 
+      self.gm_start_round.visible = True  
+    else:
+      alert('gmStatus = '+str(gm_status))
 
