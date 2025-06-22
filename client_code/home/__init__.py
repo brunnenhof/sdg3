@@ -1745,8 +1745,8 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
-      sub_open = ro_nutzer['email']
-      if sub_open == 10 or sub_open == 20 or sub_open == 30:
+      sub_open = ro_nutzer['sub_open']
+      if sub_open is None or sub_open == 10 or sub_open == 20 or sub_open == 30:
         self.checkbox_1.visible = True
         self.gm_start_round.visible = False
         return
