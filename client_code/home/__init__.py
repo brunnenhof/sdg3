@@ -2281,15 +2281,7 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
-        while not self.task.is_completed():
-          pass
-        else:  ## launch_create_plots_for_slots is done
-          slots = [
-            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-            for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-          ]
-          self.plot_card_rp.items = slots
+        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 3, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2311,15 +2303,7 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
-        while not self.task.is_completed():
-          pass
-        else:  ## launch_create_plots_for_slots is done
-          slots = [
-            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-            for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-          ]
-          self.plot_card_rp.items = slots
+        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 4, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2328,49 +2312,49 @@ class home(homeTemplate):
       #      self.top_duration.text = dauer
       return
       #### old 12 not used until return below
-      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
-      self.pcgd_advance.visible = False
-      self.pcgd_plot_card.visible = True
-      self.plot_card_rp.visible = True
-      self.dec_card.visible = False
-      role = mg.my_ministry
-      print("mg.my_ministry= " + role)
-      yr, runde = self.get_runde(cid)
-      self.pcgd_generating.visible = True
-      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
-      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
-      while not self.task.is_completed():
-        pass
-      else:  ## launch_create_plots_for_slots is done
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        if role == "fut":
-          self.dec_card.visible = False
-          self.pcgd_info_rd1.visible = True
-          self.card_fut.visible = True
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-        else:
-          self.dec_card.visible = False
-          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
-          self.pcgd_info_rd1.visible = True
-          row_looked_at = app_tables.pcgd_advance_looked_at.get(
-            game_id=cid, reg=reg, ta=role, round=3
-          )
-          row_looked_at["looked_at"] = True
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-        ]
-        self.plot_card_rp.items = slots
-        if role == "fut":
-          print()
-          self.do_future(cid, role, reg, runde, yr, lx)
-        else:
-          self.do_non_future(cid, role, reg, runde, yr, lx)
-      #      dauer = round(time.time() - anfang, 0)
-      #      self.top_duration.text = dauer
-      return
+#      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
+#      self.pcgd_advance.visible = False
+#      self.pcgd_plot_card.visible = True
+#      self.plot_card_rp.visible = True
+#      self.dec_card.visible = False
+#      role = mg.my_ministry
+#      print("mg.my_ministry= " + role)
+#      yr, runde = self.get_runde(cid)
+#      self.pcgd_generating.visible = True
+#      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
+#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## launch_create_plots_for_slots is done
+#        self.pcgd_generating.visible = False
+#        self.pcgd_plot_card.visible = True
+#        if role == "fut":
+#          self.dec_card.visible = False
+#          self.pcgd_info_rd1.visible = True
+#          self.card_fut.visible = True
+#          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+#          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+#        else:
+#          self.dec_card.visible = False
+#          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
+#          self.pcgd_info_rd1.visible = True
+#          row_looked_at = app_tables.pcgd_advance_looked_at.get(
+#            game_id=cid, reg=reg, ta=role, round=3
+#          )
+#          row_looked_at["looked_at"] = True
+#        slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#        ]
+#        self.plot_card_rp.items = slots
+#        if role == "fut":
+#          print()
+#          self.do_future(cid, role, reg, runde, yr, lx)
+#        else:
+#          self.do_non_future(cid, role, reg, runde, yr, lx)
+#      #      dauer = round(time.time() - anfang, 0)
+#      #      self.top_duration.text = dauer
+#      return
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
