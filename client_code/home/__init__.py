@@ -1640,6 +1640,7 @@ class home(homeTemplate):
     em = mg.my_email
     ro_nutzer = app_tables.nutzer.get(email=em)
     lx = ro_nutzer['lang']
+    cid = ro_nutzer['game_id']
     ## first, check if all regions have submitted
     self.gm_graf_card.visible = False
     self.gm_card_wait_1_rp.visible = False
@@ -1748,6 +1749,21 @@ class home(homeTemplate):
         ### get nat_grafs ....
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
+        ### do nat_grafs up to 2060
+        if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
+          slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+        else:
+        ## no graphs exist, make the ones for 2025, show them
+          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
+          while not self.task.is_completed():
+            pass
+          else:  ## background is done
+            slots = [
+              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+              for r in app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+            ]
+        self.gm_graf_card.visible = True 
+        self.gm_graf_card_rp.items = slots  
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -1759,6 +1775,23 @@ class home(homeTemplate):
         rn["wo"] = 7  # succesfully ran to 2060
         ro_nutzer['sub_open'] = 20        
         self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
+        ### get nat_grafs ....
+        self.gm_graf_card.visible = True
+        ### do nat_grafs up to 2060
+        if len(app_tables.plots.search(game_id=cid, runde=3, reg='gm')) > 0:
+          slots = app_tables.plots.search(game_id=cid, runde=3, reg='gm')
+        else:
+          ## no graphs exist, make the ones for 2025, show them
+          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 3, lx) 
+          while not self.task.is_completed():
+            pass
+          else:  ## background is done
+            slots = [
+              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+              for r in app_tables.plots.search(game_id=cid, runde=3, reg='gm')
+            ]
+        self.gm_graf_card.visible = True 
+        self.gm_graf_card_rp.items = slots  
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
@@ -1769,6 +1802,23 @@ class home(homeTemplate):
         rn["wo"] = 9  # succesfully ran to 2100
         ro_nutzer['sub_open'] = 30      
         self.err_msg.text = (self.err_msg.text+ "\ngm_start_round:: "+ str(runde)+ " gm_status=12 - email="+ em)
+        ### get nat_grafs ....
+        self.gm_graf_card.visible = True
+        ### do nat_grafs up to 2060
+        if len(app_tables.plots.search(game_id=cid, runde=4, reg='gm')) > 0:
+          slots = app_tables.plots.search(game_id=cid, runde=4, reg='gm')
+        else:
+          ## no graphs exist, make the ones for 2025, show them
+          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 4, lx) 
+          while not self.task.is_completed():
+            pass
+          else:  ## background is done
+            slots = [
+              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+              for r in app_tables.plots.search(game_id=cid, runde=4, reg='gm')
+            ]
+        self.gm_graf_card.visible = True 
+        self.gm_graf_card_rp.items = slots  
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
 
