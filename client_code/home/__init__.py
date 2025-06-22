@@ -1636,6 +1636,17 @@ class home(homeTemplate):
       longreg = self.do_reg_to_longreg(r["reg"])
       not_sub_list.append(longreg)
 
+  def get_nat_slots(self, cid, runde, lx):
+    self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', runde, lx) 
+    while not self.task.is_completed():
+      pass
+    else:  ## background is done
+      slots = [
+        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+        for r in app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
+      ]
+      return slots
+    
   def gm_start_round_click(self, **event_args):
     em = mg.my_email
     ro_nutzer = app_tables.nutzer.get(email=em)
@@ -1720,8 +1731,6 @@ class home(homeTemplate):
       alert(abc2)
       return
     self.gm_card_wait_1_info.visible = True
-    # running_model_tx = "... advancing the model ..."
-    # gm_wait_round_started_tx = 'The model has been started. Please wait until the simulation is done...'
     self.gm_card_wait_1_info.content = lu.gm_wait_round_started_tx_str[lx]
     self.gm_card_wait_1_temp_title.visible = False
     self.gm_card_wait_1_btn_check.visible = False
@@ -1736,6 +1745,11 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
+      sub_open = ro_nutzer['email']
+      if sub_open == 10 or sub_open == 20 or sub_open == 30:
+        self.checkbox_1.visible = True
+        self.gm_start_round.visible = False
+        return
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row_games_log["gm_status"] = 6  ## first round successfully done
@@ -1750,18 +1764,12 @@ class home(homeTemplate):
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
         ### do nat_grafs up to 2060
-        if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
-          slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+        have_nat_slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+        if len(have_nat_slots) > 0:
+          slots = have_nat_slots
         else:
         ## no graphs exist, make the ones for 2025, show them
-          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
-          while not self.task.is_completed():
-            pass
-          else:  ## background is done
-            slots = [
-              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-              for r in app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-            ]
+          slots = self.get_nat_slots(self, cid, 2, lx)
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
       elif runde == 2:
@@ -1778,18 +1786,12 @@ class home(homeTemplate):
         ### get nat_grafs ....
         self.gm_graf_card.visible = True
         ### do nat_grafs up to 2060
-        if len(app_tables.plots.search(game_id=cid, runde=3, reg='gm')) > 0:
-          slots = app_tables.plots.search(game_id=cid, runde=3, reg='gm')
+        have_nat_slots = app_tables.plots.search(game_id=cid, runde=3, reg='gm')
+        if len(have_nat_slots) > 0:
+          slots = have_nat_slots
         else:
-          ## no graphs exist, make the ones for 2025, show them
-          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 3, lx) 
-          while not self.task.is_completed():
-            pass
-          else:  ## background is done
-            slots = [
-              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-              for r in app_tables.plots.search(game_id=cid, runde=3, reg='gm')
-            ]
+          ## no graphs exist, make the ones for 2060, show them
+          slots = self.get_nat_slots(self, cid, 3, lx)
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
       elif runde == 3:
@@ -1805,18 +1807,12 @@ class home(homeTemplate):
         ### get nat_grafs ....
         self.gm_graf_card.visible = True
         ### do nat_grafs up to 2060
-        if len(app_tables.plots.search(game_id=cid, runde=4, reg='gm')) > 0:
-          slots = app_tables.plots.search(game_id=cid, runde=4, reg='gm')
+        have_nat_slots = app_tables.plots.search(game_id=cid, runde=4, reg='gm')
+        if len(have_nat_slots) > 0:
+          slots = have_nat_slots
         else:
-          ## no graphs exist, make the ones for 2025, show them
-          self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 4, lx) 
-          while not self.task.is_completed():
-            pass
-          else:  ## background is done
-            slots = [
-              {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-              for r in app_tables.plots.search(game_id=cid, runde=4, reg='gm')
-            ]
+          ## no graphs exist, make the ones for ..., show them
+          slots = self.get_nat_slots(self, cid, 4, lx)
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
@@ -1864,7 +1860,7 @@ class home(homeTemplate):
       runde = 2
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=1, reg=reg, looked_at=False
+        game_id=cid, round=2, reg=reg, looked_at=False
       )
       if len(rows_looked_at) > 0:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1915,7 +1911,7 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=2, reg=reg, looked_at=True
+        game_id=cid, round=3, reg=reg, looked_at=True
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1963,7 +1959,7 @@ class home(homeTemplate):
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=3, reg=reg, looked_at=True
+        game_id=cid, round=4, reg=reg, looked_at=True
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -2257,6 +2253,7 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
         self.do_non_future(cid, role, reg, runde, yr, lx)
+#      ro_pala = app_tables.pcgd_advance_looked_at.get(game_id=cid,round=2,)
       return
     if gmStatus == 7:  ## waiting for decisions until 2060
       rc = app_tables.cookies.get(game_id=cid)
@@ -2545,6 +2542,12 @@ class home(homeTemplate):
     elif ro['sub_open'] == 10:
       ### first round sucessfully run
       ro['sub_open'] = 11 ### and now open for submission to round 2
+    elif ro['sub_open'] == 20:
+      ### first round sucessfully run
+      ro['sub_open'] = 21 ### and now open for submission to round 2
+    elif ro['sub_open'] == 30:
+      ### first round sucessfully run
+      ro['sub_open'] = 31 ### and now open for submission to round 2
     else:
       alert('gmStatus = '+str(gm_status))
 
