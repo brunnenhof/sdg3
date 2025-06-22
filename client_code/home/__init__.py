@@ -2183,6 +2183,18 @@ class home(homeTemplate):
       row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=runde)
       row_looked_at["looked_at"] = True
 
+  def get_ta_slots(self, cid, reg, role, runde, lx):
+    slots = []
+    self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, runde, lx)
+    while not self.task.is_completed():
+      pass
+    else:  ## launch_create_plots_for_slots is done
+      slots = [
+        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+        for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+      ]
+    return slots
+    
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
@@ -2221,11 +2233,6 @@ class home(homeTemplate):
       self.plot_card_rp.visible = True
       self.dec_card.visible = False
       return
-    #    if gmStatus == 6:
-    #      ### waiting for GM to start round 2025 to 2040
-    #      n = Notification(mg.waiting_for_gm_to_start_round, timeout=5, title=mg.waiting_tx, style="info")
-    #      n.show()
-    #      return
     self.err_msg.text = (self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is=" + str(gmStatus))
     if gmStatus == 6:
       rc = app_tables.cookies.get(game_id=cid)
@@ -2245,21 +2252,11 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
-        while not self.task.is_completed():
-          pass
-        else:  ## launch_create_plots_for_slots is done
-          slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-          ]
-          self.plot_card_rp.items = slots
+        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 2, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
         self.do_non_future(cid, role, reg, runde, yr, lx)
-      #      dauer = round(time.time() - anfang, 0)
-      #      self.top_duration.text = dauer
       return
     if gmStatus == 7:  ## waiting for decisions until 2060
       rc = app_tables.cookies.get(game_id=cid)
