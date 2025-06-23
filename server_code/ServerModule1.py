@@ -43,7 +43,7 @@ def fe_keepalive():
 
 @anvil.server.callable
 def generate_id():
-  not_allowed = ["FUCK","SHIT","NSU","AFD","CDU","CSU","BSW","FDP","NPD","FDJ","XXX","FCK","FCU","FKU","FKK"]
+  not_allowed = ["FUCK","SHIT","NSU","KLAN","KKK","AFD","CDU","CSU","BSW","FDP","NPD","FDJ","XXX","FCK","FCU","FKU","FKK"]
   cid = "".join(random.choices(string.ascii_uppercase, k=3))
   while cid in not_allowed:
     cid = "".join(random.choices(string.ascii_uppercase, k=3))
@@ -368,8 +368,6 @@ def get_longrole_from_lu(x, lang):
 def get_longreg_from_lu(x, lang):
   if x == "us":
     return lu.reg_to_longreg_us_str[lang]
-  if x == "us":
-    return lu.reg_to_longreg_us_str[lang]
   if x == "af":
     return lu.reg_to_longreg_af_str[lang]
   if x == "cn":
@@ -385,9 +383,9 @@ def get_longreg_from_lu(x, lang):
   if x == "ec":
     return lu.reg_to_longreg_ec_str[lang]
   if x == "eu":
-    return lu.reg_to_longreg_se_str[lang]
+    return lu.reg_to_longreg_eu_str[lang]
   if x == "se":
-    return lu.reg_to_longreg_us_str[lang]
+    return lu.reg_to_longreg_se_str[lang]
   pass
 
 def get_title_from_lu(x, lang):

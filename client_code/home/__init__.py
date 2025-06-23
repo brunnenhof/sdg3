@@ -1745,6 +1745,7 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
+      row_games_log = app_tables.games_log.get(game_id=cid_cookie)
       sub_open = ro_nutzer['sub_open']
       print('1749-sub_open:')
       print(sub_open)
@@ -1753,7 +1754,17 @@ class home(homeTemplate):
         self.checkbox_1.visible = True
         return
       self.gm_start_round.visible = False
-      row_games_log = app_tables.games_log.get(game_id=cid_cookie)
+      nat_graf_runde = runde + 1
+      have_nat_slots = app_tables.plots.search(game_id=cid, runde=nat_graf_runde, reg='gm')
+      if len(have_nat_slots) > 0:
+        slots = have_nat_slots
+        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(nat_graf_runde))
+      else:
+        ## no graphs exist, make the ones for 2025, show them
+        slots = self.get_nat_slots(cid, 2, lx)
+        print("\n   --- have_nat_slots: Made new ones runde " + str(nat_graf_runde))
+      self.gm_graf_card.visible = True 
+      self.gm_graf_card_rp.items = slots  
       if runde == 1:
         row_games_log["gm_status"] = 6  ## first round successfully done
         self.gm_start_round.visible = True
@@ -1767,16 +1778,6 @@ class home(homeTemplate):
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
         ### do nat_grafs up to 2060
-        have_nat_slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-        if len(have_nat_slots) > 0:
-          slots = have_nat_slots
-          print("\n   --- have_nat_slots: used old ones runde 2")
-        else:
-        ## no graphs exist, make the ones for 2025, show them
-          slots = self.get_nat_slots(cid, 2, lx)
-          print("\n   --- have_nat_slots: Made new ones runde 2")
-        self.gm_graf_card.visible = True 
-        self.gm_graf_card_rp.items = slots  
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -1789,16 +1790,6 @@ class home(homeTemplate):
         ro_nutzer['sub_open'] = 20        
         self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
         ### get nat_grafs ....
-        self.gm_graf_card.visible = True
-        ### do nat_grafs up to 2060
-        have_nat_slots = app_tables.plots.search(game_id=cid, runde=3, reg='gm')
-        if len(have_nat_slots) > 0:
-          slots = have_nat_slots
-        else:
-          ## no graphs exist, make the ones for 2060, show them
-          slots = self.get_nat_slots(cid, 3, lx)
-        self.gm_graf_card.visible = True 
-        self.gm_graf_card_rp.items = slots  
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
@@ -1810,16 +1801,6 @@ class home(homeTemplate):
         ro_nutzer['sub_open'] = 30      
         self.err_msg.text = (self.err_msg.text+ "\ngm_start_round:: "+ str(runde)+ " gm_status=12 - email="+ em)
         ### get nat_grafs ....
-        self.gm_graf_card.visible = True
-        ### do nat_grafs up to 2060
-        have_nat_slots = app_tables.plots.search(game_id=cid, runde=4, reg='gm')
-        if len(have_nat_slots) > 0:
-          slots = have_nat_slots
-        else:
-          ## no graphs exist, make the ones for ..., show them
-          slots = self.get_nat_slots(cid, 4, lx)
-        self.gm_graf_card.visible = True 
-        self.gm_graf_card_rp.items = slots  
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
 
