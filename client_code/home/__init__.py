@@ -1646,7 +1646,16 @@ class home(homeTemplate):
         for r in app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
       ]
       return slots
-    
+
+  def wait_for_checkbox(self):
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['lang']
+    self.checkbox_1.checked = False 
+    self.checkbox_1.checkbox_color = "red"
+    self.checkbox_1.visible = True 
+    self.checkbox_1.text = lu.checkbox_1_tx[lx]
+
   def gm_start_round_click(self, **event_args):
     em = mg.my_email
     ro_nutzer = app_tables.nutzer.get(email=em)
@@ -1746,14 +1755,6 @@ class home(homeTemplate):
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      sub_open = ro_nutzer['sub_open']
-      print('1749-sub_open:')
-      print(sub_open)
-      if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
-        self.checkbox_1.checked = False 
-        self.checkbox_1.visible = True
-        return
-      self.gm_start_round.visible = False
       nat_graf_runde = runde + 1
       have_nat_slots = app_tables.plots.search(game_id=cid, runde=nat_graf_runde, reg='gm')
       if len(have_nat_slots) > 0:
@@ -1803,6 +1804,13 @@ class home(homeTemplate):
         ### get nat_grafs ....
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
+      sub_open = ro_nutzer['sub_open']
+      print('1808 sub_open:')
+      print(sub_open)
+      if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
+        self.checkbox_1.checked = False 
+        self.checkbox_1.visible = True
+        self.gm_start_round.visible = False
 
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
