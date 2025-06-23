@@ -1746,10 +1746,13 @@ class home(homeTemplate):
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       sub_open = ro_nutzer['sub_open']
-      if sub_open is None or sub_open == 10 or sub_open == 20 or sub_open == 30:
+      print('1749-sub_open:')
+      print(sub_open)
+      if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
+        self.checkbox_1.checked = False 
         self.checkbox_1.visible = True
-        self.gm_start_round.visible = False
         return
+      self.gm_start_round.visible = False
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
       if runde == 1:
         row_games_log["gm_status"] = 6  ## first round successfully done
@@ -1767,9 +1770,11 @@ class home(homeTemplate):
         have_nat_slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
         if len(have_nat_slots) > 0:
           slots = have_nat_slots
+          print("\n   --- have_nat_slots: used old ones runde 2")
         else:
         ## no graphs exist, make the ones for 2025, show them
-          slots = self.get_nat_slots(self, cid, 2, lx)
+          slots = self.get_nat_slots(cid, 2, lx)
+          print("\n   --- have_nat_slots: Made new ones runde 2")
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
       elif runde == 2:
@@ -1791,7 +1796,7 @@ class home(homeTemplate):
           slots = have_nat_slots
         else:
           ## no graphs exist, make the ones for 2060, show them
-          slots = self.get_nat_slots(self, cid, 3, lx)
+          slots = self.get_nat_slots(cid, 3, lx)
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
       elif runde == 3:
@@ -1812,7 +1817,7 @@ class home(homeTemplate):
           slots = have_nat_slots
         else:
           ## no graphs exist, make the ones for ..., show them
-          slots = self.get_nat_slots(self, cid, 4, lx)
+          slots = self.get_nat_slots(cid, 4, lx)
         self.gm_graf_card.visible = True 
         self.gm_graf_card_rp.items = slots  
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
@@ -2529,6 +2534,9 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
     gm_status = ro_gm_status['gm_status']
     lx = ro['lang']
+    sub_open = ro['sub_open']
+    if sub_open is None:
+      sub_open = 0
     if gm_status == 4:
 #    ro_wo = ro['wo']
 #    is_gm = ro['reg']
@@ -2539,15 +2547,19 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_open="+str(sub_open)
     elif ro['sub_open'] == 10:
       ### first round sucessfully run
       ro['sub_open'] = 11 ### and now open for submission to round 2
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
     elif ro['sub_open'] == 20:
       ### first round sucessfully run
       ro['sub_open'] = 21 ### and now open for submission to round 2
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=20 NEW21"
     elif ro['sub_open'] == 30:
       ### first round sucessfully run
       ro['sub_open'] = 31 ### and now open for submission to round 2
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=30 NEW31"
     else:
       alert('gmStatus = '+str(gm_status))
 
