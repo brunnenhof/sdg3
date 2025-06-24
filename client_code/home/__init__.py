@@ -140,7 +140,7 @@ class home(homeTemplate):
     reglong = self.do_reg_to_longreg(reg)
     rolelong = self.do_ta_to_longmini(role)
     self.pcgd_advance.text = lu.pcgd_advance_tx_str[lx]
-    self.pcgd_title.text = (lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong)
+    self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
     #    congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id
@@ -361,7 +361,7 @@ class home(homeTemplate):
     self.lang_card.visible = False
     self.top_entry.visible = False
 #    self.p_after_submit.visible = True
-    self.pcgd_title.text = ( lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+    self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
     yr, runde = self.get_runde(cid)
     self.pcgd_plot_card.visible = True
     self.card_fut.visible = True
@@ -1103,8 +1103,8 @@ class home(homeTemplate):
     self.p_choose_role.visible = False
     self.dec_card.visible = False
     wrx = mg.regs.index(reg)
-    wmx = mg.roles.index(role)
-    self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong)
+    wmx = mg.roles.index(role)    
+    self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
     congrats = (lu.pcr_submit_msg1_str[lx]+ rolelong+ lu.pcr_submit_msg2_str[lx]+ reglong+ ".\n"+ lu.pcr_submit_msg3_str[lx]+ "\n"+ your_game_id)
@@ -1797,6 +1797,10 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["wo"] = 7  # succesfully ran to 2060
+        sub_open = ro_nutzer['sub_open']
+        print('1783 sub_open:')
+        print(sub_open)
+        self.wait_for_checkbox()
         ro_nutzer['sub_open'] = 20        
         self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
         ### get nat_grafs ....
@@ -1872,11 +1876,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      wrx = mg.regs.index(reg)
-      wmx = mg.roles.index(role)
-      reglong = self.do_reg_to_longreg(reg)
-      rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_40_fut[lx])
+      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
@@ -1923,11 +1923,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      wrx = mg.regs.index(reg)
-      wmx = mg.roles.index(role)
-      reglong = self.do_reg_to_longreg(reg)
-      rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_60_fut[lx])
+      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
@@ -1972,11 +1968,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      wrx = mg.regs.index(reg)
-      wmx = mg.roles.index(role)
-      reglong = self.do_reg_to_longreg(reg)
-      rolelong = self.do_ta_to_longmini(role)
-      self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_21_fut[lx])
+      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
@@ -2544,18 +2536,23 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-    elif ro['sub_open'] == 10:
-      ### first round sucessfully run
-      ro['sub_open'] = 11 ### and now open for submission to round 2
-      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
-    elif ro['sub_open'] == 20:
-      ### first round sucessfully run
+    elif gm_status == 10:
       ro['sub_open'] = 21 ### and now open for submission to round 2
-      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=20 NEW21"
-    elif ro['sub_open'] == 30:
-      ### first round sucessfully run
-      ro['sub_open'] = 31 ### and now open for submission to round 2
-      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=30 NEW31"
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
+      self.gm_start_round.visible = True 
+      self.checkbox_1.visible = False 
+#    elif ro['sub_open'] == 10:
+#      ### first round sucessfully run
+#      ro['sub_open'] = 11 ### and now open for submission to round 2
+#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
+#    elif ro['sub_open'] == 20:
+#      ### first round sucessfully run
+#      ro['sub_open'] = 21 ### and now open for submission to round 2
+#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=20 NEW21"
+#    elif ro['sub_open'] == 30:
+#      ### first round sucessfully run
+#      ro['sub_open'] = 31 ### and now open for submission to round 2
+#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=30 NEW31"
     else:
       alert('gmStatus = '+str(gm_status))
 
