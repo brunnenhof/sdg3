@@ -1241,19 +1241,7 @@ class home(homeTemplate):
     return within_budget
 
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = (
-      self.err_msg.text
-      + "\n-------entering do_future cid="
-      + cid
-      + " reg="
-      + reg
-      + " role="
-      + role
-      + " round="
-      + str(runde)
-      + " yr="
-      + str(yr)
-    )
+    self.err_msg.text = (self.err_msg.text+ "\n--DoFut   cid="+ cid+ " reg="+ reg+ " role="+ role+ " round="+ str(runde)+ " yr="+ str(yr))
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -1517,10 +1505,13 @@ class home(homeTemplate):
     gos = ro_gm['sub_open']
     ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
-    if gm_status == 4 and not gos == 1:
+    if gm_status == 4 and not gos == 1: # catch 1st round (submissions for 2025)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    if gm_status == 7 and gos == 21:
+    if gm_status == 6 and gos == 10: # catch 2nd round (submissions for 2040)
+      alert(lu.gos[lx], title=lu.gos_title[lx])
+      return
+    if gm_status == 6 and gos == 10: # catch 3rd round (submissions for 2060)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(
@@ -2076,13 +2067,7 @@ class home(homeTemplate):
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
     dummy = anvil.server.call_s("fe_keepalive")
-    self.err_msg.text = (
-      self.err_msg.text
-      + "-- ticking away -- "
-      + strftime("%Y-%m-%d %H:%M:%S", localtime(time.time()))
-      + " "
-      + dummy
-    )
+    self.err_msg.text = (self.err_msg.text+ "-- ticking away -- "+ strftime("%Y-%m-%d %H:%M:%S", localtime(time.time()))+ " "+ dummy)
 
   def all_submit(self, cid, runde):
     rowc = app_tables.cookies.get(game_id=cid)
