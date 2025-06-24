@@ -1655,6 +1655,7 @@ class home(homeTemplate):
     self.checkbox_1.checkbox_color = "red"
     self.checkbox_1.visible = True 
     self.checkbox_1.text = lu.checkbox_1_tx[lx]
+    self.gm_start_round.visible = False 
 
   def gm_start_round_click(self, **event_args):
     em = mg.my_email
@@ -1779,6 +1780,14 @@ class home(homeTemplate):
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
         ### do nat_grafs up to 2060
+        sub_open = ro_nutzer['sub_open']
+        print('1783 sub_open:')
+        print(sub_open)
+        self.wait_for_checkbox()
+#        if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
+#          self.checkbox_1.checked = False 
+#          self.checkbox_1.visible = True
+#          self.gm_start_round.visible = False
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -1804,13 +1813,6 @@ class home(homeTemplate):
         ### get nat_grafs ....
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
-      sub_open = ro_nutzer['sub_open']
-      print('1808 sub_open:')
-      print(sub_open)
-      if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
-        self.checkbox_1.checked = False 
-        self.checkbox_1.visible = True
-        self.gm_start_round.visible = False
 
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
@@ -2537,6 +2539,11 @@ class home(homeTemplate):
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_open="+str(sub_open)
+    elif gm_status == 6:
+      ro['sub_open'] = 11 ### and now open for submission to round 2
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
+      self.gm_start_round.visible = True 
+      self.checkbox_1.visible = False 
     elif ro['sub_open'] == 10:
       ### first round sucessfully run
       ro['sub_open'] = 11 ### and now open for submission to round 2
