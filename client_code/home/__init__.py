@@ -1852,7 +1852,7 @@ class home(homeTemplate):
       runde = 2
       yr = 2040
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=2, reg=reg, looked_at=False
+        game_id=cid, round=1, reg=reg, looked_at=False
       )
       if len(rows_looked_at) > 0:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1898,7 +1898,7 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=3, reg=reg, looked_at=False
+        game_id=cid, round=2, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1942,7 +1942,7 @@ class home(homeTemplate):
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=4, reg=reg, looked_at=False
+        game_id=cid, round=3, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -2156,7 +2156,8 @@ class home(homeTemplate):
       self.dec_card.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
       self.pcgd_info_rd1.visible = True
-      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=runde)
+      pala_runde = runde - 1
+      row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=pala_runde)
       row_looked_at["looked_at"] = True
 
   def get_ta_slots(self, cid, reg, role, runde, lx):
