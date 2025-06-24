@@ -361,7 +361,7 @@ class home(homeTemplate):
     self.lang_card.visible = False
     self.top_entry.visible = False
 #    self.p_after_submit.visible = True
-    self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
+    self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
     yr, runde = self.get_runde(cid)
     self.pcgd_plot_card.visible = True
     self.card_fut.visible = True
@@ -415,7 +415,6 @@ class home(homeTemplate):
 #    wmx = mg.roles.index(role)
 #    reglong = self.do_reg_to_longreg(reg)
 #    rolelong = self.do_ta_to_longmini(role)
-#    self.pcgd_title.text = (self.pcgd_title.text+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+ lu.p_info_40_fut[lx])
 #    mg.fut_title_tx2 = self.pcgd_title.text
 #    your_game_id = cid + "-" + str(wrx) + str(wmx)
 #    mg.my_personal_game_id = your_game_id
@@ -1104,7 +1103,7 @@ class home(homeTemplate):
     self.dec_card.visible = False
     wrx = mg.regs.index(reg)
     wmx = mg.roles.index(role)    
-    self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
+    self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
     congrats = (lu.pcr_submit_msg1_str[lx]+ rolelong+ lu.pcr_submit_msg2_str[lx]+ reglong+ ".\n"+ lu.pcr_submit_msg3_str[lx]+ "\n"+ your_game_id)
@@ -1521,6 +1520,9 @@ class home(homeTemplate):
     if gm_status == 4 and not gos == 1:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
+    if gm_status == 7 and not gos == 1:
+      alert(lu.gos[lx], title=lu.gos_title[lx])
+      return
     result = alert(
       content=lu.confirm_submit_tx_str[lx],
       title=lu.confirm_title_tx_str[lx],
@@ -1876,8 +1878,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
-      #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_40_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
       self.pcgd_generating.visible = True
       #      make something visible
@@ -1923,7 +1924,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
       self.pcgd_generating.visible = True
@@ -1968,7 +1969,7 @@ class home(homeTemplate):
       self.p_after_submit.visible = False
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
-      self.pcgd_title.text = lu.pcr_title_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
       self.pcgd_generating.visible = True
@@ -2536,8 +2537,8 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-    elif gm_status == 10:
-      ro['sub_open'] = 21 ### and now open for submission to round 2
+    elif gm_status == 7:
+      ro['sub_open'] = 22 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 

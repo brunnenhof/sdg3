@@ -1867,7 +1867,7 @@ def ugregmod(game_id, von, bis):
   Strength_of_inequality_effect_on_energy_TA = 2
   SDG4_a = 1.3463
   Delivery_delay_index_in_1980 = 1
-  Owner_power_in_1980 = 0.5
+#  Owner_power_in_1980 = 0.5
   Worker_power_scaling_factor = 60
   Worker_power_scaling_factor_reference = 0.53
   SoE_of_unemployment_ratio_on_WSO = 0.01
