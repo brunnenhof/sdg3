@@ -3014,7 +3014,7 @@ not_all_looked_at_tx = [
   "_last_"
 ]
 p_advance_to_next_round_tx_str = [
-    "Get the results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
+    "Get results until 2040 and the decision sheet for 2040-2060 - your childrens future ",
     "Laden Sie sich die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 herunter - die Zukunft Ihrer Kinder ",
     "Lade Dir die Ergebnisse bis 2040 und den Entscheidungsbogen für 2040-2060 herunter - die Zukunft Deiner Kinder ",
     "Obtenez les résultats jusqu'en 2040 et la feuille de décision pour 2040-2060 - votre avenir pour enfants", 
@@ -3022,7 +3022,7 @@ p_advance_to_next_round_tx_str = [
     "_last_"
 ]
 p_advance_to_1_tx_str = [
-    "Get the results until 2060 and the decision sheet for 2060-2100 - your grandchildrens future ",
+    "Get results until 2060 and the decision sheet for 2060-2100 - your grandchildren's future ",
     "Laden Sie sich die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 herunter - die Zukunft Ihrer Enkelkinder ",
     "Lade Dir die Ergebnisse bis 2060 und den Entscheidungsbogen für 2060-2100 herunter - die Zukunft Deiner Enkelkinder ",
     "Obtenez les résultats jusqu'en 2060 et la feuille de décision pour 2060-2100 - l'avenir de vos petits-enfants. ",
@@ -3030,7 +3030,7 @@ p_advance_to_1_tx_str = [
     "_last_"
 ]
 p_advance_to_2_tx_str = [
-    "Get the results until the end of the century ",
+    "Get results until the end of the century ",
     "Ergebnisse bis zum Ende des Jahrhunderts laden ",
     "Ergebnisse bis zum Ende des Jahrhunderts laden ",
     "Obtenez les résultats jusqu'à la fin du siècle", 
