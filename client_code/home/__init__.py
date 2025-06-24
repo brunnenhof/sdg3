@@ -1511,7 +1511,7 @@ class home(homeTemplate):
     if gm_status == 6 and gos == 10: # catch 2nd round (submissions for 2040)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    if gm_status == 6 and gos == 10: # catch 3rd round (submissions for 2060)
+    if gm_status == 10 and gos == 20: # catch 3rd round (submissions for 2060)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(
