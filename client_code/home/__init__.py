@@ -1520,7 +1520,7 @@ class home(homeTemplate):
     if gm_status == 4 and not gos == 1:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    if gm_status == 7 and not gos == 1:
+    if gm_status == 7 and gos == 21:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(
@@ -1540,7 +1540,7 @@ class home(homeTemplate):
       reg = ro_nutzer["reg"]
       row_games_log = app_tables.games_log.get(game_id=cid)
       gm_status = row_games_log["gm_status"]
-      self.err_msg.text = (self.err_msg.text+ "\n-------- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"]))
+      self.err_msg.text = (self.err_msg.text+ "\n---oo- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"]))
       self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
       self.card_fut.visible = False
       self.p_card_graf_dec.visible = False
@@ -1548,7 +1548,7 @@ class home(homeTemplate):
       ## bump cookie for this round r_sub by one
       all_regs_sub = False
       if runde == 1:
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::bump cookie  runde="+ str(runde))
+        self.err_msg.text = (self.err_msg.text+ "\n-lo--inside submit_numbers_click::bump cookie  runde="+ str(runde))
         anvil.server.call("set_cookie_sub", "r1", 1, cid)
         rc = app_tables.cookies.get(game_id=cid)
         if rc["r1sub"] == 10:
@@ -1557,9 +1557,9 @@ class home(homeTemplate):
         rosub["submitted"] = True
         ro_nutzer['wo'] = 4
         ro_gm['sub_open'] = 11
-        self.err_msg.text = self.err_msg.text+ "\n-- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=11"
+        self.err_msg.text = self.err_msg.text+ "\n-y- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=11"
       elif runde == 2:
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::bump cookie  runde="+ str(runde))
+        self.err_msg.text = (self.err_msg.text+ "\n-y-x-inside submit_numbers_click::bump cookie  runde="+ str(runde))
         anvil.server.call("set_cookie_sub", "r2", 1, cid)
         rc = app_tables.cookies.get(game_id=cid)
         if rc["r2sub"] == 10:
@@ -1568,9 +1568,9 @@ class home(homeTemplate):
         rosub["submitted"] = True
         ro_nutzer['wo'] = 6
         ro_gm['sub_open'] = 21
-        self.err_msg.text = self.err_msg.text+ "\n-- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=21"
+        self.err_msg.text = self.err_msg.text+ "\n-s- runde="+ str(runde) + " rosub=True ro_nutzer=4 sub_open=21"
       elif runde == 3:
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::bump cookie  runde="+ str(runde))
+        self.err_msg.text = (self.err_msg.text+ "\n-f--inside submit_numbers_click::bump cookie  runde="+ str(runde))
         anvil.server.call("set_cookie_sub", "r3", 1, cid)
         rc = app_tables.cookies.get(game_id=cid)
         if rc["r3sub"] == 10:
@@ -1595,27 +1595,27 @@ class home(homeTemplate):
           row2.update(p_step_done=7)  ## the region submitted decisions for round 2060 - 2100
         n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
         n.show()
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::step_done  my_p_step_done="+ str(my_p_step_done))
+        self.err_msg.text = (self.err_msg.text+ "\n-gh--inside submit_numbers_click::step_done  my_p_step_done="+ str(my_p_step_done))
       else:  ## all HAVE submitted
         row = app_tables.games_log.get(game_id=cid)
         rc = app_tables.cookies.get(game_id=cid)
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click::ALL submit  gmStatus="+ str(gm_status)+ "rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+        self.err_msg.text = (self.err_msg.text+ "\n-jz--inside submit_numbers_click::ALL submit  gmStatus="+ str(gm_status)+ "rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
         if row["gm_status"] == 4:
           row["gm_status"] = 5  ## off to run 2025 to 2040
-          self.err_msg.text = (self.err_msg.text+ "\n---ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+          self.err_msg.text = (self.err_msg.text+ "\n--qw-ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
         if row["gm_status"] == 6:
           row["gm_status"] = 7  ## all regs submitted for 2040 to 2060
-          self.err_msg.text = (self.err_msg.text+ "\n---ALL submit  OLD gmStatus=6 NEW gmstatus=7"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+          self.err_msg.text = (self.err_msg.text+ "\n--as-ALL submit  OLD gmStatus=6 NEW gmstatus=7"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
         if row["gm_status"] == 9:
           row["gm_status"] = 10  ## all regs submitted for 2060 to 2100
-          self.err_msg.text = (self.err_msg.text+ "\n---ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+          self.err_msg.text = (self.err_msg.text+ "\n--yx-ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
         #        rg = app_tables.games_log.get(game_id=cid_cookie)
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
         n.show()
         self.card_fut.visible = False
         self.p_advance_to_next_round.visible = True
         self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-        self.err_msg.text = (self.err_msg.text+ "\n---inside submit_numbers_click:: p_advance_to_next_round_wait_str:"+ lu.p_advance_to_next_round_wait_str[lx])
+        self.err_msg.text = (self.err_msg.text+ "\n-gq--inside submit_numbers_click:: p_advance_to_next_round_wait_str:"+ lu.p_advance_to_next_round_wait_str[lx])
         if runde == 1:
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
         elif runde == 2:
