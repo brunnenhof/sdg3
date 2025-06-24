@@ -1749,15 +1749,14 @@ class home(homeTemplate):
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      nat_graf_runde = runde + 1
-      have_nat_slots = app_tables.plots.search(game_id=cid, runde=nat_graf_runde, reg='gm')
+      have_nat_slots = app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
       if len(have_nat_slots) > 0:
         slots = have_nat_slots
-        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(nat_graf_runde))
+        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
       else:
         ## no graphs exist, make the ones for 2025, show them
         slots = self.get_nat_slots(cid, 2, lx)
-        print("\n   --- have_nat_slots: Made new ones runde " + str(nat_graf_runde))
+        print("\n   --- have_nat_slots: Made new ones runde " + str(runde))
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
       if runde == 1:
@@ -1774,7 +1773,7 @@ class home(homeTemplate):
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
         ### do nat_grafs up to 2060
         sub_open = ro_nutzer['sub_open']
-        print('1783 sub_open:')
+        print('1776 sub_open:')
         print(sub_open)
         self.wait_for_checkbox()
 #        if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
@@ -2128,7 +2127,14 @@ class home(homeTemplate):
 
   def show_pcgd_advance(self, role, reg, lx, cid, runde):
     self.p_card_graf_dec.visible = True
-    self.pcgd_title.text = (lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry])
+    if runde == 1:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_40_fut[lx]
+    elif runde == 2:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_60_fut[lx]
+    elif runde == 3:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_21_fut[lx]
+    else:
+      alert("show_pcgd_advance: runde not 1|2|3 but "+str(runde))
     self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
     self.pcgd_advance.visible = True
     self.pcgd_plot_card.visible = True
