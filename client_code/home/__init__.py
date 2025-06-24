@@ -2523,13 +2523,13 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
     gm_status = ro_gm_status['gm_status']
     lx = ro['lang']
+    ro_wo = ro['wo']
+    is_gm = ro['reg']
+    cid = ro['game_id']
     sub_open = ro['sub_open']
     if sub_open is None:
       sub_open = 0
     if gm_status == 4:
-#    ro_wo = ro['wo']
-#    is_gm = ro['reg']
-#    cid = ro['game_id']
       ## update msg
       ro['sub_open'] = 1   
       self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]

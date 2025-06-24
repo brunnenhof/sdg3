@@ -40,7 +40,6 @@ def fe_keepalive():
   ### should it return something dynamic?
   return "fe_keepalive"
 
-
 @anvil.server.callable
 def generate_id():
   not_allowed = ["FUCK","SHIT","NSU","KLAN","KKK","AFD","CDU","CSU","BSW","FDP","NPD","FDJ","XXX","FCK","FCU","FKU","FKK"]
@@ -159,8 +158,7 @@ def upload_csv_sdg_vars(rows, re):
     r = rows[r]
     rr = r.split(",")
     print(rr)
-    app_tables.sdg_vars.add_row(id=int(rr[0]),sdg_nbr=int(rr[1]),sdg=rr[2],indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),
-      red=float(rr[6]),lowerbetter=int(rr[7]),ymin=float(rr[8]),ymax=float(rr[9]),subtitle=rr[10],ta=rr[11],pct=int(rr[12]),)
+    app_tables.sdg_vars.add_row(id=int(rr[0]),sdg_nbr=int(rr[1]),sdg=rr[2],indicator=rr[3],vensim_name=rr[4],green=float(rr[5]),   red=float(rr[6]),lowerbetter=int(rr[7]),ymin=float(rr[8]),ymax=float(rr[9]),subtitle=rr[10],ta=rr[11],pct=int(rr[12]),)
 
 @anvil.server.callable
 def launch_set_npbp(game_id, npbp):
@@ -229,10 +227,7 @@ def set_npbp(cid, npbp):
   rs.update(gm_status=4)
   ### ToDo in production un comment
   anvil.email.send(
-    from_name="OC game",
-    to="post@blue-way.net",
-    subject="Game started - " + cid,
-    text="Game " + cid + " was started",
+    from_name="OC game", to="post@blue-way.net", subject="Game started - " + cid, text="Game " + cid + " was started",
   )
 
 def read_mdfplay25(datei, runde):
@@ -888,21 +883,9 @@ def budget_to_db(yr, cid):
     cener.append(mdf_bud[rx, idx + i])  # energy
   #  print('IN put_budget ... cener ')
   #  print(cener)
-
   for i in range(0, 10):
     #    print("add row " + str(i) + ' ' + str(yr) + ' ' + str(runde) + ' ' + cid + ' ' + regs[i] + ' ' + str(ba[i]) + ' ' + str(cpov[i]) + ' ' + str(cineq[i]) + ' ' + str(cemp[i]) + ' ' + str(cener[i]))
-    app_tables.budget.add_row(
-      yr=yr,
-      game_id=cid,
-      reg=regs[i],
-      runde=runde,
-      bud_all_tas=ba[i],
-      c_pov=cpov[i],
-      c_ineq=cineq[i],
-      c_emp=cemp[i],
-      c_food=cfood[i],
-      c_ener=cener[i],
-    )
+    app_tables.budget.add_row(yr=yr,game_id=cid,reg=regs[i],runde=runde,bud_all_tas=ba[i],c_pov=cpov[i],c_ineq=cineq[i],c_emp=cemp[i],c_food=cfood[i],c_ener=cener[i])
 
 def get_pol_expl_lang(pol, lang):
   if pol == "ExPS":
@@ -970,7 +953,6 @@ def get_pol_expl_lang(pol, lang):
   if pol == "ISPV":
     return lu.pol_to_expl_ISPV_str[lang]
 
-
 def get_pol_name_lang(pol, lang):
   if pol == "ExPS":
     return lu.pol_to_name_ExPS_str[lang]
@@ -1037,7 +1019,6 @@ def get_pol_name_lang(pol, lang):
   if pol == "ISPV":
     return lu.pol_to_name_ISPV_str[lang]
 
-
 @anvil.server.callable
 def get_policy_budgets(reg, ta, yr, cid, lang):
   TA = mg.pov_to_Poverty[ta]
@@ -1066,16 +1047,9 @@ def get_policy_budgets(reg, ta, yr, cid, lang):
     pol_gl = pol["gl"]
 
     fdz = {
-      "pol_name": pol_name,
-      "pol_expl": pol_expl,
-      "pol_tltl": pol_tltl,
-      "pol_gl": pol_gl,
-      "pol_abbr": pol_abbr,
-      "slide_val": slide_val,
-    }
+      "pol_name": pol_name,   "pol_expl": pol_expl,   "pol_tltl": pol_tltl,   "pol_gl": pol_gl,   "pol_abbr": pol_abbr,   "slide_val": slide_val, }
     pol_list.append(fdz)
   return pol_list
-
 
 ##############################
 ##############################
@@ -1084,8 +1058,6 @@ def get_policy_budgets(reg, ta, yr, cid, lang):
 # Created on Thu 05 Dec 2024 18:12:02
 # changed to running rounds from April 04, 2025
 # @author: U Goluke
-
-
 def STEP(zeit, amt, start):
   #    print(zeit,' ',amt,' ',start)
   if zeit < start:
@@ -1095,20 +1067,8 @@ def STEP(zeit, amt, start):
   #    st.write('zeit=',zeit,' amt=',amt,' start=',start, 'back=',back)
   return back
 
-
 def SAMPLE_IF_TRUE(zeit, a, t, f, i):
-  var_sampeld = np.float64([
-    1.11495,
-    1.04327,
-    1.2296,
-    1.07187,
-    1.07767,
-    1.08293,
-    1.14946,
-    1.07685,
-    1.08014,
-    1.09736,
-  ])
+  var_sampeld = np.float64([1.11495,1.04327,1.2296,1.07187,1.07767,1.08293,1.14946,1.07685,1.08014,1.09736,])
   if zeit < a:
     return f
   elif zeit == a:
@@ -1117,13 +1077,11 @@ def SAMPLE_IF_TRUE(zeit, a, t, f, i):
   else:
     return var_sampeld[i]
 
-
 def ZIDZ(a, b):
   if b < 1e-06 and b > -1e-06:
     return 0.0
   else:
     return a / b
-
 
 def PULSE_TRAIN(zeit, first, duration, every, height):
   s = list(range(first, 2100, every))
@@ -1134,19 +1092,13 @@ def PULSE_TRAIN(zeit, first, duration, every, height):
     )
   if zeit < first:
     return 0
-  if (
-    (zeit >= s[0] and zeit < e[0])
-    or (zeit >= s[1] and zeit < e[1])
-    or (zeit >= s[2] and zeit < e[2])
-  ):
+  if ((zeit >= s[0] and zeit < e[0]) or (zeit >= s[1] and zeit < e[1]) or (zeit >= s[2] and zeit < e[2])):
     return height
   else:
     return 0
 
-
 def SQRT(a):
   return np.sqrt(a)
-
 
 def GRAPH(x, xarr, yarr):
   last = len(xarr) - 1
@@ -1160,36 +1112,21 @@ def GRAPH(x, xarr, yarr):
     print("x not monotonically increasing <0")
   return np.interp(x, xarr, yarr)
 
-
 def IF_THEN_ELSE(c, t, f):
   if c:
     return t
   else:
     return f
 
-
 @anvil.server.callable
 def launch_ugregmod(game_id, von, bis):
-  task = anvil.server.launch_background_task("ugregmod", game_id, von, bis)
+#  task = anvil.server.launch_background_task("ugregmod", game_id, von, bis)
+  task = anvil.server.launch_background_task("urm", game_id, von, bis)
   return task
 
-
 def get_sorted_pol_list(cid, runde, pol):
-  r_to_x = {
-    "us": 0,
-    "af": 1,
-    "cn": 2,
-    "me": 3,
-    "sa": 4,
-    "la": 5,
-    "pa": 6,
-    "ec": 7,
-    "eu": 8,
-    "se": 9,
-  }
-  rows = app_tables.roles_assign.search(
-    game_id=cid, round=runde, pol=pol
-  )  # in production also use game_id
+  r_to_x = {"us": 0,"af": 1,"cn": 2,"me": 3,"sa": 4,"la": 5,"pa": 6,"ec": 7,"eu": 8,"se": 9}
+  rows = app_tables.roles_assign.search(game_id=cid, round=runde, pol=pol)  # in production also use game_id
   dic = {}
   for row in rows:
     rreg2 = r_to_x[row["reg"]]
@@ -1202,61 +1139,155 @@ def get_sorted_pol_list(cid, runde, pol):
   print(pol_list)
   return pol_list
 
+@anvil.server.background_task
+def urm(game_id, von, bis):
+  if von == 2025:
+    runde = 1
+  elif von == 2040:
+    runde = 2
+  elif von == 2060:
+    runde = 3
+  else:
+    print("von not 2025 | 2040 | 2060")
+  mdf_play_full = read_mdfplay_full("mdf_play.npy", runde)
+  #    print('loaded mdf_play full.npy')
+  #    print(nun)
+  ff = data_files["ch.npy"]
+  ch = np.load(ff)
+  #    ch = np.load('ch.npy')
+  ff = data_files["chtab.npy"]
+  dt = 1 / 32
+  start_tick = 1
+  if von == 2025 and bis == 2040:
+    howlong = 40
+    ff = data_files["row2025.npy"]
+    row_start = np.load(ff)
+    #        row_start = np.load('row2025.npy')
+    start_mod = von
+    zeit = start_mod
+    end_mod = bis
+    time_slots = int((end_mod - start_mod) * 1 / dt + 1)
+    cols = len(ch)
+    # set up the data matrix with ALL columns and rows according to current timeslots
+    mdf = np.full((time_slots, cols), np.nan)
+    tid = np.linspace(start_mod, end_mod, time_slots)
+    mdf[:, 0] = tid
+    mdf[0, :] = row_start
+    start_tick_in_mdf_play = int((von - 1980) / dt + 1)
+    end_tick = int((bis - von) / dt + 1)
+    print("r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+  elif von == 2040 and bis == 2060:
+    howlong = 60
+    s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+    s_row_elem = s_row["start_row_data"]
+    row_start = pickle.loads(s_row_elem.get_bytes())
+    #        row_start = np.load('row2040.npy')
+    s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
+    s_row_elem = s_row["mdf_play"]
+    mdf_play = pickle.loads(s_row_elem.get_bytes())
+    start_mod = von
+    zeit = start_mod
+    end_mod = bis
+    time_slots = int((end_mod - start_mod) * 1 / dt + 1)
+    cols = len(ch)
+    # set up the data matrix with ALL columns and rows according to current timeslots
+    mdf = np.full((time_slots, cols), np.nan)
+    tid = np.linspace(start_mod, end_mod, time_slots)
+    mdf[:, 0] = tid
+    mdf[0, :] = row_start
+    start_tick_in_mdf_play = int((von - 1980) / dt + 1)
+    end_tick = int((bis - von) / dt + 1)
+    print("r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+  elif von == 2060 and bis == 2100:
+    howlong = 21
+    s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
+    s_row_elem = s_row["start_row_data"]
+    row_start = pickle.loads(s_row_elem.get_bytes())
+    s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
+    s_row_elem = s_row["mdf_play"]
+    mdf_play = pickle.loads(s_row_elem.get_bytes())
+    print("in ugregmod von=2060")
+    start_mod = von
+    zeit = start_mod
+    end_mod = bis
+    time_slots = int((end_mod - start_mod) * 1 / dt + 1)
+    cols = len(ch)
+    # set up the data matrix with ALL columns and rows according to current timeslots
+    mdf = np.full((time_slots, cols), np.nan)
+    tid = np.linspace(start_mod, end_mod, time_slots)
+    mdf[:, 0] = tid
+    mdf[0, :] = row_start
+    start_tick_in_mdf_play = int((von - 1980) / dt + 1)
+    end_tick = int((bis - von) / dt + 1)
+    print("r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+  else:
+    print("We have a problem in def run_game with von and bis")
+
+  ###################
+  #
+  # loop to run the model
+  #
+  yr = int(zeit)
+  for rowi in range(start_tick, end_tick):
+    zeit = zeit + dt
+    jjyr = rowi - 1
+    if jjyr % 32 == 0:
+      anvil.server.task_state["Year"] = yr
+      yr += 1
+
+    ##########
+    ###        save output variables
+    ##########
+
+    colmdf = 1
+    for uf in range(1, 405):
+      if rowi == 1:
+        a2 = mdf_play_full[start_tick_in_mdf_play - 1, uf] * 1.1
+      else:
+        a2 = mdf_play_full[start_tick_in_mdf_play - 1, uf]
+      mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
+      colmdf += 1
+
+    start_tick_in_mdf_play += 1
+
+  ##### END loop
+  # make sure I save the entire ndarray
+  mdf_new_full = mdf_play_full
+  print(mdf_new_full.shape)
+  if howlong == 40:
+    mdf_play = mdf_new_full[0:1920, :]
+    row2040 = mdf[480, :]
+    amo = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(row2040), )
+    amo2 = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(mdf_new_full), )
+    app_tables.game_files.add_row(
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2040, )
+  elif howlong == 60:
+    mdf_play = mdf_new_full[0:2560, :]
+    row2060 = mdf[640, :]
+    amo = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(row2060), )
+    amo2 = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(mdf_new_full), )
+    app_tables.game_files.add_row(
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
+  elif howlong == 21:
+    row2100 = mdf[1280, :]
+    amo = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(row2100), )
+    amo2 = anvil.BlobMedia(
+      "text/plain",   pickle.dumps(mdf_new_full), )
+    app_tables.game_files.add_row(
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
-  anvil.server.task_state["Year"] = von
-  anvil.server.task_state["load"] = "... loading constants, policies, ..."
+#  anvil.server.task_state["Year"] = von
+#  anvil.server.task_state["load"] = "... loading constants, policies, ..."
   #    my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green','orange']
-  plot_glob = [
-    "Temp surface anomaly compared to 1850 degC",
-    "pH in surface",
-    "TROP with normal cover",
-    "Planetary risk",
-  ]
-  plot_reg = [
-    "Energy footprint pp",
-    "Fraction of population undernourished",
-    "Cost_per_regional_poverty_policy",
-    "RoC in Forest land",
-    "Total energy use per GDP",
-    "Years of schooling",
-    "All SDG Scores",
-    "RoC Populated land",
-    "Public services pp",
-    "Safe sanitation",
-    "Smoothed RoC in GDPpp",
-    "Fraction of population below existential minimum",
-    "Regenerative cropland fraction",
-    "Total government revenue as a proportion of GDP",
-    "El from wind and PV",
-    "Labour share of GDP",
-    "Cropland",
-    "Smoothed Social tension index with trust effect",
-    "LPB investment share",
-    "Food footprint kgN ppy",
-    "Life expectancy at birth",
-    "GenderEquality",
-    "Social trust",
-    "Total CO2 emissions",
-    "Social trust",
-    "Safe water",
-    "Access to electricity",
-    "Carbon intensity",
-    "Disposable income pp post tax pre loan impact",
-    "Population",
-    "Average wellbeing index",
-    "Local private and govt investment share",
-    "Unemployment rate smoothed",
-    "Renewable energy share in the total final energy consumption",
-    "GDP USED",
-    "Nitrogen use per ha",
-    "Budget_for_all_TA_per_region",
-    "Cost_per_regional_inequality_policy",
-    "Cost_per_regional_empowerment_policy",
-    "Cost_per_regional_food_policy",
-    "Cost_per_regional_energy_policy",
-  ]
+  plot_glob = ["Temp surface anomaly compared to 1850 degC","pH in surface","TROP with normal cover","Planetary risk"]
+  plot_reg = ["Energy footprint pp","Fraction of population undernourished","Cost_per_regional_poverty_policy","RoC in Forest land","Total energy use per GDP", "Years of schooling","All SDG Scores","RoC Populated land","Public services pp","Safe sanitation","Smoothed RoC in GDPpp", "Fraction of population below existential minimum","Regenerative cropland fraction","Total government revenue as a proportion of GDP", "El from wind and PV","Labour share of GDP","Cropland","Smoothed Social tension index with trust effect", "LPB investment share","Food footprint kgN ppy","Life expectancy at birth","GenderEquality","Social trust","Total CO2 emissions", "Social trust","Safe water","Access to electricity","Carbon intensity","Disposable income pp post tax pre loan impact","Population", "Average wellbeing index","Local private and govt investment share","Unemployment rate smoothed","Renewable energy share in the total final energy consumption", "GDP USED","Nitrogen use per ha","Budget_for_all_TA_per_region","Cost_per_regional_inequality_policy","Cost_per_regional_empowerment_policy", "Cost_per_regional_food_policy","Cost_per_regional_energy_policy"]
 
   pg = []
   pr = []
@@ -1274,8 +1305,6 @@ def ugregmod(game_id, von, bis):
     pr.append(v)
   plot_reg = list(dict.fromkeys(pr))
 
-  # os.chdir("C:\\Users\\ekj26\\PycharmProjects\\pythonProject\\.venv")
-  #
   ## policies for each round. ______R[1|2|3]_via_Excel to be read in
   ## from anvil DB
   StrUP_policy_Max = 3
@@ -1634,1264 +1663,186 @@ def ugregmod(game_id, von, bis):
   #
   #    Capital_output_ratio_in_1980 = ([3, 8, 1.6, 8, 8, 6, 4, 5, 3, 8])
   Employed_in_1980 = [103, 139, 494, 41, 322, 114, 92, 163, 194, 128]
-  SoE_of_inventory_on_indicated_hours_worked_index = [
-    -1,
-    -1,
-    -0.6,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-  ]
+  SoE_of_inventory_on_indicated_hours_worked_index = [-1, -1, -0.6, -1, -1, -1, -1, -1, -1, -1]
   #    Perceived_relative_inventory_in_1980 = ([1, 1, 1, 1, 0.89, 0.8, 0.89, 1, 0.8, 1])
   #    Cohort_0_to_4_in_1980 = (
   #        [16.907701, 66.801562, 103.943347, 31.569206, 135.398637, 51.48271, 17.468252, 30.095115, 36.461211,
   #        52.640757])
-  Cohort_10_to_14_in_1980 = [
-    18.937472,
-    43.940929,
-    133.948072,
-    22.767273,
-    103.455397,
-    43.046737,
-    19.352604,
-    26.373505,
-    40.038377,
-    44.788868,
-  ]
-  Cohort_15_to_19_in_1980 = [
-    21.517461,
-    37.081781,
-    110.482973,
-    19.527712,
-    92.45383,
-    38.903513,
-    18.357064,
-    28.52345,
-    40.461573,
-    39.511144,
-  ]
-  Cohort_5_to_9_in_1980 = [
-    17.16009,
-    53.164399,
-    128.476879,
-    26.126713,
-    116.397822,
-    46.652054,
-    20.355446,
-    28.12971,
-    37.948148,
-    48.979344,
-  ]
-  Cohort_20_to_24_in_1980 = [
-    21.8119,
-    30.9356,
-    90.8949,
-    16.2883,
-    80.2574,
-    33.0054,
-    17.9121,
-    29.3363,
-    38.3132,
-    33.8076,
-  ]
-  Cohort_25_to_29_in_1980 = [
-    20.1388,
-    25.7601,
-    93.9462,
-    13.5363,
-    68.8477,
-    27.871,
-    16.9721,
-    27.0832,
-    35.9392,
-    27.1812,
-  ]
-  Cohort_30_to_34_in_1980 = [
-    17.9741,
-    21.4953,
-    66.5902,
-    10.1467,
-    54.7314,
-    22.3587,
-    18.112,
-    21.9265,
-    34.3898,
-    20.3428,
-  ]
-  Cohort_35_to_39_in_1980 = [
-    14.1212,
-    18.1089,
-    51.7003,
-    8.11063,
-    47.8514,
-    18.4678,
-    15.4939,
-    15.9304,
-    29.6731,
-    17.5491,
-  ]
-  Cohort_40to_44_in_1980 = [
-    12.0704,
-    15.1989,
-    49.1493,
-    7.57296,
-    43.0932,
-    16.0675,
-    13.9846,
-    23.9835,
-    29.6751,
-    16.2267,
-  ]
-  Cohort_45_to_49_in_1980 = [
-    11.2448,
-    12.9651,
-    45.6996,
-    6.93185,
-    37.0717,
-    13.7945,
-    12.771,
-    18.9808,
-    28.5509,
-    14.2525,
-  ]
-  Cohort_50_to_54_in_1980 = [
-    11.8282,
-    10.7494,
-    38.8158,
-    5.90496,
-    31.0911,
-    12.1465,
-    11.2918,
-    21.2099,
-    27.634,
-    11.6688,
-  ]
-  Cohort_55_to_59_in_1980 = [
-    11.7494,
-    8.77535,
-    32.7015,
-    4.77509,
-    25.2041,
-    9.80378,
-    9.31261,
-    14.8069,
-    26.0149,
-    9.27789,
-  ]
-  Cohort_60to_64_in_1980 = [
-    10.3383,
-    6.85514,
-    28.8279,
-    3.5816,
-    19.5622,
-    7.63257,
-    7.39933,
-    9.67908,
-    17.9898,
-    7.30147,
-  ]
-  Cohort_65_to_69_in_1980 = [
-    9.05561,
-    4.99637,
-    21.6784,
-    2.67587,
-    14.1206,
-    6.14692,
-    6.37421,
-    11.5565,
-    20.9206,
-    5.76418,
-  ]
-  Cohort_70_to_74_in_1980 = [
-    7.12572,
-    3.26783,
-    13.93,
-    1.9277,
-    9.35538,
-    4.35627,
-    4.72676,
-    8.85296,
-    17.7072,
-    3.98601,
-  ]
-  Cohort_75_to_79_in_1980 = [
-    5.33309,
-    1.78414,
-    7.96522,
-    1.14022,
-    5.04137,
-    2.7543,
-    3.06813,
-    5.64866,
-    12.3354,
-    2.32888,
-  ]
-  Cohort_80_to_84_in_1980 = [
-    2.9033,
-    0.730893,
-    3.1889,
-    0.527981,
-    2.38067,
-    1.44232,
-    1.65191,
-    2.70643,
-    6.80679,
-    1.07722,
-  ]
-  Cohort_85_to_89_in_1980 = [
-    1.65033,
-    0.193374,
-    0.968024,
-    0.168828,
-    0.729614,
-    0.527403,
-    0.665821,
-    1.10846,
-    2.78283,
-    0.360152,
-  ]
-  Cohort_90_to_94_in_1980 = [
-    0.564662,
-    0.02922,
-    0.173605,
-    0.0348,
-    0.187232,
-    0.145646,
-    0.185384,
-    0.364529,
-    0.791019,
-    0.085622,
-  ]
-  Cohort_95p_in_1980 = [
-    0.134325,
-    0.002834,
-    0.020406,
-    0.004407,
-    0.033359,
-    0.029358,
-    0.031645,
-    0.075015,
-    0.13436,
-    0.015641,
-  ]
+#  Cohort_10_to_14_in_1980 = [18.937472, 43.940929, 133.948072, 22.767273, 103.455397, 43.046737, 19.352604, 26.373505, 40.038377, 44.788868]
+#  Cohort_15_to_19_in_1980 = [21.517461, 37.081781, 110.482973, 19.527712, 92.45383, 38.903513, 18.357064, 28.52345, 40.461573, 39.511144]
+#  Cohort_5_to_9_in_1980 = [17.16009, 53.164399, 128.476879, 26.126713, 116.397822, 46.652054, 20.355446, 28.12971, 37.948148, 48.979344]
+#  Cohort_20_to_24_in_1980 = [21.8119, 30.9356, 90.8949, 16.2883, 80.2574, 33.0054, 17.9121, 29.3363, 38.3132, 33.8076]
+#  Cohort_25_to_29_in_1980 = [20.1388, 25.7601, 93.9462, 13.5363, 68.8477, 27.871, 16.9721, 27.0832, 35.9392, 27.1812]
+#  Cohort_30_to_34_in_1980 = [17.9741, 21.4953, 66.5902, 10.1467, 54.7314, 22.3587, 18.112, 21.9265, 34.3898, 20.3428]
+#  Cohort_35_to_39_in_1980 = [14.1212, 18.1089, 51.7003, 8.11063, 47.8514, 18.4678, 15.4939, 15.9304, 29.6731, 17.5491]
+#  Cohort_40to_44_in_1980 = [12.0704, 15.1989, 49.1493, 7.57296, 43.0932, 16.0675, 13.9846, 23.9835, 29.6751, 16.2267]
+#  Cohort_45_to_49_in_1980 = [11.2448, 12.9651, 45.6996, 6.93185, 37.0717, 13.7945, 12.771, 18.9808, 28.5509, 14.2525]
+#  Cohort_50_to_54_in_1980 = [11.8282, 10.7494, 38.8158, 5.90496, 31.0911, 12.1465, 11.2918, 21.2099, 27.634, 11.6688]
+#  Cohort_55_to_59_in_1980 = [11.7494, 8.77535, 32.7015, 4.77509, 25.2041, 9.80378, 9.31261, 14.8069, 26.0149, 9.27789]
+#  Cohort_60to_64_in_1980 = [10.3383, 6.85514, 28.8279, 3.5816, 19.5622, 7.63257, 7.39933, 9.67908, 17.9898, 7.30147]
+#  Cohort_65_to_69_in_1980 = [9.05561, 4.99637, 21.6784, 2.67587, 14.1206, 6.14692, 6.37421, 11.5565, 20.9206, 5.76418]
+#  Cohort_70_to_74_in_1980 = [7.12572, 3.26783, 13.93, 1.9277, 9.35538, 4.35627, 4.72676, 8.85296, 17.7072, 3.98601]
+#  Cohort_75_to_79_in_1980 = [5.33309, 1.78414, 7.96522, 1.14022, 5.04137, 2.7543, 3.06813, 5.64866, 12.3354, 2.32888]
+#  Cohort_80_to_84_in_1980 = [2.9033, 0.730893, 3.1889, 0.527981, 2.38067, 1.44232, 1.65191, 2.70643, 6.80679, 1.07722]
+#  Cohort_85_to_89_in_1980 = [1.65033, 0.193374, 0.968024, 0.168828, 0.729614, 0.527403, 0.665821, 1.10846, 2.78283, 0.360152]
+#  Cohort_90_to_94_in_1980 = [0.564662, 0.02922, 0.173605, 0.0348, 0.187232, 0.145646, 0.185384, 0.364529, 0.791019, 0.085622]
+#  Cohort_95p_in_1980 = [0.134325, 0.002834, 0.020406, 0.004407, 0.033359, 0.029358, 0.031645, 0.075015, 0.13436, 0.015641]
   cereal_dmd_func_pp_L = [220, 250, 199, 230, 290, 200, 250, 250, 250, 275]
   cereal_dmd_func_pp_k = [0.06, 0.3, 0.1, 0.081, 0.19, 0.078, 0.01, 0.01, 0.0189, 0.3]
   cereal_dmd_func_pp_x0 = [10, 3, 1, -6.46, 1, 1.1368, 1, -50, -2.2, 2]
   Food_wasted_in_1980 = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
-  Unemployment_in_1980 = [8, 10, 35, 5, 10, 5, 5, 5, 15, 10]
+#  Unemployment_in_1980 = [8, 10, 35, 5, 10, 5, 5, 5, 15, 10]
   Life_expec_a = [47, 36, 64, 40, 57, 40, 53, 47, 35, 58]
   Life_expec_b = [10, 15, 7, 10, 8, 10, 8, 10, 13, 8]
-  Life_expectancy_at_birth_in_1980 = [
-    73.8,
-    48.5,
-    66.8,
-    58.2,
-    54,
-    64.5,
-    73.3,
-    66.8,
-    72,
-    60.4,
-  ]
+  Life_expectancy_at_birth_in_1980 = [73.8, 48.5, 66.8, 58.2, 54, 64.5, 73.3, 66.8, 72, 60.4]
   Pension_age_in_1980 = [65, 65, 65, 65, 65, 65, 65, 65, 65, 65]
   SoE_of_LE_on_Pension_age = [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6]
   Indicated_WACC_fraction = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
   OSF_in_1980 = [0.8, 0.2, 0.45, 0.4, 0.3, 0.4, 0.85, 0.4, 0.8, 0.3]
-  Fraction_multiple_of_regional_GDP_as_owners_wealth_in_1980 = [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-  ]
+#  Fraction_multiple_of_regional_GDP_as_owners_wealth_in_1980 = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
   toe_to_CO2_a = [2.7, 2.8, 2.6, 2.16, 2.4, 2.37, 2, 3, 2.1, 2.1]
   Fossil_use_pp_NOT_for_El_gen_WO_CN_L = [5.7, 4, 4, 3.5, 4, 3.5, 3.5, 4, 9.7, 4]
-  Fossil_use_pp_NOT_for_El_gen_WO_CN_k = [
-    -0.06,
-    0.25,
-    0.01,
-    0.055,
-    0.197,
-    0.027,
-    0.0395,
-    0.05,
-    -0.0205,
-    0.1,
-  ]
-  Fossil_use_pp_NOT_for_El_gen_WO_CN_x0 = [
-    80,
-    15,
-    1,
-    22.03,
-    16.81,
-    60,
-    6.134,
-    20,
-    -25,
-    26.5,
-  ]
+  Fossil_use_pp_NOT_for_El_gen_WO_CN_k = [-0.06, 0.25, 0.01, 0.055, 0.197, 0.027, 0.0395, 0.05, -0.0205, 0.1]
+  Fossil_use_pp_NOT_for_El_gen_WO_CN_x0 = [80, 15, 1, 22.03, 16.81, 60, 6.134, 20, -25, 26.5]
   Hydro_gen_cap_L = [85, 100, 500, 13, 80, 200, 150, 84, 200, 65]
   Hydro_gen_cap_k = [0.045, 0.4, 0.3, 0.15, 0.25, 0.3, 0.04, 0.08, 0.045, 0.3]
   Hydro_gen_cap_x0 = [12, 7.2, 11, 8, 4, 6, -2, 6, 12, 7.5]
   Hydrocapacity_factor = [0.45, 0.45, 0.41, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45]
-  Fossil_el_gen_cap_in_1980 = [200, 30, 50, 30, 10, 25, 70, 160, 160, 20]
+#  Fossil_el_gen_cap_in_1980 = [200, 30, 50, 30, 10, 25, 70, 160, 160, 20]
   Fossil_actual_uptime_factor = [0.82, 1, 1, 1, 1, 1, 1, 1, 0.81, 1]
   Conversion_Mtoe_to_TWh = [4, 4, 4, 4, 4, 4.5, 5, 4.5, 4, 4]
   toe_to_CO2_b = [1, 0, -0.0036, 0.1599, 0.1, 0.15, 0.8, 0.0347, 1, 0.1]
-  CO2_emi_from_IPC2_use_a = [
-    -0.132,
-    0.0494,
-    0.7005,
-    0.2,
-    0.0882,
-    0.1347,
-    0.0352,
-    -0.056,
-    -0.038,
-    0.1055,
-  ]
-  CO2_emi_from_IPC2_use_b = [
-    0.7855,
-    -0.0029,
-    -0.5722,
-    -0.35,
-    0.0396,
-    -0.1619,
-    0.0264,
-    0.4819,
-    0.4481,
-    -0.0839,
-  ]
-  Govt_debt_initially_as_frac_of_NI = [0.5, 1, 0.2, 1, 1, 1, 1, 1, 1, 1]
-  Central_bank_signal_rate_in_1980 = [
-    0.13,
-    0.1,
-    0.1,
-    0.13,
-    0.13,
-    0.13,
-    0.13,
-    0.13,
-    0.13,
-    0.13,
-  ]
+  CO2_emi_from_IPC2_use_a = [-0.132, 0.0494, 0.7005, 0.2, 0.0882, 0.1347, 0.0352, -0.056, -0.038, 0.1055]
+  CO2_emi_from_IPC2_use_b = [0.7855, -0.0029, -0.5722, -0.35, 0.0396, -0.1619, 0.0264, 0.4819, 0.4481, -0.0839]
+#  Govt_debt_initially_as_frac_of_NI = [0.5, 1, 0.2, 1, 1, 1, 1, 1, 1, 1]
+#  Central_bank_signal_rate_in_1980 = [0.13, 0.1, 0.1, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13, 0.13]
   Reference_max_govt_debt_burden = [2, 2, 1.25, 2, 2, 2, 2, 2, 2, 2]
-  GE_in_1980 = [0.3, 0.2, 0.4, 0.1, 0.17, 0.3, 0.28, 0.38, 0.28, 0.25]
-  oth_crop_dmd_pp_a = [
-    61.5666,
-    155.265,
-    218.985,
-    103.477,
-    89.3181,
-    713.147,
-    44.8079,
-    -63.6056,
-    -118.483,
-    113.732,
-  ]
-  oth_crop_dmd_pp_b = [
-    351.895,
-    288.935,
-    157.457,
-    149.41,
-    322.62,
-    -129.904,
-    285.873,
-    820.263,
-    1183.46,
-    280.016,
-  ]
-  Barren_land_in_1980 = [
-    59.725,
-    598.224,
-    302.224,
-    532.885,
-    61.2205,
-    231.005,
-    562.628,
-    75.1457,
-    225.261,
-    15.9273,
-  ]
+#  GE_in_1980 = [0.3, 0.2, 0.4, 0.1, 0.17, 0.3, 0.28, 0.38, 0.28, 0.25]
+  oth_crop_dmd_pp_a = [61.5666, 155.265, 218.985, 103.477, 89.3181, 713.147, 44.8079, -63.6056, -118.483, 113.732]
+  oth_crop_dmd_pp_b = [351.895, 288.935, 157.457, 149.41, 322.62, -129.904, 285.873, 820.263, 1183.46, 280.016]
+#  Barren_land_in_1980 = [59.725, 598.224, 302.224, 532.885, 61.2205, 231.005, 562.628, 75.1457, 225.261, 15.9273]
   Normal_signal_rate = [0.02, 0.04, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02]
-  Cropland_in_1980 = [
-    190.624,
-    131.158,
-    100.219,
-    51.67,
-    214.32,
-    138.743,
-    68.646,
-    248.075,
-    145.678,
-    77.2311,
-  ]
-  Forest_land_in_1980 = [
-    257.393,
-    297.096,
-    213.879,
-    50,
-    35.6341,
-    769.077,
-    620.972,
-    1066.66,
-    118.106,
-    234.835,
-  ]
-  Frac_outside_of_labour_pool_in_1980 = [
-    0.52,
-    0.77,
-    0.47,
-    0.69,
-    0.61,
-    0.62,
-    0.55,
-    0.58,
-    0.58,
-    0.53,
-  ]
-  Grazing_land_in_1980 = [
-    237.539,
-    609.232,
-    328.3,
-    227.076,
-    20.209,
-    512.548,
-    513.767,
-    452.092,
-    81.1108,
-    15.133,
-  ]
-  Populated_land_in_1980 = [
-    43.4524,
-    3.612,
-    48.6394,
-    3.82125,
-    6.94276,
-    9.03042,
-    13.6515,
-    2.953,
-    14.5271,
-    6.66976,
-  ]
-  Rate_of_tech_advance_RoTA_in_TFP_in_1980 = [
-    0.019,
-    0.0225,
-    0.05,
-    0.0375,
-    0.06,
-    0.035,
-    0.0275,
-    0.03,
-    0.0225,
-    0.06,
-  ]
-  Worker_debt_ratio_in_1980 = [1, 0.2, 0.2, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]
-  Feed_dmd_a = [
-    79.37,
-    266.31,
-    465.61,
-    91.78,
-    619.57,
-    105.51,
-    23.507,
-    113.92,
-    115.57,
-    169.85,
-  ]
+#  Cropland_in_1980 = [190.624, 131.158, 100.219, 51.67, 214.32, 138.743, 68.646, 248.075, 145.678, 77.2311]
+#  Forest_land_in_1980 = [257.393, 297.096, 213.879, 50, 35.6341, 769.077, 620.972, 1066.66, 118.106, 234.835]
+  Frac_outside_of_labour_pool_in_1980 = [0.52, 0.77, 0.47, 0.69, 0.61, 0.62, 0.55, 0.58, 0.58, 0.53]
+#  Grazing_land_in_1980 = [237.539, 609.232, 328.3, 227.076, 20.209, 512.548, 513.767, 452.092, 81.1108, 15.133]
+#  Populated_land_in_1980 = [43.4524, 3.612, 48.6394, 3.82125, 6.94276, 9.03042, 13.6515, 2.953, 14.5271, 6.66976]
+#  Rate_of_tech_advance_RoTA_in_TFP_in_1980 = [0.019, 0.0225, 0.05, 0.0375, 0.06, 0.035, 0.0275, 0.03, 0.0225, 0.06]
+#  Worker_debt_ratio_in_1980 = [1, 0.2, 0.2, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]
+  Feed_dmd_a = [79.37, 266.31, 465.61, 91.78, 619.57, 105.51, 23.507, 113.92, 115.57, 169.85]
   red_meat_dmd_func_pp_L = [33.6, 20, 20, 15, 20, 35, 20, 20, 21, 20]
-  red_meat_dmd_func_pp_k = [
-    -0.053,
-    0.13,
-    0.13,
-    0.0469,
-    0.01,
-    0.065,
-    0.01,
-    0.03,
-    -0.044,
-    0.05,
-  ]
+  red_meat_dmd_func_pp_k = [-0.053, 0.13, 0.13, 0.0469, 0.01, 0.065, 0.01, 0.03, -0.044, 0.05]
   red_meat_dmd_func_pp_x0 = [63.233, 7.5, 16, -2.97, 1, -3.03, 1, -35, 49, 37]
   red_meat_dmd_func_pp_min = [20, 0, 0, 0, 0, 0, 0, 0, 5, 0]
-  Desired_net_export_of_red_meat = [
-    0.1,
-    -0.06,
-    -0.06,
-    -0.35,
-    -0.06,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    -0.06,
-  ]
+  Desired_net_export_of_red_meat = [0.1, -0.06, -0.06, -0.35, -0.06, 0.1, 0.1, 0.1, 0.1, -0.06]
   white_meat_dmd_func_pp_L = [120, 50, 50, 50, 20, 65, 70, 65, 58, 50]
   white_meat_dmd_func_pp_k = [0.0313, 0.3, 0.1, 0.122, 0.2, 0.2, 0.04, 0.075, 0.18, 0.1]
   white_meat_dmd_func_pp_x0 = [31.39, 11, 1, 21.97, 14, 10, 31, 17, 11.7, 11]
-  Feed_dmd_b = [
-    -151.9,
-    -267.87,
-    -1104.3,
-    -1.2125,
-    -702.71,
-    -165.85,
-    31.095,
-    -168.57,
-    -180.11,
-    -208.09,
-  ]
+  Feed_dmd_b = [-151.9, -267.87, -1104.3, -1.2125, -702.71, -165.85, 31.095, -168.57, -180.11, -208.09]
   Desired_net_export_of_crops = [0.23, 0, 0, -0.2, 0, 0.3, 0, 0.3, 0.05, 0.4]
-  crop_yield_in_1980 = [2.5, 1.5, 4.8, 1.6, 2, 1.6, 2.33, 1.6, 4.5, 3.2]
-  Fraction_of_supply_imbalance_to_be_closed_by_land = [
-    0.1,
-    1,
-    1,
-    1,
-    1,
-    0.1,
-    0,
-    0.1,
-    0.1,
-    1,
-  ]
+#  crop_yield_in_1980 = [2.5, 1.5, 4.8, 1.6, 2, 1.6, 2.33, 1.6, 4.5, 3.2]
+  Fraction_of_supply_imbalance_to_be_closed_by_land = [0.1, 1, 1, 1, 1, 0.1, 0, 0.1, 0.1, 1]
   Fraction_of_cropland_gap_closed_from_acgl = [1, 1, 1, 1, 1, 1, 0, 1, 1, 1]
   Grazing_land_Rest_L = [300, 720, 393, 300, 300, 300, 300, 300, 100, 300]
   Grazing_land_Rest_k = [0.00344, 0.1, 0.107, 0, 0, 0, 0, 0, 0.0131, 0]
   Grazing_land_Rest_x = [-418, -14, -0.127, 1, 1, 1, 1, 1, -96, 1]
-  Urban_land_per_population = [
-    0.25,
-    0.049,
-    0.036,
-    0.06,
-    0.03,
-    0.06,
-    0.07,
-    0.019,
-    0.06,
-    0.034,
-  ]
+  Urban_land_per_population = [0.25, 0.049, 0.036, 0.06, 0.03, 0.06, 0.07, 0.019, 0.06, 0.034]
   Nuclear_gen_cap_WO_EU_L = [117.5, 2.1, 75, 2, 10, 5, 100, 43, 99, 0]
   Nuclear_gen_cap_WO_EU_k = [0.1, 0.5, 0.3, 0.5, 0.5, 0.3, 0.06, 0.2, 0.1, 0.2]
   Nuclear_gen_cap_WO_EU_x0 = [32.5, 2, 14, 20, 5, 10, 30, 12, 1, 3.5]
   El_use_pp_WO_US_L = [8, 10, 10, 8, 8, 8, 12, 12, 8, 10]
-  El_use_pp_WO_US_k = [
-    0.055,
-    0.3,
-    0.3,
-    0.0939,
-    0.2541,
-    0.0939,
-    0.069,
-    0.075,
-    0.055,
-    0.1,
-  ]
+  El_use_pp_WO_US_k = [0.055, 0.3, 0.3, 0.0939, 0.2541, 0.0939, 0.069, 0.075, 0.055, 0.1]
   El_use_pp_WO_US_x0 = [6.2, 13, 13, 22.6, 13.49, 22.6, 20.34, 26, 6.2, 28]
   Fossil_capacity_factor = [0.45, 0.4, 0.4, 0.4, 0.4, 0.3, 0.4, 0.5, 0.45, 0.4]
   Time_to_close_gap_in_fossil_el_cap = [15, 5, 6, 10, 5, 5, 5, 5, 10, 6]
-  wind_and_PV_el_share_k = [
-    0.128133,
-    0.5,
-    0.4,
-    0.135,
-    0.66707,
-    0.2,
-    0.15,
-    0.367,
-    0.158,
-    0.1,
-  ]
+  wind_and_PV_el_share_k = [0.128133, 0.5, 0.4, 0.135, 0.66707, 0.2, 0.15, 0.367, 0.158, 0.1]
   wind_and_PV_el_share_x0 = [76, 10, 17.5, 45, 7.48978, 24, 60, 32, 46, 35]
-  Fraction_of_supply_imbalance_to_be_closed_by_yield_adjustment = [
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-    0.3,
-  ]
+  Fraction_of_supply_imbalance_to_be_closed_by_yield_adjustment = [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3]
   Nitrogen_use_rest_L = [108, 22.5, 50, 75, 50, 85, 100, 50, 130, 65]
   Nitrogen_use_rest_k = [0.04, 0.6, 0.1, 0.134, 0.1, 0.12, 0.066148, 0.09, 0.016, 0.9]
   Nitrogen_use_rest_x0 = [36.64, 4.4, 1, 10.46, 1, 12.3717, 30.348, 21, -34, 2.5]
-  Capital_labour_ratio_in_1980 = [
-    20000,
-    11000,
-    5000,
-    25000,
-    5000,
-    15000,
-    25000,
-    25000,
-    25000,
-    5000,
-  ]
-  RoC_Capital_labour_ratio_in_1980 = [
-    0.025,
-    0.025,
-    0.05,
-    0.025,
-    0.02,
-    0.02,
-    0.02,
-    0.01,
-    0.025,
-    0.02,
-  ]
-  SoE_of_GDPpp_on_RoC_of_CLR = [
-    0.05,
-    0.3,
-    0.3,
-    0.05,
-    0.05,
-    0.05,
-    0.05,
-    0.05,
-    0.05,
-    0.05,
-  ]
-  CH4_emi_from_agriculture_a = [
-    3,
-    10.342,
-    3.12151,
-    0.8249,
-    10,
-    9.1509,
-    -1.7,
-    8.6162,
-    5.3,
-    4.08118,
-  ]
-  CH4_emi_from_agriculture_b = [
-    1.672,
-    0.605134,
-    14.4031,
-    1.75,
-    5,
-    -1.6894,
-    9.06,
-    -8.3246,
-    -1.75,
-    8.71646,
-  ]
+  Capital_labour_ratio_in_1980 = [20000, 11000, 5000, 25000, 5000, 15000, 25000, 25000, 25000, 5000]
+  RoC_Capital_labour_ratio_in_1980 = [0.025, 0.025, 0.05, 0.025, 0.02, 0.02, 0.02, 0.01, 0.025, 0.02]
+  SoE_of_GDPpp_on_RoC_of_CLR = [0.05, 0.3, 0.3, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+  CH4_emi_from_agriculture_a = [3, 10.342, 3.12151, 0.8249, 10, 9.1509, -1.7, 8.6162, 5.3, 4.08118]
+  CH4_emi_from_agriculture_b = [1.672, 0.605134, 14.4031, 1.75, 5, -1.6894, 9.06, -8.3246, -1.75, 8.71646]
   CH4_emi_from_energy_a = [1, 25, 9.7, 22.561, 3.2, 6.9187, 3.7161, 16, 1, 6]
   CH4_emi_from_energy_b = [1, 0.6, 0.756, 0.5886, -0.2, 0.7615, 0.0535, -0.7615, 1, 0.4]
   CH4_emi_from_waste_a = [-4.858, 1, 1, 3.672, 3, 7.082, -0.235, 1.53, -3.947, 7]
   CH4_emi_from_waste_b = [25.387, 1, 1, -4.58, 1, -11.039, 3.4589, 0.5983, 22.115, -6]
-  N_excreted_a = [
-    7.687,
-    2.3781,
-    0.6,
-    2.308,
-    5.3304,
-    6.2719,
-    9.943,
-    3.439,
-    124.64,
-    1.5105,
-  ]
-  N_excreted_b = [
-    -1.031,
-    -0.018,
-    -0.016,
-    -0.651,
-    -0.506,
-    -0.658,
-    -1.146,
-    -0.742,
-    -1.624,
-    -0.599,
-  ]
-  N2O_emi_from_agri_a = [
-    0.0265,
-    0.036,
-    0.029,
-    0.037,
-    0.0159,
-    0.037,
-    0.0159,
-    0.0263,
-    0.03,
-    0.0228,
-  ]
-  N2O_emi_from_agri_b = [
-    0.6528,
-    0.38,
-    -0.09,
-    -0.024,
-    -0.0934,
-    -0.024,
-    0.042,
-    0.2452,
-    -0.024,
-    0.083,
-  ]
+  N_excreted_a = [7.687, 2.3781, 0.6, 2.308, 5.3304, 6.2719, 9.943, 3.439, 124.64, 1.5105]
+  N_excreted_b = [-1.031, -0.018, -0.016, -0.651, -0.506, -0.658, -1.146, -0.742, -1.624, -0.599]
+  N2O_emi_from_agri_a = [0.0265, 0.036, 0.029, 0.037, 0.0159, 0.037, 0.0159, 0.0263, 0.03, 0.0228]
+  N2O_emi_from_agri_b = [0.6528, 0.38, -0.09, -0.024, -0.0934, -0.024, 0.042, 0.2452, -0.024, 0.083]
   N2O_emi_X_agri_a = [0, 0.0252, 0.0671, 0.007, 0.05, 0.0048, -0.0009, 0.0012, 0, 0.009]
-  N2O_emi_X_agri_b = [
-    0.1,
-    0.0484,
-    0.0035,
-    0.043,
-    0,
-    0.0858,
-    0.2027,
-    0.1361,
-    0.1,
-    0.0309,
-  ]
+  N2O_emi_X_agri_b = [0.1, 0.0484, 0.0035, 0.043, 0, 0.0858, 0.2027, 0.1361, 0.1, 0.0309]
   Annual_pct_deforested = [0.1, 1, 0.3, 1, 0.5, 1, 0.1, 0.3, 0, 1]
-  Slope_of_Corporate_borrowing_cost_eff_on_available_capital = [
-    -0.1,
-    0,
-    0,
-    0,
-    0,
-    -0.4,
-    0,
-    -0.3,
-    -0.1,
-    0,
-  ]
+  Slope_of_Corporate_borrowing_cost_eff_on_available_capital = [-0.1, 0, 0, 0, 0, -0.4, 0, -0.3, -0.1, 0]
   SWITCH_CBC_effect_on_available_capital = [1, 2, 2, 2, 2, 1, 2, 1, 1, 2]
-  birth_rate_a = [
-    0.0982,
-    0.205,
-    0.09,
-    0.232,
-    0.086,
-    1.87,
-    0.1317,
-    0.0418,
-    0.1214,
-    0.1174,
-  ]
-  birth_rate_b = [
-    -0.472,
-    -0.83,
-    -0.01,
-    -0.5599,
-    -1.025,
-    -1.92394,
-    -0.459,
-    -0.042,
-    -0.414,
-    -0.515,
-  ]
+  birth_rate_a = [0.0982, 0.205, 0.09, 0.232, 0.086, 1.87, 0.1317, 0.0418, 0.1214, 0.1174]
+  birth_rate_b = [-0.472, -0.83, -0.01, -0.5599, -1.025, -1.92394, -0.459, -0.042, -0.414, -0.515]
   birth_rate_c = [0.015, 0.0025, 0.01, 0, 0.025, 0.025, 0, 0, 0, 0]
-  Births_effect_from_cohorts_outside_15_to_45 = [
-    1,
-    1.06,
-    0.97,
-    1.03,
-    0.83,
-    0.775,
-    0.93,
-    0.95,
-    1,
-    0.84,
-  ]
-  So_Eff_of_labour_imbalance_on_FOLP = [
-    0.0002,
-    0.012,
-    0.005,
-    0.0003,
-    0.0005,
-    0.0018,
-    0.001,
-    0,
-    0.0003,
-    0.0005,
-  ]
+  Births_effect_from_cohorts_outside_15_to_45 = [1, 1.06, 0.97, 1.03, 0.83, 0.775, 0.93, 0.95, 1, 0.84]
+  So_Eff_of_labour_imbalance_on_FOLP = [0.0002, 0.012, 0.005, 0.0003, 0.0005, 0.0018, 0.001, 0, 0.0003, 0.0005]
   Scaling_strength_of_RoC_from_unemployed_to_pool = [1, 0.95, 1, 1, 1, 1, 1, 1, 1, 1]
   SoE_of_PC_on_RoC_in_change_in_rate_of_tech_advance = [1, 6, 1, 1, 1, 1, 1, 1, 1, 1]
-  SoE_of_tertiary_sector_on_RoC_in_TFP = [
-    -0.06,
-    -0.05,
-    -0.05,
-    -0.05,
-    -0.05,
-    -0.05,
-    -0.06,
-    -0.05,
-    -0.05,
-    -0.06,
-  ]
-  Perceived_inflation_in_1980 = [
-    0.15,
-    0.08,
-    0.08,
-    0.1,
-    0.18,
-    0.15,
-    0.1,
-    0.15,
-    0.15,
-    0.08,
-  ]
+  SoE_of_tertiary_sector_on_RoC_in_TFP = [-0.06, -0.05, -0.05, -0.05, -0.05, -0.05, -0.06, -0.05, -0.05, -0.06]
+#  Perceived_inflation_in_1980 = [0.15, 0.08, 0.08, 0.1, 0.18, 0.15, 0.1, 0.15, 0.15, 0.08]
   Inflation_target = [0.02, 0.05, 0.035, 0.035, 0.05, 0.05, 0.02, 0.03, 0.02, 0.025]
   SWITCH_unemp_target_or_long_term = [1, 1, 1, 2, 1, 2, 1, 1, 1, 2]
-  Unemployment_target_for_interest = [
-    0.05,
-    0.07,
-    0.07,
-    0.03,
-    0.07,
-    0.03,
-    0.03,
-    0.03,
-    0.05,
-    0.04,
-  ]
+  Unemployment_target_for_interest = [0.05, 0.07, 0.07, 0.03, 0.07, 0.03, 0.03, 0.03, 0.05, 0.04]
   Indicated_crop_yield_rest_L = [6.24, 4.6, 15, 4.5, 10, 12, 5, 6, 12, 11]
-  Indicated_crop_yield_rest_k = [
-    0.0508,
-    0.3,
-    0.012,
-    0.15,
-    0.0198,
-    0.1,
-    0.027,
-    0.06,
-    0.085,
-    0.03171,
-  ]
+  Indicated_crop_yield_rest_k = [0.0508, 0.3, 0.012, 0.15, 0.0198, 0.1, 0.027, 0.06, 0.085, 0.03171]
   Indicated_crop_yield_rest_x0 = [59.34, 6.2, 150, 32, 88, 30, 30, 30, 97, 1]
-  dr0_a = [
-    0.2044,
-    0.0968,
-    0.0239721,
-    0.0970563,
-    0.0463457,
-    0.760547,
-    0.172593,
-    0.0548485,
-    0.342607,
-    0.0581034,
-  ]
-  dr0_b = [
-    -1.221,
-    -1.119,
-    -0.759395,
-    -0.924117,
-    -0.986135,
-    -1.98658,
-    -1.26419,
-    -0.715971,
-    -1.33556,
-    -1.04907,
-  ]
-  dr35_a = [
-    0.0053,
-    0.016668,
-    0.00267271,
-    0.0137294,
-    0.00510275,
-    0.0141353,
-    0.0164776,
-    0.00768488,
-    0.00967385,
-    0.00712475,
-  ]
-  dr35_b = [
-    -0.292,
-    -0.621721,
-    -0.332791,
-    -0.749027,
-    -0.41194,
-    -0.692944,
-    -0.759418,
-    -0.265449,
-    -0.588911,
-    -0.480438,
-  ]
-  dr40_a = [
-    0.0128,
-    0.0180344,
-    0.00371472,
-    0.0156144,
-    0.00678361,
-    0.0202697,
-    0.0163656,
-    0.0131108,
-    0.0111224,
-    0.00827057,
-  ]
-  dr40_b = [
-    -0.437,
-    -0.559318,
-    -0.319419,
-    -0.688518,
-    -0.407372,
-    -0.735979,
-    -0.640284,
-    -0.351418,
-    -0.504529,
-    -0.400984,
-  ]
-  dr50_a = [
-    0.0442,
-    0.022758,
-    0.00955783,
-    0.0277957,
-    0.0139832,
-    0.0330396,
-    0.0295831,
-    0.0403044,
-    0.0235237,
-    0.0138102,
-  ]
-  dr50_b = [
-    -0.54,
-    -0.413595,
-    -0.360736,
-    -0.547992,
-    -0.343307,
-    -0.650265,
-    -0.570757,
-    -0.515076,
-    -0.46261,
-    -0.283289,
-  ]
-  dr55_a = [
-    0.0873,
-    0.0282151,
-    0.0148174,
-    0.034803,
-    0.0208927,
-    0.0467877,
-    0.0442172,
-    0.0414436,
-    0.0383174,
-    0.0195808,
-  ]
-  dr55_b = [
-    -0.611,
-    -0.363389,
-    -0.331583,
-    -0.487561,
-    -0.330148,
-    -0.636649,
-    -0.556872,
-    -0.382674,
-    -0.481035,
-    -0.257094,
-  ]
-  dr60_a = [
-    0.2076,
-    0.0394868,
-    0.0247627,
-    0.0448349,
-    0.0345093,
-    0.0729714,
-    0.074377,
-    0.0499546,
-    0.0654207,
-    0.0325169,
-  ]
-  dr60_b = [
-    -0.73,
-    -0.320545,
-    -0.280082,
-    -0.393731,
-    -0.37166,
-    -0.651625,
-    -0.575179,
-    -0.322127,
-    -0.512493,
-    -0.301312,
-  ]
-  dr65_a = [
-    0.3796,
-    0.0569518,
-    0.0376463,
-    0.0679361,
-    0.0504093,
-    0.106026,
-    0.12198,
-    0.0611206,
-    0.111736,
-    0.0550353,
-  ]
-  dr65_b = [
-    -0.787,
-    -0.277367,
-    -0.218713,
-    -0.374043,
-    -0.332814,
-    -0.638809,
-    -0.591236,
-    -0.269116,
-    -0.542689,
-    -0.340119,
-  ]
-  dr70_a = [
-    0.572,
-    0.087954,
-    0.0667662,
-    0.103967,
-    0.0739432,
-    0.158873,
-    0.192363,
-    0.0884276,
-    0.191794,
-    0.0888564,
-  ]
-  dr70_b = [
-    -0.785,
-    -0.254721,
-    -0.205684,
-    -0.33058,
-    -0.283363,
-    -0.635569,
-    -0.588862,
-    -0.248511,
-    -0.563631,
-    -0.351908,
-  ]
-  dr75_a = [
-    0.5533,
-    0.13508,
-    0.107517,
-    0.149683,
-    0.108474,
-    0.227804,
-    0.272054,
-    0.135544,
-    0.30471,
-    0.132639,
-  ]
-  dr75_b = [
-    -0.664,
-    -0.230475,
-    -0.188994,
-    -0.270794,
-    -0.272187,
-    -0.603628,
-    -0.537849,
-    -0.240646,
-    -0.550445,
-    -0.325219,
-  ]
-  dr80_a = [
-    0.7722,
-    0.21254,
-    0.182508,
-    0.212282,
-    0.160006,
-    0.423807,
-    0.37234,
-    0.245588,
-    0.432721,
-    0.20363,
-  ]
-  dr80_b = [
-    -0.621,
-    -0.223126,
-    -0.237083,
-    -0.214784,
-    -0.234113,
-    -0.670318,
-    -0.478028,
-    -0.299529,
-    -0.497531,
-    -0.325019,
-  ]
+  dr0_a = [0.2044, 0.0968, 0.0239721, 0.0970563, 0.0463457, 0.760547, 0.172593, 0.0548485, 0.342607, 0.0581034]
+  dr0_b = [-1.221, -1.119, -0.759395, -0.924117, -0.986135, -1.98658, -1.26419, -0.715971, -1.33556, -1.04907]
+  dr35_a = [0.0053, 0.016668, 0.00267271, 0.0137294, 0.00510275, 0.0141353, 0.0164776, 0.00768488, 0.00967385, 0.00712475]
+  dr35_b = [-0.292, -0.621721, -0.332791, -0.749027, -0.41194, -0.692944, -0.759418, -0.265449, -0.588911, -0.480438]
+  dr40_a = [0.0128, 0.0180344, 0.00371472, 0.0156144, 0.00678361, 0.0202697, 0.0163656, 0.0131108, 0.0111224, 0.00827057]
+  dr40_b = [-0.437, -0.559318, -0.319419, -0.688518, -0.407372, -0.735979, -0.640284, -0.351418, -0.504529, -0.400984]
+  dr50_a = [0.0442, 0.022758, 0.00955783, 0.0277957, 0.0139832, 0.0330396, 0.0295831, 0.0403044, 0.0235237, 0.0138102]
+  dr50_b = [-0.54, -0.413595, -0.360736, -0.547992, -0.343307, -0.650265, -0.570757, -0.515076, -0.46261, -0.283289]
+  dr55_a = [0.0873, 0.0282151, 0.0148174, 0.034803, 0.0208927, 0.0467877, 0.0442172, 0.0414436, 0.0383174, 0.0195808]
+  dr55_b = [-0.611, -0.363389, -0.331583, -0.487561, -0.330148, -0.636649, -0.556872, -0.382674, -0.481035, -0.257094]
+  dr60_a = [0.2076, 0.0394868, 0.0247627, 0.0448349, 0.0345093, 0.0729714, 0.074377, 0.0499546, 0.0654207, 0.0325169]
+  dr60_b = [-0.73, -0.320545, -0.280082, -0.393731, -0.37166, -0.651625, -0.575179, -0.322127, -0.512493, -0.301312]
+  dr65_a = [0.3796, 0.0569518, 0.0376463, 0.0679361, 0.0504093, 0.106026, 0.12198, 0.0611206, 0.111736, 0.0550353]
+  dr65_b = [-0.787, -0.277367, -0.218713, -0.374043, -0.332814, -0.638809, -0.591236, -0.269116, -0.542689, -0.340119]
+  dr70_a = [0.572, 0.087954, 0.0667662, 0.103967, 0.0739432, 0.158873, 0.192363, 0.0884276, 0.191794, 0.0888564]
+  dr70_b = [-0.785, -0.254721, -0.205684, -0.33058, -0.283363, -0.635569, -0.588862, -0.248511, -0.563631, -0.351908]
+  dr75_a = [0.5533, 0.13508, 0.107517, 0.149683, 0.108474, 0.227804, 0.272054, 0.135544, 0.30471, 0.132639]
+  dr75_b = [-0.664, -0.230475, -0.188994, -0.270794, -0.272187, -0.603628, -0.537849, -0.240646, -0.550445, -0.325219]
+  dr80_a = [0.7722, 0.21254, 0.182508, 0.212282, 0.160006, 0.423807, 0.37234, 0.245588, 0.432721, 0.20363]
+  dr80_b = [-0.621, -0.223126, -0.237083, -0.214784, -0.234113, -0.670318, -0.478028, -0.299529, -0.497531, -0.325019]
   mort_80_to_84_adjust_factor = [0.8, 1.3, 1, 1.2, 1.8, 1.4, 0.6, 0.7, 0.8, 1.8]
-  dr85_a = [
-    0.5184,
-    0.324963,
-    0.270235,
-    0.305642,
-    0.233244,
-    0.581153,
-    0.491005,
-    0.281373,
-    0.602357,
-    0.271059,
-  ]
-  dr85_b = [
-    -0.389,
-    -0.221219,
-    -0.218259,
-    -0.184128,
-    -0.208412,
-    -0.620289,
-    -0.410508,
-    -0.178954,
-    -0.443274,
-    -0.284262,
-  ]
+  dr85_a = [0.5184, 0.324963, 0.270235, 0.305642, 0.233244, 0.581153, 0.491005, 0.281373, 0.602357, 0.271059]
+  dr85_b = [-0.389, -0.221219, -0.218259, -0.184128, -0.208412, -0.620289, -0.410508, -0.178954, -0.443274, -0.284262]
   mort_85_to_89_adjust_factor = [1.1, 1.7, 1.8, 1.5, 1.3, 1.4, 1, 1.4, 1.1, 1.3]
-  dr90_a = [
-    0.524,
-    0.456045,
-    0.383196,
-    0.42516,
-    0.324786,
-    0.687932,
-    0.593281,
-    0.380448,
-    0.678884,
-    0.346641,
-  ]
-  dr90_b = [
-    -0.267,
-    -0.200075,
-    -0.220698,
-    -0.166495,
-    -0.173688,
-    -0.535241,
-    -0.325032,
-    -0.144953,
-    -0.334793,
-    -0.261247,
-  ]
+  dr90_a = [0.524, 0.456045, 0.383196, 0.42516, 0.324786, 0.687932, 0.593281, 0.380448, 0.678884, 0.346641]
+  dr90_b = [-0.267, -0.200075, -0.220698, -0.166495, -0.173688, -0.535241, -0.325032, -0.144953, -0.334793, -0.261247]
   mort_90_to_94_adjust_factor = [1.2, 2.2, 1.6, 2.1, 1.7, 1.4, 1.2, 1.4, 1.2, 1.7]
-  dr95p_a = [
-    0.5031,
-    0.579391,
-    0.492643,
-    0.595128,
-    0.347011,
-    0.656443,
-    0.707515,
-    0.563918,
-    0.735896,
-    0.444143,
-  ]
-  dr95p_b = [
-    -0.132,
-    -0.194424,
-    -0.179435,
-    -0.167295,
-    -0.186558,
-    -0.3355,
-    -0.234102,
-    -0.157949,
-    -0.220606,
-    -0.236568,
-  ]
+  dr95p_a = [0.5031, 0.579391, 0.492643, 0.595128, 0.347011, 0.656443, 0.707515, 0.563918, 0.735896, 0.444143]
+  dr95p_b = [-0.132, -0.194424, -0.179435, -0.167295, -0.186558, -0.3355, -0.234102, -0.157949, -0.220606, -0.236568]
   mort_95plus_adjust_factor = [2.2, 3.6, 2, 3.1, 2.6, 2.3, 1.9, 3.3, 2.2, 2.6]
-  dr45_a = [
-    0.0264,
-    0.0196008,
-    0.00538171,
-    0.0205822,
-    0.00936926,
-    0.0266287,
-    0.0207681,
-    0.0214813,
-    0.0152363,
-    0.0102799,
-  ]
-  dr45_b = [
-    -0.518,
-    -0.498066,
-    -0.326391,
-    -0.626545,
-    -0.372203,
-    -0.713779,
-    -0.58857,
-    -0.400453,
-    -0.463706,
-    -0.330488,
-  ]
-  Reference_fraction_of_supply_imbalance_to_be_closed_by_imports = [
-    0,
-    0.3,
-    0.3,
-    0.75,
-    0.3,
-    0.75,
-    0.3,
-    0.75,
-    0,
-    0.3,
-  ]
-  Factor_to_account_for_net_migration_not_officially_recorded = [
-    0.1,
-    14,
-    -9,
-    0,
-    -0.1,
-    -0.1,
-    0.7,
-    0,
-    0,
-    -2,
-  ]
+  dr45_a = [0.0264, 0.0196008, 0.00538171, 0.0205822, 0.00936926, 0.0266287, 0.0207681, 0.0214813, 0.0152363, 0.0102799]
+  dr45_b = [-0.518, -0.498066, -0.326391, -0.626545, -0.372203, -0.713779, -0.58857, -0.400453, -0.463706, -0.330488]
+  Reference_fraction_of_supply_imbalance_to_be_closed_by_imports = [0, 0.3, 0.3, 0.75, 0.3, 0.75, 0.3, 0.75, 0, 0.3]
+  Factor_to_account_for_net_migration_not_officially_recorded = [0.1, 14, -9, 0, -0.1, -0.1, 0.7, 0, 0, -2]
   LULUC_emissions_a = [0.1, 2, -0.3, 0, -4, -0.8, 0.5, 0.15, 0.3, -0.7]
   LULUC_emissions_b = [-0.65, 1.5, -0.75, 0, -0.4, 1.2, -1.8, -1.5, -0.4, -0.5]
-  Slope_of_OSF_from_GDPpp_alone = [
-    -0.06,
-    -0.06,
-    -0.06,
-    -0.02,
-    -0.02,
-    -0.06,
-    -0.06,
-    -0.06,
-    -0.02,
-    -0.06,
-  ]
-  Strength_of_effect_of_industrial_sector_size_on_OSF = [
-    1,
-    1.85,
-    1.5,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-  ]
+  Slope_of_OSF_from_GDPpp_alone = [-0.06, -0.06, -0.06, -0.02, -0.02, -0.06, -0.06, -0.06, -0.02, -0.06]
+  Strength_of_effect_of_industrial_sector_size_on_OSF = [1, 1.85, 1.5, 1, 1, 1, 1, 1, 1, 1]
   Inflation_perception_time = [1, 2, 2, 1, 1, 1, 1, 1, 1, 1]
   SoE_of_inventory_on_inflation_rate = [0.5, 3, 3, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 2]
-  Minimum_relative_inventory_without_inflation = [
-    0.94,
-    0.97,
-    0.99,
-    0.88,
-    0.9,
-    0.75,
-    0.95,
-    0.85,
-    0.92,
-    0.981,
-  ]
+  Minimum_relative_inventory_without_inflation = [0.94, 0.97, 0.99, 0.88, 0.9, 0.75, 0.95, 0.85, 0.92, 0.981]
   Migration_fraction_10_to_14_cohort = [0.4, 0.2, 0, 0.2, 0, 0, 0.2, 0, 0, 0.2]
   Migration_fraction_20_to_24_cohort = [0, 0.2, 0, 0.2, 0, 0, 0, 0, 0, 0.2]
   Migration_fraction_25_to_29_cohort = [0.3, 0.2, 0, 0.2, 0, 0, 0, 0, 0, 0.2]
   Migration_fraction_30_to_34_cohort = [0, 0.2, 0, 0.2, 0, 0, 0, 0, 0, 0.2]
   nmf_a = [0.4133, -0.3, -0.16, 0.0889, 2.78, 0.4073, 0.4322, 0.4812, 1.7649, -0.3]
-  nmf_b = [
-    -0.6174,
-    0.1,
-    0.0969,
-    -0.1085,
-    -1.716,
-    -1.6676,
-    -1.1157,
-    -1.3905,
-    -4.8616,
-    0.1,
-  ]
+  nmf_b = [-0.6174, 0.1, 0.0969, -0.1085, -1.716, -1.6676, -1.1157, -1.3905, -4.8616, 0.1]
   nmf_c = [0, 0, 0, 0, -1.58, 0, 0, 0, 0, 0]
-  Population_in_1979 = [230, 356, 1017, 179, 861, 355, 215, 326, 484, 356]
+#  Population_in_1979 = [230, 356, 1017, 179, 861, 355, 215, 326, 484, 356]
   Time_to_adjust_cultural_birth_rate_norm = [1, 10, 1, 5, 5, 3, 1, 2, 1, 2]
   Time_to_adjust_work_hours = [0.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25]
 
@@ -2933,7 +1884,7 @@ def ugregmod(game_id, von, bis):
   Fossil_use_pp_NOT_for_El_gen_CN_b = 0.7
   UNIT_conv_to_toe_py = 1
   UNIT_conv_toe_to_Mtoe = 1
-  wind_and_PV_el_cap_in_1980 = 0.1
+#  wind_and_PV_el_cap_in_1980 = 0.1
   wind_and_PV_capacity_factor = 0.1
   Hours_per_year = 8760
   UNIT_conv_GWh_and_TWh = 1 / 1000
@@ -2972,10 +1923,10 @@ def ugregmod(game_id, von, bis):
   Strength_of_Effect_of_empowerment_on_speed_of_food_TA = 0.1
   UNIT_conv_from_kg_to_Mt = 1e09
   UNIT_conv_btw_p_and_Mp = 1e06
-  Antarctic_ice_volume_in_1980 = 3e07
-  Arctic_ice_area_in_1980_km2 = 1.18874e07
-  C_in_atmosphere_in_1980 = 752.397
-  C_in_the_form_of_CH4_in_atm_1980 = 2.79426
+#  Antarctic_ice_volume_in_1980 = 3e07
+#  Arctic_ice_area_in_1980_km2 = 1.18874e07
+#  C_in_atmosphere_in_1980 = 752.397
+#  C_in_the_form_of_CH4_in_atm_1980 = 2.79426
   CC_in_cold_ocean_0_to_100m_in_1980 = 2325.64
   UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre = 1e06 / 12.01 * 1000
   Area_of_ocean_at_surface_361900_Gm2 = 361900
@@ -3006,10 +1957,10 @@ def ugregmod(game_id, von, bis):
     * Fraction_of_ocean_classified_as_cold_surface
     * UNIT_conversion_to_Gm3
   )
-  Carbon_in_cold_ocean_trunk_100m_to_bottom_1850 = (
-    CC_in_cold_ocean_downwelling_100m_bottom_in_1980
-    / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
-  ) * Volume_cold_ocean_downwelling_100m_to_bottom
+#  Carbon_in_cold_ocean_trunk_100m_to_bottom_1850 = (
+#    CC_in_cold_ocean_downwelling_100m_bottom_in_1980
+#    / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
+#  ) * Volume_cold_ocean_downwelling_100m_to_bottom
   CC_ocean_deep_1km_to_bottom_in_1980 = 2232.12
   Volume_ocean_deep_1km_to_bottom = (
     Area_of_ocean_at_surface_361900_Gm2
@@ -3017,21 +1968,21 @@ def ugregmod(game_id, von, bis):
     * Fraction_of_ocean_classified_warm_surface
     * UNIT_conversion_to_Gm3
   )
-  Carbon_in_ocean_deep_1k_to_bottom_ocean_1850 = (
-    CC_ocean_deep_1km_to_bottom_in_1980 / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
-  ) * Volume_ocean_deep_1km_to_bottom
-  CC_in_ocean_upwelling_100m_to_1km_in_1980 = 2237.8
+#  Carbon_in_ocean_deep_1k_to_bottom_ocean_1850 = (
+#    CC_ocean_deep_1km_to_bottom_in_1980 / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
+#  ) * Volume_ocean_deep_1km_to_bottom
+#  CC_in_ocean_upwelling_100m_to_1km_in_1980 = 2237.8
   Volume_ocean_upwelling_100m_to_1km = (
     Area_of_ocean_at_surface_361900_Gm2
     * Thickness_of_intermediate_water_box_800m
     * Fraction_of_ocean_classified_warm_surface
     * UNIT_conversion_to_Gm3
   )
-  Carbon_in_ocean_upwelling_100m_to_1km_1850 = (
-    CC_in_ocean_upwelling_100m_to_1km_in_1980
-    / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
-  ) * Volume_ocean_upwelling_100m_to_1km
-  C_in_sediment_initially = 3e09
+#  Carbon_in_ocean_upwelling_100m_to_1km_1850 = (
+#    CC_in_ocean_upwelling_100m_to_1km_in_1980
+#    / UNIT_converter_GtC_p_Gm3_to_ymoles_p_litre
+#  ) * Volume_ocean_upwelling_100m_to_1km
+#  C_in_sediment_initially = 3e09
   CC_in_warm_ocean_0_to_100m_in_1980 = 2242.96
   Volume_warm_ocean_0_to_100m = (
     Area_of_ocean_at_surface_361900_Gm2
@@ -3046,23 +1997,23 @@ def ugregmod(game_id, von, bis):
   Capacity_construction_time = 1.5
   Normal_bank_operating_margin = 0.015
   Normal_corporate_credit_risk_margin = 0.02
-  Cumulative_N_use_since_2020_in_1980 = 0
+#  Cumulative_N_use_since_2020_in_1980 = 0
   Normal_k = 0.3
   JR_sINEeolLOK_lt_0 = -0.45
   Strength_of_inequality_proxy = 6
   UNIT_conv_to_dmnl = 1
   Fossil_fuel_reserves_in_ground_at_initial_time_GtC = 5827.98
-  Glacial_ice_volume_in_1980 = 165694
-  GRASS_area_burned_in_1980 = 1.741
-  GRASS_area_harvested_in_1980 = 2.15683
-  GRASS_Biomass_locked_in_construction_material_in_1980 = 1.99186
-  GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 1086.88
-  GRASS_area_deforested_in_1980 = 1.22174
-  GRASS_Living_biomass_in_1980 = 381.43
+#  Glacial_ice_volume_in_1980 = 165694
+#  GRASS_area_burned_in_1980 = 1.741
+#  GRASS_area_harvested_in_1980 = 2.15683
+#  GRASS_Biomass_locked_in_construction_material_in_1980 = 1.99186
+#  GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 1086.88
+#  GRASS_area_deforested_in_1980 = 1.22174
+#  GRASS_Living_biomass_in_1980 = 381.43
   Greenland_ice_volume_in_1980 = 2.85e06
-  Heat_in_atmosphere_in_1980 = 1030.43
-  Heat_in_ocean_deep_in_1980 = 1.95347e06
-  Heat_in_surface_in_1980 = 25034.6
+#  Heat_in_atmosphere_in_1980 = 1030.43
+#  Heat_in_ocean_deep_in_1980 = 1.95347e06
+#  Heat_in_surface_in_1980 = 25034.6
   Incoming_solar_in_1850_ZJ_py = 5470.69
   Evaporation_as_fraction_of_incoming_solar_in_1850 = 0.289
   Sensitivity_of_evaporation_to_temp = 0.36
@@ -3100,7 +2051,7 @@ def ugregmod(game_id, von, bis):
   Conversion_from_Montreal_gases_amount_to_concentration_ppt_p_kt = 0.04
   Montreal_gases_concentration_in_1970_ppt = 262.353
   Slope_btw_N2O_ppb_and_blocking_multiplier = 0.1
-  N2O_in_atmosphere_MtN2O_in_1980 = 1082.4
+#  N2O_in_atmosphere_MtN2O_in_1980 = 1082.4
   UNIT_Conversion_from_N2O_amount_to_concentration_ppb_p_MtN2O = 0.305
   Model_N2O_concentration_in_1850_ppb = 274.5
   LW_LO_cloud_radiation_reference_in_1980 = 20
@@ -3112,38 +2063,38 @@ def ugregmod(game_id, von, bis):
   Logistics_curve_param_c = 20
   Logistics_curve_param_k = 0.1
   Logistics_curve_param_shift = 2000
-  NF_area_burned_in_1980 = 2.09605
-  NF_area_clear_cut_in_1980 = 3.99473
-  NF_area_deforested_in_1980 = 0.129448
-  NF_area_harvested_in_1980 = 0.897719
-  NF_Biomass_locked_in_construction_material_in_1980 = 16.8741
-  NF_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 304.415
-  NF_Living_biomass_in_1980 = 150.39
-  People_considering_entering_the_pool_in_1980 = 2
-  People_considering_leaving_the_pool_in_1980 = 2
-  Size_of_public_capacity_in_1980 = 0.2
+#  NF_area_burned_in_1980 = 2.09605
+#  NF_area_clear_cut_in_1980 = 3.99473
+#  NF_area_deforested_in_1980 = 0.129448
+#  NF_area_harvested_in_1980 = 0.897719
+#  NF_Biomass_locked_in_construction_material_in_1980 = 16.8741
+#  NF_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 304.415
+#  NF_Living_biomass_in_1980 = 150.39
+#  People_considering_entering_the_pool_in_1980 = 2
+#  People_considering_leaving_the_pool_in_1980 = 2
+#  Size_of_public_capacity_in_1980 = 0.2
   Size_of_agri_sector_a = 1
   Size_of_agri_sector_b = 37
   Size_of_agri_sector_c = 5
   Size_of_tertiary_sector_lim = 80
   Size_of_tertiary_sector_a = 40
   Size_of_tertiary_sector_c = 20
-  TFP_in_1980 = 1
-  TROP_area_burned_in_1980 = 1.64305
-  TROP_area_clear_cut_in_1980 = 0.467813
-  TROP_area_deforested_in_1980 = 5.97649
-  TROP_area_harvested_in_1980 = 0.24296
-  TROP_Biomass_locked_in_construction_material_in_1980 = 44.963
-  TROP_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 158.789
-  TROP_Living_biomass_in_1980 = 379.797
-  TUNDRA_area_burned_in_1980 = 1.8566
-  TUNDRA_area_harvested_in_1980 = 2.5
-  TUNDRA_Biomass_locked_in_construction_material_in_1980 = 1.92761
-  TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 1207.56
-  TUNDRA_area_deforested_in_1980 = 0
-  TUNDRA_Living_biomass_in_1980 = 391.84
-  Wetlands_area_in_1980 = 1e07
-  Worker_resistance_initially = 1 - Owner_power_in_1980
+#  TFP_in_1980 = 1
+#  TROP_area_burned_in_1980 = 1.64305
+#  TROP_area_clear_cut_in_1980 = 0.467813
+#  TROP_area_deforested_in_1980 = 5.97649
+#  TROP_area_harvested_in_1980 = 0.24296
+#  TROP_Biomass_locked_in_construction_material_in_1980 = 44.963
+#  TROP_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 158.789
+#  TROP_Living_biomass_in_1980 = 379.797
+#  TUNDRA_area_burned_in_1980 = 1.8566
+#  TUNDRA_area_harvested_in_1980 = 2.5
+#  TUNDRA_Biomass_locked_in_construction_material_in_1980 = 1.92761
+#  TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 = 1207.56
+#  TUNDRA_area_deforested_in_1980 = 0
+#  TUNDRA_Living_biomass_in_1980 = 391.84
+#  Wetlands_area_in_1980 = 1e07
+#  Worker_resistance_initially = 1 - Owner_power_in_1980
   Access_to_electricity_L = 0.999
   Access_to_electricity_k = 0.5
   UNIT_conv_to_make_base_dmnless = 1
@@ -3163,7 +2114,7 @@ def ugregmod(game_id, von, bis):
   UNIT_conv_kgwmeat_and_Mtwmeat = 1e09
   UNIT_conv_white_meat = 1
   UNIT_conv_meat_to_feed = 1
-  Reference_crop_import_in_1980 = 0
+#  Reference_crop_import_in_1980 = 0
   Soil_quality_in_1980 = 1
   Soil_quality_of_regenerative_cropland = 1.2
   SoE_of_CO2_on_yield = 0.2
@@ -3321,7 +2272,7 @@ def ugregmod(game_id, von, bis):
   Addl_time_to_shift_govt_expenditure = 3
   Value_of_anthropogenic_aerosol_emissions_during_2015 = 0.225
   Cohort_duration_is_5_yrs = 5
-  Urban_aerosol_concentration_in_2020 = 43.5
+#  Urban_aerosol_concentration_in_2020 = 43.5
   pb_Urban_aerosol_concentration_green_threshold = 20
   Albedo_Antarctic_hist = 0.7
   Albedo_Antarctic_sens = 0.7
@@ -3439,14 +2390,7 @@ def ugregmod(game_id, von, bis):
   Weight_public_spending = 1
   UNIT_conv_to_k217pppUSD_ppy = 1
   Satisfactory_public_spending = 0.22
-  Sum_weights_living_conditions = (
-    Weight_disposable_income
-    + Weight_el_use
-    + Weight_food
-    + Weight_inequality
-    + Weight_population_in_job_market
-    + Weight_public_spending
-  )
+  Sum_weights_living_conditions = (Weight_disposable_income + Weight_el_use    + Weight_food    + Weight_inequality    + Weight_population_in_job_market    + Weight_public_spending)
   Weight_on_living_conditions = 0.65
   Weight_on_env_conditions = 1 - Weight_on_living_conditions
   Weight_on_physical_conditions = 0.75
@@ -3572,8 +2516,8 @@ def ugregmod(game_id, von, bis):
   Slope_temp_vs_antarctic_ice_melting = 1.2
   Ref_temp_difference_for_antarctic_ice_melting_3_degC = 3
   Land_area_km2 = 5.1e08 * 0.3
-  Atmos_heat_used_for_melting_Initially_1_py = 0
-  Ocean_heat_used_for_melting_Initially_1_py = 0
+#  Atmos_heat_used_for_melting_Initially_1_py = 0
+#  Ocean_heat_used_for_melting_Initially_1_py = 0
   UNIT_Conversion_from_km3_p_kmy_to_Mkm2_py = 1e-06
   Densitiy_of_water_relative_to_ice = 0.916
   Human_aerosol_forcing_1_is_ON_0_is_OFF = 1
@@ -3643,16 +2587,14 @@ def ugregmod(game_id, von, bis):
   Greenland_ice_slide_circulation_slowdown_effect = 0.33
   NEvt_13d_Greenland_slide_experiment_start_yr = 3e06
   Greenland_slide_experiment_over_how_many_years_yr = 70
-  UNIT_conversion_GtC_to_MtC = 1000
+#  UNIT_conversion_GtC_to_MtC = 1000
   Time_for_agri_land_to_become_abandoned = 2
   Fraction_of_cropland_developed_for_urban_land = 0.01
   expSoE_of_ed_on_cost_of_new_capacity = 0.075
   Frac_vol_deep_ocean_of_total = (
     Volume_ocean_deep_1km_to_bottom / Volume_of_total_ocean_Gm3
   )
-  Frac_vol_ocean_upwelling_of_total = (
-    Volume_ocean_upwelling_100m_to_1km / Volume_of_total_ocean_Gm3
-  )
+  Frac_vol_ocean_upwelling_of_total = (Volume_ocean_upwelling_100m_to_1km / Volume_of_total_ocean_Gm3)
   Time_in_cold = 6.51772
   Time_in_trunk = 234.638
   Time_in_deep = 739.89
@@ -3713,7 +2655,7 @@ def ugregmod(game_id, von, bis):
   Indicated_crop_yield_SE_k2 = -0.232
   Indicated_crop_yield_SE_x2 = 62.13
   Indicated_crop_yield_SE_min = 2.1
-  UNIT_conv_to_per_thousand = 1000
+#  UNIT_conv_to_per_thousand = 1000
   expSoE_of_ed_on_dying = 0.15
   Strength_of_malnutrition_effect = 6
   Strength_of_poverty_effect = 2
@@ -3745,10 +2687,10 @@ def ugregmod(game_id, von, bis):
   UNIT_conv_to_Mkm2 = 1000
   Frac_atm_absorption = 75 / 340
   Frac_SW_clear_sky_reflection_aka_scattering = 0.0837
-  Fraction_blocked_by_ALL_GHG_in_1980 = 0.213577
-  Fraction_blocked_CH4_in_1980 = 0.00445458
-  Fraction_blocked_CO2_in_1980 = 0.0911213
-  Fraction_blocked_othGHG_in_1980 = 0.0393
+#  Fraction_blocked_by_ALL_GHG_in_1980 = 0.213577
+#  Fraction_blocked_CH4_in_1980 = 0.00445458
+#  Fraction_blocked_CO2_in_1980 = 0.0911213
+#  Fraction_blocked_othGHG_in_1980 = 0.0393
   UNIT_conv_pct_to_fraction = 100
   Freshwater_withdrawal_per_person_TLTL = 415
   UNIT_conv_to_cubic_km_pr_yr = 1 / 1000
@@ -3780,7 +2722,7 @@ def ugregmod(game_id, von, bis):
   pb_Air_Pollution_Unit_conv_to_make_LN_dmnl_from_terra_USD = 1
   pb_Air_Pollution_b = 37.7
   UNIT_conv_to_UAC = 1
-  INITIAL_TIME = 1980
+#  INITIAL_TIME = 1980
   Inventory_coverage_perception_time = 0.3
   K_to_C_conversion = 273.15
   Time_to_degrade_Kyoto_Fluor_yr = 50
@@ -3798,7 +2740,7 @@ def ugregmod(game_id, von, bis):
   LPB_Time_to_implement_policy = 3
   LPBgrant_Time_to_implement_policy = 3
   LPBsplit_Time_to_implement_policy = 3
-  UNIT_conversion_to_pct = 100
+#  UNIT_conversion_to_pct = 100
   Time_for_volcanic_aerosols_to_remain_in_the_stratosphere = 1
   Time_to_degrade_Montreal_gases_yr = 30
   N_number_of_years_ago = 5
@@ -3821,8 +2763,8 @@ def ugregmod(game_id, von, bis):
   P_release_b = 7.6136
   UNIT_conv_to_Mt_pr_yr = 1
   Phosphorous_PB_green_threshold = 10
-  Temp_ocean_surface_in_1850_C = Temp_surface_1850 - Temp_gradient_in_surface_degK
-  Output_growth_in_1980 = 0.035
+#  Temp_ocean_surface_in_1850_C = Temp_surface_1850 - Temp_gradient_in_surface_degK
+#  Output_growth_in_1980 = 0.035
   UNIT_conversion_to_M = 1000
   pb_Ozone_depletion_green_threshold = 0.25
   per_annum_yr = 1
@@ -3834,10 +2776,10 @@ def ugregmod(game_id, von, bis):
   RMDR_Time_to_implement_policy = 10
   Social_tension_perception_delay = 5
   Sales_averaging_time = 1
-  TIME_STEP = 0.03125
+#  TIME_STEP = 0.03125
   Scaling_factor_of_eff_of_poverty_on_social_tension = 0.08
-  UNIT_conversion_mm_to_m = 1 / 1000
-  UNIT_conv_to_m = 1 / 100
+#  UNIT_conversion_mm_to_m = 1 / 1000
+#  UNIT_conv_to_m = 1 / 100
   SGMP_Time_to_implement_policy = 3
   Zero_C_on_K_scale_K = 273.15
   Slope_of_effect_of_temp_shifting_DESERT_to_GRASS = 0.4
@@ -3921,272 +2863,30 @@ def ugregmod(game_id, von, bis):
   XtaxRateEmp_Time_to_implement_policy = 3
   Years_for_CBC_comparison = 5
 
-  GDP_in_1980 = [
-    7070.0,
-    1160.0,
-    1970.0,
-    1510.0,
-    1210.0,
-    2650.0,
-    3750.0,
-    4290.0,
-    8780.0,
-    940.0,
-  ]
-  Capacity_in_1980 = [
-    21210.0,
-    9280.0,
-    3152.0,
-    12080.0,
-    9680.0,
-    15900.0,
-    15000.0,
-    21450.0,
-    26340.0,
-    7520.0,
-  ]
-  Optimal_output_in_1980 = [
-    7070.0,
-    1160.0,
-    1970.0,
-    1510.0,
-    1210.0,
-    2650.0,
-    3750.0,
-    4290.0,
-    8780.0,
-    940.0,
-  ]
-  Demand_in_1980 = [
-    7070.0,
-    1160.0,
-    1970.0,
-    1510.0,
-    1210.0,
-    2650.0,
-    3750.0,
-    4290.0,
-    8780.0,
-    940.0,
-  ]
-  Owner_income_in_1980 = [
-    2444.98357368932,
-    401.6364889208633,
-    682.2448010526314,
-    517.3716314634146,
-    422.51786329192544,
-    922.9009947368421,
-    1303.1542663043476,
-    1498.1358241104292,
-    3036.5664395876292,
-    325.04474437500005,
-  ]
-  Worker_income_after_tax_in_1980 = [
-    2754.783972330097,
-    451.5569971223021,
-    766.7290246963564,
-    592.6921256097561,
-    467.817302173913,
-    1026.7555175438597,
-    1455.502581521739,
-    1658.519132208589,
-    3420.876272164948,
-    366.29317812499994,
-  ]
-  Consumption_taxes_in_1980 = [
-    84.9168927365534,
-    21.153979160719423,
-    30.808629347125507,
-    24.42633856939024,
-    20.802216334565216,
-    42.79448360263157,
-    42.9795100271739,
-    69.25868270530675,
-    105.45174357773196,
-    16.1664156740625,
-  ]
-  Govt_debt_in_1980 = [
-    3535.0,
-    1160.0,
-    394.0,
-    1510.0,
-    1210.0,
-    2650.0,
-    3750.0,
-    4290.0,
-    8780.0,
-    940.0,
-  ]
-  All_crop_dmd_food_in_1980 = [
-    170.26654560129538,
-    217.0057926743663,
-    452.21248710575935,
-    99.72094126054908,
-    454.0325733386143,
-    556.2973268965412,
-    119.58734313350372,
-    267.49973275275136,
-    470.721254279469,
-    193.06382452194592,
-  ]
-  Capacity_under_construction_in_1980 = [
-    2121.0,
-    928.0,
-    315.2,
-    1208.0,
-    968.0,
-    1590.0,
-    1500.0,
-    2145.0,
-    2634.0,
-    752.0,
-  ]
-  Corporate_borrowing_cost_in_1980 = [
-    0.07500000000000001,
-    0.095,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-    0.07500000000000001,
-  ]
-  Worker_share_of_output_with_unemployment_effect_in_1980 = [
-    0.5566344660194176,
-    0.5561046762589928,
-    0.5560036437246965,
-    0.5607304878048781,
-    0.5523226708074535,
-    0.5535070175438597,
-    0.5544771739130435,
-    0.5522874233128835,
-    0.5566020618556701,
-    0.5566765625,
-  ]
-  Effect_of_poverty_on_social_tension_in_1980 = [
-    0.8959910106335136,
-    0.21240214937921398,
-    0.19288246412336335,
-    0.3619369660522107,
-    0.18958434769674412,
-    0.3791125730168431,
-    0.7532928033231301,
-    0.5628666035524531,
-    0.8076690781037237,
-    0.19856155397797282,
-  ]
-  GDPpp_in_1980 = [
-    30.78847069,
-    3.118545931,
-    1.923464459,
-    8.873859532,
-    1.362280228,
-    7.634754409,
-    18.93943182,
-    6.719867521,
-    19.03997639,
-    2.628879465,
-  ]
-  Inventory_in_1980 = [
-    2828.0,
-    464.0,
-    788.0,
-    604.0,
-    484.0,
-    1060.0,
-    1500.0,
-    1716.0,
-    3512.0,
-    376.0,
-  ]
-  LW_TOA_radiation_from_atm_to_space_in_1850 = 3826.196024026106
-  Public_Capacity_in_1980 = [
-    4242.0,
-    1856.0,
-    630.4000000000001,
-    2416.0,
-    1936.0,
-    3180.0,
-    3000.0,
-    4290.0,
-    5268.0,
-    1504.0,
-  ]
-  Size_of_industrial_sector_in_1980 = [
-    0.27663871838081144,
-    0.3356939464577147,
-    0.30154469574192583,
-    0.3837259973983511,
-    0.28749251905661244,
-    0.38392771269234593,
-    0.3344966720230427,
-    0.37061638260621077,
-    0.32008763862611544,
-    0.322106784272718,
-  ]
-  Worker_to_owner_income_after_tax_ratio_in_1980 = [
-    1.2768295877969231,
-    1.1919382944356827,
-    1.187939509109339,
-    1.2261985626729526,
-    1.170164109044806,
-    1.1934698036363887,
-    1.227277700326229,
-    1.1995428747041386,
-    1.2458121573553074,
-    1.1930852649531762,
-  ]
-  Workers_debt_in_1980 = [
-    7070.0,
-    232.0,
-    394.0,
-    604.0,
-    484.0,
-    1060.0,
-    1500.0,
-    1716.0,
-    3512.0,
-    376.0,
-  ]
-  WSO_in_1980 = [
-    0.5566344660194176,
-    0.5561046762589928,
-    0.5560036437246965,
-    0.5607304878048781,
-    0.5523226708074535,
-    0.5535070175438597,
-    0.5544771739130435,
-    0.5522874233128835,
-    0.5566020618556701,
-    0.5566765625,
-  ]
+#  GDP_in_1980 = [7070.0, 1160.0, 1970.0, 1510.0, 1210.0, 2650.0, 3750.0, 4290.0, 8780.0, 940.0]
+  Capacity_in_1980 = [21210.0, 9280.0, 3152.0, 12080.0, 9680.0, 15900.0, 15000.0, 21450.0, 26340.0, 7520.0]
+  Optimal_output_in_1980 = [7070.0, 1160.0, 1970.0, 1510.0, 1210.0, 2650.0, 3750.0, 4290.0, 8780.0, 940.0]
+#  Demand_in_1980 = [7070.0, 1160.0, 1970.0, 1510.0, 1210.0, 2650.0, 3750.0, 4290.0, 8780.0, 940.0]
+#  Owner_income_in_1980 = [2444.98357368932, 401.6364889208633, 682.2448010526314, 517.3716314634146, 422.51786329192544, 922.9009947368421, 1303.1542663043476, 1498.1358241104292, 3036.5664395876292, 325.04474437500005]
+#  Worker_income_after_tax_in_1980 = [2754.783972330097, 451.5569971223021, 766.7290246963564, 592.6921256097561, 467.817302173913, 1026.7555175438597, 1455.502581521739, 1658.519132208589, 3420.876272164948, 366.29317812499994]
+#  Consumption_taxes_in_1980 = [84.9168927365534, 21.153979160719423, 30.808629347125507, 24.42633856939024, 20.802216334565216, 42.79448360263157, 42.9795100271739, 69.25868270530675, 105.45174357773196, 16.1664156740625]
+#  Govt_debt_in_1980 = [3535.0, 1160.0, 394.0, 1510.0, 1210.0, 2650.0, 3750.0, 4290.0, 8780.0, 940.0]
+#  All_crop_dmd_food_in_1980 = [170.26654560129538, 217.0057926743663, 452.21248710575935, 99.72094126054908, 454.0325733386143, 556.2973268965412, 119.58734313350372, 267.49973275275136, 470.721254279469, 193.06382452194592]
+#  Capacity_under_construction_in_1980 = [2121.0, 928.0, 315.2, 1208.0, 968.0, 1590.0, 1500.0, 2145.0, 2634.0, 752.0]
+  Corporate_borrowing_cost_in_1980 = [0.07500000000000001, 0.095, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001, 0.07500000000000001]
+  Worker_share_of_output_with_unemployment_effect_in_1980 = [0.5566344660194176, 0.5561046762589928, 0.5560036437246965, 0.5607304878048781, 0.5523226708074535, 0.5535070175438597, 0.5544771739130435, 0.5522874233128835, 0.5566020618556701, 0.5566765625]
+  Effect_of_poverty_on_social_tension_in_1980 = [0.8959910106335136, 0.21240214937921398, 0.19288246412336335, 0.3619369660522107, 0.18958434769674412, 0.3791125730168431, 0.7532928033231301, 0.5628666035524531, 0.8076690781037237, 0.19856155397797282]
+  GDPpp_in_1980 = [30.78847069, 3.118545931, 1.923464459, 8.873859532, 1.362280228, 7.634754409, 18.93943182, 6.719867521, 19.03997639, 2.628879465]
+#  Inventory_in_1980 = [2828.0, 464.0, 788.0, 604.0, 484.0, 1060.0, 1500.0, 1716.0, 3512.0, 376.0]
+#  LW_TOA_radiation_from_atm_to_space_in_1850 = 3826.196024026106
+#  Public_Capacity_in_1980 = [4242.0, 1856.0, 630.4000000000001, 2416.0, 1936.0, 3180.0, 3000.0, 4290.0, 5268.0, 1504.0]
+  Size_of_industrial_sector_in_1980 = [0.27663871838081144, 0.3356939464577147, 0.30154469574192583, 0.3837259973983511, 0.28749251905661244, 0.38392771269234593, 0.3344966720230427, 0.37061638260621077, 0.32008763862611544, 0.322106784272718]
+  Worker_to_owner_income_after_tax_ratio_in_1980 = [1.2768295877969231, 1.1919382944356827, 1.187939509109339, 1.2261985626729526, 1.170164109044806, 1.1934698036363887, 1.227277700326229, 1.1995428747041386, 1.2458121573553074, 1.1930852649531762]
+#  Workers_debt_in_1980 = [7070.0, 232.0, 394.0, 604.0, 484.0, 1060.0, 1500.0, 1716.0, 3512.0, 376.0]
+  WSO_in_1980 = [0.5566344660194176, 0.5561046762589928, 0.5560036437246965, 0.5607304878048781, 0.5523226708074535, 0.5535070175438597, 0.5544771739130435, 0.5522874233128835, 0.5566020618556701, 0.5566765625]
   Global_forest_land_in_1980 = 3663.6520999999993
-  Output_last_year_in_1980 = [
-    6830.917874396136,
-    1120.7729468599034,
-    1903.3816425120774,
-    1458.937198067633,
-    1169.0821256038648,
-    2560.386473429952,
-    3623.188405797102,
-    4144.927536231884,
-    8483.091787439615,
-    908.2125603864735,
-  ]
-  Output_last_year_in_1980 = [
-    6830.917874396136,
-    1120.7729468599034,
-    1903.3816425120774,
-    1458.937198067633,
-    1169.0821256038648,
-    2560.386473429952,
-    3623.188405797102,
-    4144.927536231884,
-    8483.091787439615,
-    908.2125603864735,
-  ]
+#  Output_last_year_in_1980 = [6830.917874396136, 1120.7729468599034, 1903.3816425120774, 1458.937198067633, 1169.0821256038648, 2560.386473429952, 3623.188405797102, 4144.927536231884, 8483.091787439615, 908.2125603864735]
+#  Output_last_year_in_1980 = [6830.917874396136, 1120.7729468599034, 1903.3816425120774, 1458.937198067633, 1169.0821256038648, 2560.386473429952, 3623.188405797102, 4144.927536231884, 8483.091787439615, 908.2125603864735]
 
   if von == 2025:
     runde = 1
@@ -4197,14 +2897,14 @@ def ugregmod(game_id, von, bis):
   else:
     print("von not 2025 | 2040 | 2060")
   mdf_play_full = read_mdfplay_full("mdf_play.npy", runde)
-  nun = datetime.datetime.now()
+#  nun = datetime.datetime.now()
   #    print('loaded mdf_play full.npy')
   #    print(nun)
   ff = data_files["ch.npy"]
   ch = np.load(ff)
   #    ch = np.load('ch.npy')
   ff = data_files["chtab.npy"]
-  chtab = np.load(ff)
+#  chtab = np.load(ff)
   #    chtab = np.load('chtab.npy')
   with open(data_files["fcol_in_mdf.json"]) as fj:
     fcol_in_mdf = json.load(fj)
@@ -4235,12 +2935,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print(
-      "r1 start_tick_in_mdf_play "
-      + str(start_tick_in_mdf_play)
-      + " bis "
-      + str(end_tick)
-    )
+    print("r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2040 and bis == 2060:
     howlong = 60
     s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
@@ -4262,12 +2957,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print(
-      "r2 start_tick_in_mdf_play "
-      + str(start_tick_in_mdf_play)
-      + " bis "
-      + str(end_tick)
-    )
+    print("r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2060 and bis == 2100:
     howlong = 21
     s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
@@ -4277,11 +2967,6 @@ def ugregmod(game_id, von, bis):
     s_row_elem = s_row["mdf_play"]
     mdf_play = pickle.loads(s_row_elem.get_bytes())
     print("in ugregmod von=2060")
-    #        print(row_start.shape)
-    #        print(type(row_start))
-    #        for kk in range(0, 200):
-    #          print(str(kk)+' '+str(row_start[kk]))
-    #        row_start = np.load('row2060.npy')
     start_mod = von
     zeit = start_mod
     end_mod = bis
@@ -4294,12 +2979,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print(
-      "r3 start_tick_in_mdf_play "
-      + str(start_tick_in_mdf_play)
-      + " bis "
-      + str(end_tick)
-    )
+    print("r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   else:
     print("We have a problem in def run_game with von and bis")
 
@@ -4314,39 +2994,10 @@ def ugregmod(game_id, von, bis):
     if jjyr % 32 == 0:
       anvil.server.task_state["Year"] = yr
       yr += 1
-    # Cohort_0_to_20_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D422' )
-    #        tabidx = ftab_in_d_table['Cohort_0_to_20_H']  # fetch the correct table
-    #        idxlhs = fcol_in_mdf['Cohort_0_to_20_H']  # get the location of the lhs in mdf
-    #        look = d_table[tabidx]
-    #        for i in range(0, 10):
-    #            mdf[rowi, idxlhs + i] = GRAPH(zeit, look[:, 0], look[:, i + 1])
-
-    # Cohort_20_to_40_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D432' )
-    #        tabidx = ftab_in_d_table['Cohort_20_to_40_H']  # fetch the correct table
-    #        idxlhs = fcol_in_mdf['Cohort_20_to_40_H']  # get the location of the lhs in mdf
-    #        look = d_table[tabidx]
-    #        for i in range(0, 10):
-    #            mdf[rowi, idxlhs + i] = GRAPH(zeit, look[:, 0], look[:, i + 1])
-
-    # Cohort_40_to_60_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D442' )
-    #        tabidx = ftab_in_d_table['Cohort_40_to_60_H']  # fetch the correct table
-    #        idxlhs = fcol_in_mdf['Cohort_40_to_60_H']  # get the location of the lhs in mdf
-    #        look = d_table[tabidx]
-    #        for i in range(0, 10):
-    #            mdf[rowi, idxlhs + i] = GRAPH(zeit, look[:, 0], look[:, i + 1])
-
-    # Cohort_60plus_H[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D452' )
-    #        tabidx = ftab_in_d_table['Cohort_60plus_H']  # fetch the correct table
-    #        idxlhs = fcol_in_mdf['Cohort_60plus_H']  # get the location of the lhs in mdf
-    #        look = d_table[tabidx]
-    #        for i in range(0, 10):
-    #            mdf[rowi, idxlhs + i] = GRAPH(zeit, look[:, 0], look[:, i + 1])
 
     # GDP_in_TeraUSD_hist_exo[region] =  GET_XLS_DATA ( 'e4a-exo.xlsx' , 'ts' , '1' , 'D612' )
     tabidx = ftab_in_d_table["GDP_in_TeraUSD_hist_exo"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "GDP_in_TeraUSD_hist_exo"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["GDP_in_TeraUSD_hist_exo"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for i in range(0, 10):
       mdf[rowi, idxlhs + i] = GRAPH(zeit, look[:, 0], look[:, i + 1])
@@ -4438,8 +3089,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Employed"]
     idx3 = fcol_in_mdf["Embedded_TFP"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Optimal_output_in_1980[j]
+      mdf[rowi, idxlhs + j] = (Optimal_output_in_1980[j]
         * (mdf[rowi, idx1 + j] / Capacity_in_1980[j]) ** Kappa
         * (mdf[rowi, idx2 + j] / Employed_in_1980[j]) ** Lambdav
         * (mdf[rowi, idx3 + j])
@@ -4460,8 +3110,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Indicated_hours_worked_index"]
     idx1 = fcol_in_mdf["Perceived_relative_inventory"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = 1 + SoE_of_inventory_on_indicated_hours_worked_index[
-        j
+      mdf[rowi, idxlhs + j] = 1 + SoE_of_inventory_on_indicated_hours_worked_index[    j
       ] * (mdf[rowi, idx1 + j] / Goal_for_relative_inventory - 1)
 
     # Hours_worked_index[region] = SMOOTH ( Indicated_hours_worked_index[region] , Time_to_adjust_work_hours[region] )
@@ -4480,8 +3129,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Optimal_real_output"]
     idx2 = fcol_in_mdf["Hours_worked_index"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / Hours_worked_index_in_1980
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / Hours_worked_index_in_1980
       )
 
     # GDP_model[region] = Output[region]
@@ -4541,8 +3189,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Cohort_15_to_19"]
     idx4 = fcol_in_mdf["Cohort_5_to_9"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -4603,8 +3250,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Cohort_30_to_34"]
     idx4 = fcol_in_mdf["Cohort_35_to_39"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -4665,8 +3311,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Cohort_50_to_54"]
     idx4 = fcol_in_mdf["Cohort_55_to_59"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -4777,8 +3422,7 @@ def ugregmod(game_id, von, bis):
     idx7 = fcol_in_mdf["Cohort_90_to_94"]
     idx8 = fcol_in_mdf["Cohort_95p"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -4795,8 +3439,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Cohort_40_to_60"]
     idx4 = fcol_in_mdf["Cohort_60plus"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -4807,8 +3450,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["GDP_model"]
     idx2 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conv_to_k2017pppUSD_pr_py
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conv_to_k2017pppUSD_pr_py
       )
 
     # GDPpp_USED[region] = IF_THEN_ELSE ( Switch_GDP_hist_1_mod_2 == 1 , GDPpp_H_exo , GDPpp_model )
@@ -4865,16 +3507,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FWRP_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FWRP_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FWRP_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FWRP_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FWRP_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FWRP_R1_via_Excel[j], FWRP_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # Social_trust[region] = INTEG ( Change_in_social_trust[region] , Social_trust_in_1980 )
     idx1 = fcol_in_mdf["Social_trust"]
@@ -4902,8 +3538,7 @@ def ugregmod(game_id, von, bis):
       )
 
     # Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust[region] = SMOOTHI ( Scaled_Effect_of_poverty_on_social_tension_and_trust[region] , Time_for_poverty_to_affect_social_tension_and_trust , 1 )
-    idx1 = fcol_in_mdf[
-      "Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
+    idx1 = fcol_in_mdf["Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
     ]
     idx2 = fcol_in_mdf["Scaled_Effect_of_poverty_on_social_tension_and_trust"]
     for j in range(0, 10):
@@ -4917,12 +3552,10 @@ def ugregmod(game_id, von, bis):
     # Indicated_Social_tension_index[region] = 1 + ( 1 / ( 1 + Perceived_RoC_in_Living_conditions_index_with_env_damage[region] ) - 1 ) * Scaling_factor_for_amplitude_in_RoC_in_living_conditions_index * Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust[region]
     idxlhs = fcol_in_mdf["Indicated_Social_tension_index"]
     idx1 = fcol_in_mdf["Perceived_RoC_in_Living_conditions_index_with_env_damage"]
-    idx2 = fcol_in_mdf[
-      "Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
+    idx2 = fcol_in_mdf["Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + (1 / (1 + mdf[rowi, idx1 + j]) - 1)
         * Scaling_factor_for_amplitude_in_RoC_in_living_conditions_index
         * mdf[rowi, idx2 + j]
@@ -4930,9 +3563,7 @@ def ugregmod(game_id, von, bis):
 
     # Actual_Social_tension_index[region] = WITH LOOKUP ( Indicated_Social_tension_index[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0.1 ) , ( 0.25 , 0.13 ) , ( 0.5 , 0.23 ) , ( 0.75 , 0.5 ) , ( 1 , 1 ) , ( 1.25 , 1.5 ) , ( 1.5 , 1.85 ) , ( 1.75 , 1.95 ) , ( 2 , 2 ) ) )
     tabidx = ftab_in_d_table["Actual_Social_tension_index"]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Actual_Social_tension_index"
-    ]  # get the location of the lhs in mdf
+    idx2 = fcol_in_mdf["Actual_Social_tension_index"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Indicated_Social_tension_index"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -4960,9 +3591,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Indicated_effect_of_social_tension_on_reform_willingness"]
     idx1 = fcol_in_mdf["Smoothed_Social_tension_index_with_trust_effect"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - 1
-      ) * Strength_of_the_impact_of_social_tension_on_reform_willingness
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - 1) * Strength_of_the_impact_of_social_tension_on_reform_willingness
 
     # Effect_of_social_tension_on_reform_willingness[region] = Indicated_effect_of_social_tension_on_reform_willingness[region] + 1
     idxlhs = fcol_in_mdf["Effect_of_social_tension_on_reform_willingness"]
@@ -4981,18 +3610,14 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Indicated_reform_willingness_at_policy_start_year"]
     idx1 = fcol_in_mdf["Indicated_reform_willingness"]
     for i in range(0, 10):
-      mdf[rowi, idxlhs + i] = SAMPLE_IF_TRUE(
-        zeit, Policy_start_year, mdf[rowi, idx1 + i], 1, i
-      )
+      mdf[rowi, idxlhs + i] = SAMPLE_IF_TRUE(zeit, Policy_start_year, mdf[rowi, idx1 + i], 1, i)
 
     # Reform_willingness_scaled_to_today[region] = IF_THEN_ELSE ( zeit < Policy_start_year , 1 , Indicated_reform_willingness / Indicated_reform_willingness_at_policy_start_year )
     idxlhs = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     idx1 = fcol_in_mdf["Indicated_reform_willingness"]
     idx2 = fcol_in_mdf["Indicated_reform_willingness_at_policy_start_year"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit < Policy_start_year, 1, mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
-      )
+      mdf[rowi, idxlhs + j] = IF_THEN_ELSE(zeit < Policy_start_year, 1, mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j])
 
     # Smoothed_Reform_willingness[region] = SMOOTH3 ( Reform_willingness_scaled_to_today[region] , Time_to_adjust_reform_willingness )
     idxin = fcol_in_mdf["Reform_willingness_scaled_to_today"]
@@ -5048,8 +3673,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx1 = fcol_in_mdf["Actual_inequality_index_higher_is_more_unequal"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_energy_TA
+      mdf[rowi, idxlhs + j] = (1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_energy_TA
       )
 
     # Effective_purchasing_power[region] = SMOOTHI ( Consumption_and_investment[region] , Demand_adjustment_time , Demand_in_1980[region] )
@@ -5094,24 +3718,17 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Worker_share_of_output"]
     idx1 = fcol_in_mdf["Owner_power_or_weakness"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] + 1) / Worker_power_scaling_factor
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] + 1) / Worker_power_scaling_factor
       ) + Worker_power_scaling_factor_reference
 
     # StrUP_rounds_via_Excel[region] = IF_THEN_ELSE ( zeit >= Round3_start , StrUP_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , StrUP_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , StrUP_R1_via_Excel , StrUP_policy_Min ) ) )
     idxlhs = fcol_in_mdf["StrUP_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        StrUP_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          StrUP_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     StrUP_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       StrUP_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, StrUP_R1_via_Excel[j], StrUP_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # StrUP_policy_with_RW[region] = StrUP_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["StrUP_policy_with_RW"]
@@ -5124,8 +3741,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["StrUP_pol_div_100"]
     idx1 = fcol_in_mdf["StrUP_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(StrUP_policy_Max, max(StrUP_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(StrUP_policy_Max, max(StrUP_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # StrUP_policy[region] = SMOOTH3 ( StrUP_pol_div_100[region] , StrUP_Time_to_implement_policy )
@@ -5223,16 +3839,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["IOITR_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        IOITR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          IOITR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     IOITR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       IOITR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, IOITR_R1_via_Excel[j], IOITR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # IOITR_policy_with_RW[region] = IOITR_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["IOITR_policy_with_RW"]
@@ -5245,8 +3855,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["IOITR_pol_div_100"]
     idx1 = fcol_in_mdf["IOITR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(IOITR_policy_Max, max(IOITR_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(IOITR_policy_Max, max(IOITR_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # IOITR_policy[region] = SMOOTH3 ( IOITR_pol_div_100[region] , Time_to_implement_UN_policies[region] )
@@ -5300,12 +3909,9 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Life_expectancy_at_birth"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < Life_expectancy_at_birth_in_1980[j],
-        Pension_age_in_1980[j],
-        Pension_age_in_1980[j]
+        mdf[rowi, idx1 + j] < Life_expectancy_at_birth_in_1980[j],     Pension_age_in_1980[j],     Pension_age_in_1980[j]
         + SoE_of_LE_on_Pension_age[j]
-        * (mdf[rowi, idx2 + j] - Life_expectancy_at_birth_in_1980[j]),
-      )
+        * (mdf[rowi, idx2 + j] - Life_expectancy_at_birth_in_1980[j]),   )
 
     # Theoretical_fraction_of_people_60plus_drawing_a_pension[region] = MAX ( 0 , ( Max_age - Pension_age[region] ) / Years_between_60_and_max_age )
     idxlhs = fcol_in_mdf["Theoretical_fraction_of_people_60plus_drawing_a_pension"]
@@ -5329,16 +3935,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SGMP_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        SGMP_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          SGMP_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     SGMP_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       SGMP_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, SGMP_R1_via_Excel[j], SGMP_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # SGMP_policy_with_RW[region] = SGMP_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["SGMP_policy_with_RW"]
@@ -5351,8 +3951,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SGMP_pol_div_100"]
     idx1 = fcol_in_mdf["SGMP_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(SGMP_policy_Max, max(SGMP_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(SGMP_policy_Max, max(SGMP_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # SGMP_policy[region] = SMOOTH3 ( SGMP_pol_div_100[region] , SGMP_Time_to_implement_policy )
@@ -5386,8 +3985,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GDPpp_USED"]
     idx3 = fcol_in_mdf["SGMP_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * UNIT_conv_to_kUSDpp
         * mdf[rowi, idx3 + j]
@@ -5405,8 +4003,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["IOITR_policy"]
     idx2 = fcol_in_mdf["Additional_tax_rate_needed_to_pay_for_SGMP"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Income_tax_rate_ie_fraction_owners_before_policies
+      mdf[rowi, idxlhs + j] = (Income_tax_rate_ie_fraction_owners_before_policies
         + mdf[rowi, idx1 + j]
         + IF_THEN_ELSE(zeit > Policy_start_year, mdf[rowi, idx2 + j], 0)
       )
@@ -5421,16 +4018,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxEmp_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        XtaxEmp_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          XtaxEmp_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     XtaxEmp_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       XtaxEmp_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, XtaxEmp_R1_via_Excel[j], XtaxRateEmp_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # XtaxEmp_policy_with_RW[region] = XtaxEmp_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["XtaxEmp_policy_with_RW"]
@@ -5443,8 +4034,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxEmp_pol_div_100"]
     idx1 = fcol_in_mdf["XtaxEmp_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(XtaxRateEmp_policy_Max, max(XtaxRateEmp_policy_Min, mdf[rowi, idx1 + j]))
+      mdf[rowi, idxlhs + j] = (min(XtaxRateEmp_policy_Max, max(XtaxRateEmp_policy_Min, mdf[rowi, idx1 + j]))
         / 100
       )
 
@@ -5490,24 +4080,17 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxFrac_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        XtaxFrac_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          XtaxFrac_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     XtaxFrac_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       XtaxFrac_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, XtaxFrac_R1_via_Excel[j], Xtaxfrac_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # XtaxFrac_policy_with_RW[region] = Xtaxfrac_policy_Min + ( XtaxFrac_rounds_via_Excel[region] - Xtaxfrac_policy_Min ) * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["XtaxFrac_policy_with_RW"]
     idx1 = fcol_in_mdf["XtaxFrac_rounds_via_Excel"]
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Xtaxfrac_policy_Min
+      mdf[rowi, idxlhs + j] = (Xtaxfrac_policy_Min
         + (mdf[rowi, idx1 + j] - Xtaxfrac_policy_Min) * mdf[rowi, idx2 + j]
       )
 
@@ -5515,8 +4098,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxFrac_pol_div_100"]
     idx1 = fcol_in_mdf["XtaxFrac_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(Xtaxfrac_policy_Max, max(Xtaxfrac_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(Xtaxfrac_policy_Max, max(Xtaxfrac_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # Xtaxfrac_policy[region] = SMOOTH3 ( XtaxFrac_pol_div_100[region] , Xtaxfrac_Time_to_implement_policy )
@@ -5563,8 +4145,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Income_tax_rate"]
     idx3 = fcol_in_mdf["Extra_policy_taxes_paid_by_owners"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # Worker_income[region] = National_income[region] * Worker_share_of_output_with_unemployment_effect[region] + State_guaranteed_minimum_pension[region]
@@ -5573,24 +4154,17 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Worker_share_of_output_with_unemployment_effect"]
     idx3 = fcol_in_mdf["State_guaranteed_minimum_pension"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # IWITR_rounds_via_Excel[region] = IF_THEN_ELSE ( zeit >= Round3_start , IWITR_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , IWITR_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , IWITR_R1_via_Excel , IWITR_policy_Min ) ) )
     idxlhs = fcol_in_mdf["IWITR_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        IWITR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          IWITR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     IWITR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       IWITR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, IWITR_R1_via_Excel[j], IWITR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # IWITR_policy_with_RW[region] = IWITR_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["IWITR_policy_with_RW"]
@@ -5603,8 +4177,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["IWITR_pol_div_100"]
     idx1 = fcol_in_mdf["IWITR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(IWITR_policy_Max, max(IWITR_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(IWITR_policy_Max, max(IWITR_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # IWITR_policy[region] = SMOOTH3 ( IWITR_pol_div_100[region] , Time_to_implement_UN_policies[region] )
@@ -5637,8 +4210,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Income_tax_rate_workers_after_GITx"]
     idx1 = fcol_in_mdf["IWITR_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Income_tax_rate_ie_fraction_for_workers_before_policies + mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (Income_tax_rate_ie_fraction_for_workers_before_policies + mdf[rowi, idx1 + j]
       )
 
     # Income_tax_rate_workers[region] = Income_tax_rate_workers_after_GITx[region]
@@ -5660,8 +4232,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Income_tax_rate_workers"]
     idx3 = fcol_in_mdf["Extra_policy_taxes_paid_by_workers"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # Owner_income_after_tax_but_before_lending_transactions[region] = Owner_income[region] - Income_and_policy_taxes_paid_by_owners[region]
@@ -5721,8 +4292,7 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idx1 + j] = mdf[rowi - 1, idx1 + j] + (mdf[rowi - 1, idx2 + j]) * dt
 
     # Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation[region] = 1 - Owner_saving_fraction[region]
-    idxlhs = fcol_in_mdf[
-      "Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
+    idxlhs = fcol_in_mdf["Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
     ]
     idx1 = fcol_in_mdf["Owner_saving_fraction"]
     for j in range(0, 10):
@@ -5731,8 +4301,7 @@ def ugregmod(game_id, von, bis):
     # Owner_consumption_fraction[region] = ( 1 - WACC_fraction[region] ) * Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation[region]
     idxlhs = fcol_in_mdf["Owner_consumption_fraction"]
     idx1 = fcol_in_mdf["WACC_fraction"]
-    idx2 = fcol_in_mdf[
-      "Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
+    idx2 = fcol_in_mdf["Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = (1 - mdf[rowi, idx1 + j]) * mdf[rowi, idx2 + j]
@@ -5772,16 +4341,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ICTR_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        ICTR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          ICTR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     ICTR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       ICTR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, ICTR_R1_via_Excel[j], ICTR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # ICTR_policy_with_RW[region] = ICTR_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["ICTR_policy_with_RW"]
@@ -5794,8 +4357,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ICTR_pol_div_100"]
     idx1 = fcol_in_mdf["ICTR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(ICTR_policy_Max, max(ICTR_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(ICTR_policy_Max, max(ICTR_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # ICTR_policy[region] = SMOOTH3 ( ICTR_pol_div_100[region] , Time_to_implement_UN_policies[region] )
@@ -5846,16 +4408,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxCom_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        XtaxCom_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          XtaxCom_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     XtaxCom_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       XtaxCom_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, XtaxCom_R1_via_Excel[j], XtaxCom_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # XtaxCom_policy_with_RW[region] = XtaxCom_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["XtaxCom_policy_with_RW"]
@@ -5868,8 +4424,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["XtaxCom_pol_div_100"]
     idx1 = fcol_in_mdf["XtaxCom_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(XtaxCom_policy_Max, max(XtaxCom_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(XtaxCom_policy_Max, max(XtaxCom_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # XtaxCom_policy[region] = SMOOTH3 ( XtaxCom_pol_div_100[region] , XtaxCom_Time_to_implement_policy )
@@ -5918,14 +4473,8 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["TOW_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        TOW_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          TOW_R2_via_Excel[j],
-          IF_THEN_ELSE(zeit >= Policy_start_year, TOW_R1_via_Excel[j], TOW_policy_Min),
-        ),
-      )
+        zeit >= Round3_start,     TOW_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       TOW_R2_via_Excel[j],       IF_THEN_ELSE(zeit >= Policy_start_year, TOW_R1_via_Excel[j], TOW_policy_Min),     ),   )
 
     # TOW_policy_with_RW[region] = TOW_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["TOW_policy_with_RW"]
@@ -5938,8 +4487,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["TOW_pol_div_100"]
     idx1 = fcol_in_mdf["TOW_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(TOW_policy_Max, max(TOW_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(TOW_policy_Max, max(TOW_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # TOW_policy_converted_to_pa[region] = TOW_pol_div_100[region] * TOW_UNIT_conv_to_pa
@@ -6038,8 +4586,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["El_from_wind_and_PV"]
     idx1 = fcol_in_mdf["wind_and_PV_el_capacity"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * wind_and_PV_capacity_factor
         * Hours_per_year
         * UNIT_conv_GWh_and_TWh
@@ -6055,8 +4602,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["GDPpp_USED"]
     idx2 = fcol_in_mdf["Hydro_net_depreciation_multiplier_on_gen_cap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Hydro_gen_cap_L[j]
+      mdf[rowi, idxlhs + j] = (Hydro_gen_cap_L[j]
         / (
           1
           + math.exp(
@@ -6070,8 +4616,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["El_from_Hydro"]
     idx1 = fcol_in_mdf["Hydro_gen_cap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Hydrocapacity_factor[j]
         * Hours_per_year
         * UNIT_conv_GWh_and_TWh
@@ -6109,16 +4654,14 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Extra_energy_productivity_index_2024_is_1"]
     idx4 = fcol_in_mdf["Low_carbon_heat_production"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
       ) * UNIT_conv_toe_to_Mtoe - mdf[rowi, idx4 + j]
 
     # Fossil_fuel_for_NON_El_use_that_CANNOT_be_electrified[region] = Fossil_fuel_NOT_for_El_gen[region] * Fraction_of_Fossil_fuel_for_NON_El_use_that_cannot_be_electrified
     idxlhs = fcol_in_mdf["Fossil_fuel_for_NON_El_use_that_CANNOT_be_electrified"]
     idx1 = fcol_in_mdf["Fossil_fuel_NOT_for_El_gen"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Fraction_of_Fossil_fuel_for_NON_El_use_that_cannot_be_electrified
       )
 
@@ -6133,14 +4676,8 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["NEP_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        NEP_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          NEP_R2_via_Excel[j],
-          IF_THEN_ELSE(zeit >= Policy_start_year, NEP_R1_via_Excel[j], NEP_policy_Min),
-        ),
-      )
+        zeit >= Round3_start,     NEP_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       NEP_R2_via_Excel[j],       IF_THEN_ELSE(zeit >= Policy_start_year, NEP_R1_via_Excel[j], NEP_policy_Min),     ),   )
 
     # NEP_policy_with_RW[region] = NEP_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region]
     idxlhs = fcol_in_mdf["NEP_policy_with_RW"]
@@ -6148,16 +4685,14 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # NEP_pol_div_100[region] = MIN ( NEP_policy_Max , MAX ( NEP_policy_Min , NEP_policy_with_RW[region] ) ) / 100
     idxlhs = fcol_in_mdf["NEP_pol_div_100"]
     idx1 = fcol_in_mdf["NEP_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(NEP_policy_Max, max(NEP_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(NEP_policy_Max, max(NEP_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # NEP_policy[region] = SMOOTH3 ( NEP_pol_div_100[region] , NEP_Time_to_implement_goal )
@@ -6213,8 +4748,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["El_gen_from_fossil_fuels"]
     idx1 = fcol_in_mdf["Fossil_el_gen_cap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Hours_per_year
         * Fossil_actual_uptime_factor[j]
         * UNIT_conv_GWh_and_TWh
@@ -6232,22 +4766,15 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fossil_fuel_for_NON_El_use_that_IS_NOT_being_electrified"]
     idx3 = fcol_in_mdf["Fossil_fuels_for_el_gen"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # CCS_rounds_via_Excel[region] = IF_THEN_ELSE ( zeit >= Round3_start , CCS_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , CCS_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , CCS_R1_via_Excel , CCS_policy_Min ) ) )
     idxlhs = fcol_in_mdf["CCS_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        CCS_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          CCS_R2_via_Excel[j],
-          IF_THEN_ELSE(zeit >= Policy_start_year, CCS_R1_via_Excel[j], CCS_policy_Min),
-        ),
-      )
+        zeit >= Round3_start,     CCS_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       CCS_R2_via_Excel[j],       IF_THEN_ELSE(zeit >= Policy_start_year, CCS_R1_via_Excel[j], CCS_policy_Min),     ),   )
 
     # CCS_policy_with_RW[region] = CCS_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region]
     idxlhs = fcol_in_mdf["CCS_policy_with_RW"]
@@ -6255,16 +4782,14 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # CCS_pol_div_100[region] = MIN ( CCS_policy_Max , MAX ( CCS_policy_Min , CCS_policy_with_RW[region] ) ) / 100
     idxlhs = fcol_in_mdf["CCS_pol_div_100"]
     idx1 = fcol_in_mdf["CCS_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(CCS_policy_Max, max(CCS_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(CCS_policy_Max, max(CCS_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # CCS_policy[region] = SMOOTH3 ( CCS_pol_div_100[region] , Time_to_implement_CCS_goal )
@@ -6330,8 +4855,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CO2_emi_from_IPC2_use_wo_CN"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        CO2_emi_from_IPC2_use_a[j]
+      mdf[rowi, idxlhs + j] = (CO2_emi_from_IPC2_use_a[j]
         * math.log(mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl)
         + CO2_emi_from_IPC2_use_b[j]
       )
@@ -6354,16 +4878,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Ctax_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        Ctax_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          Ctax_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     Ctax_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       Ctax_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, Ctax_R1_via_Excel[j], Ctax_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # Ctax_policy_with_RW[region] = Ctax_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["Ctax_policy_with_RW"]
@@ -6376,8 +4894,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Ctax_pol_div_100"]
     idx1 = fcol_in_mdf["Ctax_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(Ctax_policy_Max, max(Ctax_policy_Min, mdf[rowi, idx1 + j])) / 1
+      mdf[rowi, idxlhs + j] = (min(Ctax_policy_Max, max(Ctax_policy_Min, mdf[rowi, idx1 + j])) / 1
       )
 
     # Ctax_policy_with_inequality_effect[region] = MIN ( Ctax_policy_Max , Ctax_pol_div_100[region] / Inequality_effect_on_energy_TA[region] )
@@ -6425,8 +4942,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Total_CO2_emissions"]
     idx2 = fcol_in_mdf["Ctax_carbon_tax_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * UNIT_conv_to_G2017pppUSD
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * UNIT_conv_to_G2017pppUSD
       )
 
     # Gross_Govt_income[region] = Income_and_policy_taxes_paid_by_owners[region] + Worker_income_and_policy_taxes[region] + Consumption_taxes_last_year[region] + Universal_basic_dividend[region] + Wealth_taxing[region] + Carbon_taxes[region]
@@ -6438,8 +4954,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Wealth_taxing"]
     idx6 = fcol_in_mdf["Carbon_taxes"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -6483,16 +4998,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Lfrac_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        Lfrac_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          Lfrac_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     Lfrac_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       Lfrac_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, Lfrac_R1_via_Excel[j], Lfrac_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # Lfrac_policy_with_RW[region] = Lfrac_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["Lfrac_policy_with_RW"]
@@ -6505,8 +5014,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Lfrac_pol_div_100"]
     idx1 = fcol_in_mdf["Lfrac_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(Lfrac_policy_Max, max(Lfrac_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(Lfrac_policy_Max, max(Lfrac_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # Lfrac_policy[region] = SMOOTH3 ( Lfrac_pol_div_100[region] , Time_to_implement_UN_policies[region] )
@@ -6594,8 +5102,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Future_leakage"]
     idx3 = fcol_in_mdf["Fraction_of_govt_income_transferred_to_workers"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * (1 - mdf[rowi, idx2 + j]) * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * (1 - mdf[rowi, idx2 + j]) * mdf[rowi, idx3 + j]
       )
 
     # Govt_income_after_transfers[region] = Gross_Govt_income[region] - Transfer_from_govt_to_workers[region]
@@ -6621,24 +5128,17 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SSGDR_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        SSGDR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          SSGDR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     SSGDR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       SSGDR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, SSGDR_R1_via_Excel[j], SSGDR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # SSGDR_policy_with_RW[region] = SSGDR_policy_Min + ( SSGDR_rounds_via_Excel[region] - SSGDR_policy_Min ) * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["SSGDR_policy_with_RW"]
     idx1 = fcol_in_mdf["SSGDR_rounds_via_Excel"]
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        SSGDR_policy_Min
+      mdf[rowi, idxlhs + j] = (SSGDR_policy_Min
         + (mdf[rowi, idx1 + j] - SSGDR_policy_Min) * mdf[rowi, idx2 + j]
       )
 
@@ -6646,8 +5146,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SSGDR_pol_div_100"]
     idx1 = fcol_in_mdf["SSGDR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(SSGDR_policy_Max, max(SSGDR_policy_Min, mdf[rowi, idx1 + j])) / 1
+      mdf[rowi, idxlhs + j] = (min(SSGDR_policy_Max, max(SSGDR_policy_Min, mdf[rowi, idx1 + j])) / 1
       )
 
     # SSGDR_policy[region] = SMOOTH3 ( SSGDR_pol_div_100[region] , Time_to_implement_UN_policies[region] )
@@ -6737,12 +5236,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
 
     # Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing[region] = WITH LOOKUP ( Govt_default_ratio[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.25 , 1.04 ) , ( 0.5 , 1.1 ) , ( 0.75 , 1.3 ) , ( 1 , 1.6 ) , ( 1.5 , 2.5 ) , ( 2 , 4 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Govt_default_ratio"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -6752,12 +5247,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Govt_interest_payment_obligation_to_PL"]
     idx1 = fcol_in_mdf["Govt_debt_owed_to_private_lenders"]
     idx2 = fcol_in_mdf["Long_term_interest_rate_used_by_private_lenders"]
-    idx3 = fcol_in_mdf[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"
+    idx3 = fcol_in_mdf["Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_govt_borrowing"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
       )
 
     # Govt_loan_obligations_to_PL[region] = Govt_debt_repayment_obligation[region] + Govt_interest_payment_obligation_to_PL[region]
@@ -6777,8 +5270,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Govt_cash_to_meet_private_loan_obligations"]
     idx1 = fcol_in_mdf["Govt_cash_available_to_meet_all_loan_obligations"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Fraction_of_avail_cash_used_to_meet_private_lender_obligations
       )
 
@@ -6799,12 +5291,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # Max_govt_debt_burden_multiplier_historical_and_future[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 2050 , 2 ) ] , ( 1980 , 0 ) , ( 1990 , 1 ) , ( 2000 , 0 ) , ( 2018 , 1.2 ) , ( 2020 , 1 ) , ( 2050 , 0.6 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 0.75 ) , ( 2000 , 0.5 ) , ( 2018 , 0.35 ) , ( 2020 , 0.3 ) , ( 2050 , 0.5 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.25 ) , ( 2000 , 0.5 ) , ( 2018 , 0.9 ) , ( 2020 , 0.9 ) , ( 2050 , 0.5 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.25 ) , ( 2000 , 0.5 ) , ( 2018 , 0.6 ) , ( 2020 , 0.75 ) , ( 2050 , 0.6 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.5 ) , ( 2000 , 1 ) , ( 2018 , 0.5 ) , ( 2020 , 0.5 ) , ( 2050 , 0.5 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.25 ) , ( 2000 , 0.5 ) , ( 2018 , 0.6 ) , ( 2020 , 0.75 ) , ( 2050 , 0.6 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.5 ) , ( 2000 , 1 ) , ( 2018 , 1.5 ) , ( 2020 , 1 ) , ( 2050 , 0.5 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.05 ) , ( 2000 , 0.1 ) , ( 2018 , 0.2 ) , ( 2020 , 0.5 ) , ( 2050 , 0.4 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.25 ) , ( 2000 , 0.5 ) , ( 2018 , 0.6 ) , ( 2020 , 0.75 ) , ( 2050 , 0.6 ) ) ) Max_govt_debt_burden_multiplier_historical_and_future[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 0.75 ) , ( 2000 , 0.5 ) , ( 2018 , 0.35 ) , ( 2020 , 0.3 ) , ( 2050 , 0.5 ) ) )
-    tabidx = ftab_in_d_table[
-      "Max_govt_debt_burden_multiplier_historical_and_future"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Max_govt_debt_burden_multiplier_historical_and_future"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Max_govt_debt_burden_multiplier_historical_and_future"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Max_govt_debt_burden_multiplier_historical_and_future"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -6814,8 +5302,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["GDP_USED"]
     idx2 = fcol_in_mdf["Max_govt_debt_burden_multiplier_historical_and_future"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * Reference_max_govt_debt_burden[j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * Reference_max_govt_debt_burden[j]
       )
 
     # Max_govt_debt_smoothed[region] = SMOOTH ( Max_govt_debt[region] , Time_to_smooth_max_govt_debt )
@@ -6844,16 +5331,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FMPLDD_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FMPLDD_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FMPLDD_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FMPLDD_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FMPLDD_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FMPLDD_R1_via_Excel[j], FMPLDD_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FMPLDD_policy_with_RW[region] = FMPLDD_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["FMPLDD_policy_with_RW"]
@@ -6866,8 +5347,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FMPLDD_pol_div_100"]
     idx1 = fcol_in_mdf["FMPLDD_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FMPLDD_policy_Max, max(FMPLDD_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(FMPLDD_policy_Max, max(FMPLDD_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # FMPLDD_policy_converted_to_pa[region] = FMPLDD_pol_div_100[region] * UNIT_conv_to_pa
@@ -6974,8 +5454,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Indicated_long_term_interest_rate_after_global_considerations[region] = MIN ( Long_term_interest_rate_used_by_private_lenders[region] , Avg_global_long_term_interest_rate )
-    idxlhs = fcol_in_mdf[
-      "Indicated_long_term_interest_rate_after_global_considerations"
+    idxlhs = fcol_in_mdf["Indicated_long_term_interest_rate_after_global_considerations"
     ]
     idx1 = fcol_in_mdf["Long_term_interest_rate_used_by_private_lenders"]
     idx2 = fcol_in_mdf["Avg_global_long_term_interest_rate"]
@@ -7011,12 +5490,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
 
     # Effect_of_public_loan_defaults_on_interest_rate[region] = WITH LOOKUP ( Public_loan_defaults_as_fraction_of_GDP[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 0.25 , 0 ) , ( 0.5 , 0.005 ) , ( 0.75 , 0.01 ) , ( 1 , 0.02 ) , ( 1.5 , 0.05 ) , ( 2 , 0.1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_public_loan_defaults_on_interest_rate"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_public_loan_defaults_on_interest_rate"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_public_loan_defaults_on_interest_rate"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_public_loan_defaults_on_interest_rate"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Public_loan_defaults_as_fraction_of_GDP"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -7086,8 +5561,7 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + i] = ZIDZ(mdf[rowi, idx1 + i], mdf[rowi, idx2 + i])
 
     # Obligation_for_interest_payments_on_debt_from_public_lenders_actually_met[region] = Obligation_for_interest_payments_on_debt_from_public_lenders[region] * ( 1 - Fraction_of_public_loans_not_serviced[region] )
-    idxlhs = fcol_in_mdf[
-      "Obligation_for_interest_payments_on_debt_from_public_lenders_actually_met"
+    idxlhs = fcol_in_mdf["Obligation_for_interest_payments_on_debt_from_public_lenders_actually_met"
     ]
     idx1 = fcol_in_mdf["Obligation_for_interest_payments_on_debt_from_public_lenders"]
     idx2 = fcol_in_mdf["Fraction_of_public_loans_not_serviced"]
@@ -7098,12 +5572,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Actual_govt_cash_inflow"]
     idx1 = fcol_in_mdf["Govt_income_after_transfers"]
     idx2 = fcol_in_mdf["Govt_cashflow_to_owners"]
-    idx3 = fcol_in_mdf[
-      "Obligation_for_interest_payments_on_debt_from_public_lenders_actually_met"
+    idx3 = fcol_in_mdf["Obligation_for_interest_payments_on_debt_from_public_lenders_actually_met"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j]
       )
 
     # Actual_govt_cash_inflow_seasonally_adjusted[region] = SMOOTH ( Actual_govt_cash_inflow[region] , Time_to_adjust_budget )
@@ -7121,16 +5593,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SGRPI_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        SGRPI_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          SGRPI_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     SGRPI_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       SGRPI_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, SGRPI_R1_via_Excel[j], SGRPI_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # SGRPI_policy_with_RW[region] = SGRPI_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["SGRPI_policy_with_RW"]
@@ -7143,8 +5609,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["SGRPI_pol_div_100"]
     idx1 = fcol_in_mdf["SGRPI_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(SGRPI_policy_Max, max(SGRPI_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(SGRPI_policy_Max, max(SGRPI_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # SGRPI_policy[region] = SMOOTH3 ( SGRPI_pol_div_100[region] , Time_to_implement_SGRPI_policy[region] )
@@ -7192,14 +5657,8 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPB_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        LPB_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          LPB_R2_via_Excel[j],
-          IF_THEN_ELSE(zeit >= Policy_start_year, LPB_R1_via_Excel[j], LPB_policy_Min),
-        ),
-      )
+        zeit >= Round3_start,     LPB_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       LPB_R2_via_Excel[j],       IF_THEN_ELSE(zeit >= Policy_start_year, LPB_R1_via_Excel[j], LPB_policy_Min),     ),   )
 
     # LPB_policy_with_RW[region] = LPB_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["LPB_policy_with_RW"]
@@ -7212,8 +5671,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPB_pol_div_100"]
     idx1 = fcol_in_mdf["LPB_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(LPB_policy_Max, max(LPB_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(LPB_policy_Max, max(LPB_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # LPB_policy[region] = SMOOTH3 ( LPB_pol_div_100[region] , LPB_Time_to_implement_policy )
@@ -7252,16 +5710,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPBsplit_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        LPBsplit_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          LPBsplit_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     LPBsplit_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       LPBsplit_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, LPBsplit_R1_via_Excel[j], LPBsplit_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # LPBsplit_policy_with_RW[region] = LPBsplit_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["LPBsplit_policy_with_RW"]
@@ -7274,8 +5726,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPBsplit_pol_div_100"]
     idx1 = fcol_in_mdf["LPBsplit_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(LPBsplit_policy_Max, max(LPBsplit_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(LPBsplit_policy_Max, max(LPBsplit_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # LPBsplit_policy[region] = SMOOTH3 ( LPBsplit_pol_div_100[region] , LPBsplit_Time_to_implement_policy )
@@ -7304,12 +5755,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # Effect_of_public_loan_defaults_on_availability_of_new_loans[region] = WITH LOOKUP ( Public_loan_defaults_as_fraction_of_GDP[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.25 , 1 ) , ( 0.5 , 1 ) , ( 0.75 , 0.98 ) , ( 1 , 0.95 ) , ( 1.5 , 0.7 ) , ( 2 , 0.3 ) , ( 3 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_public_loan_defaults_on_availability_of_new_loans"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_public_loan_defaults_on_availability_of_new_loans"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_public_loan_defaults_on_availability_of_new_loans"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_public_loan_defaults_on_availability_of_new_loans"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Public_loan_defaults_as_fraction_of_GDP"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -7321,8 +5768,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["LPBsplit_policy"]
     idx3 = fcol_in_mdf["Effect_of_public_loan_defaults_on_availability_of_new_loans"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
       )
 
     # Public_money_from_LPB_policy_to_public_spending[region] = Public_money_from_LPB_policy[region] - Public_money_from_LPB_policy_to_investment[region]
@@ -7340,8 +5786,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Public_money_from_LPB_policy_to_public_spending"]
     idx5 = fcol_in_mdf["Future_leakage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j] * (1 - mdf[rowi, idx3 + j])
         + mdf[rowi, idx4 + j] * (1 - mdf[rowi, idx5 + j])
       )
@@ -7357,16 +5802,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FEHC_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FEHC_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FEHC_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FEHC_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FEHC_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FEHC_R1_via_Excel[j], FEHC_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FEHC_policy_with_RW[region] = FEHC_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["FEHC_policy_with_RW"]
@@ -7379,8 +5818,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FEHC_pol_div_100"]
     idx1 = fcol_in_mdf["FEHC_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FEHC_policy_Max, max(FEHC_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(FEHC_policy_Max, max(FEHC_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # FEHC_policy[region] = SMOOTH3 ( FEHC_pol_div_100[region] , FEHC_Time_to_implement_policy )
@@ -7418,8 +5856,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Effect_of_FEHC_mult_on_years_of_schooling"]
     idx1 = fcol_in_mdf["FEHC_mult_used"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_FEHC_mult_on_years_of_schooling
+      mdf[rowi, idxlhs + j] = (1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_FEHC_mult_on_years_of_schooling
       )
 
     # Years_of_schooling[region] = ( SDG4_a * LN ( Public_services_pp[region] / UNIT_conv_to_make_base_and_ln_dmnl ) + SDG4_b ) / Effect_of_FEHC_mult_on_years_of_schooling[region]
@@ -7427,8 +5864,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Public_services_pp"]
     idx2 = fcol_in_mdf["Effect_of_FEHC_mult_on_years_of_schooling"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        SDG4_a * math.log(mdf[rowi, idx1 + j] / UNIT_conv_to_make_base_and_ln_dmnl)
+      mdf[rowi, idxlhs + j] = (SDG4_a * math.log(mdf[rowi, idx1 + j] / UNIT_conv_to_make_base_and_ln_dmnl)
         + SDG4_b
       ) / mdf[rowi, idx2 + j]
 
@@ -7438,10 +5874,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Years_of_schooling"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG4_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG4_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG4_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG4_threshold_green, 0.5, 1),   )
 
     # GenderEquality[region] = INTEG ( Change_in_GE[region] , GE_in_1980[region] )
     idx1 = fcol_in_mdf["GenderEquality"]
@@ -7455,10 +5888,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GenderEquality"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG5_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG5_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG5_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG5_threshold_green, 0.5, 1),   )
 
     # Empowerment_score[region] = ( SDG4_Score[region] + SDG_5_Score[region] ) / 2
     idxlhs = fcol_in_mdf["Empowerment_score"]
@@ -7471,8 +5901,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Multplier_from_empowerment_on_speed_of_food_TA"]
     idx1 = fcol_in_mdf["Empowerment_score"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + (mdf[rowi, idx1 + j] - 0.5)
         * Strength_of_Effect_of_empowerment_on_speed_of_food_TA
       )
@@ -7509,8 +5938,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -7520,8 +5948,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FWRP_pol_div_100"]
     idx1 = fcol_in_mdf["FWRP_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FWRP_policy_Max, max(FWRP_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(FWRP_policy_Max, max(FWRP_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # FWRP_policy[region] = SMOOTH3 ( FWRP_pol_div_100[region] , FWRP_Time_to_implement_goal )
@@ -7566,8 +5993,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["oth_crop_dmd_pp"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        oth_crop_dmd_pp_a[j]
+      mdf[rowi, idxlhs + j] = (oth_crop_dmd_pp_a[j]
         * math.log(mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl)
         + oth_crop_dmd_pp_b[j]
       )
@@ -7599,8 +6025,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["oth_crop_dmd_food_pp_wasted"]
     idx5 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (
+      mdf[rowi, idxlhs + j] = ((
           mdf[rowi, idx1 + j]
           + mdf[rowi, idx2 + j]
           + mdf[rowi, idx3 + j]
@@ -7672,8 +6097,7 @@ def ugregmod(game_id, von, bis):
 
     # C_in_atmosphere_in_form_of_CH4 = INTEG ( CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py + Human_activity_CH4_emissions + Natural_CH4_emissions - CH4_conversion_to_CO2_and_H2O , C_in_the_form_of_CH4_in_atm_1980 )
     idx1 = fcol_in_mdf["C_in_atmosphere_in_form_of_CH4"]
-    idx2 = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idx2 = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     idx3 = fcol_in_mdf["Human_activity_CH4_emissions"]
     idx4 = fcol_in_mdf["Natural_CH4_emissions"]
@@ -7727,8 +6151,7 @@ def ugregmod(game_id, von, bis):
 
     # C_in_permafrost_in_form_of_CH4 = INTEG ( - CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py , 1199.78 )
     idx1 = fcol_in_mdf["C_in_permafrost_in_form_of_CH4"]
-    idx2 = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idx2 = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     mdf[rowi, idx1] = mdf[rowi - 1, idx1] + (-mdf[rowi - 1, idx2]) * dt
 
@@ -7886,12 +6309,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # Effect_of_poverty_on_social_tension[region] = WITH LOOKUP ( Fraction_of_population_below_existential_minimum[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.1 , 0.7 ) , ( 0.25 , 0.4 ) , ( 0.5 , 0.2 ) , ( 0.75 , 0.15 ) , ( 1 , 0.1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_poverty_on_social_tension"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_poverty_on_social_tension"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_poverty_on_social_tension"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_poverty_on_social_tension"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Fraction_of_population_below_existential_minimum"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -7980,8 +6399,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass = INTEG ( GRASS_Biomass_in_construction_material_left_to_rot + GRASS_Living_biomass_rotting - GRASS_Dead_biomass_decomposing - GRASS_DeadB_SOM_being_lost_due_to_deforestation - GRASS_DeadB_SOM_being_lost_due_to_energy_harvesting - GRASS_runoff - GRASS_soil_degradation_from_forest_fires , GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 )
-    idx1 = fcol_in_mdf[
-      "GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     idx2 = fcol_in_mdf["GRASS_Biomass_in_construction_material_left_to_rot"]
     idx3 = fcol_in_mdf["GRASS_Living_biomass_rotting"]
@@ -8015,8 +6433,7 @@ def ugregmod(game_id, von, bis):
     # GRASS_Living_biomass_GtBiomass = INTEG ( GRASS_biomass_new_growing - GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting - GRASS_for_construction_use - GRASS_Living_biomass_rotting , GRASS_Living_biomass_in_1980 )
     idx1 = fcol_in_mdf["GRASS_Living_biomass_GtBiomass"]
     idx2 = fcol_in_mdf["GRASS_biomass_new_growing"]
-    idx3 = fcol_in_mdf[
-      "GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["GRASS_for_construction_use"]
     idx5 = fcol_in_mdf["GRASS_Living_biomass_rotting"]
@@ -8075,8 +6492,7 @@ def ugregmod(game_id, von, bis):
     # Greenland_ice_volume_that_slid_into_the_ocean_km3 = INTEG ( Greenland_ice_sliding_into_the_ocean_km3_py - Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py , 0 )
     idx1 = fcol_in_mdf["Greenland_ice_volume_that_slid_into_the_ocean_km3"]
     idx2 = fcol_in_mdf["Greenland_ice_sliding_into_the_ocean_km3_py"]
-    idx3 = fcol_in_mdf[
-      "Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
+    idx3 = fcol_in_mdf["Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
     ]
     mdf[rowi, idx1] = (
       mdf[rowi - 1, idx1] + (mdf[rowi - 1, idx2] - mdf[rowi - 1, idx3]) * dt
@@ -8088,8 +6504,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Evaporation_aka_latent_heat_flow"]
     idx4 = fcol_in_mdf["LW_surface_emissions_NOT_escaping_through_atm_window"]
     idx5 = fcol_in_mdf["SW_Atmospheric_absorption"]
-    idx6 = fcol_in_mdf[
-      "Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
+    idx6 = fcol_in_mdf["Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
     ]
     idx7 = fcol_in_mdf["LW_clear_sky_emissions_to_surface"]
     idx8 = fcol_in_mdf["LW_TOA_radiation_from_atm_to_space"]
@@ -8121,14 +6536,11 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["SW_surface_absorption"]
     idx5 = fcol_in_mdf["Convection_aka_sensible_heat_flow"]
     idx6 = fcol_in_mdf["Evaporation_aka_latent_heat_flow"]
-    idx7 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
+    idx7 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
     ]
-    idx8 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
+    idx8 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
     ]
-    idx9 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
+    idx9 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
     ]
     idx10 = fcol_in_mdf["LW_surface_emission"]
     idx11 = fcol_in_mdf["Net_heat_flow_ocean_from_surface_to_deep_ZJ_py"]
@@ -8253,12 +6665,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1]
 
     # Fraction_blocked_by_CO2_spectrum = WITH LOOKUP ( CO2_concentration_ppm , ( [ ( 0 , 0 ) - ( 1000 , 0.2 ) ] , ( 0 , 0 ) , ( 40 , 0.0508772 ) , ( 100 , 0.0756579 ) , ( 200 , 0.085978 ) , ( 285 , 0.091138 ) , ( 300 , 0.0919195 ) , ( 400 , 0.0960065 ) , ( 500 , 0.0993184 ) , ( 570 , 0.10117 ) , ( 600 , 0.1019 ) , ( 800 , 0.106134 ) , ( 1000 , 0.109347 ) , ( 10000 , 0.146835 ) ) )
-    tabidx = ftab_in_d_table[
-      "Fraction_blocked_by_CO2_spectrum"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Fraction_blocked_by_CO2_spectrum"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Fraction_blocked_by_CO2_spectrum"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Fraction_blocked_by_CO2_spectrum"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["CO2_concentration_ppm"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -8280,12 +6688,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1]
 
     # Fraction_blocked_by_CH4_spectrum = WITH LOOKUP ( CH4_concentration_ppb , ( [ ( 0 , 0 ) - ( 1e+06 , 0.2 ) ] , ( 0 , 0 ) , ( 350 , 0.0028 ) , ( 700 , 0.0042 ) , ( 1200 , 0.0056 ) , ( 1700 , 0.007 ) , ( 3000 , 0.0106 ) , ( 5000 , 0.0125 ) , ( 7000 , 0.013477 ) , ( 10000 , 0.0153945 ) , ( 20000 , 0.0201881 ) , ( 40000 , 0.0259404 ) , ( 70000 , 0.0316927 ) , ( 100000 , 0.0355276 ) , ( 150000 , 0.0403212 ) , ( 250000 , 0.0456888 ) , ( 500000 , 0.0539356 ) , ( 1e+06 , 0.0625641 ) , ( 1e+07 , 0.0954476 ) , ( 1e+08 , 0.130154 ) , ( 5e+08 , 0.152204 ) , ( 9e+08 , 0.159776 ) , ( 1e+09 , 0.16112 ) ) )
-    tabidx = ftab_in_d_table[
-      "Fraction_blocked_by_CH4_spectrum"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Fraction_blocked_by_CH4_spectrum"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Fraction_blocked_by_CH4_spectrum"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Fraction_blocked_by_CH4_spectrum"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["CH4_concentration_ppb"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -8303,9 +6707,7 @@ def ugregmod(game_id, von, bis):
 
     # Blocked_by_H20_Table_lookup = WITH LOOKUP ( Humidity_of_atmosphere_current_g_p_kg , ( [ ( 1.7 , 0 ) - ( 2.5 , 0.2 ) ] , ( 1.76 , 0.06 ) , ( 1.85 , 0.0638 ) , ( 1.9 , 0.0649123 ) , ( 1.95 , 0.071 ) , ( 1.97 , 0.0753 ) , ( 1.99 , 0.081 ) , ( 2.00026 , 0.0846 ) , ( 2.02999 , 0.092 ) , ( 2.05039 , 0.0976 ) , ( 2.07286 , 0.1025 ) , ( 2.10017 , 0.109 ) , ( 2.11642 , 0.113 ) , ( 2.14996 , 0.1205 ) , ( 2.16275 , 0.1235 ) , ( 2.18522 , 0.129 ) , ( 2.20009 , 0.132 ) , ( 2.21288 , 0.135 ) , ( 2.235 , 0.14 ) , ( 2.25022 , 0.144 ) , ( 2.26992 , 0.148 ) , ( 2.3 , 0.155 ) , ( 2.4 , 0.174 ) , ( 2.5 , 0.19 ) ) )
     tabidx = ftab_in_d_table["Blocked_by_H20_Table_lookup"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Blocked_by_H20_Table_lookup"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Blocked_by_H20_Table_lookup"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Humidity_of_atmosphere_current_g_p_kg"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -8327,13 +6729,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Blocking_multiplier_from_Kyoto_Fluor"]
     idx1 = fcol_in_mdf["Kyoto_Fluor_concentration_ppt"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit > 1970,
-      1
+      zeit > 1970,   1
       + Slope_btw_Kyoto_Fluor_ppt_and_blocking_multiplier
       / 1000
-      * (mdf[rowi, idx1] / Kyoto_Fluor_concentration_in_1970_ppt - 1),
-      1,
-    )
+      * (mdf[rowi, idx1] / Kyoto_Fluor_concentration_in_1970_ppt - 1),   1, )
 
     # Montreal_gases_in_atm = INTEG ( Montreal_gases_emissions - Montreal_gases_degradation , 16239.5 )
     idx1 = fcol_in_mdf["Montreal_gases_in_atm"]
@@ -8354,13 +6753,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Blocking_multiplier_from_Montreal_gases"]
     idx1 = fcol_in_mdf["Montreal_gases_concentration_ppt"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit > 1970,
-      1
+      zeit > 1970,   1
       + Slope_btw_Montreal_gases_ppt_and_blocking_multiplier
       / 100
-      * (mdf[rowi, idx1] / Montreal_gases_concentration_in_1970_ppt - 1),
-      1,
-    )
+      * (mdf[rowi, idx1] / Montreal_gases_concentration_in_1970_ppt - 1),   1, )
 
     # N2O_in_atmosphere_MtN2O = INTEG ( All_N2O_emissions - N2O_degradation_MtN2O_py , N2O_in_atmosphere_MtN2O_in_1980 )
     idx1 = fcol_in_mdf["N2O_in_atmosphere_MtN2O"]
@@ -8562,8 +6958,7 @@ def ugregmod(game_id, von, bis):
     # NF_Living_biomass_GtBiomass = INTEG ( NF_biomass_new_growing - NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting - NF_for_construction_use - NF_Living_biomass_rotting , NF_Living_biomass_in_1980 )
     idx1 = fcol_in_mdf["NF_Living_biomass_GtBiomass"]
     idx2 = fcol_in_mdf["NF_biomass_new_growing"]
-    idx3 = fcol_in_mdf[
-      "NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["NF_for_construction_use"]
     idx5 = fcol_in_mdf["NF_Living_biomass_rotting"]
@@ -8669,8 +7064,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Size_of_agri_sector"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Size_of_agri_sector_a
+      mdf[rowi, idxlhs + j] = (Size_of_agri_sector_a
         + Size_of_agri_sector_b
         * math.exp(-1 * (mdf[rowi, idx1 + j] / Size_of_agri_sector_c))
       ) / 100
@@ -8679,8 +7073,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Size_of_tertiary_sector"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Size_of_tertiary_sector_lim
+      mdf[rowi, idxlhs + j] = (Size_of_tertiary_sector_lim
         - Size_of_tertiary_sector_a
         * math.exp(-1 * ((mdf[rowi, idx1 + j]) / Size_of_tertiary_sector_c))
       ) / 100
@@ -8770,8 +7163,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["TROP_biomass_new_growing"]
     idx3 = fcol_in_mdf["TROP_for_construction_use"]
     idx4 = fcol_in_mdf["TROP_Living_biomass_rotting"]
-    idx5 = fcol_in_mdf[
-      "TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx5 = fcol_in_mdf["TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     mdf[rowi, idx1] = (
       mdf[rowi - 1, idx1]
@@ -8828,8 +7220,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass = INTEG ( TUNDRA_Biomass_in_construction_material_left_to_rot + TUNDRA_Living_biomass_rotting - TUNDRA_Dead_biomass_decomposing - TUNDRA_DeadB_SOM_being_lost_due_to_deforestation - TUNDRA_DeadB_SOM_being_lost_due_to_energy_harvesting - TUNDRA_runoff - TUNDRA_soil_degradation_from_forest_fires , TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_in_1980 )
-    idx1 = fcol_in_mdf[
-      "TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     idx2 = fcol_in_mdf["TUNDRA_Biomass_in_construction_material_left_to_rot"]
     idx3 = fcol_in_mdf["TUNDRA_Living_biomass_rotting"]
@@ -8863,8 +7254,7 @@ def ugregmod(game_id, von, bis):
     # TUNDRA_Living_biomass = INTEG ( TUNDRA_biomass_new_growing - TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting - TUNDRA_for_construction_use - TUNDRA_Living_biomass_rotting , TUNDRA_Living_biomass_in_1980 )
     idx1 = fcol_in_mdf["TUNDRA_Living_biomass"]
     idx2 = fcol_in_mdf["TUNDRA_biomass_new_growing"]
-    idx3 = fcol_in_mdf[
-      "TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["TUNDRA_for_construction_use"]
     idx5 = fcol_in_mdf["TUNDRA_Living_biomass_rotting"]
@@ -8944,8 +7334,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Worker_income_and_policy_taxes"]
     idx3 = fcol_in_mdf["Transfer_from_govt_to_workers"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # Workers_debt[region] = INTEG ( Workers_taking_on_new_debt[region] - Workers_debt_payback[region] , Workers_debt_in_1980[region] )
@@ -8962,8 +7351,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Access_to_electricity"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Access_to_electricity_L
+      mdf[rowi, idxlhs + j] = (Access_to_electricity_L
         / (
           1
           + math.exp(
@@ -8998,8 +7386,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["red_meat_dmd_func_pp"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        red_meat_dmd_func_pp_L[j]
+      mdf[rowi, idxlhs + j] = (red_meat_dmd_func_pp_L[j]
         / (
           1
           + math.exp(
@@ -9020,25 +7407,16 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["red_meat_dmd_func_pp"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 6,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(j == 4, mdf[rowi, idx2], mdf[rowi, idx3 + j]),
-      )
+        j == 6,     mdf[rowi, idx1],     IF_THEN_ELSE(j == 4, mdf[rowi, idx2], mdf[rowi, idx3 + j]),   )
 
     # RMDR_rounds_via_Excel[region] = IF_THEN_ELSE ( zeit >= Round3_start , RMDR_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , RMDR_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , RMDR_R1_via_Excel , RMDR_policy_Min ) ) )
     idxlhs = fcol_in_mdf["RMDR_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        RMDR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          RMDR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     RMDR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       RMDR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, RMDR_R1_via_Excel[j], RMDR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # RMDR_policy_with_RW[region] = RMDR_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["RMDR_policy_with_RW"]
@@ -9047,8 +7425,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -9058,8 +7435,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["RMDR_pol_div_100"]
     idx1 = fcol_in_mdf["RMDR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(RMDR_policy_Max, max(RMDR_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(RMDR_policy_Max, max(RMDR_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # RMDR_policy[region] = SMOOTH3 ( RMDR_pol_div_100[region] , RMDR_Time_to_implement_policy )
@@ -9098,8 +7474,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["red_meat_dmd_pp"]
     idx2 = fcol_in_mdf["RMDR_multiplier_used"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * UNIT_conv_to_kg_red_meat_ppy * mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * UNIT_conv_to_kg_red_meat_ppy * mdf[rowi, idx2 + j]
       )
 
     # red_meat_demand_pp_consumed[region] = red_meat_demand_pp[region] * ( 1 - Food_wasted_in_1980[region] )
@@ -9121,8 +7496,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["red_meat_demand_pp_wasted"]
     idx3 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
         * mdf[rowi, idx3 + j]
         / UNIT_conv_kgrmeat_and_Mtrmea
         * UNIT_conv_btw_p_and_Mp
@@ -9132,16 +7506,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["RIPLGF_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        RIPLGF_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          RIPLGF_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     RIPLGF_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       RIPLGF_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, RIPLGF_R1_via_Excel[j], RIPLGF_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # RIPLGF_policy_with_RW[region] = RIPLGF_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["RIPLGF_policy_with_RW"]
@@ -9150,8 +7518,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -9161,8 +7528,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["RIPLGF_pol_div_100"]
     idx1 = fcol_in_mdf["RIPLGF_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(RIPLGF_policy_Max, max(RIPLGF_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(RIPLGF_policy_Max, max(RIPLGF_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # RIPLGF_policy[region] = SMOOTH3 ( RIPLGF_pol_div_100[region] , RIPLGF_smoothing_time[region] )
@@ -9192,8 +7558,7 @@ def ugregmod(game_id, von, bis):
       )
 
     # Desired_net_export_of_red_meat_after_import_restriction_policy[region] = Desired_net_export_of_red_meat[region] * ( 1 - RIPLGF_policy[region] )
-    idxlhs = fcol_in_mdf[
-      "Desired_net_export_of_red_meat_after_import_restriction_policy"
+    idxlhs = fcol_in_mdf["Desired_net_export_of_red_meat_after_import_restriction_policy"
     ]
     idx1 = fcol_in_mdf["RIPLGF_policy"]
     for j in range(0, 10):
@@ -9263,27 +7628,21 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["white_meat_demand_pp_wasted"]
     idx3 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
         * mdf[rowi, idx3 + j]
         / UNIT_conv_kgwmeat_and_Mtwmeat
         * UNIT_conv_btw_p_and_Mp
       )
 
     # Desired_net_export_of_white_meat[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0.1 ) , ( 2020 , 0.2 ) , ( 2050 , 0.2 ) , ( 2100 , 0.1 ) ) ) Desired_net_export_of_white_meat[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.04 ) , ( 1990 , - 0.04 ) , ( 2000 , - 0.04 ) , ( 2010 , - 0.04 ) , ( 2020 , - 0.04 ) , ( 2050 , - 0.04 ) , ( 2100 , - 0.04 ) ) ) Desired_net_export_of_white_meat[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.04 ) , ( 1990 , - 0.04 ) , ( 2000 , - 0.04 ) , ( 2010 , - 0.04 ) , ( 2020 , - 0.04 ) , ( 2050 , - 0.04 ) , ( 2100 , - 0.04 ) ) ) Desired_net_export_of_white_meat[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.2 ) , ( 1990 , - 0.2 ) , ( 2000 , - 0.2 ) , ( 2010 , - 0.2 ) , ( 2020 , - 0.2 ) , ( 2050 , - 0.2 ) , ( 2100 , - 0.2 ) ) ) Desired_net_export_of_white_meat[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.04 ) , ( 1990 , - 0.04 ) , ( 2000 , - 0.04 ) , ( 2010 , - 0.04 ) , ( 2020 , - 0.04 ) , ( 2050 , - 0.04 ) , ( 2100 , - 0.04 ) ) ) Desired_net_export_of_white_meat[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2050 , 0 ) , ( 2100 , 0 ) ) ) Desired_net_export_of_white_meat[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2050 , 0 ) , ( 2100 , 0 ) ) ) Desired_net_export_of_white_meat[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2050 , 0 ) , ( 2100 , 0 ) ) ) Desired_net_export_of_white_meat[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0.1 ) , ( 2020 , 0.2 ) , ( 2050 , 0.2 ) , ( 2100 , 0.1 ) ) ) Desired_net_export_of_white_meat[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.04 ) , ( 1990 , - 0.04 ) , ( 2000 , - 0.04 ) , ( 2010 , - 0.04 ) , ( 2020 , - 0.04 ) , ( 2050 , - 0.04 ) , ( 2100 , - 0.04 ) ) )
-    tabidx = ftab_in_d_table[
-      "Desired_net_export_of_white_meat"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Desired_net_export_of_white_meat"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Desired_net_export_of_white_meat"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Desired_net_export_of_white_meat"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
 
     # Desired_net_export_of_white_meat_after_import_restriction_policy[region] = Desired_net_export_of_white_meat[region] * ( 1 - RIPLGF_policy[region] )
-    idxlhs = fcol_in_mdf[
-      "Desired_net_export_of_white_meat_after_import_restriction_policy"
+    idxlhs = fcol_in_mdf["Desired_net_export_of_white_meat_after_import_restriction_policy"
     ]
     idx1 = fcol_in_mdf["Desired_net_export_of_white_meat"]
     idx2 = fcol_in_mdf["RIPLGF_policy"]
@@ -9293,8 +7652,7 @@ def ugregmod(game_id, von, bis):
     # White_meat_production[region] = white_meat_demand[region] / ( 1 - Desired_net_export_of_white_meat_after_import_restriction_policy[region] )
     idxlhs = fcol_in_mdf["White_meat_production"]
     idx1 = fcol_in_mdf["white_meat_demand"]
-    idx2 = fcol_in_mdf[
-      "Desired_net_export_of_white_meat_after_import_restriction_policy"
+    idx2 = fcol_in_mdf["Desired_net_export_of_white_meat_after_import_restriction_policy"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / (1 - mdf[rowi, idx2 + j])
@@ -9304,8 +7662,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Red_meat_production"]
     idx2 = fcol_in_mdf["White_meat_production"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * UNIT_conv_red_meat
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * UNIT_conv_red_meat
         + mdf[rowi, idx2 + j] * UNIT_conv_white_meat
       )
 
@@ -9313,8 +7670,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Feed_dmd"]
     idx1 = fcol_in_mdf["Meat_production"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Feed_dmd_a[j] * math.log(mdf[rowi, idx1 + j] * UNIT_conv_meat_to_feed)
+      mdf[rowi, idxlhs + j] = (Feed_dmd_a[j] * math.log(mdf[rowi, idx1 + j] * UNIT_conv_meat_to_feed)
         + Feed_dmd_b[j]
       )
 
@@ -9338,9 +7694,7 @@ def ugregmod(game_id, von, bis):
 
     # Eff_of_wealth_on_crop_import[region] = WITH LOOKUP ( GDPpp_USED[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 10 , 0.2 ) , ( 20 , 0.3 ) , ( 30 , 0.4 ) , ( 50 , 0.6 ) , ( 60 , 0.7 ) , ( 100 , 1 ) ) )
     tabidx = ftab_in_d_table["Eff_of_wealth_on_crop_import"]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Eff_of_wealth_on_crop_import"
-    ]  # get the location of the lhs in mdf
+    idx2 = fcol_in_mdf["Eff_of_wealth_on_crop_import"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["GDPpp_USED"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -9358,8 +7712,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["All_crop_regional_dmd_last_year"]
     idx2 = fcol_in_mdf["Actual_crop_import"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * Desired_net_export_of_crops[j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * Desired_net_export_of_crops[j] - mdf[rowi, idx2 + j]
       )
 
     # All_crop_regional_dmd[region] = All_crop_dmd_food[region] + Feed_dmd[region] + Net_export_of_crops[region]
@@ -9368,8 +7721,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Feed_dmd"]
     idx3 = fcol_in_mdf["Net_export_of_crops"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # Smoothed_Crop_yield_from_N_use[region] = SMOOTHI ( Crop_yield_from_N_use[region] , One_year , crop_yield_in_1980[region] )
@@ -9393,12 +7745,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # Eff_of_cumulative_N_use_on_soil_quality[region] = WITH LOOKUP ( Smoothed_Cumulative_N_use_for_soil_quality[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 10 , 1.05 ) , ( 20 , 1.5 ) ) )
-    tabidx = ftab_in_d_table[
-      "Eff_of_cumulative_N_use_on_soil_quality"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Eff_of_cumulative_N_use_on_soil_quality"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Eff_of_cumulative_N_use_on_soil_quality"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Eff_of_cumulative_N_use_on_soil_quality"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Smoothed_Cumulative_N_use_for_soil_quality"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -9435,21 +7783,15 @@ def ugregmod(game_id, von, bis):
 
     # Thermal_expansion_surface_pct = WITH LOOKUP ( Temp_surface , ( [ ( 0 , 0 ) - ( 20 , 0.2 ) ] , ( 0 , 0.015 ) , ( 1 , 0.008 ) , ( 2 , 0.0033 ) , ( 3 , 0.001 ) , ( 4 , 0 ) , ( 5 , 0.0012 ) , ( 6 , 0.0033 ) , ( 7 , 0.008 ) , ( 8 , 0.013 ) , ( 9 , 0.021 ) , ( 10 , 0.0287 ) , ( 20 , 0.1963 ) ) )
     tabidx = ftab_in_d_table["Thermal_expansion_surface_pct"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Thermal_expansion_surface_pct"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Thermal_expansion_surface_pct"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Temp_surface"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Thermal_expansion_surface_in_1850_pct = WITH LOOKUP ( Temp_surface_1850_less_zero_k , ( [ ( 0 , 0 ) - ( 20 , 0.2 ) ] , ( 0 , 0.015 ) , ( 1 , 0.008 ) , ( 2 , 0.0033 ) , ( 3 , 0.001 ) , ( 4 , 0 ) , ( 5 , 0.0012 ) , ( 6 , 0.0033 ) , ( 7 , 0.008 ) , ( 8 , 0.013 ) , ( 9 , 0.021 ) , ( 10 , 0.0287 ) , ( 20 , 0.1963 ) ) )
-    tabidx = ftab_in_d_table[
-      "Thermal_expansion_surface_in_1850_pct"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Thermal_expansion_surface_in_1850_pct"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Thermal_expansion_surface_in_1850_pct"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Thermal_expansion_surface_in_1850_pct"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(Temp_surface_1850_less_zero_k, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -9493,21 +7835,15 @@ def ugregmod(game_id, von, bis):
 
     # Thermal_expansion_deep_pct = WITH LOOKUP ( Temp_ocean_deep_in_C , ( [ ( 0 , 0 ) - ( 20 , 0.2 ) ] , ( 0 , 0.015 ) , ( 1 , 0.008 ) , ( 2 , 0.0033 ) , ( 3 , 0.001 ) , ( 4 , 0 ) , ( 5 , 0.0012 ) , ( 6 , 0.0033 ) , ( 7 , 0.008 ) , ( 8 , 0.013 ) , ( 9 , 0.021 ) , ( 10 , 0.0287 ) , ( 20 , 0.1963 ) ) )
     tabidx = ftab_in_d_table["Thermal_expansion_deep_pct"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Thermal_expansion_deep_pct"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Thermal_expansion_deep_pct"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Temp_ocean_deep_in_C"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Thermal_expansion_deep_in_1850_pct = WITH LOOKUP ( Temp_ocean_deep_in_1850_C , ( [ ( 0 , 0 ) - ( 20 , 0.2 ) ] , ( 0 , 0.015 ) , ( 1 , 0.008 ) , ( 2 , 0.0033 ) , ( 3 , 0.001 ) , ( 4 , 0 ) , ( 5 , 0.0012 ) , ( 6 , 0.0033 ) , ( 7 , 0.008 ) , ( 8 , 0.013 ) , ( 9 , 0.021 ) , ( 10 , 0.0287 ) , ( 20 , 0.1963 ) ) )
-    tabidx = ftab_in_d_table[
-      "Thermal_expansion_deep_in_1850_pct"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Thermal_expansion_deep_in_1850_pct"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Thermal_expansion_deep_in_1850_pct"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Thermal_expansion_deep_in_1850_pct"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(Temp_ocean_deep_in_1850_C, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -9596,10 +7932,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Ratio_of_regional_GDPpp_to_richest_region_GDPpp"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit > 2020,
-        1 + SoE_of_relative_wealth_on_env_damage * (mdf[rowi, idx1 + j] - 1),
-        1,
-      )
+        zeit > 2020,     1 + SoE_of_relative_wealth_on_env_damage * (mdf[rowi, idx1 + j] - 1),     1,   )
 
     # Actual_eff_of_relative_wealth_on_env_damage[region] = SMOOTH3 ( Indicated_eff_of_relative_wealth_on_env_damage[region] , Time_for_shifts_in_relative_wealth_to_affect_env_damage_response )
     idxin = fcol_in_mdf["Indicated_eff_of_relative_wealth_on_env_damage"]
@@ -9631,8 +7964,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Combined_env_damage_indicator"]
     idx2 = fcol_in_mdf["Actual_eff_of_relative_wealth_on_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_agri_yield) / mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_agri_yield) / mdf[rowi, idx2 + j]
       )
 
     # Crop_yield_with_soil_quality_CO2_and_env_dam_effects[region] = Smoothed_Crop_yield_from_N_use[region] * Soil_quality[region] * Eff_of_CO2_on_yield / Eff_of_env_damage_on_agri_yield[region]
@@ -9642,8 +7974,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Eff_of_CO2_on_yield"]
     idx4 = fcol_in_mdf["Eff_of_env_damage_on_agri_yield"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3]
         / mdf[rowi, idx4 + j]
@@ -9684,8 +8015,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Abandoned_crop_and_grazing_land"]
     idx2 = fcol_in_mdf["Cropland_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
+      mdf[rowi, idxlhs + j] = (min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
         * Fraction_of_cropland_gap_closed_from_acgl[j]
       )
 
@@ -9693,8 +8023,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["acgl_to_fa"]
     idx1 = fcol_in_mdf["Abandoned_crop_and_grazing_land"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_for_abandoned_agri_land_to_become_forest
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_for_abandoned_agri_land_to_become_forest
       )
 
     # Grazing_land_EC = Grazing_land_EC_a * ( Meat_production[ec] * UNIT_conv_meat_to_dmnl ) ^ Grazing_land_EC_b
@@ -9798,26 +8127,11 @@ def ugregmod(game_id, von, bis):
     idx7 = fcol_in_mdf["Grazing_land_Rest"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 7,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(
-          j == 5,
-          mdf[rowi, idx2],
-          IF_THEN_ELSE(
-            j == 3,
-            mdf[rowi, idx3],
-            IF_THEN_ELSE(
-              j == 6,
-              mdf[rowi, idx4],
-              IF_THEN_ELSE(
-                j == 4,
-                mdf[rowi, idx5],
-                IF_THEN_ELSE(j == 9, mdf[rowi, idx6], mdf[rowi, idx7 + j]),
-              ),
-            ),
-          ),
-        ),
-      )
+        j == 7,     mdf[rowi, idx1],     IF_THEN_ELSE(
+          j == 5,       mdf[rowi, idx2],       IF_THEN_ELSE(
+            j == 3,         mdf[rowi, idx3],         IF_THEN_ELSE(
+              j == 6,           mdf[rowi, idx4],           IF_THEN_ELSE(
+                j == 4,             mdf[rowi, idx5],             IF_THEN_ELSE(j == 9, mdf[rowi, idx6], mdf[rowi, idx7 + j]),           ),         ),       ),     ),   )
 
     # Graing_land_desired_for_all_meat[region] = Desired_grazing_land[region] * UNIT_conv_to_Mha
     idxlhs = fcol_in_mdf["Graing_land_desired_for_all_meat"]
@@ -9843,8 +8157,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Abandoned_crop_and_grazing_land"]
     idx2 = fcol_in_mdf["Grazing_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
+      mdf[rowi, idxlhs + j] = (min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
         * Fraction_of_grazing_land_gap_closed_from_acgl
       )
 
@@ -9866,8 +8179,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Abandoned_crop_and_grazing_land"]
     idx2 = fcol_in_mdf["Populated_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
+      mdf[rowi, idxlhs + j] = (min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
         * Fraction_of_abandoned_agri_land_developed_for_urban_land
       )
 
@@ -9966,14 +8278,8 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["DAC_CCS_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        DAC_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          DAC_R2_via_Excel[j],
-          IF_THEN_ELSE(zeit >= Policy_start_year, DAC_R1_via_Excel[j], DAC_policy_Min),
-        ),
-      )
+        zeit >= Round3_start,     DAC_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       DAC_R2_via_Excel[j],       IF_THEN_ELSE(zeit >= Policy_start_year, DAC_R1_via_Excel[j], DAC_policy_Min),     ),   )
 
     # DAC_policy_with_RW[region] = DAC_CCS_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region]
     idxlhs = fcol_in_mdf["DAC_policy_with_RW"]
@@ -9981,16 +8287,14 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # DAC_pol_div_100[region] = MIN ( DAC_policy_Max , MAX ( DAC_policy_Min , DAC_policy_with_RW[region] ) ) / 1
     idxlhs = fcol_in_mdf["DAC_pol_div_100"]
     idx1 = fcol_in_mdf["DAC_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(DAC_policy_Max, max(DAC_policy_Min, mdf[rowi, idx1 + j])) / 1
+      mdf[rowi, idxlhs + j] = (min(DAC_policy_Max, max(DAC_policy_Min, mdf[rowi, idx1 + j])) / 1
       )
 
     # DAC_policy[region] = SMOOTH3 ( DAC_pol_div_100[region] , DAC_Time_to_implement_goal )
@@ -10019,8 +8323,7 @@ def ugregmod(game_id, von, bis):
       )
 
     # Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture[region] = DAC_policy[region] * UNIT_conv_to_GtCO2_pr_yr
-    idxlhs = fcol_in_mdf[
-      "Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
+    idxlhs = fcol_in_mdf["Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
     ]
     idx1 = fcol_in_mdf["DAC_policy"]
     for j in range(0, 10):
@@ -10076,8 +8379,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["El_from_nuclear"]
     idx1 = fcol_in_mdf["Nuclear_gen_cap_after_depreciation"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Nuclear_capacity_factor
         * Hours_per_year
         * UNIT_conv_GWh_and_TWh
@@ -10089,8 +8391,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["El_from_nuclear"]
     idx3 = fcol_in_mdf["El_from_Hydro"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # El_from_all_sources[region] = El_gen_from_fossil_fuels[region] + wind_PV_nuclear_hydro_el_generation[region]
@@ -10105,8 +8406,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["El_from_all_sources"]
     idx2 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conv_to_kWh_ppp
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conv_to_kWh_ppp
       )
 
     # Actual_inequality_index_higher_is_more_unequal_N_years_ago[region] = SMOOTH3I ( Actual_inequality_index_higher_is_more_unequal[region] , N_number_of_years_ago , Inequality_considered_normal_in_1980[region] )
@@ -10152,8 +8452,7 @@ def ugregmod(game_id, von, bis):
 
     # GRASS_DeadB_and_SOM_tB_per_km2 = GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass / GRASS_with_normal_cover_Mkm2 * 1000
     idxlhs = fcol_in_mdf["GRASS_DeadB_and_SOM_tB_per_km2"]
-    idx1 = fcol_in_mdf[
-      "GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     idx2 = fcol_in_mdf["GRASS_with_normal_cover_Mkm2"]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / mdf[rowi, idx2] * 1000
@@ -10183,12 +8482,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / UNIT_conv_to_Bp
 
     # Urbanzation_Effect_on_biomass_use = WITH LOOKUP ( zeit , ( [ ( 1850 , 0 ) - ( 2300 , 5 ) ] , ( 1850 , 5 ) , ( 1880 , 4.71 ) , ( 1900 , 4.4 ) , ( 1925 , 3.73 ) , ( 1945 , 3.11 ) , ( 1965 , 2.37 ) , ( 1975 , 1.93 ) , ( 1988 , 1.4 ) , ( 2000 , 1 ) , ( 2012 , 0.79 ) , ( 2028 , 0.59 ) , ( 2060 , 0.37 ) , ( 2100 , 0.25 ) , ( 2300 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Urbanzation_Effect_on_biomass_use"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Urbanzation_Effect_on_biomass_use"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Urbanzation_Effect_on_biomass_use"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Urbanzation_Effect_on_biomass_use"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -10253,8 +8548,7 @@ def ugregmod(game_id, von, bis):
 
     # GRASS_runoff = GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass / GRASS_runoff_time
     idxlhs = fcol_in_mdf["GRASS_runoff"]
-    idx1 = fcol_in_mdf[
-      "GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / GRASS_runoff_time
 
@@ -10286,16 +8580,14 @@ def ugregmod(game_id, von, bis):
 
     # GRASS_Dead_biomass_decomposing = GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass / GRASS_Time_to_decompose_undisturbed_dead_biomass_yr
     idxlhs = fcol_in_mdf["GRASS_Dead_biomass_decomposing"]
-    idx1 = fcol_in_mdf[
-      "GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = (
       mdf[rowi, idx1] / GRASS_Time_to_decompose_undisturbed_dead_biomass_yr
     )
 
     # Sum_outflows_GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM = GRASS_DeadB_SOM_being_lost_due_to_deforestation + GRASS_DeadB_SOM_being_lost_due_to_energy_harvesting + GRASS_runoff + GRASS_soil_degradation_from_forest_fires + GRASS_Dead_biomass_decomposing
-    idxlhs = fcol_in_mdf[
-      "Sum_outflows_GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM"
+    idxlhs = fcol_in_mdf["Sum_outflows_GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM"
     ]
     idx1 = fcol_in_mdf["GRASS_DeadB_SOM_being_lost_due_to_deforestation"]
     idx2 = fcol_in_mdf["GRASS_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -10441,10 +8733,7 @@ def ugregmod(game_id, von, bis):
       * UNIT_conversion_GtBiomass_py_to_Mkm2_py
       * mdf[rowi, idx3]
       * IF_THEN_ELSE(
-        Switch_to_run_POLICY_4_Stopping_logging_in_Northern_forests_0_off_1_on == 1,
-        mdf[rowi, idx4],
-        1,
-      )
+        Switch_to_run_POLICY_4_Stopping_logging_in_Northern_forests_0_off_1_on == 1,     mdf[rowi, idx4],     1,   )
     )
 
     # NF_clear_cut_fraction = WITH LOOKUP ( zeit , ( [ ( 1850 , - 0.0005 ) - ( 2100 , 0.9 ) ] , ( 1850 , 0 ) , ( 1900 , 0.5 ) , ( 1950 , 0.8 ) , ( 2000 , 0.8 ) , ( 2050 , 0.6 ) , ( 2100 , 0.8 ) ) )
@@ -10520,8 +8809,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # NF_Sum_outflows_NF_Dead_biomass_litter_and_soil_organic_matter_SOM = NF_DeadB_SOM_being_lost_due_to_deforestation + NF_DeadB_SOM_being_lost_due_to_energy_harvesting + NF_runoff + NF_soil_degradation_from_clear_cutting + NF_soil_degradation_from_forest_fires + NF_Dead_biomass_decomposing
-    idxlhs = fcol_in_mdf[
-      "NF_Sum_outflows_NF_Dead_biomass_litter_and_soil_organic_matter_SOM"
+    idxlhs = fcol_in_mdf["NF_Sum_outflows_NF_Dead_biomass_litter_and_soil_organic_matter_SOM"
     ]
     idx1 = fcol_in_mdf["NF_DeadB_SOM_being_lost_due_to_deforestation"]
     idx2 = fcol_in_mdf["NF_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -10555,9 +8843,7 @@ def ugregmod(game_id, von, bis):
 
     # TROP_deforestion_multiplier = WITH LOOKUP ( zeit , ( [ ( 1850 , 0 ) - ( 2100 , 2 ) ] , ( 1850 , 0 ) , ( 1970 , 0.4 ) , ( 2000 , 0.5 ) , ( 2020 , 0.5 ) , ( 2100 , 0 ) ) )
     tabidx = ftab_in_d_table["TROP_deforestion_multiplier"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "TROP_deforestion_multiplier"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["TROP_deforestion_multiplier"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -10575,9 +8861,7 @@ def ugregmod(game_id, von, bis):
 
     # TROP_deforestation_cutoff = WITH LOOKUP ( TROP_deforested_as_pct_of_potential_area , ( [ ( 0.5 , 0 ) - ( 0.8 , 1 ) ] , ( 0.5 , 1 ) , ( 0.621101 , 0.921053 ) , ( 0.700917 , 0.732456 ) , ( 0.738532 , 0.442982 ) , ( 0.761468 , 0.223684 ) , ( 0.777064 , 0.0789474 ) , ( 0.8 , 0 ) ) )
     tabidx = ftab_in_d_table["TROP_deforestation_cutoff"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "TROP_deforestation_cutoff"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["TROP_deforestation_cutoff"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["TROP_deforested_as_pct_of_potential_area"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -10711,8 +8995,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # TROP_Sum_outflows_TROP_Dead_biomass_litter_and_soil_organic_matter_SOM = TROP_DeadB_SOM_being_lost_due_to_deforestation + TROP_DeadB_SOM_being_lost_due_to_energy_harvesting + TROP_runoff + TROP_soil_degradation_from_clear_cutting + TROP_soil_degradation_from_forest_fires + TROP_Dead_biomass_decomposing
-    idxlhs = fcol_in_mdf[
-      "TROP_Sum_outflows_TROP_Dead_biomass_litter_and_soil_organic_matter_SOM"
+    idxlhs = fcol_in_mdf["TROP_Sum_outflows_TROP_Dead_biomass_litter_and_soil_organic_matter_SOM"
     ]
     idx1 = fcol_in_mdf["TROP_DeadB_SOM_being_lost_due_to_deforestation"]
     idx2 = fcol_in_mdf["TROP_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -10805,8 +9088,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["El_use_pp_in_MWh_ppy"]
     idx3 = fcol_in_mdf["Extra_energy_productivity_index_2024_is_1"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
       ) * UNIT_conv_to_TWh
 
     # Increase_in_el_dmd_from_NEP[region] = Fossil_fuel_for_NON_El_use_that_IS_being_electrified[region] * Conversion_Mtoe_to_TWh[region]
@@ -10833,8 +9115,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Desired_fossil_gen_capacity"]
     idx1 = fcol_in_mdf["Demand_for_el_from_fossil_fuel"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         / Fossil_capacity_factor[j]
         / Hours_per_year
         / UNIT_conv_GWh_and_TWh
@@ -10852,8 +9133,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fossil_el_gen_cap"]
     idx3 = fcol_in_mdf["Discarding_of_FEGC"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
       ) / Time_to_close_gap_in_fossil_el_cap[j] + mdf[rowi, idx3 + j]
 
     # Addition_of_FEGC[region] = Desired_fossil_el_capacity_change[region]
@@ -10866,16 +9146,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ISPV_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        ISPV_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          ISPV_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     ISPV_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       ISPV_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, ISPV_R1_via_Excel[j], ISPV_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # ISPV_policy_with_RW[region] = ISPV_policy_Min + ( ISPV_rounds_via_Excel[region] - ISPV_policy_Min ) * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region]
     idxlhs = fcol_in_mdf["ISPV_policy_with_RW"]
@@ -10883,8 +9157,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        ISPV_policy_Min
+      mdf[rowi, idxlhs + j] = (ISPV_policy_Min
         + (mdf[rowi, idx1 + j] - ISPV_policy_Min)
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
@@ -10894,8 +9167,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ISPV_pol_div_100"]
     idx1 = fcol_in_mdf["ISPV_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(ISPV_policy_Max, max(ISPV_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(ISPV_policy_Max, max(ISPV_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # wind_and_PV_el_share_max[region] = SMOOTH3 ( ISPV_pol_div_100[region] , Time_to_implement_ISPV_goal )
@@ -10950,8 +9222,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Desired_wind_and_PV_el_cap"]
     idx1 = fcol_in_mdf["Goal_for_suppy_of_wind_and_PV_el"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         / Hours_per_year
         / wind_and_PV_capacity_factor
         / UNIT_conv_GWh_and_TWh
@@ -11045,14 +9316,8 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Nitrogen_use_rest"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 1,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(
-          j == 2,
-          mdf[rowi, idx2],
-          IF_THEN_ELSE(j == 4, mdf[rowi, idx3], mdf[rowi, idx4 + j]),
-        ),
-      )
+        j == 1,     mdf[rowi, idx1],     IF_THEN_ELSE(
+          j == 2,       mdf[rowi, idx2],       IF_THEN_ELSE(j == 4, mdf[rowi, idx3], mdf[rowi, idx4 + j]),     ),   )
 
     # Nitrogen_use_after_soil_regeneration[region] = Nitrogen_use[region] * ( 1 - Regenerative_cropland_fraction[region] * Fraction_of_N_use_saved_through_regenerative_practice[region] )
     idxlhs = fcol_in_mdf["Nitrogen_use_after_soil_regeneration"]
@@ -11086,21 +9351,18 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = RoC_Capital_labour_ratio_in_1980[j] / mdf[rowi, idx1 + j]
 
     # Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio[region] = 1 + Slope_of_Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio * ( Worker_share_of_output_with_unemployment_effect[region] / WSO_in_1980[region] - 1 )
-    idxlhs = fcol_in_mdf[
-      "Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio"
+    idxlhs = fcol_in_mdf["Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio"
     ]
     idx1 = fcol_in_mdf["Worker_share_of_output_with_unemployment_effect"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + Slope_of_Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio
         * (mdf[rowi, idx1 + j] / WSO_in_1980[j] - 1)
       )
 
     # effect_of_worker_share_of_output_on_capital_labour_ratio[region] = SMOOTH ( Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio[region] , Retooling_time )
     idx1 = fcol_in_mdf["effect_of_worker_share_of_output_on_capital_labour_ratio"]
-    idx2 = fcol_in_mdf[
-      "Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio"
+    idx2 = fcol_in_mdf["Indicated_effect_of_worker_share_of_output_on_capital_labour_ratio"
     ]
     for j in range(0, 10):
       mdf[rowi, idx1 + j] = (
@@ -11113,8 +9375,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["RoC_in_Capital_labour_ratio"]
     idx2 = fcol_in_mdf["effect_of_worker_share_of_output_on_capital_labour_ratio"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Capital_labour_ratio_in_1980[j]
+      mdf[rowi, idxlhs + j] = (Capital_labour_ratio_in_1980[j]
         * math.exp(mdf[rowi, idx1 + j] * (zeit - 1980))
         * mdf[rowi, idx2 + j]
       )
@@ -11124,8 +9385,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Capacity"]
     idx2 = fcol_in_mdf["Capital_labour_ratio"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
       ) * UNIT_conv_to_Mp
 
     # Max_people_in_labour_pool[region] = Population[region] * ( 1 - Fraction_of_people_outside_of_labour_market_FOPOLM[region] )
@@ -11150,23 +9410,15 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = max(0, mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
 
     # Future_shape_of_anthropogenic_aerosol_emissions = WITH LOOKUP ( zeit , ( [ ( 2015 , 0 ) - ( 2100 , 1 ) ] , ( 2015 , 1 ) , ( 2030 , 0.7 ) , ( 2050 , 0.5 ) , ( 2075 , 0.3 ) , ( 2100 , 0.1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Future_shape_of_anthropogenic_aerosol_emissions"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Future_shape_of_anthropogenic_aerosol_emissions"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Future_shape_of_anthropogenic_aerosol_emissions"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Future_shape_of_anthropogenic_aerosol_emissions"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Historical_aerosol_emissions_anthro = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.24244 ) , ( 1981 , 0.252631 ) , ( 1982 , 0.255142 ) , ( 1983 , 0.258769 ) , ( 1984 , 0.262684 ) , ( 1985 , 0.264687 ) , ( 1986 , 0.267037 ) , ( 1987 , 0.270969 ) , ( 1988 , 0.274536 ) , ( 1989 , 0.276449 ) , ( 1990 , 0.277538 ) , ( 1991 , 0.276088 ) , ( 1992 , 0.275472 ) , ( 1993 , 0.274971 ) , ( 1994 , 0.272579 ) , ( 1995 , 0.267623 ) , ( 1996 , 0.261881 ) , ( 1997 , 0.264898 ) , ( 1998 , 0.274336 ) , ( 1999 , 0.281674 ) , ( 2000 , 0.2881 ) , ( 2001 , 0.291714 ) , ( 2002 , 0.291645 ) , ( 2003 , 0.292187 ) , ( 2004 , 0.293088 ) , ( 2005 , 0.292335 ) , ( 2006 , 0.288602 ) , ( 2007 , 0.283524 ) , ( 2008 , 0.278418 ) , ( 2009 , 0.273299 ) , ( 2010 , 0.267428 ) , ( 2011 , 0.260052 ) , ( 2012 , 0.251923 ) , ( 2013 , 0.243794 ) , ( 2014 , 0.235665 ) , ( 2015 , 0.227536 ) ) )
-    tabidx = ftab_in_d_table[
-      "Historical_aerosol_emissions_anthro"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Historical_aerosol_emissions_anthro"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Historical_aerosol_emissions_anthro"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Historical_aerosol_emissions_anthro"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -11176,10 +9428,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Future_shape_of_anthropogenic_aerosol_emissions"]
     idx2 = fcol_in_mdf["Historical_aerosol_emissions_anthro"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit >= 2015,
-      mdf[rowi, idx1] * Value_of_anthropogenic_aerosol_emissions_during_2015,
-      mdf[rowi, idx2],
-    )
+      zeit >= 2015,   mdf[rowi, idx1] * Value_of_anthropogenic_aerosol_emissions_during_2015,   mdf[rowi, idx2], )
 
     # Aging_14_to_15[region] = Cohort_10_to_14[region] / Cohort_duration_is_5_yrs
     idxlhs = fcol_in_mdf["Aging_14_to_15"]
@@ -11561,12 +9810,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # Historical_forcing_from_solar_insolation_W_p_m2 = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.146265 ) , ( 1981 , 0.133052 ) , ( 1982 , 0.0955062 ) , ( 1983 , 0.0530031 ) , ( 1984 , 0.00780063 ) , ( 1985 , - 0.0241369 ) , ( 1986 , - 0.0251912 ) , ( 1987 , 0.0007525 ) , ( 1988 , 0.0577456 ) , ( 1989 , 0.115876 ) , ( 1990 , 0.127623 ) , ( 1991 , 0.107787 ) , ( 1992 , 0.0785487 ) , ( 1993 , 0.0382069 ) , ( 1994 , 0.00171938 ) , ( 1995 , - 0.0207681 ) , ( 1996 , - 0.0270988 ) , ( 1997 , - 0.00389812 ) , ( 1998 , 0.0457669 ) , ( 1999 , 0.099435 ) , ( 2000 , 0.134374 ) , ( 2001 , 0.143745 ) , ( 2002 , 0.127334 ) , ( 2003 , 0.08337 ) , ( 2004 , 0.0392613 ) , ( 2005 , 0.0124513 ) , ( 2006 , - 0.00364 ) , ( 2007 , - 0.0145513 ) , ( 2008 , - 0.0211619 ) , ( 2009 , 0.0257119 ) , ( 2010 , 0.099435 ) , ( 2011 , 0.134374 ) , ( 2012 , 0.15 ) , ( 2013 , 0.12 ) , ( 2014 , 0 ) , ( 2015 , - 0.02 ) , ( 2016 , - 0.03 ) , ( 2017 , - 0.02 ) , ( 2018 , 0 ) , ( 2019 , 0.1 ) , ( 2020 , 0.15 ) ) )
-    tabidx = ftab_in_d_table[
-      "Historical_forcing_from_solar_insolation_W_p_m2"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Historical_forcing_from_solar_insolation_W_p_m2"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Historical_forcing_from_solar_insolation_W_p_m2"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Historical_forcing_from_solar_insolation_W_p_m2"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -11635,17 +9880,12 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["cereal_dmd_food_pp_consumed"]
     idx2 = fcol_in_mdf["oth_crop_dmd_food_pp_consumed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]
       ) * UNIT_conv_kgac_to_kg
 
     # Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 5.60338 ) , ( 1981 , 5.43663 ) , ( 1982 , 5.3609 ) , ( 1983 , 5.41261 ) , ( 1984 , 5.58317 ) , ( 1985 , 5.77454 ) , ( 1986 , 5.82824 ) , ( 1987 , 5.976 ) , ( 1988 , 6.21619 ) , ( 1989 , 6.30073 ) , ( 1990 , 6.16508 ) , ( 1991 , 6.29272 ) , ( 1992 , 6.10415 ) , ( 1993 , 6.15783 ) , ( 1994 , 6.20212 ) , ( 1995 , 6.35632 ) , ( 1996 , 6.54807 ) , ( 1997 , 6.55936 ) , ( 1998 , 6.55426 ) , ( 1999 , 6.61756 ) , ( 2000 , 6.80252 ) , ( 2001 , 6.86167 ) , ( 2002 , 7.01497 ) , ( 2003 , 7.37669 ) , ( 2004 , 7.68727 ) , ( 2005 , 7.95053 ) , ( 2006 , 8.18815 ) , ( 2007 , 8.44511 ) , ( 2008 , 8.5821 ) , ( 2009 , 8.4779 ) , ( 2010 , 8.92064 ) , ( 2011 , 9.21049 ) , ( 2012 , 9.38678 ) , ( 2013 , 9.46723 ) , ( 2014 , 9.60763 ) , ( 2015 , 9.58832 ) , ( 2016 , 9.54482 ) , ( 2017 , 9.66788 ) , ( 2018 , 9.83454 ) , ( 2019 , 9.86017 ) , ( 2020 , 10.1967 ) , ( 2021 , 10.2841 ) , ( 2022 , 10.3716 ) , ( 2023 , 10.459 ) , ( 2024 , 10.5465 ) , ( 2025 , 10.6339 ) , ( 2026 , 10.7214 ) , ( 2027 , 10.8088 ) , ( 2028 , 10.8963 ) , ( 2029 , 10.9837 ) , ( 2030 , 11.0712 ) , ( 2031 , 11.1119 ) , ( 2032 , 11.1527 ) , ( 2033 , 11.1934 ) , ( 2034 , 11.2341 ) , ( 2035 , 11.2749 ) , ( 2036 , 11.3156 ) , ( 2037 , 11.3564 ) , ( 2038 , 11.3971 ) , ( 2039 , 11.4379 ) , ( 2040 , 11.4786 ) , ( 2041 , 11.5024 ) , ( 2042 , 11.5262 ) , ( 2043 , 11.55 ) , ( 2044 , 11.5738 ) , ( 2045 , 11.5976 ) , ( 2046 , 11.6214 ) , ( 2047 , 11.6452 ) , ( 2048 , 11.669 ) , ( 2049 , 11.6928 ) , ( 2050 , 11.7166 ) , ( 2051 , 11.6832 ) , ( 2052 , 11.6498 ) , ( 2053 , 11.6164 ) , ( 2054 , 11.583 ) , ( 2055 , 11.5496 ) , ( 2056 , 11.5162 ) , ( 2057 , 11.4828 ) , ( 2058 , 11.4494 ) , ( 2059 , 11.416 ) , ( 2060 , 11.3826 ) , ( 2061 , 11.2656 ) , ( 2062 , 11.1486 ) , ( 2063 , 11.0316 ) , ( 2064 , 10.9146 ) , ( 2065 , 10.7976 ) , ( 2066 , 10.6806 ) , ( 2067 , 10.5636 ) , ( 2068 , 10.4466 ) , ( 2069 , 10.3296 ) , ( 2070 , 10.2126 ) , ( 2071 , 10.016 ) , ( 2072 , 9.8193 ) , ( 2073 , 9.62264 ) , ( 2074 , 9.42599 ) , ( 2075 , 9.22933 ) , ( 2076 , 9.03267 ) , ( 2077 , 8.83601 ) , ( 2078 , 8.63935 ) , ( 2079 , 8.44269 ) , ( 2080 , 8.24603 ) , ( 2081 , 7.98437 ) , ( 2082 , 7.72271 ) , ( 2083 , 7.46106 ) , ( 2084 , 7.1994 ) , ( 2085 , 6.93774 ) , ( 2086 , 6.67608 ) , ( 2087 , 6.41443 ) , ( 2088 , 6.15277 ) , ( 2089 , 5.89111 ) , ( 2090 , 5.62945 ) , ( 2091 , 5.46149 ) , ( 2092 , 5.29353 ) , ( 2093 , 5.12557 ) , ( 2094 , 4.95761 ) , ( 2095 , 4.78965 ) , ( 2096 , 4.62169 ) , ( 2097 , 4.45373 ) , ( 2098 , 4.28578 ) , ( 2099 , 4.11782 ) , ( 2100 , 3.94986 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -11665,15 +9905,11 @@ def ugregmod(game_id, von, bis):
 
     # Emissions_of_CO2_1850_to_2100_GtC_py = IF_THEN_ELSE ( SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2 , Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py , IF_THEN_ELSE ( SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4 , Global_Total_CO2_emissions_GtC_py , 0 ) )
     idxlhs = fcol_in_mdf["Emissions_of_CO2_1850_to_2100_GtC_py"]
-    idx1 = fcol_in_mdf[
-      "Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"
+    idx1 = fcol_in_mdf["Emissions_of_anthro_CO2_from_Excel_SSP245spliced_to_PRIMAP_history_GtC_py"
     ]
     idx2 = fcol_in_mdf["Global_Total_CO2_emissions_GtC_py"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,
-      mdf[rowi, idx1],
-      IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0),
-    )
+      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,   mdf[rowi, idx1],   IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0), )
 
     # Fossil_fuel_reserves_in_ground_current_to_inital_ratio = Fossil_fuel_reserves_in_ground_GtC / Fossil_fuel_reserves_in_ground_at_initial_time_GtC
     idxlhs = fcol_in_mdf["Fossil_fuel_reserves_in_ground_current_to_inital_ratio"]
@@ -11684,9 +9920,7 @@ def ugregmod(game_id, von, bis):
 
     # RCPFossil_fuel_usage_cutoff = WITH LOOKUP ( Fossil_fuel_reserves_in_ground_current_to_inital_ratio , ( [ ( 0 , 0 ) - ( 1 , 1 ) ] , ( 0 , 0 ) , ( 0.25 , 0.657895 ) , ( 0.5 , 0.881579 ) , ( 0.75 , 0.960526 ) , ( 1 , 1 ) ) )
     tabidx = ftab_in_d_table["RCPFossil_fuel_usage_cutoff"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "RCPFossil_fuel_usage_cutoff"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["RCPFossil_fuel_usage_cutoff"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Fossil_fuel_reserves_in_ground_current_to_inital_ratio"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -11709,19 +9943,14 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / UNIT_conversion_for_CO2_from_CO2e_to_C
 
     # Emissions_of_anthro_CH4_SSP245_spliced_to_history = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 233.235 ) , ( 1981 , 228.928 ) , ( 1982 , 230.782 ) , ( 1983 , 231.971 ) , ( 1984 , 233.703 ) , ( 1985 , 236.305 ) , ( 1986 , 240.002 ) , ( 1987 , 243.31 ) , ( 1988 , 247.82 ) , ( 1989 , 254.123 ) , ( 1990 , 256.328 ) , ( 1991 , 254.611 ) , ( 1992 , 255.501 ) , ( 1993 , 257.105 ) , ( 1994 , 257.418 ) , ( 1995 , 262.517 ) , ( 1996 , 267.218 ) , ( 1997 , 266.434 ) , ( 1998 , 266.436 ) , ( 1999 , 268.047 ) , ( 2000 , 273.769 ) , ( 2001 , 273.707 ) , ( 2002 , 271.651 ) , ( 2003 , 279.901 ) , ( 2004 , 285.262 ) , ( 2005 , 290.557 ) , ( 2006 , 292.285 ) , ( 2007 , 293.906 ) , ( 2008 , 297.35 ) , ( 2009 , 294.897 ) , ( 2010 , 300.664 ) , ( 2011 , 304.952 ) , ( 2012 , 308.152 ) , ( 2013 , 306.117 ) , ( 2014 , 305.444 ) , ( 2015 , 307.249 ) , ( 2016 , 309.868 ) , ( 2017 , 311.126 ) , ( 2018 , 313.209 ) , ( 2019 , 317.65 ) , ( 2020 , 311.82 ) , ( 2021 , 312.733 ) , ( 2022 , 313.645 ) , ( 2023 , 314.558 ) , ( 2024 , 315.47 ) , ( 2025 , 316.382 ) , ( 2026 , 317.295 ) , ( 2027 , 318.207 ) , ( 2028 , 319.12 ) , ( 2029 , 320.032 ) , ( 2030 , 320.944 ) , ( 2031 , 319.607 ) , ( 2032 , 318.269 ) , ( 2033 , 316.931 ) , ( 2034 , 315.593 ) , ( 2035 , 314.256 ) , ( 2036 , 312.918 ) , ( 2037 , 311.58 ) , ( 2038 , 310.242 ) , ( 2039 , 308.905 ) , ( 2040 , 307.567 ) , ( 2041 , 305.508 ) , ( 2042 , 303.448 ) , ( 2043 , 301.389 ) , ( 2044 , 299.33 ) , ( 2045 , 297.271 ) , ( 2046 , 295.211 ) , ( 2047 , 293.152 ) , ( 2048 , 291.093 ) , ( 2049 , 289.033 ) , ( 2050 , 286.974 ) , ( 2051 , 284.737 ) , ( 2052 , 282.499 ) , ( 2053 , 280.262 ) , ( 2054 , 278.025 ) , ( 2055 , 275.788 ) , ( 2056 , 273.55 ) , ( 2057 , 271.313 ) , ( 2058 , 269.076 ) , ( 2059 , 266.838 ) , ( 2060 , 264.601 ) , ( 2061 , 263.582 ) , ( 2062 , 262.563 ) , ( 2063 , 261.544 ) , ( 2064 , 260.525 ) , ( 2065 , 259.506 ) , ( 2066 , 258.487 ) , ( 2067 , 257.468 ) , ( 2068 , 256.449 ) , ( 2069 , 255.43 ) , ( 2070 , 254.411 ) , ( 2071 , 253.308 ) , ( 2072 , 252.204 ) , ( 2073 , 251.101 ) , ( 2074 , 249.998 ) , ( 2075 , 248.894 ) , ( 2076 , 247.791 ) , ( 2077 , 246.688 ) , ( 2078 , 245.585 ) , ( 2079 , 244.481 ) , ( 2080 , 243.378 ) , ( 2081 , 243.049 ) , ( 2082 , 242.721 ) , ( 2083 , 242.392 ) , ( 2084 , 242.063 ) , ( 2085 , 241.734 ) , ( 2086 , 241.406 ) , ( 2087 , 241.077 ) , ( 2088 , 240.748 ) , ( 2089 , 240.42 ) , ( 2090 , 240.091 ) , ( 2091 , 239.797 ) , ( 2092 , 239.502 ) , ( 2093 , 239.208 ) , ( 2094 , 238.914 ) , ( 2095 , 238.619 ) , ( 2096 , 238.325 ) , ( 2097 , 238.031 ) , ( 2098 , 237.736 ) , ( 2099 , 237.442 ) , ( 2100 , 237.147 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_anthro_CH4_SSP245_spliced_to_history"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_anthro_CH4_SSP245_spliced_to_history"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_anthro_CH4_SSP245_spliced_to_history"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_anthro_CH4_SSP245_spliced_to_history"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py = Emissions_of_anthro_CH4_SSP245_spliced_to_history * UNIT_conversion_from_MtCH4_to_GtC
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py"
+    idxlhs = fcol_in_mdf["Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py"
     ]
     idx1 = fcol_in_mdf["Emissions_of_anthro_CH4_SSP245_spliced_to_history"]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * UNIT_conversion_from_MtCH4_to_GtC
@@ -11731,11 +9960,9 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Red_meat_production"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = max(
-        0,
-        CH4_emi_from_agriculture_a[j]
+        0,     CH4_emi_from_agriculture_a[j]
         * math.log(mdf[rowi, idx1 + j] / UNIT_conv_Mtrmeat)
-        + CH4_emi_from_agriculture_b[j],
-      )
+        + CH4_emi_from_agriculture_b[j],   )
 
     # Global_CH4_emi_from_agriculture = SUM ( CH4_emi_from_agriculture[region!] )
     idxlhs = fcol_in_mdf["Global_CH4_emi_from_agriculture"]
@@ -11763,18 +9990,15 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CH4_emi_from_energy_EC"]
     idx1 = fcol_in_mdf["Total_use_of_fossil_fuels"]
     mdf[rowi, idxlhs] = max(
-      0,
-      CH4_emi_from_energy_EC_a
+      0,   CH4_emi_from_energy_EC_a
       * math.log(mdf[rowi, idx1 + 7] / UNIT_conv_to_make_fossil_fuels_dmnl)
-      + CH4_emi_from_energy_EC_b,
-    )
+      + CH4_emi_from_energy_EC_b, )
 
     # CH4_emi_from_energy_WO_US_EC_EU[region] = CH4_emi_from_energy_a[region] * ( Total_use_of_fossil_fuels[region] / UNIT_conv_to_make_fossil_fuels_dmnl ) ^ CH4_emi_from_energy_b[region]
     idxlhs = fcol_in_mdf["CH4_emi_from_energy_WO_US_EC_EU"]
     idx1 = fcol_in_mdf["Total_use_of_fossil_fuels"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        CH4_emi_from_energy_a[j]
+      mdf[rowi, idxlhs + j] = (CH4_emi_from_energy_a[j]
         * (mdf[rowi, idx1 + j] / UNIT_conv_to_make_fossil_fuels_dmnl)
         ** CH4_emi_from_energy_b[j]
       )
@@ -11787,14 +10011,8 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["CH4_emi_from_energy_WO_US_EC_EU"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 8,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(
-          j == 0,
-          mdf[rowi, idx2],
-          IF_THEN_ELSE(j == 7, mdf[rowi, idx3], mdf[rowi, idx4 + j]),
-        ),
-      )
+        j == 8,     mdf[rowi, idx1],     IF_THEN_ELSE(
+          j == 0,       mdf[rowi, idx2],       IF_THEN_ELSE(j == 7, mdf[rowi, idx3], mdf[rowi, idx4 + j]),     ),   )
 
     # Global_CH4_emi_from_energy = SUM ( CH4_emi_from_energy[region!] )
     idxlhs = fcol_in_mdf["Global_CH4_emi_from_energy"]
@@ -11824,8 +10042,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CH4_emi_from_waste_WO_CN_AF"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        CH4_emi_from_waste_a[j]
+      mdf[rowi, idxlhs + j] = (CH4_emi_from_waste_a[j]
         * math.log(mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl)
         + CH4_emi_from_waste_b[j]
       )
@@ -11837,10 +10054,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["CH4_emi_from_waste_WO_CN_AF"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 1,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(j == 2, mdf[rowi, idx2], mdf[rowi, idx3 + j]),
-      )
+        j == 1,     mdf[rowi, idx1],     IF_THEN_ELSE(j == 2, mdf[rowi, idx2], mdf[rowi, idx3 + j]),   )
 
     # Global_CH4_emi_from_waste = SUM ( CH4_emi_from_waste[region!] )
     idxlhs = fcol_in_mdf["Global_CH4_emi_from_waste"]
@@ -11864,15 +10078,11 @@ def ugregmod(game_id, von, bis):
 
     # Emissions_of_anthro_CH4_1850_to_2100_GtC_py = IF_THEN_ELSE ( SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2 , Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py , IF_THEN_ELSE ( SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4 , Global_CH4_emissions_GtC_py , 0 ) )
     idxlhs = fcol_in_mdf["Emissions_of_anthro_CH4_1850_to_2100_GtC_py"]
-    idx1 = fcol_in_mdf[
-      "Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py"
+    idx1 = fcol_in_mdf["Emissions_of_anthro_CH4_from_Excel_SSP245_spliced_to_history_GtC_py"
     ]
     idx2 = fcol_in_mdf["Global_CH4_emissions_GtC_py"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,
-      mdf[rowi, idx1],
-      IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0),
-    )
+      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,   mdf[rowi, idx1],   IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0), )
 
     # CH4_emissions_before_co2e_exp = Emissions_of_anthro_CH4_1850_to_2100_GtC_py
     idxlhs = fcol_in_mdf["CH4_emissions_before_co2e_exp"]
@@ -11890,12 +10100,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / UNIT_conversion_for_CH4_from_CO2e_to_C
 
     # Emissions_of_anthro_N2O_SSP245_MtN2O_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 7.24546 ) , ( 1981 , 7.48314 ) , ( 1982 , 7.72083 ) , ( 1983 , 7.95852 ) , ( 1984 , 8.1962 ) , ( 1985 , 8.43389 ) , ( 1986 , 8.67157 ) , ( 1987 , 8.90926 ) , ( 1988 , 9.14694 ) , ( 1989 , 9.38463 ) , ( 1990 , 9.86 ) , ( 1991 , 9.928 ) , ( 1992 , 9.996 ) , ( 1993 , 10.064 ) , ( 1994 , 10.132 ) , ( 1995 , 10.2 ) , ( 1996 , 10.082 ) , ( 1997 , 9.964 ) , ( 1998 , 9.846 ) , ( 1999 , 9.728 ) , ( 2000 , 9.61 ) , ( 2001 , 9.788 ) , ( 2002 , 9.966 ) , ( 2003 , 10.144 ) , ( 2004 , 10.322 ) , ( 2005 , 10.5 ) , ( 2006 , 10.5 ) , ( 2007 , 10.5 ) , ( 2008 , 10.5 ) , ( 2009 , 10.5 ) , ( 2010 , 10.5 ) , ( 2011 , 10.55 ) , ( 2012 , 10.6 ) , ( 2013 , 10.75 ) , ( 2014 , 10.9 ) , ( 2015 , 10.9 ) , ( 2016 , 10.9846 ) , ( 2017 , 11.0691 ) , ( 2018 , 11.1537 ) , ( 2019 , 11.2383 ) , ( 2020 , 11.3229 ) , ( 2021 , 11.4114 ) , ( 2022 , 11.5 ) , ( 2023 , 11.5886 ) , ( 2024 , 11.6772 ) , ( 2025 , 11.7658 ) , ( 2026 , 11.8544 ) , ( 2027 , 11.943 ) , ( 2028 , 12.0316 ) , ( 2029 , 12.1202 ) , ( 2030 , 12.2088 ) , ( 2031 , 12.2503 ) , ( 2032 , 12.2918 ) , ( 2033 , 12.3333 ) , ( 2034 , 12.3748 ) , ( 2035 , 12.4163 ) , ( 2036 , 12.4578 ) , ( 2037 , 12.4993 ) , ( 2038 , 12.5408 ) , ( 2039 , 12.5823 ) , ( 2040 , 12.6238 ) , ( 2041 , 12.6201 ) , ( 2042 , 12.6164 ) , ( 2043 , 12.6127 ) , ( 2044 , 12.609 ) , ( 2045 , 12.6054 ) , ( 2046 , 12.6017 ) , ( 2047 , 12.598 ) , ( 2048 , 12.5943 ) , ( 2049 , 12.5906 ) , ( 2050 , 12.5869 ) , ( 2051 , 12.5501 ) , ( 2052 , 12.5133 ) , ( 2053 , 12.4764 ) , ( 2054 , 12.4396 ) , ( 2055 , 12.4028 ) , ( 2056 , 12.3659 ) , ( 2057 , 12.3291 ) , ( 2058 , 12.2922 ) , ( 2059 , 12.2554 ) , ( 2060 , 12.2186 ) , ( 2061 , 12.1513 ) , ( 2062 , 12.084 ) , ( 2063 , 12.0167 ) , ( 2064 , 11.9494 ) , ( 2065 , 11.8821 ) , ( 2066 , 11.8149 ) , ( 2067 , 11.7476 ) , ( 2068 , 11.6803 ) , ( 2069 , 11.613 ) , ( 2070 , 11.5457 ) , ( 2071 , 11.4274 ) , ( 2072 , 11.3091 ) , ( 2073 , 11.1908 ) , ( 2074 , 11.0725 ) , ( 2075 , 10.9542 ) , ( 2076 , 10.8359 ) , ( 2077 , 10.7176 ) , ( 2078 , 10.5993 ) , ( 2079 , 10.4809 ) , ( 2080 , 10.3626 ) , ( 2081 , 10.2788 ) , ( 2082 , 10.1951 ) , ( 2083 , 10.1113 ) , ( 2084 , 10.0275 ) , ( 2085 , 9.9437 ) , ( 2086 , 9.85991 ) , ( 2087 , 9.77612 ) , ( 2088 , 9.69234 ) , ( 2089 , 9.60855 ) , ( 2090 , 9.52476 ) , ( 2091 , 9.44552 ) , ( 2092 , 9.36627 ) , ( 2093 , 9.28703 ) , ( 2094 , 9.20779 ) , ( 2095 , 9.12855 ) , ( 2096 , 9.0493 ) , ( 2097 , 8.97006 ) , ( 2098 , 8.89082 ) , ( 2099 , 8.81158 ) , ( 2100 , 8.73233 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_anthro_N2O_SSP245_MtN2O_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_anthro_N2O_SSP245_MtN2O_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_anthro_N2O_SSP245_MtN2O_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_anthro_N2O_SSP245_MtN2O_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -11905,8 +10111,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Cropland"]
     idx2 = fcol_in_mdf["Nitrogen_use_after_soil_regeneration"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * UNIT_conv_to_MtN
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * UNIT_conv_to_MtN
       )
 
     # Red_and_White_meat_production[region] = Meat_production[region]
@@ -11933,8 +10138,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["N_excreted_without_AF_CN"]
     idx1 = fcol_in_mdf["Red_and_White_meat_production"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        N_excreted_a[j]
+      mdf[rowi, idxlhs + j] = (N_excreted_a[j]
         * (mdf[rowi, idx1 + j] / UNIT_conv_to_dmnl_for_MtNmeat) ** N_excreted_b[j]
       )
 
@@ -11945,10 +10149,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["N_excreted_without_AF_CN"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 1,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(j == 2, mdf[rowi, idx2], mdf[rowi, idx3 + j]),
-      )
+        j == 1,     mdf[rowi, idx1],     IF_THEN_ELSE(j == 2, mdf[rowi, idx2], mdf[rowi, idx3 + j]),   )
 
     # N_excreted_per_unit_of_meat_production[region] = N_excreted_per_unit_of_meat_production_func[region] * UNIT_conv_to_MtN_from_meat
     idxlhs = fcol_in_mdf["N_excreted_per_unit_of_meat_production"]
@@ -11982,8 +10183,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["N2O_emi_from_agri_X_AF"]
     idx1 = fcol_in_mdf["All_N_use_syn_and_excreted"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        N2O_emi_from_agri_a[j] * mdf[rowi, idx1 + j] + N2O_emi_from_agri_b[j]
+      mdf[rowi, idxlhs + j] = (N2O_emi_from_agri_a[j] * mdf[rowi, idx1 + j] + N2O_emi_from_agri_b[j]
       )
 
     # N2O_emi_from_agri[region] = IF_THEN_ELSE ( j==1 , N2O_emi_from_agri_AF , N2O_emi_from_agri_X_AF )
@@ -12035,8 +10235,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["N2O_emi_X_agri_WO_US_EU_CN_SA"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        N2O_emi_X_agri_a[j] * mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl
+      mdf[rowi, idxlhs + j] = (N2O_emi_X_agri_a[j] * mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl
         + N2O_emi_X_agri_b[j]
       )
 
@@ -12049,18 +10248,9 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["N2O_emi_X_agri_WO_US_EU_CN_SA"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 0,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(
-          j == 8,
-          mdf[rowi, idx2],
-          IF_THEN_ELSE(
-            j == 2,
-            mdf[rowi, idx3],
-            IF_THEN_ELSE(j == 4, mdf[rowi, idx4], mdf[rowi, idx5 + j]),
-          ),
-        ),
-      )
+        j == 0,     mdf[rowi, idx1],     IF_THEN_ELSE(
+          j == 8,       mdf[rowi, idx2],       IF_THEN_ELSE(
+            j == 2,         mdf[rowi, idx3],         IF_THEN_ELSE(j == 4, mdf[rowi, idx4], mdf[rowi, idx5 + j]),       ),     ),   )
 
     # Global_N2O_emi_X_agri = SUM ( N2O_emi_X_agri[region!] )
     idxlhs = fcol_in_mdf["Global_N2O_emi_X_agri"]
@@ -12081,10 +10271,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Emissions_of_anthro_N2O_SSP245_MtN2O_py"]
     idx2 = fcol_in_mdf["Global_N2O_emissions"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,
-      mdf[rowi, idx1],
-      IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0),
-    )
+      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,   mdf[rowi, idx1],   IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0), )
 
     # N2O_man_made_emissions_exp_12a = N2O_emissions_JR_RCP3_or_SSP245
     idxlhs = fcol_in_mdf["N2O_man_made_emissions_exp_12a"]
@@ -12099,23 +10286,15 @@ def ugregmod(game_id, von, bis):
     )
 
     # Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 22.9501 ) , ( 1981 , 22.074 ) , ( 1982 , 23.4422 ) , ( 1983 , 23.2237 ) , ( 1984 , 23.4892 ) , ( 1985 , 23.7867 ) , ( 1986 , 26.7277 ) , ( 1987 , 26.1138 ) , ( 1988 , 26.0124 ) , ( 1989 , 27.824 ) , ( 1990 , 28.2991 ) , ( 1991 , 30.2933 ) , ( 1992 , 33.3907 ) , ( 1993 , 39.3754 ) , ( 1994 , 54.2056 ) , ( 1995 , 67.9878 ) , ( 1996 , 81.2674 ) , ( 1997 , 91.8081 ) , ( 1998 , 103.682 ) , ( 1999 , 113.371 ) , ( 2000 , 144.458 ) , ( 2001 , 158.931 ) , ( 2002 , 176.526 ) , ( 2003 , 191.492 ) , ( 2004 , 210.618 ) , ( 2005 , 224.991 ) , ( 2006 , 238.121 ) , ( 2007 , 259.671 ) , ( 2008 , 281.72 ) , ( 2009 , 303.77 ) , ( 2010 , 325.819 ) , ( 2011 , 338.297 ) , ( 2012 , 350.774 ) , ( 2013 , 363.252 ) , ( 2014 , 375.729 ) , ( 2015 , 388.207 ) , ( 2016 , 400.685 ) , ( 2017 , 413.162 ) , ( 2018 , 425.64 ) , ( 2019 , 438.117 ) , ( 2020 , 450.595 ) , ( 2021 , 452.946 ) , ( 2022 , 455.297 ) , ( 2023 , 457.648 ) , ( 2024 , 460 ) , ( 2025 , 462.351 ) , ( 2026 , 464.702 ) , ( 2027 , 467.053 ) , ( 2028 , 469.404 ) , ( 2029 , 471.755 ) , ( 2030 , 474.107 ) , ( 2031 , 478.767 ) , ( 2032 , 483.428 ) , ( 2033 , 488.088 ) , ( 2034 , 492.749 ) , ( 2035 , 497.409 ) , ( 2036 , 502.069 ) , ( 2037 , 506.73 ) , ( 2038 , 511.39 ) , ( 2039 , 516.051 ) , ( 2040 , 520.711 ) , ( 2041 , 517.107 ) , ( 2042 , 513.504 ) , ( 2043 , 509.9 ) , ( 2044 , 506.296 ) , ( 2045 , 502.692 ) , ( 2046 , 499.088 ) , ( 2047 , 495.484 ) , ( 2048 , 491.88 ) , ( 2049 , 488.276 ) , ( 2050 , 484.672 ) , ( 2051 , 491.238 ) , ( 2052 , 497.804 ) , ( 2053 , 504.369 ) , ( 2054 , 510.935 ) , ( 2055 , 517.501 ) , ( 2056 , 524.067 ) , ( 2057 , 530.633 ) , ( 2058 , 537.198 ) , ( 2059 , 543.764 ) , ( 2060 , 550.33 ) , ( 2061 , 557.156 ) , ( 2062 , 563.982 ) , ( 2063 , 570.808 ) , ( 2064 , 577.634 ) , ( 2065 , 584.46 ) , ( 2066 , 591.286 ) , ( 2067 , 598.112 ) , ( 2068 , 604.939 ) , ( 2069 , 611.765 ) , ( 2070 , 618.591 ) , ( 2071 , 620.479 ) , ( 2072 , 622.368 ) , ( 2073 , 624.257 ) , ( 2074 , 626.146 ) , ( 2075 , 628.035 ) , ( 2076 , 629.923 ) , ( 2077 , 631.812 ) , ( 2078 , 633.701 ) , ( 2079 , 635.59 ) , ( 2080 , 637.478 ) , ( 2081 , 634.811 ) , ( 2082 , 632.143 ) , ( 2083 , 629.475 ) , ( 2084 , 626.807 ) , ( 2085 , 624.139 ) , ( 2086 , 621.472 ) , ( 2087 , 618.804 ) , ( 2088 , 616.136 ) , ( 2089 , 613.468 ) , ( 2090 , 610.8 ) , ( 2091 , 605.13 ) , ( 2092 , 599.46 ) , ( 2093 , 593.79 ) , ( 2094 , 588.119 ) , ( 2095 , 582.449 ) , ( 2096 , 576.779 ) , ( 2097 , 571.109 ) , ( 2098 , 565.438 ) , ( 2099 , 559.768 ) , ( 2100 , 554.098 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 102.464 ) , ( 1981 , 102.866 ) , ( 1982 , 97.6419 ) , ( 1983 , 104.071 ) , ( 1984 , 114.518 ) , ( 1985 , 113.715 ) , ( 1986 , 115.724 ) , ( 1987 , 121.349 ) , ( 1988 , 133.404 ) , ( 1989 , 140.637 ) , ( 1990 , 137.824 ) , ( 1991 , 135.413 ) , ( 1992 , 132.198 ) , ( 1993 , 129.787 ) , ( 1994 , 135.413 ) , ( 1995 , 147.467 ) , ( 1996 , 159.12 ) , ( 1997 , 173.586 ) , ( 1998 , 178.006 ) , ( 1999 , 187.649 ) , ( 2000 , 184.033 ) , ( 2001 , 177.604 ) , ( 2002 , 188.855 ) , ( 2003 , 193.275 ) , ( 2004 , 217.786 ) , ( 2005 , 236.671 ) , ( 2006 , 254.753 ) , ( 2007 , 262.789 ) , ( 2008 , 274.844 ) , ( 2009 , 272.031 ) , ( 2010 , 289.309 ) , ( 2011 , 302.569 ) , ( 2012 , 319.044 ) , ( 2013 , 349.984 ) , ( 2014 , 381.728 ) , ( 2015 , 371.682 ) , ( 2016 , 384.139 ) , ( 2017 , 399.809 ) , ( 2018 , 413.873 ) , ( 2019 , 421.91 ) , ( 2020 , 425.573 ) , ( 2021 , 430.467 ) , ( 2022 , 435.361 ) , ( 2023 , 440.255 ) , ( 2024 , 445.149 ) , ( 2025 , 450.043 ) , ( 2026 , 452.659 ) , ( 2027 , 455.275 ) , ( 2028 , 457.891 ) , ( 2029 , 460.507 ) , ( 2030 , 463.123 ) , ( 2031 , 461.834 ) , ( 2032 , 460.546 ) , ( 2033 , 459.257 ) , ( 2034 , 457.968 ) , ( 2035 , 456.68 ) , ( 2036 , 453.04 ) , ( 2037 , 449.401 ) , ( 2038 , 445.761 ) , ( 2039 , 442.122 ) , ( 2040 , 438.482 ) , ( 2041 , 431.628 ) , ( 2042 , 424.774 ) , ( 2043 , 417.92 ) , ( 2044 , 411.065 ) , ( 2045 , 404.211 ) , ( 2046 , 394.801 ) , ( 2047 , 385.39 ) , ( 2048 , 375.979 ) , ( 2049 , 366.568 ) , ( 2050 , 357.158 ) , ( 2051 , 350.015 ) , ( 2052 , 342.871 ) , ( 2053 , 335.728 ) , ( 2054 , 328.585 ) , ( 2055 , 321.442 ) , ( 2056 , 314.299 ) , ( 2057 , 307.156 ) , ( 2058 , 300.012 ) , ( 2059 , 292.869 ) , ( 2060 , 285.726 ) , ( 2061 , 278.583 ) , ( 2062 , 271.44 ) , ( 2063 , 264.297 ) , ( 2064 , 257.154 ) , ( 2065 , 250.01 ) , ( 2066 , 242.867 ) , ( 2067 , 235.724 ) , ( 2068 , 228.581 ) , ( 2069 , 221.438 ) , ( 2070 , 214.295 ) , ( 2071 , 207.151 ) , ( 2072 , 200.008 ) , ( 2073 , 192.865 ) , ( 2074 , 185.722 ) , ( 2075 , 178.579 ) , ( 2076 , 171.436 ) , ( 2077 , 164.293 ) , ( 2078 , 157.149 ) , ( 2079 , 150.006 ) , ( 2080 , 142.863 ) , ( 2081 , 135.72 ) , ( 2082 , 128.577 ) , ( 2083 , 121.434 ) , ( 2084 , 114.29 ) , ( 2085 , 107.147 ) , ( 2086 , 100.004 ) , ( 2087 , 92.861 ) , ( 2088 , 85.7178 ) , ( 2089 , 78.5747 ) , ( 2090 , 71.4315 ) , ( 2091 , 64.2884 ) , ( 2092 , 57.1452 ) , ( 2093 , 50.0021 ) , ( 2094 , 42.8589 ) , ( 2095 , 35.7158 ) , ( 2096 , 28.5726 ) , ( 2097 , 21.4295 ) , ( 2098 , 14.2863 ) , ( 2099 , 7.14315 ) , ( 2100 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -12125,10 +10304,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Emissions_of_Kyoto_Fluor_F_gases_SSP245_kt_py"]
     idx2 = fcol_in_mdf["Emissions_of_Kyoto_Fluor_with_JR_2052_shape_kt_py"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,
-      mdf[rowi, idx1],
-      IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0),
-    )
+      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,   mdf[rowi, idx1],   IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0), )
 
     # Kyoto_Fluor_emissions = Kyoto_Fluor_emissions_JR_RCP3_or_SSP245
     idxlhs = fcol_in_mdf["Kyoto_Fluor_emissions"]
@@ -12143,23 +10319,15 @@ def ugregmod(game_id, von, bis):
     )
 
     # Emissions_of_Montreal_gases_SSP245_kt_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1638.4 ) , ( 1981 , 1532.3 ) , ( 1982 , 1539.42 ) , ( 1983 , 1677.43 ) , ( 1984 , 1792.07 ) , ( 1985 , 1685.65 ) , ( 1986 , 1939.86 ) , ( 1987 , 2064.68 ) , ( 1988 , 2060.15 ) , ( 1989 , 1813.51 ) , ( 1990 , 1989.86 ) , ( 1991 , 1607.8 ) , ( 1992 , 1517.42 ) , ( 1993 , 1168.94 ) , ( 1994 , 1014.23 ) , ( 1995 , 962.917 ) , ( 1996 , 795.891 ) , ( 1997 , 711.038 ) , ( 1998 , 728.513 ) , ( 1999 , 680.544 ) , ( 2000 , 677.163 ) , ( 2001 , 625.922 ) , ( 2002 , 609.698 ) , ( 2003 , 626.466 ) , ( 2004 , 605.364 ) , ( 2005 , 545.23 ) , ( 2006 , 557.65 ) , ( 2007 , 564.595 ) , ( 2008 , 566.209 ) , ( 2009 , 568.007 ) , ( 2010 , 564.927 ) , ( 2011 , 550.292 ) , ( 2012 , 535.908 ) , ( 2013 , 521.714 ) , ( 2014 , 507.677 ) , ( 2015 , 486.503 ) , ( 2016 , 479.534 ) , ( 2017 , 472.965 ) , ( 2018 , 466.766 ) , ( 2019 , 460.903 ) , ( 2020 , 455.355 ) , ( 2021 , 435.413 ) , ( 2022 , 415.665 ) , ( 2023 , 396.093 ) , ( 2024 , 376.678 ) , ( 2025 , 357.406 ) , ( 2026 , 338.26 ) , ( 2027 , 319.227 ) , ( 2028 , 300.295 ) , ( 2029 , 281.454 ) , ( 2030 , 262.688 ) , ( 2031 , 244.298 ) , ( 2032 , 226.279 ) , ( 2033 , 208.622 ) , ( 2034 , 191.318 ) , ( 2035 , 174.355 ) , ( 2036 , 157.728 ) , ( 2037 , 141.428 ) , ( 2038 , 125.449 ) , ( 2039 , 109.785 ) , ( 2040 , 94.4303 ) , ( 2041 , 87.7823 ) , ( 2042 , 81.3364 ) , ( 2043 , 75.082 ) , ( 2044 , 69.0179 ) , ( 2045 , 63.1357 ) , ( 2046 , 57.4293 ) , ( 2047 , 51.8959 ) , ( 2048 , 46.5323 ) , ( 2049 , 41.3309 ) , ( 2050 , 36.2895 ) , ( 2051 , 34.5942 ) , ( 2052 , 32.9107 ) , ( 2053 , 31.2384 ) , ( 2054 , 29.5769 ) , ( 2055 , 27.924 ) , ( 2056 , 26.2799 ) , ( 2057 , 24.64 ) , ( 2058 , 23.0086 ) , ( 2059 , 21.3792 ) , ( 2060 , 19.7546 ) , ( 2061 , 18.9096 ) , ( 2062 , 18.0799 ) , ( 2063 , 17.2587 ) , ( 2064 , 16.4495 ) , ( 2065 , 15.6506 ) , ( 2066 , 14.8597 ) , ( 2067 , 14.0776 ) , ( 2068 , 13.3052 ) , ( 2069 , 12.5383 ) , ( 2070 , 11.7786 ) , ( 2071 , 11.2949 ) , ( 2072 , 10.8192 ) , ( 2073 , 10.3525 ) , ( 2074 , 9.89385 ) , ( 2075 , 9.44502 ) , ( 2076 , 9.00251 ) , ( 2077 , 8.56719 ) , ( 2078 , 8.13906 ) , ( 2079 , 7.7181 ) , ( 2080 , 7.30258 ) , ( 2081 , 7.03404 ) , ( 2082 , 6.77378 ) , ( 2083 , 6.51485 ) , ( 2084 , 6.25904 ) , ( 2085 , 6.009 ) , ( 2086 , 5.76214 ) , ( 2087 , 5.51762 ) , ( 2088 , 5.27545 ) , ( 2089 , 5.03744 ) , ( 2090 , 4.80273 ) , ( 2091 , 4.60003 ) , ( 2092 , 4.40176 ) , ( 2093 , 4.20965 ) , ( 2094 , 4.021 ) , ( 2095 , 3.8384 ) , ( 2096 , 3.66004 ) , ( 2097 , 3.48504 ) , ( 2098 , 3.31763 ) , ( 2099 , 3.15178 ) , ( 2100 , 2.99003 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_Montreal_gases_SSP245_kt_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_Montreal_gases_SSP245_kt_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_Montreal_gases_SSP245_kt_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_Montreal_gases_SSP245_kt_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1638.4 ) , ( 1981 , 1532.3 ) , ( 1982 , 1539.42 ) , ( 1983 , 1677.43 ) , ( 1984 , 1792.07 ) , ( 1985 , 1685.65 ) , ( 1986 , 1939.86 ) , ( 1987 , 2064.68 ) , ( 1988 , 2060.15 ) , ( 1989 , 1813.51 ) , ( 1990 , 1989.86 ) , ( 1991 , 1607.8 ) , ( 1992 , 1517.42 ) , ( 1993 , 1168.94 ) , ( 1994 , 1014.23 ) , ( 1995 , 962.917 ) , ( 1996 , 795.891 ) , ( 1997 , 711.038 ) , ( 1998 , 728.513 ) , ( 1999 , 680.544 ) , ( 2000 , 677.163 ) , ( 2001 , 625.922 ) , ( 2002 , 609.698 ) , ( 2003 , 626.466 ) , ( 2004 , 605.364 ) , ( 2005 , 545.23 ) , ( 2006 , 557.65 ) , ( 2007 , 564.595 ) , ( 2008 , 566.209 ) , ( 2009 , 568.007 ) , ( 2010 , 564.927 ) , ( 2011 , 550.292 ) , ( 2012 , 535.908 ) , ( 2013 , 521.714 ) , ( 2014 , 507.677 ) , ( 2015 , 486.503 ) , ( 2016 , 479.534 ) , ( 2017 , 472.965 ) , ( 2018 , 466.766 ) , ( 2019 , 460.903 ) , ( 2020 , 455.355 ) , ( 2021 , 434.648 ) , ( 2022 , 414.207 ) , ( 2023 , 394.013 ) , ( 2024 , 374.045 ) , ( 2025 , 354.289 ) , ( 2026 , 334.726 ) , ( 2027 , 315.343 ) , ( 2028 , 296.127 ) , ( 2029 , 277.066 ) , ( 2030 , 258.146 ) , ( 2031 , 242.019 ) , ( 2032 , 226 ) , ( 2033 , 210.081 ) , ( 2034 , 194.256 ) , ( 2035 , 178.515 ) , ( 2036 , 162.855 ) , ( 2037 , 147.269 ) , ( 2038 , 131.752 ) , ( 2039 , 116.301 ) , ( 2040 , 100.909 ) , ( 2041 , 94.99 ) , ( 2042 , 89.141 ) , ( 2043 , 83.353 ) , ( 2044 , 77.627 ) , ( 2045 , 71.956 ) , ( 2046 , 66.335 ) , ( 2047 , 60.763 ) , ( 2048 , 55.238 ) , ( 2049 , 49.753 ) , ( 2050 , 44.307 ) , ( 2051 , 42.06 ) , ( 2052 , 39.846 ) , ( 2053 , 37.664 ) , ( 2054 , 35.513 ) , ( 2055 , 33.39 ) , ( 2056 , 31.295 ) , ( 2057 , 29.222 ) , ( 2058 , 27.176 ) , ( 2059 , 25.149 ) , ( 2060 , 23.144 ) , ( 2061 , 22.109 ) , ( 2062 , 21.096 ) , ( 2063 , 20.097 ) , ( 2064 , 19.116 ) , ( 2065 , 18.151 ) , ( 2066 , 17.199 ) , ( 2067 , 16.261 ) , ( 2068 , 15.338 ) , ( 2069 , 14.425 ) , ( 2070 , 13.524 ) , ( 2071 , 12.972 ) , ( 2072 , 12.429 ) , ( 2073 , 11.896 ) , ( 2074 , 11.372 ) , ( 2075 , 10.859 ) , ( 2076 , 10.353 ) , ( 2077 , 9.855 ) , ( 2078 , 9.365 ) , ( 2079 , 8.883 ) , ( 2080 , 8.407 ) , ( 2081 , 8.079 ) , ( 2082 , 7.762 ) , ( 2083 , 7.448 ) , ( 2084 , 7.139 ) , ( 2085 , 6.838 ) , ( 2086 , 6.542 ) , ( 2087 , 6.25 ) , ( 2088 , 5.962 ) , ( 2089 , 5.68 ) , ( 2090 , 5.403 ) , ( 2091 , 5.201 ) , ( 2092 , 5.002 ) , ( 2093 , 4.808 ) , ( 2094 , 4.616 ) , ( 2095 , 4.429 ) , ( 2096 , 4.245 ) , ( 2097 , 4.063 ) , ( 2098 , 3.888 ) , ( 2099 , 3.713 ) , ( 2100 , 3.541 ) ) )
-    tabidx = ftab_in_d_table[
-      "Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -12169,10 +10337,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Emissions_of_Montreal_gases_SSP245_kt_py"]
     idx2 = fcol_in_mdf["Emissions_of_Montreal_gases_with_JR_2052_shape_kt_py"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,
-      mdf[rowi, idx1],
-      IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0),
-    )
+      SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 2,   mdf[rowi, idx1],   IF_THEN_ELSE(SWITCH_choose_4_for_e4a_or_2_for_ssp245 == 4, mdf[rowi, idx2], 0), )
 
     # Montreal_gases_emissions = Montreal_gases_emissions_JR_RCP3_or_SSP245
     idxlhs = fcol_in_mdf["Montreal_gases_emissions"]
@@ -12216,40 +10381,35 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_empowerment_PES"]
     idx1 = fcol_in_mdf["Regional_GDP_weight"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        All_region_max_cost_estimate_empowerment_PES * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (All_region_max_cost_estimate_empowerment_PES * mdf[rowi, idx1 + j]
       )
 
     # Each_region_max_cost_estimate_energy_PES[region] = All_region_max_cost_estimate_energy_PES * Regional_GDP_weight[region]
     idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_energy_PES"]
     idx1 = fcol_in_mdf["Regional_GDP_weight"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        All_region_max_cost_estimate_energy_PES * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (All_region_max_cost_estimate_energy_PES * mdf[rowi, idx1 + j]
       )
 
     # Each_region_max_cost_estimate_food_PES[region] = All_region_max_cost_estimate_food_PES * Regional_GDP_weight[region]
     idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_food_PES"]
     idx1 = fcol_in_mdf["Regional_GDP_weight"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        All_region_max_cost_estimate_food_PES * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (All_region_max_cost_estimate_food_PES * mdf[rowi, idx1 + j]
       )
 
     # Each_region_max_cost_estimate_inequality_PES[region] = All_region_max_cost_estimate_inequality_PES * Regional_GDP_weight[region]
     idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES"]
     idx1 = fcol_in_mdf["Regional_GDP_weight"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        All_region_max_cost_estimate_inequality_PES * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (All_region_max_cost_estimate_inequality_PES * mdf[rowi, idx1 + j]
       )
 
     # Each_region_max_cost_estimate_poverty_PES[region] = All_region_max_cost_estimate_poverty_PES * Regional_GDP_weight[region]
     idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES"]
     idx1 = fcol_in_mdf["Regional_GDP_weight"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        All_region_max_cost_estimate_poverty_PES * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (All_region_max_cost_estimate_poverty_PES * mdf[rowi, idx1 + j]
       )
 
     # Each_region_max_cost_estimate_all_TAs_PES[region] = Each_region_max_cost_estimate_empowerment_PES[region] + Each_region_max_cost_estimate_energy_PES[region] + Each_region_max_cost_estimate_food_PES[region] + Each_region_max_cost_estimate_inequality_PES[region] + Each_region_max_cost_estimate_poverty_PES[region]
@@ -12260,8 +10420,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES"]
     idx5 = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -12274,10 +10433,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fraction_of_population_below_existential_minimum"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] > SDG1_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG1_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] > SDG1_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG1_threshold_green, 0.5, 1),   )
 
     # Fraction_of_population_undernourished[region] = MIN ( 1 , SDG2_a * ( GDPpp_USED[region] / UNIT_conv_to_make_base_dmnless ) ^ ( SDG2_b ) )
     idxlhs = fcol_in_mdf["Fraction_of_population_undernourished"]
@@ -12293,10 +10449,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fraction_of_population_undernourished"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] > SDG2_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG2_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] > SDG2_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG2_threshold_green, 0.5, 1),   )
 
     # Worker_cash_inflow_seasonally_adjusted_pp[region] = Worker_cash_inflow_seasonally_adjusted[region] / Population[region]
     idxlhs = fcol_in_mdf["Worker_cash_inflow_seasonally_adjusted_pp"]
@@ -12309,8 +10462,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Wellbeing_from_disposable_income"]
     idx1 = fcol_in_mdf["Worker_cash_inflow_seasonally_adjusted_pp"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Disposable_income_threshold_for_wellbeing
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Disposable_income_threshold_for_wellbeing
       )
 
     # Ratio_actual_to_basic_el_use[region] = Actual_el_use_pp[region] / Basic_el_use
@@ -12395,8 +10547,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Wellbeing_from_red_meat"]
     idx3 = fcol_in_mdf["Wellbeing_from_crops"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * Weight_on_white_meat
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * Weight_on_white_meat
         + mdf[rowi, idx2 + j] * Weight_on_red_meat
         + mdf[rowi, idx3 + j] * Weight_on_crops
       ) / Sum_of_food_weights
@@ -12411,8 +10562,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Wellbeing_from_population_with_regular_job"]
     idx1 = fcol_in_mdf["Fraction_of_people_outside_of_labour_market_FOPOLM"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + Slope_of_wellbeing_from_fraction_of_people_outside_of_labor_pool
         * (Frac_outside_of_labour_pool_in_1980[j] / mdf[rowi, idx1 + j] - 1)
       )
@@ -12422,8 +10572,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Public_services_pp"]
     idx2 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] / UNIT_conv_to_k217pppUSD_ppy
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] / UNIT_conv_to_k217pppUSD_ppy
       )
 
     # Smoothed_Public_spending_as_share_of_GDP[region] = SMOOTH ( Public_spending_as_share_of_GDP[region] , Time_for_public_spending_to_affect_wellbeing )
@@ -12444,12 +10593,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Satisfactory_public_spending
 
     # Wellbeing_from_public_spending[region] = WITH LOOKUP ( Public_spending_ratio[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 0.25 , 0.02907 ) , ( 0.5 , 0.08995 ) , ( 0.75 , 0.2175 ) , ( 1 , 0.4699 ) , ( 1.25 , 0.9055 ) , ( 1.5 , 1.5 ) , ( 1.75 , 2.095 ) , ( 2 , 2.53 ) , ( 2.25 , 2.782 ) , ( 2.5 , 2.91 ) , ( 2.75 , 2.971 ) , ( 3 , 3 ) ) )
-    tabidx = ftab_in_d_table[
-      "Wellbeing_from_public_spending"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Wellbeing_from_public_spending"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Wellbeing_from_public_spending"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Wellbeing_from_public_spending"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Public_spending_ratio"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -12464,8 +10609,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Wellbeing_from_population_with_regular_job"]
     idx6 = fcol_in_mdf["Wellbeing_from_public_spending"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Weight_disposable_income * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (Weight_disposable_income * mdf[rowi, idx1 + j]
         + Weight_el_use * mdf[rowi, idx2 + j]
         + Weight_food * mdf[rowi, idx3 + j]
         + Weight_inequality * mdf[rowi, idx4 + j]
@@ -12478,8 +10622,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Living_conditions_index"]
     idx2 = fcol_in_mdf["Actual_wellbeing_from_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * Weight_on_living_conditions
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * Weight_on_living_conditions
         + mdf[rowi, idx2 + j] * Weight_on_env_conditions
       )
 
@@ -12522,8 +10665,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Wellbeing_from_social_tension"]
     idx3 = fcol_in_mdf["Smoothed_comparison_Effect_of_SDG_score_on_wellbeing"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * Weight_on_physical_conditions
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * Weight_on_physical_conditions
         + mdf[rowi, idx2 + j] * (1 - Weight_on_physical_conditions)
       ) * mdf[rowi, idx3 + j]
 
@@ -12533,10 +10675,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Average_wellbeing_index"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG3_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG3_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG3_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG3_threshold_green, 0.5, 1),   )
 
     # Safe_water_cn = Safe_water_cn_L / ( 1 + math.exp ( - Safe_water_cn_k * ( ( GDPpp_USED[cn] / UNIT_conv_to_make_base_dmnless ) - Safe_water_cn_x0 ) ) ) + Safe_water_cn_min
     idxlhs = fcol_in_mdf["Safe_water_cn"]
@@ -12557,8 +10696,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Safe_water_rest"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Safe_water_rest_L
+      mdf[rowi, idxlhs + j] = (Safe_water_rest_L
         / (
           1
           + math.exp(
@@ -12585,17 +10723,13 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Safe_water"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG6a_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG6a_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG6a_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG6a_threshold_green, 0.5, 1),   )
 
     # Safe_sanitation[region] = Safe_sanitation_L / ( 1 + math.exp ( - Safe_sanitation_k * ( ( GDPpp_USED[region] / UNIT_conv_to_make_base_dmnless ) - Safe_sanitation_x0 ) ) ) + Safe_sanitation_min
     idxlhs = fcol_in_mdf["Safe_sanitation"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Safe_sanitation_L
+      mdf[rowi, idxlhs + j] = (Safe_sanitation_L
         / (
           1
           + math.exp(
@@ -12615,10 +10749,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Safe_sanitation"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG6b_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG6b_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG6b_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG6b_threshold_green, 0.5, 1),   )
 
     # SDG_6_score[region] = ( SDG6a_Score[region] + SDG6b_Score[region] ) / 2
     idxlhs = fcol_in_mdf["SDG_6_score"]
@@ -12633,10 +10764,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Access_to_electricity"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG_7_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_7_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG_7_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_7_threshold_green, 0.5, 1),   )
 
     # Indicated_cost_of_capital_for_secured_debt[region] = Short_term_interest_rate[region] + Normal_bank_operating_margin
     idxlhs = fcol_in_mdf["Indicated_cost_of_capital_for_secured_debt"]
@@ -12691,12 +10819,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
 
     # Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing[region] = WITH LOOKUP ( Worker_default_ratio[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.25 , 1.04 ) , ( 0.5 , 1.1 ) , ( 0.75 , 1.3 ) , ( 1 , 1.6 ) , ( 1.5 , 2.5 ) , ( 2 , 4 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Worker_default_ratio"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -12706,12 +10830,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Worker_interest_payment_obligation"]
     idx1 = fcol_in_mdf["Workers_debt"]
     idx2 = fcol_in_mdf["Cost_of_capital_for_worker_borrowing_smoothed"]
-    idx3 = fcol_in_mdf[
-      "Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"
+    idx3 = fcol_in_mdf["Effect_of_defaulting_on_debt_obligations_on_cost_of_capital_for_worker_borrowing"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
       )
 
     # Max_workers_debt_burden[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 2 ) , ( 1990 , 3 ) , ( 2000 , 1 ) , ( 2010 , 3 ) , ( 2020 , 2.4 ) , ( 2050 , 2 ) ) ) Max_workers_debt_burden[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.5 ) , ( 1990 , 0.5 ) , ( 2000 , 0.65 ) , ( 2010 , 0.7 ) , ( 2020 , 0.7 ) , ( 2050 , 0.7 ) ) ) Max_workers_debt_burden[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.5 ) , ( 1990 , 2.5 ) , ( 2000 , 3 ) , ( 2010 , 4 ) , ( 2020 , 5 ) , ( 2050 , 3 ) ) ) Max_workers_debt_burden[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 0.5 ) , ( 2000 , 1 ) , ( 2010 , 1.5 ) , ( 2020 , 2 ) , ( 2050 , 1.5 ) ) ) Max_workers_debt_burden[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.5 ) , ( 1990 , 1 ) , ( 2000 , 2 ) , ( 2010 , 2.5 ) , ( 2020 , 2 ) , ( 2050 , 1.5 ) ) ) Max_workers_debt_burden[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.1 ) , ( 1990 , 2 ) , ( 2000 , 1 ) , ( 2010 , 1.5 ) , ( 2020 , 2 ) , ( 2050 , 1.5 ) ) ) Max_workers_debt_burden[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 3 ) , ( 1990 , 5 ) , ( 2000 , 4 ) , ( 2010 , 4.5 ) , ( 2020 , 5 ) , ( 2050 , 4 ) ) ) Max_workers_debt_burden[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.1 ) , ( 1990 , 1.5 ) , ( 2000 , 0.1 ) , ( 2010 , 1.5 ) , ( 2020 , 2 ) , ( 2050 , 1.5 ) ) ) Max_workers_debt_burden[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 2 ) , ( 1990 , 3 ) , ( 2000 , 3 ) , ( 2010 , 4.5 ) , ( 2020 , 3 ) , ( 2050 , 2 ) ) ) Max_workers_debt_burden[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.5 ) , ( 1990 , 2.5 ) , ( 2000 , 2 ) , ( 2010 , 1.5 ) , ( 2020 , 2.5 ) , ( 2050 , 1.5 ) ) )
@@ -12753,8 +10875,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Worker_income_after_tax"]
     idx2 = fcol_in_mdf["Workers_taking_on_new_debt"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]
       ) * Fraction_by_law_or_custom_left_for_surviving
 
     # Worker_debt_repayment_obligation[region] = Workers_debt[region] / Workers_payback_period
@@ -12797,8 +10918,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Workers_debt_payback"]
     idx3 = fcol_in_mdf["Workers_taking_on_new_debt"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j]
       )
 
     # Disposable_income_pp_post_tax_pre_loan_impact[region] = ( Worker_cash_inflow_seasonally_adjusted[region] - Worker_cashflow_to_owners[region] ) / Population[region]
@@ -12807,8 +10927,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Worker_cashflow_to_owners"]
     idx3 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[
-        rowi, idx3 + j
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[ rowi, idx3 + j
       ]
 
     # SDG_8_Score[region] = IF_THEN_ELSE ( Disposable_income_pp_post_tax_pre_loan_impact < SDG_8_threshold_red , 0 , IF_THEN_ELSE ( Disposable_income_pp_post_tax_pre_loan_impact < SDG_8_threshold_green , 0.5 , 1 ) )
@@ -12817,21 +10936,16 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Disposable_income_pp_post_tax_pre_loan_impact"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG_8_threshold_red,
-        0,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_8_threshold_green, 0.5, 1),
-      )
+        mdf[rowi, idx1 + j] < SDG_8_threshold_red,     0,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_8_threshold_green, 0.5, 1),   )
 
     # Carbon_intensity[region] = ( Total_CO2_emissions[region] - Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture[region] ) / GDP_USED[region] * UNIT_conv_to_tCO2_pr_USD
     idxlhs = fcol_in_mdf["Carbon_intensity"]
     idx1 = fcol_in_mdf["Total_CO2_emissions"]
-    idx2 = fcol_in_mdf[
-      "Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
+    idx2 = fcol_in_mdf["Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
     ]
     idx3 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
         / mdf[rowi, idx3 + j]
         * UNIT_conv_to_tCO2_pr_USD
       )
@@ -12842,10 +10956,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Carbon_intensity"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG_9_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_9_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] < SDG_9_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_9_threshold_red, 0.5, 0),   )
 
     # Labour_share_of_GDP[region] = Worker_income_after_tax[region] / ( Worker_income_after_tax[region] + Owner_income_after_tax_but_before_lending_transactions[region] )
     idxlhs = fcol_in_mdf["Labour_share_of_GDP"]
@@ -12863,18 +10974,14 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Labour_share_of_GDP"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] > SDG_10_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_10_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] > SDG_10_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_10_threshold_red, 0.5, 0),   )
 
     # Energy_footprint_pp[region] = ( Total_CO2_emissions[region] ) / Population[region] * UNIT_conv_to_t_ppy
     idxlhs = fcol_in_mdf["Energy_footprint_pp"]
     idx1 = fcol_in_mdf["Total_CO2_emissions"]
     idx2 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j]) / mdf[rowi, idx2 + j] * UNIT_conv_to_t_ppy
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j]) / mdf[rowi, idx2 + j] * UNIT_conv_to_t_ppy
       )
 
     # SDG_11_Score[region] = IF_THEN_ELSE ( Energy_footprint_pp < SDG_11_threshold_green , 1 , IF_THEN_ELSE ( Energy_footprint_pp < SDG_11_threshold_red , 0.5 , 0 ) )
@@ -12883,10 +10990,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Energy_footprint_pp"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < SDG_11_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_11_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] < SDG_11_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2 + j] < SDG_11_threshold_red, 0.5, 0),   )
 
     # Food_footprint[region] = Nitrogen_syn_use[region] / Population[region]
     idxlhs = fcol_in_mdf["Food_footprint"]
@@ -12921,10 +11025,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["SDG_12_threshold_red_PES"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] < mdf[rowi, idx2],
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx3 + j] < mdf[rowi, idx4], 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] < mdf[rowi, idx2],     1,     IF_THEN_ELSE(mdf[rowi, idx3 + j] < mdf[rowi, idx4], 0.5, 0),   )
 
     # SDG_13_Score[region] = IF_THEN_ELSE ( Temp_surface_anomaly_compared_to_1850_degC < SDG_13_threshold_green , 1 , IF_THEN_ELSE ( Temp_surface_anomaly_compared_to_1850_degC < SDG_13_threshold_red , 0.5 , 0 ) )
     idxlhs = fcol_in_mdf["SDG_13_Score"]
@@ -12932,10 +11033,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Temp_surface_anomaly_compared_to_1850_degC"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1] < SDG_13_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2] < SDG_13_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1] < SDG_13_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2] < SDG_13_threshold_red, 0.5, 0),   )
 
     # SDG_14_Score[region] = IF_THEN_ELSE ( pH_in_surface > SDG_14_threshold_green , 1 , IF_THEN_ELSE ( pH_in_surface > SDG_14_threshold_red , 0.5 , 0 ) )
     idxlhs = fcol_in_mdf["SDG_14_Score"]
@@ -12943,10 +11041,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["pH_in_surface"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1] > SDG_14_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2] > SDG_14_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1] > SDG_14_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2] > SDG_14_threshold_red, 0.5, 0),   )
 
     # SDG_15_Score[region] = IF_THEN_ELSE ( TROP_with_normal_cover > SDG_15_threshold_green , 1 , IF_THEN_ELSE ( TROP_with_normal_cover > SDG_15_threshold_red , 0.5 , 0 ) )
     idxlhs = fcol_in_mdf["SDG_15_Score"]
@@ -12954,10 +11049,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["TROP_with_normal_cover"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1] > SDG_15_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2] > SDG_15_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1] > SDG_15_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2] > SDG_15_threshold_red, 0.5, 0),   )
 
     # SDG_16_Score[region] = IF_THEN_ELSE ( Public_services_pp > SDG_16_threshold_green , 1 , IF_THEN_ELSE ( Public_services_pp > SDG_16_threshold_red , 0.5 , 0 ) )
     idxlhs = fcol_in_mdf["SDG_16_Score"]
@@ -12965,10 +11057,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Public_services_pp"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] > SDG_16_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_16_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] > SDG_16_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_16_threshold_red, 0.5, 0),   )
 
     # Social_trust_init_is_1[region] = Social_trust[region] / Social_trust_in_1980
     idxlhs = fcol_in_mdf["Social_trust_init_is_1"]
@@ -12982,10 +11071,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Social_trust_init_is_1"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] > SDG_17_threshold_green,
-        1,
-        IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_17_threshold_red, 0.5, 0),
-      )
+        mdf[rowi, idx1 + j] > SDG_17_threshold_green,     1,     IF_THEN_ELSE(mdf[rowi, idx2 + j] > SDG_17_threshold_red, 0.5, 0),   )
 
     # All_SDG_Scores[region] = SDG1_Score[region] + SDG_2_Score[region] + SDG_3_Score[region] + SDG4_Score[region] + SDG_5_Score[region] + SDG_6_score[region] + SDG_7_Score[region] + SDG_8_Score[region] + SDG_9_Score[region] + SDG_10_Score[region] + SDG_11_Score[region] + SDG_12_Score[region] + SDG_13_Score[region] + SDG_14_Score[region] + SDG_15_Score[region] + SDG_16_Score[region] + SDG_17_Score[region]
     idxlhs = fcol_in_mdf["All_SDG_Scores"]
@@ -13007,8 +11093,7 @@ def ugregmod(game_id, von, bis):
     idx16 = fcol_in_mdf["SDG_16_Score"]
     idx17 = fcol_in_mdf["SDG_17_Score"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -13165,8 +11250,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting = ( GRASS_being_deforested_Mkm2_py + GRASS_burning_Mkm2_py + GRASS_being_harvested_Mkm2_py ) * GRASS_living_biomass_densitiy_tBiomass_pr_km2 / UNIT_conversion_GtBiomass_py_to_Mkm2_py
-    idxlhs = fcol_in_mdf[
-      "GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idxlhs = fcol_in_mdf["GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx1 = fcol_in_mdf["GRASS_being_deforested_Mkm2_py"]
     idx2 = fcol_in_mdf["GRASS_burning_Mkm2_py"]
@@ -13182,8 +11266,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CO2_flow_from_GRASS_to_atmosphere_GtC_py"]
     idx1 = fcol_in_mdf["GRASS_Biomass_in_construction_material_being_burnt"]
     idx2 = fcol_in_mdf["GRASS_Dead_biomass_decomposing"]
-    idx3 = fcol_in_mdf[
-      "GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["GRASS_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["GRASS_DeadB_SOM_being_lost_due_to_deforestation"]
     idx5 = fcol_in_mdf["GRASS_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -13214,8 +11297,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting = ( NF_being_deforested_Mkm2_py + NF_burning_Mkm2_py + NF_being_harvested_by_clear_cutting_Mkm2_py + NF_being_harvested_normally_Mkm2_py ) * NF_living_biomass_densitiy_tBiomass_pr_km2 / UNIT_conversion_GtBiomass_py_to_Mkm2_py
-    idxlhs = fcol_in_mdf[
-      "NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idxlhs = fcol_in_mdf["NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx1 = fcol_in_mdf["NF_being_deforested_Mkm2_py"]
     idx2 = fcol_in_mdf["NF_burning_Mkm2_py"]
@@ -13232,8 +11314,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CO2_flow_from_NF_to_atmosphere_GtC_py"]
     idx1 = fcol_in_mdf["NF_Biomass_in_construction_material_being_burnt"]
     idx2 = fcol_in_mdf["NF_Dead_biomass_decomposing"]
-    idx3 = fcol_in_mdf[
-      "NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["NF_DeadB_SOM_being_lost_due_to_deforestation"]
     idx5 = fcol_in_mdf["NF_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -13266,8 +11347,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting = ( TROP_being_deforested_Mkm2_py + TROP_burning + TROP_being_harvested_by_clear_cutting + TROP_being_harvested_normally ) * TROP_living_biomass_densitiy_tBiomass_pr_km2 / UNIT_conversion_GtBiomass_py_to_Mkm2_py
-    idxlhs = fcol_in_mdf[
-      "TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idxlhs = fcol_in_mdf["TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx1 = fcol_in_mdf["TROP_being_deforested_Mkm2_py"]
     idx2 = fcol_in_mdf["TROP_burning"]
@@ -13284,8 +11364,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CO2_flow_from_TROP_to_atmosphere_GtC_py"]
     idx1 = fcol_in_mdf["TROP_Biomass_in_construction_material_being_burnt"]
     idx2 = fcol_in_mdf["TROP_Dead_biomass_decomposing"]
-    idx3 = fcol_in_mdf[
-      "TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["TROP_NF_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["TROP_DeadB_SOM_being_lost_due_to_deforestation"]
     idx5 = fcol_in_mdf["TROP_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -13319,8 +11398,7 @@ def ugregmod(game_id, von, bis):
 
     # TUNDRA_Dead_biomass_decomposing = TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass / TUNDRA_Time_to_decompose_undisturbed_dead_biomass_yr
     idxlhs = fcol_in_mdf["TUNDRA_Dead_biomass_decomposing"]
-    idx1 = fcol_in_mdf[
-      "TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = (
       mdf[rowi, idx1] / TUNDRA_Time_to_decompose_undisturbed_dead_biomass_yr
@@ -13367,8 +11445,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting = ( TUNDRA_being_deforested_Mkm2_py + TUNDRA_burning_Mkm2_py + TUNDRA_being_harvested_Mkm2_py ) * TUNDRA_living_biomass_densitiy_tBiomass_pr_km2 / UNIT_conversion_GtBiomass_py_to_Mkm2_py
-    idxlhs = fcol_in_mdf[
-      "TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idxlhs = fcol_in_mdf["TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx1 = fcol_in_mdf["TUNDRA_being_deforested_Mkm2_py"]
     idx2 = fcol_in_mdf["TUNDRA_burning_Mkm2_py"]
@@ -13425,8 +11502,7 @@ def ugregmod(game_id, von, bis):
 
     # TUNDRA_runoff = TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass / TUNDRA_runoff_time
     idxlhs = fcol_in_mdf["TUNDRA_runoff"]
-    idx1 = fcol_in_mdf[
-      "TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / TUNDRA_runoff_time
 
@@ -13434,8 +11510,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["CO2_flow_from_TUNDRA_to_atmosphere"]
     idx1 = fcol_in_mdf["TUNDRA_Biomass_in_construction_material_being_burnt"]
     idx2 = fcol_in_mdf["TUNDRA_Dead_biomass_decomposing"]
-    idx3 = fcol_in_mdf[
-      "TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
+    idx3 = fcol_in_mdf["TUNDRA_biomass_being_lost_from_deforestation_fires_energy_harvesting_and_clear_cutting"
     ]
     idx4 = fcol_in_mdf["TUNDRA_DeadB_SOM_being_lost_due_to_deforestation"]
     idx5 = fcol_in_mdf["TUNDRA_DeadB_SOM_being_lost_due_to_energy_harvesting"]
@@ -13499,12 +11574,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / Heat_in_atmosphere_in_1850_ZJ
 
     # Effect_of_heat_in_atm_on_melting_ice_cut_off = WITH LOOKUP ( Heat_in_atmosphere_current_to_initial_ratio , ( [ ( 0 , 0 ) - ( 1 , 1 ) ] , ( 0 , 0 ) , ( 0.16 , 0.85 ) , ( 0.5 , 1 ) , ( 1 , 1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_heat_in_atm_on_melting_ice_cut_off"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Effect_of_heat_in_atm_on_melting_ice_cut_off"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_heat_in_atm_on_melting_ice_cut_off"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Effect_of_heat_in_atm_on_melting_ice_cut_off"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Heat_in_atmosphere_current_to_initial_ratio"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -13563,16 +11634,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FLWR_rounds_via_Excel_future"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FLWR_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FLWR_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FLWR_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FLWR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FLWR_R1_via_Excel[j], FLWR_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FLWR_policy_with_RW[region] = FLWR_rounds_via_Excel_future[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["FLWR_policy_with_RW"]
@@ -13581,8 +11646,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -13592,8 +11656,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FLWR_pol_div_100"]
     idx1 = fcol_in_mdf["FLWR_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FLWR_policy_Max, max(FLWR_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(FLWR_policy_Max, max(FLWR_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # FLWR_policy[region] = SMOOTH3 ( FLWR_pol_div_100[region] , FLWR_Time_to_implement_ISPV_goal )
@@ -13633,16 +11696,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FTPEE_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FTPEE_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FTPEE_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FTPEE_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FTPEE_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FTPEE_R1_via_Excel[j], FTPEE_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FTPEE_policy_with_RW[region] = FTPEE_policy_Min + ( FTPEE_rounds_via_Excel[region] - FTPEE_policy_Min ) * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region]
     idxlhs = fcol_in_mdf["FTPEE_policy_with_RW"]
@@ -13650,8 +11707,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_Reform_willingness"]
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        FTPEE_policy_Min
+      mdf[rowi, idxlhs + j] = (FTPEE_policy_Min
         + (mdf[rowi, idx1 + j] - FTPEE_policy_Min)
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
@@ -13661,8 +11717,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FTPEE_pol_div_100"]
     idx1 = fcol_in_mdf["FTPEE_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FTPEE_policy_Max, max(FTPEE_policy_Min, mdf[rowi, idx1 + j])) / 1
+      mdf[rowi, idxlhs + j] = (min(FTPEE_policy_Max, max(FTPEE_policy_Min, mdf[rowi, idx1 + j])) / 1
       )
 
     # FTPEE_rate_of_change_policy[region] = SMOOTH3 ( FTPEE_pol_div_100[region] , FTPEE_Time_to_implement_goal )
@@ -13710,16 +11765,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FPGDC_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FPGDC_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FPGDC_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FPGDC_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FPGDC_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FPGDC_R1_via_Excel[j], FPGDC_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FPGDC_policy_with_RW[region] = FPGDC_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["FPGDC_policy_with_RW"]
@@ -13732,16 +11781,14 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FPGDC_pol_div_100"]
     idx1 = fcol_in_mdf["FPGDC_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FPGDC_policy_Max, max(FPGDC_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(FPGDC_policy_Max, max(FPGDC_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # FPGDC_logically_constrained[region] = MIN ( FPGDC_policy_Max , MAX ( FPGDC_policy_Min , FPGDC_pol_div_100[region] ) ) * UNIT_conv_to_1_per_yr
     idxlhs = fcol_in_mdf["FPGDC_logically_constrained"]
     idx1 = fcol_in_mdf["FPGDC_pol_div_100"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(FPGDC_policy_Max, max(FPGDC_policy_Min, mdf[rowi, idx1 + j]))
+      mdf[rowi, idxlhs + j] = (min(FPGDC_policy_Max, max(FPGDC_policy_Min, mdf[rowi, idx1 + j]))
         * UNIT_conv_to_1_per_yr
       )
 
@@ -13749,14 +11796,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Public_Debt_cancelling_pulse"]
     idx1 = fcol_in_mdf["FPGDC_logically_constrained"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        STEP(zeit, 1, Time_at_which_govt_public_debt_is_cancelled)
+      mdf[rowi, idxlhs + j] = (STEP(zeit, 1, Time_at_which_govt_public_debt_is_cancelled)
         - STEP(
-          zeit,
-          1,
-          Time_at_which_govt_public_debt_is_cancelled
-          + Public_Govt_debt_cancelling_spread,
-        )
+          zeit,       1,       Time_at_which_govt_public_debt_is_cancelled
+          + Public_Govt_debt_cancelling_spread,     )
       ) * mdf[rowi, idx1 + j]
 
     # FPGDC_contribution_to_GL[region] = FPGDC_logically_constrained[region] * Public_Debt_cancelling_pulse[region] / UNIT_conv_to_1_per_yr / UNIT_conv_to_1_per_yr
@@ -13764,8 +11807,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["FPGDC_logically_constrained"]
     idx2 = fcol_in_mdf["Public_Debt_cancelling_pulse"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / UNIT_conv_to_1_per_yr
         / UNIT_conv_to_1_per_yr
@@ -13824,16 +11866,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPBgrant_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        LPBgrant_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          LPBgrant_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     LPBgrant_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       LPBgrant_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, LPBgrant_R1_via_Excel[j], LPBgrant_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # LPBgrant_policy_with_RW[region] = LPBgrant_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["LPBgrant_policy_with_RW"]
@@ -13846,8 +11882,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["LPBgrant_pol_div_100"]
     idx1 = fcol_in_mdf["LPBgrant_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(LPBgrant_policy_Max, max(LPBgrant_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(LPBgrant_policy_Max, max(LPBgrant_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # LPBgrant_policy[region] = SMOOTH3 ( LPBgrant_pol_div_100[region] , LPBgrant_Time_to_implement_policy )
@@ -13945,16 +11980,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Wreaction_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        Wreaction_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          Wreaction_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     Wreaction_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       Wreaction_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, Wreaction_R1_via_Excel[j], WReaction_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # Wreaction_policy_with_RW[region] = Wreaction_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["Wreaction_policy_with_RW"]
@@ -13967,8 +11996,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Wreaction_pol_div_100"]
     idx1 = fcol_in_mdf["Wreaction_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(WReaction_policy_Max, max(WReaction_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(WReaction_policy_Max, max(WReaction_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # WReaction_policy[region] = SMOOTH3 ( Wreaction_pol_div_100[region] , WReaction_Time_to_implement_policy )
@@ -14050,16 +12078,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FC_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        FC_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          FC_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     FC_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       FC_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FC_R1_via_Excel[j], Forest_cutting_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # FC_policy_with_RW[region] = FC_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["FC_policy_with_RW"]
@@ -14068,8 +12090,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -14079,8 +12100,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["FC_pol_div_100"]
     idx1 = fcol_in_mdf["FC_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(
+      mdf[rowi, idxlhs + j] = (min(
           Forest_cutting_policy_Max, max(Forest_cutting_policy_Min, mdf[rowi, idx1 + j])
         )
         / 100
@@ -14115,24 +12135,17 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Forest_cutting_policy_contribution_to_GL"]
     idx1 = fcol_in_mdf["Forest_cutting_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * 100 - Forest_cutting_policy_Min
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * 100 - Forest_cutting_policy_Min
       ) / (Forest_cutting_policy_Max - Forest_cutting_policy_Min)
 
     # REFOREST_rounds_via_Excel[region] = IF_THEN_ELSE ( zeit >= Round3_start , REFOREST_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , REFOREST_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , REFOREST_R1_via_Excel , REFOREST_policy_Min ) ) )
     idxlhs = fcol_in_mdf["REFOREST_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        REFOREST_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          REFOREST_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     REFOREST_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       REFOREST_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, REFOREST_R1_via_Excel[j], REFOREST_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # REFOREST_policy_with_RW[region] = REFOREST_rounds_via_Excel[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["REFOREST_policy_with_RW"]
@@ -14141,8 +12154,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Inequality_effect_on_energy_TA"]
     idx4 = fcol_in_mdf["Smoothed_Multplier_from_empowerment_on_speed_of_food_TA"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -14152,8 +12164,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["REFOREST_pol_div_100"]
     idx1 = fcol_in_mdf["REFOREST_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(REFOREST_policy_Max, max(REFOREST_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(REFOREST_policy_Max, max(REFOREST_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # REFOREST_policy[region] = SMOOTH3 ( REFOREST_pol_div_100[region] , REFOREST_policy_Time_to_implement_goal )
@@ -14222,8 +12233,7 @@ def ugregmod(game_id, von, bis):
     idx29 = fcol_in_mdf["Forest_cutting_policy_contribution_to_GL"]
     idx30 = fcol_in_mdf["REFOREST_policy_contribution_to_GL"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -14291,10 +12301,7 @@ def ugregmod(game_id, von, bis):
     # Slope_btw_temp_and_permafrost_melting_or_freezing = IF_THEN_ELSE ( zeit < 2020 , Slope_btw_temp_and_permafrost_melting_or_freezing_base , Slope_btw_temp_and_permafrost_melting_or_freezing_sensitivity )
     idxlhs = fcol_in_mdf["Slope_btw_temp_and_permafrost_melting_or_freezing"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit < 2020,
-      Slope_btw_temp_and_permafrost_melting_or_freezing_base,
-      Slope_btw_temp_and_permafrost_melting_or_freezing_sensitivity,
-    )
+      zeit < 2020,   Slope_btw_temp_and_permafrost_melting_or_freezing_base,   Slope_btw_temp_and_permafrost_melting_or_freezing_sensitivity, )
 
     # Temp_diff_relevant_for_melting_or_freezing_from_1850_smoothed = SMOOTH ( Temp_diff_relevant_for_melting_or_freezing_from_1850 , Time_to_smooth_out_temperature_diff_relevant_for_melting_or_freezing_from_1850_yr )
     idx1 = fcol_in_mdf["Temp_diff_relevant_for_melting_or_freezing_from_1850_smoothed"]
@@ -14331,17 +12338,14 @@ def ugregmod(game_id, von, bis):
 
     # Permafrost_melting_cutoff = WITH LOOKUP ( C_in_permafrost_in_form_of_CH4 , ( [ ( 0 , 0 ) - ( 200 , 1 ) ] , ( 0 , 0 ) , ( 50 , 0.6 ) , ( 100 , 0.9 ) , ( 150 , 0.965 ) , ( 200 , 1 ) ) )
     tabidx = ftab_in_d_table["Permafrost_melting_cutoff"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Permafrost_melting_cutoff"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Permafrost_melting_cutoff"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["C_in_permafrost_in_form_of_CH4"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint = Switch_btw_historical_CO2_CH4_emissions_or_constant_1_history_0_constant * ( Area_equivalent_of_linear_retreat_km2_py * Avg_amount_of_C_in_the_form_of_CH4_per_km2 * Effect_of_temp_on_permafrost_melting_dmnl_smoothed * Slowing_of_recapture_of_CH4_dmnl * Permafrost_melting_cutoff )
-    idxlhs = fcol_in_mdf[
-      "CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint"
+    idxlhs = fcol_in_mdf["CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint"
     ]
     idx1 = fcol_in_mdf["Effect_of_temp_on_permafrost_melting_dmnl_smoothed"]
     idx2 = fcol_in_mdf["Slowing_of_recapture_of_CH4_dmnl"]
@@ -14358,8 +12362,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py = ( CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint / Avg_amount_of_C_in_the_form_of_CH4_per_km2 ) * Avg_depth_of_permafrost_km * Heat_gained_or_needed_to_freeze_or_unfreeze_1_km3_permafrost_ZJ_p_km3 / UNIT_conversion_km3_div_km_to_km2
-    idxlhs = fcol_in_mdf[
-      "Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py"
     ]
     idx1 = fcol_in_mdf["CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint"]
     mdf[rowi, idxlhs] = (
@@ -14371,27 +12374,21 @@ def ugregmod(game_id, von, bis):
 
     # Heat_in_atmosphere_needed_to_available_ratio = Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py / Heat_in_atmosphere_ZJ
     idxlhs = fcol_in_mdf["Heat_in_atmosphere_needed_to_available_ratio"]
-    idx1 = fcol_in_mdf[
-      "Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_gained_or_needed_for_the_desired_freezing_or_unfreezing_of_permafrost_ZJ_py"
     ]
     idx2 = fcol_in_mdf["Heat_in_atmosphere_ZJ"]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / mdf[rowi, idx2]
 
     # Melting_restraint_for_permafrost_from_heat_in_atmophere = WITH LOOKUP ( Heat_in_atmosphere_needed_to_available_ratio , ( [ ( 0 , 0 ) - ( 0.5 , 1 ) ] , ( 0 , 1 ) , ( 0.4 , 0.95 ) , ( 0.45 , 0.75 ) , ( 0.5 , 0.01 ) ) )
-    tabidx = ftab_in_d_table[
-      "Melting_restraint_for_permafrost_from_heat_in_atmophere"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Melting_restraint_for_permafrost_from_heat_in_atmophere"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Melting_restraint_for_permafrost_from_heat_in_atmophere"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Melting_restraint_for_permafrost_from_heat_in_atmophere"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Heat_in_atmosphere_needed_to_available_ratio"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py = CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint * Melting_restraint_for_permafrost_from_heat_in_atmophere * Fraction_of_C_released_from_permafrost_released_as_CH4_dmnl
-    idxlhs = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idxlhs = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     idx1 = fcol_in_mdf["CH4_in_permafrost_area_melted_or_frozen_before_heat_constraint"]
     idx2 = fcol_in_mdf["Melting_restraint_for_permafrost_from_heat_in_atmophere"]
@@ -14403,8 +12400,7 @@ def ugregmod(game_id, von, bis):
 
     # Annual_release_of_C_from_permafrost_GtC_py = CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py
     idxlhs = fcol_in_mdf["Annual_release_of_C_from_permafrost_GtC_py"]
-    idx1 = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idx1 = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1]
 
@@ -14412,8 +12408,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["WSO_effect_on_available_capital"]
     idx1 = fcol_in_mdf["Worker_share_of_output_with_unemployment_effect"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + Slope_of_Worker_share_of_output_with_unemployment_effect_on_available_capital
         * (mdf[rowi, idx1 + j] / WSO_in_1980[j] - 1)
       )
@@ -14440,18 +12435,14 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Corporate_borrowing_cost_N_years_ago"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        SWITCH_CBC_effect_on_available_capital[j] == 1,
-        Corporate_borrowing_cost_in_1980[j],
-        mdf[rowi, idx1 + j],
-      )
+        SWITCH_CBC_effect_on_available_capital[j] == 1,     Corporate_borrowing_cost_in_1980[j],     mdf[rowi, idx1 + j],   )
 
     # Corporate_borrowing_cost_eff_on_available_capital[region] = 1 + Slope_of_Corporate_borrowing_cost_eff_on_available_capital[region] * ( Corporate_borrowing_cost[region] / CBC_rate_denominator[region] - 1 )
     idxlhs = fcol_in_mdf["Corporate_borrowing_cost_eff_on_available_capital"]
     idx1 = fcol_in_mdf["Corporate_borrowing_cost"]
     idx2 = fcol_in_mdf["CBC_rate_denominator"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + Slope_of_Corporate_borrowing_cost_eff_on_available_capital[j]
         * (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] - 1)
       )
@@ -14486,8 +12477,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Eff_of_dmd_imbalance_on_flow_of_available_capital"]
     idx1 = fcol_in_mdf["Perceived_demand_imblance"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + Slope_of_Eff_of_dmd_imbalance_on_flow_of_available_capital
         * (mdf[rowi, idx1 + j] / Dmd_imbalance_in_1980 - 1)
       )
@@ -14498,8 +12488,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Corporate_borrowing_cost_eff_on_available_capital"]
     idx3 = fcol_in_mdf["Eff_of_dmd_imbalance_on_flow_of_available_capital"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       ) / 3
 
     # Annual_shortfall_fraction_of_available_private_capital[region] = IF_THEN_ELSE ( Fraction_of_available_capital_to_new_capacity > 1 , Fraction_of_available_capital_to_new_capacity - 1 , 0 )
@@ -14590,12 +12579,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction = WITH LOOKUP ( Atmos_heat_used_for_melting_last_year_1_py , ( [ ( 0 , 0 ) - ( 0.5 , 1 ) ] , ( 0 , 1 ) , ( 0.4 , 0.95 ) , ( 0.45 , 0.75 ) , ( 0.5 , 0.01 ) ) )
-    tabidx = ftab_in_d_table[
-      "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Atmos_heat_used_for_melting_last_year_1_py"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -14610,12 +12595,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # Melting_constraint_from_the_heat_in_ocean_surface_reservoir = WITH LOOKUP ( Ocean_heat_used_for_melting_last_year_ZJ_py , ( [ ( 0 , 0 ) - ( 0.5 , 1 ) ] , ( 0 , 1 ) , ( 0.4 , 0.95 ) , ( 0.45 , 0.75 ) , ( 0.5 , 0.01 ) ) )
-    tabidx = ftab_in_d_table[
-      "Melting_constraint_from_the_heat_in_ocean_surface_reservoir"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Melting_constraint_from_the_heat_in_ocean_surface_reservoir"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Melting_constraint_from_the_heat_in_ocean_surface_reservoir"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Melting_constraint_from_the_heat_in_ocean_surface_reservoir"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Ocean_heat_used_for_melting_last_year_ZJ_py"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -14627,8 +12608,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Effect_of_temp_on_melting_antarctic_ice"]
     idx3 = fcol_in_mdf["Effect_of_heat_in_atm_on_melting_ice_cut_off"]
     idx4 = fcol_in_mdf["Snowball_earth_cutoff"]
-    idx5 = fcol_in_mdf[
-      "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
+    idx5 = fcol_in_mdf["Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
     ]
     idx6 = fcol_in_mdf["Melting_constraint_from_the_heat_in_ocean_surface_reservoir"]
     mdf[rowi, idxlhs] = (
@@ -14685,17 +12665,13 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Anthropogenic_aerosol_forcing"]
     idx1 = fcol_in_mdf["Aerosol_anthropogenic_emissions"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      Human_aerosol_forcing_1_is_ON_0_is_OFF == 0,
-      0,
-      mdf[rowi, idx1] * Conversion_of_anthro_aerosol_emissions_to_forcing,
-    )
+      Human_aerosol_forcing_1_is_ON_0_is_OFF == 0,   0,   mdf[rowi, idx1] * Conversion_of_anthro_aerosol_emissions_to_forcing, )
 
     # apl_to_acgl[region] = Abandoned_populated_land[region] / Time_for_abandoned_urban_land_to_become_fallow
     idxlhs = fcol_in_mdf["apl_to_acgl"]
     idx1 = fcol_in_mdf["Abandoned_populated_land"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_for_abandoned_urban_land_to_become_fallow
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_for_abandoned_urban_land_to_become_fallow
       )
 
     # apl_to_pl[region] = MIN ( Abandoned_populated_land[region] , MAX ( 0 , Populated_land_gap[region] ) ) / Time_to_develop_urban_land_from_abandoned_land
@@ -14703,8 +12679,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Abandoned_populated_land"]
     idx2 = fcol_in_mdf["Populated_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
+      mdf[rowi, idxlhs + j] = (min(mdf[rowi, idx1 + j], max(0, mdf[rowi, idx2 + j]))
         / Time_to_develop_urban_land_from_abandoned_land
       )
 
@@ -14722,8 +12697,7 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = valgt
 
     # Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850 = SMOOTH ( Temp_surface_anomaly_compared_to_1850_degC , Arctic_surface_temp_delay_yr )
-    idx1 = fcol_in_mdf[
-      "Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850"
+    idx1 = fcol_in_mdf["Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850"
     ]
     idx2 = fcol_in_mdf["Temp_surface_anomaly_compared_to_1850_degC"]
     mdf[rowi, idx1] = (
@@ -14733,8 +12707,7 @@ def ugregmod(game_id, von, bis):
 
     # Effect_of_temp_on_melting_or_freezing_of_Arctic_ice = 1 + Slope_temp_vs_Arctic_ice_melting * ( ( Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850 / Ref_temp_difference_for_Arctic_ice_melting ) - 1 )
     idxlhs = fcol_in_mdf["Effect_of_temp_on_melting_or_freezing_of_Arctic_ice"]
-    idx1 = fcol_in_mdf[
-      "Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850"
+    idx1 = fcol_in_mdf["Temp_diff_relevant_for_melting_or_freezing_arctic_ice_from_1850"
     ]
     mdf[rowi, idxlhs] = 1 + Slope_temp_vs_Arctic_ice_melting * (
       (mdf[rowi, idx1] / Ref_temp_difference_for_Arctic_ice_melting) - 1
@@ -14745,8 +12718,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Arctic_ice_on_sea_area_km2"]
     idx2 = fcol_in_mdf["Effect_of_temp_on_melting_or_freezing_of_Arctic_ice"]
     idx3 = fcol_in_mdf["Arctic_freezing_cutoff"]
-    idx4 = fcol_in_mdf[
-      "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
+    idx4 = fcol_in_mdf["Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
     ]
     idx5 = fcol_in_mdf["Melting_constraint_from_the_heat_in_ocean_surface_reservoir"]
     mdf[rowi, idxlhs] = (
@@ -14768,8 +12740,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py = Glacial_ice_melting_is_pos_or_freezing_is_neg_km3_py * Heat_needed_to_melt_1_km3_of_ice_ZJ * UNIT_conversion_1_p_km3
-    idxlhs = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py"
     ]
     idx1 = fcol_in_mdf["Glacial_ice_melting_is_pos_or_freezing_is_neg_km3_py"]
     mdf[rowi, idxlhs] = (
@@ -14777,8 +12748,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py = Antarctic_ice_losing_is_pos_or_gaining_is_neg_GtIce_py * Heat_needed_to_melt_1_km3_of_ice_ZJ * UNIT_conversion_GtIce_to_ZJ_melting
-    idxlhs = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
     ]
     idx1 = fcol_in_mdf["Antarctic_ice_losing_is_pos_or_gaining_is_neg_GtIce_py"]
     mdf[rowi, idxlhs] = (
@@ -14800,8 +12770,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Effect_of_temp_on_melting_greenland_ice"]
     idx3 = fcol_in_mdf["Effect_of_heat_in_atm_on_melting_ice_cut_off"]
     idx4 = fcol_in_mdf["Snowball_earth_cutoff"]
-    idx5 = fcol_in_mdf[
-      "Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
+    idx5 = fcol_in_mdf["Melting_constraint_from_the_heat_in_atmosphere_reservoir_fraction"
     ]
     mdf[rowi, idxlhs] = (
       (
@@ -14815,8 +12784,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py = Greenland_ice_melting_is_pos_or_freezing_is_neg_km3_py * Heat_needed_to_melt_1_km3_of_ice_ZJ * UNIT_conversion_1_p_km3
-    idxlhs = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py"
     ]
     idx1 = fcol_in_mdf["Greenland_ice_melting_is_pos_or_freezing_is_neg_km3_py"]
     mdf[rowi, idxlhs] = (
@@ -14824,8 +12792,7 @@ def ugregmod(game_id, von, bis):
     )
 
     # Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean = 1 + Slope_temp_vs_greenland_ice_that_slid_into_the_ocean_melting * ( ( ( Temp_surface - ( Temp_surface_1850 - 273.15 ) ) / Ref_temp_difference_for_greenland_ice_that_slid_into_the_ocean_melting_degC ) - 1 )
-    idxlhs = fcol_in_mdf[
-      "Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean"
+    idxlhs = fcol_in_mdf["Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean"
     ]
     idx1 = fcol_in_mdf["Temp_surface"]
     mdf[rowi, idxlhs] = (
@@ -14841,12 +12808,10 @@ def ugregmod(game_id, von, bis):
     )
 
     # Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py = Greenland_ice_volume_that_slid_into_the_ocean_km3 / Time_to_melt_greenland_ice_that_slid_into_the_ocean_at_the_reference_delta_temp * Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean * Melting_constraint_from_the_heat_in_ocean_surface_reservoir
-    idxlhs = fcol_in_mdf[
-      "Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
+    idxlhs = fcol_in_mdf["Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
     ]
     idx1 = fcol_in_mdf["Greenland_ice_volume_that_slid_into_the_ocean_km3"]
-    idx2 = fcol_in_mdf[
-      "Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean"
+    idx2 = fcol_in_mdf["Effect_of_temp_on_melting_greenland_ice_that_slid_into_the_ocean"
     ]
     idx3 = fcol_in_mdf["Melting_constraint_from_the_heat_in_ocean_surface_reservoir"]
     mdf[rowi, idxlhs] = (
@@ -14857,19 +12822,16 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py = Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py * Heat_needed_to_melt_1_km3_of_ice_ZJ * UNIT_conversion_1_p_km3
-    idxlhs = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
+    idx1 = fcol_in_mdf["Greenland_ice_that_slid_into_the_ocean_melting_is_pos_or_freezing_is_neg_km3_py"
     ]
     mdf[rowi, idxlhs] = (
       mdf[rowi, idx1] * Heat_needed_to_melt_1_km3_of_ice_ZJ * UNIT_conversion_1_p_km3
     )
 
     # Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py = Arctic_ice_melting_is_pos_or_freezing_is_neg_km2_py * Average_thickness_arctic_ice_km * Heat_needed_to_melt_1_km3_of_ice_ZJ / UNIT_conversion_km2_times_km_to_km3
-    idxlhs = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
     ]
     idx1 = fcol_in_mdf["Arctic_ice_melting_is_pos_or_freezing_is_neg_km2_py"]
     mdf[rowi, idxlhs] = (
@@ -14880,11 +12842,9 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py = ( CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py / Avg_amount_of_C_in_the_form_of_CH4_per_km2 ) * Avg_depth_of_permafrost_km * Heat_gained_or_needed_to_freeze_or_unfreeze_1_km3_permafrost_ZJ_p_km3 / UNIT_conversion_km3_div_km_to_km2
-    idxlhs = fcol_in_mdf[
-      "Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idx1 = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     mdf[rowi, idxlhs] = (
       (mdf[rowi, idx1] / Avg_amount_of_C_in_the_form_of_CH4_per_km2)
@@ -14894,26 +12854,19 @@ def ugregmod(game_id, von, bis):
     )
 
     # Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py = Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py + Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py * Fraction_of_heat_needed_to_melt_antarctic_ice_coming_from_air + Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py + Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py * Fraction_of_heat_needed_to_melt_Greenland_ice_that_slid_into_the_ocean_coming_from_air + Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py * Fraction_of_heat_needed_to_melt_arctic_ice_coming_from_air + Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py
-    idxlhs = fcol_in_mdf[
-      "Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_glacial_ice_ZJ_py"
     ]
-    idx2 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
+    idx2 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
     ]
-    idx3 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py"
+    idx3 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_ZJ_py"
     ]
-    idx4 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
+    idx4 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
     ]
-    idx5 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
+    idx5 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
     ]
-    idx6 = fcol_in_mdf[
-      "Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py"
+    idx6 = fcol_in_mdf["Heat_actually_gained_or_needed_for_freezing_or_unfreezing_of_permafrost_ZJ_py"
     ]
     mdf[rowi, idxlhs] = (
       mdf[rowi, idx1]
@@ -14927,8 +12880,7 @@ def ugregmod(game_id, von, bis):
 
     # Atmos_heat_used_for_melting_1_py = Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py / Heat_in_atmosphere_ZJ
     idxlhs = fcol_in_mdf["Atmos_heat_used_for_melting_1_py"]
-    idx1 = fcol_in_mdf[
-      "Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_withdrawn_from_atm_by_melting_pos_or_added_neg_by_freezing_ice_ZJ_py"
     ]
     idx2 = fcol_in_mdf["Heat_in_atmosphere_ZJ"]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / mdf[rowi, idx2]
@@ -14955,17 +12907,12 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Avg_earths_surface_albedo"]
     idx1 = fcol_in_mdf["Albedo_ocean_with_arctic_ice_changes"]
     idx2 = fcol_in_mdf["Albedo_land_biomes"]
-    mdf[rowi, idxlhs] = mdf[rowi, idx1] * Fraction_of_earth_surface_as_ocean + mdf[
-      rowi, idx2
+    mdf[rowi, idxlhs] = mdf[rowi, idx1] * Fraction_of_earth_surface_as_ocean + mdf[rowi, idx2
     ] * (1 - Fraction_of_earth_surface_as_ocean)
 
     # Historical_aerosol_forcing_volcanic = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , - 0.0843062 ) , ( 1981 , - 0.152848 ) , ( 1982 , - 0.823871 ) , ( 1983 , - 1.10866 ) , ( 1984 , - 0.552446 ) , ( 1985 , - 0.25566 ) , ( 1986 , - 0.1974 ) , ( 1987 , - 0.166556 ) , ( 1988 , - 0.126459 ) , ( 1989 , - 0.103155 ) , ( 1990 , - 0.105897 ) , ( 1991 , - 1.04732 ) , ( 1992 , - 1.6522 ) , ( 1993 , - 0.914346 ) , ( 1994 , - 0.363956 ) , ( 1995 , - 0.173753 ) , ( 1996 , - 0.108639 ) , ( 1997 , - 0.0791656 ) , ( 1998 , - 0.0448948 ) , ( 1999 , - 0.0161073 ) , ( 2000 , - 0.00376979 ) , ( 2001 , 0 ) , ( 2002 , 0 ) , ( 2003 , 0 ) , ( 2004 , 0 ) , ( 2005 , - 0.0484259 ) , ( 2006 , - 0.164648 ) , ( 2007 , - 0.232444 ) , ( 2008 , 0 ) , ( 2009 , 0 ) , ( 2010 , 0 ) , ( 2011 , 0 ) , ( 2012 , 0 ) , ( 2013 , 0 ) , ( 2014 , 0 ) , ( 2015 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Historical_aerosol_forcing_volcanic"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Historical_aerosol_forcing_volcanic"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Historical_aerosol_forcing_volcanic"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Historical_aerosol_forcing_volcanic"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -14973,12 +12920,7 @@ def ugregmod(game_id, von, bis):
     # Future_volcanic_emissions_shape_pulse_train = PULSE_TRAIN ( NEvt_2a_Volcanic_eruptions_in_the_future_VAEs_first_future_pulse , VAES_pulse_duration , VAES_puls_repetition , 9999 ) * VAES_pulse_height
     idxlhs = fcol_in_mdf["Future_volcanic_emissions_shape_pulse_train"]
     mdf[rowi, idxlhs] = PULSE_TRAIN(
-      zeit,
-      NEvt_2a_Volcanic_eruptions_in_the_future_VAEs_first_future_pulse,
-      VAES_pulse_duration,
-      VAES_puls_repetition,
-      VAES_pulse_height,
-    )
+      zeit,   NEvt_2a_Volcanic_eruptions_in_the_future_VAEs_first_future_pulse,   VAES_pulse_duration,   VAES_puls_repetition,   VAES_pulse_height, )
 
     # Future_volcanic_emissions_shape = IF_THEN_ELSE ( Future_volcanic_eruptions_1_is_ON_0_is_OFF == 0 , 0 , Future_volcanic_emissions_shape_pulse_train )
     idxlhs = fcol_in_mdf["Future_volcanic_emissions_shape"]
@@ -15011,11 +12953,8 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Historical_aerosol_forcing_volcanic"]
     idx2 = fcol_in_mdf["Future_volcanic_emissions"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit < 2008,
-      mdf[rowi, idx1]
-      / Conversion_of_volcanic_aerosol_forcing_to_volcanic_aerosol_emissions,
-      mdf[rowi, idx2],
-    )
+      zeit < 2008,   mdf[rowi, idx1]
+      / Conversion_of_volcanic_aerosol_forcing_to_volcanic_aerosol_emissions,   mdf[rowi, idx2], )
 
     # Avg_volcanic_activity_GtC_py = Volcanic_aerosols_emissions * Conversion_of_volcanic_aerosol_emissions_to_CO2_emissions_GtC_pr_VAE
     idxlhs = fcol_in_mdf["Avg_volcanic_activity_GtC_py"]
@@ -15073,12 +13012,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # Effect_of_Wealth_on_non_energy_footprint = WITH LOOKUP ( Global_GDPpp_USED , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1.5 ) , ( 10 , 1.2 ) , ( 20 , 1 ) , ( 30 , 1.1 ) , ( 40 , 1.2 ) , ( 50 , 1.4 ) , ( 75 , 1.8 ) , ( 100 , 1.9 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_Wealth_on_non_energy_footprint"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Effect_of_Wealth_on_non_energy_footprint"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_Wealth_on_non_energy_footprint"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Effect_of_Wealth_on_non_energy_footprint"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Global_GDPpp_USED"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -15105,9 +13040,7 @@ def ugregmod(game_id, von, bis):
 
     # Non_energy_footprint_pp = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1.6 ) , ( 1985 , 1.5 ) , ( 1990 , 1.44 ) , ( 1995 , 1.35 ) , ( 2000 , 1.28 ) , ( 2005 , 1.24 ) , ( 2010 , 1.13 ) , ( 2015 , 1.04 ) , ( 2020 , 0.99 ) ) )
     tabidx = ftab_in_d_table["Non_energy_footprint_pp"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Non_energy_footprint_pp"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Non_energy_footprint_pp"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -15244,8 +13177,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["birth_rate_WO_CN"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        birth_rate_a[j]
+      mdf[rowi, idxlhs + j] = (birth_rate_a[j]
         * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** birth_rate_b[j]
         + birth_rate_c[j]
       )
@@ -15291,8 +13223,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Cohort_35_to_39"]
     idx6 = fcol_in_mdf["Cohort_40_to_44"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -15306,8 +13237,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["birth_rate"]
     idx3 = fcol_in_mdf["FEHC_mult_used"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Births_effect_from_cohorts_outside_15_to_45[j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
@@ -15318,88 +13248,72 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Combined_env_damage_indicator"]
     idx2 = fcol_in_mdf["Actual_eff_of_relative_wealth_on_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_cost_of_TAs) / mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_cost_of_TAs) / mdf[rowi, idx2 + j]
       )
 
     # Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform[region] = Each_region_max_cost_estimate_empowerment_PES[region] * Eff_of_env_damage_on_costs_of_TAs[region] / Reform_willingness_scaled_to_today[region]
-    idxlhs = fcol_in_mdf[
-      "Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
+    idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
     ]
     idx1 = fcol_in_mdf["Each_region_max_cost_estimate_empowerment_PES"]
     idx2 = fcol_in_mdf["Eff_of_env_damage_on_costs_of_TAs"]
     idx3 = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform[region] = Each_region_max_cost_estimate_energy_PES[region] * Eff_of_env_damage_on_costs_of_TAs[region] / Reform_willingness_scaled_to_today[region]
-    idxlhs = fcol_in_mdf[
-      "Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
+    idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
     ]
     idx1 = fcol_in_mdf["Each_region_max_cost_estimate_energy_PES"]
     idx2 = fcol_in_mdf["Eff_of_env_damage_on_costs_of_TAs"]
     idx3 = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform[region] = Each_region_max_cost_estimate_inequality_PES[region] * Eff_of_env_damage_on_costs_of_TAs[region] / Reform_willingness_scaled_to_today[region]
-    idxlhs = fcol_in_mdf[
-      "Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
+    idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
     ]
     idx1 = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES"]
     idx2 = fcol_in_mdf["Eff_of_env_damage_on_costs_of_TAs"]
     idx3 = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # Each_region_max_cost_estimate_food_PES_with_env_dam_and_reform[region] = Each_region_max_cost_estimate_food_PES[region] * Eff_of_env_damage_on_costs_of_TAs[region] / Reform_willingness_scaled_to_today[region]
-    idxlhs = fcol_in_mdf[
-      "Each_region_max_cost_estimate_food_PES_with_env_dam_and_reform"
+    idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_food_PES_with_env_dam_and_reform"
     ]
     idx1 = fcol_in_mdf["Each_region_max_cost_estimate_food_PES"]
     idx2 = fcol_in_mdf["Eff_of_env_damage_on_costs_of_TAs"]
     idx3 = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform[region] = Each_region_max_cost_estimate_poverty_PES[region] * Eff_of_env_damage_on_costs_of_TAs[region] / Reform_willingness_scaled_to_today[region]
-    idxlhs = fcol_in_mdf[
-      "Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
+    idxlhs = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
     ]
     idx1 = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES"]
     idx2 = fcol_in_mdf["Eff_of_env_damage_on_costs_of_TAs"]
     idx3 = fcol_in_mdf["Reform_willingness_scaled_to_today"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] / mdf[rowi, idx3 + j]
       )
 
     # Budget_for_all_TA_per_region[region] = ( Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform[region] + Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform[region] + Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform[region] + Each_region_max_cost_estimate_food_PES_with_env_dam_and_reform[region] + Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform[region] ) * Fraction_of_budget_available_for_policies
     idxlhs = fcol_in_mdf["Budget_for_all_TA_per_region"]
-    idx1 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
+    idx1 = fcol_in_mdf["Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
     ]
-    idx2 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
+    idx2 = fcol_in_mdf["Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
     ]
-    idx3 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
+    idx3 = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
     ]
     idx4 = fcol_in_mdf["Each_region_max_cost_estimate_food_PES_with_env_dam_and_reform"]
-    idx5 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
+    idx5 = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -15433,30 +13347,24 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = zeit - NEvt_13d_Greenland_slide_experiment_start_yr
 
     # Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic = MAX ( 1 - Greenland_ice_slide_circulation_slowdown_effect , MIN ( 1 , 1 - Time_less_Greenland_slide_experiment_start_yr / ( Greenland_slide_experiment_over_how_many_years_yr + Time_to_melt_greenland_ice_that_slid_into_the_ocean_at_the_reference_delta_temp ) * ( 1 - Greenland_ice_slide_circulation_slowdown_effect ) ) )
-    idxlhs = fcol_in_mdf[
-      "Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
+    idxlhs = fcol_in_mdf["Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
     ]
     idx1 = fcol_in_mdf["Time_less_Greenland_slide_experiment_start_yr"]
     mdf[rowi, idxlhs] = max(
-      1 - Greenland_ice_slide_circulation_slowdown_effect,
-      min(
-        1,
-        1
+      1 - Greenland_ice_slide_circulation_slowdown_effect,   min(
+        1,     1
         - mdf[rowi, idx1]
         / (
           Greenland_slide_experiment_over_how_many_years_yr
           + Time_to_melt_greenland_ice_that_slid_into_the_ocean_at_the_reference_delta_temp
         )
-        * (1 - Greenland_ice_slide_circulation_slowdown_effect),
-      ),
-    )
+        * (1 - Greenland_ice_slide_circulation_slowdown_effect),   ), )
 
     # C_diffusion_into_ocean_from_atm_net = Guldberg_Waage_air_sea_formulation * NatEvent_d_slowing_down_ocean_circulation_from_2015 * Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic
     idxlhs = fcol_in_mdf["C_diffusion_into_ocean_from_atm_net"]
     idx1 = fcol_in_mdf["Guldberg_Waage_air_sea_formulation"]
     idx2 = fcol_in_mdf["NatEvent_d_slowing_down_ocean_circulation_from_2015"]
-    idx3 = fcol_in_mdf[
-      "Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
+    idx3 = fcol_in_mdf["Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * mdf[rowi, idx2] * mdf[rowi, idx3]
 
@@ -15472,11 +13380,9 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = IF_THEN_ELSE(mdf[rowi, idx1] >= 0, mdf[rowi, idx2], 0)
 
     # Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture = SUM ( Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture[region!] ) / UNIT_conv_CO2_to_C
-    idxlhs = fcol_in_mdf[
-      "Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
+    idxlhs = fcol_in_mdf["Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
     ]
-    idx1 = fcol_in_mdf[
-      "Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
+    idx1 = fcol_in_mdf["Actual_CO2_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
     ]
     globsum = 0
     for j in range(0, 10):
@@ -15496,10 +13402,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Total_use_of_fossil_fuels_BEING_compensated"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] == 0,
-        0,
-        toe_to_CO2_a[j] * (mdf[rowi, idx2 + j] * UNIT_conv_to_Gtoe) + toe_to_CO2_b[j],
-      )
+        mdf[rowi, idx1 + j] == 0,     0,     toe_to_CO2_a[j] * (mdf[rowi, idx2 + j] * UNIT_conv_to_Gtoe) + toe_to_CO2_b[j],   )
 
     # Global_Total_CCS_from_fossil_fuels_BEING_compensated = SUM ( Total_CCS_from_fossil_fuels_BEING_compensated[region!] )
     idxlhs = fcol_in_mdf["Global_Total_CCS_from_fossil_fuels_BEING_compensated"]
@@ -15511,8 +13414,7 @@ def ugregmod(game_id, von, bis):
 
     # Carbon_captured_and_stored_GtC_py = Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture + Global_Total_CCS_from_fossil_fuels_BEING_compensated / UNIT_conv_CO2_to_C
     idxlhs = fcol_in_mdf["Carbon_captured_and_stored_GtC_py"]
-    idx1 = fcol_in_mdf[
-      "Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
+    idx1 = fcol_in_mdf["Global_C_taken_directly_out_of_the_atmosphere_ie_direct_air_capture"
     ]
     idx2 = fcol_in_mdf["Global_Total_CCS_from_fossil_fuels_BEING_compensated"]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] + mdf[rowi, idx2] / UNIT_conv_CO2_to_C
@@ -15579,8 +13481,7 @@ def ugregmod(game_id, von, bis):
 
     # C_in_GRASS_DeadB_and_soil_GtC = GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass * Carbon_per_biomass
     idxlhs = fcol_in_mdf["C_in_GRASS_DeadB_and_soil_GtC"]
-    idx1 = fcol_in_mdf[
-      "GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["GRASS_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * Carbon_per_biomass
 
@@ -15600,8 +13501,7 @@ def ugregmod(game_id, von, bis):
 
     # C_in_TUNDRA_DeadB_and_soil_GtC = TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass * Carbon_per_biomass
     idxlhs = fcol_in_mdf["C_in_TUNDRA_DeadB_and_soil_GtC"]
-    idx1 = fcol_in_mdf[
-      "TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
+    idx1 = fcol_in_mdf["TUNDRA_Dead_biomass_litter_and_soil_organic_matter_SOM_GtBiomass"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * Carbon_per_biomass
 
@@ -15627,8 +13527,7 @@ def ugregmod(game_id, von, bis):
     # C_released_from_permafrost_as_either_CH4_or_CO2_in_GtC_py = C_release_from_permafrost_melting_as_CO2_GtC_py + CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py
     idxlhs = fcol_in_mdf["C_released_from_permafrost_as_either_CH4_or_CO2_in_GtC_py"]
     idx1 = fcol_in_mdf["C_release_from_permafrost_melting_as_CO2_GtC_py"]
-    idx2 = fcol_in_mdf[
-      "CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
+    idx2 = fcol_in_mdf["CH4_release_or_capture_from_permafrost_area_loss_or_gain_GtC_py"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] + mdf[rowi, idx2]
 
@@ -15646,16 +13545,14 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["c_to_acgl"]
     idx1 = fcol_in_mdf["Cropland_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        abs(min(0, mdf[rowi, idx1 + j])) / Time_for_agri_land_to_become_abandoned
+      mdf[rowi, idxlhs + j] = (abs(min(0, mdf[rowi, idx1 + j])) / Time_for_agri_land_to_become_abandoned
       )
 
     # c_to_pl[region] = MAX ( 0 , Populated_land_gap[region] ) * Fraction_of_cropland_developed_for_urban_land
     idxlhs = fcol_in_mdf["c_to_pl"]
     idx1 = fcol_in_mdf["Populated_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        max(0, mdf[rowi, idx1 + j]) * Fraction_of_cropland_developed_for_urban_land
+      mdf[rowi, idxlhs + j] = (max(0, mdf[rowi, idx1 + j]) * Fraction_of_cropland_developed_for_urban_land
       )
 
     # Private_Investment_in_new_capacity[region] = Available_private_capital_for_investment[region] * Fraction_of_available_capital_to_new_capacity[region]
@@ -15687,8 +13584,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Combined_env_damage_indicator"]
     idx2 = fcol_in_mdf["Actual_eff_of_relative_wealth_on_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_cost_of_new_capacity)
+      mdf[rowi, idxlhs + j] = (math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_cost_of_new_capacity)
         / mdf[rowi, idx2 + j]
       )
 
@@ -15701,9 +13597,7 @@ def ugregmod(game_id, von, bis):
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = max(
         (mdf[rowi, idx1 + j] * (1 - mdf[rowi, idx2 + j]) + mdf[rowi, idx3 + j])
-        / mdf[rowi, idx4 + j],
-        0,
-      )
+        / mdf[rowi, idx4 + j],     0,   )
 
     # Capacity_renewal_rate[region] = Initiating_capacity_construction[region] / Capacity[region]
     idxlhs = fcol_in_mdf["Capacity_renewal_rate"]
@@ -15801,14 +13695,8 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Wetlands_area"]
     idx2 = fcol_in_mdf["Wetlands_area"]
     mdf[rowi, idxlhs] = STEP(
-      zeit,
-      mdf[rowi, idx1] * Rate_of_wetland_destruction_pct_of_existing_wetlands_py / 100,
-      When_first_destroyed_yr,
-    ) - STEP(
-      zeit,
-      mdf[rowi, idx2] * Rate_of_wetland_destruction_pct_of_existing_wetlands_py / 100,
-      When_first_destroyed_yr + Duration_of_destruction_yr,
-    )
+      zeit,   mdf[rowi, idx1] * Rate_of_wetland_destruction_pct_of_existing_wetlands_py / 100,   When_first_destroyed_yr, ) - STEP(
+      zeit,   mdf[rowi, idx2] * Rate_of_wetland_destruction_pct_of_existing_wetlands_py / 100,   When_first_destroyed_yr + Duration_of_destruction_yr, )
 
     # CH4_emissions_from_wetlands_destruction = Rate_of_destruction_of_wetlands * CH4_per_sqkm_of_wetlands
     idxlhs = fcol_in_mdf["CH4_emissions_from_wetlands_destruction"]
@@ -15831,8 +13719,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["CH4_emi_from_energy"]
     idx3 = fcol_in_mdf["CH4_emi_from_waste"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       ) * UNIT_conversion_from_MtCH4_to_GtC
 
     # CH4_Emissions_CO2e[region] = CH4_emissions[region] * Global_Warming_Potential_CH4
@@ -15887,10 +13774,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Change_in_future_footprint_pp"]
     idx1 = fcol_in_mdf["Non_energy_footprint_pp_future"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit >= 2020,
-      mdf[rowi, idx1] / Half_life_of_tech_progress_in_non_energy_footprint,
-      0,
-    )
+      zeit >= 2020,   mdf[rowi, idx1] / Half_life_of_tech_progress_in_non_energy_footprint,   0, )
 
     # GenEq_cn = GenEq_cn_a * ( GDPpp_USED[cn] / UNIT_conv_to_make_base_dmnless ) ^ GenEq_cn_b
     idxlhs = fcol_in_mdf["GenEq_cn"]
@@ -15942,8 +13826,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["GenEq_se_eu_pa_us"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        GenEq_se_eu_pa_us_a * (mdf[rowi, idx1 + j] / UNIT_conv_to_make_base_dmnless)
+      mdf[rowi, idxlhs + j] = (GenEq_se_eu_pa_us_a * (mdf[rowi, idx1 + j] / UNIT_conv_to_make_base_dmnless)
         + GenEq_se_eu_pa_us_b
       )
 
@@ -15958,26 +13841,11 @@ def ugregmod(game_id, von, bis):
     idx7 = fcol_in_mdf["GenEq_se_eu_pa_us"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        j == 2,
-        mdf[rowi, idx1],
-        IF_THEN_ELSE(
-          j == 7,
-          mdf[rowi, idx2],
-          IF_THEN_ELSE(
-            j == 3,
-            mdf[rowi, idx3],
-            IF_THEN_ELSE(
-              j == 4,
-              mdf[rowi, idx4],
-              IF_THEN_ELSE(
-                j == 5,
-                mdf[rowi, idx5],
-                IF_THEN_ELSE(j == 1, mdf[rowi, idx6], mdf[rowi, idx7 + j]),
-              ),
-            ),
-          ),
-        ),
-      )
+        j == 2,     mdf[rowi, idx1],     IF_THEN_ELSE(
+          j == 7,       mdf[rowi, idx2],       IF_THEN_ELSE(
+            j == 3,         mdf[rowi, idx3],         IF_THEN_ELSE(
+              j == 4,           mdf[rowi, idx4],           IF_THEN_ELSE(
+                j == 5,             mdf[rowi, idx5],             IF_THEN_ELSE(j == 1, mdf[rowi, idx6], mdf[rowi, idx7 + j]),           ),         ),       ),     ),   )
 
     # Effect_of_Female_Leadership_on_gender_equality[region] = 1 + Female_leadership_spending[region] / GDP_USED[region]
     idxlhs = fcol_in_mdf["Effect_of_Female_Leadership_on_gender_equality"]
@@ -16007,8 +13875,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GenderEquality"]
     idx3 = fcol_in_mdf["Cutoff_GE_change"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
         / Time_to_change_GE
         * mdf[rowi, idx3 + j]
       )
@@ -16017,16 +13884,14 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Change_in_Owner_power"]
     idx1 = fcol_in_mdf["Worker_resistance_or_resignation"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Strength_of_owner_reaction_to_worker_resistance * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (Strength_of_owner_reaction_to_worker_resistance * mdf[rowi, idx1 + j]
       )
 
     # RoC_of_people_considering_entering_the_labor_pool[region] = Slope_of_RoC_of_people_considering_entering_the_labor_pool * ( Unemployment_ratio[region] - 1 )
     idxlhs = fcol_in_mdf["RoC_of_people_considering_entering_the_labor_pool"]
     idx1 = fcol_in_mdf["Unemployment_ratio"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Slope_of_RoC_of_people_considering_entering_the_labor_pool
+      mdf[rowi, idxlhs + j] = (Slope_of_RoC_of_people_considering_entering_the_labor_pool
         * (mdf[rowi, idx1 + j] - 1)
       )
 
@@ -16041,8 +13906,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["RoC_of_people_considering_leaving_the_labor_pool"]
     idx1 = fcol_in_mdf["Unemployment_ratio"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Slope_of_RoC_of_people_considering_leaving_the_labor_pool
+      mdf[rowi, idxlhs + j] = (Slope_of_RoC_of_people_considering_leaving_the_labor_pool
         * (mdf[rowi, idx1 + j] - Scaling_strength_of_RoC_from_unemployed_to_pool[j])
       )
 
@@ -16083,8 +13947,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Public_capacity"]
     idx2 = fcol_in_mdf["Public_capacity_N_yrs_ago"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        SoE_of_PC_on_RoC_in_change_in_rate_of_tech_advance[j] / 1000
+      mdf[rowi, idxlhs + j] = (SoE_of_PC_on_RoC_in_change_in_rate_of_tech_advance[j] / 1000
       ) * (1 + mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] - 1)
 
     # RoC_in_RoTA_in_TFP_from_industrialization[region] = SoE_of_industrialization_on_RoC_in_TFP * ( 1 + Size_of_industrial_sector[region] - 1 )
@@ -16160,10 +14023,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Long_term_unemployment_rate"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        SWITCH_unemp_target_or_long_term[j] == 1,
-        Unemployment_target_for_interest[j],
-        mdf[rowi, idx1 + j],
-      )
+        SWITCH_unemp_target_or_long_term[j] == 1,     Unemployment_target_for_interest[j],     mdf[rowi, idx1 + j],   )
 
     # Eff_of_unemployment_on_Indicated_signal_rate[region] = SoE_of_unemployment_rate_on_indicated_signal_rate * ( Perceived_unemployment_rate[region] / Unemployment_rate_used[region] - 1 )
     idxlhs = fcol_in_mdf["Eff_of_unemployment_on_Indicated_signal_rate"]
@@ -16188,8 +14048,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Indicated_signal_rate"]
     idx2 = fcol_in_mdf["Central_bank_signal_rate"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
       ) / Signal_rate_adjustment_time
 
     # Ratio_of_actual_public_spending_vs_reference[region] = Public_spending_as_share_of_GDP[region] / Reference_public_spending_fraction
@@ -16199,12 +14058,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Reference_public_spending_fraction
 
     # Public_spending_effect_on_social_trust[region] = WITH LOOKUP ( Ratio_of_actual_public_spending_vs_reference[region] , ( [ ( 0 , 0 ) - ( 0.601626 , 0.822581 ) ] , ( 0 , 0.8 ) , ( 0.25 , 0.82 ) , ( 0.5 , 0.87 ) , ( 0.75 , 0.93 ) , ( 1 , 1 ) , ( 1.25 , 1.07 ) , ( 1.5 , 1.13 ) , ( 1.75 , 1.18 ) , ( 2 , 1.2 ) ) )
-    tabidx = ftab_in_d_table[
-      "Public_spending_effect_on_social_trust"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Public_spending_effect_on_social_trust"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Public_spending_effect_on_social_trust"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Public_spending_effect_on_social_trust"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Ratio_of_actual_public_spending_vs_reference"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -16217,12 +14072,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Inequality_considered_normal_in_1980
 
     # Inequality_effect_on_social_trust[region] = WITH LOOKUP ( Ratio_of_actual_inequality_to_norm[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 2 ) , ( 0.2 , 1.975 ) , ( 0.4 , 1.913 ) , ( 0.6 , 1.767 ) , ( 0.8 , 1.465 ) , ( 1 , 1 ) , ( 1.2 , 0.5352 ) , ( 1.4 , 0.2331 ) , ( 1.6 , 0.08682 ) , ( 1.8 , 0.02526 ) , ( 2 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Inequality_effect_on_social_trust"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Inequality_effect_on_social_trust"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Inequality_effect_on_social_trust"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Inequality_effect_on_social_trust"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Ratio_of_actual_inequality_to_norm"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -16232,22 +14083,18 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Multplier_from_gender_inequality_on_indicated_social_trust"]
     idx1 = fcol_in_mdf["SDG_5_Score"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + (mdf[rowi, idx1 + j] - 0.5)
         * Strength_of_Effect_of_gender_inequality_on_social_trust
       )
 
     # Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust[region] = SMOOTH3 ( Multplier_from_gender_inequality_on_indicated_social_trust[region] , Time_to_smooth_Multplier_from_empowerment_on_indicated_social_trust )
     idxin = fcol_in_mdf["Multplier_from_gender_inequality_on_indicated_social_trust"]
-    idx2 = fcol_in_mdf[
-      "Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust_2"
+    idx2 = fcol_in_mdf["Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust_2"
     ]
-    idx1 = fcol_in_mdf[
-      "Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust_1"
+    idx1 = fcol_in_mdf["Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust_1"
     ]
-    idxout = fcol_in_mdf[
-      "Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust"
+    idxout = fcol_in_mdf["Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust"
     ]
     for j in range(0, 10):
       mdf[rowi, idx1 + j] = (
@@ -16273,8 +14120,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Multplier_from_schooling_on_indicated_social_trust"]
     idx1 = fcol_in_mdf["SDG4_Score"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1
+      mdf[rowi, idxlhs + j] = (1
         + (mdf[rowi, idx1 + j] - 0.5) * Strength_of_Effect_of_schooling_on_social_trust
       )
 
@@ -16307,16 +14153,13 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Indicated_social_trust"]
     idx1 = fcol_in_mdf["Public_spending_effect_on_social_trust"]
     idx2 = fcol_in_mdf["Inequality_effect_on_social_trust"]
-    idx3 = fcol_in_mdf[
-      "Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
+    idx3 = fcol_in_mdf["Scaled_and_smoothed_Effect_of_poverty_on_social_tension_and_trust"
     ]
-    idx4 = fcol_in_mdf[
-      "Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust"
+    idx4 = fcol_in_mdf["Smoothed_Multplier_from_gender_inequality_on_indicated_social_trust"
     ]
     idx5 = fcol_in_mdf["Smoothed_Multplier_from_schooling_on_indicated_social_trust"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         / mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16328,8 +14171,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Indicated_social_trust"]
     idx2 = fcol_in_mdf["Social_trust"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
       ) / Time_to_change_social_trust
 
     # Change_in_TFP[region] = Total_factor_productivity_TFP_before_env_damage[region] * Rate_of_tech_advance_RoTA_in_TFP[region]
@@ -16351,8 +14193,7 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * mdf[rowi, idx2]
 
     # Eff_of_scenario_on_strength_of_worker_reaction_to_owner_power[region] = 1 + WReaction_policy[region]
-    idxlhs = fcol_in_mdf[
-      "Eff_of_scenario_on_strength_of_worker_reaction_to_owner_power"
+    idxlhs = fcol_in_mdf["Eff_of_scenario_on_strength_of_worker_reaction_to_owner_power"
     ]
     idx1 = fcol_in_mdf["WReaction_policy"]
     for j in range(0, 10):
@@ -16362,8 +14203,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Inequality_effect_on_food_TA"]
     idx1 = fcol_in_mdf["Actual_inequality_index_higher_is_more_unequal"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_food_TA
+      mdf[rowi, idxlhs + j] = (1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_food_TA
       )
 
     # Reform_willingness_with_inequality[region] = ( Smoothed_Reform_willingness[region] / Inequality_effect_on_food_TA[region] )
@@ -16384,8 +14224,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Scaled_Effect_of_TAs_on_inequality"]
     idx1 = fcol_in_mdf["Effect_of_TAs_on_inequality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - 1
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - 1
       ) * Strength_of_Effect_of_TAs_on_inequality
 
     # Strength_of_worker_reaction_to_owner_power[region] = Strength_of_worker_reaction_to_owner_power_normal * Eff_of_scenario_on_strength_of_worker_reaction_to_owner_power[region] + Scaled_Effect_of_TAs_on_inequality[region]
@@ -16393,8 +14232,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Eff_of_scenario_on_strength_of_worker_reaction_to_owner_power"]
     idx2 = fcol_in_mdf["Scaled_Effect_of_TAs_on_inequality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Strength_of_worker_reaction_to_owner_power_normal * mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (Strength_of_worker_reaction_to_owner_power_normal * mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
       )
 
@@ -16421,8 +14259,7 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2]
 
     # Fraction_of_CO2_emi_from_fossils_attributable_to_a_region_smoothed[region] = SMOOTH ( Fraction_of_CO2_emi_from_fossils_attributable_to_a_region[region] , Time_to_verify_emi )
-    idx1 = fcol_in_mdf[
-      "Fraction_of_CO2_emi_from_fossils_attributable_to_a_region_smoothed"
+    idx1 = fcol_in_mdf["Fraction_of_CO2_emi_from_fossils_attributable_to_a_region_smoothed"
     ]
     idx2 = fcol_in_mdf["Fraction_of_CO2_emi_from_fossils_attributable_to_a_region"]
     for j in range(0, 10):
@@ -16437,15 +14274,13 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Cohort_55_to_59"]
     idx3 = fcol_in_mdf["Cohort_60plus"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] + mdf[rowi, idx3 + j]
       )
 
     # Cold_dense_water_sinking_in_Sverdrup = Cold_dense_water_sinking_in_Sverdrup_in_1850 * NatEvent_d_slowing_down_ocean_circulation_from_2015 * Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic
     idxlhs = fcol_in_mdf["Cold_dense_water_sinking_in_Sverdrup"]
     idx1 = fcol_in_mdf["NatEvent_d_slowing_down_ocean_circulation_from_2015"]
-    idx2 = fcol_in_mdf[
-      "Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
+    idx2 = fcol_in_mdf["Ocean_circulation_slowdown_from_Greenland_ice_sliding_into_the_Atlantic"
     ]
     mdf[rowi, idxlhs] = (
       Cold_dense_water_sinking_in_Sverdrup_in_1850 * mdf[rowi, idx1] * mdf[rowi, idx2]
@@ -16499,12 +14334,9 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Smoothed_SDG_score_for_effect_of_wellbeing"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit < 2023,
-        1,
-        1
+        zeit < 2023,     1,     1
         + (mdf[rowi, idx1 + j] / mdf[rowi, idx2] - 1)
-        * Strength_of_Effect_of_SDG_scores_on_wellbeing,
-      )
+        * Strength_of_Effect_of_SDG_scores_on_wellbeing,   )
 
     # Investment_demand[region] = Initiating_capacity_construction[region]
     idxlhs = fcol_in_mdf["Investment_demand"]
@@ -16519,8 +14351,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Owner_consumption"]
     idx4 = fcol_in_mdf["Consumption_taxes"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         - mdf[rowi, idx4 + j]
@@ -16547,24 +14378,21 @@ def ugregmod(game_id, von, bis):
 
     # Cost_per_regional_energy_policy[region] = Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform[region] / Nbr_of_relevant_energy_policies
     idxlhs = fcol_in_mdf["Cost_per_regional_energy_policy"]
-    idx1 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
+    idx1 = fcol_in_mdf["Each_region_max_cost_estimate_energy_PES_with_env_dam_and_reform"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Nbr_of_relevant_energy_policies
 
     # Cost_per_regional_inequality_policy[region] = Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform[region] / Nbr_of_relevant_inequality_policies
     idxlhs = fcol_in_mdf["Cost_per_regional_inequality_policy"]
-    idx1 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
+    idx1 = fcol_in_mdf["Each_region_max_cost_estimate_inequality_PES_with_env_dam_and_reform"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Nbr_of_relevant_inequality_policies
 
     # Cost_per_regional_poverty_policy[region] = Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform[region] / Nbr_of_relevant_poverty_policies
     idxlhs = fcol_in_mdf["Cost_per_regional_poverty_policy"]
-    idx1 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
+    idx1 = fcol_in_mdf["Each_region_max_cost_estimate_poverty_PES_with_env_dam_and_reform"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Nbr_of_relevant_poverty_policies
@@ -16577,8 +14405,7 @@ def ugregmod(game_id, von, bis):
 
     # Cost_per_regional_empowerment_policy[region] = Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform[region] / Nbr_of_relevant_empowerment_policies
     idxlhs = fcol_in_mdf["Cost_per_regional_empowerment_policy"]
-    idx1 = fcol_in_mdf[
-      "Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
+    idx1 = fcol_in_mdf["Each_region_max_cost_estimate_empowerment_PES_with_env_dam_and_reform"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Nbr_of_relevant_empowerment_policies
@@ -16589,8 +14416,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Nitrogen_use"]
     idx3 = fcol_in_mdf["Nitrogen_use"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1 + 9] >= 5,
-      (
+      mdf[rowi, idx1 + 9] >= 5,   (
         Indicated_crop_yield_SE_L
         / (
           1
@@ -16609,9 +14435,7 @@ def ugregmod(game_id, von, bis):
             * (mdf[rowi, idx3 + 9] * UNIT_conv_N_to_yield - Indicated_crop_yield_SE_x2)
           )
         )
-      ),
-      Indicated_crop_yield_SE_min,
-    )
+      ),   Indicated_crop_yield_SE_min, )
 
     # Indicated_crop_yield_rest[region] = Indicated_crop_yield_rest_L[region] / ( 1 + math.exp ( - Indicated_crop_yield_rest_k[region] * ( Nitrogen_use[region] * UNIT_conv_N_to_yield - Indicated_crop_yield_rest_x0[region] ) ) )
     idxlhs = fcol_in_mdf["Indicated_crop_yield_rest"]
@@ -16672,8 +14496,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Combined_env_damage_indicator"]
     idx2 = fcol_in_mdf["Actual_eff_of_relative_wealth_on_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_dying) / mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_dying) / mdf[rowi, idx2 + j]
       )
 
     # Eff_of_env_damage_on_dying[region] = SMOOTH ( Indicated_Eff_of_env_damage_on_dying[region] , Time_lag_for_env_damage_to_affect_mortality )
@@ -16688,8 +14511,7 @@ def ugregmod(game_id, von, bis):
       )
 
     # Ratio_of_regionally_available_crop_including_imports_to_regional_demand[region] = All_crop_regional_dmd[region] / ( Crop_grown_regionally[region] + Actual_crop_import[region] )
-    idxlhs = fcol_in_mdf[
-      "Ratio_of_regionally_available_crop_including_imports_to_regional_demand"
+    idxlhs = fcol_in_mdf["Ratio_of_regionally_available_crop_including_imports_to_regional_demand"
     ]
     idx1 = fcol_in_mdf["All_crop_regional_dmd"]
     idx2 = fcol_in_mdf["Crop_grown_regionally"]
@@ -16700,8 +14522,7 @@ def ugregmod(game_id, von, bis):
       )
 
     # Ratio_of_demand_and_supply_of_crops_smoothed[region] = SMOOTH3 ( Ratio_of_regionally_available_crop_including_imports_to_regional_demand[region] , Time_to_smooth_regional_food_balance )
-    idxin = fcol_in_mdf[
-      "Ratio_of_regionally_available_crop_including_imports_to_regional_demand"
+    idxin = fcol_in_mdf["Ratio_of_regionally_available_crop_including_imports_to_regional_demand"
     ]
     idx2 = fcol_in_mdf["Ratio_of_demand_and_supply_of_crops_smoothed_2"]
     idx1 = fcol_in_mdf["Ratio_of_demand_and_supply_of_crops_smoothed_1"]
@@ -16731,18 +14552,11 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Ratio_of_demand_and_supply_of_crops_smoothed"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = 1 + IF_THEN_ELSE(
-        zeit > Policy_start_year,
-        (mdf[rowi, idx1 + j] - 1) * Strength_of_malnutrition_effect,
-        0,
-      )
+        zeit > Policy_start_year,     (mdf[rowi, idx1 + j] - 1) * Strength_of_malnutrition_effect,     0,   )
 
     # Effect_of_malnutrition_on_dying[region] = WITH LOOKUP ( Malnutrition[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1 , 1 ) , ( 2 , 1.15 ) , ( 3 , 1.5 ) , ( 4 , 2 ) , ( 5 , 3 ) , ( 10 , 15 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_malnutrition_on_dying"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_malnutrition_on_dying"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_malnutrition_on_dying"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Effect_of_malnutrition_on_dying"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Malnutrition"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -16761,9 +14575,7 @@ def ugregmod(game_id, von, bis):
 
     # Effect_of_poverty_on_dying[region] = WITH LOOKUP ( Fraction_of_population_below_existential_minimum[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.5 , 1.025 ) , ( 1 , 1.1 ) ) )
     tabidx = ftab_in_d_table["Effect_of_poverty_on_dying"]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Effect_of_poverty_on_dying"
-    ]  # get the location of the lhs in mdf
+    idx2 = fcol_in_mdf["Effect_of_poverty_on_dying"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Fraction_of_population_below_existential_minimum"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -16774,10 +14586,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Effect_of_poverty_on_dying"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = 1 + IF_THEN_ELSE(
-        zeit > Policy_start_year,
-        (mdf[rowi, idx1 + j] - 1) * Strength_of_poverty_effect,
-        0,
-      )
+        zeit > Policy_start_year,     (mdf[rowi, idx1 + j] - 1) * Strength_of_poverty_effect,     0,   )
 
     # Effect_of_poverty_on_dying_smoothed[region] = SMOOTH ( Effect_of_poverty_on_dying_from_policy_start[region] , Time_to_smooth_poverty_effect )
     idx1 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
@@ -16794,8 +14603,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx1 = fcol_in_mdf["Actual_inequality_index_higher_is_more_unequal"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_mortality
+      mdf[rowi, idxlhs + j] = (1 + (mdf[rowi, idx1 + j] - 1) * Strength_of_inequality_effect_on_mortality
       )
 
     # dying_0_to_4[region] = Cohort_0_to_4[region] * death_rate_dr0[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -16807,8 +14615,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16820,8 +14627,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr35"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr35_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr35_b[j]
+      mdf[rowi, idxlhs + j] = (dr35_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr35_b[j]
       )
 
     # dying_35_to_39[region] = Cohort_35_to_39[region] * death_rate_dr35[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16832,8 +14638,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16844,8 +14649,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr40"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr40_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr40_b[j]
+      mdf[rowi, idxlhs + j] = (dr40_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr40_b[j]
       )
 
     # dying_40_to_45[region] = Cohort_40_to_44[region] * death_rate_dr40[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16856,8 +14660,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16868,8 +14671,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr50"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr50_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr50_b[j]
+      mdf[rowi, idxlhs + j] = (dr50_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr50_b[j]
       )
 
     # dying_50_to_54[region] = Cohort_50_to_54[region] * death_rate_dr50[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16880,8 +14682,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16892,8 +14693,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr55"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr55_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr55_b[j]
+      mdf[rowi, idxlhs + j] = (dr55_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr55_b[j]
       )
 
     # dying_55_to_59[region] = Cohort_55_to_59[region] * death_rate_dr55[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16904,8 +14704,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16916,8 +14715,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr60"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr60_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr60_b[j]
+      mdf[rowi, idxlhs + j] = (dr60_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr60_b[j]
       )
 
     # dying_60_to_64[region] = Cohort_60_to_64[region] * death_rate_dr60[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16928,8 +14726,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16940,8 +14737,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr65"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr65_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr65_b[j]
+      mdf[rowi, idxlhs + j] = (dr65_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr65_b[j]
       )
 
     # dying_65_to_69[region] = Cohort_65_to_69[region] * death_rate_dr65[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16952,8 +14748,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16964,8 +14759,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr70"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr70_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr70_b[j]
+      mdf[rowi, idxlhs + j] = (dr70_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr70_b[j]
       )
 
     # dying_70_to_74[region] = Cohort_70_to_74[region] * death_rate_dr70[region] * Eff_of_env_damage_on_dying[region] * Inequality_effect_on_mortality[region] * Effect_of_malnutrition_on_dying_smoothed[region]
@@ -16976,8 +14770,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -16988,8 +14781,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr75"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr75_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr75_b[j]
+      mdf[rowi, idxlhs + j] = (dr75_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr75_b[j]
       )
 
     # dying_75_to_79[region] = Cohort_75_to_79[region] * death_rate_dr75[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -17001,8 +14793,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -17014,8 +14805,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr80"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr80_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr80_b[j]
+      mdf[rowi, idxlhs + j] = (dr80_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr80_b[j]
       )
 
     # dying_80_to_84[region] = Cohort_80_to_84[region] * death_rate_dr80[region] * mort_80_to_84_adjust_factor[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -17027,8 +14817,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mort_80_to_84_adjust_factor[j]
         * mdf[rowi, idx3 + j]
@@ -17041,8 +14830,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr85"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr85_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr85_b[j]
+      mdf[rowi, idxlhs + j] = (dr85_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr85_b[j]
       )
 
     # dying_85_to_89[region] = Cohort_85_to_89[region] * death_rate_dr85[region] * mort_85_to_89_adjust_factor[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -17054,8 +14842,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mort_85_to_89_adjust_factor[j]
         * mdf[rowi, idx3 + j]
@@ -17068,8 +14855,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr90"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr90_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr90_b[j]
+      mdf[rowi, idxlhs + j] = (dr90_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr90_b[j]
       )
 
     # dying_90_to_94[region] = Cohort_90_to_94[region] * death_rate_dr90[region] * mort_90_to_94_adjust_factor[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -17081,8 +14867,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mort_90_to_94_adjust_factor[j]
         * mdf[rowi, idx3 + j]
@@ -17095,8 +14880,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr95_plus"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr95p_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr95p_b[j]
+      mdf[rowi, idxlhs + j] = (dr95p_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr95p_b[j]
       )
 
     # dying_95p[region] = Cohort_95p[region] * death_rate_dr95_plus[region] * mort_95plus_adjust_factor[region] * Eff_of_env_damage_on_dying[region] * Effect_of_malnutrition_on_dying_smoothed[region] * Effect_of_poverty_on_dying_smoothed[region] * Inequality_effect_on_mortality[region]
@@ -17108,8 +14892,7 @@ def ugregmod(game_id, von, bis):
     idx5 = fcol_in_mdf["Effect_of_poverty_on_dying_smoothed"]
     idx6 = fcol_in_mdf["Inequality_effect_on_mortality"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mort_95plus_adjust_factor[j]
         * mdf[rowi, idx3 + j]
@@ -17134,8 +14917,7 @@ def ugregmod(game_id, von, bis):
     idx12 = fcol_in_mdf["dying_90_to_94"]
     idx13 = fcol_in_mdf["dying_95p"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -17154,8 +14936,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["death_rate_dr45"]
     idx1 = fcol_in_mdf["GDPpp_USED_for_influencing_death_rates"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        dr45_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr45_b[j]
+      mdf[rowi, idxlhs + j] = (dr45_a[j] * (mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl) ** dr45_b[j]
       )
 
     # Time_at_which_govt_debt_is_cancelled[region] = Policy_start_year
@@ -17167,16 +14948,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ExPS_rounds_via_Excel"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        zeit >= Round3_start,
-        ExPS_R3_via_Excel[j],
-        IF_THEN_ELSE(
-          zeit >= Round2_start,
-          ExPS_R2_via_Excel[j],
-          IF_THEN_ELSE(
+        zeit >= Round3_start,     ExPS_R3_via_Excel[j],     IF_THEN_ELSE(
+          zeit >= Round2_start,       ExPS_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, ExPS_R1_via_Excel[j], ExPS_policy_Min
-          ),
-        ),
-      )
+          ),     ),   )
 
     # ExPS_policy_with_RW[region] = ExPS_rounds_via_Excel[region] * Smoothed_Reform_willingness[region]
     idxlhs = fcol_in_mdf["ExPS_policy_with_RW"]
@@ -17189,8 +14964,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["ExPS_pol_div_100"]
     idx1 = fcol_in_mdf["ExPS_policy_with_RW"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(ExPS_policy_Max, max(ExPS_policy_Min, mdf[rowi, idx1 + j])) / 100
+      mdf[rowi, idxlhs + j] = (min(ExPS_policy_Max, max(ExPS_policy_Min, mdf[rowi, idx1 + j])) / 100
       )
 
     # Debt_cancelling_pulse[region] = ( STEP ( Debt_cancelling_stepheight , Time_at_which_govt_debt_is_cancelled[region] ) - STEP ( Debt_cancelling_stepheight , Time_at_which_govt_debt_is_cancelled[region] + Govt_debt_cancelling_spread[region] ) ) * ExPS_pol_div_100[region]
@@ -17199,13 +14973,9 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Time_at_which_govt_debt_is_cancelled"]
     idx3 = fcol_in_mdf["ExPS_pol_div_100"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        STEP(zeit, Debt_cancelling_stepheight, mdf[rowi, idx1 + j])
+      mdf[rowi, idxlhs + j] = (STEP(zeit, Debt_cancelling_stepheight, mdf[rowi, idx1 + j])
         - STEP(
-          zeit,
-          Debt_cancelling_stepheight,
-          mdf[rowi, idx2 + j] + Govt_debt_cancelling_spread,
-        )
+          zeit,       Debt_cancelling_stepheight,       mdf[rowi, idx2 + j] + Govt_debt_cancelling_spread,     )
       ) * mdf[rowi, idx3 + j]
 
     # Decrease_in_GDPL[region] = Obligation_for_payback_of_debt_from_public_lenders[region] * ( 1 - Fraction_of_public_loans_not_serviced[region] )
@@ -17238,8 +15008,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Decrease_in_public_loan_defaults"]
     idx1 = fcol_in_mdf["Public_loan_defaults"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_write_of_public_loan_defaults
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_write_of_public_loan_defaults
       )
 
     # Smoothed_cumulative_N_use_for_regenerative_choice[region] = SMOOTHI ( Cumulative_N_use_since_2020[region] , Time_for_N_use_to_affect_regeneative_choice , Cumulative_N_use_since_2020_in_1980[region] )
@@ -17254,12 +15023,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # Desired_regenerative_cropland_fraction[region] = WITH LOOKUP ( Smoothed_cumulative_N_use_for_regenerative_choice[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 10 , 0.02 ) , ( 20 , 0.1 ) , ( 30 , 0.5 ) ) )
-    tabidx = ftab_in_d_table[
-      "Desired_regenerative_cropland_fraction"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Desired_regenerative_cropland_fraction"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Desired_regenerative_cropland_fraction"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Desired_regenerative_cropland_fraction"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Smoothed_cumulative_N_use_for_regenerative_choice"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -17275,17 +15040,13 @@ def ugregmod(game_id, von, bis):
     idx6 = fcol_in_mdf["Regenerative_cropland_fraction"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j] < 0,
-        (mdf[rowi, idx4 + j] + mdf[rowi, idx5 + j] - mdf[rowi, idx6 + j]) * -1,
-        0,
-      )
+        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j] < 0,     (mdf[rowi, idx4 + j] + mdf[rowi, idx5 + j] - mdf[rowi, idx6 + j]) * -1,     0,   )
 
     # Decrease_in_regen_cropland[region] = Too_much_regen_cropland[region] / Time_to_implement_conventional_practices
     idxlhs = fcol_in_mdf["Decrease_in_regen_cropland"]
     idx1 = fcol_in_mdf["Too_much_regen_cropland"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_implement_conventional_practices
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_implement_conventional_practices
       )
 
     # Demand_imbalance[region] = ( Investment_demand[region] + Total_consumption[region] ) / Optimal_real_output[region]
@@ -17294,8 +15055,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Total_consumption"]
     idx3 = fcol_in_mdf["Optimal_real_output"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) / mdf[
-        rowi, idx3 + j
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) / mdf[ rowi, idx3 + j
       ]
 
     # Depositing_of_C_to_sediment = C_in_deep_water_volume_1km_to_bottom_GtC / Time_to_deposit_C_in_sediment
@@ -17304,13 +15064,11 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] / Time_to_deposit_C_in_sediment
 
     # Fraction_of_supply_imbalance_to_be_closed_by_imports_after_policy[region] = Reference_fraction_of_supply_imbalance_to_be_closed_by_imports[region] * ( 1 - RIPLGF_policy[region] )
-    idxlhs = fcol_in_mdf[
-      "Fraction_of_supply_imbalance_to_be_closed_by_imports_after_policy"
+    idxlhs = fcol_in_mdf["Fraction_of_supply_imbalance_to_be_closed_by_imports_after_policy"
     ]
     idx1 = fcol_in_mdf["RIPLGF_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Reference_fraction_of_supply_imbalance_to_be_closed_by_imports[j]
+      mdf[rowi, idxlhs + j] = (Reference_fraction_of_supply_imbalance_to_be_closed_by_imports[j]
         * (1 - mdf[rowi, idx1 + j])
       )
 
@@ -17318,12 +15076,10 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Desired_crop_import_indicated"]
     idx1 = fcol_in_mdf["All_crop_regional_dmd_last_year"]
     idx2 = fcol_in_mdf["Ratio_of_demand_to_regional_supply_of_crops"]
-    idx3 = fcol_in_mdf[
-      "Fraction_of_supply_imbalance_to_be_closed_by_imports_after_policy"
+    idx3 = fcol_in_mdf["Fraction_of_supply_imbalance_to_be_closed_by_imports_after_policy"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
       )
 
     # Eff_of_dmd_imbalance_on_life_of_capacity[region] = 1 + Slope_of_Eff_of_dmd_imbalnce_on_life_of_capacity * ( Perceived_demand_imblance[region] / Dmd_imbalance_in_1980[region] - 1 )
@@ -17355,8 +15111,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Inequality_effect_on_mortality"]
     idx5 = fcol_in_mdf["Effect_of_malnutrition_on_dying_smoothed"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * mdf[rowi, idx2 + j]
         * mdf[rowi, idx3 + j]
         * mdf[rowi, idx4 + j]
@@ -17368,17 +15123,12 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Combined_env_damage_indicator"]
     idx2 = fcol_in_mdf["Actual_eff_of_relative_wealth_on_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_TFP) / mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (math.exp(mdf[rowi, idx1] * expSoE_of_ed_on_TFP) / mdf[rowi, idx2 + j]
       )
 
     # Eff_of_wealth_on_regnerative_practices[region] = WITH LOOKUP ( GDPpp_USED[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 60 , 0.9 ) ) )
-    tabidx = ftab_in_d_table[
-      "Eff_of_wealth_on_regnerative_practices"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Eff_of_wealth_on_regnerative_practices"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Eff_of_wealth_on_regnerative_practices"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Eff_of_wealth_on_regnerative_practices"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["GDPpp_USED"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -17403,17 +15153,12 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Embedded_TFP"]
     idx3 = fcol_in_mdf["Capacity_renewal_rate"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) * mdf[
-        rowi, idx3 + j
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) * mdf[ rowi, idx3 + j
       ]
 
     # Effect_of_GL_on_freshwater_use = WITH LOOKUP ( Which_Scenario_is_run_globally , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.25 , 0.97 ) , ( 0.5 , 0.9 ) , ( 0.75 , 0.8 ) , ( 1 , 0.66 ) ) )
-    tabidx = ftab_in_d_table[
-      "Effect_of_GL_on_freshwater_use"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Effect_of_GL_on_freshwater_use"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Effect_of_GL_on_freshwater_use"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Effect_of_GL_on_freshwater_use"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Which_Scenario_is_run_globally"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -17421,9 +15166,7 @@ def ugregmod(game_id, von, bis):
 
     # Effect_of_GL_on_phaseout_time = WITH LOOKUP ( Which_Scenario_is_run_globally , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 1 ) , ( 0.25 , 0.97 ) , ( 0.5 , 0.9 ) , ( 0.75 , 0.5 ) , ( 1 , 0.33 ) ) )
     tabidx = ftab_in_d_table["Effect_of_GL_on_phaseout_time"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Effect_of_GL_on_phaseout_time"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Effect_of_GL_on_phaseout_time"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Which_Scenario_is_run_globally"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -17447,13 +15190,11 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Worker_to_owner_income_after_tax_ratio_scaled_to_init"]
     idx1 = fcol_in_mdf["Worker_to_owner_income_after_tax_ratio"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Worker_to_owner_income_after_tax_ratio_in_1980[j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Worker_to_owner_income_after_tax_ratio_in_1980[j]
       )
 
     # Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init[region] = 1 + Strength_of_effect_of_income_ratio_after_tax * ( Worker_to_owner_income_after_tax_ratio_scaled_to_init[region] - 1 )
-    idxlhs = fcol_in_mdf[
-      "Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init"
+    idxlhs = fcol_in_mdf["Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init"
     ]
     idx1 = fcol_in_mdf["Worker_to_owner_income_after_tax_ratio_scaled_to_init"]
     for j in range(0, 10):
@@ -17473,12 +15214,8 @@ def ugregmod(game_id, von, bis):
       )
 
     # TROP_deforestation_cutoff_effect = WITH LOOKUP ( TROP_deforested_as_pct_of_potential_area , ( [ ( 0.5 , 0 ) - ( 0.8 , 10 ) ] , ( 0.5 , 1 ) , ( 0.619266 , 1.92982 ) , ( 0.683486 , 2.7193 ) , ( 0.733028 , 4.03509 ) , ( 0.76055 , 5.26316 ) , ( 0.783486 , 6.84211 ) , ( 0.8 , 10 ) ) )
-    tabidx = ftab_in_d_table[
-      "TROP_deforestation_cutoff_effect"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "TROP_deforestation_cutoff_effect"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "TROP_deforestation_cutoff_effect"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["TROP_deforestation_cutoff_effect"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["TROP_deforested_as_pct_of_potential_area"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -17513,12 +15250,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
 
     # Limitation_on_entering_the_pool_from_market_imbalance[region] = WITH LOOKUP ( Labor_market_imbalance[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0.7 , 1 ) , ( 0.75 , 0.97 ) , ( 0.8 , 0.9 ) , ( 0.85 , 0.8 ) , ( 0.9 , 0.65 ) , ( 0.95 , 0.4 ) , ( 1 , 0.02 ) ) )
-    tabidx = ftab_in_d_table[
-      "Limitation_on_entering_the_pool_from_market_imbalance"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Limitation_on_entering_the_pool_from_market_imbalance"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Limitation_on_entering_the_pool_from_market_imbalance"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Limitation_on_entering_the_pool_from_market_imbalance"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Labor_market_imbalance"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -17529,8 +15262,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["People_considering_entering_the_pool"]
     idx2 = fcol_in_mdf["Limitation_on_entering_the_pool_from_market_imbalance"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_implement_actually_entering_the_pool
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_implement_actually_entering_the_pool
       ) * mdf[rowi, idx2 + j]
 
     # Evaporation_aka_latent_heat_flow = Evaporation_as_f_of_temp
@@ -17544,12 +15276,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = Greenland_ice_volume_in_1980 / mdf[rowi, idx1]
 
     # Greenland_slide_experiment_end_condition = WITH LOOKUP ( Greenland_ice_volume_as_fraction_of_1850_volume , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 0.1 , 0.05 ) , ( 0.2 , 0.2 ) , ( 0.3 , 0.5 ) , ( 0.4 , 0.75 ) , ( 0.5 , 0.93 ) , ( 0.6 , 1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Greenland_slide_experiment_end_condition"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Greenland_slide_experiment_end_condition"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Greenland_slide_experiment_end_condition"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Greenland_slide_experiment_end_condition"]  # get the location of the lhs in mdf
     idx1 = fcol_in_mdf["Greenland_ice_volume_as_fraction_of_1850_volume"]
     look = d_table[tabidx]
     valgt = GRAPH(mdf[rowi, idx1], look[:, 0], look[:, 1])
@@ -17558,27 +15286,19 @@ def ugregmod(game_id, von, bis):
     # Exogenous_sliding_of_Greenland_ice_into_the_ocean = IF_THEN_ELSE ( zeit > NEvt_13d_Greenland_slide_experiment_start_yr , Greenland_slide_experiment_how_much_sildes_in_the_ocean_fraction / ( Greenland_slide_experiment_over_how_many_years_yr * 0.7 ) , 0 )
     idxlhs = fcol_in_mdf["Exogenous_sliding_of_Greenland_ice_into_the_ocean"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      zeit > NEvt_13d_Greenland_slide_experiment_start_yr,
-      Greenland_slide_experiment_how_much_sildes_in_the_ocean_fraction
-      / (Greenland_slide_experiment_over_how_many_years_yr * 0.7),
-      0,
-    )
+      zeit > NEvt_13d_Greenland_slide_experiment_start_yr,   Greenland_slide_experiment_how_much_sildes_in_the_ocean_fraction
+      / (Greenland_slide_experiment_over_how_many_years_yr * 0.7),   0, )
 
     # Max_forest_cut_after_policy[region] = Forest_land[region] * Reference_max_fraction_of_forest_possible_to_cut
     idxlhs = fcol_in_mdf["Max_forest_cut_after_policy"]
     idx1 = fcol_in_mdf["Forest_land"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * Reference_max_fraction_of_forest_possible_to_cut
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * Reference_max_fraction_of_forest_possible_to_cut
       )
 
     # Fraction_of_cropland_gap_closed_by_cutting_forests[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , - 0.1 ) , ( 2010 , - 0.1 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.05 ) , ( 1990 , 0.02 ) , ( 2000 , 0 ) , ( 2010 , 0.03 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0.001 ) , ( 2100 , 0.01 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.03 ) , ( 1990 , 0.02 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0.0003 ) , ( 2050 , 0.001 ) , ( 2100 , 0.002 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.03 ) , ( 2000 , 0.01 ) , ( 2010 , 0.01 ) , ( 2020 , 0.01 ) , ( 2030 , 0.01 ) , ( 2050 , 0.01 ) , ( 2100 , 0.01 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.02 ) , ( 2000 , 0 ) , ( 2010 , 0.03 ) , ( 2020 , 0 ) , ( 2030 , 0.0003 ) , ( 2050 , 0.001 ) , ( 2100 , 0.001 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.03 ) , ( 2000 , 0.01 ) , ( 2010 , 0.01 ) , ( 2020 , 0.01 ) , ( 2030 , 0.0107 ) , ( 2050 , 0.012 ) , ( 2100 , 0.015 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , - 0.1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0.000161 ) , ( 2050 , 0.001 ) , ( 2100 , 0.002 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , - 0.1 ) , ( 2010 , - 0.1 ) , ( 2020 , 0 ) , ( 2031 , 0 ) , ( 2050 , - 0.001 ) , ( 2100 , - 0.002 ) ) ) Fraction_of_cropland_gap_closed_by_cutting_forests[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.02 ) , ( 2000 , 0 ) , ( 2010 , 0.03 ) , ( 2020 , 0 ) , ( 2030 , 0.00036 ) , ( 2050 , 0.001 ) , ( 2100 , 0.002 ) ) )
-    tabidx = ftab_in_d_table[
-      "Fraction_of_cropland_gap_closed_by_cutting_forests"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Fraction_of_cropland_gap_closed_by_cutting_forests"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Fraction_of_cropland_gap_closed_by_cutting_forests"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Fraction_of_cropland_gap_closed_by_cutting_forests"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -17591,17 +15311,11 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Fraction_of_cropland_gap_closed_by_cutting_forests"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = min(
-        mdf[rowi, idx1 + j],
-        min(mdf[rowi, idx2 + j], max(0, mdf[rowi, idx3 + j])) * mdf[rowi, idx4 + j],
-      )
+        mdf[rowi, idx1 + j],     min(mdf[rowi, idx2 + j], max(0, mdf[rowi, idx3 + j])) * mdf[rowi, idx4 + j],   )
 
     # Fraction_of_grazing_land_gap_closed_by_cutting_forests[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 1 ) , ( 2020 , 1 ) , ( 2030 , 1 ) , ( 2050 , 1 ) , ( 2075 , 1 ) , ( 2100 , 1 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 1 ) , ( 2020 , 1 ) , ( 2030 , 1 ) , ( 2050 , 1 ) , ( 2075 , 1 ) , ( 2100 , 1 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 1 ) , ( 2020 , 1 ) , ( 2030 , 1 ) , ( 2050 , 1 ) , ( 2075 , 1 ) , ( 2100 , 1 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 1 ) , ( 2020 , 1 ) , ( 2030 , 1 ) , ( 2050 , 1 ) , ( 2075 , 1 ) , ( 2100 , 1 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 1 ) , ( 2020 , 1 ) , ( 2030 , 1 ) , ( 2050 , 1 ) , ( 2075 , 1 ) , ( 2100 , 1 ) ) ) Fraction_of_grazing_land_gap_closed_by_cutting_forests[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1 ) , ( 2000 , 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) )
-    tabidx = ftab_in_d_table[
-      "Fraction_of_grazing_land_gap_closed_by_cutting_forests"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Fraction_of_grazing_land_gap_closed_by_cutting_forests"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Fraction_of_grazing_land_gap_closed_by_cutting_forests"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Fraction_of_grazing_land_gap_closed_by_cutting_forests"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -17614,9 +15328,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Fraction_of_grazing_land_gap_closed_by_cutting_forests"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = min(
-        mdf[rowi, idx1 + j],
-        min(mdf[rowi, idx2 + j], max(0, mdf[rowi, idx3 + j])) * mdf[rowi, idx4 + j],
-      )
+        mdf[rowi, idx1 + j],     min(mdf[rowi, idx2 + j], max(0, mdf[rowi, idx3 + j])) * mdf[rowi, idx4 + j],   )
 
     # Flow_of_C_from_atm_to_biomass_GtC_py = CO2_flux_from_atm_to_GRASS_for_new_growth_GtC_py + CO2_flux_from_atm_to_NF_for_new_growth_GtC_py + CO2_flux_from_atm_to_TROP_for_new_growth_GtC_py + CO2_flux_from_atm_to_TUNDRA_for_new_growth
     idxlhs = fcol_in_mdf["Flow_of_C_from_atm_to_biomass_GtC_py"]
@@ -17663,8 +15375,7 @@ def ugregmod(game_id, von, bis):
     idx6 = fcol_in_mdf["Populated_land"]
     idx7 = fcol_in_mdf["Forest_land"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -17775,8 +15486,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Indicted_Fraction_deforested"]
     idx1 = fcol_in_mdf["Forest_cutting_policy_used"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Annual_pct_deforested[j] * mdf[rowi, idx1 + j] / UNIT_conv_pct_to_fraction
+      mdf[rowi, idxlhs + j] = (Annual_pct_deforested[j] * mdf[rowi, idx1 + j] / UNIT_conv_pct_to_fraction
       )
 
     # Fraction_deforested[region] = SMOOTH ( Indicted_Fraction_deforested[region] , Time_to_implement_deforestation )
@@ -17798,12 +15508,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + i] = ZIDZ(mdf[rowi, idx1 + i], mdf[rowi, idx2 + i])
 
     # Fraction_of_population_over_50_still_working[region] = WITH LOOKUP ( GDPpp_USED[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0.95 ) , ( 50 , 0.8 ) , ( 100 , 0.5 ) ) )
-    tabidx = ftab_in_d_table[
-      "Fraction_of_population_over_50_still_working"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Fraction_of_population_over_50_still_working"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Fraction_of_population_over_50_still_working"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Fraction_of_population_over_50_still_working"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["GDPpp_USED"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -17819,8 +15525,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Freshwater_withdrawal_per_person"]
     idx2 = fcol_in_mdf["Population"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1] * mdf[rowi, idx2 + j] * UNIT_conv_to_cubic_km_pr_yr
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1] * mdf[rowi, idx2 + j] * UNIT_conv_to_cubic_km_pr_yr
       )
 
     # pb_Freshwater_withdrawal_global = SUM ( pb_Freshwater_withdrawal[region!] )
@@ -17851,8 +15556,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fraction_of_govt_income_transferred_to_workers"]
     idx3 = fcol_in_mdf["Future_leakage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j] * mdf[rowi, idx3 + j]
       )
 
     # Funds_leaks_on_the_way_to_investment_in_public_capacity[region] = ( Govt_investment_in_public_capacity[region] + Public_money_from_LPB_policy_to_investment[region] ) * Future_leakage[region]
@@ -17861,8 +15565,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Public_money_from_LPB_policy_to_investment"]
     idx3 = fcol_in_mdf["Future_leakage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) * mdf[
-        rowi, idx3 + j
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) * mdf[ rowi, idx3 + j
       ]
 
     # Funds_leaks_on_the_way_to_public_services[region] = ( Govt_consumption_ie_purchases[region] + Public_money_from_LPB_policy_to_public_spending[region] ) * Future_leakage[region]
@@ -17871,8 +15574,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Public_money_from_LPB_policy_to_public_spending"]
     idx3 = fcol_in_mdf["Future_leakage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) * mdf[
-        rowi, idx3 + j
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j]) * mdf[ rowi, idx3 + j
       ]
 
     # Increase_in_funds_leaked[region] = Funds_from_private_investment_leaked[region] + Funds_leaked_during_transfer_to_workers[region] + Funds_leaks_on_the_way_to_investment_in_public_capacity[region] + Funds_leaks_on_the_way_to_public_services[region]
@@ -17882,8 +15584,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Funds_leaks_on_the_way_to_investment_in_public_capacity"]
     idx4 = fcol_in_mdf["Funds_leaks_on_the_way_to_public_services"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -17974,8 +15675,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["N2O_emi_from_agri"]
     idx2 = fcol_in_mdf["N2O_emi_X_agri"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j])
         * Global_Warming_Potential_N20
         / UNIT_conversion_Gt_to_Mt
       )
@@ -18008,8 +15708,7 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Kyoto_Fluor_emissions_allocated_to_region"]
     idx5 = fcol_in_mdf["Montreal_emissions_allocated_to_region"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         + mdf[rowi, idx2 + j]
         + mdf[rowi, idx3 + j]
         + mdf[rowi, idx4 + j]
@@ -18021,8 +15720,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Total_GHG_emissions"]
     idx2 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conversion_to_tCO2e_pr_USD
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j] * UNIT_conversion_to_tCO2e_pr_USD
       )
 
     # GHG_intensity_last_year[region] = SMOOTH3 ( GHG_intensity[region] , One_year )
@@ -18048,8 +15746,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["gl_to_acgl"]
     idx1 = fcol_in_mdf["Grazing_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        abs(min(0, mdf[rowi, idx1 + j])) / Time_for_agri_land_to_become_abandoned
+      mdf[rowi, idxlhs + j] = (abs(min(0, mdf[rowi, idx1 + j])) / Time_for_agri_land_to_become_abandoned
       )
 
     # Glacial_ice_melting_km3_py = IF_THEN_ELSE ( Glacial_ice_melting_is_pos_or_freezing_is_neg_km3_py > 0 , Glacial_ice_melting_is_pos_or_freezing_is_neg_km3_py , 0 )
@@ -18092,30 +15789,22 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = globsum
 
     # Global_CH4_emi_from_agriculture_H_PRIMAP = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 111.22 ) , ( 1981 , 111 ) , ( 1982 , 112.06 ) , ( 1983 , 112.42 ) , ( 1984 , 112.16 ) , ( 1985 , 112.37 ) , ( 1986 , 113.22 ) , ( 1987 , 114.27 ) , ( 1988 , 113.96 ) , ( 1989 , 116.19 ) , ( 1990 , 118.01 ) , ( 1991 , 118.28 ) , ( 1992 , 118.7 ) , ( 1993 , 118.47 ) , ( 1994 , 119.13 ) , ( 1995 , 120.77 ) , ( 1996 , 121.39 ) , ( 1997 , 119.55 ) , ( 1998 , 121.15 ) , ( 1999 , 122.39 ) , ( 2000 , 123.24 ) , ( 2001 , 123.26 ) , ( 2002 , 123.81 ) , ( 2003 , 125.68 ) , ( 2004 , 127.45 ) , ( 2005 , 129.96 ) , ( 2006 , 129.68 ) , ( 2007 , 130.8 ) , ( 2008 , 131.85 ) , ( 2009 , 131.79 ) , ( 2010 , 132.8 ) , ( 2011 , 133.76 ) , ( 2012 , 134.76 ) , ( 2013 , 134.71 ) , ( 2014 , 134.67 ) , ( 2015 , 136.1 ) , ( 2016 , 137.82 ) , ( 2017 , 138.66 ) , ( 2018 , 138.61 ) , ( 2019 , 138.92 ) ) )
-    tabidx = ftab_in_d_table[
-      "Global_CH4_emi_from_agriculture_H_PRIMAP"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_CH4_emi_from_agriculture_H_PRIMAP"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Global_CH4_emi_from_agriculture_H_PRIMAP"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Global_CH4_emi_from_agriculture_H_PRIMAP"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Global_CH4_emi_from_energy_H = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 79.25 ) , ( 1981 , 75.14 ) , ( 1982 , 75.3 ) , ( 1983 , 75.03 ) , ( 1984 , 76.88 ) , ( 1985 , 78.89 ) , ( 1986 , 81.08 ) , ( 1987 , 82.63 ) , ( 1988 , 86.32 ) , ( 1989 , 89.9 ) , ( 1990 , 89.34 ) , ( 1991 , 86.86 ) , ( 1992 , 86.44 ) , ( 1993 , 87.45 ) , ( 1994 , 86.78 ) , ( 1995 , 88.98 ) , ( 1996 , 92 ) , ( 1997 , 93.01 ) , ( 1998 , 90.97 ) , ( 1999 , 91.15 ) , ( 2000 , 94.95 ) , ( 2001 , 94.68 ) , ( 2002 , 92.3 ) , ( 2003 , 98.36 ) , ( 2004 , 100.52 ) , ( 2005 , 102.45 ) , ( 2006 , 104.85 ) , ( 2007 , 104.78 ) , ( 2008 , 106.24 ) , ( 2009 , 104 ) , ( 2010 , 107.63 ) , ( 2011 , 110.94 ) , ( 2012 , 109.89 ) , ( 2013 , 107.78 ) , ( 2014 , 106.32 ) , ( 2015 , 105.98 ) , ( 2016 , 105.45 ) , ( 2017 , 105.79 ) , ( 2018 , 106.45 ) , ( 2019 , 109.3 ) ) )
     tabidx = ftab_in_d_table["Global_CH4_emi_from_energy_H"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_CH4_emi_from_energy_H"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Global_CH4_emi_from_energy_H"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
 
     # Global_CH4_emi_from_waste_H = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 37.07 ) , ( 1981 , 37.56 ) , ( 1982 , 38.1 ) , ( 1983 , 38.68 ) , ( 1984 , 39.36 ) , ( 1985 , 40.01 ) , ( 1986 , 40.64 ) , ( 1987 , 41.36 ) , ( 1988 , 42.05 ) , ( 1989 , 42.71 ) , ( 1990 , 43.31 ) , ( 1991 , 44.28 ) , ( 1992 , 44.95 ) , ( 1993 , 45.65 ) , ( 1994 , 46.34 ) , ( 1995 , 47.15 ) , ( 1996 , 47.81 ) , ( 1997 , 48.28 ) , ( 1998 , 48.61 ) , ( 1999 , 49.14 ) , ( 2000 , 49.93 ) , ( 2001 , 50.19 ) , ( 2002 , 50.41 ) , ( 2003 , 50.78 ) , ( 2004 , 50.99 ) , ( 2005 , 51.25 ) , ( 2006 , 52 ) , ( 2007 , 52.55 ) , ( 2008 , 53.07 ) , ( 2009 , 53.63 ) , ( 2010 , 54.35 ) , ( 2011 , 55.53 ) , ( 2012 , 56.71 ) , ( 2013 , 57.73 ) , ( 2014 , 58.93 ) , ( 2015 , 59.82 ) , ( 2016 , 60.41 ) , ( 2017 , 61.54 ) , ( 2018 , 62.56 ) , ( 2019 , 63.93 ) ) )
     tabidx = ftab_in_d_table["Global_CH4_emi_from_waste_H"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_CH4_emi_from_waste_H"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Global_CH4_emi_from_waste_H"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18128,12 +15817,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] + mdf[rowi, idx2] + mdf[rowi, idx3]
 
     # Global_CO2_emi_from_IPC1_use_H_PRIMAP = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 18.41 ) , ( 1981 , 17.89 ) , ( 1982 , 17.8 ) , ( 1983 , 17.93 ) , ( 1984 , 18.47 ) , ( 1985 , 19.08 ) , ( 1986 , 19.33 ) , ( 1987 , 19.78 ) , ( 1988 , 20.54 ) , ( 1989 , 20.85 ) , ( 1990 , 20.5 ) , ( 1991 , 20.99 ) , ( 1992 , 20.3 ) , ( 1993 , 20.46 ) , ( 1994 , 20.63 ) , ( 1995 , 21.08 ) , ( 1996 , 21.77 ) , ( 1997 , 21.87 ) , ( 1998 , 21.81 ) , ( 1999 , 22.03 ) , ( 2000 , 22.64 ) , ( 2001 , 22.82 ) , ( 2002 , 23.32 ) , ( 2003 , 24.51 ) , ( 2004 , 25.48 ) , ( 2005 , 26.37 ) , ( 2006 , 27.14 ) , ( 2007 , 27.92 ) , ( 2008 , 28.47 ) , ( 2009 , 28.1 ) , ( 2010 , 29.49 ) , ( 2011 , 30.47 ) , ( 2012 , 31.02 ) , ( 2013 , 31.25 ) , ( 2014 , 31.62 ) , ( 2015 , 31.63 ) , ( 2016 , 31.47 ) , ( 2017 , 31.86 ) , ( 2018 , 32.4 ) , ( 2019 , 32.4 ) ) )
-    tabidx = ftab_in_d_table[
-      "Global_CO2_emi_from_IPC1_use_H_PRIMAP"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_CO2_emi_from_IPC1_use_H_PRIMAP"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Global_CO2_emi_from_IPC1_use_H_PRIMAP"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Global_CO2_emi_from_IPC1_use_H_PRIMAP"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18147,12 +15832,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = globsum
 
     # Global_CO2_emi_from_IPC2_use_H_PRIMAP = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1.68 ) , ( 1981 , 1.66 ) , ( 1982 , 1.47 ) , ( 1983 , 1.48 ) , ( 1984 , 1.6 ) , ( 1985 , 1.59 ) , ( 1986 , 1.6 ) , ( 1987 , 1.64 ) , ( 1988 , 1.73 ) , ( 1989 , 1.73 ) , ( 1990 , 1.7 ) , ( 1991 , 1.7 ) , ( 1992 , 1.7 ) , ( 1993 , 1.71 ) , ( 1994 , 1.76 ) , ( 1995 , 1.83 ) , ( 1996 , 1.82 ) , ( 1997 , 1.87 ) , ( 1998 , 1.87 ) , ( 1999 , 1.89 ) , ( 2000 , 1.96 ) , ( 2001 , 1.98 ) , ( 2002 , 2.04 ) , ( 2003 , 2.16 ) , ( 2004 , 2.3 ) , ( 2005 , 2.37 ) , ( 2006 , 2.54 ) , ( 2007 , 2.67 ) , ( 2008 , 2.67 ) , ( 2009 , 2.6 ) , ( 2010 , 2.82 ) , ( 2011 , 2.96 ) , ( 2012 , 3 ) , ( 2013 , 3.11 ) , ( 2014 , 3.23 ) , ( 2015 , 3.15 ) , ( 2016 , 3.18 ) , ( 2017 , 3.23 ) , ( 2018 , 3.36 ) , ( 2019 , 3.46 ) ) )
-    tabidx = ftab_in_d_table[
-      "Global_CO2_emi_from_IPC2_use_H_PRIMAP"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_CO2_emi_from_IPC2_use_H_PRIMAP"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Global_CO2_emi_from_IPC2_use_H_PRIMAP"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Global_CO2_emi_from_IPC2_use_H_PRIMAP"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18166,14 +15847,11 @@ def ugregmod(game_id, von, bis):
 
     # Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption[region] = SMOOTH3 ( Net_growth_in_forest_area[region] , Time_to_adjust_forest_area_to_CO2_emissions )
     idxin = fcol_in_mdf["Net_growth_in_forest_area"]
-    idx2 = fcol_in_mdf[
-      "Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption_2"
+    idx2 = fcol_in_mdf["Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption_2"
     ]
-    idx1 = fcol_in_mdf[
-      "Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption_1"
+    idx1 = fcol_in_mdf["Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption_1"
     ]
-    idxout = fcol_in_mdf[
-      "Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption"
+    idxout = fcol_in_mdf["Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption"
     ]
     for j in range(0, 10):
       mdf[rowi, idx1 + j] = (
@@ -18197,12 +15875,10 @@ def ugregmod(game_id, von, bis):
 
     # LULUC_emissions[region] = LULUC_emissions_a[region] * Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption[region] + LULUC_emissions_b[region]
     idxlhs = fcol_in_mdf["LULUC_emissions"]
-    idx1 = fcol_in_mdf[
-      "Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption"
+    idx1 = fcol_in_mdf["Net_growth_in_forest_area_causing_CO2_emissions_resp_absorption"
     ]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        LULUC_emissions_a[j] * mdf[rowi, idx1 + j] + LULUC_emissions_b[j]
+      mdf[rowi, idxlhs + j] = (LULUC_emissions_a[j] * mdf[rowi, idx1 + j] + LULUC_emissions_b[j]
       )
 
     # Global_LULUC_emissions = SUM ( LULUC_emissions[region!] )
@@ -18222,9 +15898,7 @@ def ugregmod(game_id, von, bis):
 
     # Global_LULUC_emissions_H = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1.71 ) , ( 1981 , - 4.67 ) , ( 1982 , - 0.72 ) , ( 1983 , 1.42 ) , ( 1984 , - 5.17 ) , ( 1985 , - 1.94 ) , ( 1986 , - 0.75 ) , ( 1987 , 4.39 ) , ( 1988 , - 4.78 ) , ( 1989 , - 6.21 ) , ( 1990 , - 0.26 ) , ( 1991 , - 1.48 ) , ( 1992 , - 1.24 ) , ( 1993 , - 2.73 ) , ( 1994 , - 1.25 ) , ( 1995 , - 4.16 ) , ( 1996 , - 7.21 ) , ( 1997 , - 5.45 ) , ( 1998 , - 4.12 ) , ( 1999 , - 10.02 ) , ( 2000 , - 11.55 ) , ( 2001 , - 3.5 ) , ( 2002 , - 0.81 ) , ( 2003 , - 2.63 ) , ( 2004 , - 4.69 ) , ( 2005 , - 1.16 ) , ( 2006 , - 7.54 ) , ( 2007 , - 7.62 ) , ( 2008 , - 10.51 ) , ( 2009 , - 4.37 ) , ( 2010 , - 10.68 ) , ( 2011 , - 11.28 ) , ( 2012 , - 5.02 ) , ( 2013 , - 6.22 ) , ( 2014 , - 4.11 ) , ( 2015 , - 0.33 ) , ( 2016 , - 4.43 ) , ( 2017 , - 5.77 ) , ( 2018 , - 6.67 ) ) )
     tabidx = ftab_in_d_table["Global_LULUC_emissions_H"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_LULUC_emissions_H"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Global_LULUC_emissions_H"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18242,12 +15916,8 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * UNIT_conv_to_TUSD
 
     # Regional_population_as_fraction_of_total_hist[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0525066 ) , ( 1981 , 0.0520854 ) , ( 1982 , 0.0516664 ) , ( 1983 , 0.0512454 ) , ( 1984 , 0.0508179 ) , ( 1985 , 0.0503829 ) , ( 1986 , 0.0499397 ) , ( 1987 , 0.0494946 ) , ( 1988 , 0.049062 ) , ( 1989 , 0.0486594 ) , ( 1990 , 0.0482986 ) , ( 1991 , 0.0479783 ) , ( 1992 , 0.0476952 ) , ( 1993 , 0.0474536 ) , ( 1994 , 0.0472591 ) , ( 1995 , 0.0471124 ) , ( 1996 , 0.0470165 ) , ( 1997 , 0.0469638 ) , ( 1998 , 0.0469296 ) , ( 1999 , 0.0468833 ) , ( 2000 , 0.0468038 ) , ( 2001 , 0.0466826 ) , ( 2002 , 0.046527 ) , ( 2003 , 0.0463513 ) , ( 2004 , 0.0461761 ) , ( 2005 , 0.0460159 ) , ( 2006 , 0.0458736 ) , ( 2007 , 0.045742 ) , ( 2008 , 0.0456134 ) , ( 2009 , 0.0454756 ) , ( 2010 , 0.0453203 ) , ( 2011 , 0.0451475 ) , ( 2012 , 0.0449605 ) , ( 2013 , 0.0447612 ) , ( 2014 , 0.0445527 ) , ( 2015 , 0.044338 ) , ( 2016 , 0.0441171 ) , ( 2017 , 0.0438914 ) , ( 2018 , 0.0436659 ) , ( 2019 , 0.0434473 ) , ( 2020 , 0.0432399 ) ) ) Regional_population_as_fraction_of_total_hist[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0819172 ) , ( 1981 , 0.0827883 ) , ( 1982 , 0.0836937 ) , ( 1983 , 0.0846219 ) , ( 1984 , 0.0855565 ) , ( 1985 , 0.0864879 ) , ( 1986 , 0.0874107 ) , ( 1987 , 0.0883292 ) , ( 1988 , 0.0892647 ) , ( 1989 , 0.0902449 ) , ( 1990 , 0.0912861 ) , ( 1991 , 0.0923989 ) , ( 1992 , 0.0935728 ) , ( 1993 , 0.0947917 ) , ( 1994 , 0.0960295 ) , ( 1995 , 0.0972692 ) , ( 1996 , 0.0985085 ) , ( 1997 , 0.0997543 ) , ( 1998 , 0.101019 ) , ( 1999 , 0.102315 ) , ( 2000 , 0.103652 ) , ( 2001 , 0.105032 ) , ( 2002 , 0.106453 ) , ( 2003 , 0.10792 ) , ( 2004 , 0.109433 ) , ( 2005 , 0.110993 ) , ( 2006 , 0.112599 ) , ( 2007 , 0.114255 ) , ( 2008 , 0.115959 ) , ( 2009 , 0.117712 ) , ( 2010 , 0.119515 ) , ( 2011 , 0.121367 ) , ( 2012 , 0.123265 ) , ( 2013 , 0.125208 ) , ( 2014 , 0.127192 ) , ( 2015 , 0.129214 ) , ( 2016 , 0.131275 ) , ( 2017 , 0.133373 ) , ( 2018 , 0.135502 ) , ( 2019 , 0.137659 ) , ( 2020 , 0.139838 ) ) ) Regional_population_as_fraction_of_total_hist[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.230985 ) , ( 1981 , 0.230163 ) , ( 1982 , 0.22929 ) , ( 1983 , 0.228471 ) , ( 1984 , 0.227835 ) , ( 1985 , 0.227453 ) , ( 1986 , 0.227366 ) , ( 1987 , 0.227509 ) , ( 1988 , 0.227709 ) , ( 1989 , 0.227745 ) , ( 1990 , 0.227472 ) , ( 1991 , 0.226847 ) , ( 1992 , 0.225934 ) , ( 1993 , 0.224817 ) , ( 1994 , 0.22362 ) , ( 1995 , 0.222429 ) , ( 1996 , 0.221259 ) , ( 1997 , 0.220086 ) , ( 1998 , 0.2189 ) , ( 1999 , 0.217679 ) , ( 2000 , 0.216414 ) , ( 2001 , 0.215106 ) , ( 2002 , 0.213772 ) , ( 2003 , 0.212418 ) , ( 2004 , 0.211051 ) , ( 2005 , 0.209679 ) , ( 2006 , 0.208304 ) , ( 2007 , 0.206931 ) , ( 2008 , 0.205566 ) , ( 2009 , 0.204222 ) , ( 2010 , 0.202904 ) , ( 2011 , 0.201613 ) , ( 2012 , 0.200347 ) , ( 2013 , 0.199103 ) , ( 2014 , 0.197873 ) , ( 2015 , 0.196653 ) , ( 2016 , 0.195441 ) , ( 2017 , 0.194236 ) , ( 2018 , 0.193027 ) , ( 2019 , 0.191802 ) , ( 2020 , 0.190552 ) ) ) Regional_population_as_fraction_of_total_hist[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0413879 ) , ( 1981 , 0.0420248 ) , ( 1982 , 0.0426981 ) , ( 1983 , 0.0433867 ) , ( 1984 , 0.0440657 ) , ( 1985 , 0.0447153 ) , ( 1986 , 0.0453284 ) , ( 1987 , 0.0459083 ) , ( 1988 , 0.0464516 ) , ( 1989 , 0.0469621 ) , ( 1990 , 0.047442 ) , ( 1991 , 0.0478925 ) , ( 1992 , 0.0483151 ) , ( 1993 , 0.0487096 ) , ( 1994 , 0.0490767 ) , ( 1995 , 0.0494193 ) , ( 1996 , 0.0497389 ) , ( 1997 , 0.0500402 ) , ( 1998 , 0.0503324 ) , ( 1999 , 0.0506257 ) , ( 2000 , 0.0509276 ) , ( 2001 , 0.0512398 ) , ( 2002 , 0.0515632 ) , ( 2003 , 0.0519077 ) , ( 2004 , 0.0522839 ) , ( 2005 , 0.052699 ) , ( 2006 , 0.0531555 ) , ( 2007 , 0.0536464 ) , ( 2008 , 0.0541575 ) , ( 2009 , 0.0546675 ) , ( 2010 , 0.0551629 ) , ( 2011 , 0.0556404 ) , ( 2012 , 0.0561025 ) , ( 2013 , 0.0565471 ) , ( 2014 , 0.0569748 ) , ( 2015 , 0.0573861 ) , ( 2016 , 0.0577769 ) , ( 2017 , 0.0581493 ) , ( 2018 , 0.0585139 ) , ( 2019 , 0.0588861 ) , ( 2020 , 0.0592743 ) ) ) Regional_population_as_fraction_of_total_hist[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.200317 ) , ( 1981 , 0.201682 ) , ( 1982 , 0.203062 ) , ( 1983 , 0.204418 ) , ( 1984 , 0.205705 ) , ( 1985 , 0.206896 ) , ( 1986 , 0.207975 ) , ( 1987 , 0.208962 ) , ( 1988 , 0.209905 ) , ( 1989 , 0.210871 ) , ( 1990 , 0.211905 ) , ( 1991 , 0.213015 ) , ( 1992 , 0.214185 ) , ( 1993 , 0.215413 ) , ( 1994 , 0.216688 ) , ( 1995 , 0.217999 ) , ( 1996 , 0.219343 ) , ( 1997 , 0.220715 ) , ( 1998 , 0.222087 ) , ( 1999 , 0.223428 ) , ( 2000 , 0.224715 ) , ( 2001 , 0.225936 ) , ( 2002 , 0.22709 ) , ( 2003 , 0.22817 ) , ( 2004 , 0.229172 ) , ( 2005 , 0.230092 ) , ( 2006 , 0.23093 ) , ( 2007 , 0.231685 ) , ( 2008 , 0.232347 ) , ( 2009 , 0.232909 ) , ( 2010 , 0.233365 ) , ( 2011 , 0.233716 ) , ( 2012 , 0.233974 ) , ( 2013 , 0.234166 ) , ( 2014 , 0.234331 ) , ( 2015 , 0.234494 ) , ( 2016 , 0.234664 ) , ( 2017 , 0.234837 ) , ( 2018 , 0.235017 ) , ( 2019 , 0.2352 ) , ( 2020 , 0.235384 ) ) ) Regional_population_as_fraction_of_total_hist[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0805174 ) , ( 1981 , 0.0808909 ) , ( 1982 , 0.0812472 ) , ( 1983 , 0.0815746 ) , ( 1984 , 0.0818569 ) , ( 1985 , 0.0820873 ) , ( 1986 , 0.0822603 ) , ( 1987 , 0.0823858 ) , ( 1988 , 0.0824875 ) , ( 1989 , 0.0825949 ) , ( 1990 , 0.0827308 ) , ( 1991 , 0.0828983 ) , ( 1992 , 0.0830915 ) , ( 1993 , 0.0833012 ) , ( 1994 , 0.0835174 ) , ( 1995 , 0.08373 ) , ( 1996 , 0.083939 ) , ( 1997 , 0.084144 ) , ( 1998 , 0.0843381 ) , ( 1999 , 0.0845128 ) , ( 2000 , 0.0846633 ) , ( 2001 , 0.084787 ) , ( 2002 , 0.0848845 ) , ( 2003 , 0.0849569 ) , ( 2004 , 0.0850064 ) , ( 2005 , 0.085035 ) , ( 2006 , 0.0850422 ) , ( 2007 , 0.0850297 ) , ( 2008 , 0.0850001 ) , ( 2009 , 0.0849597 ) , ( 2010 , 0.0849092 ) , ( 2011 , 0.0848529 ) , ( 2012 , 0.0847901 ) , ( 2013 , 0.0847197 ) , ( 2014 , 0.0846417 ) , ( 2015 , 0.0845547 ) , ( 2016 , 0.0844588 ) , ( 2017 , 0.0843559 ) , ( 2018 , 0.0842489 ) , ( 2019 , 0.0841415 ) , ( 2020 , 0.0840364 ) ) ) Regional_population_as_fraction_of_total_hist[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0486504 ) , ( 1981 , 0.0482934 ) , ( 1982 , 0.0479349 ) , ( 1983 , 0.0475661 ) , ( 1984 , 0.0471766 ) , ( 1985 , 0.0467614 ) , ( 1986 , 0.0463189 ) , ( 1987 , 0.0458572 ) , ( 1988 , 0.0453935 ) , ( 1989 , 0.0449487 ) , ( 1990 , 0.0445358 ) , ( 1991 , 0.0441586 ) , ( 1992 , 0.0438104 ) , ( 1993 , 0.0434824 ) , ( 1994 , 0.0431616 ) , ( 1995 , 0.0428382 ) , ( 1996 , 0.0425109 ) , ( 1997 , 0.0421826 ) , ( 1998 , 0.0418547 ) , ( 1999 , 0.0415297 ) , ( 2000 , 0.0412096 ) , ( 2001 , 0.0408947 ) , ( 2002 , 0.040583 ) , ( 2003 , 0.0402744 ) , ( 2004 , 0.0399685 ) , ( 2005 , 0.0396647 ) , ( 2006 , 0.0393627 ) , ( 2007 , 0.0390622 ) , ( 2008 , 0.0387638 ) , ( 2009 , 0.038468 ) , ( 2010 , 0.0381754 ) , ( 2011 , 0.0378856 ) , ( 2012 , 0.0375986 ) , ( 2013 , 0.0373113 ) , ( 2014 , 0.0370199 ) , ( 2015 , 0.0367226 ) , ( 2016 , 0.0364185 ) , ( 2017 , 0.0361091 ) , ( 2018 , 0.0357966 ) , ( 2019 , 0.0354841 ) , ( 2020 , 0.0351743 ) ) ) Regional_population_as_fraction_of_total_hist[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0736851 ) , ( 1981 , 0.0729648 ) , ( 1982 , 0.0722219 ) , ( 1983 , 0.071467 ) , ( 1984 , 0.0707135 ) , ( 1985 , 0.0699724 ) , ( 1986 , 0.069245 ) , ( 1987 , 0.0685265 ) , ( 1988 , 0.0678181 ) , ( 1989 , 0.0671179 ) , ( 1990 , 0.0664223 ) , ( 1991 , 0.0657367 ) , ( 1992 , 0.0650568 ) , ( 1993 , 0.064363 ) , ( 1994 , 0.0636314 ) , ( 1995 , 0.0628475 ) , ( 1996 , 0.0620063 ) , ( 1997 , 0.0611217 ) , ( 1998 , 0.0602247 ) , ( 1999 , 0.0593565 ) , ( 2000 , 0.058546 ) , ( 2001 , 0.0578029 ) , ( 2002 , 0.0571189 ) , ( 2003 , 0.0564842 ) , ( 2004 , 0.0558807 ) , ( 2005 , 0.0552956 ) , ( 2006 , 0.0547266 ) , ( 2007 , 0.0541798 ) , ( 2008 , 0.0536651 ) , ( 2009 , 0.0531966 ) , ( 2010 , 0.0527824 ) , ( 2011 , 0.0524254 ) , ( 2012 , 0.0521157 ) , ( 2013 , 0.0518375 ) , ( 2014 , 0.0515692 ) , ( 2015 , 0.0512955 ) , ( 2016 , 0.0510114 ) , ( 2017 , 0.0507203 ) , ( 2018 , 0.0504225 ) , ( 2019 , 0.0501221 ) , ( 2020 , 0.0498219 ) ) ) Regional_population_as_fraction_of_total_hist[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.1094 ) , ( 1981 , 0.108038 ) , ( 1982 , 0.106667 ) , ( 1983 , 0.10529 ) , ( 1984 , 0.103908 ) , ( 1985 , 0.102526 ) , ( 1986 , 0.101142 ) , ( 1987 , 0.099766 ) , ( 1988 , 0.0984307 ) , ( 1989 , 0.0971721 ) , ( 1990 , 0.0960105 ) , ( 1991 , 0.0949569 ) , ( 1992 , 0.0939958 ) , ( 1993 , 0.0930973 ) , ( 1994 , 0.0922191 ) , ( 1995 , 0.0913368 ) , ( 1996 , 0.0904396 ) , ( 1997 , 0.0895391 ) , ( 1998 , 0.0886591 ) , ( 1999 , 0.0878342 ) , ( 2000 , 0.0870852 ) , ( 2001 , 0.0864168 ) , ( 2002 , 0.0858157 ) , ( 2003 , 0.0852604 ) , ( 2004 , 0.0847241 ) , ( 2005 , 0.0841861 ) , ( 2006 , 0.083642 ) , ( 2007 , 0.0830959 ) , ( 2008 , 0.0825474 ) , ( 2009 , 0.0819995 ) , ( 2010 , 0.0814537 ) , ( 2011 , 0.080906 ) , ( 2012 , 0.0803554 ) , ( 2013 , 0.0798082 ) , ( 2014 , 0.0792715 ) , ( 2015 , 0.0787511 ) , ( 2016 , 0.0782506 ) , ( 2017 , 0.0777639 ) , ( 2018 , 0.077278 ) , ( 2019 , 0.0767714 ) , ( 2020 , 0.076233 ) ) ) Regional_population_as_fraction_of_total_hist[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.0806328 ) , ( 1981 , 0.0810695 ) , ( 1982 , 0.0815188 ) , ( 1983 , 0.0819591 ) , ( 1984 , 0.0823646 ) , ( 1985 , 0.0827183 ) , ( 1986 , 0.0830137 ) , ( 1987 , 0.083262 ) , ( 1988 , 0.0834777 ) , ( 1989 , 0.0836841 ) , ( 1990 , 0.083897 ) , ( 1991 , 0.0841183 ) , ( 1992 , 0.0843436 ) , ( 1993 , 0.0845711 ) , ( 1994 , 0.0847973 ) , ( 1995 , 0.0850194 ) , ( 1996 , 0.0852385 ) , ( 1997 , 0.0854534 ) , ( 1998 , 0.0856562 ) , ( 1999 , 0.0858352 ) , ( 2000 , 0.0859846 ) , ( 2001 , 0.086102 ) , ( 2002 , 0.0861917 ) , ( 2003 , 0.0862575 ) , ( 2004 , 0.0863053 ) , ( 2005 , 0.0863407 ) , ( 2006 , 0.0863636 ) , ( 2007 , 0.0863738 ) , ( 2008 , 0.08638 ) , ( 2009 , 0.0863907 ) , ( 2010 , 0.0864116 ) , ( 2011 , 0.0864464 ) , ( 2012 , 0.0864915 ) , ( 2013 , 0.0865381 ) , ( 2014 , 0.0865743 ) , ( 2015 , 0.0865909 ) , ( 2016 , 0.0865863 ) , ( 2017 , 0.0865637 ) , ( 2018 , 0.0865282 ) , ( 2019 , 0.0864875 ) , ( 2020 , 0.0864466 ) ) )
-    tabidx = ftab_in_d_table[
-      "Regional_population_as_fraction_of_total_hist"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Regional_population_as_fraction_of_total_hist"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Regional_population_as_fraction_of_total_hist"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Regional_population_as_fraction_of_total_hist"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -18261,9 +15931,7 @@ def ugregmod(game_id, von, bis):
 
     # N2O_emi_from_agri_hist_table[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1.15 ) , ( 1981 , 1.17 ) , ( 1982 , 1.11 ) , ( 1983 , 1.09 ) , ( 1984 , 1.16 ) , ( 1985 , 1.13 ) , ( 1986 , 1.09 ) , ( 1987 , 1.07 ) , ( 1988 , 1.04 ) , ( 1989 , 1.08 ) , ( 1990 , 1.11 ) , ( 1991 , 1.07 ) , ( 1992 , 1.06 ) , ( 1993 , 1.14 ) , ( 1994 , 1.08 ) , ( 1995 , 1.1 ) , ( 1996 , 1.13 ) , ( 1997 , 1.1 ) , ( 1998 , 1.12 ) , ( 1999 , 1.09 ) , ( 2000 , 1.04 ) , ( 2001 , 1.12 ) , ( 2002 , 1.11 ) , ( 2003 , 1.12 ) , ( 2004 , 1.16 ) , ( 2005 , 1.11 ) , ( 2006 , 1.09 ) , ( 2007 , 1.13 ) , ( 2008 , 1.12 ) , ( 2009 , 1.13 ) , ( 2010 , 1.15 ) , ( 2011 , 1.11 ) , ( 2012 , 1.04 ) , ( 2013 , 1.2 ) , ( 2014 , 1.23 ) , ( 2015 , 1.23 ) , ( 2016 , 1.17 ) , ( 2017 , 1.16 ) , ( 2018 , 1.2 ) , ( 2019 , 1.22 ) ) ) N2O_emi_from_agri_hist_table[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.59 ) , ( 1981 , 0.55 ) , ( 1982 , 0.59 ) , ( 1983 , 0.58 ) , ( 1984 , 0.53 ) , ( 1985 , 0.53 ) , ( 1986 , 0.53 ) , ( 1987 , 0.59 ) , ( 1988 , 0.53 ) , ( 1989 , 0.57 ) , ( 1990 , 0.68 ) , ( 1991 , 0.69 ) , ( 1992 , 0.7 ) , ( 1993 , 0.7 ) , ( 1994 , 0.72 ) , ( 1995 , 0.74 ) , ( 1996 , 0.78 ) , ( 1997 , 0.82 ) , ( 1998 , 0.88 ) , ( 1999 , 0.91 ) , ( 2000 , 0.91 ) , ( 2001 , 0.9 ) , ( 2002 , 0.91 ) , ( 2003 , 0.91 ) , ( 2004 , 0.92 ) , ( 2005 , 0.94 ) , ( 2006 , 0.92 ) , ( 2007 , 0.97 ) , ( 2008 , 1.02 ) , ( 2009 , 0.99 ) , ( 2010 , 1.06 ) , ( 2011 , 1.06 ) , ( 2012 , 1.08 ) , ( 2013 , 1.09 ) , ( 2014 , 1.1 ) , ( 2015 , 1.11 ) , ( 2016 , 1.16 ) , ( 2017 , 1.17 ) , ( 2018 , 1.17 ) , ( 2019 , 1.18 ) ) ) N2O_emi_from_agri_hist_table[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.53 ) , ( 1981 , 0.52 ) , ( 1982 , 0.54 ) , ( 1983 , 0.58 ) , ( 1984 , 0.61 ) , ( 1985 , 0.58 ) , ( 1986 , 0.59 ) , ( 1987 , 0.67 ) , ( 1988 , 0.71 ) , ( 1989 , 0.73 ) , ( 1990 , 0.76 ) , ( 1991 , 0.78 ) , ( 1992 , 0.79 ) , ( 1993 , 0.76 ) , ( 1994 , 0.79 ) , ( 1995 , 0.92 ) , ( 1996 , 0.99 ) , ( 1997 , 0.91 ) , ( 1998 , 0.93 ) , ( 1999 , 0.98 ) , ( 2000 , 0.95 ) , ( 2001 , 0.96 ) , ( 2002 , 1.01 ) , ( 2003 , 1.02 ) , ( 2004 , 1.05 ) , ( 2005 , 1.07 ) , ( 2006 , 1.09 ) , ( 2007 , 1.1 ) , ( 2008 , 1.12 ) , ( 2009 , 1.15 ) , ( 2010 , 1.16 ) , ( 2011 , 1.31 ) , ( 2012 , 1.48 ) , ( 2013 , 1.32 ) , ( 2014 , 1.17 ) , ( 2015 , 1.18 ) , ( 2016 , 1.18 ) , ( 2017 , 1.15 ) , ( 2018 , 1.13 ) , ( 2019 , 1.12 ) ) ) N2O_emi_from_agri_hist_table[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.13 ) , ( 1981 , 0.14 ) , ( 1982 , 0.14 ) , ( 1983 , 0.15 ) , ( 1984 , 0.16 ) , ( 1985 , 0.17 ) , ( 1986 , 0.18 ) , ( 1987 , 0.18 ) , ( 1988 , 0.18 ) , ( 1989 , 0.19 ) , ( 1990 , 0.2 ) , ( 1991 , 0.2 ) , ( 1992 , 0.21 ) , ( 1993 , 0.21 ) , ( 1994 , 0.21 ) , ( 1995 , 0.21 ) , ( 1996 , 0.22 ) , ( 1997 , 0.22 ) , ( 1998 , 0.23 ) , ( 1999 , 0.23 ) , ( 2000 , 0.23 ) , ( 2001 , 0.24 ) , ( 2002 , 0.25 ) , ( 2003 , 0.25 ) , ( 2004 , 0.27 ) , ( 2005 , 0.28 ) , ( 2006 , 0.28 ) , ( 2007 , 0.28 ) , ( 2008 , 0.27 ) , ( 2009 , 0.26 ) , ( 2010 , 0.26 ) , ( 2011 , 0.26 ) , ( 2012 , 0.27 ) , ( 2013 , 0.27 ) , ( 2014 , 0.26 ) , ( 2015 , 0.26 ) , ( 2016 , 0.27 ) , ( 2017 , 0.27 ) , ( 2018 , 0.27 ) , ( 2019 , 0.28 ) ) ) N2O_emi_from_agri_hist_table[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.18 ) , ( 1981 , 0.19 ) , ( 1982 , 0.19 ) , ( 1983 , 0.2 ) , ( 1984 , 0.21 ) , ( 1985 , 0.22 ) , ( 1986 , 0.23 ) , ( 1987 , 0.23 ) , ( 1988 , 0.24 ) , ( 1989 , 0.25 ) , ( 1990 , 0.25 ) , ( 1991 , 0.26 ) , ( 1992 , 0.27 ) , ( 1993 , 0.27 ) , ( 1994 , 0.28 ) , ( 1995 , 0.3 ) , ( 1996 , 0.31 ) , ( 1997 , 0.32 ) , ( 1998 , 0.33 ) , ( 1999 , 0.35 ) , ( 2000 , 0.35 ) , ( 2001 , 0.36 ) , ( 2002 , 0.36 ) , ( 2003 , 0.37 ) , ( 2004 , 0.38 ) , ( 2005 , 0.4 ) , ( 2006 , 0.42 ) , ( 2007 , 0.43 ) , ( 2008 , 0.45 ) , ( 2009 , 0.47 ) , ( 2010 , 0.48 ) , ( 2011 , 0.5 ) , ( 2012 , 0.5 ) , ( 2013 , 0.52 ) , ( 2014 , 0.54 ) , ( 2015 , 0.56 ) , ( 2016 , 0.57 ) , ( 2017 , 0.59 ) , ( 2018 , 0.6 ) , ( 2019 , 0.6 ) ) ) N2O_emi_from_agri_hist_table[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.74 ) , ( 1981 , 0.74 ) , ( 1982 , 0.74 ) , ( 1983 , 0.74 ) , ( 1984 , 0.75 ) , ( 1985 , 0.76 ) , ( 1986 , 0.78 ) , ( 1987 , 0.81 ) , ( 1988 , 0.8 ) , ( 1989 , 0.81 ) , ( 1990 , 0.82 ) , ( 1991 , 0.82 ) , ( 1992 , 0.83 ) , ( 1993 , 0.84 ) , ( 1994 , 0.85 ) , ( 1995 , 0.86 ) , ( 1996 , 0.84 ) , ( 1997 , 0.85 ) , ( 1998 , 0.87 ) , ( 1999 , 0.87 ) , ( 2000 , 0.89 ) , ( 2001 , 0.93 ) , ( 2002 , 0.94 ) , ( 2003 , 0.99 ) , ( 2004 , 0.99 ) , ( 2005 , 1.02 ) , ( 2006 , 1.03 ) , ( 2007 , 1.06 ) , ( 2008 , 1.05 ) , ( 2009 , 1.05 ) , ( 2010 , 1.07 ) , ( 2011 , 1.1 ) , ( 2012 , 1.11 ) , ( 2013 , 1.11 ) , ( 2014 , 1.12 ) , ( 2015 , 1.09 ) , ( 2016 , 1.14 ) , ( 2017 , 1.18 ) , ( 2018 , 1.16 ) , ( 2019 , 1.18 ) ) ) N2O_emi_from_agri_hist_table[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.19 ) , ( 1981 , 0.18 ) , ( 1982 , 0.19 ) , ( 1983 , 0.19 ) , ( 1984 , 0.19 ) , ( 1985 , 0.21 ) , ( 1986 , 0.2 ) , ( 1987 , 0.19 ) , ( 1988 , 0.18 ) , ( 1989 , 0.19 ) , ( 1990 , 0.19 ) , ( 1991 , 0.19 ) , ( 1992 , 0.19 ) , ( 1993 , 0.19 ) , ( 1994 , 0.2 ) , ( 1995 , 0.2 ) , ( 1996 , 0.2 ) , ( 1997 , 0.21 ) , ( 1998 , 0.21 ) , ( 1999 , 0.21 ) , ( 2000 , 0.21 ) , ( 2001 , 0.2 ) , ( 2002 , 0.2 ) , ( 2003 , 0.2 ) , ( 2004 , 0.21 ) , ( 2005 , 0.21 ) , ( 2006 , 0.21 ) , ( 2007 , 0.2 ) , ( 2008 , 0.21 ) , ( 2009 , 0.21 ) , ( 2010 , 0.21 ) , ( 2011 , 0.21 ) , ( 2012 , 0.22 ) , ( 2013 , 0.23 ) , ( 2014 , 0.22 ) , ( 2015 , 0.22 ) , ( 2016 , 0.23 ) , ( 2017 , 0.23 ) , ( 2018 , 0.23 ) , ( 2019 , 0.23 ) ) ) N2O_emi_from_agri_hist_table[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.82 ) , ( 1981 , 0.82 ) , ( 1982 , 0.85 ) , ( 1983 , 0.89 ) , ( 1984 , 0.89 ) , ( 1985 , 0.91 ) , ( 1986 , 0.92 ) , ( 1987 , 0.93 ) , ( 1988 , 0.92 ) , ( 1989 , 0.88 ) , ( 1990 , 0.84 ) , ( 1991 , 0.78 ) , ( 1992 , 0.73 ) , ( 1993 , 0.68 ) , ( 1994 , 0.6 ) , ( 1995 , 0.56 ) , ( 1996 , 0.53 ) , ( 1997 , 0.53 ) , ( 1998 , 0.51 ) , ( 1999 , 0.49 ) , ( 2000 , 0.49 ) , ( 2001 , 0.49 ) , ( 2002 , 0.5 ) , ( 2003 , 0.48 ) , ( 2004 , 0.51 ) , ( 2005 , 0.5 ) , ( 2006 , 0.5 ) , ( 2007 , 0.5 ) , ( 2008 , 0.53 ) , ( 2009 , 0.53 ) , ( 2010 , 0.51 ) , ( 2011 , 0.54 ) , ( 2012 , 0.52 ) , ( 2013 , 0.55 ) , ( 2014 , 0.55 ) , ( 2015 , 0.56 ) , ( 2016 , 0.59 ) , ( 2017 , 0.59 ) , ( 2018 , 0.61 ) , ( 2019 , 0.61 ) ) ) N2O_emi_from_agri_hist_table[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.78 ) , ( 1981 , 0.77 ) , ( 1982 , 0.79 ) , ( 1983 , 0.79 ) , ( 1984 , 0.8 ) , ( 1985 , 0.8 ) , ( 1986 , 0.81 ) , ( 1987 , 0.8 ) , ( 1988 , 0.79 ) , ( 1989 , 0.79 ) , ( 1990 , 0.78 ) , ( 1991 , 0.75 ) , ( 1992 , 0.72 ) , ( 1993 , 0.7 ) , ( 1994 , 0.69 ) , ( 1995 , 0.7 ) , ( 1996 , 0.71 ) , ( 1997 , 0.71 ) , ( 1998 , 0.71 ) , ( 1999 , 0.71 ) , ( 2000 , 0.7 ) , ( 2001 , 0.69 ) , ( 2002 , 0.68 ) , ( 2003 , 0.67 ) , ( 2004 , 0.68 ) , ( 2005 , 0.67 ) , ( 2006 , 0.66 ) , ( 2007 , 0.67 ) , ( 2008 , 0.66 ) , ( 2009 , 0.65 ) , ( 2010 , 0.65 ) , ( 2011 , 0.65 ) , ( 2012 , 0.66 ) , ( 2013 , 0.67 ) , ( 2014 , 0.69 ) , ( 2015 , 0.68 ) , ( 2016 , 0.69 ) , ( 2017 , 0.7 ) , ( 2018 , 0.69 ) , ( 2019 , 0.69 ) ) ) N2O_emi_from_agri_hist_table[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0.18 ) , ( 1981 , 0.18 ) , ( 1982 , 0.19 ) , ( 1983 , 0.2 ) , ( 1984 , 0.2 ) , ( 1985 , 0.2 ) , ( 1986 , 0.21 ) , ( 1987 , 0.22 ) , ( 1988 , 0.22 ) , ( 1989 , 0.22 ) , ( 1990 , 0.23 ) , ( 1991 , 0.23 ) , ( 1992 , 0.24 ) , ( 1993 , 0.25 ) , ( 1994 , 0.25 ) , ( 1995 , 0.26 ) , ( 1996 , 0.27 ) , ( 1997 , 0.27 ) , ( 1998 , 0.27 ) , ( 1999 , 0.27 ) , ( 2000 , 0.27 ) , ( 2001 , 0.27 ) , ( 2002 , 0.28 ) , ( 2003 , 0.29 ) , ( 2004 , 0.3 ) , ( 2005 , 0.31 ) , ( 2006 , 0.31 ) , ( 2007 , 0.32 ) , ( 2008 , 0.33 ) , ( 2009 , 0.34 ) , ( 2010 , 0.35 ) , ( 2011 , 0.35 ) , ( 2012 , 0.36 ) , ( 2013 , 0.36 ) , ( 2014 , 0.36 ) , ( 2015 , 0.35 ) , ( 2016 , 0.37 ) , ( 2017 , 0.39 ) , ( 2018 , 0.39 ) , ( 2019 , 0.39 ) ) )
     tabidx = ftab_in_d_table["N2O_emi_from_agri_hist_table"]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "N2O_emi_from_agri_hist_table"
-    ]  # get the location of the lhs in mdf
+    idx2 = fcol_in_mdf["N2O_emi_from_agri_hist_table"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -18278,9 +15946,7 @@ def ugregmod(game_id, von, bis):
 
     # Global_N2O_emi_X_agri_H = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 2.42 ) , ( 1981 , 2.37 ) , ( 1982 , 2.28 ) , ( 1983 , 2.3 ) , ( 1984 , 2.32 ) , ( 1985 , 2.29 ) , ( 1986 , 2.26 ) , ( 1987 , 2.27 ) , ( 1988 , 2.25 ) , ( 1989 , 2.24 ) , ( 1990 , 2.12 ) , ( 1991 , 2.11 ) , ( 1992 , 2.14 ) , ( 1993 , 2.13 ) , ( 1994 , 2.17 ) , ( 1995 , 2.25 ) , ( 1996 , 2.33 ) , ( 1997 , 2.36 ) , ( 1998 , 2.3 ) , ( 1999 , 2.22 ) , ( 2000 , 2.29 ) , ( 2001 , 2.27 ) , ( 2002 , 2.3 ) , ( 2003 , 2.37 ) , ( 2004 , 2.5 ) , ( 2005 , 2.54 ) , ( 2006 , 2.56 ) , ( 2007 , 2.59 ) , ( 2008 , 2.52 ) , ( 2009 , 2.49 ) , ( 2010 , 2.52 ) , ( 2011 , 2.52 ) , ( 2012 , 2.47 ) , ( 2013 , 2.59 ) , ( 2014 , 2.7 ) , ( 2015 , 2.67 ) , ( 2016 , 2.7 ) , ( 2017 , 2.73 ) , ( 2018 , 2.77 ) , ( 2019 , 2.81 ) ) )
     tabidx = ftab_in_d_table["Global_N2O_emi_X_agri_H"]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Global_N2O_emi_X_agri_H"
-    ]  # get the location of the lhs in mdf
+    idxlhs = fcol_in_mdf["Global_N2O_emi_X_agri_H"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18314,8 +15980,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GHG_intensity_last_year"]
     idx3 = fcol_in_mdf["GHG_intensity_last_year"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
       )
 
     # RoC_in_Carbon_intensity[region] = ( Carbon_intensity[region] - Carbon_intensity_last_year[region] ) / Carbon_intensity_last_year[region] / One_year
@@ -18324,8 +15989,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Carbon_intensity_last_year"]
     idx3 = fcol_in_mdf["Carbon_intensity_last_year"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
       )
 
     # pb_Global_Warming = Temp_surface_anomaly_compared_to_1850_degC
@@ -18377,8 +16041,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Govt_defaults_written_off"]
     idx1 = fcol_in_mdf["Govt_in_default_to_private_lenders"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_write_off_govt_defaults_to_private_lenders
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_write_off_govt_defaults_to_private_lenders
       )
 
     # Govt_investment_share[region] = ( ( ( 1 - Future_leakage[region] ) * Govt_investment_in_public_capacity[region] ) / Eff_of_env_damage_on_cost_of_new_capacity[region] ) / GDP_USED[region]
@@ -18388,8 +16051,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Eff_of_env_damage_on_cost_of_new_capacity"]
     idx4 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        ((1 - mdf[rowi, idx1 + j]) * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (((1 - mdf[rowi, idx1 + j]) * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
       ) / mdf[rowi, idx4 + j]
 
     # GRASS_Biomass_in_construction_material_left_to_rot = GRASS_Biomass_locked_in_construction_material_GtBiomass / GRASS_Avg_life_of_building_yr * ( 1 - GRASS_Fraction_of_construction_waste_burned_0_to_1 )
@@ -18483,33 +16145,27 @@ def ugregmod(game_id, von, bis):
     mdf[rowi, idxlhs] = mdf[rowi, idx1]
 
     # Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py = Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py * ( 1 - Fraction_of_heat_needed_to_melt_antarctic_ice_coming_from_air )
-    idxlhs = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_antarctic_ice_ZJ_py"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * (
       1 - Fraction_of_heat_needed_to_melt_antarctic_ice_coming_from_air
     )
 
     # Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py = Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py * ( 1 - Fraction_of_heat_needed_to_melt_arctic_ice_coming_from_air )
-    idxlhs = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_arctic_sea_ice_ZJ_py"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * (
       1 - Fraction_of_heat_needed_to_melt_arctic_ice_coming_from_air
     )
 
     # Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py = Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py * ( 1 - Fraction_of_heat_needed_to_melt_Greenland_ice_that_slid_into_the_ocean_coming_from_air )
-    idxlhs = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
+    idxlhs = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
     ]
-    idx1 = fcol_in_mdf[
-      "Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_used_in_melting_is_pos_or_freezing_is_neg_Greenland_ice_that_slid_into_the_water_ZJ_py"
     ]
     mdf[rowi, idxlhs] = mdf[rowi, idx1] * (
       1
@@ -18517,12 +16173,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # historical_deforestation_table[us] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 1 ) , ( 1990 , 1.1 ) , ( 2000 , - 2 ) , ( 2010 , - 1.1 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[af] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 7 ) , ( 1990 , 4 ) , ( 2000 , 0 ) , ( 2010 , 6 ) , ( 2020 , - 1 ) , ( 2030 , - 1 ) , ( 2050 , - 1 ) , ( 2075 , - 1 ) , ( 2100 , - 1 ) ) ) historical_deforestation_table[cn] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 3 ) , ( 1990 , 7 ) , ( 2000 , - 1 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[me] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 2 ) , ( 1990 , 2 ) , ( 2000 , 2 ) , ( 2010 , 2 ) , ( 2020 , 1 ) , ( 2030 , 0.5 ) , ( 2050 , 0.5 ) , ( 2075 , 0.5 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[sa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0.5 ) , ( 2000 , 0 ) , ( 2010 , 0.6 ) , ( 2020 , - 0.1 ) , ( 2030 , - 0.1 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[la] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , - 0.5 ) , ( 2010 , - 1 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[pa] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 0 ) , ( 2020 , - 1 ) , ( 2030 , - 0.5 ) , ( 2050 , - 0.5 ) , ( 2075 , - 0.5 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[ec] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 10 ) , ( 1990 , - 5 ) , ( 2000 , 2 ) , ( 2010 , 0 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[eu] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , - 0.5 ) , ( 2010 , 1 ) , ( 2020 , 0 ) , ( 2030 , 0 ) , ( 2050 , 0 ) , ( 2075 , 0 ) , ( 2100 , 0 ) ) ) historical_deforestation_table[se] = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1980 , 0 ) , ( 1990 , 0 ) , ( 2000 , 0 ) , ( 2010 , 1 ) , ( 2020 , 0 ) , ( 2030 , - 1 ) , ( 2050 , - 1 ) , ( 2075 , - 1 ) , ( 2100 , - 1 ) ) )
-    tabidx = ftab_in_d_table[
-      "historical_deforestation_table"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "historical_deforestation_table"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "historical_deforestation_table"]  # fetch the correct table
+    idx2 = fcol_in_mdf["historical_deforestation_table"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     for j in range(0, 10):
       mdf[rowi, idx2 + j] = GRAPH(zeit, look[:, 0], look[:, j + 1])
@@ -18547,8 +16199,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Extra_energy_productivity_index_2024_is_1"]
     idx2 = fcol_in_mdf["FTPEE_rate_of_change_policy"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * (mdf[rowi, idx2 + j] / 100) * UNIT_conv_to_1_per_yr
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * (mdf[rowi, idx2 + j] / 100) * UNIT_conv_to_1_per_yr
       )
 
     # Increase_in_existential_minimum = IF_THEN_ELSE ( zeit > 2023 , 0 , 0 )
@@ -18589,25 +16240,20 @@ def ugregmod(game_id, von, bis):
     idx6 = fcol_in_mdf["Regenerative_cropland_fraction"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j] >= 0.03,
-        (mdf[rowi, idx4 + j] + mdf[rowi, idx5 + j] - mdf[rowi, idx6 + j]),
-        0,
-      )
+        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] - mdf[rowi, idx3 + j] >= 0.03,     (mdf[rowi, idx4 + j] + mdf[rowi, idx5 + j] - mdf[rowi, idx6 + j]),     0,   )
 
     # Increase_in_regen_cropland[region] = Not_enough_regen_cropland[region] / Time_to_implement_regen_practices * Eff_of_wealth_on_regnerative_practices[region]
     idxlhs = fcol_in_mdf["Increase_in_regen_cropland"]
     idx1 = fcol_in_mdf["Not_enough_regen_cropland"]
     idx2 = fcol_in_mdf["Eff_of_wealth_on_regnerative_practices"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_implement_regen_practices * mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_implement_regen_practices * mdf[rowi, idx2 + j]
       )
 
     # Indicated_inequality_index_with_tax[region] = Indicated_inequality_index_higher_is_more_unequal[region] / Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init[region]
     idxlhs = fcol_in_mdf["Indicated_inequality_index_with_tax"]
     idx1 = fcol_in_mdf["Indicated_inequality_index_higher_is_more_unequal"]
-    idx2 = fcol_in_mdf[
-      "Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init"
+    idx2 = fcol_in_mdf["Effect_of_Worker_to_owner_income_after_tax_ratio_scaled_to_init"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / mdf[rowi, idx2 + j]
@@ -18633,8 +16279,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["OSF_from_GDPpp_alone"]
     idx2 = fcol_in_mdf["Scaled_Size_of_industrial_sector"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        min(Max_OSF, max(Min_OSF, mdf[rowi, idx1 + j]))
+      mdf[rowi, idxlhs + j] = (min(Max_OSF, max(Min_OSF, mdf[rowi, idx1 + j]))
         * mdf[rowi, idx2 + j]
         * Strength_of_effect_of_industrial_sector_size_on_OSF[j]
       )
@@ -18649,12 +16294,8 @@ def ugregmod(game_id, von, bis):
     )
 
     # Urban_aerosol_concentration_hist = WITH LOOKUP ( zeit , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 1990 , 39.7 ) , ( 1995 , 39.6 ) , ( 2000 , 40.1 ) , ( 2005 , 41 ) , ( 2010 , 41.9 ) , ( 2015 , 41.9 ) , ( 2020 , 43.5 ) ) )
-    tabidx = ftab_in_d_table[
-      "Urban_aerosol_concentration_hist"
-    ]  # fetch the correct table
-    idxlhs = fcol_in_mdf[
-      "Urban_aerosol_concentration_hist"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Urban_aerosol_concentration_hist"]  # fetch the correct table
+    idxlhs = fcol_in_mdf["Urban_aerosol_concentration_hist"]  # get the location of the lhs in mdf
     look = d_table[tabidx]
     valgt = GRAPH(zeit, look[:, 0], look[:, 1])
     mdf[rowi, idxlhs] = valgt
@@ -18721,10 +16362,8 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Perceived_inventory_ratio"]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = max(
-        0,
-        SoE_of_inventory_on_inflation_rate[j]
-        * (mdf[rowi, idx1 + j] / Minimum_relative_inventory_without_inflation[j] - 1),
-      )
+        0,     SoE_of_inventory_on_inflation_rate[j]
+        * (mdf[rowi, idx1 + j] / Minimum_relative_inventory_without_inflation[j] - 1),   )
 
     # Kyoto_Fluor_degradation = Kyoto_Fluor_gases_in_atm / Time_to_degrade_Kyoto_Fluor_yr
     idxlhs = fcol_in_mdf["Kyoto_Fluor_degradation"]
@@ -18776,12 +16415,8 @@ def ugregmod(game_id, von, bis):
     ) * Lead_UNIT_conv_to_Mt_pr_yr
 
     # Leaving_the_labor_pool_limitation[region] = WITH LOOKUP ( Unemployed_to_labor_pool_ratio[region] , ( [ ( 0 , 0 ) - ( 0.55382 , 39.1651 ) ] , ( 0.01 , 0 ) , ( 0.02 , 0.02 ) , ( 0.04 , 0.25 ) , ( 0.06 , 0.7 ) , ( 0.08 , 0.95 ) , ( 0.1 , 1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Leaving_the_labor_pool_limitation"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Leaving_the_labor_pool_limitation"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Leaving_the_labor_pool_limitation"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Leaving_the_labor_pool_limitation"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Unemployed_to_labor_pool_ratio"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -18792,8 +16427,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["People_considering_leaving_the_pool"]
     idx2 = fcol_in_mdf["Leaving_the_labor_pool_limitation"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Time_to_implement_actually_leaving_the_pool
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Time_to_implement_actually_leaving_the_pool
       ) * mdf[rowi, idx2 + j]
 
     # Private_investment_share[region] = ( Private_Investment_in_new_capacity[region] - Funds_from_private_investment_leaked[region] ) / Eff_of_env_damage_on_cost_of_new_capacity[region] / GDP_USED[region]
@@ -18803,8 +16437,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Eff_of_env_damage_on_cost_of_new_capacity"]
     idx4 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j])
         / mdf[rowi, idx3 + j]
         / mdf[rowi, idx4 + j]
       )
@@ -18830,8 +16463,7 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Eff_of_env_damage_on_cost_of_new_capacity"]
     idx4 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        ((1 - mdf[rowi, idx1 + j]) * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (((1 - mdf[rowi, idx1 + j]) * mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j]
       ) / mdf[rowi, idx4 + j]
 
     # LW_clear_sky_emissions_to_surface = BB_radiation_at_Temp_in_atm_ZJ_py
@@ -18925,8 +16557,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Indicated_OSF_with_ind_sector_effect"]
     idx2 = fcol_in_mdf["Owner_saving_fraction"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
       ) / Time_to_adjust_owner_investment_behaviour_in_productive_assets
 
     # Temp_ocean_surface_in_K = Temp_surface_average_K - Temp_gradient_in_surface_degK
@@ -18952,8 +16583,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["net_migration_function"]
     idx1 = fcol_in_mdf["GDPpp_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        nmf_a[j] * math.log(mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl)
+      mdf[rowi, idxlhs + j] = (nmf_a[j] * math.log(mdf[rowi, idx1 + j] * UNIT_conv_to_make_exp_dmnl)
         + nmf_b[j]
         + nmf_c[j]
       )
@@ -18962,8 +16592,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["net_migration_10_to_14"]
     idx1 = fcol_in_mdf["net_migration_function"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Migration_fraction_10_to_14_cohort[j]
+      mdf[rowi, idxlhs + j] = (Migration_fraction_10_to_14_cohort[j]
         * mdf[rowi, idx1 + j]
         * Factor_to_account_for_net_migration_not_officially_recorded[j]
       )
@@ -18972,8 +16601,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["net_migration_20_to_24"]
     idx1 = fcol_in_mdf["net_migration_function"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Migration_fraction_20_to_24_cohort[j]
         * Factor_to_account_for_net_migration_not_officially_recorded[j]
       )
@@ -18982,8 +16610,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["net_migration_25_to_29"]
     idx1 = fcol_in_mdf["net_migration_function"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        Migration_fraction_25_to_29_cohort[j]
+      mdf[rowi, idxlhs + j] = (Migration_fraction_25_to_29_cohort[j]
         * mdf[rowi, idx1 + j]
         * Factor_to_account_for_net_migration_not_officially_recorded[j]
       )
@@ -18992,8 +16619,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["net_migration_30_to_34"]
     idx1 = fcol_in_mdf["net_migration_function"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j]
         * Migration_fraction_30_to_34_cohort[j]
         * Factor_to_account_for_net_migration_not_officially_recorded[j]
       )
@@ -19095,18 +16721,14 @@ def ugregmod(game_id, von, bis):
 
     # Ocean_heat_used_for_melting_ZJ_py = ( Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py + Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py + Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py ) / Heat_in_surface
     idxlhs = fcol_in_mdf["Ocean_heat_used_for_melting_ZJ_py"]
-    idx1 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
+    idx1 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_antarctic_ice_ZJ_py"
     ]
-    idx2 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
+    idx2 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_arctic_ice_ZJ_py"
     ]
-    idx3 = fcol_in_mdf[
-      "Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
+    idx3 = fcol_in_mdf["Heat_withdrawn_from_ocean_surface_by_melting_pos_or_added_neg_by_freezing_Greenland_ice_that_slid_into_the_ocean_ZJ_py"
     ]
     idx4 = fcol_in_mdf["Heat_in_surface"]
-    mdf[rowi, idxlhs] = (mdf[rowi, idx1] + mdf[rowi, idx2] + mdf[rowi, idx3]) / mdf[
-      rowi, idx4
+    mdf[rowi, idxlhs] = (mdf[rowi, idx1] + mdf[rowi, idx2] + mdf[rowi, idx3]) / mdf[rowi, idx4
     ]
 
     # Total_net_aerosol_forcings_W_p_m2 = Anthropogenic_aerosol_forcing + Model_Volcanic_aerosol_forcing_W_p_m2
@@ -19195,8 +16817,7 @@ def ugregmod(game_id, von, bis):
     # Owner_wealth_accumulation_fraction[region] = WACC_fraction[region] * Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation[region]
     idxlhs = fcol_in_mdf["Owner_wealth_accumulation_fraction"]
     idx1 = fcol_in_mdf["WACC_fraction"]
-    idx2 = fcol_in_mdf[
-      "Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
+    idx2 = fcol_in_mdf["Fraction_of_owner_income_left_for_consumption_or_wealth_accumulation"
     ]
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
@@ -19297,8 +16918,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["pl_to_apl"]
     idx1 = fcol_in_mdf["Populated_land_gap"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        abs(min(0, mdf[rowi, idx1 + j])) / Time_for_urban_land_to_become_abandoned
+      mdf[rowi, idxlhs + j] = (abs(min(0, mdf[rowi, idx1 + j])) / Time_for_urban_land_to_become_abandoned
       )
 
     # Planetary_risk = Acidification_risk_score + Air_Pollution_risk_score + Biocapacity_risk_score + Forest_degradation_risk_score + Freshwater_withdrawal_risk_score + Global_warming_risk_score + Nutrient_risk_score + Ozone_depletion_risk_score + PB_Toxic_risk_score
@@ -19371,8 +16991,7 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
 
     # Rate_of_hist_volcanic_aerosol_emissions_2000_to_2150_GtVae_py = IF_THEN_ELSE ( zeit > 2008 :AND: zeit < 2150 , Volcanic_aerosols_emissions , 0 )
-    idxlhs = fcol_in_mdf[
-      "Rate_of_hist_volcanic_aerosol_emissions_2000_to_2150_GtVae_py"
+    idxlhs = fcol_in_mdf["Rate_of_hist_volcanic_aerosol_emissions_2000_to_2150_GtVae_py"
     ]
     idx1 = fcol_in_mdf["Volcanic_aerosols_emissions"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE((zeit > 2008) & (zeit < 2150), mdf[rowi, idx1], 0)
@@ -19386,8 +17005,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Raw_Effect_of_poverty_on_social_tension"]
     idx1 = fcol_in_mdf["Effect_of_poverty_on_social_tension"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] / Effect_of_poverty_on_social_tension_in_1980[j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] / Effect_of_poverty_on_social_tension_in_1980[j]
       )
 
     # REFOREST_policy_used[region] = REFOREST_policy[region] / 10 * UNIT_conv_to_1_per_yr
@@ -19397,12 +17015,8 @@ def ugregmod(game_id, von, bis):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / 10 * UNIT_conv_to_1_per_yr
 
     # Reforestation_cutoff_from_lack_of_barren_land[region] = WITH LOOKUP ( Barren_land_which_is_ice_and_snow[region] , ( [ ( 0 , 0 ) - ( 10 , 10 ) ] , ( 0 , 0 ) , ( 10 , 0 ) , ( 20 , 0.06 ) , ( 30 , 0.2 ) , ( 40 , 0.5 ) , ( 50 , 0.8 ) , ( 60 , 0.95 ) , ( 70 , 1 ) ) )
-    tabidx = ftab_in_d_table[
-      "Reforestation_cutoff_from_lack_of_barren_land"
-    ]  # fetch the correct table
-    idx2 = fcol_in_mdf[
-      "Reforestation_cutoff_from_lack_of_barren_land"
-    ]  # get the location of the lhs in mdf
+    tabidx = ftab_in_d_table[  "Reforestation_cutoff_from_lack_of_barren_land"]  # fetch the correct table
+    idx2 = fcol_in_mdf["Reforestation_cutoff_from_lack_of_barren_land"]  # get the location of the lhs in mdf
     idx3 = fcol_in_mdf["Barren_land_which_is_ice_and_snow"]
     look = d_table[tabidx]
     for j in range(0, 10):
@@ -19414,8 +17028,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["REFOREST_policy_used"]
     idx3 = fcol_in_mdf["Reforestation_cutoff_from_lack_of_barren_land"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] * (mdf[rowi, idx2 + j]) * mdf[rowi, idx3 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] * (mdf[rowi, idx2 + j]) * mdf[rowi, idx3 + j]
       )
 
     # Renewable_energy_share_in_the_total_final_energy_consumption[region] = El_from_wind_and_PV[region] / ( El_from_all_sources[region] + Fossil_fuel_for_NON_El_use_that_IS_NOT_being_electrified[region] * Conversion_Mtoe_to_TWh[region] )
@@ -19438,8 +17051,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["RIPLGF_smoothing_time"]
     idx1 = fcol_in_mdf["Time_to_implement_UN_policies"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + RIPLGF_Addl_time_to_shift_govt_expenditure
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + RIPLGF_Addl_time_to_shift_govt_expenditure
       )
 
     # RoC_in_Forest_land[region] = ( Forest_land[region] - Forest_land_last_year[region] ) / Forest_land_last_year[region] / One_year
@@ -19448,8 +17060,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Forest_land_last_year"]
     idx3 = fcol_in_mdf["Forest_land_last_year"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
       )
 
     # RoC_in_GDPpp[region] = ( GDPpp_model[region] - GDPpp_model_One_yr_ago[region] ) / GDPpp_model_One_yr_ago[region] / One_year
@@ -19458,8 +17069,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GDPpp_model_One_yr_ago"]
     idx3 = fcol_in_mdf["GDPpp_model_One_yr_ago"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
       )
 
     # RoC_in_Living_conditions_index_with_env_damage[region] = ( Living_conditions_index_with_env_damage[region] - Past_Living_conditions_index_with_env_damage[region] ) / Social_tension_perception_delay
@@ -19467,8 +17077,7 @@ def ugregmod(game_id, von, bis):
     idx1 = fcol_in_mdf["Living_conditions_index_with_env_damage"]
     idx2 = fcol_in_mdf["Past_Living_conditions_index_with_env_damage"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]
       ) / Social_tension_perception_delay
 
     # RoC_Populated_land[region] = ( Populated_land[region] - Populated_land_last_year[region] ) / Populated_land_last_year[region] / One_year
@@ -19477,8 +17086,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Populated_land_last_year"]
     idx3 = fcol_in_mdf["Populated_land_last_year"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - mdf[rowi, idx2 + j]) / mdf[rowi, idx3 + j] / One_year
       )
 
     # Total_CO2_emissionslast_yr[region] = SMOOTH3 ( Total_CO2_emissions[region] , One_year )
@@ -19506,8 +17114,7 @@ def ugregmod(game_id, von, bis):
     idxlhs = fcol_in_mdf["Scaled_Effect_of_poverty_on_social_tension_and_trust"]
     idx1 = fcol_in_mdf["Raw_Effect_of_poverty_on_social_tension"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        (mdf[rowi, idx1 + j] - 1) * Scaling_factor_of_eff_of_poverty_on_social_tension
+      mdf[rowi, idxlhs + j] = ((mdf[rowi, idx1 + j] - 1) * Scaling_factor_of_eff_of_poverty_on_social_tension
       ) + 1
 
     # Temp_driver_to_shift_biomes_degC = Temp_surface / ( ( Temp_surface_1850 - Zero_C_on_K_scale_K ) * K_to_C_conversion ) - 0
@@ -19524,13 +17131,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["DESERT_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] < 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] < 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_DESERT_to_GRASS
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_GRASS_to_DESERT_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC > 0 , GRASS_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_shifting_GRASS_to_DESERT * Temp_driver_to_shift_biomes_degC * Temp_driver_to_shift_biomes_degC * ( 1 / Effect_of_humidity_on_shifting_biomes ) , 0 )
     idxlhs = fcol_in_mdf["Shifting_GRASS_to_DESERT_Mkm2_py"]
@@ -19540,15 +17144,12 @@ def ugregmod(game_id, von, bis):
     idx4 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     idx5 = fcol_in_mdf["Effect_of_humidity_on_shifting_biomes"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] > 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] > 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_GRASS_to_DESERT
       * mdf[rowi, idx3]
       * mdf[rowi, idx4]
-      * (1 / mdf[rowi, idx5]),
-      0,
-    )
+      * (1 / mdf[rowi, idx5]),   0, )
 
     # Shifting_GRASS_to_NF_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC < 0 , GRASS_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_shifting_GRASS_to_NF * Temp_driver_to_shift_biomes_degC , 0 )
     idxlhs = fcol_in_mdf["Shifting_GRASS_to_NF_Mkm2_py"]
@@ -19556,13 +17157,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GRASS_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] < 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] < 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_GRASS_to_NF
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_GRASS_to_TROP_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC < 0 , GRASS_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_shifting_GRASS_to_TROP * Temp_driver_to_shift_biomes_degC , 0 )
     idxlhs = fcol_in_mdf["Shifting_GRASS_to_TROP_Mkm2_py"]
@@ -19570,13 +17168,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["GRASS_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] < 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] < 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_GRASS_to_TROP
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_ice_to_tundra_from_detail_ice_on_land_Mkm2_pr_yr = Antarctic_ice_area_decrease_Mkm2_pr_yr + Glacial_ice_area_decrease_Mkm2_pr_yr + Greenland_ice_area_decrease_Mkm2_pr_yr
     idxlhs = fcol_in_mdf["Shifting_ice_to_tundra_from_detail_ice_on_land_Mkm2_pr_yr"]
@@ -19596,13 +17191,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["NF_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] > 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] > 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_NF_to_GRASS
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_NF_to_TROP_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC > 0 , NF_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_shifting_NF_to_TROP * Temp_driver_to_shift_biomes_degC , 0 )
     idxlhs = fcol_in_mdf["Shifting_NF_to_TROP_Mkm2_py"]
@@ -19610,13 +17202,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["NF_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] > 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] > 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_NF_to_TROP
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_NF_to_Tundra_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC < 0 , NF_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_on_shifting_NF_to_Tundra * Temp_driver_to_shift_biomes_degC , 0 )
     idxlhs = fcol_in_mdf["Shifting_NF_to_Tundra_Mkm2_py"]
@@ -19624,13 +17213,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["NF_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] < 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] < 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_on_shifting_NF_to_Tundra
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_TROP_to_GRASS_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC > 0 , TROP_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_shifting_TROP_to_GRASS * Temp_driver_to_shift_biomes_degC * ( 1 / Effect_of_humidity_on_shifting_biomes ) , 0 )
     idxlhs = fcol_in_mdf["Shifting_TROP_to_GRASS_Mkm2_py"]
@@ -19639,14 +17225,11 @@ def ugregmod(game_id, von, bis):
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     idx4 = fcol_in_mdf["Effect_of_humidity_on_shifting_biomes"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] > 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] > 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_TROP_to_GRASS
       * mdf[rowi, idx3]
-      * (1 / mdf[rowi, idx4]),
-      0,
-    )
+      * (1 / mdf[rowi, idx4]),   0, )
 
     # Shifting_TROP_to_NF_Mkm2_py = IF_THEN_ELSE ( Temp_driver_to_shift_biomes_degC < 0 , TROP_potential_area_Mkm2 / Ref_shifting_biome_yr * Slope_of_effect_of_temp_on_shifting_TROP_to_NF * Temp_driver_to_shift_biomes_degC , 0 )
     idxlhs = fcol_in_mdf["Shifting_TROP_to_NF_Mkm2_py"]
@@ -19654,13 +17237,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["TROP_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] < 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] < 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_on_shifting_TROP_to_NF
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Shifting_tundra_to_ice_from_detail_ice_on_land_Mkm2_pr_yr = Antarctic_ice_area_increase_Mkm2_pr_yr + Glacial_ice_area_increase_Mkm2_pr_yr + Greenland_ice_area_increase_Mkm2_pr_yr
     idxlhs = fcol_in_mdf["Shifting_tundra_to_ice_from_detail_ice_on_land_Mkm2_pr_yr"]
@@ -19680,13 +17260,10 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Tundra_potential_area_Mkm2"]
     idx3 = fcol_in_mdf["Temp_driver_to_shift_biomes_degC"]
     mdf[rowi, idxlhs] = IF_THEN_ELSE(
-      mdf[rowi, idx1] > 0,
-      mdf[rowi, idx2]
+      mdf[rowi, idx1] > 0,   mdf[rowi, idx2]
       / Ref_shifting_biome_yr
       * Slope_of_effect_of_temp_shifting_tundra_to_NF
-      * mdf[rowi, idx3],
-      0,
-    )
+      * mdf[rowi, idx3],   0, )
 
     # Smoothed_RoC_in_GDPpp[region] = SMOOTH ( RoC_in_GDPpp[region] , Time_to_smooth_RoC_in_GDPpp )
     idx1 = fcol_in_mdf["Smoothed_RoC_in_GDPpp"]
@@ -19717,8 +17294,7 @@ def ugregmod(game_id, von, bis):
     idx2 = fcol_in_mdf["Fossil_fuel_for_NON_El_use_that_IS_NOT_being_electrified"]
     idx3 = fcol_in_mdf["GDP_USED"]
     for j in range(0, 10):
-      mdf[rowi, idxlhs + j] = (
-        mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] * Conversion_Mtoe_to_TWh[j]
+      mdf[rowi, idxlhs + j] = (mdf[rowi, idx1 + j] + mdf[rowi, idx2 + j] * Conversion_Mtoe_to_TWh[j]
       ) / mdf[rowi, idx3 + j]
 
     # Total_government_revenue_as_a_proportion_of_GDP[region] = Govt_income_after_transfers[region] / GDP_USED[region]
@@ -19907,55 +17483,28 @@ def ugregmod(game_id, von, bis):
     mdf_play = mdf_new_full[0:1920, :]
     row2040 = mdf[480, :]
     amo = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(row2040),
-    )
+      "text/plain",   pickle.dumps(row2040), )
     amo2 = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(mdf_new_full),
-    )
+      "text/plain",   pickle.dumps(mdf_new_full), )
     app_tables.game_files.add_row(
-      game_id=game_id,
-      start_row_data=amo,
-      mdf_play=amo2,
-      version=datetime.datetime.now(),
-      yr=2040,
-    )
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2040, )
   elif howlong == 60:
     mdf_play = mdf_new_full[0:2560, :]
     row2060 = mdf[640, :]
     amo = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(row2060),
-    )
+      "text/plain",   pickle.dumps(row2060), )
     amo2 = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(mdf_new_full),
-    )
+      "text/plain",   pickle.dumps(mdf_new_full), )
     app_tables.game_files.add_row(
-      game_id=game_id,
-      start_row_data=amo,
-      mdf_play=amo2,
-      version=datetime.datetime.now(),
-      yr=2060,
-    )
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
   elif howlong == 21:
     row2100 = mdf[1280, :]
     amo = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(row2100),
-    )
+      "text/plain",   pickle.dumps(row2100), )
     amo2 = anvil.BlobMedia(
-      "text/plain",
-      pickle.dumps(mdf_new_full),
-    )
+      "text/plain",   pickle.dumps(mdf_new_full), )
     app_tables.game_files.add_row(
-      game_id=game_id,
-      start_row_data=amo,
-      mdf_play=amo2,
-      version=datetime.datetime.now(),
-      yr=2100,
-    )
+      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
 
 
 #    return mdf_play, plot_reg, plot_glob
