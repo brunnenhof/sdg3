@@ -1898,7 +1898,7 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=3, reg=reg, looked_at=True
+        game_id=cid, round=3, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1942,7 +1942,7 @@ class home(homeTemplate):
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=4, reg=reg, looked_at=True
+        game_id=cid, round=4, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
