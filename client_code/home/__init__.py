@@ -1620,14 +1620,13 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     reg = ro["reg"]
-    rows = app_tables.submitted.search(
-      game_id="", round=runde, reg=reg, submitted=False
-    )
+    rows = app_tables.submitted.search(game_id="", round=runde, reg=reg, submitted=False)
     not_sub_list = []
     for r in rows:
-      #      regshort = r['reg']
+      shortreg = r['reg']
       longreg = self.do_reg_to_longreg(r["reg"])
       not_sub_list.append(longreg)
+    return not_sub_list
 
   def get_nat_slots(self, cid, runde, lx):
     self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', runde, lx) 
@@ -1717,7 +1716,7 @@ class home(homeTemplate):
       runde = 3
       row_cookies = app_tables.cookies.get(game_id=cid_cookie)
       rxsub = row_cookies["r3sub"]
-      self.err_msg.text = self.err_msg.text + "\ngm_status'] == 10 rxsub=" + str(rxsub)
+      self.err_msg.text = self.err_msg.text + "\ngm_status == 10 rxsub=" + str(rxsub)
       if rxsub < 10:
         not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
         lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1767,7 +1766,7 @@ class home(homeTemplate):
         print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
       else:
         ## no graphs exist, make the ones for 2025, show them
-        slots = self.get_nat_slots(cid, 2, lx)
+        slots = self.get_nat_slots(cid, chk_runde, lx)
         print("\n   --- have_nat_slots: Made new ones runde " + str(runde))
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
@@ -1910,7 +1909,7 @@ class home(homeTemplate):
       runde = 3
       yr = 2060
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=2, reg=reg, looked_at=False
+        game_id=cid, round=3, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -1954,7 +1953,7 @@ class home(homeTemplate):
       runde = 4
       yr = 2100
       rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-        game_id=cid, round=3, reg=reg, looked_at=False
+        game_id=cid, round=4, reg=reg, looked_at=False
       )
       if len(rows_looked_at) < 5:
         not_looked_at_list = self.get_not_looked_at(rows_looked_at)
@@ -2541,7 +2540,7 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-    elif gm_status == 7:
+    elif gm_status == 10 and sub_open == 20: 
       ro['sub_open'] = 22 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
