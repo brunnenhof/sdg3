@@ -2128,11 +2128,11 @@ class home(homeTemplate):
   def show_pcgd_advance(self, role, reg, lx, cid, runde):
     self.p_card_graf_dec.visible = True
     if runde == 1:
-      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_40_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ self.do_ta_to_longmini(role)+lu.p_info_40_fut[lx]
     elif runde == 2:
-      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_60_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ self.do_ta_to_longmini(role)+lu.p_info_60_fut[lx]
     elif runde == 3:
-      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ mg.pov_to_Poverty[mg.my_ministry]+lu.p_info_21_fut[lx]
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ mg.my_personal_game_id+ ", "+ self.do_reg_to_longreg(reg)+ ", "+ self.do_ta_to_longmini(role)+lu.p_info_21_fut[lx]
     else:
       alert("show_pcgd_advance: runde not 1|2|3 but "+str(runde))
     self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
