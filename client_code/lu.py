@@ -3078,7 +3078,7 @@ nicht_all_sub_gm_tx_str = [
     "_last_"
 ]
 all_submitted_p_tx_str = [
-    "Now, aLL regions have submitted their decisions, your game organizer will advance the model shortly and let you know when your results are ready ",
+    "Now, all regions have submitted their decisions, your game organizer will advance the model shortly and let you know when your results are ready ",
     "Alle Regionen haben jetzt ihre Entscheidungen übermittelt. Ihr:e Spielleiter:in wird das Modell in Kürze fortschreiben und Sie informieren, wenn die Ergebnisse vorliegen. ",
     "Alle Regionen haben jetzt ihre Entscheidungen übermittelt. Dein:e Spielleiter:in wird das Modell in Kürze fortschreiben und Dich informieren, wenn die Ergebnisse vorliegen. ",
     "Toutes les régions ont soumis leurs décisions, votre chef de jeu fera progresser le modèle sous peu et vous fera savoir quand vos résultats seront prêts", 
