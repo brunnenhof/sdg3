@@ -1748,8 +1748,15 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n+++ launch_ugregmod done"
       # gm_wait_round_done_tx = 'The model has been advanced. Tell your players to click on the Start next round button.'
       self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
+      em = mg.my_email
+      ro_usr = app_tables.nutzer.get(email=em)
+      is_gm = ro_usr['reg'] == 'gm'
+      if is_gm:
+        chk_round = runde + 1
+      else:
+        chk_round = runde
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      have_nat_slots = app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
+      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_round, reg='gm')
       if len(have_nat_slots) > 0:
         slots = have_nat_slots
         print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
