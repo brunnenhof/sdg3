@@ -2702,11 +2702,11 @@ pcr_submit_msg1_str = [
     "_last_"
 ]
 pcr_submit_msg2_str = [
-    " in ",
-    " in ",
-    " in ",
-    " dans ", 
-    " i ",
+    ", ",
+    ", ",
+    ", ",
+    ", ", 
+    ", ",
     "_last_"
 ]
 pcr_submit_msg3_str = [
