@@ -1752,11 +1752,16 @@ class home(homeTemplate):
       ro_usr = app_tables.nutzer.get(email=em)
       is_gm = ro_usr['reg'] == 'gm'
       if is_gm:
-        chk_round = runde + 1
+        if runde == 1:
+          chk_runde = 2
+        elif runde == 2:
+          chk_runde = 3
+        elif runde == 3:
+          chk_runde = 4
       else:
-        chk_round = runde
+        alert("gm_start_round_click\n runde="+str(runde)+"\n chk_runde="+str(chk_runde))
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_round, reg='gm')
+      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_runde, reg='gm')
       if len(have_nat_slots) > 0:
         slots = have_nat_slots
         print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
