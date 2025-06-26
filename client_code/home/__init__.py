@@ -61,6 +61,13 @@ class home(homeTemplate):
         row['last_login_utc'] = now
     #    wo = 5
     #    reg = 'gm'
+    
+    woo = 'wo=   '+str(wo)
+    if reg is None:
+      reg = 'None'
+    if role is None:
+      role = 'None'
+    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="WHERE")
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -104,6 +111,7 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_gm_4(user)
+
 
   def get_lang(self, lang):
     p1 = lang.find("-")
@@ -1941,6 +1949,7 @@ class home(homeTemplate):
         self.do_future(cid, role, reg, runde, yr, lx)
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future(1626) "
         self.fut_detail("hide")
+        self.fut_not_all_logged_in.visible = False
 
   def fut_detail(self, hs):
     if hs == "hide":
