@@ -1621,7 +1621,11 @@ class home(homeTemplate):
     row_games_log = app_tables.games_log.get(game_id=cid_cookie)
     self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " wo="+ str(ro_nutzer["wo"])+ " nutzer_game_ID="+ ro_nutzer["game_id"]+ " nutzer_reg="+ ro_nutzer["reg"])
     if row_games_log["gm_status"] not in [5, 7, 10]:
-      n = Notification(lu.nicht_all_sub_gm_tx_str[lx], timeout=2)
+      not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
+      lmsg = lu.nicht_all_sub_gm_tx_str[lx]
+      for ii in range(0, len(not_all_sub_list)):
+        lmsg = lmsg + "\n" + not_all_sub_list[ii]
+      n = Notification(lmsg, style="warning", timeout=2)
       n.show()
       self.err_msg.text = (
         self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
