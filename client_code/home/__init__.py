@@ -329,6 +329,10 @@ class home(homeTemplate):
     self.gm_card_wait_1.visible = True
     self.gm_card_wait_1_info.visible = True
     self.gm_card_wait_1_btn_check.visible = True
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    ro['sub_open'] = 0
+    self.checkbox_1.checked = False
 
   def show_hide_fut_money(self, sh):
     if sh == 'hide':
@@ -656,12 +660,13 @@ class home(homeTemplate):
 
   def show_wo(self, em, lb, setto):
     ro = app_tables.nutzer.get(email=em)
+    reg = ro['reg']
     wo = ro['wo']
     if wo is None:
       woo = 'None'
     else:
       woo = str(wo)
-    lmsg = lb+'\nwo is       '+woo+'\nset to '+str(setto)
+    lmsg = lb+'\nwo=       '+woo+'\nset to '+str(setto) +' ??'+'\nreg= '+reg
     alert(lmsg,title="Wo bin ich")
     
   def top_join_game_click(self, **event_args):
@@ -2468,16 +2473,21 @@ class home(homeTemplate):
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_open="+str(sub_open)
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
     elif gm_status == 6:
       ro['sub_open'] = 11 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
     elif gm_status == 10 and sub_open == 20: 
       ro['sub_open'] = 22 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
     else:
       alert('gmStatus = '+str(gm_status))
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
+
 
