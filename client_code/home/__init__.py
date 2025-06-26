@@ -434,6 +434,7 @@ class home(homeTemplate):
     self.checkbox_1.checked = True 
     self.checkbox_1.visible = False 
     self.gm_start_round.visible = True
+    self.gm_card_wait_1_btn_check.visible = False 
     ### get global grafs up to 2025
     slots = self.get_nat_slots(cid, 1, lx)
     self.gm_graf_card_rp.items = slots
