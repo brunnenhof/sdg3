@@ -410,54 +410,6 @@ class home(homeTemplate):
     self.dec_card.visible = False
     self.p_after_submit.visible = True 
     self.lang_card.visible = False
-    pass
-#    wrx = mg.regs.index(reg)
-#    wmx = mg.roles.index(role)
-#    reglong = self.do_reg_to_longreg(reg)
-#    rolelong = self.do_ta_to_longmini(role)
-#    mg.fut_title_tx2 = self.pcgd_title.text
-#    your_game_id = cid + "-" + str(wrx) + str(wmx)
-#    mg.my_personal_game_id = your_game_id
-#    yr, runde = self.get_runde(cid)
-#    self.pcgd_generating.visible = False
-#    self.pcgd_plot_card.visible = True
-#    if role == "fut":
-#      self.card_fut.visible = True
-#      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-#      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-#    else:
-#      self.dec_card.visible = True
-#      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
-#    self.pcgd_info_rd1.visible = True
-#    slots = [
-#      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-#    ]
-#    self.plot_card_rp.items = slots
-#    ### check if all looked at
-#    rows_looked_at = app_tables.pcgd_advance_looked_at.search(
-#      game_id=cid, round=1, reg=reg, looked_at=True
-#    )
-#    if len(rows_looked_at) < 5:
-#      not_looked_at_list = self.get_not_looked_at(rows_looked_at)
-#      lmsg = lu.not_all_looked_at_tx[lx]
-#      for ii in range(0, len(not_looked_at_list)):
-#        lmsg = lmsg + "\n" + not_looked_at_list[ii]
-#      alert(lmsg, title=lu.not_all_looked_at_title[lx])
-#      ## don't show submit
-#      self.card_fut.visible = False
-#    else:
-#      self.card_fut.visible = True
-#      pass
-#    if role == "fut":
-#      self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
-#    self.lang_card.visible = False
-
-  #    self.top_entry.visible = False
-  #    self.p_after_submit.visible = True
-  #    self.cid_reg_role_info.text = cid + '  +++ ' + self.do_reg_to_longreg(reg) + '  - ' + self.do_ta_to_longmini(role)
-  #    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-  #    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def show_gm_5(self, lx, cid):
     mg.my_lang = lx
@@ -481,7 +433,6 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.visible = False
     self.gm_start_round.visible = False
     self.checkbox_1.visible = True
-    pass
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -506,12 +457,12 @@ class home(homeTemplate):
 
     if my_lox == 3:
       alert(
-        "Les textes en français proviennent de google. Aidez-nous à les améliorer.",
+        "Les textes en français proviennent de google et deepl.com. Aidez-nous à les améliorer.",
         title="Pardon",
       )
     elif my_lox == 4:
       alert(
-        "De norske tekstene kommer fra google. Vennligst hjelp oss med å forbedre dem.",
+        "De norske tekstene kommer fra google og deepl.com. Vennligst hjelp oss med å forbedre dem.",
         title="Unnskyld",
       )
     elif my_lox == 2:
@@ -918,8 +869,6 @@ class home(homeTemplate):
       self.gm_card_wait_1_rp.visible = True
       self.gm_card_wait_1_rp.items = slots
 
-  #    pass
-
   def set_minis_invisible(self, **event_args):
     self.pcr_rb_fut.visible = False
     self.pcr_rb_pov.visible = False
@@ -1047,9 +996,6 @@ class home(homeTemplate):
       return False
 
   def save_player_choice(self, cid, role, reg):
-    #    print ('in save_player_choice: ' + region)
-    #    print ('in save_player_choice: ' + ministry)
-    #    em = mg.email
     rows = app_tables.roles_assign.search(game_id=cid, role=role, reg=reg)
     for r in rows:
       if r["taken"] == 0:
@@ -1164,6 +1110,9 @@ class home(homeTemplate):
     lang = mg.my_lang
     print("in do_NON_future ie TAs "+ cid+ " "+ reg+ " "+ role+ " "+ str(runde)+ " "+ str(yr)+ " lang:"+ str(lang))
     if yr == 2100:
+      self.fut_not_all_logged_in.visible = False
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
+      self.dec_card.visible = False 
       return
     self.dec_card.visible = True
     self.pcgd_advance.visible = True
@@ -1219,9 +1168,7 @@ class home(homeTemplate):
     self.submit_numbers.visible = False
 
   def get_numbers_for_future(self, cid, role, reg, runde, yr, lx):
-    (
-      f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget,
-    ) = self.get_policy_investments(cid, role, reg, runde, yr)
+    f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
     self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
     self.pov_rep_panel.items = fut_pov_list
@@ -1254,6 +1201,9 @@ class home(homeTemplate):
       self.set_fut_all_logged_in(lx)
       if not yr == 2100:
         self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
+      else:
+        self.fut_not_all_logged_in.visible = False
+        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
       return True
 
   def calc_cost_home_tot(self, pct, tltl, gl, maxc):
@@ -1267,8 +1217,6 @@ class home(homeTemplate):
     return cost
 
   def get_all_pol_to_names(self, ab, lx):
-    #    print(' -------------  get_all_pol_to_names')
-    #    print(ab)
     abs = []
     for a in ab:
       if a == "ExPS":
@@ -1787,10 +1735,6 @@ class home(homeTemplate):
         print('1776 sub_open:')
         print(sub_open)
         self.wait_for_checkbox()
-#        if sub_open is None or sub_open == 11 or sub_open == 21 or sub_open == 31:
-#          self.checkbox_1.checked = False 
-#          self.checkbox_1.visible = True
-#          self.gm_start_round.visible = False
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
         self.gm_start_round.visible = True
@@ -2038,18 +1982,7 @@ class home(homeTemplate):
       Notification("Model is done", timeout=3)
 
   def get_sorted_pol_list(self, runde, pol):
-    r_to_x = {
-      "us": 0,
-      "af": 1,
-      "cn": 2,
-      "me": 3,
-      "sa": 4,
-      "la": 5,
-      "pa": 6,
-      "ec": 7,
-      "eu": 8,
-      "se": 9,
-    }
+    r_to_x = {"us": 0,"af": 1,"cn": 2,"me": 3,"sa": 4,"la": 5,"pa": 6,"ec": 7,"eu": 8,"se": 9}
     rows = app_tables.roles_assign.search(
       round=runde, pol=pol
     )  # in production also use game_id
@@ -2302,51 +2235,6 @@ class home(homeTemplate):
         self.do_non_future(cid, role, reg, runde, yr, lx)
       #      dauer = round(time.time() - anfang, 0)
       #      self.top_duration.text = dauer
-      return
-      #### old 12 not used until return below
-#      self.pcgd_info_rd1.content = lu.pcgd_info_after_rd1_tx_str[lx]
-#      self.pcgd_advance.visible = False
-#      self.pcgd_plot_card.visible = True
-#      self.plot_card_rp.visible = True
-#      self.dec_card.visible = False
-#      role = mg.my_ministry
-#      print("mg.my_ministry= " + role)
-#      yr, runde = self.get_runde(cid)
-#      self.pcgd_generating.visible = True
-#      self.pcgd_generating.text = lu.pcgd_generating_tx2_str[lx]
-#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## launch_create_plots_for_slots is done
-#        self.pcgd_generating.visible = False
-#        self.pcgd_plot_card.visible = True
-#        if role == "fut":
-#          self.dec_card.visible = False
-#          self.pcgd_info_rd1.visible = True
-#          self.card_fut.visible = True
-#          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-#          self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-#        else:
-#          self.dec_card.visible = False
-#          self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
-#          self.pcgd_info_rd1.visible = True
-#          row_looked_at = app_tables.pcgd_advance_looked_at.get(
-#            game_id=cid, reg=reg, ta=role, round=3
-#          )
-#          row_looked_at["looked_at"] = True
-#        slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-#        ]
-#        self.plot_card_rp.items = slots
-#        if role == "fut":
-#          print()
-#          self.do_future(cid, role, reg, runde, yr, lx)
-#        else:
-#          self.do_non_future(cid, role, reg, runde, yr, lx)
-#      #      dauer = round(time.time() - anfang, 0)
-#      #      self.top_duration.text = dauer
-#      return
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
