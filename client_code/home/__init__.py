@@ -433,6 +433,7 @@ class home(homeTemplate):
     self.checkbox_1.checked = True 
     self.checkbox_1.visible = False 
     self.gm_start_round.visible = True
+    ### get global grafs up to 2025
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
