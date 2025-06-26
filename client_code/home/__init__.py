@@ -429,11 +429,15 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     lx = ro['lang']
+    cid = ro['game_id']
     ro['sub_open'] = 1
     self.checkbox_1.checked = True 
     self.checkbox_1.visible = False 
     self.gm_start_round.visible = True
     ### get global grafs up to 2025
+    slots = self.get_nat_slots(cid, 1, lx)
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
