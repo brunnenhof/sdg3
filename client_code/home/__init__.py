@@ -656,8 +656,21 @@ class home(homeTemplate):
     else:
       return True
 
+  def show_wo(self, em, lb, setto):
+    ro = app_tables.nutzer.get(email=em)
+    wo = ro['wo']
+    if wo is None:
+      woo = 'None'
+    else:
+      woo = str(wo)
+    lmsg = lb+'\nis=      '+woo+'\set to= '+str(setto)
+    no = Notification(lmsg, timeout=3)
+    no.show()
+    
   def top_join_game_click(self, **event_args):
     lx = mg.my_lang
+    em = mg.my_email
+    self.show_wo(em,'top_join_game_click', 22)
     self.lang_card.visible = False
     self.top_entry.visible = False
     #    self.top_join_game.visible = False
@@ -689,6 +702,9 @@ class home(homeTemplate):
     self.show_roles(game_id_chosen)
     self.p_cp_choose_game.visible = False
     self.card_select_reg_role.visible = True
+    em = mg.my_email
+    self.show_wo(em,'top_join_game_click', 22)
+
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
@@ -739,6 +755,7 @@ class home(homeTemplate):
     em = mg.my_email
     row = app_tables.nutzer.get(email=em)
     row["wo"] = 4
+    self.show_wo(em,'gm_reg_npbp_click',101)
 
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
@@ -876,6 +893,12 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.visible = True
       self.gm_card_wait_1_rp.visible = True
       self.gm_card_wait_1_rp.items = slots
+      em = mg.my_email
+      ro = app_tables.nutzer.get(email=em)
+      wo = ro['wo']
+    #    ro['wo'] = setto
+      pass
+
 
   def set_minis_invisible(self, **event_args):
     self.pcr_rb_fut.visible = False
@@ -1103,6 +1126,8 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
+    em = mg.my_email
+    self.show_wo(em,'pcr_submit_click',77)
   #    dauer = round(time.time() - anfang, 0)
   #    self.top_duration.text = dauer
 
@@ -1442,6 +1467,8 @@ class home(homeTemplate):
     yr, runde = self.get_runde(cid)
     self.err_msg.text = (self.err_msg.text+ "refresh_numbers_click with cid="+ cid+ " role="+ role+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " wo="+ str(ro["wo"])+ " nutzer_game_ID="+ (ro["game_id"])+ " nutzer_reg="+ (ro["reg"]))
     self.do_future(cid, role, reg, runde, yr, lx)
+    em = mg.my_email
+    self.show_wo(em,'refresh_numbers_click',88)
 
   def all_reg_submitted(self, cid, step):
     rows = app_tables.step_done.search(game_id=cid, p_step_done=q.any_of(step, 99))
@@ -1571,6 +1598,8 @@ class home(homeTemplate):
         elif runde == 3:
           # p_advance_to_2_tx = "Get the results until the end of the century"
           self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
+    em = mg.my_email
+    self.show_wo(em,'submit_numbers_click',99)
 
   def get_not_all_sub(self, cid, runde):
     em = mg.my_email
@@ -1683,7 +1712,6 @@ class home(homeTemplate):
         for ii in range(0, len(not_all_sub_list)):
           lmsg = lmsg + "\n" + not_all_sub_list[ii]
         n = Notification(lmsg, style="warning", timeout=4)
-        n = Notification(lu.nicht_all_sub_gm_tx_str[lx], style="warning")
         n.show()
         self.gm_start_round.visible = True
         return
@@ -1776,6 +1804,8 @@ class home(homeTemplate):
         ### get nat_grafs ....
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
+    em = mg.my_email
+    self.show_wo(em,'gm_start_round_click',33)
 
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
@@ -1954,6 +1984,8 @@ class home(homeTemplate):
         self.err_msg.text = self.err_msg.text + "\n- AFTER do_future(1626) "
         self.fut_detail("hide")
         self.fut_not_all_logged_in.visible = False
+    em = mg.my_email
+    self.show_ro(em,'p_advance_to_next_round_click',44)
 
   def fut_detail(self, hs):
     if hs == "hide":
@@ -2248,6 +2280,8 @@ class home(homeTemplate):
         self.do_non_future(cid, role, reg, runde, yr, lx)
       #      dauer = round(time.time() - anfang, 0)
       #      self.top_duration.text = dauer
+    em = mg.my_email
+    self.show_wo(em,'pcgd_advance_click',55)
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
@@ -2421,6 +2455,7 @@ class home(homeTemplate):
 
   def checkbox_1_change(self, **event_args):
     em = mg.my_email
+    self.show_wo(em,'checkbox_1_change_ENTRY',66)
     ro = app_tables.nutzer.get(email=em)
     ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
     gm_status = ro_gm_status['gm_status']
@@ -2449,18 +2484,6 @@ class home(homeTemplate):
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-#    elif ro['sub_open'] == 10:
-#      ### first round sucessfully run
-#      ro['sub_open'] = 11 ### and now open for submission to round 2
-#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
-#    elif ro['sub_open'] == 20:
-#      ### first round sucessfully run
-#      ro['sub_open'] = 21 ### and now open for submission to round 2
-#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=20 NEW21"
-#    elif ro['sub_open'] == 30:
-#      ### first round sucessfully run
-#      ro['sub_open'] = 31 ### and now open for submission to round 2
-#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=30 NEW31"
     else:
       alert('gmStatus = '+str(gm_status))
 
