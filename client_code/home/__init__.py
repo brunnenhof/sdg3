@@ -59,15 +59,13 @@ class home(homeTemplate):
       if save_clicked["ur"] == 'up':
         now = datetime.now(timezone.utc)
         row['last_login_utc'] = now
-    #    wo = 5
-    #    reg = 'gm'
     
     woo = 'wo=   '+str(wo)
     if reg is None:
       reg = 'None'
     if role is None:
       role = 'None'
-    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="WHERE")
+    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="Enterig app, LN 70 - WHERE")
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -111,7 +109,7 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_gm_4(user)
-
+      pass
 
   def get_lang(self, lang):
     p1 = lang.find("-")
@@ -663,9 +661,8 @@ class home(homeTemplate):
       woo = 'None'
     else:
       woo = str(wo)
-    lmsg = lb+'\nis=      '+woo+'\set to= '+str(setto)
-    no = Notification(lmsg, timeout=3)
-    no.show()
+    lmsg = lb+'\nwo is       '+woo+'\nset to '+str(setto)
+    alert(lmsg,title="Wo bin ich")
     
   def top_join_game_click(self, **event_args):
     lx = mg.my_lang
@@ -894,10 +891,7 @@ class home(homeTemplate):
       self.gm_card_wait_1_rp.visible = True
       self.gm_card_wait_1_rp.items = slots
       em = mg.my_email
-      ro = app_tables.nutzer.get(email=em)
-      wo = ro['wo']
-    #    ro['wo'] = setto
-      pass
+      self.show_wo(em,'gm_card_wait_1_btn_check_click',111)
 
 
   def set_minis_invisible(self, **event_args):
