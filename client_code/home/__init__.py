@@ -435,8 +435,20 @@ class home(homeTemplate):
     self.checkbox_1.visible = False 
     self.gm_start_round.visible = True
     self.gm_card_wait_1_btn_check.visible = False 
+    self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
     ### get global grafs up to 2025
-    slots = self.get_nat_slots(cid, 1, lx)
+    if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
+      slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+    else:
+      ## no graphs exist, make the ones for 2025, show them
+      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
+      while not self.task.is_completed():
+        pass
+      else:  ## background is done
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+        ]
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
