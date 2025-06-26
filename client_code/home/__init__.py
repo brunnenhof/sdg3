@@ -90,7 +90,7 @@ class home(homeTemplate):
       ## success to 2040
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
-      self.show_gm_5(lx, game_id)
+      self.show_gm_5(user)
     elif wo == 2:
       ## gm select npbp
       em = mg.my_email
@@ -313,22 +313,7 @@ class home(homeTemplate):
     self.cb_se.visible = False
 
   def show_gm_4(self, user):
-    lx = user["lang"]
-    mg.my_lang = lx
-    cid = user["game_id"]
-    mg.my_game_id = cid
-    self.set_lang(lx)
-    self.lang_card.visible = False
-    self.top_entry.visible = False
-    self.gm_role_reg.visible = True
-    self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
-    self.top_title.text = lu.top_title_str[lx]
-    self.gm_board_info.visible = False
-    self.gm_reg_npbp.visible = False
-    self.set_reg_cb_false()
-    self.gm_card_wait_1.visible = True
-    self.gm_card_wait_1_info.visible = True
-    self.gm_card_wait_1_btn_check.visible = True
+    self.gm_4_5_core(user)
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     ro['sub_open'] = 0
@@ -421,28 +406,33 @@ class home(homeTemplate):
     self.p_after_submit.visible = True 
     self.lang_card.visible = False
 
-  def show_gm_5(self, lx, cid):
+  def gm_4_5_core(self, user):
+    lx = user["lang"]
     mg.my_lang = lx
+    cid = user["game_id"]
     mg.my_game_id = cid
     self.set_lang(lx)
     self.lang_card.visible = False
     self.top_entry.visible = False
-    self.set_reg_cb_false()
-    #      gm_card_wait_1_temp_title
-    self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]
-    self.gm_card_wait_1_rp.visible = False
-    self.gm_wait_kickoff_r1_rp.visible = False
-
     self.gm_role_reg.visible = True
     self.gm_board.text = lu.msg_gm_board_head_str[lx] + cid
     self.top_title.text = lu.top_title_str[lx]
     self.gm_board_info.visible = False
     self.gm_reg_npbp.visible = False
+    self.set_reg_cb_false()
     self.gm_card_wait_1.visible = True
     self.gm_card_wait_1_info.visible = True
-    self.gm_card_wait_1_btn_check.visible = False
-    self.gm_start_round.visible = False
-    self.checkbox_1.visible = True
+    self.gm_card_wait_1_btn_check.visible = True
+
+  def show_gm_5(self, user):
+    self.gm_4_5_core(user)
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['lang']
+    ro['sub_open'] = 1
+    self.checkbox_1.checked = True 
+    self.checkbox_1.visible = False 
+    self.gm_start_round.visible = True
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -2472,22 +2462,23 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
-      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_open="+str(sub_open)
-      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
+      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: 5 >gm_status="+str(gm_status)+" >sub_open="+str(sub_open)
+      ro['wo'] = 5 ## 
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open= 1',67)
     elif gm_status == 6:
       ro['sub_open'] = 11 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open= 11',68)
     elif gm_status == 10 and sub_open == 20: 
       ro['sub_open'] = 22 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >sub_openOLD=10 NEW11"
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open= 22',69)
     else:
       alert('gmStatus = '+str(gm_status))
-      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open='+str(sub_open),66)
+      self.show_wo(em,'checkbox_1_change_EXIT\ngm_status= '+str(gm_status)+'\nsub_open= '+str(sub_open),699)
 
 
