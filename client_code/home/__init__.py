@@ -94,6 +94,11 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_gm_40(user)
+    elif wo == 7 and reg == "gm" and gm_status == 10 and sub_open == 20:
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_60(user)
     elif wo == 5 and reg == "gm":
       ## success to 2040
       em = mg.my_email
