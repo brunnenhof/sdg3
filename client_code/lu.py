@@ -3070,11 +3070,11 @@ nicht_all_sub_p_tx_str = [
     "_last_"
 ]
 nicht_all_sub_gm_tx_str = [
-    "Not all regions have submitted their decisions",
-    "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt",
-    "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt",
-    "Toutes les régions n'ont pas soumis leurs décisions", 
-    "Ikke alle regioner har sendt sine avgjørelser", 
+    "Not all regions have submitted their decisions. Waiting for:",
+    "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt. Warten auf:",
+    "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt. Warten auf:",
+    "Toutes les régions n'ont pas soumis leurs décisions. En attente de :", 
+    "Ikke alle regioner har sendt sine avgjørelser. Venter på:", 
     "_last_"
 ]
 all_submitted_p_tx_str = [

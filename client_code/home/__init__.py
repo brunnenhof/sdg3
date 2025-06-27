@@ -65,7 +65,7 @@ class home(homeTemplate):
       reg = 'None'
     if role is None:
       role = 'None'
-    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="Enterig app, LN 70 - WHERE")
+    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="Entering app, LN 70 - WHERE")
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -1612,7 +1612,7 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     reg = ro["reg"]
-    rows = app_tables.submitted.search(game_id="", round=runde, reg=reg, submitted=False)
+    rows = app_tables.submitted.search(game_id=cid, round=runde, submitted=False)
     not_sub_list = []
     for r in rows:
       shortreg = r['reg']
@@ -1646,8 +1646,9 @@ class home(homeTemplate):
     ro_nutzer = app_tables.nutzer.get(email=em)
     lx = ro_nutzer['lang']
     cid = ro_nutzer['game_id']
+    yr, runde = self.get_runde(ro_nutzer['game_id'])
     ## first, check if all regions have submitted
-    self.gm_graf_card.visible = False
+#    self.gm_graf_card.visible = False
     self.gm_card_wait_1_rp.visible = False
     self.gm_wait_kickoff_r1.visible = False
     self.gm_wait_kickoff_r1_rp.visible = False
@@ -1661,8 +1662,7 @@ class home(homeTemplate):
       lmsg = lu.nicht_all_sub_gm_tx_str[lx]
       for ii in range(0, len(not_all_sub_list)):
         lmsg = lmsg + "\n" + not_all_sub_list[ii]
-      n = Notification(lmsg, style="warning", timeout=2)
-      n.show()
+      alert(lmsg,title=lu.waiting_tx_str[lx])
       self.err_msg.text = (
         self.err_msg.text + "\n--inside gm_status' not in [5,7,10] line=1077"
       )
