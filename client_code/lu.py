@@ -2453,11 +2453,11 @@ gm_card_wait_1_info_tx_str = [
   "_last_"
 ]
 after_rdy_submit_gm_card_wait_str = [
-  "All your players logged in.\nTell them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people.\n\nAfter their deliberations all regions are now free to submit their decisions. Once more, tell them how much time they have for this step. When ready, click on the \n<Ready to advance...> button.\n The app will tell you if any region is not yet ready.",
-  "Alle Ihre Spieler:innen sind angemeldet.\nBitten Sie sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche \n<Modell für die nächste Runde ...>.\n Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
-  "Alle Ihre Spieler:innen sind angemeldet.\nBitte sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche \n<Modell für die nächste Runde ...>.\n Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
-  "Tous vos joueurs sont connectés.\nDemandez-leur d'examiner la situation de leur région au cours des 45 dernières années et de discuter de leurs décisions visant à améliorer la vie de leur population.\n\nAprès leurs délibérations, toutes les régions sont désormais libres de soumettre leurs décisions. Une fois de plus, indiquez-leur le temps dont ils disposent pour cette étape. \nLorsque vous êtes prêt, cliquez sur le bouton \n<Prêt à faire avancer le modèle...>.\n L'application vous indiquera si une région n'est pas encore prête.",
-  "Alle spillerne dine er logget inn. \nBe dem se på tilstanden i regionen deres de siste 45 årene og diskutere beslutningene de har tatt for å forbedre livene til innbyggerne. \n\nEtter at de har diskutert, kan alle regionene nå sende inn beslutningene sine. Fortell dem igjen hvor mye tid de har til dette trinnet. \nNår du er klar, klikker du på knappen \n<Klar til å fremme modellen...>\n. Appen vil fortelle deg om noen regioner ennå ikke er klare.",
+  "All your players logged in.\nTell them to look at the state of their region for last 45 years and discuss their decisions to improve the lives of their people.\n\nAfter their deliberations all regions are now free to submit their decisions. Once more, tell them how much time they have for this step. When ready, click on the \n<To advance the model ...> button.\n The app will tell you if any region is not yet ready.",
+  "Alle Ihre Spieler:innen sind angemeldet.\nBitten Sie sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche \n<Um das Modell für die nächste Runde ...>.\n Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
+  "Alle Ihre Spieler:innen sind angemeldet.\nBitte sie, sich die Lage ihrer Region in den letzten 45 Jahren anzusehen und ihre Entscheidungen zur Verbesserung der Lebensbedingungen ihrer Bevölkerung zu diskutieren.\n\nNach ihren Beratungen können nun alle Regionen ihre Entscheidungen einreichen. Teilen Sie ihnen erneut mit, wie viel Zeit ihnen für diesen Schritt zur Verfügung steht. \nWenn alle bereit sind, klicken Sie auf die Schaltfläche \n<Um das Modell für die nächste Runde ...>.\n Die App informiert Sie, wenn eine Region noch nicht bereit ist.",
+  "Tous vos joueurs sont connectés.\nDemandez-leur d'examiner la situation de leur région au cours des 45 dernières années et de discuter de leurs décisions visant à améliorer la vie de leur population.\n\nAprès leurs délibérations, toutes les régions sont désormais libres de soumettre leurs décisions. Une fois de plus, indiquez-leur le temps dont ils disposent pour cette étape. \nLorsque vous êtes prêt, cliquez sur le bouton \n<Pour mettre à jour le modèle ...>.\n L'application vous indiquera si une région n'est pas encore prête.",
+  "Alle spillerne dine er logget inn. \nBe dem se på tilstanden i regionen deres de siste 45 årene og diskutere beslutningene de har tatt for å forbedre livene til innbyggerne. \n\nEtter at de har diskutert, kan alle regionene nå sende inn beslutningene sine. Fortell dem igjen hvor mye tid de har til dette trinnet. \nNår du er klar, klikker du på knappen \n<For å fortsette modellen ...>\n. Appen vil fortelle deg om noen regioner ennå ikke er klare.",
   "_last_"
 ]
 
@@ -2470,11 +2470,11 @@ gm_card_wait_1_btn_check_tx_str = [
   "_last_"
 ]
 gm_card_wait_1_btn_kick_off_round_1_tx_str = [
-  "Ready to advance the model for the next round? ",
-  "Modell für die nächste Runde laufen lassen ",
-  "Modell für die nächste Runde laufen lassen ",
-  "Prêt à faire avancer le modèle pour le prochain tour?", 
-  "Klar til å fremme modellen for neste runde?", 
+  "To advance the model for the next round, click here ",
+  "Um das Modell für die nächste Runde fortzuschreiben, klicken Sie hier.",
+  "Um das Modell für die nächste Runde fortzuschreiben, klicke hier.",
+  "Pour mettre à jour le modèle pour le prochain cycle, cliquez ici.", 
+  "For å fortsette modellen til neste runde, klikk her.", 
   "_last_"
 ]
 checkbox_1_tx = [

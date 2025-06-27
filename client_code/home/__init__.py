@@ -76,7 +76,8 @@ class home(homeTemplate):
       ## just registered
       self.do_lang(my_loc)
       pass
-    elif wo == 4 and role == "fut":
+#    elif wo == 4 and role == "fut":
+    elif wo == 3 and role == "fut":
       ## success to 2040
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
@@ -87,7 +88,7 @@ class home(homeTemplate):
       user = app_tables.nutzer.get(email=em)
       self.show_fut_2(lx, game_id, reg, role)
     #      self.show_gm_5(lx, game_id)
-    elif wo == 2 and not reg == "gm":
+    elif (wo == 2 and not reg == "gm") or (wo == 6 and not reg == "gm"):
       ## player, NOT fut, round 1 waiting for decisions
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
@@ -388,7 +389,7 @@ class home(homeTemplate):
     self.dec_card.visible = False 
     ### check if all looked at
     self.p_card_graf_dec.visible = True 
-    self.pcgd_advance.text = "pcgd_advance"
+    self.pcgd_advance.text = lu.pcgd_advance_tx_str[lx]
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
       self.fut_not_all_logged_in.text = ""
@@ -400,7 +401,7 @@ class home(homeTemplate):
       self.fut_not_all_logged_in.foreground = "red"
       self.show_hide_fut_money('hide')
     self.lang_card.visible = False
-    self.pcgd_advance.visible = True
+#    self.pcgd_advance.visible = True
     
 #    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
 #    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
@@ -1862,6 +1863,32 @@ class home(homeTemplate):
     em = mg.my_email
     self.show_wo(em,'gm_start_round_click',33)
 
+  def make_ta_slots(self, cid, round, reg, role, lx):
+    ## show generating msg ....
+    self.pcgd_generating.visible = True    
+    self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, round, lx)
+    while not self.task.is_completed():
+      pass
+    else:  ## background is done
+      slots = [
+        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+        for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg)
+      ]
+      ### hide generating msg ....
+      self.pcgd_generating.visible = False      
+      return slots
+
+  def get_ta_grafs(self, cid, round, reg, role, lx):
+    have_grafs = app_tables.plots.search(game_id=cid, runde=round, reg=reg, role=role)
+    if len(have_grafs) > 0:
+      slots = have_grafs
+      print("\n   --- have_ta_grafs: used old ones " + cid + ' - ' + str(round)) + ' - ' + reg + ' - ' + role
+    else:
+      ## no graphs exist, make the ones for 2025, show them
+      slots = self.make_ta_slots(cid, round, reg, role, lx)
+      print("\n   --- have_ta_grafs: make new ones " + cid + ' - ' + str(round)) + ' - ' + reg + ' - ' + role
+    return slots
+
   def get_not_looked_at(self, rows_looked_at):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
@@ -1922,29 +1949,30 @@ class home(homeTemplate):
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
-      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
-      self.pcgd_generating.visible = True
+#      slots = self.get_ta_grafs(self, cid, round, reg, role, lx)
+      slots = self.get_ta_grafs(self, cid, 2, reg, role, lx)
+#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
+#      self.pcgd_generating.visible = True
       #      make something visible
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
         ### get runde, yr
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        self.card_fut.visible = True
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-        self.pcgd_info_rd1.visible = True
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-        ]
-        self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr, lx)
-        self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
+#        self.pcgd_generating.visible = False
+      self.pcgd_plot_card.visible = True
+      self.card_fut.visible = True
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+      self.pcgd_info_rd1.visible = True
+#      slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#        ]
+      self.plot_card_rp.items = slots
+      self.do_future(cid, role, reg, runde, yr, lx)
+      self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
         ### update wo
-        ro_nutzer["wo"] = 3
-        ro_nutzer["wo"] = 3
+      ro_nutzer["wo"] = 5
     elif row["gm_status"] == 10:  ## 2040 to 2060 successfully run
       #      reg = mg.my_reg
       reg = ro_nutzer["reg"]
@@ -2040,7 +2068,7 @@ class home(homeTemplate):
         self.fut_detail("hide")
         self.fut_not_all_logged_in.visible = False
     em = mg.my_email
-    self.show_ro(em,'p_advance_to_next_round_click',44)
+    self.show_wo(em,'p_advance_to_next_round_click',44)
 
   def fut_detail(self, hs):
     if hs == "hide":
