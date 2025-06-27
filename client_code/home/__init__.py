@@ -55,11 +55,14 @@ class home(homeTemplate):
       reg = row["reg"]
       role = row["role"]
       game_id = row["game_id"]
+      sub_open = row['sub_open']
       lx = row["lang"]
       if save_clicked["ur"] == 'up':
         now = datetime.now(timezone.utc)
         row['last_login_utc'] = now
     
+    row = app_tables.games_log.get(game_id=game_id)
+    gm_status = row["gm_status"]
     woo = 'wo=   '+str(wo)
     if reg is None:
       reg = 'None'
@@ -86,6 +89,11 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_reg_2(reg, role, lx, game_id, em)
+    elif wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11:
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_40(user)
     elif wo == 5 and reg == "gm":
       ## success to 2040
       em = mg.my_email
@@ -452,6 +460,35 @@ class home(homeTemplate):
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
+  def show_gm_40(self, user):
+    self.gm_4_5_core(user)
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['lang']
+    cid = ro['game_id']
+    self.checkbox_1.checked = True 
+    self.checkbox_1.visible = False 
+    self.gm_start_round.visible = True
+    self.gm_card_wait_1_btn_check.visible = False 
+    self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
+    ### get global grafs up to 2025
+    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
+      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+    else:
+      ## no graphs exist, make the ones for 2025, show them
+      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
+      while not self.task.is_completed():
+        pass
+      else:  ## background is done
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+        ]
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+    pass
+
+  
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
     """This method is called when an item is selected"""
@@ -2184,6 +2221,7 @@ class home(homeTemplate):
     ro_nutzer = app_tables.nutzer.get(email=em)
     role = ro_nutzer['role']
     gmStatus = row["gm_status"]
+    self.show_wo(em, 'wo bin ich_ENTRY', 99)
     self.err_msg.text = (
       self.err_msg.text + "\npcgd_advance_tx ++ gmStatus=" + str(gmStatus)
     )
@@ -2221,6 +2259,8 @@ class home(homeTemplate):
       ### round 2025 to 2040 ran successfully
       n = Notification(lu.sim_success_tx40_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
+      ro_nutzer['wo'] = 6
+      self.show_wo(em, 'wo bin ich__after setting wo__6', 6)      
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 1)
       yr, runde = self.get_runde(cid)
@@ -2251,6 +2291,8 @@ class home(homeTemplate):
       ### round 2040 to 2060 ran successfully
       n = Notification(lu.sim_success_tx60_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
+      ro_nutzer['wo'] = 8
+      self.show_wo(em,'pcgd_advance_click__8',55)
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 2)
       yr, runde = self.get_runde(cid)
@@ -2273,6 +2315,8 @@ class home(homeTemplate):
       #      anfang = time.time()
       n = Notification(lu.sim_success_tx21_str[lx],timeout=2,title=lu.sim_success_title_txend_str[lx],style="success")
       n.show()
+      ro_nutzer['wo'] = 10
+      self.show_wo(em,'pcgd_advance_click__10',55)
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 3)
       yr, runde = self.get_runde(cid)
