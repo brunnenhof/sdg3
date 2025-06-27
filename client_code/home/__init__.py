@@ -400,6 +400,7 @@ class home(homeTemplate):
       self.fut_not_all_logged_in.foreground = "red"
       self.show_hide_fut_money('hide')
     self.lang_card.visible = False
+    self.pcgd_advance.visible = True
     
 #    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
 #    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
