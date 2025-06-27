@@ -715,6 +715,8 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     reg = ro['reg']
     wo = ro['wo']
+    if reg is None:
+      reg = '?None?'
     if wo is None:
       woo = 'None'
     else:
