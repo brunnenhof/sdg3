@@ -62,7 +62,10 @@ class home(homeTemplate):
         row['last_login_utc'] = now
     
     row = app_tables.games_log.get(game_id=game_id)
-    gm_status = row["gm_status"]
+    if row is None:
+      gm_status = 0
+    else:
+      gm_status = row["gm_status"]
     woo = 'wo=   '+str(wo)
     if reg is None:
       reg = 'None'
