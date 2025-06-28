@@ -98,6 +98,11 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_gm_40(user)
+    elif wo == 5 and reg == "gm" and gm_status == 6:
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_gm_40_not_sub(user)
     elif wo == 7 and reg == "gm" and gm_status == 10 and sub_open == 20:
       ## success to 2040
       em = mg.my_email
@@ -498,7 +503,34 @@ class home(homeTemplate):
     self.gm_graf_card.visible = True
     pass
 
-  
+  def show_gm_40_not_sub(self, user):
+    self.gm_4_5_core(user)
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['lang']
+    cid = ro['game_id']
+    self.checkbox_1.checked = False 
+    self.checkbox_1.visible = True 
+    self.gm_start_round.visible = False
+    self.gm_card_wait_1_btn_check.visible = False 
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]    
+    ### get global grafs up to 2025
+    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
+      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+    else:
+      ## no graphs exist, make the ones for 2025, show them
+      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
+      while not self.task.is_completed():
+        pass
+      else:  ## background is done
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+        ]
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+    pass
+
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
     """This method is called when an item is selected"""
