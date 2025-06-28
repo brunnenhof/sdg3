@@ -77,6 +77,11 @@ class home(homeTemplate):
       self.do_lang(my_loc)
       pass
 #    elif wo == 4 and role == "fut":
+    elif wo == 5 and role == "fut" and gm_status==6:
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_fut_46(lx, game_id, reg, role)
     elif wo == 3 and role == "fut":
       ## success to 2040
       em = mg.my_email
@@ -428,6 +433,26 @@ class home(homeTemplate):
     self.dec_card.visible = False
     self.p_after_submit.visible = True 
     self.lang_card.visible = False
+
+  def show_fut_46(self, lx, cid, reg, role):
+    ## show fut decisions submitted, wait for advance, get results for 2040
+    em = mg.my_email
+    mg.my_game_id = cid
+    mg.my_ministry = role
+    mg.my_reg = reg
+    row = app_tables.nutzer.get(email=em)
+    lx = row["lang"]
+    mg.my_lang = lx
+    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+    self.cid_reg_role_info.text = (cid+ "  + "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+    self.p_card_graf_dec.visible = False
+    self.p_choose_role.visible = False
+    self.dec_card.visible = False
+    self.p_after_submit.visible = True 
+    self.lang_card.visible = False
+    slots = self.make_ta_slots(cid, 2, reg, role, lx) 
+    self.gm_graf_card_rp.items = slots
 
   def gm_4_5_core(self, user):
     lx = user["lang"]
@@ -1897,18 +1922,22 @@ class home(homeTemplate):
 
   def make_ta_slots(self, cid, round, reg, role, lx):
     ## show generating msg ....
-    self.pcgd_generating.visible = True    
-    self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, round, lx)
-    while not self.task.is_completed():
-      pass
-    else:  ## background is done
-      slots = [
-        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-        for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg)
-      ]
-      ### hide generating msg ....
-      self.pcgd_generating.visible = False      
+    slots = app_tables.plots.search(game_id=cid,runde=round,reg=reg,ta=role)
+    if len(slots) > 0:
       return slots
+    else:
+      self.pcgd_generating.visible = True    
+      self.task = anvil.server.call('launch_create_plots_for_slots', cid, reg, role, round, lx)
+      while not self.task.is_completed():
+        pass
+      else:  ## background is done
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg)
+        ]
+      ### hide generating msg ....
+        self.pcgd_generating.visible = False      
+        return slots
 
   def get_ta_grafs(self, cid, round, reg, role, lx):
     have_grafs = app_tables.plots.search(game_id=cid, runde=round, reg=reg, role=role)
@@ -1982,7 +2011,7 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
 #      slots = self.get_ta_grafs(self, cid, round, reg, role, lx)
-      slots = self.make_ta_slots()(self, cid, 2, reg, role, lx)
+      slots = self.make_ta_slots(cid, 2, reg, role, lx)
 #      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
 #      self.pcgd_generating.visible = True
       #      make something visible
@@ -2030,7 +2059,7 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
-      slots = self.make_ta_slots(self, cid, 3, reg, role, lx)      
+      slots = self.make_ta_slots(cid, 3, reg, role, lx)      
 #      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
 #      self.pcgd_generating.visible = True
 #      #      make something visible
@@ -2077,7 +2106,7 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
-      slots = self.make_ta_slots(self, cid, 4, reg, role, lx)      
+      slots = self.make_ta_slots(cid, 4, reg, role, lx)      
 #      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
 #      self.pcgd_generating.visible = True
 #      #      make something visible
@@ -2269,18 +2298,6 @@ class home(homeTemplate):
       row_looked_at = app_tables.pcgd_advance_looked_at.get(game_id=cid, reg=reg, ta=role, round=pala_runde)
       row_looked_at["looked_at"] = True
 
-  def get_ta_slots(self, cid, reg, role, runde, lx):
-    slots = []
-    self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, runde, lx)
-    while not self.task.is_completed():
-      pass
-    else:  ## launch_create_plots_for_slots is done
-      slots = [
-        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-        for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-      ]
-    return slots
-    
   def pcgd_advance_click(self, **event_args):
     ## this is a player (NOT fut) who wants to know if ready for next round
     ## first, check if all regions have submitted
@@ -2341,7 +2358,7 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 2, lx)
+        self.plot_card_rp.items = self.make_ta_slots(cid, 2, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2373,7 +2390,7 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 3, lx)
+        self.plot_card_rp.items = self.make_ta_slots(cid, 3, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2397,7 +2414,7 @@ class home(homeTemplate):
       if len(have_slots) > 0:
         self.plot_card_rp.items = have_slots
       else:
-        self.plot_card_rp.items = self.get_ta_slots(cid, reg, role, 4, lx)
+        self.plot_card_rp.items = self.make_ta_slots(cid, 4, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
