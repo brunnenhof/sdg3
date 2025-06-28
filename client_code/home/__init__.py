@@ -195,11 +195,11 @@ class home(homeTemplate):
       self.dec_card.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
     self.pcgd_info_rd1.visible = True
-    slots = self.make_ta_slots(cid, round, reg, role, lx)
-    slots = [
-      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-    ]
+    slots = self.make_ta_slots(cid, runde, reg, role, lx)
+#    slots = [
+#      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#    ]
     self.plot_card_rp.items = slots
     if role == "fut":
       self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
@@ -394,11 +394,12 @@ class home(homeTemplate):
     self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
     self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
     self.pcgd_info_rd1.visible = True
-    fut_plots = app_tables.plots.search(game_id=cid,ta=role,reg=reg,runde=1)
-    slots = []
-    for fp in fut_plots:
-      slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
-      slots.append(slot)
+#    fut_plots = app_tables.plots.search(game_id=cid,ta=role,reg=reg,runde=1)
+    slots = self.make_ta_slots(cid, 1, reg, role, lx)
+#    slots = []
+#    for fp in fut_plots:
+#      slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
+#      slots.append(slot)
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
     ### check if all looked at
