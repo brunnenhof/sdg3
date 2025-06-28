@@ -451,6 +451,9 @@ class home(homeTemplate):
     self.dec_card.visible = False
     self.p_after_submit.visible = True 
     self.lang_card.visible = False
+    self.fut_bud_lb1.visible = True 
+    self.fut_bud_lb2.visible = True 
+    self.fut_but_lb3.visible = True 
     slots = self.make_ta_slots(cid, 2, reg, role, lx) 
     self.gm_graf_card_rp.items = slots
 
@@ -1316,7 +1319,8 @@ class home(homeTemplate):
   def get_numbers_for_future(self, cid, role, reg, runde, yr, lx):
     f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
-    self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
+    self.tot_inv_pov.text = {number:.{digits}f}'.format(number=f_bud_by_ta["cpov"], digits=2)
+#    self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
     self.pov_rep_panel.items = fut_pov_list
     self.tot_inv_ineq.text = round(f_bud_by_ta["cineq"], 2)
     self.cpf_rp_ineq.items = fut_ineq_list
