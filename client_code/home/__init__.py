@@ -1950,7 +1950,7 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
 #      slots = self.get_ta_grafs(self, cid, round, reg, role, lx)
-      slots = self.get_ta_grafs(self, cid, 2, reg, role, lx)
+      slots = self.make_ta_slots()(self, cid, 2, reg, role, lx)
 #      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
 #      self.pcgd_generating.visible = True
       #      make something visible
@@ -1998,26 +1998,27 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
-      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
-      self.pcgd_generating.visible = True
-      #      make something visible
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
-        ### get runde, yr
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        self.card_fut.visible = True
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
-        self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-        self.pcgd_info_rd1.visible = True
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-        ]
-        self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr, lx)
-        self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1587)"
+      slots = self.make_ta_slots(self, cid, 3, reg, role, lx)      
+#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
+#      self.pcgd_generating.visible = True
+#      #      make something visible
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
+#        ### get runde, yr
+      self.pcgd_generating.visible = False
+      self.pcgd_plot_card.visible = True
+      self.card_fut.visible = True
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+      self.pcgd_info_rd1.visible = True
+#      slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#        ]
+      self.plot_card_rp.items = slots
+      self.do_future(cid, role, reg, runde, yr, lx)
+      self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1587)"
     elif row["gm_status"] == 12:  ## 2060 to 2100 successfully run
       #      reg = mg.my_reg
       reg = ro_nutzer["reg"]
@@ -2044,29 +2045,30 @@ class home(homeTemplate):
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
       #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
-      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
-      self.pcgd_generating.visible = True
-      #      make something visible
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
-        ### get runde, yr
-        self.pcgd_generating.visible = False
-        self.pcgd_plot_card.visible = True
-        self.card_fut.visible = False  ## no more budget at the end
-        self.pcgd_info_rd1.content = lu.pcgd_rd1_infoend_tx_str[lx]
-        self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
-        self.pcgd_info_rd1.visible = True
-        self.fut_detail("hide")
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-        ]
-        self.plot_card_rp.items = slots
-        self.do_future(cid, role, reg, runde, yr, lx)
-        self.err_msg.text = self.err_msg.text + "\n- AFTER do_future(1626) "
-        self.fut_detail("hide")
-        self.fut_not_all_logged_in.visible = False
+      slots = self.make_ta_slots(self, cid, 4, reg, role, lx)      
+#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
+#      self.pcgd_generating.visible = True
+#      #      make something visible
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
+#        ### get runde, yr
+      self.pcgd_generating.visible = False
+      self.pcgd_plot_card.visible = True
+      self.card_fut.visible = False  ## no more budget at the end
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_infoend_tx_str[lx]
+      self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
+      self.pcgd_info_rd1.visible = True
+      self.fut_detail("hide")
+#      slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#        ]
+      self.plot_card_rp.items = slots
+      self.do_future(cid, role, reg, runde, yr, lx)
+      self.err_msg.text = self.err_msg.text + "\n- AFTER do_future(1626) "
+      self.fut_detail("hide")
+      self.fut_not_all_logged_in.visible = False
     em = mg.my_email
     self.show_wo(em,'p_advance_to_next_round_click',44)
 
