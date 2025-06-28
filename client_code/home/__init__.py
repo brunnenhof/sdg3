@@ -76,7 +76,10 @@ class home(homeTemplate):
       ## just registered
       self.do_lang(my_loc)
       pass
-#    elif wo == 4 and role == "fut":
+    elif wo == 4 and role == "fut":
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      self.show_fut_4(lx, game_id, reg, role)
     elif wo == 5 and role == "fut" and gm_status==6:
       ## success to 2040
       em = mg.my_email
@@ -1324,16 +1327,16 @@ class home(homeTemplate):
 #    self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
     self.pov_rep_panel.items = fut_pov_list
     self.tot_inv_ineq.text = round(f_bud_by_ta["cineq"], 2)
-    self.tot_inv_ineq.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cineq"], digits=2)
+    self.tot_inv_ineq.text = nbr_txt.format(nbrx = f_bud_by_ta["cineq"])
     self.cpf_rp_ineq.items = fut_ineq_list
     self.tot_inv_emp.text = round(f_bud_by_ta["cemp"], 2)
-    self.tot_inv_emp.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cemp"], digits=2)
+    self.tot_inv_emp.text = nbr_txt.format(nbrx =f_bud_by_ta["cemp"])
     self.cpf_rp_emp.items = fut_emp_list
     self.tot_inv_food.text = round(f_bud_by_ta["cfood"], 2)
-    self.tot_inv_food.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cfood"], digits=2)
+    self.tot_inv_food.text = nbr_txt.format(nbrx = f_bud_by_ta["cfood"])
     self.cpf_food_rp.items = fut_food_list
     self.tot_inv_ener.text = round(f_bud_by_ta["cener"], 2)
-    self.tot_inv_ener.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cener"], digits=2)
+    self.tot_inv_ener.text = nbr_txt.format(nbrx = f_bud_by_ta["cener"])
     self.cpf_ener_rp.items = fut_ener_list
     if within_budget:
       self.submit_numbers.text = lu.submit_numbers_tx_str[lx] + str(yr)
@@ -1356,6 +1359,12 @@ class home(homeTemplate):
       self.set_fut_all_logged_in(lx)
       if not yr == 2100:
         self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
+        self.fut_bud_lb1.text = lu.fut_bud_lb1_tx_str[lx] 
+        self.fut_bud_lb2.text = lu.fut_bud_lb2_tx_str[lx] 
+        self.fut_but_lb3.text = lu.fut_bud_lb3_tx_str[lx] 
+        self.fut_bud_lb1.visible = True 
+        self.fut_bud_lb2.visible = True 
+        self.fut_but_lb3.visible = True 
       else:
         self.fut_not_all_logged_in.visible = False
         self.pcgd_info_rd1.content = lu.pcgd_rd1_info_end_tx_str[lx]
@@ -1571,16 +1580,10 @@ class home(homeTemplate):
       self.fut_invest_pct.text = nbr_txt.format(nbrx = pct_of_budget)
 
     pov_list = self.calc_cost_home_ta(pct_pov, tltl_pov, gl_pov, max_cost_pov, "pov")
-    ineq_list = self.calc_cost_home_ta(
-      pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq, "ineq"
-    )
+    ineq_list = self.calc_cost_home_ta(pct_ineq, tltl_ineq, gl_ineq, max_cost_ineq, "ineq")
     emp_list = self.calc_cost_home_ta(pct_emp, tltl_emp, gl_emp, max_cost_emp, "emp")
-    food_list = self.calc_cost_home_ta(
-      pct_food, tltl_food, gl_food, max_cost_food, "food"
-    )
-    ener_list = self.calc_cost_home_ta(
-      pct_ener, tltl_ener, gl_ener, max_cost_ener, "ener"
-    )
+    food_list = self.calc_cost_home_ta(pct_food, tltl_food, gl_food, max_cost_food, "food")
+    ener_list = self.calc_cost_home_ta(pct_ener, tltl_ener, gl_ener, max_cost_ener, "ener")
     return (costs_by_ta,pov_list,ineq_list,emp_list,food_list,ener_list,within_budget)
 
   def refresh_numbers_click(self, **event_args):
@@ -2023,32 +2026,18 @@ class home(homeTemplate):
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde=2 role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_40_fut[lx]
-#      slots = self.get_ta_grafs(self, cid, round, reg, role, lx)
       slots = self.make_ta_slots(cid, 2, reg, role, lx)
-#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 2, lx)
-#      self.pcgd_generating.visible = True
-      #      make something visible
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-        ### get runde, yr
-#        self.pcgd_generating.visible = False
       self.pcgd_plot_card.visible = True
       self.card_fut.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
       self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
       self.pcgd_info_rd1.visible = True
-#      slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-#        ]
       self.plot_card_rp.items = slots
       self.do_future(cid, role, reg, runde, yr, lx)
       self.err_msg.text = self.err_msg.text + "\n- AFTER do_future (1550)"
         ### update wo
       ro_nutzer["wo"] = 5
     elif row["gm_status"] == 10:  ## 2040 to 2060 successfully run
-      #      reg = mg.my_reg
       reg = ro_nutzer["reg"]
       runde = 3
       yr = 2060
@@ -2071,15 +2060,7 @@ class home(homeTemplate):
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_60_fut[lx]
-      #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_60_fut[lx]
       slots = self.make_ta_slots(cid, 3, reg, role, lx)      
-#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 3, lx)
-#      self.pcgd_generating.visible = True
-#      #      make something visible
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-#        ### get runde, yr
       self.pcgd_generating.visible = False
       self.pcgd_plot_card.visible = True
       self.card_fut.visible = True
@@ -2118,15 +2099,7 @@ class home(homeTemplate):
       role = "fut"
       self.err_msg.text = (self.err_msg.text+ "\n- runde="+ str(runde)+ " role="+ role+ " gm_status="+ str(row["gm_status"])+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr))
       self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
-      #      self.pcgd_title.text = mg.fut_title_tx2 + lu.p_info_21_fut[lx]
       slots = self.make_ta_slots(cid, 4, reg, role, lx)      
-#      self.task = anvil.server.call("launch_create_plots_for_slots", cid, reg, role, 4, lx)
-#      self.pcgd_generating.visible = True
-#      #      make something visible
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-#        ### get runde, yr
       self.pcgd_generating.visible = False
       self.pcgd_plot_card.visible = True
       self.card_fut.visible = False  ## no more budget at the end
@@ -2134,10 +2107,6 @@ class home(homeTemplate):
       self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
       self.pcgd_info_rd1.visible = True
       self.fut_detail("hide")
-#      slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-#        ]
       self.plot_card_rp.items = slots
       self.do_future(cid, role, reg, runde, yr, lx)
       self.err_msg.text = self.err_msg.text + "\n- AFTER do_future(1626) "
