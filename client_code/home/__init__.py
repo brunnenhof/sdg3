@@ -1319,7 +1319,8 @@ class home(homeTemplate):
   def get_numbers_for_future(self, cid, role, reg, runde, yr, lx):
     f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
-    self.tot_inv_pov.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cpov"], digits=2)
+    nbr_txt = "{nbrx:.2f}"
+    self.tot_inv_pov.text = nbr_txt.format(nbrx = f_bud_by_ta["cpov"])
 #    self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
     self.pov_rep_panel.items = fut_pov_list
     self.tot_inv_ineq.text = round(f_bud_by_ta["cineq"], 2)
@@ -1559,14 +1560,15 @@ class home(homeTemplate):
     else:
       within_budget = True
       if pct_of_budget > 10:
-        pct_shown = str(int(pct_of_budget))
+        nbr_txt = "{nbrx:.0f}"
       else:
-        pct_shown = round(pct_of_budget, 1)
+        nbr_txt = "{nbrx:.1f}"
       self.fut_invest.foreground = "green"
       self.fut_invest_pct.foreground = "green"
       self.fut_bud_amount.foreground = "green"
       self.submit_numbers.visible = True
-      self.fut_invest_pct.text = '{number:.{digits}f}'.format(number=pct_of_budget, digits=1)
+      self.fut_bud_amount.text = bud_txt.format(budx = bud)
+      self.fut_invest_pct.text = nbr_txt.format(nbrx = pct_of_budget)
 
     pov_list = self.calc_cost_home_ta(pct_pov, tltl_pov, gl_pov, max_cost_pov, "pov")
     ineq_list = self.calc_cost_home_ta(
