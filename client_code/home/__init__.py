@@ -493,18 +493,19 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
     ### get global grafs up to 2025
-    if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
-      slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-    else:
-      ## no graphs exist, make the ones for 2025, show them
-      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-        ]
+    slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
+#    if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
+#      slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+#    else:
+#      ## no graphs exist, make the ones for 2025, show them
+#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
+#        slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+#        ]
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
@@ -520,18 +521,19 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
     ### get global grafs up to 2025
-    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
-      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-    else:
-      ## no graphs exist, make the ones for 2025, show them
-      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-        ]
+    slots = self.make_ta_slots(cid, 2, 'gm', '', lx)  # '' = role  
+#    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
+#      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+#    else:
+#      ## no graphs exist, make the ones for 2025, show them
+#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
+#        slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=1 / 2, reg='gm')
+#        ]
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
     pass
@@ -548,18 +550,19 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]    
     ### get global grafs up to 2025
-    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
-      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-    else:
-      ## no graphs exist, make the ones for 2025, show them
-      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
-      while not self.task.is_completed():
-        pass
-      else:  ## background is done
-        slots = [
-          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-        ]
+    slots = self.make_ta_slots(cid, 2, 'gm', '', lx)  # '' = role  
+#    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
+#      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
+#    else:
+#      ## no graphs exist, make the ones for 2025, show them
+#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
+#      while not self.task.is_completed():
+#        pass
+#      else:  ## background is done
+#        slots = [
+#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+#        ]
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
     pass
@@ -990,18 +993,19 @@ class home(homeTemplate):
 #      rows = app_tables.plots.search(reg='gm')
 #      for row in rows:
 #        row.delete()
-      if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
-        slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-      else:
-        ## no graphs exist, make the ones for 2025, show them
-        self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
-        while not self.task.is_completed():
-          pass
-        else:  ## background is done
-          slots = [
-            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-            for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-          ]
+      slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
+#      if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
+#        slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+#      else:
+#        ## no graphs exist, make the ones for 2025, show them
+#        self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
+#        while not self.task.is_completed():
+#          pass
+#        else:  ## background is done
+#          slots = [
+#            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#            for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
+#          ]
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
     else: # still some not logged in
@@ -1224,10 +1228,11 @@ class home(homeTemplate):
         self.dec_card.visible = True
         self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
     self.pcgd_info_rd1.visible = True
-    slots = [
-      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-    ]
+    slots = self.make_ta_slots(cid, runde, reg, role, lx)  # '' = role  
+#    slots = [
+#      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
+#    ]
     self.plot_card_rp.items = slots
     if role == "fut":
       self.do_future(cid, role, reg, runde, yr, lx)
@@ -1744,16 +1749,16 @@ class home(homeTemplate):
       not_sub_list.append(longreg)
     return not_sub_list
 
-  def get_nat_slots(self, cid, runde, lx):
-    self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', runde, lx) 
-    while not self.task.is_completed():
-      pass
-    else:  ## background is done
-      slots = [
-        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-        for r in app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
-      ]
-      return slots
+#  def get_nat_slots(self, cid, runde, lx):
+#    self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', runde, lx) 
+#    while not self.task.is_completed():
+#      pass
+#    else:  ## background is done
+#      slots = [
+#        {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+#        for r in app_tables.plots.search(game_id=cid, runde=runde, reg='gm')
+#      ]
+#      return slots
 
   def wait_for_checkbox(self):
     em = mg.my_email
@@ -1879,14 +1884,15 @@ class home(homeTemplate):
       else:
         alert("gm_start_round_click\n runde="+str(runde)+"\n chk_runde="+str(chk_runde))
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_runde, reg='gm')
-      if len(have_nat_slots) > 0:
-        slots = have_nat_slots
-        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
-      else:
-        ## no graphs exist, make the ones for 2025, show them
-        slots = self.get_nat_slots(cid, chk_runde, lx)
-        print("\n   --- have_nat_slots: Made new ones runde " + str(runde))
+      slots = self.make_ta_slots(cid, chk_runde, 'gm', '', lx)  # '' = role  
+#      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_runde, reg='gm')
+#      if len(have_nat_slots) > 0:
+#        slots = have_nat_slots
+#        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
+#      else:
+#        ## no graphs exist, make the ones for 2025, show them
+#        slots = self.get_nat_slots(cid, chk_runde, lx)
+#        print("\n   --- have_nat_slots: Made new ones runde " + str(runde))
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
       if runde == 1:
@@ -2238,14 +2244,14 @@ class home(homeTemplate):
         return 3
     pass
 
-  def plots_exist_home(self, game_id, region, single_ta, runde, lang):
-    px = app_tables.plots.search(game_id=game_id, reg=region,ta=single_ta,runde=runde)
-    slots = []
-    if len(px) > 0:
-      for fp in px:
-        slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
-        slots.append(slot)
-    return slots
+#  def plots_exist_home(self, game_id, region, single_ta, runde, lang):
+#    px = app_tables.plots.search(game_id=game_id, reg=region,ta=single_ta,runde=runde)
+#    slots = []
+#    if len(px) > 0:
+#      for fp in px:
+#        slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
+#        slots.append(slot)
+#    return slots
 
   def show_pcgd_advance(self, role, reg, lx, cid, runde):
     self.p_card_graf_dec.visible = True
@@ -2338,11 +2344,12 @@ class home(homeTemplate):
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 1)
       yr, runde = self.get_runde(cid)
-      have_slots = self.plots_exist_home(cid, reg, role, 2, lx)
-      if len(have_slots) > 0:
-        self.plot_card_rp.items = have_slots
-      else:
-        self.plot_card_rp.items = self.make_ta_slots(cid, 2, reg, role, lx)
+      self.plot_card_rp.items = self.make_ta_slots(cid, 2, reg, role, lx)
+#      have_slots = self.plots_exist_home(cid, reg, role, 2, lx)
+#      if len(have_slots) > 0:
+#        self.plot_card_rp.items = have_slots
+#      else:
+#        self.plot_card_rp.items = self.make_ta_slots(cid, 2, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2370,11 +2377,12 @@ class home(homeTemplate):
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 2)
       yr, runde = self.get_runde(cid)
-      have_slots = self.plots_exist_home(cid, reg, role, 3, lx)
-      if len(have_slots) > 0:
-        self.plot_card_rp.items = have_slots
-      else:
-        self.plot_card_rp.items = self.make_ta_slots(cid, 3, reg, role, lx)
+      self.plot_card_rp.items = self.make_ta_slots(cid, 3, reg, role, lx)
+#      have_slots = self.plots_exist_home(cid, reg, role, 3, lx)
+#      if len(have_slots) > 0:
+#        self.plot_card_rp.items = have_slots
+#      else:
+#        self.plot_card_rp.items = self.make_ta_slots(cid, 3, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
@@ -2394,11 +2402,12 @@ class home(homeTemplate):
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 3)
       yr, runde = self.get_runde(cid)
-      have_slots = self.plots_exist_home(cid, reg, role, 4, lx)
-      if len(have_slots) > 0:
-        self.plot_card_rp.items = have_slots
-      else:
-        self.plot_card_rp.items = self.make_ta_slots(cid, 4, reg, role, lx)
+      self.plot_card_rp.items = self.make_ta_slots(cid, 4, reg, role, lx)
+#      have_slots = self.plots_exist_home(cid, reg, role, 4, lx)
+#      if len(have_slots) > 0:
+#        self.plot_card_rp.items = have_slots
+#      else:
+#        self.plot_card_rp.items = self.make_ta_slots(cid, 4, reg, role, lx)
       if role == "fut":
         self.do_future(cid, role, reg, runde, yr, lx)
       else:
