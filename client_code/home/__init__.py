@@ -195,6 +195,7 @@ class home(homeTemplate):
       self.dec_card.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
     self.pcgd_info_rd1.visible = True
+    slots = self.make_ta_slots(cid, round, reg, role, lx)
     slots = [
       {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
       for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
