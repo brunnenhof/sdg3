@@ -1319,16 +1319,20 @@ class home(homeTemplate):
   def get_numbers_for_future(self, cid, role, reg, runde, yr, lx):
     f_bud_by_ta,fut_pov_list,fut_ineq_list,fut_emp_list,fut_food_list,fut_ener_list,within_budget = self.get_policy_investments(cid, role, reg, runde, yr)
     self.pov_rep_panel.visible = True
-    self.tot_inv_pov.text = {number:.{digits}f}'.format(number=f_bud_by_ta["cpov"], digits=2)
+    self.tot_inv_pov.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cpov"], digits=2)
 #    self.tot_inv_pov.text = round(f_bud_by_ta["cpov"], 2)
     self.pov_rep_panel.items = fut_pov_list
     self.tot_inv_ineq.text = round(f_bud_by_ta["cineq"], 2)
+    self.tot_inv_ineq.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cineq"], digits=2)
     self.cpf_rp_ineq.items = fut_ineq_list
     self.tot_inv_emp.text = round(f_bud_by_ta["cemp"], 2)
+    self.tot_inv_emp.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cemp"], digits=2)
     self.cpf_rp_emp.items = fut_emp_list
     self.tot_inv_food.text = round(f_bud_by_ta["cfood"], 2)
+    self.tot_inv_food.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cfood"], digits=2)
     self.cpf_food_rp.items = fut_food_list
     self.tot_inv_ener.text = round(f_bud_by_ta["cener"], 2)
+    self.tot_inv_ener.text = '{number:.{digits}f}'.format(number=f_bud_by_ta["cener"], digits=2)
     self.cpf_ener_rp.items = fut_ener_list
     if within_budget:
       self.submit_numbers.text = lu.submit_numbers_tx_str[lx] + str(yr)
@@ -1537,10 +1541,13 @@ class home(homeTemplate):
       "cineq": cost_ineq,
       "cener": cost_ener,
     }
-    total_cost = round(cost_pov + cost_emp + cost_ener + cost_food + cost_ineq, 1)
+    total_cost = cost_pov + cost_emp + cost_ener + cost_food + cost_ineq
     pct_of_budget = total_cost / bud * 100
-    self.fut_bud_amount.text = round(bud, 0)
-    self.fut_invest.text = total_cost
+    bud_txt = "{budx:.0f}"
+    tot_txt = "{totx:.1f}"
+#    print(bud_txt.format(budx = bud)) 
+    self.fut_bud_amount.text = bud_txt.format(budx = bud)
+    self.fut_invest.text = tot_txt.format(totx = total_cost)
     within_budget = False
     if pct_of_budget > 100:
       pct_shown = str(int(pct_of_budget))
@@ -1559,7 +1566,7 @@ class home(homeTemplate):
       self.fut_invest_pct.foreground = "green"
       self.fut_bud_amount.foreground = "green"
       self.submit_numbers.visible = True
-      self.fut_invest_pct.text = pct_shown
+      self.fut_invest_pct.text = '{number:.{digits}f}'.format(number=pct_of_budget, digits=1)
 
     pov_list = self.calc_cost_home_ta(pct_pov, tltl_pov, gl_pov, max_cost_pov, "pov")
     ineq_list = self.calc_cost_home_ta(
