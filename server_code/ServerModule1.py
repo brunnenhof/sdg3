@@ -723,6 +723,11 @@ def launch_create_plots_for_slots(game_id, reg, ta, runde, lang):
   task = anvil.server.launch_background_task("create_plots_for_slots", game_id, reg, ta, runde, lang)
   return task
 
+@anvil.server.callable
+def launch_create_plots_for_nat_slots(game_id, runde, lang):
+  task = anvil.server.launch_background_task("create_plots_for_nat_slots", game_id, 'gm', runde, lang)
+  return task
+
 def get_all_vars_for_ta(ta):
   ta1 = mg.pov_to_Poverty[ta]
   #  print('get_all_vars_for_ta +++++ '+ta1)
@@ -774,7 +779,7 @@ def launch_do_gm_graphs(game_id, reg, runde, lang):
   return task
 
 @anvil.server.background_task
-def do_gm_graphs(game_id, region, runde, lang):
+def create_plots_for_nat_slots(game_id, region, runde, lang):
   cid = game_id
   if runde == 1:
     yr = 2025

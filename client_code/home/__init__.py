@@ -993,7 +993,8 @@ class home(homeTemplate):
 #      rows = app_tables.plots.search(reg='gm')
 #      for row in rows:
 #        row.delete()
-      slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
+      slots = self.make_nat_slots(cid, 1, lx)  # '' = role  
+#      slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
 #      if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
 #        slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
 #      else:
@@ -1960,6 +1961,25 @@ class home(homeTemplate):
           for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg)
         ]
       ### hide generating msg ....
+        self.pcgd_generating.visible = False      
+        return slots
+
+  def make_nat_slots(self, cid, round, lx):
+    ## show generating msg ....
+    slots = app_tables.plots.search(game_id=cid,runde=round,reg='gm')
+    if len(slots) > 0:
+      return slots
+    else:
+      self.pcgd_generating.visible = True    
+      self.task = anvil.server.call('launch_create_plots_for_nat_slots', cid, round, lx)
+      while not self.task.is_completed():
+        pass
+      else:  ## background is done
+        slots = [
+          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
+          for r in app_tables.plots.search(game_id=cid, runde=round, reg='gm')
+        ]
+        ### hide generating msg ....
         self.pcgd_generating.visible = False      
         return slots
 

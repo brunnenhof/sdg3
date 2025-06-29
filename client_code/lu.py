@@ -2605,6 +2605,14 @@ pcgd_generating_tx1_str = [
   "Generere grafer til 2040 og beslutningsark for 2040", 
   "_last_"
 ]
+nat_msg = [
+  "Generating global overview graphs ... ",
+  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
+  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
+  "Génération de graphiques jusqu'en 2040 et feuille de décision pour 2040", 
+  "Genererer globale oversiktsgrafer ...", 
+  "_last_"
+]
 pcgd_generating_tx2_str = [
   "Generating graphs until 2060 and decision sheet for 2060 ",
   "Diagramme bis 2060 und Entscheidungsblatt für 2060 werden erstellt ",
