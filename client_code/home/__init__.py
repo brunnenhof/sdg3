@@ -2649,6 +2649,17 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
     gm_status = ro_gm_status['gm_status']
     lx = ro['lang']
+    if not self.checkbox_1.checked:
+      yr, runde = self.get_runde(ro['game_id'])
+      ro_sub = app_tables.submitted.search(game_id=ro['game_id'],submitted=True, round=runde)
+      if len(ro_sub) > 0:
+        lmsg = lu.check_wait_sub[lx]
+        for ii in range(0, len(ro_sub)):
+          not_sub = ro_sub[ii]['reg']
+          not_sub2 = self.do_reg_to_longreg(not_sub)
+          lmsg = lmsg + "\n" + not_sub2
+          alert(lmsg, title=lu.not_all_looked_at_title[lx])
+          return
     ro_wo = ro['wo']
     is_gm = ro['reg']
     cid = ro['game_id']

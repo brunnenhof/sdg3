@@ -2477,6 +2477,14 @@ gm_card_wait_1_btn_kick_off_round_1_tx_str = [
   "For å fortsette modellen til neste runde, klikk her.", 
   "_last_"
 ]
+check_wait_sub= [
+  "You need to wait until all regions have submitted their decisions. Still waiting for:",
+  "Sie müssen warten, bis alle Regionen ihre Entscheidungen eingereicht haben. Noch ausstehend sind:",
+  "Du musst warten, bis alle Regionen ihre Entscheidungen eingereicht haben. Noch ausstehend sind:",
+  "Vous devez attendre que toutes les régions aient soumis leurs décisions. En attente :",
+  "Du må vente til alle regioner har sendt inn sine beslutninger. Venter fortsatt på:",
+  "_last_"
+]
 checkbox_1_tx = [
   "Accept decisions for next round",
   "Entscheidungen für die nächste Runde akzeptieren",
