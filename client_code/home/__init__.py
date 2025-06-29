@@ -830,7 +830,10 @@ class home(homeTemplate):
         sub = False
       else:
         ro2 = app_tables.submitted.get(game_id=cid, reg=reg,round=runde)
-        sub = ro2['submitted']
+        if ro2 is None:
+          sub = False
+        else:
+          sub = ro2['submitted']
     if wo is None:
       woo = 'None'
     else:
@@ -879,7 +882,6 @@ class home(homeTemplate):
     self.card_select_reg_role.visible = True
     em = mg.my_email
     self.show_wo(em,'top_join_game_click', 22)
-
 
   def gm_reg_npbp_click(self, **event_args):
     cid = mg.my_game_id
