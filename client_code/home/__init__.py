@@ -2010,7 +2010,7 @@ class home(homeTemplate):
       else:  ## background is done
         slots = [
           {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-          for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg)
+          for r in app_tables.plots.search(game_id=cid, runde=round, reg=reg, ta=role)
         ]
       ### hide generating msg ....
         self.pcgd_generating.visible = False      
