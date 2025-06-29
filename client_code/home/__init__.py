@@ -2674,9 +2674,15 @@ class home(homeTemplate):
           not_sub = not_submitted[ii]
           not_sub2 = self.do_reg_to_longreg(not_sub)
           lmsg = lmsg + "\n" + not_sub2
-        alert(lmsg, title=lu.not_all_looked_at_title[lx])
-        self.checkbox_1.checked = False 
-        return
+    result = alert(
+      content=lu.confirm_advance[lx],
+      title=lu.accept_title_tx_str[lx],
+      large=False,
+      buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)],
+    )
+    if not result:
+      self.checkbox_1.checked = False 
+      return
     ro_wo = ro['wo']
     is_gm = ro['reg']
     cid = ro['game_id']

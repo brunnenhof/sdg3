@@ -2989,13 +2989,29 @@ confirm_submit_tx_str = [
     "Ja å sende inn, Nei å gå tilbake",
     "_last_"
 ]
-confirm_title_tx_str = [
-    "Really submit the decisions?",
-    "Die Entscheidungen wirklich einreichen?",
-    "Die Entscheidungen wirklich einreichen?",
-    "Soumettre vraiment les décisions ?", 
-    "Skal du virkelig sende inn avgjørelsene?", 
+accept_title_tx_str = [
+    "Do you really allow players to submit their decisions?",
+    "Wirklich die Einreichung der Spieler:innenentscheidungen freischalten?",
+    "Wirklich die Einreichung der Spieler:innenentscheidungen freischalten?",
+    "Autoriser réellement les soumissions des décisions des joueurs ?", 
+    "Tillater du virkelig innlevering av spillernes beslutninger?", 
     "_last_"
+]
+confirm_title_tx_str = [
+  "Really allow submissions of players decisions?",
+  "Die Entscheidungen wirklich einreichen?",
+  "Die Entscheidungen wirklich einreichen?",
+  "Soumettre vraiment les décisions ?", 
+  "Skal du virkelig sende inn avgjørelsene?", 
+  "_last_"
+]
+confirm_advance = [
+  "Really accept decisions for the next round? If you plan to take a break (debrief/lunch/next week/next lesson), it is better to wait until after the break, otherwise your players can submit their decisions whenever they want, and possibly loose the rhythm of the game.",
+  "Wollen Sie die Entscheidungen für die nächste Runde wirklich akzeptieren? Wenn Sie eine Pause einlegen möchten (Nachbesprechung/Mittagessen/nächste Woche/nächste Unterrichtsstunde), ist es besser, bis nach der Pause zu warten, da Ihre Spieler:innen sonst ihre Entscheidungen jederzeit einreichen können und Sie möglicherweise den Rhythmus des Spiels verlieren.",
+  "Willst Du die Entscheidungen für die nächste Runde wirklich akzeptieren? Wenn Du eine Pause einlegen möchtest (Nachbesprechung/Mittagessen/nächste Woche/nächste Unterrichtsstunde), ist es besser, bis nach der Pause zu warten, da Deine Spieler:innen sonst ihre Entscheidungen jederzeit einreichen können und sie möglicherweise den Rhythmus des Spiels verlieren.",
+  "Acceptez-vous vraiment les décisions pour le prochain tour ? Si vous prévoyez de faire une pause (débriefing/déjeuner/semaine prochaine/prochain cours), il est préférable d'attendre la fin de la pause, sinon vos joueurs peuvent soumettre leurs décisions quand ils le souhaitent et vous risquez de perdre le rythme du jeu.", 
+  "Er du sikker på at du vil godta avgjørelsene for neste runde? Hvis du planlegger å ta en pause (debriefing/lunsj/neste uke/neste leksjon), er det bedre å vente til etter pausen, ellers kan spillerne dine sende inn avgjørelsene sine når de vil, og du kan miste rytmen i spillet.", 
+  "_last_"
 ]
 after_submit_tx_str = [
     "Your regions decisions have been submitted - thanks!\nOnce all regions have submitted their decisons, the model will be advanced for the next round. This will take a bit of time ... ",
