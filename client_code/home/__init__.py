@@ -2365,6 +2365,7 @@ class home(homeTemplate):
     ## first, check if all regions have submitted
     # something needs to be set here, by re and round and ta
     #    my_cid = mg.my_game_id
+    self.pcgd_advance.enabled = False
     lx = mg.my_lang
     cid = mg.my_game_id
     reg = mg.my_reg
@@ -2386,6 +2387,7 @@ class home(homeTemplate):
         style="info",
       )
       n.show()
+      self.pcgd_advance.enabled = True      
       return
     if gmStatus == 5:
       ### all regs HAVE submitted for round 2025 to 2040
@@ -2398,6 +2400,7 @@ class home(homeTemplate):
       n.show()
       self.plot_card_rp.visible = True
       self.dec_card.visible = False
+      self.pcgd_advance.enabled = True   
       return
     self.err_msg.text = (self.err_msg.text + "\npcgd_advance_click -- gmStatus > 5: it is=" + str(gmStatus))
     if gmStatus == 6:
@@ -2405,6 +2408,7 @@ class home(homeTemplate):
       if rc["r1sub"] < 10:
         n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
+        self.pcgd_advance.enabled = True           
         return
       self.err_msg.text = self.err_msg.text + "\ngmStaus = 6 r1sub=10"
       #      anfang = time.time()
@@ -2427,16 +2431,19 @@ class home(homeTemplate):
       else:
         self.do_non_future(cid, role, reg, runde, yr, lx)
 #      ro_pala = app_tables.pcgd_advance_looked_at.get(game_id=cid,round=2,)
+      self.pcgd_advance.enabled = True         
       return
     if gmStatus == 7:  ## waiting for decisions until 2060
       rc = app_tables.cookies.get(game_id=cid)
       if rc["r2sub"] < 10:
         n = Notification(lu.not_to_2060_str[lx], style="warning")
         n.show()
+        self.pcgd_advance.enabled = True           
         return
       else:
         n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3, style="info")
         n.show()
+        self.pcgd_advance.enabled = True           
         return
     if gmStatus == 10:  ## 2040 to 2060 successfully run
       self.err_msg.text = (self.err_msg.text + "\npcgd_advance_tx -- gmStatus is " + str(gmStatus))
@@ -2461,6 +2468,7 @@ class home(homeTemplate):
         self.do_non_future(cid, role, reg, runde, yr, lx)
       #      dauer = round(time.time() - anfang, 0)
       #      self.top_duration.text = dauer
+      self.pcgd_advance.enabled = True         
       return
     if gmStatus == 12:  ## 2060 to 2100 successfully run
       self.err_msg.text = (
@@ -2488,6 +2496,7 @@ class home(homeTemplate):
       #      self.top_duration.text = dauer
     em = mg.my_email
     self.show_wo(em,'pcgd_advance_click',55)
+    self.pcgd_advance.enabled = True       
 
   def tick_gm_round_ready_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
