@@ -118,7 +118,11 @@ class home(homeTemplate):
       ## success to 2040
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
-      self.show_gm_40(user)
+      so, not_submitted = self.get_sub_for_gm(em,2)
+      if len(not_submitted) > 0:
+        self.show_gm_40_not_sub(user)
+      else:
+        self.show_gm_4(user)
     elif wo == 5 and reg == "gm" and gm_status == 6:
       ## success to 2040
       em = mg.my_email
@@ -154,6 +158,19 @@ class home(homeTemplate):
       self.show_gm_4(user)
       pass
 
+  def get_sub_for_gm(self, em, runde):
+    if runde not in [1,2,3,4]:
+      return -52
+    ro = app_tables.nutzer.get(email=em)
+    cid = ro['game_id']
+    so = ro['sub_open']
+    not_sub = []
+    ros = app_tables.submitted.search(game_id=cid, round=runde, submitted=False)
+    if len(ros) > 0:
+      for r in ros:
+        not_sub.append(r['reg'])
+    return so, not_sub
+    
   def get_lang(self, lang):
     p1 = lang.find("-")
     if p1 > 0:
@@ -2649,17 +2666,17 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
     gm_status = ro_gm_status['gm_status']
     lx = ro['lang']
-    if not self.checkbox_1.checked:
-      yr, runde = self.get_runde(ro['game_id'])
-      ro_sub = app_tables.submitted.search(game_id=ro['game_id'],submitted=True, round=runde)
-      if len(ro_sub) > 0:
+    yr, runde = self.get_runde(ro['game_id'])
+    so, not_submitted = self.get_sub_for_gm(em, runde)
+    if len(not_submitted) > 0:
         lmsg = lu.check_wait_sub[lx]
-        for ii in range(0, len(ro_sub)):
-          not_sub = ro_sub[ii]['reg']
+        for ii in range(0, len(not_submitted)):
+          not_sub = not_submitted[ii]
           not_sub2 = self.do_reg_to_longreg(not_sub)
           lmsg = lmsg + "\n" + not_sub2
-          alert(lmsg, title=lu.not_all_looked_at_title[lx])
-          return
+        alert(lmsg, title=lu.not_all_looked_at_title[lx])
+        self.checkbox_1.checked = False 
+        return
     ro_wo = ro['wo']
     is_gm = ro['reg']
     cid = ro['game_id']
