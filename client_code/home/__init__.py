@@ -62,6 +62,7 @@ class home(homeTemplate):
         row['last_login_utc'] = now
     
     row = app_tables.games_log.get(game_id=game_id)
+    yr, runde = self.get_runde(game_id)
     if row is None:
       gm_status = 0
     else:
@@ -69,9 +70,21 @@ class home(homeTemplate):
     woo = 'wo=   '+str(wo)
     if reg is None:
       reg = 'None'
+      sub = False
+    else:
+      if reg == 'gm':
+        sub = False 
+      else:
+        ro2 = app_tables.submitted.get(game_id=game_id, reg=reg,round=runde)
+        sub = ro2['submitted']
     if role is None:
       role = 'None'
-    alert(woo+ '\nRole= '+role+'\nReg= '+reg, title="Entering app, LN 70 - WHERE")
+    if sub:
+      subs = 'True'
+    else:
+      subs = 'False'
+    woo = woo + '\nRole= '+role + '\nReg= '+reg + '\ngm_status= '+str(gm_status) + '\nsubmitted= '+subs
+    alert(woo,title="Entering app, LN 70 - WHERE")
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -493,7 +506,7 @@ class home(homeTemplate):
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
     ### get global grafs up to 2025
-    slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
+    slots = self.make_nat_slots(cid, 1, lx)  # '' = role  
 #    if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
 #      slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
 #    else:
@@ -785,14 +798,32 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     reg = ro['reg']
     wo = ro['wo']
+    cid = ro['game_id']
+    sub = False
+    if cid is None:
+      gms = -99
+    else:
+      ro3 = app_tables.games_log.get(game_id=cid)
+      gms = ro3['gm_status']
     if reg is None:
       reg = '?None?'
+    else:
+      yr, runde = self.get_runde(cid)
+      if reg == 'gm':
+        sub = False
+      else:
+        ro2 = app_tables.submitted.get(game_id=cid, reg=reg,round=runde)
+        sub = ro2['submitted']
     if wo is None:
       woo = 'None'
     else:
       woo = str(wo)
-    lmsg = lb+'\nwo=       '+woo+'\nset to '+str(setto) +' ??'+'\nreg= '+reg
-    alert(lmsg,title="Wo bin ich")
+    if sub:
+      subs = 'True'
+    else:
+      subs = 'False'
+    lmsg = lb+'\nwo=       '+woo+'\nset to '+str(setto) +' ??'+'\nreg= '+reg+'\nsumitted= '+subs+'\ngm_status= '+str(gms)
+    alert(lmsg,title="show_wo")
     
   def top_join_game_click(self, **event_args):
     lx = mg.my_lang
@@ -1175,6 +1206,8 @@ class home(homeTemplate):
     return True
 
   def get_runde(self, cid):
+    if cid is None:
+      return 2025, 1
     row = app_tables.games_log.get(game_id=cid)
     r = row["gm_status"]
     if r == 4 or r == 5:
@@ -1885,7 +1918,7 @@ class home(homeTemplate):
       else:
         alert("gm_start_round_click\n runde="+str(runde)+"\n chk_runde="+str(chk_runde))
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-      slots = self.make_ta_slots(cid, chk_runde, 'gm', '', lx)  # '' = role  
+      slots = self.make_nat_slots(cid, chk_runde, lx)  # '' = role  
 #      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_runde, reg='gm')
 #      if len(have_nat_slots) > 0:
 #        slots = have_nat_slots
@@ -1970,7 +2003,8 @@ class home(homeTemplate):
     if len(slots) > 0:
       return slots
     else:
-      self.pcgd_generating.visible = True    
+      self.checkbox_1.text = lu.nat_msg[lx]
+      self.checkbox_1.enabled = False
       self.task = anvil.server.call('launch_create_plots_for_nat_slots', cid, round, lx)
       while not self.task.is_completed():
         pass
@@ -1980,7 +2014,8 @@ class home(homeTemplate):
           for r in app_tables.plots.search(game_id=cid, runde=round, reg='gm')
         ]
         ### hide generating msg ....
-        self.pcgd_generating.visible = False      
+        self.checkbox_1.text = lu.checkbox_1_tx[lx]
+        self.checkbox_1.enabled = True
         return slots
 
   def get_ta_grafs(self, cid, round, reg, role, lx):

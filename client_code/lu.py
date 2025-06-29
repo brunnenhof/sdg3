@@ -2607,9 +2607,9 @@ pcgd_generating_tx1_str = [
 ]
 nat_msg = [
   "Generating global overview graphs ... ",
-  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
-  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
-  "Génération de graphiques jusqu'en 2040 et feuille de décision pour 2040", 
+  "Globale Übersichtsdiagramme werden erstellt ...",
+  "Globale Übersichtsdiagramme werden erstellt ...",
+  "Génération des graphiques de vue d'ensemble globale...", 
   "Genererer globale oversiktsgrafer ...", 
   "_last_"
 ]
