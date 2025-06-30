@@ -74,7 +74,7 @@ class home(homeTemplate):
     elif where == 103: ## gm: wait for selection of npbp
 #      self.do_lang(my_loc)
       user = self.get_user()
-      self.show_none_2(user)
+      self.show_gm_3(user)
     else:
       alert(str(where), title="Entering script")
 #    if where == 4 and role == "fut":
