@@ -87,7 +87,7 @@ class home(homeTemplate):
     else:
       subs = 'False'
     woo = woo + '\nRole= '+role + '\nReg= '+reg + '\ngm_status= '+str(gm_status) + '\nsubmitted= '+subs
-    alert(woo,title="Entering app, LN 70 - WHERE")
+#    alert(woo,title="Entering app, LN 70 - WHERE")
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
@@ -117,6 +117,15 @@ class home(homeTemplate):
       em = mg.my_email
       user = app_tables.nutzer.get(email=em)
       self.show_reg_2(reg, role, lx, game_id, em)
+    elif wo == 5 and reg == "gm" and gm_status == 7 and yr == 2040:
+      ## success to 2040
+      em = mg.my_email
+      user = app_tables.nutzer.get(email=em)
+      so, not_submitted = self.get_sub_for_gm(em,2)
+      if len(not_submitted) > 0:
+        self.show_gm_40_not_sub(user)
+      else:
+        self.show_gm_40_sub(user)
     elif wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11:
       ## success to 2040
       em = mg.my_email
@@ -591,6 +600,23 @@ class home(homeTemplate):
 #          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
 #          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
 #        ]
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+    pass
+
+  def show_gm_40_sub(self, user):
+    self.gm_4_5_core(user)
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    lx = ro['lang']
+    cid = ro['game_id']
+    self.checkbox_1.checked = False 
+    self.checkbox_1.visible = True 
+    self.gm_start_round.visible = False
+    self.gm_card_wait_1_btn_check.visible = False 
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]    
+    ### get global grafs up to 2025
+    slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
     pass
