@@ -164,9 +164,6 @@ db_schema:
     - admin_ui: {order: 5, width: 200}
       name: game_id
       type: string
-    - admin_ui: {order: 6, width: 200}
-      name: wo
-      type: number
     - admin_ui: {order: 7, width: 96}
       name: reg
       type: string
@@ -174,7 +171,7 @@ db_schema:
       name: role
       type: string
     - admin_ui: {order: 9, width: 200}
-      name: sub_open
+      name: where
       type: number
     server: full
     title: nutzer

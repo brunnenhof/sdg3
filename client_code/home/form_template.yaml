@@ -820,6 +820,10 @@ components:
       selected_background_color: theme:Primary
       tooltip: toggles visibility of debug messages
     type: form:dep_srfw5i6mu5hwvt:_Components.Switch
+  - layout_properties: {}
+    name: where
+    properties: {bold: true, text: where}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: privacy_btn_click}
     layout_properties: {}
     name: privacy_btn
