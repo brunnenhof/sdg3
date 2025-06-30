@@ -3166,11 +3166,11 @@ lang_dd_menu_tx_str = [
     "_last_"
 ]
 lang_info_str = [
-  "**First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu on the right the correct language. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
-  "**Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
-  "**Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü auf der rechten Seite die gewünschte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. \nlang at blue minus way dot net",
-  "**Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant à droite. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
-  "**For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen til høyre riktig språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
+  "**First, the language.** \nIf English is fine, just click on the *Lets Go* button, otherwise, select from the drop-down menu the language you prefer. We are adding more and more languages, if you want to help with the translation, let us know. \nlang at blue minus way dot net",
+  "**Zuerst die Sprache.** \nWenn formelles Deutsch ausreicht, klicken Sie einfach auf die Schaltfläche *Los gehts*, andernfalls wählen Sie aus dem Dropdown-Menü Ihre bevorzugte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Sie bei der Übersetzung helfen wollen, lassen Sie es uns wissen. \nlang at blue minus way dot net",
+  "**Zuerst die Sprache.** \nWenn informelles Deutsch ausreicht, klicke einfach auf die Schaltfläche *Los gehts*, andernfalls wähle aus dem Dropdown-Menü deine bevorzugte Sprache. Mit der Zeit fügen wir mehr und mehr Sprachen hinzu, wenn Du bei der Übersetzung / Anpassung helfen willst, lass es uns wissen. \nlang at blue minus way dot net",
+  "**Tout dabord, choisissez la langue.** \nSi le français suffit, il vous suffit de cliquer sur le bouton *Allons-y*, sinon, sélectionnez la langue de votre choix dans le menu déroulant. Au fil du temps, nous ajoutons de plus en plus de langues, si vous voulez aider à la traduction, faites-le nous savoir. \nlang at blue minus way dot net",
+  "**For det første er språket.** \nOm bokmål er bra, bare klikk på *La oss gå* -knappen, ellers, velg fra rullegardinmenyen din foretrukne språk. Vi legger til flere og flere språk, hvis du vil hjelpe med oversettelsen, gi oss beskjed. \nlang at blue minus way dot net" ,
   "_last_"
 ]
 lang_lets_go_tx = [

@@ -67,83 +67,87 @@ class home(homeTemplate):
     else:
       gm_status = row["gm_status"]
     self.where.text = where
-    if where == 0:
-      ## just registered
+    ## now, based on WHERE go the correct page
+    ## where exists for each nutzer separately 
+    if where == 0: ## the vary beginning
       self.do_lang(my_loc)
-      pass
-    elif where == 4 and role == "fut":
-      user = self.get_user()
-      self.show_fut_4(lx, game_id, reg, role)
-    elif where == 5 and reg == "gm" and gm_status == 6 and where == 11:
-      ## success to 2040, don't allow submission
-      user = self.get_user()
-      self.show_gm_40_not_sub(user)
-#      self.show_gm_10(lx, game_id, reg, role)
-    elif where == 5 and role == "fut" and gm_status==6 and runde == 2:
-      ## success to 2040
-      user = self.get_user()
-      self.show_fut_r2_not_sub(lx, game_id, reg, role)
-    elif where == 5 and role == "fut" and gm_status==6:
-      ## success to 2040
-      user = self.get_user()
-      self.show_fut_46(lx, game_id, reg, role)
-    elif where == 3 and role == "fut":
-      ## success to 2040
-      user = self.get_user()
-      self.show_fut_4(lx, game_id, reg, role)
-    elif where == 2 and role == "fut":
-      ## success to 2040
-      user = self.get_user()
-      self.show_fut_2(lx, game_id, reg, role)
-    #      self.show_gm_5(lx, game_id)
-    elif (where == 2 and not reg == "gm") or (where == 6 and not reg == "gm"):
-      ## player, NOT fut, round 1 waiting for decisions
-      user = self.get_user()
-      self.show_reg_2(reg, role, lx, game_id, mg.my_email)
-    elif where == 5 and reg == "gm" and gm_status == 7 and yr == 2040:
-      ## success to 2040
-      user = self.get_user()
-      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
-      if len(not_submitted) > 0:
-        self.show_gm_40_not_sub(user)
-      else:
-        self.show_gm_40_sub(user)
-    elif (where == 5 and reg == "gm" and gm_status == 6 and where == 11):
-      ## success to 2040
-      user = self.get_user()
-      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
-      if len(not_submitted) > 0:
-        self.show_gm_40_not_sub(user)
-      else:
-        self.show_gm_4(user)
-    elif where == 5 and reg == "gm" and gm_status == 6:
-      ## success to 2040
-      user = self.get_user()
-      self.show_gm_40_not_sub(user)
-    elif where == 7 and reg == "gm" and gm_status == 10 and where == 20:
-      ## success to 2040
-      user = self.get_user()
-      self.show_gm_60(user)
-    elif where == 5 and reg == "gm":
-      ## success to 2040
-      user = self.get_user()
-      self.show_gm_5(user)
-    elif where == 2:
-      ## gm select npbp
+    elif where == 103: ## gm: wait for selection of npbp
+#      self.do_lang(my_loc)
       user = self.get_user()
       self.show_none_2(user)
-      pass
-    elif where == 3:
-      ## select npbp
-      user = self.get_user()
-      self.show_gm_3(user)
-      #      gm_card_wait_1
-      pass
-    elif where == 4:
-      ## npbp selected & set up ... waiting for players to log in
-      user = self.get_user()
-      self.show_gm_4(user)
-      pass
+    else:
+      alert(str(where), title="Entering script")
+#    if where == 4 and role == "fut":
+#      user = self.get_user()
+#      self.show_fut_4(lx, game_id, reg, role)
+#    elif where == 5 and reg == "gm" and gm_status == 6 and where == 11:
+#      ## success to 2040, don't allow submission
+#      user = self.get_user()
+#      self.show_gm_40_not_sub(user)
+#      self.show_gm_10(lx, game_id, reg, role)
+#    elif where == 5 and role == "fut" and gm_status==6 and runde == 2:
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_fut_r2_not_sub(lx, game_id, reg, role)
+#    elif where == 5 and role == "fut" and gm_status==6:
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_fut_46(lx, game_id, reg, role)
+#    elif where == 3 and role == "fut":
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_fut_4(lx, game_id, reg, role)
+#    elif where == 2 and role == "fut":
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_fut_2(lx, game_id, reg, role)
+#    #      self.show_gm_5(lx, game_id)
+#    elif (where == 2 and not reg == "gm") or (where == 6 and not reg == "gm"):
+#      ## player, NOT fut, round 1 waiting for decisions
+#      user = self.get_user()
+#      self.show_reg_2(reg, role, lx, game_id, mg.my_email)
+#    elif where == 5 and reg == "gm" and gm_status == 7 and yr == 2040:
+#      ## success to 2040
+#      user = self.get_user()
+#      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
+#      if len(not_submitted) > 0:
+#        self.show_gm_40_not_sub(user)
+#      else:
+#        self.show_gm_40_sub(user)
+#    elif (where == 5 and reg == "gm" and gm_status == 6 and where == 11):
+#      ## success to 2040
+#      user = self.get_user()
+#      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
+#      if len(not_submitted) > 0:
+#        self.show_gm_40_not_sub(user)
+#      else:
+#        self.show_gm_4(user)
+#    elif where == 5 and reg == "gm" and gm_status == 6:
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_gm_40_not_sub(user)
+#    elif where == 7 and reg == "gm" and gm_status == 10 and where == 20:
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_gm_60(user)
+#    elif where == 5 and reg == "gm":
+#      ## success to 2040
+#      user = self.get_user()
+#      self.show_gm_5(user)
+#    elif where == 2:
+#      ## gm select npbp
+#      pass
+#    elif where == 3:
+#      ## select npbp
+#      user = self.get_user()
+#      self.show_gm_3(user)
+#      #      gm_card_wait_1
+#      pass
+#    elif where == 4:
+#      ## npbp selected & set up ... waiting for players to log in
+#      user = self.get_user()
+#      self.show_gm_4(user)
+#      pass
 
   def get_user(self, **event_args):
     em = mg.my_email
@@ -155,6 +159,7 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     cid = ro['game_id']
     so = ro['where']
+    self.where.text = so
     not_sub = []
     ros = app_tables.submitted.search(game_id=cid, round=runde, submitted=False)
     if len(ros) > 0:
@@ -364,6 +369,7 @@ class home(homeTemplate):
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
     ro['where'] = 0
+    self.where.text = 0    
     self.checkbox_1.checked = False
 
   def show_hide_fut_money(self, sh):
@@ -487,7 +493,8 @@ class home(homeTemplate):
     self.plot_card_rp.items = slots
     self.do_future(cid, role, reg, runde, yr, lx)
     row["where"] = 10
-
+    self.where.text = 10
+    
   def show_fut_46(self, lx, cid, reg, role):
     ## show fut decisions submitted, wait for advance, get results for 2040
     em = mg.my_email
@@ -536,6 +543,7 @@ class home(homeTemplate):
     lx = ro['lang']
     cid = ro['game_id']
     ro['where'] = 1
+    self.where.text = 1
     self.checkbox_1.checked = True 
     self.checkbox_1.visible = False 
     self.gm_start_round.visible = True
@@ -754,7 +762,8 @@ class home(homeTemplate):
     self.cb_se.checked = False
     em = mg.my_email
     row = app_tables.nutzer.get(email=em)
-    row["where"] = 3
+    row["where"] = 103
+    self.where.text = 103
 
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
@@ -775,7 +784,8 @@ class home(homeTemplate):
     if row_ln == 1:
       rows[0]["reg"] = "gm"
       rows[0]["game_id"] = game_id
-      rows[0]["where"] = 2
+      rows[0]["where"] = 102
+      self.where.text = 102
       mg.my_game_id = game_id
     else:
       alert("top_start_game_click row_ln NOT eq 1")
@@ -798,7 +808,7 @@ class home(homeTemplate):
       self.top_entry_label.text = lu.topentry_label_tx_str[my_lox]
     else:
       self.show_npbp_choice(my_lox, anfang, game_id)
-      a = 2
+    a = 2
 
   def check_rnsub(self, cid):
     ## ToDo
