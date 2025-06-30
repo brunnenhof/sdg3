@@ -341,11 +341,11 @@ loggedin = [
 ]
 
 login_first_btn  = [
-  "Already registered? Log in",
-  "Bereits registriert? Einloggen",
-  "Bereits registriert? Einloggen",
-  "Déjà inscrit ? Connectez-vous.",
-  "Allerede registrert? Logg inn",
+  "Already registered? Log in to continue a previous game",
+  "Bereits registriert? Anmelden, um ein vorheriges Spiel fortzusetzen",
+  "Bereits registriert? Anmelden, um ein vorheriges Spiel fortzusetzen",
+  "Déjà inscrit ? Connectez-vous pour continuer une partie précédente.",
+  "Allerede registrert? Logg inn for å fortsette et tidligere spill",
   "_last_"
 ]
 save_btn = [
@@ -2757,6 +2757,14 @@ pcgd_rd1_info_short_str = [
     "Sammen med ministerteamet ditt er du ansvarlig for å forbedre livene til folket ditt. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.\nNår du er klar, kan du bla nedover for å se investeringsplanene til kollegene dine. Sørg for at de er innenfor ditt regionale budsjett. Du finner flere instruksjoner under grafene. ",
     "_last_"
 ]
+pcgd_rd1_info_show_reg_2_fut = [
+  "Together with your ministerial team, you are responsible to better the lives of your people. In the graphs below things are good if the line is in the **green** zone, if they are in the **red** zone, you need to worry - social unrest, and worse, is just around the corner!\nStudy all your indicators, see how they develop over the years, discuss with colleagues, first in your region, but also in the other regions.",
+  "Gemeinsam mit Ihrem Minister:innen Team tragen Sie die Verantwortung, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Grafiken ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Liegt sie im **roten** Bereich, besteht Grund zur Sorge & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.",
+  "Gemeinsam mit Ihrem Minister:innen Team tragen Sie die Verantwortung, das Leben Ihrer Bevölkerung zu verbessern. In den folgenden Grafiken ist die Lage gut, wenn die Linie im **grünen** Bereich liegt. Liegt sie im **roten** Bereich, besteht Grund zur Sorge & soziale Unruhen oder Schlimmeres stehen unmittelbar bevor!\nSchauen Sie alle Ihre Indikatoren an, beobachten Sie deren Entwicklung über die Jahre und tauschen Sie sich aus mit Kollegen:innen, zunächst in Ihrer Region, aber auch in den anderen Regionen.",
+  "Avec votre équipe ministérielle, vous avez la responsabilité d'améliorer la vie de votre peuple. Dans les graphiques ci-dessous, la situation est bonne si la ligne est dans la zone **verte**, si elle est dans la zone **rouge**, vous devez vous inquiéter - les troubles sociaux, et pire encore, sont à nos portes!\nÉtudiez tous vos indicateurs, voyez comment ils évoluent au fil des ans, discutez-en avec vos collègues, d'abord dans votre région, mais aussi dans les autres régions.",
+  "Sammen med ministerteamet ditt er du ansvarlig for å forbedre livene til folket ditt. I grafene nedenfor går det bra hvis linjen er i den **grønne** sonen, hvis den er i den **røde** sonen, må du bekymre deg - sosial uro, og det som verre er, er rett rundt hjørnet!\nStuder alle indikatorene dine, se hvordan de utvikler seg over årene, diskuter med kolleger, først i din region, men også i de andre regionene.",
+  "_last_"
+]
 pcgd_rd1_infoend_str = [
     "**Outfade** ",
     "pcgd_rd1:info_end_tx *outtake* ",
@@ -2998,11 +3006,11 @@ accept_title_tx_str = [
     "_last_"
 ]
 confirm_title_tx_str = [
-  "Really allow submissions of players decisions?",
-  "Die Entscheidungen wirklich einreichen?",
-  "Die Entscheidungen wirklich einreichen?",
-  "Soumettre vraiment les décisions ?", 
-  "Skal du virkelig sende inn avgjørelsene?", 
+  "Really submit your regions decisions?",
+  "Wirklich die Entscheidungen Ihrer Regionen einreichen?",
+  "Wirklich die Entscheidungen Deiner Regionen einreichen?",
+  "Soumettez-vous réellement les décisions de votre région ?", 
+  "Skal du virkelig sende inn beslutningene fra regionene dine?", 
   "_last_"
 ]
 confirm_advance = [

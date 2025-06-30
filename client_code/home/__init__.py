@@ -76,7 +76,10 @@ class home(homeTemplate):
         sub = False 
       else:
         ro2 = app_tables.submitted.get(game_id=game_id, reg=reg,round=runde)
-        sub = ro2['submitted']
+        if ro2 is None:
+          sub = False 
+        else:
+          sub = ro2['submitted']
     if role is None:
       role = 'None'
     if sub:
@@ -209,9 +212,7 @@ class home(homeTemplate):
     self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
-    #    congrats = lu.pcr_submit_msg1_str[lx] + rolelong + lu.pcr_submit_msg2_str[lx] + reglong + ".\n" + lu.pcr_submit_msg3_str[lx] + "\n" + your_game_id
     mg.my_personal_game_id = your_game_id
-    #    alert(congrats, title=lu.pcr_submit_title_str[lx])
     yr, runde = self.get_runde(cid)
     self.pcgd_generating.visible = False
     self.pcgd_plot_card.visible = True
@@ -219,42 +220,39 @@ class home(homeTemplate):
       self.card_fut.visible = False
       self.dec_card.visible = False
       self.p_after_submit.visible = True
-      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_show_reg_2_fut[lx]
       self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
     else:
       self.dec_card.visible = True
       self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
     self.pcgd_info_rd1.visible = True
     slots = self.make_ta_slots(cid, runde, reg, role, lx)
-#    slots = [
-#      {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#      for r in app_tables.plots.search(game_id=cid, runde=runde, reg=reg, ta=role)
-#    ]
     self.plot_card_rp.items = slots
     if role == "fut":
       self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
       self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-      self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
       row_cookies = app_tables.cookies.get(game_id=cid)
       if runde == 1:
         if not row_cookies["r1sub"] == 10:
           self.do_future(cid, role, reg, runde, yr, lx)
           self.p_after_submit.visible = False
+        self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
       elif runde == 2:
         if not row_cookies["r2sub"] == 10:
           self.do_future(cid, role, reg, runde, yr, lx)
           self.p_after_submit.visible = False
+        self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
       elif runde == 3:
         if not row_cookies["r2sub"] == 10:
           self.do_future(cid, role, reg, runde, yr, lx)
           self.p_after_submit.visible = False
+        self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
       else:
         alert("show_reg_2: runde not 1 nor 2 nor 3 but " + str(runde))
     else:
       self.do_non_future(cid, role, reg, runde, yr, lx)
     #    row['wo'] = 2
     pass
-    # show instructions, graphs, decision sliders
 
   def do_lang(self, my_loc):
     if my_loc == "en":
@@ -1230,20 +1228,15 @@ class home(homeTemplate):
     row = app_tables.games_log.get(game_id=cid)
     r = row["gm_status"]
     if r == 4 or r == 5:
-      runde = 1
-      yr = 2025
-    elif r == 6:
-      runde = 2
-      yr = 2040
+      return 2025, 1
+    elif r == 6 or r == 7:
+      return 2040, 2
     elif r == 10:
-      runde = 3
-      yr = 2060
+      return 2060, 3
     elif r == 12:
-      runde = 4
-      yr = 2100
+      return 2100,4
     else:
       return 123, 999
-    return yr, runde
 
   def show_p_1(self, reg, role, cid, reglong, rolelong):
     em = mg.my_email
@@ -1686,11 +1679,8 @@ class home(homeTemplate):
     if gm_status == 10 and gos == 20: # catch 3rd round (submissions for 2060)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    result = alert(
-      content=lu.confirm_submit_tx_str[lx],
-      title=lu.confirm_title_tx_str[lx],
-      large=False,
-      buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)],
+    result = alert(content=lu.confirm_submit_tx_str[lx],title=lu.confirm_title_tx_str[lx],large=False,
+                   buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)],
     )
     if not result:
       n = Notification(lu.nothing_submitted_tx_str[lx])

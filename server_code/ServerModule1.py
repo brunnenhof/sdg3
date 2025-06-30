@@ -692,28 +692,18 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   varx = var_row["id"]
   #  print('starting new plot ...')
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
-  #  print('--- build plot 274 rowx: on next line')
-  #  print (rowx)
   idx = rowx["col_idx"]
-  #  print(idx)
   if varx in [19, 21, 22, 35]:  # global variable
     lx = idx  # find location of variable in mdf
   else:
     lx = idx + regidx  # find location of variable in mdf with reg offset
-  #  print(var_l+' '+str(lx))
   dfv = mdf_play[:, [0, lx]]
-  #  dfv_pd = pd.DataFrame(dfv)
-  #  print(dfv_pd)
-  #  which_sdg = int(var_row['sdg_nbr'])
   which_sdg = int(var_row["id"])
   longreg = get_longreg_from_lu(reg, lang)
   longrole = get_longrole_from_lu(role, lang)
   my_title = get_title_from_lu(which_sdg, lang)
   cur_title = ("DRG-"+ str(int(var_row["sdg_nbr"]))+ ": "+ my_title+ ", "+ longreg+ ", "+ longrole)
-  #  cur_title = 'LTG-' + str(int(var_row['sdg_nbr'])) + ': ' +var_row['sdg']
   cur_sub = get_indicator_from_lu(which_sdg, lang)
-#  print("... build plot var_l: " + var_l," which_sdg=" + str(which_sdg) + " my_title=" + my_title + " sub=" + cur_sub,)
-  #  cur_sub = var_row['indicator']
   cur_fig = make_png(dfv, var_row, regidx, yr, cur_sub)
   fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
   return fdz
