@@ -88,87 +88,88 @@ class home(homeTemplate):
       subs = 'False'
     woo = woo + '\nRole= '+role + '\nReg= '+reg + '\ngm_status= '+str(gm_status) + '\nsubmitted= '+subs
 #    alert(woo,title="Entering app, LN 70 - WHERE")
+    print(wo == 5)
+    print(reg == "gm")
+    print(gm_status == 6)
+    print(sub_open == 11)
+    print(subs == 'False')
     if wo == 1:
       ## just registered
       self.do_lang(my_loc)
       pass
     elif wo == 4 and role == "fut":
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_fut_4(lx, game_id, reg, role)
+    elif wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11 and (subs == 'False'):
+      ## success to 2040, don't allow submission
+      user = self.get_user()
+      self.show_gm_40_not_sub(user)
+#      self.show_gm_10(lx, game_id, reg, role)
     elif wo == 5 and role == "fut" and gm_status==6:
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_fut_46(lx, game_id, reg, role)
     elif wo == 3 and role == "fut":
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_fut_4(lx, game_id, reg, role)
     elif wo == 2 and role == "fut":
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_fut_2(lx, game_id, reg, role)
     #      self.show_gm_5(lx, game_id)
     elif (wo == 2 and not reg == "gm") or (wo == 6 and not reg == "gm"):
       ## player, NOT fut, round 1 waiting for decisions
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
-      self.show_reg_2(reg, role, lx, game_id, em)
+      user = self.get_user()
+      self.show_reg_2(reg, role, lx, game_id, mg.my_email)
     elif wo == 5 and reg == "gm" and gm_status == 7 and yr == 2040:
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
-      so, not_submitted = self.get_sub_for_gm(em,2)
+      user = self.get_user()
+      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
       if len(not_submitted) > 0:
         self.show_gm_40_not_sub(user)
       else:
         self.show_gm_40_sub(user)
     elif wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11:
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
-      so, not_submitted = self.get_sub_for_gm(em,2)
+      user = self.get_user()
+      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
       if len(not_submitted) > 0:
         self.show_gm_40_not_sub(user)
       else:
         self.show_gm_4(user)
     elif wo == 5 and reg == "gm" and gm_status == 6:
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_gm_40_not_sub(user)
     elif wo == 7 and reg == "gm" and gm_status == 10 and sub_open == 20:
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_gm_60(user)
     elif wo == 5 and reg == "gm":
       ## success to 2040
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_gm_5(user)
     elif wo == 2:
       ## gm select npbp
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_none_2(user)
       pass
     elif wo == 3:
       ## select npbp
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_gm_3(user)
       #      gm_card_wait_1
       pass
     elif wo == 4:
       ## npbp selected & set up ... waiting for players to log in
-      em = mg.my_email
-      user = app_tables.nutzer.get(email=em)
+      user = self.get_user()
       self.show_gm_4(user)
       pass
+
+  def get_user(self, **event_args):
+    em = mg.my_email
+    return app_tables.nutzer.get(email=em)
 
   def get_sub_for_gm(self, em, runde):
     if runde not in [1,2,3,4]:
@@ -531,18 +532,6 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
     ### get global grafs up to 2025
     slots = self.make_nat_slots(cid, 1, lx)  # '' = role  
-#    if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
-#      slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-#    else:
-#      ## no graphs exist, make the ones for 2025, show them
-#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-#        slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-#        ]
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
@@ -557,20 +546,7 @@ class home(homeTemplate):
     self.gm_start_round.visible = True
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]    
-    ### get global grafs up to 2025
-    slots = self.make_ta_slots(cid, 2, 'gm', '', lx)  # '' = role  
-#    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
-#      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-#    else:
-#      ## no graphs exist, make the ones for 2025, show them
-#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-#        slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=1 / 2, reg='gm')
-#        ]
+    slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
     pass
@@ -586,20 +562,7 @@ class home(homeTemplate):
     self.gm_start_round.visible = False
     self.gm_card_wait_1_btn_check.visible = False 
     self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]    
-    ### get global grafs up to 2025
-    slots = self.make_ta_slots(cid, 2, 'gm', '', lx)  # '' = role  
-#    if len(app_tables.plots.search(game_id=cid, runde=2, reg='gm')) > 0:
-#      slots = app_tables.plots.search(game_id=cid, runde=2, reg='gm')
-#    else:
-#      ## no graphs exist, make the ones for 2025, show them
-#      self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 2, lx) 
-#      while not self.task.is_completed():
-#        pass
-#      else:  ## background is done
-#        slots = [
-#          {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#          for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-#        ]
+    slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
     pass
