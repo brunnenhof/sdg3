@@ -134,7 +134,7 @@ class home(homeTemplate):
         self.show_gm_40_not_sub(user)
       else:
         self.show_gm_40_sub(user)
-    elif wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11:
+    elif (wo == 5 and reg == "gm" and gm_status == 6 and sub_open == 11) or (wo == 5 and reg == "gm" and gm_status == 6 and sub_open is None):
       ## success to 2040
       user = self.get_user()
       so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
@@ -1048,7 +1048,7 @@ class home(homeTemplate):
     cid = ro['game_id']
     runde = mg.game_runde + 1
     self.gm_card_wait_1_btn_check.visible = True
-    self.gm_start_round.visible = False
+    self.gm_start_round.enabled = False
     self.gm_wait_kickoff_r1.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
@@ -1060,7 +1060,7 @@ class home(homeTemplate):
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
-      self.gm_start_round.visible = True
+      self.gm_start_round.enabled = True
       self.checkbox_1.visible = True 
       self.gm_start_round.visible = False 
       ## show Nathalie's graphs
@@ -1699,10 +1699,10 @@ class home(homeTemplate):
     if gm_status == 4 and not gos == 1: # catch 1st round (submissions for 2025)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    if gm_status == 6 and gos == 10: # catch 2nd round (submissions for 2040)
+    if gm_status == 6 and gos == 11: # catch 2nd round (submissions for 2040)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
-    if gm_status == 10 and gos == 20: # catch 3rd round (submissions for 2060)
+    if gm_status == 10 and gos == 21: # catch 3rd round (submissions for 2060)
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     result = alert(content=lu.confirm_submit_tx_str[lx],title=lu.confirm_title_tx_str[lx],large=False,
@@ -2495,7 +2495,7 @@ class home(homeTemplate):
       #      anfang = time.time()
       n = Notification(lu.sim_success_tx21_str[lx],timeout=2,title=lu.sim_success_title_txend_str[lx],style="success")
       n.show()
-      ro_nutzer['wo'] = 10
+#      ro_nutzer['wo'] = 10
       self.show_wo(em,'pcgd_advance_click__10',55)
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 3)
