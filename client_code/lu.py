@@ -2886,11 +2886,11 @@ fut_bud_lb1_tx_str = [
     "_last_"
 ]
 fut_bud_lb2_tx_str = [
-    "All the investment plans of all your fellow ministers summed up are ",
-    "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
-    "Alle Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
-    "Tous les plans d'investissement de tous vos collègues ministres résumés sont ", 
-    "Alle investeringsplanene til alle dine medministre oppsummert er ", 
+    "The investment plans of all your fellow ministers summed up are ",
+    "Die Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
+    "Die Investitionspläne aller Ihrer Minister:innenkollegen zusammengefasst sind ",
+    "Les plans d'investissement de tous vos collègues ministres résumés sont ", 
+    "Investeringsplanene til alle dine medministre oppsummert er ", 
     "_last_"
 ]
 fut_bud_lb3_tx_str = [

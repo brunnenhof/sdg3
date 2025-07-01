@@ -502,13 +502,17 @@ class home(homeTemplate):
       self.fut_bud_tacost_visibility('hide')
       self.fut_bud_visibility('hide')
       self.fut_not_all_logged_in.visible = True
+      self.card_fut.visible = True
       self.set_where(302)
     else: # passed_where == 307
       self.submit_numbers.visible = True  
+      self.submit_numbers.text = lu.submit_numbers_tx_str[lx]
       self.fut_bud_tacost_visibility('show')
       self.fut_bud_visibility('show')
       self.fut_not_all_logged_in.visible = False
       self.card_fut.visible = True
+      yr, runde = self.get_runde(cid)
+      self.do_future(cid, role, reg, runde, yr, lx)
       self.set_where(307)
     self.refresh_numbers.visible = True
     self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]
@@ -1082,12 +1086,9 @@ class home(homeTemplate):
 
   def gm_card_wait_1_btn_check_click(self, **event_args):
     ## this is the check login button
-    em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
-    where = ro['where']
-    lx = ro['lang']
-    cid = ro['game_id']
+    em, cid, reg, role, lx, where = self.get_user_detail()
     runde = mg.game_runde + 1
+    yrx, rundex = self.get_runde(cid)
     self.gm_card_wait_1_btn_check.visible = True
     self.gm_start_round.enabled = False
     self.gm_wait_kickoff_r1.visible = False
@@ -1105,23 +1106,7 @@ class home(homeTemplate):
       self.checkbox_1.visible = True 
       self.gm_start_round.visible = False 
       ## show Nathalie's graphs
-#      rows = app_tables.plots.search(reg='gm')
-#      for row in rows:
-#        row.delete()
       slots = self.make_nat_slots(cid, 1, lx)  # '' = role  
-#      slots = self.make_ta_slots(cid, 1, 'gm', '', lx)  # '' = role  
-#      if len(app_tables.plots.search(game_id=cid, runde=1, reg='gm')) > 0:
-#        slots = app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-#      else:
-#        ## no graphs exist, make the ones for 2025, show them
-#        self.task = anvil.server.call('launch_do_gm_graphs', cid, 'gm', 1, lx) 
-#        while not self.task.is_completed():
-#          pass
-#        else:  ## background is done
-#          slots = [
-#            {key: r[key] for key in ["title", "subtitle", "cap", "fig"]}
-#            for r in app_tables.plots.search(game_id=cid, runde=1, reg='gm')
-#          ]
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
     else: # still some not logged in
@@ -1137,9 +1122,7 @@ class home(homeTemplate):
       self.gm_card_wait_1_temp_title.visible = True
       self.gm_card_wait_1_rp.visible = True
       self.gm_card_wait_1_rp.items = slots
-      em = mg.my_email
       self.show_where(self.where.text)
-
 
   def set_minis_invisible(self, **event_args):
     self.pcr_rb_fut.visible = False
@@ -1750,7 +1733,8 @@ class home(homeTemplate):
     mg.my_personal_game_id = cid
     ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
-    if gm_status == 4 and not gos == 1: # catch 1st round (submissions for 2025)
+    ## need to check the gm where!!!
+    if where == 307:
       alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     if gm_status == 6 and gos == 11: # catch 2nd round (submissions for 2040)
