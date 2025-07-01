@@ -43,6 +43,14 @@ Pov_to_pov = {
   "Energy": "ener",
   "Future": "fut"
 }
+po_2_pov = {
+  "po": "pov",
+  "in": "ineq",
+  "em": "emp",
+  "fo": "food",
+  "en": "ener",
+  "fu": "fut"
+}
 pov_to_Poverty = {
   "pov": "Poverty",
   "ineq": "Inequality",
@@ -51,7 +59,6 @@ pov_to_Poverty = {
   "ener": "Energy",
   "fut": "Future"
 }
-
 pol_to_ta = {"CCS" : "Energy",
              "TOW" : "Poverty",
              "FPGDC" : "Poverty",

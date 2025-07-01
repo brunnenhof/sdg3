@@ -170,7 +170,7 @@ db_schema:
     - admin_ui: {order: 8, width: 85}
       name: role
       type: string
-    - admin_ui: {order: 9, width: 200}
+    - admin_ui: {order: 9, width: 116}
       name: where
       type: number
     server: full
