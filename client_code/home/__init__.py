@@ -1087,6 +1087,7 @@ class home(homeTemplate):
   def gm_card_wait_1_btn_check_click(self, **event_args):
     ## this is the check login button
     em, cid, reg, role, lx, where = self.get_user_detail()
+    yrx, rundex = self.get_runde(cid)
     runde = mg.game_runde + 1
     yrx, rundex = self.get_runde(cid)
     self.gm_card_wait_1_btn_check.visible = True
@@ -1094,14 +1095,14 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1.visible = False
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
     if len(rows) == 0:
-      if where == 1:
-        self.checkbox_1.checked = True
-      else:
-        self.checkbox_1.checked = False
+      self.checkbox_1.checked = False
+      if where == 110:
+        self.checkbox_1.checked = True 
       self.checkbox_1.visible = True
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
+      self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
       self.gm_start_round.enabled = True
       self.checkbox_1.visible = True 
       self.gm_start_round.visible = False 
@@ -2725,14 +2726,13 @@ class home(homeTemplate):
     alert(content=lu.privacy_str[my_lox], title=lu.privacy_str_title_str[my_lox])
 
   def checkbox_1_change(self, **event_args):
-    em = mg.my_email
-    self.show_where(self.where.text)
+    em, cid, reg, role, lx, where = self.get_user_detail()
     ro = app_tables.nutzer.get(email=em)
-    ro_gm_status = app_tables.games_log.get(game_id=ro['game_id'])
+    ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
-    lx = ro['lang']
     yr, runde = self.get_runde(ro['game_id'])
     so, not_submitted = self.get_sub_for_gm(em, runde)
+    self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
     if len(not_submitted) > 0:
         lmsg = lu.check_wait_sub[lx]
         for ii in range(0, len(not_submitted)):
@@ -2748,22 +2748,15 @@ class home(homeTemplate):
     if not result:
       self.checkbox_1.checked = False 
       return
-    ro_where = ro['where']
-    is_gm = ro['reg']
-    cid = ro['game_id']
-    where = ro['where']
-    if where is None:
-      where = 0
-    if gm_status == 4:
+#    if gm_status == 4:
+    if where == 110:
       ## update msg
-      ro['where'] = 1   
+      self.set_where(105)
       self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: 5 >gm_status="+str(gm_status)+" >where="+str(where)
-      ro['where'] = 5 ## 
-      self.show_where(self.where.text)
     elif gm_status == 6:
       ro['where'] = 11 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >whereOLD=10 NEW11"
