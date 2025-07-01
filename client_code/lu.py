@@ -3109,6 +3109,14 @@ waiting_tx_str = [
     "Venter ...", 
     "_last_"
 ]
+fut_wating_tx = [
+  "In your region, the following are not yet logged in:",
+  "In Ihrer Region sind noch nicht eingeloggt:",
+  "In Deiner Region sind noch nicht eingeloggt:",
+  "Dans votre région, les personnes suivantes ne sont pas encore connectées :", 
+  "I din region er ennå ikke logget inn:", 
+  "_last_"
+]
 nicht_all_sub_p_tx_str = [
     "Not all regions have submitted their decisions, your game organizer knows who we are waiting for ... ",
     "Noch haben nicht alle Regionen ihre Entscheidungen übermittelt, ihr:e Spielleiter:in weiss, auf wen wir warten ... ",

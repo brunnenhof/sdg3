@@ -79,12 +79,18 @@ class home(homeTemplate):
       self.show_gm_4(user)
     elif where == 302: ## fut: first logged in
       user = self.get_user()
-      reg = user['reg']
       role = user['role']
       if role == 'fut':
         self.show_fut_302(user)
       else:
         self.show_ta_302(user)
+    elif where == 307: ## fut: ready to submit but not submitted
+      user = self.get_user()
+      role = user['role']
+      if role == 'fut':
+        self.show_fut_307(user)
+      else:
+        self.show_ta_307(user)
     else:
       alert(str(where), title="Entering script")
 #    if where == 4 and role == "fut":
@@ -1405,7 +1411,7 @@ class home(homeTemplate):
     em, cid, reg, role, lx, where = self.get_user_detail()
     regs = mg.regs
     roles = mg.roles
-    rows = app_tables.nutzer.search(email=em, reg=reg)
+    rows = app_tables.nutzer.search(reg=reg, game_id=cid)
     lenrow = len(rows)
     out = []
     for ro in rows:
@@ -1429,7 +1435,7 @@ class home(homeTemplate):
     if not all_colleauges_logged_in:
       self.set_fut_not_all_logged_in(lx)
       not_log_list = self.get_not_log_list()
-      lmsg = "Waiting for log in from:"
+      lmsg = lu.fut_wating_tx[lx]
       for ii in range(0,len(not_log_list)):
         lmsg = lmsg + '\n' + not_log_list[ii]
       alert(lmsg, title=lu.waiting_tx_str[lx])
@@ -1680,14 +1686,10 @@ class home(homeTemplate):
       return False
 
   def submit_numbers_click(self, **event_args):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     # First, confirm submission
-    em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
-    lx = ro['lang']
-    cid = ro['game_id']
     mg.my_personal_game_id = cid
-    ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
-    gos = ro_gm['where']
     ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
     if gm_status == 4 and not gos == 1: # catch 1st round (submissions for 2025)
