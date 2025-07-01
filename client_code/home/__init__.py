@@ -72,9 +72,11 @@ class home(homeTemplate):
     if where == 0: ## the vary beginning
       self.do_lang(my_loc)
     elif where == 103: ## gm: wait for selection of npbp
-#      self.do_lang(my_loc)
       user = self.get_user()
       self.show_gm_3(user)
+    elif where == 105: ## gm: npbp set, wait for login
+      user = self.get_user()
+      self.show_gm_4(user)
     else:
       alert(str(where), title="Entering script")
 #    if where == 4 and role == "fut":
@@ -368,8 +370,6 @@ class home(homeTemplate):
     self.gm_4_5_core(user)
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
-    ro['where'] = 0
-    self.where.text = 0    
     self.checkbox_1.checked = False
 
   def show_hide_fut_money(self, sh):
@@ -906,11 +906,14 @@ class home(homeTemplate):
       self.seconds.text = str(dauer) + " sec"
     self.gm_card_wait_1.visible = True
     # update user
-    em = mg.my_email
-    row = app_tables.nutzer.get(email=em)
-    row["where"] = 4
-    self.show_where(self.where.text)
+    self.set_where(105)
 
+  def set_where(self, where):
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    ro['where'] = where 
+    self.show_where(where)
+    
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
     self.set_regs_invisible()
@@ -1277,8 +1280,7 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
-    em = mg.my_email
-    self.show_where(self.where.text)
+    self.set_where(302)
   #    dauer = round(time.time() - anfang, 0)
   #    self.top_duration.text = dauer
 
