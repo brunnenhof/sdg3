@@ -77,11 +77,11 @@ class home(homeTemplate):
     elif where == 105: ## gm: npbp set, wait for login
       user = self.get_user()
       self.show_gm_4(user)
-    elif where == 302: ## fut: first logged in
+    elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
       if role == 'fut':
-        self.show_fut_302(user)
+        self.show_fut_302_307(user, where)
       else:
         self.show_ta_302(user)
     elif where == 307: ## fut: ready to submit but not submitted
@@ -467,6 +467,8 @@ class home(homeTemplate):
     return em, cid, reg, role, lx, where
 
   def show_fut_302(self, user):
+    alert("in show_fut_302")
+    return
     em, cid, reg, role, lx, where = self.get_user_detail()
     ## show ta grafs and decision sliders
     ## show check if advanced
@@ -488,6 +490,61 @@ class home(homeTemplate):
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
     self.set_where(302)
+
+  def show_fut_302_307(self, user, passed_where):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    ## 302: not all logged in
+    ## 307 all logged in, show submit button
+    self.wait_for_run_after_submit.visible = False
+    self.lang_card.visible = False
+    if passed_where == 302:
+      self.submit_numbers.visible = False 
+      self.fut_bud_tacost_visibility('hide')
+      self.fut_bud_visibility('hide')
+      self.fut_not_all_logged_in.visible = True
+      self.set_where(302)
+    else: # passed_where == 307
+      self.submit_numbers.visible = True  
+      self.fut_bud_tacost_visibility('show')
+      self.fut_bud_visibility('show')
+      self.fut_not_all_logged_in.visible = False
+      self.card_fut.visible = True
+      self.set_where(307)
+    self.refresh_numbers.visible = True
+    self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]
+    self.p_card_graf_dec.visible = True 
+    self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +-+ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role) + lu.historisch_fut[lx]
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+    self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    slots = self.make_ta_slots(cid, 1, reg, role, lx)
+    self.plot_card_rp.items = slots
+    self.dec_card.visible = False 
+
+  def show_fut_307(self, user):
+    alert("in show_fut_307")
+    return
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    ## show ta grafs and decision sliders
+    ## show check if advanced
+    self.wait_for_run_after_submit.visible = False
+    self.lang_card.visible = False 
+    self.submit_numbers.visible = True 
+    self.refresh_numbers.visible = True
+    self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]
+    self.fut_not_all_logged_in.visible = True
+    self.fut_bud_tacost_visibility('true')
+    self.fut_bud_visibility('hide')
+    self.p_card_graf_dec.visible = True 
+    self.card_fut.visible = True 
+    self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +-+ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role) + lu.historisch_fut[lx]
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
+    self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    slots = self.make_ta_slots(cid, 1, reg, role, lx)
+    self.plot_card_rp.items = slots
+    self.dec_card.visible = False 
+    self.set_where(307)
 
   def show_fut_r2_not_sub(self, lx, cid, reg, role):
     ## show fut decisions submitted, wait for advance, get results for 2040
@@ -1441,6 +1498,7 @@ class home(homeTemplate):
       alert(lmsg, title=lu.waiting_tx_str[lx])
     else:
       self.set_fut_all_logged_in(lx)
+      self.set_where(307) 
       if not yr == 2100:
         self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
         self.fut_bud_lb1.text = lu.fut_bud_lb1_tx_str[lx] 
