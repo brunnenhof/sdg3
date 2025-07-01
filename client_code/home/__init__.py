@@ -198,12 +198,7 @@ class home(homeTemplate):
     return l1, l2, lox
 
   def show_ta_302(self, user):
-    mg.my_game_id = cid
-    mg.my_ministry = role
-    mg.my_reg = reg
-    row = app_tables.nutzer.get(email=em)
-    lx = row["lang"]
-    mg.my_lang = lx
+    em, cid, reg, role, lx, where = self.get_user_detail()
     self.lang_card.visible = False
     self.p_card_graf_dec.visible = True
     wrx = mg.regs.index(reg)
@@ -218,42 +213,12 @@ class home(homeTemplate):
     yr, runde = self.get_runde(cid)
     self.pcgd_generating.visible = False
     self.pcgd_plot_card.visible = True
-    if role == "fut":
-      self.card_fut.visible = False
-      self.dec_card.visible = False
-      self.p_after_submit.visible = True
-      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_show_reg_2_fut[lx]
-      self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
-    else:
-      self.dec_card.visible = True
-      self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+    self.dec_card.visible = True
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
     self.pcgd_info_rd1.visible = True
     slots = self.make_ta_slots(cid, runde, reg, role, lx)
     self.plot_card_rp.items = slots
-    if role == "fut":
-      self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
-      self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-      row_cookies = app_tables.cookies.get(game_id=cid)
-      if runde == 1:
-        if not row_cookies["r1sub"] == 10:
-          self.do_future(cid, role, reg, runde, yr, lx)
-          self.p_after_submit.visible = False
-        self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
-      elif runde == 2:
-        if not row_cookies["r2sub"] == 10:
-          self.do_future(cid, role, reg, runde, yr, lx)
-          self.p_after_submit.visible = False
-        self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
-      elif runde == 3:
-        if not row_cookies["r2sub"] == 10:
-          self.do_future(cid, role, reg, runde, yr, lx)
-          self.p_after_submit.visible = False
-        self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-      else:
-        alert("show_reg_2: runde not 1 nor 2 nor 3 but " + str(runde))
-    else:
-      self.do_non_future(cid, role, reg, runde, yr, lx)
-    #    row['where'] = 2
+    self.do_non_future(cid, role, reg, runde, yr, lx)
     pass
 
   def do_lang(self, my_loc):
