@@ -80,7 +80,8 @@ class home(homeTemplate):
     elif where == 302: ## fut: first logged in
       user = self.get_user()
       reg = user['reg']
-      if reg == 'fut':
+      role = user['role']
+      if role == 'fut':
         self.show_fut_302(user)
       else:
         self.show_ta_302(user)
@@ -1400,8 +1401,25 @@ class home(homeTemplate):
       self.submit_numbers.visible = False
     return within_budget
 
+  def get_not_log_list(self, **event_args):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    regs = mg.regs
+    roles = mg.roles
+    rows = app_tables.nutzer.search(email=em, reg=reg)
+    lenrow = len(rows)
+    out = []
+    for ro in rows:
+      a = ro['role']
+      out.append(a)
+    out2 = []
+    for re in roles:
+      if re not in out:
+        relong = self.do_ta_to_longmini(re)
+        out2.append(relong)
+    return out2
+    
   def do_future(self, cid, role, reg, runde, yr, lx):
-    self.err_msg.text = (self.err_msg.text+ "\n--DoFut   cid="+ cid+ " reg="+ reg+ " role="+ role+ " round="+ str(runde)+ " yr="+ str(yr))
+#   self.err_msg.text = (self.err_msg.text+ "\n--DoFut   cid="+ cid+ " reg="+ reg+ " role="+ role+ " round="+ str(runde)+ " yr="+ str(yr))
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -1410,6 +1428,11 @@ class home(homeTemplate):
     all_colleauges_logged_in = self.check_all_colleagues_logged_in(cid, reg, runde)
     if not all_colleauges_logged_in:
       self.set_fut_not_all_logged_in(lx)
+      not_log_list = self.get_not_log_list()
+      lmsg = "Waiting for log in from:"
+      for ii in range(0,len(not_log_list)):
+        lmsg = lmsg + '\n' + not_log_list[ii]
+      alert(lmsg, title=lu.waiting_tx_str[lx])
     else:
       self.set_fut_all_logged_in(lx)
       if not yr == 2100:
@@ -1642,16 +1665,11 @@ class home(homeTemplate):
     return (costs_by_ta,pov_list,ineq_list,emp_list,food_list,ener_list,within_budget)
 
   def refresh_numbers_click(self, **event_args):
-    em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
-    reg = ro['reg']
-    lx = ro['lang']
-    cid = ro['game_id']
-    role = "fut"
+    em, cid, reg, role, lx, where = self.get_user_detail()
     yr, runde = self.get_runde(cid)
-    self.err_msg.text = (self.err_msg.text+ "refresh_numbers_click with cid="+ cid+ " role="+ role+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " where="+ str(ro["where"])+ " nutzer_game_ID="+ (ro["game_id"])+ " nutzer_reg="+ (ro["reg"]))
+    self.err_msg.text = (self.err_msg.text+ "refresh_numbers_click with cid="+ cid+ " role="+ role+ " reg="+ reg+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " where="+ str(where)+ " nutzer_game_ID="+ cid+ " nutzer_reg="+ reg)
     self.do_future(cid, role, reg, runde, yr, lx)
-    em = mg.my_email
+#    self.set_where()
     self.show_where(self.where.text)
 
   def all_reg_submitted(self, cid, step):
