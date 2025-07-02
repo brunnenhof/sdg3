@@ -94,6 +94,13 @@ class home(homeTemplate):
         self.show_fut_307(user)
       else:
         self.show_ta_307(user)
+    elif where == 310: ## fut submitted
+      user = self.get_user()
+      role = user['role']
+      if role == 'fut':
+        self.show_fut_310(user)
+      else:
+        self.show_ta_310(user)
     else:
       alert(str(where), title="Entering script")
 #    if where == 4 and role == "fut":
@@ -351,7 +358,6 @@ class home(homeTemplate):
   def show_gm_4(self, user):
     self.gm_4_5_core(user)
     em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
     self.checkbox_1.checked = False
 
   def show_hide_fut_money(self, sh):
@@ -390,7 +396,6 @@ class home(homeTemplate):
     self.set_lang(lx)
     self.lang_card.visible = False
     self.top_entry.visible = False
-#    self.p_after_submit.visible = True
     self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)
     yr, runde = self.get_runde(cid)
     self.pcgd_plot_card.visible = True
@@ -398,15 +403,9 @@ class home(homeTemplate):
     self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
     self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
     self.pcgd_info_rd1.visible = True
-#    fut_plots = app_tables.plots.search(game_id=cid,ta=role,reg=reg,runde=1)
     slots = self.make_ta_slots(cid, 1, reg, role, lx)
-#    slots = []
-#    for fp in fut_plots:
-#      slot = {"title": fp['title'], "subtitle": fp['subtitle'], "cap" : fp['cap'], "fig" : fp['fig']}
-#      slots.append(slot)
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
-    ### check if all looked at
     self.p_card_graf_dec.visible = True 
     self.pcgd_advance.text = lu.pcgd_advance_tx_str[lx]
     rows = app_tables.roles_assign.search(game_id=cid, round=runde, taken=0)
@@ -420,10 +419,6 @@ class home(homeTemplate):
       self.fut_not_all_logged_in.foreground = "red"
       self.show_hide_fut_money('hide')
     self.lang_card.visible = False
-#    self.pcgd_advance.visible = True
-    
-#    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-#    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
 
   def fut_bud_tacost_visibility(self, show):
     if show == 'hide':
@@ -587,14 +582,13 @@ class home(homeTemplate):
     row["where"] = 10
     self.where.text = 10
     
-  def show_fut_46(self, lx, cid, reg, role):
-    ## show fut decisions submitted, wait for advance, get results for 2040
-    em = mg.my_email
+  def show_fut_310(self, user):
+    ## show fut decisions submitted, wait for advance, get results for 2025
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     mg.my_game_id = cid
     mg.my_ministry = role
     mg.my_reg = reg
-    row = app_tables.nutzer.get(email=em)
-    lx = row["lang"]
     mg.my_lang = lx
     self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
     self.cid_reg_role_info.text = (cid+ "  + "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
@@ -607,7 +601,7 @@ class home(homeTemplate):
     self.fut_bud_lb1.visible = True 
     self.fut_bud_lb2.visible = True 
     self.fut_but_lb3.visible = True 
-    slots = self.make_ta_slots(cid, 2, reg, role, lx) 
+    slots = self.make_ta_slots(cid, 1, reg, role, lx) 
     self.gm_graf_card_rp.items = slots
 
   def gm_4_5_core(self, user):
