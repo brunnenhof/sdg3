@@ -62,8 +62,7 @@ class home(homeTemplate):
     
     row = app_tables.games_log.get(game_id=game_id)
     yr, runde = self.get_runde(game_id)
-    self.set_where(where)
-    self.where.text = where
+    self.set_where(usr, where)
     ## now, based on WHERE go the correct page
     ## where exists for each nutzer separately 
     if where == 0 or where is None: ## the vary beginning
@@ -80,6 +79,9 @@ class home(homeTemplate):
     elif where == 150: ## gm: ran fine to 2040, no submissions yet
       user = self.get_user()
       self.show_gm_150(user)
+    elif where == 210: ## gm: ran fine to 2040, submissions opened
+      user = self.get_user()
+      self.show_gm_210(user)
     elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
@@ -185,9 +187,7 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     cid = ro['game_id']
     so = ro['where']
-    self.set_where(so)
-    self.set_where(so)
-    self.where.text = so
+    self.set_where(em, so)
     not_sub = []
     ros = app_tables.submitted.search(game_id=cid, round=runde, submitted=False)
     if len(ros) > 0:
@@ -489,7 +489,7 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, 1, reg, role, lx)
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
-    self.set_where(302)
+    self.set_where(em, 302)
 
   def show_fut_302_307(self, user, passed_where):
     em, cid, reg, role, lx, where = self.get_user_detail()
@@ -503,7 +503,7 @@ class home(homeTemplate):
       self.fut_bud_visibility('hide')
       self.fut_not_all_logged_in.visible = True
       self.card_fut.visible = True
-      self.set_where(302)
+      self.set_where(em, 302)
     else: # passed_where == 307
       self.submit_numbers.visible = True  
       self.submit_numbers.text = lu.submit_numbers_tx_str[lx]
@@ -513,7 +513,7 @@ class home(homeTemplate):
       self.card_fut.visible = True
       yr, runde = self.get_runde(cid)
       self.do_future(cid, role, reg, runde, yr, lx)
-      self.set_where(307)
+      self.set_where(em, 307)
     self.refresh_numbers.visible = True
     self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]
     self.p_card_graf_dec.visible = True 
@@ -548,7 +548,7 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, 1, reg, role, lx)
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
-    self.set_where(307)
+    self.set_where(em, 307)
 
   def show_fut_r2_not_sub(self, lx, cid, reg, role):
     ## show fut decisions submitted, wait for advance, get results for 2040
@@ -581,9 +581,8 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, runde, reg, role, lx)  # '' = role  
     self.plot_card_rp.items = slots
     self.do_future(cid, role, reg, runde, yr, lx)
-#    self.set_where(10)
+#    self.set_where(em, 10)
     row["where"] = 10
-    self.where.text = 10
     
   def show_fut_310(self, user):
     ## show fut decisions submitted, wait for advance, get results for 2025
@@ -655,12 +654,10 @@ class home(homeTemplate):
     self.gm_graf_card.visible = True
     pass
 
-  def show_gm_40_not_sub(self, user):
+  def show_gm_150(self, user):
     self.gm_4_5_core(user)
-    em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
-    lx = ro['lang']
-    cid = ro['game_id']
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     self.checkbox_1.checked = False 
     self.checkbox_1.visible = True 
     self.gm_start_round.visible = False
@@ -671,13 +668,11 @@ class home(homeTemplate):
     self.gm_graf_card.visible = True
     pass
 
-  def show_gm_40_sub(self, user):
+  def show_gm_210(self, user):
     self.gm_4_5_core(user)
-    em = mg.my_email
-    ro = app_tables.nutzer.get(email=em)
-    lx = ro['lang']
-    cid = ro['game_id']
-    self.checkbox_1.checked = False 
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    self.checkbox_1.checked = True 
     self.checkbox_1.visible = True 
     self.gm_start_round.visible = False
     self.gm_card_wait_1_btn_check.visible = False 
@@ -845,7 +840,7 @@ class home(homeTemplate):
     self.cb_ec.checked = False
     self.cb_eu.checked = False
     self.cb_se.checked = False
-    self.set_where(103)
+    self.set_where(em, 103)
 
   def top_start_game_click(self, **event_args):
     my_lox = mg.my_lang
@@ -866,7 +861,7 @@ class home(homeTemplate):
     if row_ln == 1:
       rows[0]["reg"] = "gm"
       rows[0]["game_id"] = game_id
-      self.set_where(102)
+      self.set_where(em, 102)
       mg.my_game_id = game_id
     else:
       alert("top_start_game_click row_ln NOT eq 1")
@@ -940,6 +935,8 @@ class home(homeTemplate):
     self.show_where(self.where.text)
 
   def gm_reg_npbp_click(self, **event_args):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     cid = mg.my_game_id
     lx = mg.my_lang
     self.gm_cp_not_played.visible = False
@@ -985,10 +982,9 @@ class home(homeTemplate):
       self.seconds.text = str(dauer) + " sec"
     self.gm_card_wait_1.visible = True
     # update user
-    self.set_where(105)
+    self.set_where(em, 105)
 
-  def set_where(self, where):
-    em = mg.my_email
+  def set_where(self, em, where):
     ro = app_tables.nutzer.get(email=em)
     ro['where'] = where 
     self.show_where(where)
@@ -1333,6 +1329,8 @@ class home(homeTemplate):
 
   def pcr_submit_click(self, **event_args):
     # anfang = time.time()
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
@@ -1343,9 +1341,7 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
-    self.set_where(302)
-  #    dauer = round(time.time() - anfang, 0)
-  #    self.top_duration.text = dauer
+    self.set_where(em, 302)
 
   def show_hide_plots_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -1458,6 +1454,8 @@ class home(homeTemplate):
     return out2
     
   def do_future(self, cid, role, reg, runde, yr, lx):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    roles = mg.roles
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -1473,7 +1471,7 @@ class home(homeTemplate):
       alert(lmsg, title=lu.waiting_tx_str[lx])
     else:
       self.set_fut_all_logged_in(lx)
-      self.set_where(307) 
+      self.set_where(em, 307) 
       if not yr == 2100:
         self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
         self.fut_bud_lb1.text = lu.fut_bud_lb1_tx_str[lx] 
@@ -1750,7 +1748,7 @@ class home(homeTemplate):
             if rc["r1sub"] == 10:
               all_regs_sub = True
             self.set_sub_true(cid, 1, reg)
-            self.set_where(310)
+            self.set_where(em, 310)
             self.set_where_gm(cid, 110)
           elif runde == 2:
             anvil.server.call("set_cookie_sub", "r2", 1, cid)
@@ -1758,7 +1756,7 @@ class home(homeTemplate):
             if rc["r2sub"] == 10:
               all_regs_sub = True
             self.set_sub_true(cid, 2, reg)
-            self.set_where(410)
+            self.set_where(em, 410)
             self.set_where_gm(cid, 210)
           elif runde == 3:
             anvil.server.call("set_cookie_sub", "r3", 1, cid)
@@ -1766,7 +1764,7 @@ class home(homeTemplate):
             if rc["r3sub"] == 10:
               all_regs_sub = True
             self.set_sub_true(cid, 3, reg)
-            self.set_where(510)
+            self.set_where(em, 510)
             self.set_where_gm(cid, 700)
           self.p_after_submit.visible = True
           self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
@@ -1941,7 +1939,7 @@ class home(homeTemplate):
         self.gm_start_round.visible = True
         self.gm_start_round.text = lu.gm_start_round_tx_2_str[lx]
         anvil.server.call("budget_to_db", 2040, cid_cookie)
-        self.set_where(150) # succesfully ran to 2040
+        self.set_where(em, 150) # succesfully ran to 2040
         ### get nat_grafs ....
         self.gm_graf_card.visible = True
         self.wait_for_checkbox()
@@ -1951,14 +1949,14 @@ class home(homeTemplate):
         row_games_log["gm_status"] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call("budget_to_db", 2060, cid_cookie)
-        self.set_where(250) # succesfully ran to 2060
+        self.set_where(em, 250) # succesfully ran to 2060
         self.wait_for_checkbox()
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
         self.gm_start_round.visible = False
         row_games_log["gm_status"] = 12
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
-        self.set_where(350) # succesfully ran to 2060
+        self.set_where(em, 350) # succesfully ran to 2060
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
 
@@ -2077,7 +2075,7 @@ class home(homeTemplate):
       self.pcgd_info_rd1.visible = True
       self.plot_card_rp.items = slots
       self.do_future(cid, role, reg, runde, yr, lx)
-      self.set_where(260)
+      self.set_where(em, 260)
         ### update where
     elif row["gm_status"] == 10:  ## 2040 to 2060 successfully run
       reg = ro_nutzer["reg"]
@@ -2358,7 +2356,7 @@ class home(homeTemplate):
         return
       n = Notification(lu.sim_success_tx40_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
-      self.set_where(6)
+      self.set_where(em, 6)
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 1)
       yr, runde = self.get_runde(cid)
@@ -2385,7 +2383,7 @@ class home(homeTemplate):
     if gmStatus == 10:  ## 2040 to 2060 successfully run
       n = Notification(lu.sim_success_tx60_str[lx],timeout=2,title=lu.sim_success_title_tx_str[lx],style="success")
       n.show()
-      self.set_where(8)
+      self.set_where(em, 8)
       # prepare TA card for new round
       self.show_pcgd_advance(role, reg, lx, cid, 2)
       yr, runde = self.get_runde(cid)
@@ -2553,7 +2551,6 @@ class home(homeTemplate):
       alert("Nothing to delete")
       return
     for gid in gids:
-      abc = gid['game_id']
       now = datetime.now(timezone.utc)
       roundedNow = now.replace(hour=0, minute=0, second=0, microsecond=0)
       t1 = now
@@ -2582,14 +2579,16 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
     yr, runde = self.get_runde(ro['game_id'])
-    so, not_submitted = self.get_sub_for_gm(em, runde)
+#    so, not_submitted = self.get_sub_for_gm(em, runde)
     self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
-    if len(not_submitted) > 0:
-        lmsg = lu.check_wait_sub[lx]
-        for ii in range(0, len(not_submitted)):
-          not_sub = not_submitted[ii]
-          not_sub2 = self.do_reg_to_longreg(not_sub)
-          lmsg = lmsg + "\n" + not_sub2
+#    if len(not_submitted) > 0:
+#        lmsg = lu.check_wait_sub[lx]
+#        for ii in range(0, len(not_submitted)):
+#          not_sub = not_submitted[ii]
+#          not_sub2 = self.do_reg_to_longreg(not_sub)
+#          lmsg = lmsg + "\n" + not_sub2
+#        alert(lmsg, title=lu.waiting_tx_str[lx])
+#        return
     result = alert(
       content=lu.confirm_advance[lx],
       title=lu.accept_title_tx_str[lx],
@@ -2602,18 +2601,17 @@ class home(homeTemplate):
 #    if gm_status == 4:
     if where == 105:
       ## update msg
-      self.set_where(110)
+      self.set_where(em, 110)
       self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
-    elif gm_status == 6:
-      self.set_where = 210 ### and now open for submission to round 2
+    elif where == 150:
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-      self.show_where(self.where.text)
+      self.set_where(em, 210)
     elif gm_status == 10 and where == 20: 
-      self.set_where(310) ### and now open for submission to round 2
+      self.set_where(em, 310) ### and now open for submission to round 2
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
       self.show_where(self.where.text)
