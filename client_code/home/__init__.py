@@ -77,6 +77,9 @@ class home(homeTemplate):
     elif where == 105: ## gm: npbp set, wait for login
       user = self.get_user()
       self.show_gm_4(user)
+    elif where == 110: ## gm: npbp set, wait for login
+      user = self.get_user()
+      self.show_gm_5(user)
     elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
@@ -1450,10 +1453,8 @@ class home(homeTemplate):
 
   def get_not_log_list(self, **event_args):
     em, cid, reg, role, lx, where = self.get_user_detail()
-    regs = mg.regs
     roles = mg.roles
     rows = app_tables.nutzer.search(reg=reg, game_id=cid)
-    lenrow = len(rows)
     out = []
     for ro in rows:
       a = ro['role']
