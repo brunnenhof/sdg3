@@ -24,7 +24,7 @@ import pickle
 def nuts_pwd(u):
   ## with hash https://kinsta.com/blog/python-hashing/
   jetzt = datetime.datetime.now()
-  app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, reg='00', role= '00' ,where=0)
+  app_tables.nutzer.add_row(email=u, signed_up_utc=jetzt, reg='00', role= '00')
   return 27
 
 @anvil.server.callable
