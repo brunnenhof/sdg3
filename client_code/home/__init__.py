@@ -25,7 +25,7 @@ class home(homeTemplate):
     ll = navigator["language"]
     my_loc, my_loc2, lox = self.get_lang(ll)
     mg.my_lang = lox
-    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
+#    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
     new_user = {}
     # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(
@@ -1736,7 +1736,11 @@ class home(homeTemplate):
     gm_status = ro_gm_status['gm_status']
     ## need to check the gm where!!!
     if where == 307:
-      alert(lu.gos[lx], title=lu.gos_title[lx])
+      ### get where for gm to see if submissions are open
+      rogm = app_tables.nutzer.get(game_id=cid, reg='gm')
+      sub = rogm['where']
+      if sub not in [110]:
+        alert(lu.gos[lx], title=lu.gos_title[lx])
       return
     if gm_status == 6 and gos == 11: # catch 2nd round (submissions for 2040)
       alert(lu.gos[lx], title=lu.gos_title[lx])
@@ -1879,11 +1883,8 @@ class home(homeTemplate):
     self.gm_start_round.visible = False 
 
   def gm_start_round_click(self, **event_args):
-    em = mg.my_email
-    ro_nutzer = app_tables.nutzer.get(email=em)
-    lx = ro_nutzer['lang']
-    cid = ro_nutzer['game_id']
-    yr, runde = self.get_runde(ro_nutzer['game_id'])
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     ## first, check if all regions have submitted
 #    self.gm_graf_card.visible = False
     self.gm_card_wait_1_rp.visible = False
@@ -1891,9 +1892,9 @@ class home(homeTemplate):
     self.gm_wait_kickoff_r1_rp.visible = False
     self.gm_start_round.visible = False
     #    cid_cookie = anvil.server.call('get_game_id_from_cookie')
-    cid_cookie = ro_nutzer['game_id']
+    cid_cookie = cid
     row_games_log = app_tables.games_log.get(game_id=cid_cookie)
-    self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " where="+ str(ro_nutzer["where"])+ " nutzer_game_ID="+ ro_nutzer["game_id"]+ " nutzer_reg="+ ro_nutzer["reg"])
+    self.err_msg.text = (self.err_msg.text+ "\n-------- gm_start_round_click cid="+ (cid_cookie)+ " gm_status="+ str(row_games_log["gm_status"])+ " runde=??"+ " yr=??"+ " lx="+ str(lx)+ " where="+ str(where)+ " nutzer_game_ID="+ cid+ " nutzer_reg="+ reg)
     if row_games_log["gm_status"] not in [5, 7, 10]:
       not_all_sub_list = self.get_not_all_sub(cid_cookie, runde)
       lmsg = lu.nicht_all_sub_gm_tx_str[lx]
@@ -1983,24 +1984,11 @@ class home(homeTemplate):
       ro_usr = app_tables.nutzer.get(email=em)
       is_gm = ro_usr['reg'] == 'gm'
       if is_gm:
-        if runde == 1:
-          chk_runde = 2
-        elif runde == 2:
-          chk_runde = 3
-        elif runde == 3:
-          chk_runde = 4
+        chk_runde = runde + 1
       else:
         alert("gm_start_round_click\n runde="+str(runde)+"\n chk_runde="+str(chk_runde))
       row_games_log = app_tables.games_log.get(game_id=cid_cookie)
       slots = self.make_nat_slots(cid, chk_runde, lx)  # '' = role  
-#      have_nat_slots = app_tables.plots.search(game_id=cid, runde=chk_runde, reg='gm')
-#      if len(have_nat_slots) > 0:
-#        slots = have_nat_slots
-#        print("\n   --- have_nat_slots: used old ones nat_graf_runde " + str(runde))
-#      else:
-#        ## no graphs exist, make the ones for 2025, show them
-#        slots = self.get_nat_slots(cid, chk_runde, lx)
-#        print("\n   --- have_nat_slots: Made new ones runde " + str(runde))
       self.gm_graf_card.visible = True 
       self.gm_graf_card_rp.items = slots  
       if runde == 1:
@@ -2016,9 +2004,6 @@ class home(homeTemplate):
         self.gm_graf_card.visible = True
         self.err_msg.text = (self.err_msg.text+ "\n++ gm_start_round_click runde="+ str(runde)+ " gm_status=6 - email="+ em)
         ### do nat_grafs up to 2060
-        where = ro_nutzer['where']
-        print('1776 where:')
-        print(where)
         self.wait_for_checkbox()
       elif runde == 2:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx2_str[lx]
@@ -2029,11 +2014,8 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["where"] = 7  # succesfully ran to 2060
-        where = ro_nutzer['where']
-        print('1783 where:')
-        print(where)
         self.wait_for_checkbox()
-        ro_nutzer['where'] = 20        
+#        ro_nutzer['where'] = 20        
         self.err_msg.text = (self.err_msg.text+ "\ng++ m_start_round:: "+ str(runde)+ " gm_status=10 - email="+ em)
         ### get nat_grafs ....
       elif runde == 3:
@@ -2044,13 +2026,12 @@ class home(homeTemplate):
         em = mg.my_email
         rn = app_tables.nutzer.get(email=em)
         rn["where"] = 9  # succesfully ran to 2100
-        ro_nutzer['where'] = 30      
+#        ro_nutzer['where'] = 30      
         self.err_msg.text = (self.err_msg.text+ "\ngm_start_round:: "+ str(runde)+ " gm_status=12 - email="+ em)
         ### get nat_grafs ....
         row_closed = app_tables.games_log.get(game_id=cid_cookie)
         row_closed["closed"] = datetime.now(timezone.utc)
     em = mg.my_email
-    self.show_where(self.where.text)
 
   def make_ta_slots(self, cid, round, reg, role, lx):
     ## show generating msg ....
@@ -2749,14 +2730,14 @@ class home(homeTemplate):
       self.checkbox_1.checked = False 
       return
 #    if gm_status == 4:
-    if where == 110:
+    if where == 105:
       ## update msg
-      self.set_where(105)
+      self.set_where(110)
       self.gm_card_wait_1_info.content = lu.after_rdy_submit_gm_card_wait_str[lx]
       self.gm_card_wait_1_temp_title.visible = False
       self.checkbox_1.visible = False 
       self.gm_start_round.visible = True  
-      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: 5 >gm_status="+str(gm_status)+" >where="+str(where)
+#      self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: 5 >gm_status="+str(gm_status)+" >where="+str(where)
     elif gm_status == 6:
       ro['where'] = 11 ### and now open for submission to round 2
       self.err_msg.text = self.err_msg.text + "\n -- checkbox_1_change: >gm_status="+str(gm_status)+" >whereOLD=10 NEW11"
