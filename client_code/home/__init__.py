@@ -1742,6 +1742,10 @@ class home(homeTemplate):
       sub = rogm['where']
       if sub not in [110]:
         alert(lu.gos[lx], title=lu.gos_title[lx])
+        return
+      else:
+        ## submitted, not yet run, show waiting for gm to advance 
+        
       return
     if gm_status == 6 and gos == 11: # catch 2nd round (submissions for 2040)
       alert(lu.gos[lx], title=lu.gos_title[lx])
