@@ -77,6 +77,9 @@ class home(homeTemplate):
     elif where == 110: ## gm: npbp set, wait for login
       user = self.get_user()
       self.show_gm_5(user)
+    elif where == 150: ## gm: ran fine to 2040, no submissions yet
+      user = self.get_user()
+      self.show_gm_150(user)
     elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
