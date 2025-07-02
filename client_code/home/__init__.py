@@ -1730,129 +1730,101 @@ class home(homeTemplate):
 
   def submit_numbers_click(self, **event_args):
     em, cid, reg, role, lx, where = self.get_user_detail()
+    ro_nutzer = app_tables.nutzer.get(email=em)
     yr, runde = self.get_runde(cid)
     # First, confirm submission
     mg.my_personal_game_id = cid
-    ro_gm_status = app_tables.games_log.get(game_id=cid)
-    gm_status = ro_gm_status['gm_status']
     ## need to check the gm where!!!
-    if where == 307:
+    if where in [307, 407, 507]:
+      ## 307 ready to submit decisions for 2025
+      ## 407 ready to submit decisions for 2040
+      ## 507 ready to submit decisions for 2060
       ### get where for gm to see if submissions are open
-      rogm = app_tables.nutzer.get(game_id=cid, reg='gm')
-      sub = rogm['where']
-      if sub not in [110]:
+      ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
+      sub = ro_gm['where']
+      if sub not in [110, 210, 310]: ## NOT IN: submissions not allowed
         alert(lu.gos[lx], title=lu.gos_title[lx])
         return
       else:
-        ## submitted, not yet run, show waiting for gm to advance 
-        
-      return
-    if gm_status == 6 and gos == 11: # catch 2nd round (submissions for 2040)
-      alert(lu.gos[lx], title=lu.gos_title[lx])
-      return
-    if gm_status == 10 and gos == 21: # catch 3rd round (submissions for 2060)
-      alert(lu.gos[lx], title=lu.gos_title[lx])
-      return
-    result = alert(content=lu.confirm_submit_tx_str[lx],title=lu.confirm_title_tx_str[lx],large=False,
-                   buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)],
-    )
-    if not result:
-      n = Notification(lu.nothing_submitted_tx_str[lx])
-      n.show()
-    else:  ## submission confirmed, reg DID submit numbers
-      em = mg.my_email
-      ro_nutzer = app_tables.nutzer.get(email=em)
-      yr, runde = self.get_runde(cid)
-      role = "fut"  ## we're in the Future TA
-      reg = ro_nutzer["reg"]
-      row_games_log = app_tables.games_log.get(game_id=cid)
-      gm_status = row_games_log["gm_status"]
-      self.err_msg.text = (self.err_msg.text+ "\n---oo- submit_numbers_click cid="+ (cid)+ " gm_status="+ str(gm_status)+ " runde="+ str(runde)+ " yr="+ str(yr)+ " lx="+ str(lx)+ " where="+ str(ro_nutzer["where"])+ " nutzer_game_ID="+ (ro_nutzer["game_id"])+ " nutzer_reg="+ (ro_nutzer["reg"]))
-      self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
-      self.card_fut.visible = False
-      self.p_card_graf_dec.visible = False
-      self.p_after_submit.visible = True
-      ## bump cookie for this round r_sub by one
-      all_regs_sub = False
-      if runde == 1:
-        self.err_msg.text = (self.err_msg.text+ "\n-lo--inside submit_numbers_click::bump cookie  runde="+ str(runde))
-        anvil.server.call("set_cookie_sub", "r1", 1, cid)
-        rc = app_tables.cookies.get(game_id=cid)
-        if rc["r1sub"] == 10:
-          all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid, round=1, reg=reg)
-        rosub["submitted"] = True
-        ro_nutzer['where'] = 4
-        ro_gm['where'] = 11
-        self.err_msg.text = self.err_msg.text+ "\n-y- runde="+ str(runde) + " rosub=True ro_nutzer=4 where=11"
-      elif runde == 2:
-        self.err_msg.text = (self.err_msg.text+ "\n-y-x-inside submit_numbers_click::bump cookie  runde="+ str(runde))
-        anvil.server.call("set_cookie_sub", "r2", 1, cid)
-        rc = app_tables.cookies.get(game_id=cid)
-        if rc["r2sub"] == 10:
-          all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid, round=2, reg=reg)
-        rosub["submitted"] = True
-        ro_nutzer['where'] = 6
-        ro_gm['where'] = 21
-        self.err_msg.text = self.err_msg.text+ "\n-s- runde="+ str(runde) + " rosub=True ro_nutzer=4 where=21"
-      elif runde == 3:
-        self.err_msg.text = (self.err_msg.text+ "\n-f--inside submit_numbers_click::bump cookie  runde="+ str(runde))
-        anvil.server.call("set_cookie_sub", "r3", 1, cid)
-        rc = app_tables.cookies.get(game_id=cid)
-        if rc["r3sub"] == 10:
-          all_regs_sub = True
-        rosub = app_tables.submitted.get(game_id=cid, round=3, reg=reg)
-        rosub["submitted"] = True
-        ro_nutzer['where'] = 8
-        ### update steps
-      self.p_after_submit.visible = True
-      self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
-      self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-      if (not all_regs_sub):  ## there is at least one region (of players) that has not yet submitted
-        row2 = app_tables.step_done.get(game_id=cid, reg=reg)
-        if runde == 1:
-          my_p_step_done = 3
-          row2.update(p_step_done=3)  ## the region submitted decisions for round 2025-2040
-        elif runde == 2:
-          my_p_step_done = 5
-          row2.update(p_step_done=5)  ## the region submitted decisions for round 2040- 2060
-        elif runde == 3:
-          my_p_step_done = 7
-          row2.update(p_step_done=7)  ## the region submitted decisions for round 2060 - 2100
-        n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
-        n.show()
-        self.err_msg.text = (self.err_msg.text+ "\n-gh--inside submit_numbers_click::step_done  my_p_step_done="+ str(my_p_step_done))
-      else:  ## all HAVE submitted
-        row = app_tables.games_log.get(game_id=cid)
-        rc = app_tables.cookies.get(game_id=cid)
-        self.err_msg.text = (self.err_msg.text+ "\n-jz--inside submit_numbers_click::ALL submit  gmStatus="+ str(gm_status)+ "rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
-        if row["gm_status"] == 4:
-          row["gm_status"] = 5  ## off to run 2025 to 2040
-          self.err_msg.text = (self.err_msg.text+ "\n--qw-ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
-        if row["gm_status"] == 6:
-          row["gm_status"] = 7  ## all regs submitted for 2040 to 2060
-          self.err_msg.text = (self.err_msg.text+ "\n--as-ALL submit  OLD gmStatus=6 NEW gmstatus=7"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
-        if row["gm_status"] == 9:
-          row["gm_status"] = 10  ## all regs submitted for 2060 to 2100
-          self.err_msg.text = (self.err_msg.text+ "\n--yx-ALL submit  OLD gmStatus=9 NEW gmstatus=10"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
-        #        rg = app_tables.games_log.get(game_id=cid_cookie)
-        n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
-        n.show()
-        self.card_fut.visible = False
-        self.p_advance_to_next_round.visible = True
-        self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
-        self.err_msg.text = (self.err_msg.text+ "\n-gq--inside submit_numbers_click:: p_advance_to_next_round_wait_str:"+ lu.p_advance_to_next_round_wait_str[lx])
-        if runde == 1:
-          self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
-        elif runde == 2:
-          # p_advance_to_1_tx = "Get the results until 2060 and the decision sheet for 2060-210 - your grandchildren's future"
-          self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
-        elif runde == 3:
-          # p_advance_to_2_tx = "Get the results until the end of the century"
-          self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
-    em = mg.my_email
-    self.show_where(self.where.text)
+        ## double check fut REALLY wants to submit
+        result = alert(content=lu.confirm_submit_tx_str[lx],title=lu.confirm_title_tx_str[lx],large=False,
+                 buttons=[(lu.nbr_confirm_t[lx], True), (lu.nbr_confirm_f[lx], False)],
+        )
+        if not result:
+          n = Notification(lu.nothing_submitted_tx_str[lx])
+          n.show()
+        else:
+          ## submitted, not yet run, show waiting for gm to advance 
+          self.cid_reg_role_info.text = (cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+          self.card_fut.visible = False
+          self.p_card_graf_dec.visible = False
+          self.p_after_submit.visible = True
+          all_regs_sub = False
+          if runde == 1:
+            anvil.server.call("set_cookie_sub", "r1", 1, cid)
+            rc = app_tables.cookies.get(game_id=cid)
+            if rc["r1sub"] == 10:
+              all_regs_sub = True
+            rosub = app_tables.submitted.get(game_id=cid, round=1, reg=reg)
+            rosub["submitted"] = True
+            ro_nutzer['where'] = 310
+            ro_gm['where'] = 110
+          elif runde == 2:
+            anvil.server.call("set_cookie_sub", "r2", 1, cid)
+            rc = app_tables.cookies.get(game_id=cid)
+            if rc["r2sub"] == 10:
+              all_regs_sub = True
+            rosub = app_tables.submitted.get(game_id=cid, round=2, reg=reg)
+            rosub["submitted"] = True
+            ro_nutzer['where'] = 410
+            ro_gm['where'] = 210
+          elif runde == 3:
+            anvil.server.call("set_cookie_sub", "r3", 1, cid)
+            rc = app_tables.cookies.get(game_id=cid)
+            if rc["r3sub"] == 10:
+              all_regs_sub = True
+            rosub = app_tables.submitted.get(game_id=cid, round=3, reg=reg)
+            rosub["submitted"] = True
+            ro_nutzer['where'] = 510
+          self.p_after_submit.visible = True
+          self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+          self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
+          if (not all_regs_sub):
+            ## there is at least one region (of players) that has not yet submitted
+            self.update_step_done(runde)
+            n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
+            n.show()
+          else:  ## all HAVE submitted
+            row = app_tables.games_log.get(game_id=cid)
+            rc = app_tables.cookies.get(game_id=cid)
+            if row["gm_status"] == 4:
+              row["gm_status"] = 5  ## off to run 2025 to 2040
+              self.err_msg.text = (self.err_msg.text+ "\n--qw-ALL submit  OLD gmStatus=4 NEW gmstatus=5"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+            if row["gm_status"] == 6:
+              row["gm_status"] = 7  ## all regs submitted for 2040 to 2060
+              self.err_msg.text = (self.err_msg.text+ "\n--as-ALL submit  OLD gmStatus=6 NEW gmstatus=7"+ " rXsubs:"+ str(rc["r1sub"])+ " "+ str(rc["r2sub"])+ " "+ str(rc["r3sub"]))
+            if row["gm_status"] == 9:
+              row["gm_status"] = 10  ## all regs submitted for 2060 to 2100
+            n = Notification(lu.all_submitted_p_tx_str[lx], timeout=3)
+            n.show()
+            self.card_fut.visible = False
+            self.p_advance_to_next_round.visible = True
+            self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
+            if runde == 1:
+              self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+            elif runde == 2:
+              self.p_advance_to_next_round.text = lu.p_advance_to_1_tx_str[lx]
+            elif runde == 3:
+              self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
+
+  def update_step_done(self, runde):
+    row2 = app_tables.step_done.get(game_id=cid, reg=reg)
+    if runde == 1:
+      row2.update(p_step_done=3)  ## the region submitted decisions for round 2025-2040
+    elif runde == 2:
+      row2.update(p_step_done=5)  ## the region submitted decisions for round 2040- 2060
+    elif runde == 3:
+      row2.update(p_step_done=7)  ## the region submitted decisions for round 2060 - 2100
 
   def get_not_all_sub(self, cid, runde):
     em = mg.my_email
@@ -1861,7 +1833,6 @@ class home(homeTemplate):
     rows = app_tables.submitted.search(game_id=cid, round=runde, submitted=False)
     not_sub_list = []
     for r in rows:
-      shortreg = r['reg']
       longreg = self.do_reg_to_longreg(r["reg"])
       not_sub_list.append(longreg)
     return not_sub_list
