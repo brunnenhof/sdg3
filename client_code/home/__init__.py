@@ -66,7 +66,7 @@ class home(homeTemplate):
     self.where.text = where
     ## now, based on WHERE go the correct page
     ## where exists for each nutzer separately 
-    if where == 0: ## the vary beginning
+    if where == 0 or where is None: ## the vary beginning
       self.do_lang(my_loc)
     elif where == 103: ## gm: wait for selection of npbp
       user = self.get_user()
