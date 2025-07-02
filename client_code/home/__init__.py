@@ -1005,7 +1005,12 @@ class home(homeTemplate):
     ro = app_tables.nutzer.get(email=em)
     ro['where'] = where 
     self.show_where(where)
-    
+
+  def set_where_gm(self, cid, where):
+    ro = app_tables.nutzer.get(game_id=cid, reg='gm')
+    ro['where'] = where 
+#    self.show_where(where)
+
   def set_avail_regs(self, **event_args):
     print("IN set_avail_regs")
     self.set_regs_invisible()
@@ -1728,6 +1733,10 @@ class home(homeTemplate):
     else:
       return False
 
+  def set_sub_true(self, cid, runde, reg):
+    rosub = app_tables.submitted.get(game_id=cid, round=runde, reg=reg)
+    rosub["submitted"] = True
+
   def submit_numbers_click(self, **event_args):
     em, cid, reg, role, lx, where = self.get_user_detail()
     ro_nutzer = app_tables.nutzer.get(email=em)
@@ -1765,10 +1774,9 @@ class home(homeTemplate):
             rc = app_tables.cookies.get(game_id=cid)
             if rc["r1sub"] == 10:
               all_regs_sub = True
-            rosub = app_tables.submitted.get(game_id=cid, round=1, reg=reg)
-            rosub["submitted"] = True
-            ro_nutzer['where'] = 310
-            ro_gm['where'] = 110
+            self.set_sub_true(cid, 1, reg)
+            self.set_where(310)
+            self.set_where_gm(110)
           elif runde == 2:
             anvil.server.call("set_cookie_sub", "r2", 1, cid)
             rc = app_tables.cookies.get(game_id=cid)
