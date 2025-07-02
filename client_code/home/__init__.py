@@ -705,6 +705,9 @@ class home(homeTemplate):
     self.gm_4_5_core(user)
     em, cid, reg, role, lx, where = self.get_user_detail()
     yr, runde = self.get_runde(cid)
+    if runde == 2:
+#      submission NOT open
+      pass
     self.checkbox_1.checked = True 
     self.checkbox_1.visible = True 
     self.gm_start_round.visible = False
