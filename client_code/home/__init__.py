@@ -1782,24 +1782,23 @@ class home(homeTemplate):
             rc = app_tables.cookies.get(game_id=cid)
             if rc["r2sub"] == 10:
               all_regs_sub = True
-            rosub = app_tables.submitted.get(game_id=cid, round=2, reg=reg)
-            rosub["submitted"] = True
-            ro_nutzer['where'] = 410
-            ro_gm['where'] = 210
+            self.set_sub_true(cid, 2, reg)
+            self.set_where(410)
+            self.set_where_gm(210)
           elif runde == 3:
             anvil.server.call("set_cookie_sub", "r3", 1, cid)
             rc = app_tables.cookies.get(game_id=cid)
             if rc["r3sub"] == 10:
               all_regs_sub = True
-            rosub = app_tables.submitted.get(game_id=cid, round=3, reg=reg)
-            rosub["submitted"] = True
-            ro_nutzer['where'] = 510
+            self.set_sub_true(cid, 3, reg)
+            self.set_where(510)
+            self.set_where_gm(700)
           self.p_after_submit.visible = True
           self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
           if (not all_regs_sub):
             ## there is at least one region (of players) that has not yet submitted
-            self.update_step_done(runde)
+            self.update_step_done(runde, cid, reg)
             n = Notification(lu.nicht_all_sub_p_tx_str[lx], timeout=2)
             n.show()
           else:  ## all HAVE submitted
@@ -1825,7 +1824,7 @@ class home(homeTemplate):
             elif runde == 3:
               self.p_advance_to_next_round.text = lu.p_advance_to_2_tx_str[lx]
 
-  def update_step_done(self, runde):
+  def update_step_done(self, runde, cid, reg):
     row2 = app_tables.step_done.get(game_id=cid, reg=reg)
     if runde == 1:
       row2.update(p_step_done=3)  ## the region submitted decisions for round 2025-2040
