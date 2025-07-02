@@ -1748,7 +1748,7 @@ class home(homeTemplate):
               all_regs_sub = True
             self.set_sub_true(cid, 1, reg)
             self.set_where(310)
-            self.set_where_gm(110)
+            self.set_where_gm(cid, 110)
           elif runde == 2:
             anvil.server.call("set_cookie_sub", "r2", 1, cid)
             rc = app_tables.cookies.get(game_id=cid)
@@ -1756,7 +1756,7 @@ class home(homeTemplate):
               all_regs_sub = True
             self.set_sub_true(cid, 2, reg)
             self.set_where(410)
-            self.set_where_gm(210)
+            self.set_where_gm(cid, 210)
           elif runde == 3:
             anvil.server.call("set_cookie_sub", "r3", 1, cid)
             rc = app_tables.cookies.get(game_id=cid)
@@ -1764,7 +1764,7 @@ class home(homeTemplate):
               all_regs_sub = True
             self.set_sub_true(cid, 3, reg)
             self.set_where(510)
-            self.set_where_gm(700)
+            self.set_where_gm(cid, 700)
           self.p_after_submit.visible = True
           self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
           self.p_advance_to_next_round.text = lu.p_advance_to_next_round_wait_str[lx]
