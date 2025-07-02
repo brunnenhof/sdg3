@@ -84,7 +84,7 @@ class home(homeTemplate):
       self.show_gm_210(user)
     elif where == 260: ## fut: ran fine to 2040, submissions closed
       user = self.get_user()
-      self.show_gm_210(user)
+      self.show_fut_260(user)
     elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
@@ -582,17 +582,18 @@ class home(homeTemplate):
     self.dec_card.visible = False 
     self.set_where(em, 307)
 
-  def show_fut_r2_not_sub(self, lx, cid, reg, role):
+  def show_fut_260(self, user):
     ## show fut decisions submitted, wait for advance, get results for 2040
-    em = mg.my_email
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     mg.my_game_id = cid
     mg.my_ministry = role
     mg.my_reg = reg
-    row = app_tables.nutzer.get(email=em)
-    lx = row["lang"]
     mg.my_lang = lx
-#    self.fut_detail('show')
-#    return
+    mg.my_game_id = cid
+    mg.my_ministry = role
+    mg.my_reg = reg
+    mg.my_lang = lx
     self.lang_card.visible = False
     self.p_card_graf_dec.visible = True 
     self.card_fut.visible = True 
@@ -614,7 +615,7 @@ class home(homeTemplate):
     self.plot_card_rp.items = slots
     self.do_future(cid, role, reg, runde, yr, lx)
 #    self.set_where(em, 10)
-    row["where"] = 10
+#    row["where"] = 10
     
   def show_fut_310(self, user):
     ## show fut decisions submitted, wait for advance, get results for 2025
