@@ -82,6 +82,9 @@ class home(homeTemplate):
     elif where == 210: ## gm: ran fine to 2040, submissions opened
       user = self.get_user()
       self.show_gm_210(user)
+    elif where == 260: ## fut: ran fine to 2040, submissions closed
+      user = self.get_user()
+      self.show_gm_210(user)
     elif where == 302 or where == 307: ## fut: first logged in
       user = self.get_user()
       role = user['role']
@@ -103,6 +106,10 @@ class home(homeTemplate):
         self.show_fut_310(user)
       else:
         self.show_ta_310(user)
+    elif where == 6:
+      ## ta, look at results until 2040
+      self.show_ta_6()
+      pass
     else:
       alert(str(where), title="Entering script")
 #    if where == 4 and role == "fut":
@@ -238,6 +245,31 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, runde, reg, role, lx)
     self.plot_card_rp.items = slots
     self.do_non_future(cid, role, reg, runde, yr, lx)
+    pass
+
+  def show_ta_6(self, **event_args):
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    self.lang_card.visible = False
+    self.p_card_graf_dec.visible = True
+    wrx = mg.regs.index(reg)
+    wmx = mg.roles.index(role)
+    reglong = self.do_reg_to_longreg(reg)
+    rolelong = self.do_ta_to_longmini(role)
+    self.pcgd_advance.text = lu.pcgd_advance_tx_str[lx]
+    self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+lu.p_info_40_fut[lx]
+    mg.fut_title_tx2 = self.pcgd_title.text
+    your_game_id = cid + "-" + str(wrx) + str(wmx)
+    mg.my_personal_game_id = your_game_id
+    self.pcgd_generating.visible = False
+    self.pcgd_plot_card.visible = True
+    self.dec_card.visible = True
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_info_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    slots = self.make_ta_slots(cid, runde, reg, role, lx)
+    self.plot_card_rp.items = slots
+    self.do_non_future(cid, role, reg, runde, yr, lx)
+#    self.set_where(em, 600)
     pass
 
   def do_lang(self, my_loc):
