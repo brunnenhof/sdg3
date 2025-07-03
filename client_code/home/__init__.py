@@ -707,8 +707,9 @@ class home(homeTemplate):
     yr, runde = self.get_runde(cid)
     if runde == 2:
 #      submission NOT open
-      pass
-    self.checkbox_1.checked = True 
+      self.checkbox_1.checked = False 
+    else:
+      self.checkbox_1.checked = True 
     self.checkbox_1.visible = True 
     self.gm_start_round.visible = False
     self.gm_card_wait_1_btn_check.visible = False 
@@ -1759,8 +1760,9 @@ class home(homeTemplate):
       ## 507 ready to submit decisions for 2060
       ### get where for gm to see if submissions are open
       ro_gm = app_tables.nutzer.get(game_id=cid, reg='gm')
-      sub = ro_gm['where']
-      if sub not in [110, 210, 310]: ## NOT IN: submissions not allowed
+      where_gm = ro_gm['where']
+      abc = where_gm not in [110, 210, 310] or where_gm == 210
+      if where_gm not in [110, 210, 310] or where_gm == 210: ## NOT IN: submissions not allowed
         alert(lu.gos[lx], title=lu.gos_title[lx])
         return
       else:
