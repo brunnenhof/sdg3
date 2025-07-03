@@ -2637,10 +2637,14 @@ class home(homeTemplate):
     gm_status = ro_gm_status['gm_status']
     yr, runde = self.get_runde(ro['game_id'])
     so, not_submitted = self.get_sub_for_gm(em, runde)
+    abc = self.checkbox_1.checked
     if runde == 1:
       self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
     elif runde == 2:
-      self.gm_card_wait_1_info.content = lu.gm_checkbox_open40_tx[lx]
+      if self.checkbox_1.checked:
+        self.gm_card_wait_1_info.content = lu.gm_sub40[lx]
+      else:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open40_tx[lx]
     elif runde == 3:
       self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]
     elif runde == 4:
