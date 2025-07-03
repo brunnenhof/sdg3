@@ -1142,7 +1142,14 @@ class home(homeTemplate):
       self.gm_card_wait_1_btn_check.visible = False
       self.gm_card_wait_1_rp.visible = False
       self.gm_card_wait_1_temp_title.text = lu.gm_card_wait_1_temp_title_tx2_str[lx]
-      self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
+      if runde == 1:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
+      elif runde == 2:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open40_tx[lx]
+      elif runde == 3:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]
+      elif runde == 4:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open21_tx[lx]
       self.gm_start_round.enabled = True
       self.checkbox_1.visible = True 
       self.gm_start_round.visible = False 
@@ -2630,7 +2637,14 @@ class home(homeTemplate):
     gm_status = ro_gm_status['gm_status']
     yr, runde = self.get_runde(ro['game_id'])
     so, not_submitted = self.get_sub_for_gm(em, runde)
-    self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
+    if runde == 1:
+      self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
+    elif runde == 2:
+      self.gm_card_wait_1_info.content = lu.gm_checkbox_open40_tx[lx]
+    elif runde == 3:
+      self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]
+    elif runde == 4:
+      self.gm_card_wait_1_info.content = lu.gm_checkbox_open21_tx[lx]
 #    if len(not_submitted) > 0:
 #        lmsg = lu.check_wait_sub[lx]
 #        for ii in range(0, len(not_submitted)):
