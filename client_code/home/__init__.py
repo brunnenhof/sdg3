@@ -1380,7 +1380,6 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
-    
     self.set_where(em, 302)
 
   def show_hide_plots_click(self, **event_args):
