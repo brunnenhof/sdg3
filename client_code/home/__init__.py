@@ -715,8 +715,23 @@ class home(homeTemplate):
     self.gm_4_5_core(user)
     em, cid, reg, role, lx, where = self.get_user_detail()
     yr, runde = self.get_runde(cid)
+    self.checkbox_1.checked = True 
+    self.checkbox_1.visible = True 
+    self.gm_start_round.visible = False
+    self.gm_card_wait_1_btn_check.visible = False 
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx0_str[lx]    
+    ### get global grafs up to 2025
+    slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+    pass
+
+  def show_gm_210_OLD(self, user):
+    self.gm_4_5_core(user)
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     if runde == 2:
-#      submission NOT open
+      #      submission NOT open
       self.checkbox_1.checked = False 
     else:
       self.checkbox_1.checked = True 
@@ -728,7 +743,6 @@ class home(homeTemplate):
     slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
-    pass
 
   def lang_dd_menu_change(self, **event_args):
     print(self.lang_dd_menu.selected_value)
@@ -2646,7 +2660,10 @@ class home(homeTemplate):
       else:
         self.gm_card_wait_1_info.content = lu.gm_checkbox_open40_tx[lx]
     elif runde == 3:
-      self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]
+      if self.checkbox_1.checked:
+        self.gm_card_wait_1_info.content = lu.gm_sub60[lx]
+      else:
+        self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]
     elif runde == 4:
       self.gm_card_wait_1_info.content = lu.gm_checkbox_open21_tx[lx]
 #    if len(not_submitted) > 0:
