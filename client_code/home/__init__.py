@@ -525,6 +525,7 @@ class home(homeTemplate):
 
   def show_fut_302_307(self, user, passed_where):
     em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
     ## 302: not all logged in
     ## 307 all logged in, show submit button
     self.wait_for_run_after_submit.visible = False
@@ -546,6 +547,7 @@ class home(homeTemplate):
       yr, runde = self.get_runde(cid)
       self.do_future(cid, role, reg, runde, yr, lx)
       self.set_where(em, 307)
+#      self.set_where(em, 320)
     self.refresh_numbers.visible = True
     self.refresh_numbers.text = lu.refresh_numbers_tx_str[lx]
     self.p_card_graf_dec.visible = True 
@@ -553,7 +555,15 @@ class home(homeTemplate):
     self.pcgd_info_rd1.content = lu.pcgd_rd1_info_short_str[lx]
     self.fut_info.content = lu.pcgd_rd1_info_fut_tx_str[lx]
     self.pcgd_info_rd1.visible = True
-    slots = self.make_ta_slots(cid, 1, reg, role, lx)
+    if runde == 2:
+      slots = self.make_ta_slots(cid, 2, reg, role, lx)
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +-+ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role) + lu.p_info_40_fut[lx]
+    elif runde == 3:
+      slots = self.make_ta_slots(cid, 3, reg, role, lx)
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +-+ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role) + lu.p_info_60_fut[lx]
+    elif runde == 4:
+      slots = self.make_ta_slots(cid, 4, reg, role, lx)
+      self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +-+ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role) + lu.p_info_21_fut[lx]
     self.plot_card_rp.items = slots
     self.dec_card.visible = False 
 
