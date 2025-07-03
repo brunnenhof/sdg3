@@ -855,6 +855,8 @@ class home(homeTemplate):
 
   def show_npbp_choice(self, my_lox, anfang, game_id):
     self.set_lang(my_lox)
+    ro = app_tables.nutzer.get(game_id=game_id)
+    em = ro['email']
     ende = time.time()
     dauer = round(ende - anfang, 0)
     self.seconds.text = str(dauer) + " sec"
@@ -1366,11 +1368,11 @@ class home(homeTemplate):
 
   def pcr_submit_click(self, **event_args):
     # anfang = time.time()
-    em, cid, reg, role, lx, where = self.get_user_detail()
-    yr, runde = self.get_runde(cid)
+    ## get the region and the role and sves it to nutzer
     if self.pcr_rb_fut.selected:
       self.p_card_graf_dec.visible = False
     reg = mg.my_reg
+    em = mg.my_email
     reglong = self.do_reg_to_longreg(reg)
     role = mg.my_ministry
     rolelong = self.do_ta_to_longmini(role)
@@ -1378,6 +1380,7 @@ class home(homeTemplate):
     save_ok = self.save_player_choice(cid, role, reg)
     if save_ok:
       self.show_p_1(reg, role, cid, reglong, rolelong)
+    
     self.set_where(em, 302)
 
   def show_hide_plots_click(self, **event_args):
