@@ -2617,7 +2617,7 @@ class home(homeTemplate):
     ro_gm_status = app_tables.games_log.get(game_id=cid)
     gm_status = ro_gm_status['gm_status']
     yr, runde = self.get_runde(ro['game_id'])
-#    so, not_submitted = self.get_sub_for_gm(em, runde)
+    so, not_submitted = self.get_sub_for_gm(em, runde)
     self.gm_card_wait_1_info.content = lu.gm_checkbox_open_tx[lx]
 #    if len(not_submitted) > 0:
 #        lmsg = lu.check_wait_sub[lx]
@@ -2648,11 +2648,11 @@ class home(homeTemplate):
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
       self.set_where(em, 210)
-    elif gm_status == 10 and where == 20: 
+    elif gm_status == 6 and where == 210: 
       self.set_where(em, 310) ### and now open for submission to round 2
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-      self.show_where(self.where.text)
+#      self.set_where(em, 250)
     else:
       alert('gmStatus = '+str(gm_status))
       self.show_where(self.where.text)
