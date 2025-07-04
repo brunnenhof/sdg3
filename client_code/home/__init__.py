@@ -26,10 +26,8 @@ class home(homeTemplate):
     mg.my_lang = lox
 #    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
     new_user = {}
-    # Open an alert displaying the 'ArticleEdit' Form
     save_clicked = alert(
       content=log_sign(item=new_user),
-      #      title="Sign Up",
       large=True,
       buttons=[],
     )
@@ -188,7 +186,6 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, runde, reg, role, lx)
     self.plot_card_rp.items = slots
     self.do_non_future(cid, role, reg, runde, yr, lx)
-    pass
 
   def show_ta_6(self, **event_args):
     em, cid, reg, role, lx, where = self.get_user_detail()
@@ -219,8 +216,6 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, runde, reg, role, lx)
     self.plot_card_rp.items = slots
     self.do_non_future(cid, role, reg, runde, yr, lx)
-#    self.set_where(em, 600)
-    pass
 
   def do_lang(self, my_loc):
     if my_loc == "en":
@@ -305,6 +300,7 @@ class home(homeTemplate):
       )
 
   def show_none_2(self, user):
+    ### not used
     lx = user["lang"]
     mg.my_lang = lx
     self.set_lang(lx)
@@ -341,7 +337,6 @@ class home(homeTemplate):
 
   def show_gm_4(self, user):
     self.gm_4_5_core(user)
-    em = mg.my_email
     self.checkbox_1.checked = False
 
   def show_hide_fut_money(self, sh):
@@ -686,6 +681,7 @@ class home(homeTemplate):
     self.gm_graf_card.visible = True
 
   def show_gm_40(self, user):
+    ## not used
     self.gm_4_5_core(user)
     em = mg.my_email
     ro = app_tables.nutzer.get(email=em)
@@ -780,6 +776,7 @@ class home(homeTemplate):
     pass
 
   def show_gm_210_OLD(self, user):
+    ## not used
     self.gm_4_5_core(user)
     em, cid, reg, role, lx, where = self.get_user_detail()
     yr, runde = self.get_runde(cid)
@@ -927,8 +924,6 @@ class home(homeTemplate):
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.top_btn_poc.text = "PoC"
-
-  #    self.credits.text = lu.credits_btn_tx_str[my_lox]
 
   def show_npbp_choice(self, my_lox, anfang, game_id):
     self.set_lang(my_lox)
