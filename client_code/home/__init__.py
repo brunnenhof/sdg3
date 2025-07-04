@@ -103,6 +103,13 @@ class home(homeTemplate):
     elif where == 410 and role == 'fut': ## fut NOT open for submitted
       user = self.get_user()
       self.show_fut_410(user)
+    elif where == 510 and role == 'fut': ## fut NOT open for submitted
+      user = self.get_user()
+      self.show_fut_510(user)
+    elif where == 410 and reg == 'gm': ## GM not(?) open for submission
+      self.show_gm_410()
+    elif where == 350 and reg == 'gm': ## GM the end
+      self.show_gm_350()
     elif where == 310: ## fut submitted
       user = self.get_user()
       role = user['role']
@@ -119,77 +126,6 @@ class home(homeTemplate):
       pass
     else:
       alert(str(where), title="Entering script")
-#    if where == 4 and role == "fut":
-#      user = self.get_user()
-#      self.show_fut_4(lx, game_id, reg, role)
-#    elif where == 5 and reg == "gm" and gm_status == 6 and where == 11:
-#      ## success to 2040, don't allow submission
-#      user = self.get_user()
-#      self.show_gm_40_not_sub(user)
-#      self.show_gm_10(lx, game_id, reg, role)
-#    elif where == 5 and role == "fut" and gm_status==6 and runde == 2:
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_fut_r2_not_sub(lx, game_id, reg, role)
-#    elif where == 5 and role == "fut" and gm_status==6:
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_fut_46(lx, game_id, reg, role)
-#    elif where == 3 and role == "fut":
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_fut_4(lx, game_id, reg, role)
-#    elif where == 2 and role == "fut":
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_fut_2(lx, game_id, reg, role)
-#    #      self.show_gm_5(lx, game_id)
-#    elif (where == 2 and not reg == "gm") or (where == 6 and not reg == "gm"):
-#      ## player, NOT fut, round 1 waiting for decisions
-#      user = self.get_user()
-#      self.show_reg_2(reg, role, lx, game_id, mg.my_email)
-#    elif where == 5 and reg == "gm" and gm_status == 7 and yr == 2040:
-#      ## success to 2040
-#      user = self.get_user()
-#      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
-#      if len(not_submitted) > 0:
-#        self.show_gm_40_not_sub(user)
-#      else:
-#        self.show_gm_40_sub(user)
-#    elif (where == 5 and reg == "gm" and gm_status == 6 and where == 11):
-#      ## success to 2040
-#      user = self.get_user()
-#      so, not_submitted = self.get_sub_for_gm(mg.my_email,2)
-#      if len(not_submitted) > 0:
-#        self.show_gm_40_not_sub(user)
-#      else:
-#        self.show_gm_4(user)
-#    elif where == 5 and reg == "gm" and gm_status == 6:
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_gm_40_not_sub(user)
-#    elif where == 7 and reg == "gm" and gm_status == 10 and where == 20:
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_gm_60(user)
-#    elif where == 5 and reg == "gm":
-#      ## success to 2040
-#      user = self.get_user()
-#      self.show_gm_5(user)
-#    elif where == 2:
-#      ## gm select npbp
-#      pass
-#    elif where == 3:
-#      ## select npbp
-#      user = self.get_user()
-#      self.show_gm_3(user)
-#      #      gm_card_wait_1
-#      pass
-#    elif where == 4:
-#      ## npbp selected & set up ... waiting for players to log in
-#      user = self.get_user()
-#      self.show_gm_4(user)
-#      pass
 
   def get_user(self, **event_args):
     em = mg.my_email
@@ -688,6 +624,35 @@ class home(homeTemplate):
     slots = self.make_ta_slots(cid, 3, reg, role, lx) 
     self.gm_graf_card_rp.items = slots
 
+  def show_fut_510(self, user):
+    ## show fut decisions submitted, wait for advance, get results for 2025
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    mg.my_game_id = cid
+    mg.my_ministry = role
+    mg.my_reg = reg
+    mg.my_lang = lx
+    self.p_card_graf_dec.visible = True
+    self.p_choose_role.visible = False
+    self.dec_card.visible = False
+    self.card_fut.visible = False
+    self.p_after_submit.visible = False
+    self.lang_card.visible = False
+    role = "fut"
+    self.pcgd_title.text = lu.player_board_tx_str[lx] + ': ' +cid+ "  +++ "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role)+ lu.p_info_21_fut[lx]
+    slots = self.make_ta_slots(cid, 4, reg, role, lx)      
+    self.pcgd_generating.visible = False
+    self.pcgd_plot_card.visible = True
+    self.card_fut.visible = False  ## no more budget at the end
+    self.pcgd_info_rd1.content = lu.pcgd_rd1_infoend_tx_str[lx]
+    self.fut_info.content = lu.pcgd_rd1_info_end_tx_str[lx]
+    self.pcgd_info_rd1.visible = True
+    self.plot_card_rp.items = slots
+    self.do_future(cid, role, reg, runde, yr, lx)
+    self.fut_detail("hide")
+    self.fut_not_all_logged_in.visible = False
+    self.show_where(self.where.text)
+
   def gm_4_5_core(self, user):
     lx = user["lang"]
     mg.my_lang = lx
@@ -763,6 +728,39 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.content = lu.gm_sub40[lx]    
     ### get global grafs up to 2040
     slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+
+  def show_gm_410(self, **event_args):
+    ## done to 2100, sub open, waiting for To advance ...
+    user = self.get_user()
+    self.gm_4_5_core(user)
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    self.checkbox_1.checked = True 
+    self.checkbox_1.visible = False 
+    self.gm_start_round.visible = True  ## advance
+    self.gm_card_wait_1_btn_check.visible = False ## Check login 
+    self.gm_card_wait_1_info.content = lu.gm_sub60[lx]    
+    ### get global grafs up to 2060
+    slots = self.make_nat_slots(cid, 3, lx)  # '' = role  
+    self.gm_graf_card_rp.items = slots
+    self.gm_graf_card.visible = True
+    self.set_where(em, 450)
+
+  def show_gm_350(self, **event_args):
+    ## done to 2100, the end
+    user = self.get_user()
+    self.gm_4_5_core(user)
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    self.checkbox_1.checked = True 
+    self.checkbox_1.visible = False 
+    self.gm_start_round.visible = False  ## advance
+    self.gm_card_wait_1_btn_check.visible = False ## Check login 
+    self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]    
+    ### get global grafs up to 2060
+    slots = self.make_nat_slots(cid, 4, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
@@ -1491,6 +1489,8 @@ class home(homeTemplate):
     self.dec_rp.items = pol_list
 
   def check_all_colleagues_logged_in(self, cid, reg, runde):
+    if runde == 4:
+      return True
     rows = app_tables.roles_assign.search(game_id=cid, reg=reg, round=runde, taken=1, role=q.not_("fut"))
     len_rows = len(rows)
     print(len_rows)
@@ -1580,7 +1580,6 @@ class home(homeTemplate):
     
   def do_future(self, cid, role, reg, runde, yr, lx):
     em, cid, reg, role, lx, where = self.get_user_detail()
-    roles = mg.roles
     self.pcgd_advance.visible = False
     self.dec_card.visible = False
     self.card_fut.visible = True
@@ -1591,12 +1590,14 @@ class home(homeTemplate):
       self.set_fut_not_all_logged_in(lx)
       not_log_list = self.get_not_log_list()
       lmsg = lu.fut_wating_tx[lx]
-      for ii in range(0,len(not_log_list)):
-        lmsg = lmsg + '\n' + not_log_list[ii]
-      alert(lmsg, title=lu.waiting_tx_str[lx])
+      if len(not_log_list) > 0:
+        for ii in range(0,len(not_log_list)):
+          lmsg = lmsg + '\n' + not_log_list[ii]
+        alert(lmsg, title=lu.waiting_tx_str[lx])
     else:
       self.set_fut_all_logged_in(lx)
-      self.set_where(em, 307) 
+      if not runde == 4:
+        self.set_where(em, 307) 
       if not yr == 2100:
         self.get_numbers_for_future(cid, role, reg, runde, yr, lx)
         self.fut_bud_lb1.text = lu.fut_bud_lb1_tx_str[lx] 
@@ -2748,6 +2749,10 @@ class home(homeTemplate):
         self.set_where(em, 310)
     elif gm_status == 6 and where == 210: 
       self.set_where(em, 310) ### and now open for submission to round 2
+      self.gm_start_round.visible = True 
+      self.checkbox_1.visible = False 
+    elif gm_status == 10 and where == 410: 
+      self.set_where(em, 450) ### and now open for submission to round 2
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
     else:
