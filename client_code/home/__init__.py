@@ -14,7 +14,6 @@ import random
 from time import strftime, localtime
 from ..log_sign import log_sign
 
-
 class home(homeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -103,6 +102,9 @@ class home(homeTemplate):
       self.show_gm_310()
     elif where == 250 and reg == 'gm':
       self.show_gm_250() # to 2060 ok, submit not open
+    elif where == 410 and role == 'fut': ## fut NOT open for submitted
+      user = self.get_user()
+      self.show_fut_410(user)
     elif where == 310: ## fut submitted
       user = self.get_user()
       role = user['role']
@@ -111,6 +113,9 @@ class home(homeTemplate):
       else:
         self.show_ta_310(user)
     elif where == 6:
+      ## ta, look at results until 2040
+      self.show_ta_6()
+    elif where == 8:
       ## ta, look at results until 2040
       self.show_ta_6()
       pass
@@ -261,7 +266,14 @@ class home(homeTemplate):
     reglong = self.do_reg_to_longreg(reg)
     rolelong = self.do_ta_to_longmini(role)
     self.pcgd_advance.text = lu.pcgd_advance_tx_str[lx]
-    self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+lu.p_info_40_fut[lx]
+    if runde == 3:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+lu.p_info_60_fut[lx]
+    elif runde == 2:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+lu.p_info_40_fut[lx]
+    elif runde == 4:
+      self.pcgd_title.text = lu.player_board_tx_str[lx]+ ": "+ cid+ "-"+ str(wrx)+ str(wmx)+ ",   "+ reglong+ ",   "+ rolelong+lu.p_info_21_fut[lx]
+    else:
+      alert("def show_ta_6: runde not 2|3|4 but "+str(runde))
     mg.fut_title_tx2 = self.pcgd_title.text
     your_game_id = cid + "-" + str(wrx) + str(wmx)
     mg.my_personal_game_id = your_game_id
@@ -651,6 +663,28 @@ class home(homeTemplate):
     self.fut_bud_lb2.visible = True 
     self.fut_but_lb3.visible = True 
     slots = self.make_ta_slots(cid, 1, reg, role, lx) 
+    self.gm_graf_card_rp.items = slots
+
+  def show_fut_410(self, user):
+    ## show fut decisions submitted, wait for advance, get results for 2025
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    yr, runde = self.get_runde(cid)
+    mg.my_game_id = cid
+    mg.my_ministry = role
+    mg.my_reg = reg
+    mg.my_lang = lx
+    self.wait_for_run_after_submit.content = lu.after_submit_tx_str[lx]
+    self.cid_reg_role_info.text = (cid+ "  + "+ self.do_reg_to_longreg(reg)+ "  - "+ self.do_ta_to_longmini(role))
+    self.p_advance_to_next_round.text = lu.p_advance_to_next_round_tx_str[lx]
+    self.p_card_graf_dec.visible = False
+    self.p_choose_role.visible = False
+    self.dec_card.visible = False
+    self.p_after_submit.visible = True 
+    self.lang_card.visible = False
+    self.fut_bud_lb1.visible = True 
+    self.fut_bud_lb2.visible = True 
+    self.fut_but_lb3.visible = True 
+    slots = self.make_ta_slots(cid, 3, reg, role, lx) 
     self.gm_graf_card_rp.items = slots
 
   def gm_4_5_core(self, user):
