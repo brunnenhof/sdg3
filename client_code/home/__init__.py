@@ -100,8 +100,6 @@ class home(homeTemplate):
         self.show_ta_307(user)
     elif where == 310 and reg == 'gm':
       self.show_gm_310()
-    elif where == 250 and reg == 'gm':
-      self.show_gm_250() # to 2060 ok, submit not open
     elif where == 410 and role == 'fut': ## fut NOT open for submitted
       user = self.get_user()
       self.show_fut_410(user)
@@ -762,22 +760,6 @@ class home(homeTemplate):
     self.gm_card_wait_1_info.content = lu.gm_sub40[lx]    
     ### get global grafs up to 2040
     slots = self.make_nat_slots(cid, 2, lx)  # '' = role  
-    self.gm_graf_card_rp.items = slots
-    self.gm_graf_card.visible = True
-
-  def show_gm_250(self, **event_args):
-    ## done to 2060, sub NOT open
-    user = self.get_user()
-    self.gm_4_5_core(user)
-    em, cid, reg, role, lx, where = self.get_user_detail()
-    yr, runde = self.get_runde(cid)
-    self.checkbox_1.checked = False 
-    self.checkbox_1.visible = True 
-    self.gm_start_round.visible = False  ## advance
-    self.gm_card_wait_1_btn_check.visible = False ## Check login 
-    self.gm_card_wait_1_info.content = lu.gm_checkbox_open60_tx[lx]    
-    ### get global grafs up to 2060
-    slots = self.make_nat_slots(cid, 3, lx)  # '' = role  
     self.gm_graf_card_rp.items = slots
     self.gm_graf_card.visible = True
 
@@ -2090,7 +2072,7 @@ class home(homeTemplate):
         row_games_log["gm_status"] = 10
         self.gm_start_round.text = lu.gm_start_round_tx_3_str[lx]
         anvil.server.call("budget_to_db", 2060, cid_cookie)
-        self.set_where(em, 250) # succesfully ran to 2060
+        self.set_where(em, 410) # succesfully ran to 2060
         self.wait_for_checkbox()
       elif runde == 3:
         self.gm_card_wait_1_info.content = lu.gm_wait_round_done_tx3_str[lx]
@@ -2765,11 +2747,12 @@ class home(homeTemplate):
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
       self.set_where(em, 210)
+      if runde == 2:
+        self.set_where(em, 310)
     elif gm_status == 6 and where == 210: 
       self.set_where(em, 310) ### and now open for submission to round 2
       self.gm_start_round.visible = True 
       self.checkbox_1.visible = False 
-#      self.set_where(em, 250)
     else:
       alert('gmStatus = '+str(gm_status))
       self.show_where(self.where.text)
