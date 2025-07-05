@@ -2662,11 +2662,11 @@ sim_success_title_txend_str = [
   "_last_"
 ]
 pcgd_generating_tx1_str = [
-  "Generating graphs until 2040 and decision sheet for 2040 ",
-  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
-  "Diagramme bis 2040 und Entscheidungsblatt für 2040 werden erstellt ",
-  "Génération de graphiques jusqu'en 2040 et feuille de décision pour 2040", 
-  "Generere grafer til 2040 og beslutningsark for 2040", 
+  "Generating graphs until the end of this round and the decision sheet for the next round ",
+  "Die Diagramme bis zum Ende dieser Runde und der Entscheidungsbogens für die nächste Runde werden erstellt",
+  "Die Diagramme bis zum Ende dieser Runde und der Entscheidungsbogens für die nächste Runde werden erstellt",
+  "Les diagrammes jusqu'à la fin de ce tour et le tableau de décision pour le tour suivant sont créés.", 
+  "Diagrammene til slutten av denne runden og beslutningsskjemaet for neste runde blir utarbeidet.", 
   "_last_"
 ]
 nat_msg = [
@@ -2846,11 +2846,11 @@ pcgd_rd1_infoend_tx_str = [
     "_last_"
 ]
 pcgd_rd1_info_end_tx_str = [
-  "The model has reached the end. The game is over. Shed your role and come back to the here and now. What happened in the game? What surprised you? What irritated  you? What was too complicated? Too easy? What made you think? What did you realize that you had not noticed before? Would you like to be a minister in real life? If so, what do you need to do today to become a minister?",
-  "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Legen Sie Ihre Rolle ab und kehren Sie ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Sie überrascht? Was hat Sie irritiert? Was war zu kompliziert? Zu einfach? Was hat Sie zum Nachdenken gebracht? Was ist Ihnen aufgefallen, was Sie vorher nicht bemerkt haben? Würden Sie im wirklichen Leben gerne Minister:in sein? Wenn ja, was müssen Sie heute tun, um Minister:in zu werden?",
-  "Das Modell hat das Ende erreicht. Das Spiel ist vorbei. Lege Deine ab und kehre ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Dich überrascht? Was hat Dich irritiert? Was hat Dich zum Nachdenken gebracht? Was ist Dir aufgefallen, dass Du vorher nicht bemerkt hattest? Würdest Du im wirklichen Leben gerne Minister:in sein? Wenn ja, was musst Du heute tun, um Minister:in zu werden?",
-  "Le modèle est arrivé au bout. Le jeu est terminé. Débarrassez-vous de votre rôle et revenez dans l'ici et le maintenant. Que s'est-il passé pendant le jeu ? Qu'est-ce qui vous a surpris ? Qu'est-ce qui vous a irrité ? Qu'est-ce qui était trop compliqué ? Trop facile ? Qu'est-ce qui vous a fait réfléchir ? Qu'avez-vous réalisé que vous n'aviez pas remarqué auparavant ? Aimeriez-vous être ministre dans la vraie vie ? Si oui, que devez-vous faire aujourd'hui pour devenir ministre ?",
-  "Modellen har nådd slutten. Spillet er over. Legg av deg rollen og kom tilbake til her og nå. Hva skjedde i spillet? Hva overrasket deg? Hva irriterte deg? Hva var for komplisert? For enkelt? Hva fikk deg til å tenke? Hva gikk opp for deg som du ikke hadde lagt merke til før? Kunne du tenke deg å være medlem av regjeringen i virkeligheten? Hvis ja, hva må du gjøre i dag for å bli minister?",
+  "The model has reached the end. Discuss with your colleagues the results, especially the period 2060 to 2100. Will people alive at that time (your grand children?) have a good future? Will they praise your wisdom or curse your mistakes? \nThe game is over. Shed your role and come back to the here and now. What happened in the game? What surprised you? What irritated  you? What was too complicated? Too easy? What made you think? What did you realize that you had not noticed before? Would you like to be a minister in real life? If so, what do you need to do today to become a minister?",
+  "Das Modell hat das Ende erreicht. Besprechen Sie mit Ihren Kolleg:innen die Ergebnisse, insbesondere den Zeitraum von 2060 bis 2100. Werden die Menschen, die zu dieser Zeit leben (Ihre Enkelkinder?), eine gute Zukunft haben? Werden sie Ihre Weisheit loben oder Ihre Fehler verfluchen? \nDas Spiel ist vorbei. Legen Sie Ihre Rolle ab und kehren Sie ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Sie überrascht? Was hat Sie irritiert? Was war zu kompliziert? Zu einfach? Was hat Sie zum Nachdenken gebracht? Was ist Ihnen aufgefallen, was Sie vorher nicht bemerkt haben? Würden Sie im wirklichen Leben gerne Minister:in sein? Wenn ja, was müssen Sie heute tun, um Minister:in zu werden?",
+  "Das Modell hat das Ende erreicht. Bespreche mit Deinen Kollegen die Ergebnisse, insbesondere den Zeitraum von 2060 bis 2100. Werden die Menschen, die zu dieser Zeit leben (Deine Enkelkinder?), eine gute Zukunft haben? Werden sie Deine Weisheit loben oder Deine Fehler verfluchen? \nDas Spiel ist vorbei. Lege Deine ab und kehre ins Hier und Jetzt zurück. Was ist während des Spiels passiert? Was hat Dich überrascht? Was hat Dich irritiert? Was hat Dich zum Nachdenken gebracht? Was ist Dir aufgefallen, dass Du vorher nicht bemerkt hattest? Würdest Du im wirklichen Leben gerne Minister:in sein? Wenn ja, was musst Du heute tun, um Minister:in zu werden?",
+  "Le modèle est arrivé au bout. Discutez avec vos collègues des résultats, en particulier ceux concernant la période 2060-2100. Les personnes qui vivront à cette époque (vos petits-enfants ?) auront-elles un bel avenir ? Loueront-elles votre sagesse ou maudiront-elles vos erreurs ? \nLe jeu est terminé. Débarrassez-vous de votre rôle et revenez dans l'ici et le maintenant. Que s'est-il passé pendant le jeu ? Qu'est-ce qui vous a surpris ? Qu'est-ce qui vous a irrité ? Qu'est-ce qui était trop compliqué ? Trop facile ? Qu'est-ce qui vous a fait réfléchir ? Qu'avez-vous réalisé que vous n'aviez pas remarqué auparavant ? Aimeriez-vous être ministre dans la vraie vie ? Si oui, que devez-vous faire aujourd'hui pour devenir ministre ?",
+  "Modellen har nådd slutten. Diskuter resultatene med kollegene dine, spesielt perioden 2060 til 2100. Vil menneskene som lever på den tiden (barnebarna dine?) ha en god fremtid? Vil de prise din visdom eller forbanne dine feil? \nSpillet er over. Legg av deg rollen og kom tilbake til her og nå. Hva skjedde i spillet? Hva overrasket deg? Hva irriterte deg? Hva var for komplisert? For enkelt? Hva fikk deg til å tenke? Hva gikk opp for deg som du ikke hadde lagt merke til før? Kunne du tenke deg å være medlem av regjeringen i virkeligheten? Hvis ja, hva må du gjøre i dag for å bli minister?",
     "_last_"  
 ]
 pcgd_generating_tx4_str = [

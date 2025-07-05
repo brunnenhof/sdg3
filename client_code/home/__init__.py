@@ -24,7 +24,8 @@ class home(homeTemplate):
     ll = navigator["language"]
     my_loc, my_loc2, lox = self.get_lang(ll)
     mg.my_lang = lox
-#    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
+    # opening screen
+    alert(lu.sign_up[lox], title=lu.why_sign_up_title[lox], large=True)
     new_user = {}
     save_clicked = alert(
       content=log_sign(item=new_user),
@@ -960,8 +961,8 @@ class home(homeTemplate):
     alert(content=t, title=lu.enter_code_title_tx[my_lox])
     print(f"You entered: {t.text}")
     code = t.text.upper()
-    #    if not code == 'LTG-ND':
-    if not code == "":
+    #    if not code == 'OSCAR':
+    if not code == "OSCAR":
       alert(lu.wrong_code_tx[my_lox])
       return
     game_id = anvil.server.call("generate_id")

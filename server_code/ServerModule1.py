@@ -1116,7 +1116,10 @@ def IF_THEN_ELSE(c, t, f):
 @anvil.server.callable
 def launch_ugregmod(game_id, von, bis):
 #  task = anvil.server.launch_background_task("ugregmod", game_id, von, bis)
-  task = anvil.server.launch_background_task("urm", game_id, von, bis)
+  #  real model is ugregmod
+  task = anvil.server.launch_background_task("ugregmod", game_id, von, bis)
+  # test is urm
+  #  task = anvil.server.launch_background_task("urm", game_id, von, bis)
   return task
 
 def get_sorted_pol_list(cid, runde, pol):
@@ -1275,6 +1278,10 @@ def urm(game_id, von, bis):
       "text/plain",   pickle.dumps(mdf_new_full), )
     app_tables.game_files.add_row(
       game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
+
+  #########
+  ######### END urm
+  ########
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
