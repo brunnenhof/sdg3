@@ -78,16 +78,16 @@ db_schema:
   game_files:
     client: full
     columns:
-    - admin_ui: {width: 116}
+    - admin_ui: {order: 0, width: 82}
       name: game_id
       type: string
     - admin_ui: {width: 167}
       name: version
       type: datetime
-    - admin_ui: {width: 74}
+    - admin_ui: {order: 4, width: 50}
       name: yr
       type: number
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 5, width: 126}
       name: start_row_data
       type: media
     - admin_ui: {width: 200}
