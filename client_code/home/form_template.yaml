@@ -809,7 +809,7 @@ components:
 - components:
   - layout_properties: {}
     name: where
-    properties: {bold: true, text: where}
+    properties: {bold: true, text: where, text_color: 'theme:Primary'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: privacy_btn_click}
     layout_properties: {}
