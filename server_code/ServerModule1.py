@@ -173,8 +173,8 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
   mid = (gle - tle) / 2
   w = random.uniform(floor + mid, gle)
   if w < floor or w > gle:
-    oops = 2
-  #  print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+    pass
   return w
 
 @anvil.server.background_task
@@ -231,7 +231,7 @@ def set_npbp(cid, npbp):
   )
 
 def read_mdfplay25(datei, runde):
-  #  print('APRIL IN read_mdfplay25 loading: ' + datei)
+#  print('----- read_mdfplay25 loading: ' + datei + ' for runde '+str(runde))
   f = data_files[datei]
   mdf_play = np.load(f)
   if runde == 1:
@@ -688,11 +688,14 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
     yr = 2100
   mdf_play = read_mdfplay25("mdf_play.npy", runde)
   var_l = var_row["vensim_name"]
+  print('build plot var_l is: '+var_l)
   var_l = var_l.replace(" ", "_")  # vensim uses underscores not whitespace in variable name
   varx = var_row["id"]
   #  print('starting new plot ...')
+  print('  --varx: '+str(varx))
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
   idx = rowx["col_idx"]
+  print('    --idx: '+str(idx))
   if varx in [19, 21, 22, 35]:  # global variable
     lx = idx  # find location of variable in mdf
   else:
@@ -720,7 +723,7 @@ def launch_create_plots_for_nat_slots(game_id, runde, lang):
 
 def get_all_vars_for_ta(ta):
   ta1 = mg.pov_to_Poverty[ta]
-  #  print('get_all_vars_for_ta +++++ '+ta1)
+  print('get_all_vars_for_ta +++++ '+ta1)
   v_row = app_tables.sdg_vars.search(ta=ta1)
   vars = [r["vensim_name"] for r in app_tables.sdg_vars.search(ta=ta1)]
   return vars, v_row
@@ -758,9 +761,11 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   foot1 = "mov250403 e4a 10reg.mdl"
   cap = foot1 + " - " + my_time
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
+#  print(vars_info_rows)
   for var_row in vars_info_rows:
+    print(var_row)
     fdz = build_plot(var_row, regidx, cap, cid, runde, lang, region, single_ta)
-  #      print(fdz)
+#    print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
 
 @anvil.server.callable
@@ -788,7 +793,7 @@ def create_plots_for_nat_slots(game_id, region, runde, lang):
   cap = foot1 + " - " + my_time
   for idx in range(405,416):
     fdz = build_plot_nat(cap, runde, lang, 'gm', idx)
-    print(fdz)
+#    print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap, runde=runde, ta='', reg=region)
 
 @anvil.server.callable
@@ -1133,12 +1138,13 @@ def get_sorted_pol_list(cid, runde, pol):
   myKeys.sort()
   sd = {i: dic[i] for i in myKeys}
   pol_list = list(sd.values())
-  print(cid + " " + str(runde) + " " + pol)
-  print(pol_list)
+#  print(cid + " " + str(runde) + " " + pol)
+#  print(pol_list)
   return pol_list
 
 @anvil.server.background_task
 def urm(game_id, von, bis):
+  print('in URM')
   if von == 2025:
     runde = 1
   elif von == 2040:
@@ -1173,7 +1179,7 @@ def urm(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+#    print("r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2040 and bis == 2060:
     howlong = 60
     s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
@@ -1195,7 +1201,7 @@ def urm(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+#    print("r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2060 and bis == 2100:
     howlong = 21
     s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
@@ -1217,7 +1223,7 @@ def urm(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+#    print("r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   else:
     print("We have a problem in def run_game with von and bis")
 
@@ -1251,7 +1257,7 @@ def urm(game_id, von, bis):
   ##### END loop
   # make sure I save the entire ndarray
   mdf_new_full = mdf_play_full
-  print(mdf_new_full.shape)
+  #print(mdf_new_full.shape)
   if howlong == 40:
     mdf_play = mdf_new_full[0:1920, :]
     row2040 = mdf[480, :]
@@ -1285,6 +1291,7 @@ def urm(game_id, von, bis):
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
+  print('in UGREGMOD')
 #  anvil.server.task_state["Year"] = von
 #  anvil.server.task_state["load"] = "... loading constants, policies, ..."
   #    my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green','orange']
@@ -1869,7 +1876,7 @@ def ugregmod(game_id, von, bis):
   Strength_of_inequality_effect_on_energy_TA = 2
   SDG4_a = 1.3463
   Delivery_delay_index_in_1980 = 1
-#  Owner_power_in_1980 = 0.5
+# Owner_power_in_1980 = 0.5
   Worker_power_scaling_factor = 60
   Worker_power_scaling_factor_reference = 0.53
   SoE_of_unemployment_ratio_on_WSO = 0.01
@@ -2899,9 +2906,6 @@ def ugregmod(game_id, von, bis):
   else:
     print("von not 2025 | 2040 | 2060")
   mdf_play_full = read_mdfplay_full("mdf_play.npy", runde)
-#  nun = datetime.datetime.now()
-  #    print('loaded mdf_play full.npy')
-  #    print(nun)
   ff = data_files["ch.npy"]
   ch = np.load(ff)
   #    ch = np.load('ch.npy')
@@ -2937,7 +2941,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+    print("ugregmod r1 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2040 and bis == 2060:
     howlong = 60
     s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
@@ -2959,7 +2963,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+    print("ugregmod r2 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   elif von == 2060 and bis == 2100:
     howlong = 21
     s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
@@ -2981,7 +2985,7 @@ def ugregmod(game_id, von, bis):
     mdf[0, :] = row_start
     start_tick_in_mdf_play = int((von - 1980) / dt + 1)
     end_tick = int((bis - von) / dt + 1)
-    print("r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
+    print("ugregmod r3 start_tick_in_mdf_play "+ str(start_tick_in_mdf_play)+ " bis "+ str(end_tick))
   else:
     print("We have a problem in def run_game with von and bis")
 
@@ -2994,6 +2998,7 @@ def ugregmod(game_id, von, bis):
     zeit = zeit + dt
     jjyr = rowi - 1
     if jjyr % 32 == 0:
+      print(yr)
       anvil.server.task_state["Year"] = yr
       yr += 1
 
@@ -7061,6 +7066,8 @@ def ugregmod(game_id, von, bis):
         mdf[rowi - 1, idx1 + j]
         + (mdf[rowi - 1, idx2 + j] - mdf[rowi - 1, idx3 + j]) * dt
       )
+      if j == 1:
+        print(mdf[rowi, idx1 + j])
 
     # Size_of_agri_sector[region] = ( Size_of_agri_sector_a + Size_of_agri_sector_b * math.exp ( - 1 * ( GDPpp_USED[region] / Size_of_agri_sector_c ) ) ) / 100
     idxlhs = fcol_in_mdf["Size_of_agri_sector"]
@@ -11634,12 +11641,15 @@ def ugregmod(game_id, von, bis):
 
     # FLWR_rounds_via_Excel_future[region] = IF_THEN_ELSE ( zeit >= Round3_start , FLWR_R3_via_Excel , IF_THEN_ELSE ( zeit >= Round2_start , FLWR_R2_via_Excel , IF_THEN_ELSE ( zeit >= Policy_start_year , FLWR_R1_via_Excel , FLWR_policy_Min ) ) )
     idxlhs = fcol_in_mdf["FLWR_rounds_via_Excel_future"]
+#    print('FLWR_rounds_via_Excel_future - idxlhs '+str(idxlhs))
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = IF_THEN_ELSE(
         zeit >= Round3_start,     FLWR_R3_via_Excel[j],     IF_THEN_ELSE(
           zeit >= Round2_start,       FLWR_R2_via_Excel[j],       IF_THEN_ELSE(
             zeit >= Policy_start_year, FLWR_R1_via_Excel[j], FLWR_policy_Min
           ),     ),   )
+#      if j == 1:
+#        print(mdf[rowi, idxlhs + j])
 
     # FLWR_policy_with_RW[region] = FLWR_rounds_via_Excel_future[region] * Smoothed_Reform_willingness[region] / Inequality_effect_on_energy_TA[region] * Smoothed_Multplier_from_empowerment_on_speed_of_food_TA[region]
     idxlhs = fcol_in_mdf["FLWR_policy_with_RW"]
@@ -11685,7 +11695,9 @@ def ugregmod(game_id, von, bis):
         / (FLWR_Time_to_implement_ISPV_goal / 3)
         * dt
       )
-
+      if j == 1:
+        print(mdf[rowi, idxout + j])
+        
     # FLWR_contribution_to_GL[region] = ( FLWR_policy[region] * 100 - FLWR_policy_Min ) / ( FLWR_policy_Max - FLWR_policy_Min )
     idxlhs = fcol_in_mdf["FLWR_contribution_to_GL"]
     idx1 = fcol_in_mdf["FLWR_policy"]
@@ -17464,9 +17476,14 @@ def ugregmod(game_id, von, bis):
 
     colmdf = 1
     for prr in plot_reg:
+      print(prr)
+      print(start_tick_in_mdf_play)
       idx = fcol_in_mdf[prr]
+      print(idx)
       for jk in range(0, 10):
         a2 = mdf[rowi, idx + jk]
+        if jk == 1:
+          print(a2)
         mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
         colmdf += 1
     for pgg in plot_glob:
@@ -17480,33 +17497,24 @@ def ugregmod(game_id, von, bis):
   ##### END loop
   # make sure I save the entire ndarray
   mdf_new_full = mdf_play_full
-  print(mdf_new_full.shape)
+  #print(mdf_new_full.shape)
   if howlong == 40:
     mdf_play = mdf_new_full[0:1920, :]
     row2040 = mdf[480, :]
-    amo = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(row2040), )
-    amo2 = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(mdf_new_full), )
-    app_tables.game_files.add_row(
-      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2040, )
+    amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2040), name='row2040.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2040.pkl')
+    app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2040, )
   elif howlong == 60:
     mdf_play = mdf_new_full[0:2560, :]
     row2060 = mdf[640, :]
-    amo = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(row2060), )
-    amo2 = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(mdf_new_full), )
-    app_tables.game_files.add_row(
-      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
+    amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2060), name='row2060.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), , name='full2060.pkl')
+    app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
   elif howlong == 21:
     row2100 = mdf[1280, :]
-    amo = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(row2100), )
-    amo2 = anvil.BlobMedia(
-      "text/plain",   pickle.dumps(mdf_new_full), )
-    app_tables.game_files.add_row(
-      game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
+    amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2100), name='row2100.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), , name='full2100.pkl' )
+    app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
 
 
 #    return mdf_play, plot_reg, plot_glob
