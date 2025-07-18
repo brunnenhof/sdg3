@@ -2588,8 +2588,11 @@ class home(homeTemplate):
       self.bye_card.visible = True
       self.bye_tx.text = lu.bye_tx[lx]
       return
+    em, cid, reg, role, lx, where = self.get_user_detail()
+    ro = app_tables.nutzer.get(email=em)
+
     mg.my_game_id = game_id_chosen
-    ro_nutz = app_tables.nutzer.get(email=)
+    ro_nutz = app_tables.nutzer.get(email=em)
     self.set_lang(lx)
     #    row = app_tables.status.get(game_id=game_id_chosen)
     #    row.update(p_status=1) # he / she chose a game
