@@ -824,7 +824,7 @@ components:
   - event_bindings: {click: gaum_click}
     layout_properties: {}
     name: gaum
-    properties: {text: gaum}
+    properties: {text: gaum, visible: false}
     type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {click: privacy_btn_click}
     layout_properties: {}

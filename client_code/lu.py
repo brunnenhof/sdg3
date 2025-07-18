@@ -3304,3 +3304,11 @@ gmau_login_tx = [
   "Brukernavn uten <>",
   "_last_"
 ]
+gmau_btn_tx = [
+  "User logins",
+  "Benutzernamen",
+  "Benutzernamen",
+  "Les noms d'utilisateur",
+  "Brukernavn",
+  "_last_"
+]

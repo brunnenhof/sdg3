@@ -12,10 +12,12 @@ class gm_alert_usrs(gm_alert_usrsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    cid = 'TKP-90'
-    lx = 1
-    lx = mg.my_lang
-    cid = mg.my_cid
+    em, cid, reg, role, lx, where = make_long.get_user_detail()
+    ro = app_tables.nutzer.get(email=em)
+#    cid = 'TKP-90'
+#    lx = 1
+#    lx = mg.my_lang
+#    cid = mg.my_cid
     if cid == '':
       cid = 'TKP-90'
 #    self.gmau_reg.text = lu.gmau_reg_tx[lx]

@@ -939,6 +939,7 @@ class home(homeTemplate):
     self.top_btn_help.text = lu.top_btn_help_str[my_lox]
     self.credits.text = lu.credits_btn_tx_str[my_lox]
     self.top_btn_poc.text = "PoC"
+    self.show_usrs.text = lu.gmau_btn_tx[my_lox]    
 
   def show_npbp_choice(self, my_lox, anfang, game_id):
     self.set_lang(my_lox)
@@ -2775,15 +2776,11 @@ class home(homeTemplate):
       content=gm_alert_usrs(),
       large=True,
     )
-    if gaum:
-      alert("G A U M")
 
   def gaum_click(self, **event_args):
     gaum = alert(
       content=gm_alert_usrs(),
       large=True,
     )
-    if gaum:
-      alert("G A U M")
 
 

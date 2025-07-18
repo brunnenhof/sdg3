@@ -40,3 +40,17 @@ def do_reg_to_longreg(reg, lx):
       return lu.reg_to_longreg_eu_str[lx]
     if reg == "se":
       return lu.reg_to_longreg_se_str[lx]
+
+def get_user_detail():
+    em = mg.my_email
+    ro = app_tables.nutzer.get(email=em)
+    cid = ro['game_id']
+    mg.my_game_id = cid
+    role = ro['role']
+    mg.my_ministry = role
+    reg = ro['reg']
+    mg.my_reg = reg
+    lx = ro["lang"]
+    mg.my_lang = lx
+    where = ro['where']
+    return em, cid, reg, role, lx, where
