@@ -3283,23 +3283,24 @@ wrong_code_tx = [
 gmau_reg_tx = [
   "Region",
   "Region",
-  "",
-  "",
-  "",
+  "Region",
+  "Région",
+  "Region",
   "_last_"
 ]
 gmau_role_tx = [
   "Department",
   "Ministerium",
   "Ministerium",
-  "",
-  "",
+  "Ministère",
+  "Departement",
   "_last_"
-]gmau_login_tx = [
-  "Username",
-  "Benutzername",
-  "Benutzername",
-  "",
-  "",
+]
+gmau_login_tx = [
+  "Username w/o <>",
+  "Benutzername ohne <>",
+  "Benutzername ohne <>",
+  "Nom d'utilisateur sans <>",
+  "Brukernavn uten <>",
   "_last_"
 ]

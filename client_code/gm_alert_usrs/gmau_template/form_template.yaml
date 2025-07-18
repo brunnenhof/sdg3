@@ -1,15 +1,15 @@
 components:
-- layout_properties: {grid_position: 'ALNZBE,XYCFOU'}
+- layout_properties: {grid_position: 'YUXYZF,BVDHPE'}
   name: gmau_rp_reg
   properties: {}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
-- layout_properties: {grid_position: 'ALNZBE,YYPXCK'}
+- layout_properties: {grid_position: 'YUXYZF,NWCYUO'}
   name: gmau_rp_role
   properties: {}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
-- layout_properties: {grid_position: 'ALNZBE,QCFPOQ'}
+- layout_properties: {grid_position: 'YUXYZF,PAVRYC'}
   name: gmau_rp_login
-  properties: {}
+  properties: {bold: true}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 container: {type: ColumnPanel}
 is_package: true

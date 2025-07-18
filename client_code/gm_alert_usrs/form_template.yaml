@@ -13,7 +13,7 @@ components:
     properties: {text: gmau login}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - layout_properties: {grid_position: 'WLJFZS,ZPSMHN'}
-    name: gmau_rp
+    name: gmau_rp_reg
     properties: {item_template: gm_alert_usrs.gmau_template}
     type: RepeatingPanel
   layout_properties: {grid_position: 'OWQLTM,DJTNCJ'}

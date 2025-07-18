@@ -821,6 +821,11 @@ components:
       text: where
       text_color: theme:Primary
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
+  - event_bindings: {click: gaum_click}
+    layout_properties: {}
+    name: gaum
+    properties: {text: gaum}
+    type: form:dep_srfw5i6mu5hwvt:_Components.Button
   - event_bindings: {click: privacy_btn_click}
     layout_properties: {}
     name: privacy_btn

@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 import random
 from time import strftime, localtime
 from ..log_sign import log_sign
+from ..gm_alert_usrs import gm_alert_usrs
 
 class home(homeTemplate):
   def __init__(self, **properties):
@@ -2756,7 +2757,19 @@ class home(homeTemplate):
       self.show_where(self.where.text)
 
   def show_usrs_click(self, **event_args):
-    alert("User Logins")
-    pass
+    gaum = alert(
+      content=gm_alert_usrs(),
+      large=True,
+    )
+    if gaum:
+      alert("G A U M")
+
+  def gaum_click(self, **event_args):
+    gaum = alert(
+      content=gm_alert_usrs(),
+      large=True,
+    )
+    if gaum:
+      alert("G A U M")
 
 
