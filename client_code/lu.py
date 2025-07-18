@@ -2053,11 +2053,11 @@ sdgvarID_to_sdg_38_str = [
   "_last_"
 ]
 top_title_str = [
-  "OC Game v0.3d",
-  "Das WK Spiel v0.3d",
-  "Das WK Spiel v0.3d",
-  "Le Jeu OL v0.3d",
-  "FL-spill v0.3d", 
+  "OC Game v0.4a",
+  "Das WK Spiel v0.4a",
+  "Das WK Spiel v0.4a",
+  "Le Jeu OL v0.4a",
+  "FL-spill v0.4a", 
   "_last_"
 ]
 need_one_reg = [
@@ -3275,5 +3275,31 @@ wrong_code_tx = [
   "Falscher Code, frage jemanden, der den Code kennt",
   "Code erroné, vérifier auprès de la personne qui connaît le code",
   "Feil kode, sjekk med den som kan koden",
+  "_last_"
+]
+####
+#### after clean up of English
+####
+gmau_reg_tx = [
+  "Region",
+  "Region",
+  "",
+  "",
+  "",
+  "_last_"
+]
+gmau_role_tx = [
+  "Department",
+  "Ministerium",
+  "Ministerium",
+  "",
+  "",
+  "_last_"
+]gmau_login_tx = [
+  "Username",
+  "Benutzername",
+  "Benutzername",
+  "",
+  "",
   "_last_"
 ]

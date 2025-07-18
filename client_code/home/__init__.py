@@ -2755,4 +2755,8 @@ class home(homeTemplate):
       alert('gmStatus = '+str(gm_status))
       self.show_where(self.where.text)
 
+  def show_usrs_click(self, **event_args):
+    alert("User Logins")
+    pass
+
 
