@@ -64,7 +64,13 @@ class home(homeTemplate):
     self.set_where(usr, where)
     ## now, based on WHERE go the correct page
     ## where exists for each nutzer separately 
-    if where == 0 or where is None: ## the vary beginning
+    if where is None and game_id is None and reg == '00' and role == '00':
+      ## a player has logged in, may or may not have chosen a language, no role no reg
+      ## show him / her the language options
+      self.do_lang(my_loc)
+      
+      pass
+    elif where == 0 or where is None: ## the vary beginning
       self.do_lang(my_loc)
     elif where == 103: ## gm: wait for selection of npbp
       user = self.get_user()
