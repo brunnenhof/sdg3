@@ -64,12 +64,18 @@ class home(homeTemplate):
     self.set_where(usr, where)
     ## now, based on WHERE go the correct page
     ## where exists for each nutzer separately 
-    if where is None and game_id is None and reg == '00' and role == '00':
+    if where is 12 and game_id is not None and reg == '00' and role == '00':
       ## a player has logged in, may or may not have chosen a language, no role no reg
       ## show him / her the language options
       self.do_lang(my_loc)
-      
-      pass
+      em, cid, reg, role, lx, where = self.get_user_detail()
+#      ro = app_tables.nutzer.get(email=em)
+      self.set_lang(lx)
+      self.p_cp_choose_game.visible = False
+      self.p_enter_id.visible = False
+      self.top_entry.visible = False
+      self.p_choose_role.visible = True
+      self.show_roles(cid)
     elif where == 0 or where is None: ## the vary beginning
       self.do_lang(my_loc)
     elif where == 103: ## gm: wait for selection of npbp
@@ -2590,14 +2596,11 @@ class home(homeTemplate):
       return
     em, cid, reg, role, lx, where = self.get_user_detail()
     ro = app_tables.nutzer.get(email=em)
-
+    ro['game_id'] = game_id_chosen
+    ro['where'] = 12
     mg.my_game_id = game_id_chosen
-    ro_nutz = app_tables.nutzer.get(email=em)
     self.set_lang(lx)
-    #    row = app_tables.status.get(game_id=game_id_chosen)
-    #    row.update(p_status=1) # he / she chose a game
     self.p_cp_choose_game.visible = False
-    #    self.card_select_reg_role.visible = True
     self.p_enter_id.visible = False
     self.top_entry.visible = False
     self.p_choose_role.visible = True
