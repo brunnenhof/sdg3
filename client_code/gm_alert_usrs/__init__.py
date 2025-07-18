@@ -14,11 +14,13 @@ class gm_alert_usrs(gm_alert_usrsTemplate):
     self.init_components(**properties)
     cid = 'TKP-90'
     lx = 1
-#    lx = mg.lx
-#    cid = mg.cid
-    self.gmau_reg.text = lu.gmau_reg_tx[lx]
-    self.gmau_role.text = lu.gmau_role_tx[lx]
-    self.gmau_login.text = lu.gmau_login_tx[lx]
+    lx = mg.my_lang
+    cid = mg.my_cid
+    if cid == '':
+      cid = 'TKP-90'
+#    self.gmau_reg.text = lu.gmau_reg_tx[lx]
+#    self.gmau_role.text = lu.gmau_role_tx[lx]
+#    self.gmau_login.text = lu.gmau_login_tx[lx]
     rows = app_tables.nutzer.search(tables.order_by('reg'), tables.order_by('role'), game_id=cid, reg=q.not_('00'), role=q.not_('00'))
     slots = []
     for ro in rows:
@@ -27,4 +29,4 @@ class gm_alert_usrs(gm_alert_usrsTemplate):
       email = ro['email']
       slot = {'gmau_rp_reg' : long_reg, 'gmau_rp_role' : long_min, 'gmau_rp_login' : '<'+ro['email']+'>'}
       slots.append(slot)
-    self.gmau_rp.items = slots
+    self.gmau_dg_rp.items = slots

@@ -490,5 +490,5 @@ services:
 - client_config: {}
   server_config: {test_mode: true}
   source: /runtime/services/anvil/email.yml
-startup: {module: gm_alert_usrs, type: form}
+startup: {module: home, type: form}
 startup_form: null
