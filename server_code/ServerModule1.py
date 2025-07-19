@@ -246,6 +246,7 @@ def read_mdfplay25(datei, runde):
 
 def read_mdfplay_full(datei, runde):
   f = data_files[datei]
+  
   mdf_play_full = np.load(f)
   return mdf_play_full
 
@@ -1142,6 +1143,7 @@ def get_sorted_pol_list(cid, runde, pol):
 #  print(pol_list)
   return pol_list
 
+"""
 @anvil.server.background_task
 def urm(game_id, von, bis):
   print('in URM')
@@ -1288,6 +1290,7 @@ def urm(game_id, von, bis):
   #########
   ######### END urm
   ########
+"""
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
@@ -7067,7 +7070,8 @@ def ugregmod(game_id, von, bis):
         + (mdf[rowi - 1, idx2 + j] - mdf[rowi - 1, idx3 + j]) * dt
       )
       if j == 1:
-        print(mdf[rowi, idx1 + j])
+        a1 = str(mdf[rowi, idx1 + j])
+#        print('Regenerative_cropland_fraction zeit='+str(zeit)+' value af='+a1+' idx1='+str(idx1))
 
     # Size_of_agri_sector[region] = ( Size_of_agri_sector_a + Size_of_agri_sector_b * math.exp ( - 1 * ( GDPpp_USED[region] / Size_of_agri_sector_c ) ) ) / 100
     idxlhs = fcol_in_mdf["Size_of_agri_sector"]
@@ -11696,7 +11700,8 @@ def ugregmod(game_id, von, bis):
         * dt
       )
       if j == 1:
-        print(mdf[rowi, idxout + j])
+        a1 = str(mdf[rowi, idxout + j])
+#        print('FLWR_policy zeit='+str(zeit)+' value af='+a1+' idxout='+str(idxout))
         
     # FLWR_contribution_to_GL[region] = ( FLWR_policy[region] * 100 - FLWR_policy_Min ) / ( FLWR_policy_Max - FLWR_policy_Min )
     idxlhs = fcol_in_mdf["FLWR_contribution_to_GL"]
@@ -17476,14 +17481,16 @@ def ugregmod(game_id, von, bis):
 
     colmdf = 1
     for prr in plot_reg:
-      print(prr)
-      print(start_tick_in_mdf_play)
+      if prr == 'Regenerative_cropland_fraction':
+        print('saving reg-crop_frac')
       idx = fcol_in_mdf[prr]
-      print(idx)
+      if prr == 'Regenerative_cropland_fraction':
+        print('stimp='+str(start_tick_in_mdf_play)+ ' colmdf='+str(colmdf)+' idx='+str(idx)+ ' zeit='+str(zeit)+' value af')
       for jk in range(0, 10):
         a2 = mdf[rowi, idx + jk]
-        if jk == 1:
+        if prr == 'Regenerative_cropland_fraction' and jk == 1:
           print(a2)
+          pass
         mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
         colmdf += 1
     for pgg in plot_glob:
@@ -17508,12 +17515,12 @@ def ugregmod(game_id, von, bis):
     mdf_play = mdf_new_full[0:2560, :]
     row2060 = mdf[640, :]
     amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2060), name='row2060.pkl')
-    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), , name='full2060.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2060.pkl')
     app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
   elif howlong == 21:
     row2100 = mdf[1280, :]
     amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2100), name='row2100.pkl')
-    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), , name='full2100.pkl' )
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2100.pkl' )
     app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
 
 
