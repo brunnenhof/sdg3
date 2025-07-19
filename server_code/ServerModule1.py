@@ -173,7 +173,7 @@ def get_randGLbias_for_pol(pol, pl, tl, gl):
   mid = (gle - tle) / 2
   w = random.uniform(floor + mid, gle)
   if w < floor or w > gle:
-    print(pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
+    print('get_randGLbias_for_pol '+pol+' min='+str(tle)+' max='+str(gle)+' wert='+str(w))
     pass
   return w
 
@@ -231,8 +231,8 @@ def set_npbp(cid, npbp):
   )
 
 def read_mdfplay25(datei, runde):
-#  print('----- read_mdfplay25 loading: ' + datei + ' for runde '+str(runde))
   f = data_files[datei]
+#  print('----- read_mdfplay25 loading: ' + datei + ' for runde '+str(runde))
   mdf_play = np.load(f)
   if runde == 1:
     mdf_play = mdf_play[320:1440, :]
@@ -681,22 +681,33 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   # find out for which round
   if runde == 1:
     yr = 2025
+    mdf_play = read_mdfplay25("mdf_play.npy", runde)
   elif runde == 2:
     yr = 2040
+    s_row = app_tables.game_files.get(game_id=cid, yr=2040)
+    s_row_elem = s_row["mdf_play"]
+    mdf_bud = pickle.loads(s_row_elem.get_bytes())
+    mdf_play = mdf_bud
+    print(mdf_play.shape)
+#    mdf_bud = mdf_bud[320:1920, :]
+#    rx = 1920 - 321
+#    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
+#    mdf_play = read_mdfplay25("mdf_play.npy", runde)
   elif runde == 3:
     yr = 2060
   elif runde == 4:
     yr = 2100
   mdf_play = read_mdfplay25("mdf_play.npy", runde)
   var_l = var_row["vensim_name"]
-  print('build plot var_l is: '+var_l)
+  print('build plot var_l is: '+var_l+' shape is next')
+  print(mdf_play.shape)
   var_l = var_l.replace(" ", "_")  # vensim uses underscores not whitespace in variable name
   varx = var_row["id"]
   #  print('starting new plot ...')
-  print('  --varx: '+str(varx))
+#  print('  --varx: '+str(varx))
   rowx = app_tables.mdf_play_vars.get(var_name=var_l)
   idx = rowx["col_idx"]
-  print('    --idx: '+str(idx))
+#  print('    --idx: '+str(idx))
   if varx in [19, 21, 22, 35]:  # global variable
     lx = idx  # find location of variable in mdf
   else:
@@ -807,9 +818,7 @@ def budget_to_db(yr, cid):
     mdf_bud = mdf_bud[320:1440, :]
     rx = 1440 - 321
     runde = 1
-    print(
-      "IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx)
-    )
+    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
   elif yr == 2040:
     runde = 2
     s_row = app_tables.game_files.get(game_id=cid, yr=2040)
@@ -817,9 +826,7 @@ def budget_to_db(yr, cid):
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
     mdf_bud = mdf_bud[320:1920, :]
     rx = 1920 - 321
-    print(
-      "IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx)
-    )
+    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
   elif yr == 2060:
     runde = 3
     s_row = app_tables.game_files.get(game_id=cid, yr=2060)
@@ -827,9 +834,7 @@ def budget_to_db(yr, cid):
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
     mdf_bud = mdf_bud[320:2560, :]
     rx = 2560 - 321
-    print(
-      "IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx)
-    )
+    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
   elif yr == 2100:
     runde = 4
     rx = 3840 - 321
@@ -1294,7 +1299,7 @@ def urm(game_id, von, bis):
 
 @anvil.server.background_task
 def ugregmod(game_id, von, bis):
-  print('in UGREGMOD')
+#  print('in UGREGMOD')
 #  anvil.server.task_state["Year"] = von
 #  anvil.server.task_state["load"] = "... loading constants, policies, ..."
   #    my_col = ['blue', 'brown', 'red', 'mediumpurple', 'khaki', 'purple', 'darkgreen', 'magenta', 'green','orange']
@@ -17482,14 +17487,16 @@ def ugregmod(game_id, von, bis):
     colmdf = 1
     for prr in plot_reg:
       if prr == 'Regenerative_cropland_fraction':
-        print('saving reg-crop_frac')
+#        print('saving reg-crop_frac')
+        pass
       idx = fcol_in_mdf[prr]
       if prr == 'Regenerative_cropland_fraction':
-        print('stimp='+str(start_tick_in_mdf_play)+ ' colmdf='+str(colmdf)+' idx='+str(idx)+ ' zeit='+str(zeit)+' value af')
+#        print('stimp='+str(start_tick_in_mdf_play)+ ' colmdf='+str(colmdf)+' idx='+str(idx)+ ' zeit='+str(zeit)+' value af')
+        pass
       for jk in range(0, 10):
         a2 = mdf[rowi, idx + jk]
         if prr == 'Regenerative_cropland_fraction' and jk == 1:
-          print(a2)
+#          print(a2)
           pass
         mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
         colmdf += 1
