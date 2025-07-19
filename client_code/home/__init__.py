@@ -2793,7 +2793,7 @@ class home(homeTemplate):
       rows = app_tables.cookies.search(game_id=q.not_(cid))
       for row in rows:
         print(row['game_id'])
-#        row.delete()
+        row.delete()
       rows = app_tables.budget.search(game_id=q.not_(cid))
       for row in rows:
         row.delete()
