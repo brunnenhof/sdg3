@@ -688,7 +688,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
     s_row = app_tables.game_files.get(game_id=cid, yr=2040)
     s_row_elem = s_row["mdf_play"]
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
-    mdf_play = mdf_bud
+    mdf_play = mdf_bud[320:1920, :]
     print(mdf_play.shape)
 #    mdf_bud = mdf_bud[320:1920, :]
 #    rx = 1920 - 321
@@ -697,11 +697,20 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 3:
     yr = 2060
+    s_row = app_tables.game_files.get(game_id=cid, yr=2060)
+    s_row_elem = s_row["mdf_play"]
+    mdf_bud = pickle.loads(s_row_elem.get_bytes())
+    mdf_play = mdf_bud[320:2560, :]
+    print(mdf_play.shape)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 4:
     yr = 2100
+    s_row = app_tables.game_files.get(game_id=cid, yr=2100)
+    s_row_elem = s_row["mdf_play"]
+    mdf_bud = pickle.loads(s_row_elem.get_bytes())
+    mdf_play = mdf_bud[320:3840, :]
+    print(mdf_play.shape)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
-#  mdf_play = read_mdfplay25("mdf_play.npy", runde)
   var_l = var_row["vensim_name"]
   print('build plot var_l is: '+var_l+' shape is next')
   print(mdf_play.shape)
@@ -739,7 +748,7 @@ def launch_create_plots_for_nat_slots(game_id, runde, lang):
 
 def get_all_vars_for_ta(ta):
   ta1 = mg.pov_to_Poverty[ta]
-  print('get_all_vars_for_ta +++++ '+ta1)
+#  print('get_all_vars_for_ta +++++ '+ta1)
   v_row = app_tables.sdg_vars.search(ta=ta1)
   vars = [r["vensim_name"] for r in app_tables.sdg_vars.search(ta=ta1)]
   return vars, v_row

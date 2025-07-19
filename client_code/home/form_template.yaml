@@ -24,7 +24,7 @@ components:
     - event_bindings: {click: all_but_click}
       layout_properties: {grid_position: 'EXUVGH,CVMFNZ'}
       name: all_but
-      properties: {text: all but}
+      properties: {background_color: red, text: all but, text_color: yellow}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: adm_leave_click}
       layout_properties: {grid_position: 'LTRFFY,DXDFZL'}
