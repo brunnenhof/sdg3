@@ -682,6 +682,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   if runde == 1:
     yr = 2025
     mdf_play = read_mdfplay25("mdf_play.npy", runde)
+    print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 2:
     yr = 2040
     s_row = app_tables.game_files.get(game_id=cid, yr=2040)
@@ -693,11 +694,14 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
 #    rx = 1920 - 321
 #    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
 #    mdf_play = read_mdfplay25("mdf_play.npy", runde)
+    print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 3:
     yr = 2060
+    print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 4:
     yr = 2100
-  mdf_play = read_mdfplay25("mdf_play.npy", runde)
+    print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
+#  mdf_play = read_mdfplay25("mdf_play.npy", runde)
   var_l = var_row["vensim_name"]
   print('build plot var_l is: '+var_l+' shape is next')
   print(mdf_play.shape)
@@ -775,7 +779,7 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
 #  print(vars_info_rows)
   for var_row in vars_info_rows:
-    print(var_row)
+    print(var_row['vensim_name'])
     fdz = build_plot(var_row, regidx, cap, cid, runde, lang, region, single_ta)
 #    print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
