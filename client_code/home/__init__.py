@@ -2784,4 +2784,44 @@ class home(homeTemplate):
       large=True,
     )
 
-
+  def all_but_click(self, **event_args):
+    t = TextBox(placeholder='game ID **NOT** to delete')
+    alert(content=t, title='Delete ALL BUT ...')
+    print(f"You entered: {t.text}")
+    cid = t.text.upper()
+    if not cid == '':
+      rows = app_tables.cookies.search(game_id=q.not_(cid))
+      for row in rows:
+        print(row['game_id'])
+#        row.delete()
+      rows = app_tables.budget.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.game_files.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.games_log.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.plots.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.submitted.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.state_of_play.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.step_done.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.roles_assign.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.pcgd_advance_looked_at.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      rows = app_tables.nutzer.search(game_id=q.not_(cid))
+      for row in rows:
+        row.delete()
+      alert("Game " + cid + " has been kept, all else deleted")
