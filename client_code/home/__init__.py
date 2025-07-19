@@ -2792,36 +2792,46 @@ class home(homeTemplate):
     if not cid == '':
       rows = app_tables.cookies.search(game_id=q.not_(cid))
       for row in rows:
-        print(row['game_id'])
+        self.deleting.text = 'deleting cookies ' + row['game_id'] + ' ' + row['gm_step']
         row.delete()
       rows = app_tables.budget.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting budget ' + row['game_id'] + ' ' + row['reg']
         row.delete()
       rows = app_tables.game_files.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting game_files ' + row['game_id'] + ' ' + row['version']
         row.delete()
       rows = app_tables.games_log.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting games_log ' + row['game_id'] + ' ' + row['started']
         row.delete()
       rows = app_tables.plots.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting plots ' + row['game_id'] + ' ' + row['title']
         row.delete()
       rows = app_tables.submitted.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting submitted ' + row['game_id'] + ' ' + row['reg']
         row.delete()
       rows = app_tables.state_of_play.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting state_of_play ' + row['game_id'] + ' ' + row['reg']
         row.delete()
       rows = app_tables.step_done.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting step_done ' + row['game_id'] + ' ' + row['reg']
         row.delete()
       rows = app_tables.roles_assign.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting roles_assign ' + row['game_id'] + ' ' + row['reg'] + ' ' + str(row['round']) + ' ' + row['pol']
         row.delete()
       rows = app_tables.pcgd_advance_looked_at.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting pcgd_advance_looked_at ' + row['game_id'] + ' ' + row['ta']
         row.delete()
       rows = app_tables.nutzer.search(game_id=q.not_(cid))
       for row in rows:
+        self.deleting.text = 'deleting nutzer ' + row['game_id'] + ' ' + row['email'] + ' ' + row['role']
         row.delete()
       alert("Game " + cid + " has been kept, all else deleted")

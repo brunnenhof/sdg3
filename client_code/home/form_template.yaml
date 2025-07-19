@@ -27,10 +27,14 @@ components:
       properties: {text: all but}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
     - event_bindings: {click: adm_leave_click}
-      layout_properties: {grid_position: 'EXUVGH,TLGISY'}
+      layout_properties: {grid_position: 'LTRFFY,DXDFZL'}
       name: adm_leave
       properties: {text: done}
       type: form:dep_srfw5i6mu5hwvt:_Components.Button
+    - layout_properties: {grid_position: 'VDNFMI,KRIZOO'}
+      name: deleting
+      properties: {bold: true}
+      type: form:dep_srfw5i6mu5hwvt:_Components.Text
     layout_properties: {grid_position: 'UYGBPP,QXMNNF'}
     name: adm_card
     properties: {role: outlined-card, visible: false}
