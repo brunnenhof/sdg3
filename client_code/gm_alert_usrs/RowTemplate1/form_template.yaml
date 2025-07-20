@@ -1,15 +1,15 @@
 components:
 - layout_properties: {column: DXJBTG}
   name: gaum_rp_reg
-  properties: {font_size: 9}
+  properties: {font_size: 11}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 - layout_properties: {column: UIIQAM}
   name: gaum_rp_role
-  properties: {font_size: 9}
+  properties: {font_size: 11}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 - layout_properties: {column: MKHFMI}
   name: gaum_rp_login
-  properties: {bold: true, font_size: 11}
+  properties: {bold: true, font_size: 12}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 - layout_properties: {}
   name: divider_1

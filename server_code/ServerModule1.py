@@ -246,7 +246,6 @@ def read_mdfplay25(datei, runde):
 
 def read_mdfplay_full(datei, runde):
   f = data_files[datei]
-  
   mdf_play_full = np.load(f)
   return mdf_play_full
 
@@ -574,6 +573,8 @@ def make_png_nat(df):
 
 def make_png_nat_over(runde, lang):
   mdf_play_nat = read_mdfplay25("mdf_play_nat.npy", runde)
+  print('make_png_nat_over shape on next lne ' + str(runde))
+  print(mdf_play_nat.shape)
   df = mdf_play_nat[:, [0, 413, 411, 410, 409, 414, 415]] # this is global pop, soc, ineq, well, gdppp, temp
   x = df[:, 0]
   y1 = df[:, 1]
@@ -640,6 +641,8 @@ def build_plot_nat(cap, runde, lang, reg, nat_idx):
     fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
     return fdz
   mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
+  print('build_plot_nat shape on next lne ' + str(runde))
+  print(mdf_play.shape)
   dfv = mdf_play[:, [0, nat_idx]]
   if nat_idx == 405:
     my_title = lu.nat_graph_1_title[lang]
@@ -681,7 +684,9 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   # find out for which round
   if runde == 1:
     yr = 2025
-    mdf_play = read_mdfplay25("mdf_play.npy", runde)
+    ## load mdf play with Nathalie's globals
+#    mdf_play = read_mdfplay25("mdf_play.npy", runde)
+    mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 2:
     yr = 2040
@@ -826,7 +831,9 @@ def budget_to_db(yr, cid):
   regs = mg.regs
   if yr == 2025:
     app_tables.budget.delete_all_rows()
-    f = data_files["mdf_play.npy"]
+    ## load mdf play with Nathalie's globals
+#    f = data_files["mdf_play.npy"]
+    f = data_files["mdf_play_nat.npy"]
     mdf_bud = np.load(f)
     mdf_bud = mdf_bud[320:1440, :]
     rx = 1440 - 321
@@ -1173,7 +1180,7 @@ def urm(game_id, von, bis):
     runde = 3
   else:
     print("von not 2025 | 2040 | 2060")
-  mdf_play_full = read_mdfplay_full("mdf_play.npy", runde)
+  mdf_play_3841_405 = read_mdfplay_full("mdf_play.npy", runde)
   #    print('loaded mdf_play full.npy')
   #    print(nun)
   ff = data_files["ch.npy"]
@@ -1266,17 +1273,17 @@ def urm(game_id, von, bis):
     colmdf = 1
     for uf in range(1, 405):
       if rowi == 1:
-        a2 = mdf_play_full[start_tick_in_mdf_play - 1, uf] * 1.1
+        a2 = mdf_play_3841_405[start_tick_in_mdf_play - 1, uf] * 1.1
       else:
-        a2 = mdf_play_full[start_tick_in_mdf_play - 1, uf]
-      mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
+        a2 = mdf_play_3841_405[start_tick_in_mdf_play - 1, uf]
+      mdf_play_3841_405[start_tick_in_mdf_play, colmdf] = a2
       colmdf += 1
 
     start_tick_in_mdf_play += 1
 
   ##### END loop
   # make sure I save the entire ndarray
-  mdf_new_full = mdf_play_full
+  mdf_new_full = mdf_play_3841_405
   #print(mdf_new_full.shape)
   if howlong == 40:
     mdf_play = mdf_new_full[0:1920, :]
@@ -2926,10 +2933,31 @@ def ugregmod(game_id, von, bis):
     runde = 3
   else:
     print("von not 2025 | 2040 | 2060")
-  mdf_play_full = read_mdfplay_full("mdf_play.npy", runde)
+## load mdf play with Nathalie's globals
+#  mdf_play_3841_405 = read_mdfplay_full("mdf_play.npy", runde)
+  mdf_play_3841_415 = read_mdfplay_full("mdf_play_nat.npy", runde)
+
+# from PyCharm
+#  mdf_play_nat = np.load('mdf_play_nat.npy')
+#  ch = np.load('ch.npy')
+#  ch_nat = np.load('ch_nat.npy')
+#  chtab = np.load('chtab.npy')
+#  with open('fcol_in_mdf_nat.json') as ff:
+#    with open('fcol_in_mdf.json') as ff:
+#    fcol_in_mdf = json.load(ff)
+#  with open('ftab_in_d_table.json') as ff:
+#    ftab_in_d_table = json.load(ff)
+#  with open('d_table.pkl', 'rb') as fp:
+#    d_table = pickle.load(fp)
+#  dt = 1 / 32
+#  start_tick = 1
+#  if von == 2025 and bis == 2040:
+#    howlong = 40
+#    row_start = np.load('row2025_nat.npy')
+
   ff = data_files["ch.npy"]
   ch = np.load(ff)
-  #    ch = np.load('ch.npy')
+#    ch = np.load('ch.npy')
   ff = data_files["chtab.npy"]
 #  chtab = np.load(ff)
   #    chtab = np.load('chtab.npy')
@@ -17493,10 +17521,98 @@ def ugregmod(game_id, von, bis):
     for j in range(0, 10):
       mdf[rowi, idxlhs + j] = mdf[rowi, idx1 + j] / Time_to_write_off_worker_defaults
 
+    #####
+    ##### create the vars Nathalie wants
+    ###   Trust in instituations = Global social trust
+    print('create Nats vars - shape of mdf_play')
+    print(mdf_play_3841_415.shape)
+    idx1 = fcol_in_mdf['Social_trust']
+    idx2 = fcol_in_mdf['Regional_population_as_fraction_of_total']
+    idxlhs = fcol_in_mdf['Global_social_trust']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 405] = a4
+    ### Energy intensity in terms of ...
+    idx1 = fcol_in_mdf['Fossil_fuel_for_NON_El_use_that_IS_NOT_being_electrified']
+    idx2 = fcol_in_mdf['El_from_all_sources']
+    idx3 = fcol_in_mdf['GDP_USED']
+    idxlhs = fcol_in_mdf['Energy_intensity_in_terms_of']
+    summe1 = 0
+    summe2 = 0
+    summe3 = 0
+    for i in range(0, 10): # get all regions
+      summe1 += mdf[rowi, idx1 + i] * Conversion_Mtoe_to_TWh[i]
+      summe2 += mdf[rowi, idx2 + i]
+      summe3 += mdf[rowi, idx3 + i]
+    mdf[rowi, idxlhs] = ((summe1 + summe2) / summe3)
+    mdf_play_3841_415[start_tick_in_mdf_play, 406] = mdf[rowi, idxlhs]
+    ### Emissions per person = Global average Energy footprint pp
+    idx1 = fcol_in_mdf['Energy_footprint_pp']
+    idx2 = fcol_in_mdf['Regional_population_as_fraction_of_total']
+    idxlhs = fcol_in_mdf['Global_average_Energy_footprint_pp']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 407] = mdf[rowi, idxlhs]
+    ### Perceived global warming = Temp surface anomaly compared to 1850 degC
+    idx1 = fcol_in_mdf['Temp_surface_anomaly_compared_to_1850_degC']
+#    Perceived_global_warming = mdf[rowi, idx1]
+    mdf_play_3841_415[start_tick_in_mdf_play, 408] = mdf[rowi, idx1]
+    ### Average well being
+    idx1 = fcol_in_mdf['Average_wellbeing_index']
+    idx2 = fcol_in_mdf['Regional_population_as_fraction_of_total']
+    idxlhs = fcol_in_mdf['Global_average_Energy_footprint_pp']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 409] = mdf[rowi, idxlhs]
+    ### Inequality
+    idx1 = fcol_in_mdf['Actual_inequality_index_higher_is_more_unequal']
+    idx2 = fcol_in_mdf['Regional_population_as_fraction_of_total']
+    idxlhs = fcol_in_mdf['Global_inequality']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 410] = mdf[rowi, idxlhs]
+    ### Social tension
+    idx1 = fcol_in_mdf['Smoothed_Social_tension_index_with_trust_effect']
+    idx2 = fcol_in_mdf['Regional_population_as_fraction_of_total']
+    idxlhs = fcol_in_mdf['Global_social_tension']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 411] = mdf[rowi, idxlhs]
+    ### Pop below 15 kpy = Global Population below 2p5 kusd p py
+    idx1 = fcol_in_mdf['Fraction_of_population_below_existential_minimum']
+    idx2 = fcol_in_mdf['Population']
+    idxlhs = fcol_in_mdf['Pop_below_15_kpy']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j] * mdf[rowi, idx2 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 412] = mdf[rowi, idxlhs]
+    ### Pop = Global population
+    idx1 = fcol_in_mdf['Population']
+    idxlhs = fcol_in_mdf['Global_Population']
+    a4 = 0
+    for j in range(0, 10):
+      a4 = a4 + mdf[rowi, idx1 + j]
+    mdf[rowi, idxlhs] = a4
+    mdf_play_3841_415[start_tick_in_mdf_play, 413] = mdf[rowi, idxlhs]
+    idx2 = fcol_in_mdf['Temp_surface_anomaly_compared_to_1850_degC']
+    idx1 = fcol_in_mdf['Global_GDPpp_USED']
+    mdf_play_3841_415[start_tick_in_mdf_play, 414] = mdf[rowi, idx1]
+    mdf_play_3841_415[start_tick_in_mdf_play, 415] = mdf[rowi, idx2]
+    
     ##########
-    ###        save output variables
+    ###        save output variables from normal model (ie wo Nat's variables)
     ##########
-
     colmdf = 1
     for prr in plot_reg:
       if prr == 'Regenerative_cropland_fraction':
@@ -17511,36 +17627,36 @@ def ugregmod(game_id, von, bis):
         if prr == 'Regenerative_cropland_fraction' and jk == 1:
 #          print(a2)
           pass
-        mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
+        mdf_play_3841_415[start_tick_in_mdf_play, colmdf] = a2
         colmdf += 1
     for pgg in plot_glob:
       idx = fcol_in_mdf[pgg]
       a2 = mdf[rowi, idx]
-      mdf_play_full[start_tick_in_mdf_play, colmdf] = a2
+      mdf_play_3841_415[start_tick_in_mdf_play, colmdf] = a2
       colmdf += 1
 
     start_tick_in_mdf_play += 1
 
   ##### END loop
   # make sure I save the entire ndarray
-  mdf_new_full = mdf_play_full
-  #print(mdf_new_full.shape)
+  #mdf_new_full = mdf_play_3841_415
+  #print(mdf_play_3841_415.shape)
   if howlong == 40:
-    mdf_play = mdf_new_full[0:1920, :]
+#    mdf_play = mdf_play_3841_415[0:1920, :]
     row2040 = mdf[480, :]
     amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2040), name='row2040.pkl')
-    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2040.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_play_3841_415), name='full2040.pkl')
     app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2040, )
   elif howlong == 60:
-    mdf_play = mdf_new_full[0:2560, :]
+#   mdf_play = mdf_play_3841_415[0:2560, :]
     row2060 = mdf[640, :]
     amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2060), name='row2060.pkl')
-    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2060.pkl')
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_play_3841_415), name='full2060.pkl')
     app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2060, )
   elif howlong == 21:
     row2100 = mdf[1280, :]
     amo = anvil.BlobMedia("text/plain",   pickle.dumps(row2100), name='row2100.pkl')
-    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_new_full), name='full2100.pkl' )
+    amo2 = anvil.BlobMedia("text/plain",   pickle.dumps(mdf_play_3841_415), name='full2100.pkl' )
     app_tables.game_files.add_row(game_id=game_id,   start_row_data=amo,   mdf_play=amo2,   version=datetime.datetime.now(),   yr=2100, )
 
 
