@@ -2955,13 +2955,14 @@ def ugregmod(game_id, von, bis):
 #    howlong = 40
 #    row_start = np.load('row2025_nat.npy')
 
-  ff = data_files["ch.npy"]
+#  ff = data_files["ch.npy"]
+  ff = data_files["ch_nat.npy"]
   ch = np.load(ff)
 #    ch = np.load('ch.npy')
   ff = data_files["chtab.npy"]
 #  chtab = np.load(ff)
   #    chtab = np.load('chtab.npy')
-  with open(data_files["fcol_in_mdf.json"]) as fj:
+  with open(data_files["fcol_in_mdf_nat.json"]) as fj:
     fcol_in_mdf = json.load(fj)
   with open(data_files["ftab_in_d_table.json"]) as fj:
     ftab_in_d_table = json.load(fj)
@@ -2975,7 +2976,7 @@ def ugregmod(game_id, von, bis):
   start_tick = 1
   if von == 2025 and bis == 2040:
     howlong = 40
-    ff = data_files["row2025.npy"]
+    ff = data_files["row2025_nat.npy"]
     row_start = np.load(ff)
     #        row_start = np.load('row2025.npy')
     start_mod = von
