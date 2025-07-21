@@ -230,9 +230,9 @@ def set_npbp(cid, npbp):
     from_name="OC game", to="post@blue-way.net", subject="Game started - " + cid, text="Game " + cid + " was started",
   )
 
-def read_mdfplay25(datei, runde):
+def read_mdf_play_320_endyr(datei, runde):
   f = data_files[datei]
-#  print('----- read_mdfplay25 loading: ' + datei + ' for runde '+str(runde))
+#  print('----- read_mdf_play_320_endyr loading: ' + datei + ' for runde '+str(runde))
   mdf_play = np.load(f)
   if runde == 1:
     mdf_play = mdf_play[320:1440, :]
@@ -572,7 +572,7 @@ def make_png_nat(df):
   return anvil.mpl_util.plot_image()
 
 def make_png_nat_over(runde, lang):
-  mdf_play_nat = read_mdfplay25("mdf_play_nat.npy", runde)
+  mdf_play_nat = read_mdf_play_320_endyr("mdf_play_nat.npy", runde)
   print('make_png_nat_over shape on next lne ' + str(runde))
   print(mdf_play_nat.shape)
   df = mdf_play_nat[:, [0, 413, 411, 410, 409, 414, 415]] # this is global pop, soc, ineq, well, gdppp, temp
@@ -640,7 +640,7 @@ def build_plot_nat(cap, runde, lang, reg, nat_idx):
     cur_fig = make_png_nat_over(runde, lang)
     fdz = {"title": cur_title, "subtitle": cur_sub, "fig": cur_fig, "cap": cap}
     return fdz
-  mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
+  mdf_play = read_mdf_play_320_endyr("mdf_play_nat.npy", runde)
   print('build_plot_nat shape on next lne ' + str(runde))
   print(mdf_play.shape)
   dfv = mdf_play[:, [0, nat_idx]]
@@ -685,8 +685,8 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
   if runde == 1:
     yr = 2025
     ## load mdf play with Nathalie's globals
-#    mdf_play = read_mdfplay25("mdf_play.npy", runde)
-    mdf_play = read_mdfplay25("mdf_play_nat.npy", runde)
+#    mdf_play = read_mdf_play_320_endyr("mdf_play.npy", runde)
+    mdf_play = read_mdf_play_320_endyr("mdf_play_nat.npy", runde)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 2:
     yr = 2040
@@ -698,7 +698,7 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
 #    mdf_bud = mdf_bud[320:1920, :]
 #    rx = 1920 - 321
 #    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
-#    mdf_play = read_mdfplay25("mdf_play.npy", runde)
+#    mdf_play = read_mdf_play_320_endyr("mdf_play.npy", runde)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 3:
     yr = 2060
