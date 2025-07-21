@@ -695,10 +695,6 @@ def build_plot(var_row, regidx, cap, cid, runde, lang, reg, role):
     mdf_bud = pickle.loads(s_row_elem.get_bytes())
     mdf_play = mdf_bud[320:1920, :]
     print(mdf_play.shape)
-#    mdf_bud = mdf_bud[320:1920, :]
-#    rx = 1920 - 321
-#    print("IN budget_to_db ... " + cid + " " + str(yr) + " " + str(runde) + " rx=" + str(rx))
-#    mdf_play = read_mdf_play_320_endyr("mdf_play.npy", runde)
     print('build_plot cid='+cid+' runde='+str(runde)+' reg='+reg+' role='+role)
   elif runde == 3:
     yr = 2060
@@ -793,7 +789,7 @@ def create_plots_for_slots(game_id, region, single_ta, runde, lang):
   vars_info_l, vars_info_rows = get_all_vars_for_ta(single_ta)
 #  print(vars_info_rows)
   for var_row in vars_info_rows:
-    print(var_row['vensim_name'])
+#    print(var_row['vensim_name'])
     fdz = build_plot(var_row, regidx, cap, cid, runde, lang, region, single_ta)
 #    print(fdz)
     app_tables.plots.add_row(game_id=game_id,title=fdz["title"],subtitle=fdz["subtitle"],fig=fdz["fig"],cap=cap,runde=runde,ta=single_ta,reg=region)
@@ -3000,7 +2996,7 @@ def ugregmod(game_id, von, bis):
     #        row_start = np.load('row2040.npy')
     s_row = app_tables.game_files.get(game_id=game_id, yr=2040)
     s_row_elem = s_row["mdf_play"]
-    mdf_play = pickle.loads(s_row_elem.get_bytes())
+    mdf_play_3841_415 = pickle.loads(s_row_elem.get_bytes())
     start_mod = von
     zeit = start_mod
     end_mod = bis
@@ -3021,7 +3017,7 @@ def ugregmod(game_id, von, bis):
     row_start = pickle.loads(s_row_elem.get_bytes())
     s_row = app_tables.game_files.get(game_id=game_id, yr=2060)
     s_row_elem = s_row["mdf_play"]
-    mdf_play = pickle.loads(s_row_elem.get_bytes())
+    mdf_play_3841_415 = pickle.loads(s_row_elem.get_bytes())
     print("in ugregmod von=2060")
     start_mod = von
     zeit = start_mod
