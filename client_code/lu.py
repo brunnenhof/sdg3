@@ -23,11 +23,11 @@ privacy_str_title_str = [
   "_last_"
 ]
 regi_privacy_str = [
-  "If the game is interrupted, either accidentally or intentionally (for example, because the rounds are played on different days), we need to load the page where the interruption occurred for each player. To do this, we need a unique ID. You choose this yourself. It can consist of any digits, letters or characters. 90 days after the last log-in all data associated with your registration name is completely deleted, meaning neither you, nor nobody else, will be able to access your game data.\nTake good note of what you enter, nothing can be recovered.",
+  "If the game is interrupted, either accidentally or intentionally (for example, because the rounds are played on different days), we need to load the page where the interruption occurred for each player. To do this, we need a unique ID. You choose this yourself. It can consist of any digits, letters or characters. 90 days after the last log-in all data associated with your registration name is completely deleted, meaning neither you, nor anybody else, will be able to access your game data.\nRemember well what you enter, nothing can be recovered.",
   "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählst Du selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. 90 Tage nach der letzten Anmeldung werden alle mit Ihrem Registrierungsnamen verbundenen Daten vollständig gelöscht, sodass weder Sie noch andere Personen auf Ihre Spieldaten zugreifen können.\nNotieren Sie sich genau, was Sie eingeben, es gibt keine Möglichkeit der Wiederherstellung.",
   "Sollte das Spiel unterbrochen werden, versehentlich oder absichtlich (weil zum Beispiel die Runden an verschiedenen Tagen gespielt werden), müssen wir für jede:n Spieler:in die Seite laden bei der der Unterbruch stattfand. Dazu brauchen wir eine eindeutige ID. Diese wählen Sie selbst aus. Sie kann aus irgendwelchen Ziffern, Buchstaben oder Zeichen bestehen. 90 Tage nach der letzten Anmeldung werden alle mit Ihrem Registrierungsnamen verbundenen Daten vollständig gelöscht, sodass weder Sie noch andere Personen auf Ihre Spieldaten zugreifen können.\nNotieren Sie sich genau, was Sie eingeben, es gibt keine Möglichkeit der Wiederherstellung.",
   "Si le partie est interrompue, accidentellement ou intentionnellement (par exemple parce que les manches sont jouées à des jours différents), nous devons charger la page où l'interruption s'est produite pour chaque joueur. Pour cela, nous avons besoin d'un identifiant unique. Vous le choisissez vous-même. Il peut être composé de n'importe quels chiffres, lettres ou caractères. 90 jours après votre dernière connexion, toutes les données associées à votre nom d'utilisateur seront définitivement supprimées, ce qui signifie que ni vous, ni personne d'autre, ne pourrez plus accéder à vos données de jeu.\nPrenez bien note de ce que vous saisissez, rien ne peut être récupéré.",
-  "Hvis spillet blir avbrutt, enten ved et uhell eller med vilje (for eksempel fordi rundene spilles på forskjellige dager), må vi laste inn siden der avbruddet skjedde for hver spiller. For å gjøre dette trenger vi en unik ID. Du velger denne selv. Den kan bestå av hvilke som helst tall, bokstaver eller tegn. 90 dager etter siste innlogging blir alle data knyttet til ditt registreringsnavn fullstendig slettet, noe som betyr at verken du eller noen andre vil kunne få tilgang til spilldataene dine.\nVær nøye med hva du skriver inn, ingenting kan gjenopprettes.",
+  "Hvis spillet blir avbrutt, enten ved et uhell eller med vilje (for eksempel fordi rundene spilles på forskjellige dager), må vi laste inn siden der avbruddet skjedde for hver spiller. For å gjøre dette trenger vi en unik ID. Du velger denne selv. Den kan bestå av hvilke som helst tall, bokstaver eller tegn. 90 dager etter siste innlogging blir alle data knyttet til ditt registreringsnavn fullstendig slettet, noe som betyr at verken du eller noen andre vil kunne få tilgang til spilldataene dine.\nNoter nøyaktig hva du skriver inn, ingenting kan gjenopprettes.",
   "_last_"
 ]
 privacy_str = [
@@ -783,7 +783,7 @@ pol_to_expl_NEP_str = [
   "_last_"
 ]
 pol_to_expl_Ctax_str = [
-  "This is the carbon emission tax. 0 means no carbon tax, 25 = 25 $/ton of CO2 emitted etc.",
+  "This is the carbon emission tax. 0 means no carbon tax, 25 = 25 $/ton of CO2 emitted, etc.",
   "Dies ist die CO2-Emissionssteuer. 0 bedeutet keine CO2-Steuer 25 = 25 $/Tonne emittiertes CO2 usw.",
   "Dies ist die CO2-Emissionssteuer. 0 bedeutet keine CO2-Steuer 25 = 25 $/Tonne emittiertes CO2 usw.",
   "Il s'agit de la taxe sur les émissions de carbone. 0 signifie aucune taxe sur le carbone 25 = 25 $ / tonne de CO2 émis, etc.",
@@ -815,7 +815,7 @@ pol_to_expl_LPBgrant_str = [
   "_last_"
 ]
 pol_to_expl_LPB_str = [
-  "The percentage of your GDP made available as financing from public bodies (WorldBank, IMF, off-balance funding) LPB= Lending from Public Bodies",
+  "The percentage of your GDP made available as financing from public bodies (WorldBank, IMF, off-balance funding) LPB = Lending from Public Bodies. 'Off balance sheet financing', when used by governments, means the creation of a special investment company charged with a specific task (often infrastructure projects). The government grants the company credit. This credit is then offset by the value to be created by the company, thus not raising the debt of the government. For more detail see the glossary.  ",
   "Der Prozentsatz Ihres BIP der als Finanzierung von öffentlichen Stellen (Weltbank IWF ausserbilanzielle Finanzierung Sondervermögen) zur Verfügung gestellt wird. LPB = Kreditvergabe von öffentlichen Stellen (lending from public bodies)",
   "Der Prozentsatz Ihres BIP der als Finanzierung von öffentlichen Stellen (Weltbank IWF ausserbilanzielle Finanzierung Sondervermögen) zur Verfügung gestellt wird. LPB = Kreditvergabe von öffentlichen Stellen (lending from public bodies)",
   "Le pourcentage de votre PIB mis à disposition en tant que financement auprès d'organismes publics (financement de la déséquilibre du FMI mondial)) LPB = prêts à partir d'organismes publics",
@@ -831,7 +831,7 @@ pol_to_expl_SSGDR_str = [
   "_last_"
 ]
 pol_to_expl_ISPV_str = [
-  "Percent of electricity generation from renewable sources (40% is what we managed to achieve in the past)",
+  "Percent of electricity generation from renewable sources (25% is what we managed to achieve in the past)",
   "Anteil der Stromerzeugung aus erneuerbaren Energien (40 % haben wir in der Vergangenheit erreicht)",
   "Anteil der Stromerzeugung aus erneuerbaren Energien (40 % haben wir in der Vergangenheit erreicht)",
   "Pourcentage de la production d'électricité à partir de sources renouvelables (40% est ce que nous avons réussi à réaliser dans le passé)",
@@ -855,7 +855,7 @@ pol_to_name_TOW_str = [
   "_last_"
 ]
 pol_to_name_FPGDC_str = [
-  "Cancel debt from public lenders",
+  "Public lenders cancel debt's the government owes them",
   "Schuldenerlass von öffentlichen Kreditgebern",
   "Schuldenerlass von öffentlichen Kreditgebern",
   "Annulation de la dette des prêteurs publics",
@@ -903,7 +903,7 @@ pol_to_name_ExPS_str = [
   "_last_"
 ]
 pol_to_name_FMPLDD_str = [
-  "Fraction of credit with private lenders NOT drawn down per y",
+  "Fraction of credit with private lenders NOT drawn down per year",
   "Anteil der Kredite bei privaten Kreditgebern die pro Jahr NICHT in Anspruch genommen werden",
   "Anteil der Kredite bei privaten Kreditgebern die pro Jahr NICHT in Anspruch genommen werden",
   "Fraction du crédit avec des prêteurs privés non abaissés par année",
@@ -1071,7 +1071,7 @@ pol_to_name_LPBgrant_str = [
   "_last_"
 ]
 pol_to_name_LPB_str = [
-  "Lending from public bodies (LPB)",
+  "Lending from public bodies (LPB) (World Bank, IMF, Regional Development Banks, etc.)",
   "Finanzierungen von öffentlichen Geldgebern (LPB)",
   "Finanzierungen von öffentlichen Geldgebern (LPB)",
   "Lending from Public Organes (LPB)",
@@ -1135,7 +1135,7 @@ sdgvarID_to_subtitle_20_str = [
   "_last_"
 ]
 sdgvarID_to_subtitle_29_str = [
-  "Number of SDGs, met 17 can be met",
+  "Number of SDGs, at most 17 can be met",
   "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
   "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
   "Le nombre de ODD rencontrés, 17 peut être satisfait",
@@ -1215,7 +1215,7 @@ sdgvarID_to_subtitle_17_str = [
   "_last_"
 ]
 sdgvarID_to_subtitle_34_str = [
-  "Donor and off balance-sheet investment share (% of GDP)",
+  "Donor and off-balance sheet investment share (% of GDP) See the glossary for an explanation of 'off-balance sheet financing'",
   "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
   "Anteil der Geber und ausserbilanziellen Investitionen (% des BIP)",
   "Part des donateurs et des investissements hors bilan (% du PIB)",
@@ -1406,621 +1406,293 @@ sdgvarID_to_subtitle_38_str = [
   "Nan",
   "_last_"
 ]
-sdgvarID_to_indicator_13_str = [
-  "Worker disposable income (1000 USD per person and year)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 USD pro Person pro Jahr)",
-  "Verfügbares Einkommen der Arbeitnehmer (1000 USD pro Person pro Jahr)",
-  "Revenu disponible des travailleurs (1000 USD par personne et par an)",
-  "Arbeiderens disponible inntekt (1000 USD per person per år)",
-  "_last_"
-]
-sdgvarID_to_indicator_18_str = [
-  "Fertilizer use per capita (Mt/y)",
-  "Düngemittelverbrauch pro Kopf (Mt/Jahr)",
-  "Düngemittelverbrauch pro Kopf (Mt/Jahr)",
-  "Utilisation des engrais par habitant (MT / Y)",
-  "Gjødselbruk per innbygger (mt/y)",
-  "_last_"
-]
-sdgvarID_to_indicator_26_str = [
-  "Population (million people)",
-  "Bevölkerung (Millionen Menschen)",
-  "Bevölkerung (Millionen Menschen)",
-  "Population (millions de personnes)",
-  "Befolkning (millioner mennesker)",
-  "_last_"
-]
-sdgvarID_to_indicator_19_str = [
-  "Temperature rise (deg C above 1850)",
-  "Temperaturanstieg (°C im Vergleich zu 1850)",
-  "Temperaturanstieg (°C im Vergleich zu 1850)",
-  "Élévation de la température (Deg C au-dessus de 1850)",
-  "Temperaturstigning (deg C over 1850)",
-  "_last_"
-]
-sdgvarID_to_indicator_20_str = [
-  "Total greenhouse gas emissions per year (GtCO2/yr)",
-  "Gesamt-Treibhausgasemissionen pro Jahr (GtCO2/Jahr)",
-  "Gesamt-Treibhausgasemissionen pro Jahr (GtCO2/Jahr)",
-  "Émissions totales de gaz à effet de serre par an (GTCO2 / an)",
-  "Total klimagassutslipp per år (GTCO2/år)",
-  "_last_"
-]
-sdgvarID_to_indicator_29_str = [
-  "Number of SDGs met, 17 is the most you can meet",
-  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
-  "Anzahl der erreichten SDGs, 17 können maximal erreicht werden",
-  "Nombre d'ODD atteints, 17 est le maximum que vous pouvez atteindre.",
-  "Antall oppnådde SDG-mål, 17 er det høyeste du kan nå",
-  "_last_"
-]
-sdgvarID_to_indicator_4_str = [
-  "Average well-being index",
-  "Durchschnittlicher Wohlbefinden-index",
-  "Durchschnittlicher Wohlbefinden-index",
-  "Indice de bien-être moyen",
-  "Gjennomsnittlig velværeindeks",
-  "_last_"
-]
-sdgvarID_to_indicator_24_str = [
-  "Trust in institutions (1980=1)",
-  "Vertrauen in Institutionen (1980=1)",
-  "Vertrauen in Institutionen (1980=1)",
-  "Confiance dans les institutions (1980=1))",
-  "Tillit til institusjoner (1980 = 1)",
-  "_last_"
-]
-sdgvarID_to_indicator_31_str = [
-  "Annual rate of change in city area (%)",
-  "Jährliche Veränderungsrate der Stadtfläche (%)",
-  "Jährliche Veränderungsrate der Stadtfläche (%)",
-  "Taux de variation annuel de la superficie urbaine (%)",
-  "Årlig endringshastighet i byområdet (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_33_str = [
-  "Annual change in forest area (%)",
-  "Jährliche Veränderung der Waldfläche (%)",
-  "Jährliche Veränderung der Waldfläche (%)",
-  "Variation annuelle de la superficie forestière (%)",
-  "Årlig endring i skogsområdet (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_35_str = [
-  "Planetary boundaries breached",
-  "Planetarische Grenzen überschritten",
-  "Planetarische Grenzen überschritten",
-  "Les limites planétaires violées",
-  "Planetariske grenser brutt",
-  "_last_"
-]
-sdgvarID_to_indicator_30_str = [
-  "Private and govt investment share (% of GDP)",
-  "Anteil privater und staatlicher Investitionen (% des BIP)",
-  "Anteil privater und staatlicher Investitionen (% des BIP)",
-  "Part d'investissement privé et gouvernemental (% du PIB)",
-  "Privat og Govt investeringsandel (% av BNP)",
-  "_last_"
-]
-sdgvarID_to_indicator_9_str = [
-  "Fraction of population with access to safe sanitation (%)",
-  "Anteil der Bevölkerung mit Zugang zu sicheren Sanitäreinrichtungen (%)",
-  "Anteil der Bevölkerung mit Zugang zu sicheren Sanitäreinrichtungen (%)",
-  "Proportion de la population ayant accès à des installations sanitaires sûres (%)",
-  "Andel av befolkningen med tilgang til sikre sanitæranlegg (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_16_str = [
-  "Growth rate of GDP per capita (%/yr)",
-  "Wachstumsrate des BIP pro Kopf (%/Jahr)",
-  "Wachstumsrate des BIP pro Kopf (%/Jahr)",
-  "Taux de croissance du PIB par habitant (% / an)",
-  "Veksthastigheten av BNP per innbygger (%/år)",
-  "_last_"
-]
-sdgvarID_to_indicator_17_str = [
-  "Emissions per person (tCO2 per person and year)",
-  "Emissionen pro Person (tCO2 pro Person pro Jahr)",
-  "Emissionen pro Person (tCO2 pro Person pro Jahr)",
-  "Émissions par personne (tCO2 par personne et par an)",
-  "Utslipp per person (tCO2 per person per år)",
-  "_last_"
-]
-sdgvarID_to_indicator_34_str = [
-  "Donor and off balance-sheet investment share (% of GDP)",
-  "Anteil an Investitionen der von Krediten und ausser-bilanziellen Sondervermögen kommt (% des BIP)",
-  "Anteil an Investitionen der von Krediten und ausser-bilanziellen Sondervermögen kommt (% des BIP)",
-  "Part des investissements provenant de crédits et de fonds spéciaux hors bilan (% du PIB)",
-  "Andel av investeringer fra lån og spesielle eiendeler utenfor balansen (% av BNP)",
-  "_last_"
-]
-sdgvarID_to_indicator_14_str = [
-  "Unemployment rate (%)",
-  "Arbeitslosenquote (%)",
-  "Arbeitslosenquote (%)",
-  "Taux de chômage (%)",
-  "Arbeidsledighet (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_21_str = [
-  "Ocean surface pH",
-  "pH-Wert der Meeresoberfläche",
-  "pH-Wert der Meeresoberfläche",
-  "PH de la surface de l'océan",
-  "Ocean Surface Ph",
-  "_last_"
-]
-sdgvarID_to_indicator_12_str = [
-  "Energy intensity in terms of primary energy and GDP (kWh/$)",
-  "Energieintensität in Bezug auf Primärenergie und BIP (kWh/$)",
-  "Energieintensität in Bezug auf Primärenergie und BIP (kWh/$)",
-  "Intensité énergétique en termes d'énergie primaire et de PIB (kwh / $)",
-  "Energiintensitet når det gjelder primær energi og BNP (kWh/$)",
-  "_last_"
-]
-sdgvarID_to_indicator_22_str = [
-  "Extent of tropical forest globally (Mha)",
-  "Ausdehnung des tropischen Waldes weltweit (Mha)",
-  "Ausdehnung des tropischen Waldes weltweit (Mha)",
-  "Étendue de la forêt tropicale dans le monde (MHA)",
-  "Omfang av tropisk skog globalt (MHA)",
-  "_last_"
-]
-sdgvarID_to_indicator_23_str = [
-  "Public services per person (1000 $/person-yr)",
-  "Öffentliche Dienstleistungen pro Person (1000 $/Person-Jahr)",
-  "Öffentliche Dienstleistungen pro Person (1000 $/Person-Jahr)",
-  "Services publics par personne (1000 $ / personne-an)",
-  "Offentlige tjenester per person (1000 $/person-år)",
-  "_last_"
-]
-sdgvarID_to_indicator_2_str = [
-  "Fraction of population undernourished (%)",
-  "Anteil der unterernährten Bevölkerung (%)",
-  "Anteil der unterernährten Bevölkerung (%)",
-  "Fraction de la population sous-alimentée (%)",
-  "Brøkdel av befolkningen underernær (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_5_str = [
-  "Life expectancy (years)",
-  "Lebenserwartung (Jahre)",
-  "Lebenserwartung (Jahre)",
-  "Espérance de vie (années)",
-  "Forventet levealder (år)",
-  "_last_"
-]
-sdgvarID_to_indicator_7_str = [
-  "Female pre-tax labor income share (%)",
-  "Anteil der weiblichen Erwerbseinkommen vor Steuern (%)",
-  "Anteil der weiblichen Erwerbseinkommen vor Steuern (%)",
-  "Part des revenus de travail avant impôt (%)",
-  "Kvinnelig arbeidsinntektsinntekt (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_1_str = [
-  "Fraction of population living below $6.85 per day (%)",
-  "Anteil der Bevölkerung der weniger als 6,85 US-Dollar pro Tag verdient (%)",
-  "Anteil der Bevölkerung der weniger als 6,85 US-Dollar pro Tag verdient (%)",
-  "Pourcentage de la population gagnant moins de 6,85 dollars par jour (%)",
-  "Andel av befolkningen som tjener mindre enn 6,85 dollar per dag (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_3_str = [
-  "Proportion of agricultural area worked regeneratively (%)",
-  "Anteil der regenerativ bewirtschafteten landwirtschaftlichen Fläche (%)",
-  "Anteil der regenerativ bewirtschafteten landwirtschaftlichen Fläche (%)",
-  "Part des surfaces agricoles exploitées selon les principes de l'agriculture régénérative (%)",
-  "Andel av landbruksarealet som drives på en bærekraftig måte (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_6_str = [
-  "Years in school",
-  "Schuljahre",
-  "Schuljahre",
-  "Années à l'école",
-  "År på skolen",
-  "_last_"
-]
-sdgvarID_to_indicator_8_str = [
-  "Fraction of population with access to safe water (%)",
-  "Anteil der Bevölkerung mit Zugang zu sauberem Wasser (%)",
-  "Anteil der Bevölkerung mit Zugang zu sauberem Wasser (%)",
-  "Pourcentage de la population ayant accès à l'eau potable (%)",
-  "Andel av befolkningen med tilgang til rent vann (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_10_str = [
-  "Fraction of population with access to electricity (%)",
-  "Anteil der Bevölkerung mit Zugang zu Elektrizität (%)",
-  "Anteil der Bevölkerung mit Zugang zu Elektrizität (%)",
-  "Pourcentage de la population ayant accès à l'électricité (%)",
-  "Andel av befolkningen med tilgang til elektrisitet (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_15_str = [
-  "Carbon intensity of production (kgCO2 per USD)",
-  "Kohlenstoffintensität der Produktion (kgCO2 pro USD)",
-  "Kohlenstoffintensität der Produktion (kgCO2 pro USD)",
-  "Intensité du carbone de la production (KGCO2 par USD)",
-  "Karbonintensitet i produksjonen (KGCO2 per USD)",
-  "_last_"
-]
-sdgvarID_to_indicator_25_str = [
-  "Total government revenue as a proportion of GDP (%)",
-  "Gesamteinnahmen des Staates als Anteil des BIP (%)",
-  "Gesamteinnahmen des Staates als Anteil des BIP (%)",
-  "Le chiffre d'affaires total du gouvernement en proportion du PIB (%)",
-  "Total statlige inntekter som en andel av BNP (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_27_str = [
-  "Labour share of GDP (%)",
-  "Arbeitnehmeranteil am BIP (%)",
-  "Arbeitnehmeranteil am BIP (%)",
-  "Part des salariés dans le PIB (%)",
-  "Arbeidstakerandel av BNP (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_28_str = [
-  "Wind and PV energy electricity (TWh/yr)",
-  "Strom aus Wind- und Photovoltaikenergie (TWh/Jahr)",
-  "Strom aus Wind- und Photovoltaikenergie (TWh/Jahr)",
-  "Électricité produite à partir de l'énergie éolienne et photovoltaïque (TWh/an)",
-  "Strøm fra vind- og solcelleenergi (TWh/år)",
-  "_last_"
-]
-sdgvarID_to_indicator_37_str = [
-  "Cropland (Mha)",
-  "Ackerland (Mha)",
-  "Ackerland (Mha)",
-  "Terres cultivées (MHA)",
-  "Jordbruksareal (Mha)",
-  "_last_"
-]
-sdgvarID_to_indicator_11_str = [
-  "Wind and PV energy share in total energy consumption (%)",
-  "Anteil von Wind- und Photovoltaikenergie am Gesamtenergieverbrauch (%)",
-  "Anteil von Wind- und Photovoltaikenergie am Gesamtenergieverbrauch (%)",
-  "Part de l'énergie éolienne et photovoltaïque dans la consommation totale d'énergie (%)",
-  "Andel vind- og solcelleenergi av det totale energiforbruket (%)",
-  "_last_"
-]
-sdgvarID_to_indicator_36_str = [
-    "GDP (G2017ppp$/yr)",
-    "BIP (G2017ppp$/Jahr)",
-    "BIP (G2017ppp$/Jahr)",
-    "PIB (G2017PPP $ / an)",
-    "BNP (G2017PPP $/YR)",
-    "_last_"
-]
-sdgvarID_to_indicator_32_str = [
-    "Nitrogen use (kg/ha-year)",
-    "Stickstoffverbrauch (kg pro ha pro Jahr)",
-    "Stickstoffverbrauch (kg pro ha pro Jahr)",
-    "Consommation d'azote (kg par ha et par an)",
-    "Nitrogenforbruk (kg per hektar per år)",
-    "_last_"
-]
-sdgvarID_to_indicator_39_str = [
-    "(index)",
-    "(Index)",
-    "(Index)",
-    "(indice)",
-    "(indeks)",
-    "_last_"
-]
-sdgvarID_to_indicator_38_str = [
-    "(index)",
-    "(Index)",
-    "(Index)",
-    "(indice)",
-    "(indeks)",
-    "_last_"
-]
-sdgvarID_to_sdg_0_str = [
-    "Population",
-    "Einwohnerzahl",
-    "Einwohnerzahl",
-    "nombre d'habitants",
-    "Folketall",
-    "_last_"
-]
 sdgvarID_to_indicator_0_str = [
-    "Million People",
-    "Millionen Menschen",
-    "Millionen Menschen",
-    "Millions d'habitants",
-    "Millioner mennesker",
-    "_last_"
+  "Million People",
+  "Millionen Menschen",
+  "Millionen Menschen",
+  "Millions d'habitants",
+  "Millioner mennesker",
+  "_last_"
 ]
 sdgvarID_to_sdg_13_str = [
-    "Decent work and economic growth",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Travail décent et croissance économique",
-    "Anstendig arbeid og økonomisk vekst",
-    "_last_"
+  "Decent work and economic growth",
+  "Menschenwürdige Arbeit und Wirtschaftswachstum",
+  "Menschenwürdige Arbeit und Wirtschaftswachstum",
+  "Travail décent et croissance économique",
+  "Anstendig arbeid og økonomisk vekst",
+  "_last_"
 ]
 sdgvarID_to_sdg_18_str = [
-    "Responsible consumption and production",
-    "Verantwortungsvoller Konsum und Produktion",
-    "Verantwortungsvoller Konsum und Produktion",
-    "Consommation et production responsables",
-    "Ansvarlig forbruk og produksjon",
-    "_last_"
+  "Responsible consumption and production",
+  "Verantwortungsvoller Konsum und Produktion",
+  "Verantwortungsvoller Konsum und Produktion",
+  "Consommation et production responsables",
+  "Ansvarlig forbruk og produksjon",
+  "_last_"
 ]
 sdgvarID_to_sdg_26_str = [
-    "Total population",
-    "Gesamtbevölkerung",
-    "Gesamtbevölkerung",
-    "Population totale",
-    "Total befolkning",
-    "_last_"
+  "Total population",
+  "Gesamtbevölkerung",
+  "Gesamtbevölkerung",
+  "Population totale",
+  "Total befolkning",
+  "_last_"
 ]
 sdgvarID_to_sdg_19_str = [
-    "Climate action",
-    "Massnahmen zum Klimaschutz",
-    "Massnahmen zum Klimaschutz",
-    "Action climatique",
-    "Klimahandling",
-    "_last_"
+  "Climate action",
+  "Massnahmen zum Klimaschutz",
+  "Massnahmen zum Klimaschutz",
+  "Action climatique",
+  "Klimahandling",
+  "_last_"
 ]
 sdgvarID_to_sdg_20_str = [
-    "Climate action",
-    "Massnahmen zum Klimaschutz",
-    "Massnahmen zum Klimaschutz",
-    "Action climatique",
-    "Klimahandling",
-    "_last_"
+  "Climate action",
+  "Massnahmen zum Klimaschutz",
+  "Massnahmen zum Klimaschutz",
+  "Action climatique",
+  "Klimahandling",
+  "_last_"
 ]
 sdgvarID_to_sdg_29_str = [
-    "SDG scores",
-    "SDG-Ergebnisse",
-    "SDG-Ergebnisse",
-    "Scores ODD",
-    "SDG -score",
-    "_last_"
+  "SDG scores",
+  "SDG-Ergebnisse",
+  "SDG-Ergebnisse",
+  "Scores ODD",
+  "SDG -score",
+  "_last_"
 ]
 sdgvarID_to_sdg_4_str = [
-    "Good health and wellbeing",
-    "Gute Gesundheit und Wohlbefinden",
-    "Gute Gesundheit und Wohlbefinden",
-    "Bonne santé et bien-être",
-    "God helse og velvære",
-    "_last_"
+  "Good health and wellbeing",
+  "Gute Gesundheit und Wohlbefinden",
+  "Gute Gesundheit und Wohlbefinden",
+  "Bonne santé et bien-être",
+  "God helse og velvære",
+  "_last_"
 ]
 sdgvarID_to_sdg_24_str = [
-    "Partnership for the Goals",
-    "Partnerschaft zur Erreichung der Ziele",
-    "Partnerschaft zur Erreichung der Ziele",
-    "Partenariat pour les objectifs",
-    "Partnerskap for målene",
-    "_last_"
+  "Partnership for the Goals",
+  "Partnerschaft zur Erreichung der Ziele",
+  "Partnerschaft zur Erreichung der Ziele",
+  "Partenariat pour les objectifs",
+  "Partnerskap for målene",
+  "_last_"
 ]
 sdgvarID_to_sdg_31_str = [
-    "Sustainable cities and communities",
-    "Nachhaltige Städte und Gemeinden",
-    "Nachhaltige Städte und Gemeinden",
-    "Villes durables et communautés",
-    "Bærekraftige byer og lokalsamfunn",
-    "_last_"
+  "Sustainable cities and communities",
+  "Nachhaltige Städte und Gemeinden",
+  "Nachhaltige Städte und Gemeinden",
+  "Villes durables et communautés",
+  "Bærekraftige byer og lokalsamfunn",
+  "_last_"
 ]
 sdgvarID_to_sdg_33_str = [
-    "Life on land",
-    "Leben an Land",
-    "Leben an Land",
-    "Vie sur terre",
-    "Livet på land",
-    "_last_"
+  "Life on land",
+  "Leben an Land",
+  "Leben an Land",
+  "Vie sur terre",
+  "Livet på land",
+  "_last_"
 ]
 sdgvarID_to_sdg_35_str = [
-    "Planetary boundaries",
-    "Planetarische Grenzen",
-    "Planetarische Grenzen",
-    "Limites planétaires",
-    "Planetariske grenser",
-    "_last_"
+  "Planetary boundaries",
+  "Planetarische Grenzen",
+  "Planetarische Grenzen",
+  "Limites planétaires",
+  "Planetariske grenser",
+  "_last_"
 ]
 sdgvarID_to_sdg_30_str = [
-    "Industry, innovation and infrastructure",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, innovation et infrastructures",
-    "Industri, innovasjon og infrastruktur",
-    "_last_"
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures",
+  "Industri, innovasjon og infrastruktur",
+  "_last_"
 ]
 sdgvarID_to_sdg_9_str = [
-    "Access to clean sanitation",
-    "Zugang zu sauberen Sanitäranlagen",
-    "Zugang zu sauberen Sanitäranlagen",
-    "Accès à l'assainissement propre",
-    "Tilgang til ren sanitet",
-    "_last_"
-]
-sdgvarID_to_sdg_16_str = [
-    "Decent work and economic growth",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Travail décent et croissance économique",
-    "Anstendig arbeid og økonomisk vekst",
-    "_last_"
+  "Access to clean sanitation",
+  "Zugang zu sauberen Sanitäranlagen",
+  "Zugang zu sauberen Sanitäranlagen",
+  "Accès à l'assainissement propre",
+  "Tilgang til ren sanitet",
+  "_last_"
 ]
 sdgvarID_to_sdg_17_str = [
-    "Sustainable cities and communities",
-    "Nachhaltige Städte und Gemeinden",
-    "Nachhaltige Städte und Gemeinden",
-    "Villes durables et communautés",
-    "Bærekraftige byer og lokalsamfunn",
-    "_last_"
+  "Sustainable cities and communities",
+  "Nachhaltige Städte und Gemeinden",
+  "Nachhaltige Städte und Gemeinden",
+  "Villes durables et communautés",
+  "Bærekraftige byer og lokalsamfunn",
+  "_last_"
 ]
 sdgvarID_to_sdg_34_str = [
-    "Industry, innovation and infrastructure",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, innovation et infrastructures",
-    "Industri, innovasjon og infrastruktur",
-    "_last_"
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures",
+  "Industri, innovasjon og infrastruktur",
+  "_last_"
 ]
 sdgvarID_to_sdg_14_str = [
-    "Decent work and economic growth",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Menschenwürdige Arbeit und Wirtschaftswachstum",
-    "Travail décent et croissance économique",
-    "Anstendig arbeid og økonomisk vekst",
-    "_last_"
+  "Decent work and economic growth",
+  "Menschenwürdige Arbeit und Wirtschaftswachstum",
+  "Menschenwürdige Arbeit und Wirtschaftswachstum",
+  "Travail décent et croissance économique",
+  "Anstendig arbeid og økonomisk vekst",
+  "_last_"
 ]
 sdgvarID_to_sdg_21_str = [
-    "Life below water",
-    "Leben unter Wasser",
-    "Leben unter Wasser",
-    "Vie sous l'eau",
-    "Livet under vann",
-    "_last_"
+  "Life below water",
+  "Leben unter Wasser",
+  "Leben unter Wasser",
+  "Vie sous l'eau",
+  "Livet under vann",
+  "_last_"
 ]
 sdgvarID_to_sdg_12_str = [
-    "Affordable and clean energy",
-    "Bezahlbare und saubere Energie",
-    "Bezahlbare und saubere Energie",
-    "Énergie abordable et propre",
-    "Rimelig og ren energi",
-    "_last_"
+  "Affordable and clean energy",
+  "Bezahlbare und saubere Energie",
+  "Bezahlbare und saubere Energie",
+  "Énergie abordable et propre",
+  "Rimelig og ren energi",
+  "_last_"
 ]
 sdgvarID_to_sdg_22_str = [
-    "Life on land",
-    "Leben an Land",
-    "Leben an Land",
-    "Vie sur terre",
-    "Livet på land",
-    "_last_"
+  "Life on land",
+  "Leben an Land",
+  "Leben an Land",
+  "Vie sur terre",
+  "Livet på land",
+  "_last_"
 ]
 sdgvarID_to_sdg_23_str = [
-    "Peace, justice and strong institutions",
-    "Frieden, Gerechtigkeit und starke Institutionen",
-    "Frieden, Gerechtigkeit und starke Institutionen",
-    "Paix, Justice et institutions fortes",
-    "Fred, rettferdighet og sterke institusjoner",
-    "_last_"
+  "Peace, justice and strong institutions",
+  "Frieden, Gerechtigkeit und starke Institutionen",
+  "Frieden, Gerechtigkeit und starke Institutionen",
+  "Paix, Justice et institutions fortes",
+  "Fred, rettferdighet og sterke institusjoner",
+  "_last_"
 ]
 sdgvarID_to_sdg_2_str = [
-    "No hunger",
-    "Kein Hunger",
-    "Kein Hunger",
-    "Pas de faim",
-    "Ingen sult",
-    "_last_"
+  "No hunger",
+  "Kein Hunger",
+  "Kein Hunger",
+  "Pas de faim",
+  "Ingen sult",
+  "_last_"
 ]
 sdgvarID_to_sdg_5_str = [
-    "Good health and wellbeing",
-    "Gute Gesundheit und Wohlbefinden",
-    "Gute Gesundheit und Wohlbefinden",
-    "Bonne santé et bien-être",
-    "God helse og velvære",
-    "_last_"
+  "Good health and wellbeing",
+  "Gute Gesundheit und Wohlbefinden",
+  "Gute Gesundheit und Wohlbefinden",
+  "Bonne santé et bien-être",
+  "God helse og velvære",
+  "_last_"
 ]
 sdgvarID_to_sdg_7_str = [
-    "Gender equality",
-    "Gleichstellung der Geschlechter",
-    "Gleichstellung der Geschlechter",
-    "L'égalité des sexes",
-    "Likestilling",
-    "_last_"
+  "Gender equality",
+  "Gleichstellung der Geschlechter",
+  "Gleichstellung der Geschlechter",
+  "L'égalité des sexes",
+  "Likestilling",
+  "_last_"
 ]
 sdgvarID_to_sdg_1_str = [
-    "No poverty",
-    "Keine Armut",
-    "Keine Armut",
-    "Pas de pauvreté",
-    "Ingen fattigdom",
-    "_last_"
+  "No poverty",
+  "Keine Armut",
+  "Keine Armut",
+  "Pas de pauvreté",
+  "Ingen fattigdom",
+  "_last_"
 ]
 sdgvarID_to_sdg_3_str = [
-    "No hunger",
-    "Kein Hunger",
-    "Kein Hunger",
-    "Pas de faim",
-    "Ingen sult",
-    "_last_"
+  "No hunger",
+  "Kein Hunger",
+  "Kein Hunger",
+  "Pas de faim",
+  "Ingen sult",
+  "_last_"
 ]
 sdgvarID_to_sdg_6_str = [
-    "Quality education",
-    "Hochwertige Bildung",
-    "Hochwertige Bildung",
-    "Education de qualité",
-    "Kvalitetsutdanning",
-    "_last_"
+  "Quality education",
+  "Hochwertige Bildung",
+  "Hochwertige Bildung",
+  "Education de qualité",
+  "Kvalitetsutdanning",
+  "_last_"
 ]
 sdgvarID_to_sdg_8_str = [
-    "Access to clean water",
-    "Zugang zu sauberem Wasser",
-    "Zugang zu sauberem Wasser",
-    "Accès à l'eau propre",
-    "Tilgang til rent vann",
-    "_last_"
+  "Access to clean water",
+  "Zugang zu sauberem Wasser",
+  "Zugang zu sauberem Wasser",
+  "Accès à l'eau propre",
+  "Tilgang til rent vann",
+  "_last_"
 ]
 sdgvarID_to_sdg_10_str = [
-    "Affordable and clean energy",
-    "Bezahlbare und saubere Energie",
-    "Bezahlbare und saubere Energie",
-    "Énergie abordable et propre",
-    "Rimelig og ren energi",
-    "_last_"
+  "Affordable and clean energy",
+  "Bezahlbare und saubere Energie",
+  "Bezahlbare und saubere Energie",
+  "Énergie abordable et propre",
+  "Rimelig og ren energi",
+  "_last_"
 ]
 sdgvarID_to_sdg_15_str = [
-    "Industry, innovation and infrastructure",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, Innovation und Infrastruktur",
-    "Industrie, innovation et infrastructures",
-    "Industri, innovasjon og infrastruktur",
-    "_last_"
+  "Industry, innovation and infrastructure",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, Innovation und Infrastruktur",
+  "Industrie, innovation et infrastructures",
+  "Industri, innovasjon og infrastruktur",
+  "_last_"
 ]
 sdgvarID_to_sdg_25_str = [
-    "Partnership for the Goals",
-    "Partnerschaft zur Erreichung der Ziele",
-    "Partnerschaft zur Erreichung der Ziele",
-    "Partenariat pour les objectifs",
-    "Partnerskap for målene",
-    "_last_"
+  "Partnership for the Goals",
+  "Partnerschaft zur Erreichung der Ziele",
+  "Partnerschaft zur Erreichung der Ziele",
+  "Partenariat pour les objectifs",
+  "Partnerskap for målene",
+  "_last_"
 ]
 sdgvarID_to_sdg_27_str = [
-    "Reduced inequalities",
-    "Verringerte Ungleichheiten",
-    "Verringerte Ungleichheiten",
-    "Inégalités réduites",
-    "Reduserte ulikheter",
-    "_last_"
+  "Reduced inequalities",
+  "Verringerte Ungleichheiten",
+  "Verringerte Ungleichheiten",
+  "Inégalités réduites",
+  "Reduserte ulikheter",
+  "_last_"
 ]
 sdgvarID_to_sdg_28_str = [
-    "Affordable and clean energy",
-    "Bezahlbare und saubere Energie",
-    "Bezahlbare und saubere Energie",
-    "Énergie abordable et propre",
-    "Rimelig og ren energi",
-    "_last_"
+  "Affordable and clean energy",
+  "Bezahlbare und saubere Energie",
+  "Bezahlbare und saubere Energie",
+  "Énergie abordable et propre",
+  "Rimelig og ren energi",
+  "_last_"
 ]
 sdgvarID_to_sdg_37_str = [
-    "Cropland",
-    "Ackerland",
-    "Ackerland",
-    "Terres cultivées",
-    "jordbruksland",
-    "_last_"
+  "Cropland",
+  "Ackerland",
+  "Ackerland",
+  "Terres cultivées",
+  "jordbruksland",
+  "_last_"
 ]
 sdgvarID_to_sdg_11_str = [
-    "Affordable and clean energy",
-    "Bezahlbare und saubere Energie",
-    "Bezahlbare und saubere Energie",
-    "Énergie abordable et propre",
-    "Rimelig og ren energi",
-    "_last_"
+  "Affordable and clean energy",
+  "Bezahlbare und saubere Energie",
+  "Bezahlbare und saubere Energie",
+  "Énergie abordable et propre",
+  "Rimelig og ren energi",
+  "_last_"
 ]
 sdgvarID_to_sdg_36_str = [
-    "GDP",
-    "BIP",
-    "BIP",
-    "PIB",
-    "BNP",
-    "_last_"
+  "GDP",
+  "BIP",
+  "BIP",
+  "PIB",
+  "BNP",
+  "_last_"
 ]
 sdgvarID_to_sdg_32_str = [
     "Responsible consumption and production",
@@ -2028,14 +1700,6 @@ sdgvarID_to_sdg_32_str = [
     "Verantwortungsvoller Konsum und Produktion",
     "Consommation et production responsables",
     "Ansvarlig forbruk og produksjon",
-    "_last_"
-]
-sdgvarID_to_sdg_39_str = [
-    "Social tension",
-    "Soziale Spannungen",
-    "Soziale Spannungen",
-    "Tension sociale",
-    "Sosial spenning",
     "_last_"
 ]
 sdgvarID_to_sdg_38_str = [
@@ -3269,36 +2933,4 @@ wrong_code_tx = [
     "Code erroné, vérifier auprès de la personne qui connaît le code",
     "Feil kode, sjekk med den som kan koden",
     "_last_"
-]
-gmau_reg_tx = [
-  "Region",
-  "Region",
-  "Region",
-  "Région",
-  "Region",
-  "_last_"
-]
-gmau_role_tx = [
-  "Department",
-  "Ministerium",
-  "Ministerium",
-  "Ministère",
-  "Departement",
-  "_last_"
-]
-gmau_login_tx = [
-  "Username w/o <>",
-  "Benutzername ohne <>",
-  "Benutzername ohne <>",
-  "Nom d'utilisateur sans <>",
-  "Brukernavn uten <>",
-  "_last_"
-]
-gmau_btn_tx = [
-  "User logins",
-  "Benutzernamen",
-  "Benutzernamen",
-  "Les noms d'utilisateur",
-  "Brukernavn",
-  "_last_"
 ]

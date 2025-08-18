@@ -471,43 +471,59 @@ def get_title_from_lu(x, lang):
 
 def get_indicator_from_lu(x, lang):
   if x == 0:
+#    return lu.sdgvarID_to_indicator_0_str[lang]
     return lu.sdgvarID_to_indicator_0_str[lang]
   if x == 1:
-    return lu.sdgvarID_to_indicator_1_str[lang]
+#    return lu.sdgvarID_to_indicator_1_str[lang]
+    return lu.sdgvarID_to_subtitle_1_str[lang]
   if x == 2:
-    return lu.sdgvarID_to_indicator_2_str[lang]
+#    return lu.sdgvarID_to_indicator_2_str[lang]
+    return lu.sdgvarID_to_subtitle_2_str[lang]
   if x == 3:
+#    return lu.sdgvarID_to_indicator_3_str[lang]
     return lu.sdgvarID_to_indicator_3_str[lang]
   if x == 4:
 #    return lu.sdgvarID_to_indicator_4_str[lang]
     return lu.sdgvarID_to_subtitle_4_str[lang]
   if x == 5:
-    return lu.sdgvarID_to_indicator_5_str[lang]
+#    return lu.sdgvarID_to_indicator_5_str[lang]
+    return lu.sdgvarID_to_subtitle_5_str[lang]
   if x == 6:
-    return lu.sdgvarID_to_indicator_6_str[lang]
+#    return lu.sdgvarID_to_indicator_6_str[lang]
+    return lu.sdgvarID_to_subtitle_6_str[lang]
   if x == 7:
-    return lu.sdgvarID_to_indicator_7_str[lang]
+#    return lu.sdgvarID_to_indicator_7_str[lang]
+    return lu.sdgvarID_to_subtitle_7_str[lang]
   if x == 8:
-    return lu.sdgvarID_to_indicator_8_str[lang]
+#    return lu.sdgvarID_to_indicator_8_str[lang]
+    return lu.sdgvarID_to_subtitle_8_str[lang]
   if x == 9:
-    return lu.sdgvarID_to_indicator_9_str[lang]
+#    return lu.sdgvarID_to_indicator_9_str[lang]
+    return lu.sdgvarID_to_subtitle_9_str[lang]
   if x == 10:
-    return lu.sdgvarID_to_indicator_10_str[lang]
+#    return lu.sdgvarID_to_indicator_10_str[lang]
+    return lu.sdgvarID_to_subtitle_10_str[lang]
   if x == 11:
-    return lu.sdgvarID_to_indicator_11_str[lang]
+#    return lu.sdgvarID_to_indicator_11_str[lang]
+    return lu.sdgvarID_to_subtitle_11_str[lang]
   if x == 12:
-    return lu.sdgvarID_to_indicator_12_str[lang]
+#    return lu.sdgvarID_to_indicator_12_str[lang]
+    return lu.sdgvarID_to_subtitle_12_str[lang]
   if x == 13:
-    return lu.sdgvarID_to_indicator_13_str[lang]
+#    return lu.sdgvarID_to_indicator_13_str[lang]
+    return lu.sdgvarID_to_subtitle_13_str[lang]
   if x == 14:
-    return lu.sdgvarID_to_indicator_14_str[lang]
+#    return lu.sdgvarID_to_indicator_14_str[lang]
+    return lu.sdgvarID_to_subtitle_14_str[lang]
   if x == 15:
-    return lu.sdgvarID_to_indicator_15_str[lang]
+#    return lu.sdgvarID_to_indicator_15_str[lang]
+    return lu.sdgvarID_to_subtitle_15_str[lang]
   if x == 16:
 #    return lu.sdgvarID_to_indicator_16_str[lang]
     return lu.sdgvarID_to_subtitle_16_str[lang]
   if x == 17:
-    return lu.sdgvarID_to_indicator_17_str[lang]
+#    return lu.sdgvarID_to_indicator_17_str[lang]
+    return lu.sdgvarID_to_subtitle_17_str[lang]
   if x == 18:
 #    return lu.sdgvarID_to_indicator_18_str[lang]
     return lu.sdgvarID_to_subtitle_18_str[lang]
@@ -518,25 +534,32 @@ def get_indicator_from_lu(x, lang):
 #    return lu.sdgvarID_to_indicator_20_str[lang]
     return lu.sdgvarID_to_subtitle_20_str[lang]
   if x == 21:
-    return lu.sdgvarID_to_indicator_21_str[lang]
+#    return lu.sdgvarID_to_indicator_21_str[lang]
+    return lu.sdgvarID_to_subtitle_21_str[lang]
   if x == 22:
-    return lu.sdgvarID_to_indicator_22_str[lang]
+#    return lu.sdgvarID_to_indicator_22_str[lang]
+    return lu.sdgvarID_to_subtitle_22_str[lang]
   if x == 23:
-    return lu.sdgvarID_to_indicator_23_str[lang]
+#    return lu.sdgvarID_to_indicator_23_str[lang]
+    return lu.sdgvarID_to_subtitle_23_str[lang]
   if x == 24:
 #    return lu.sdgvarID_to_indicator_24_str[lang]
     return lu.sdgvarID_to_subtitle_24_str[lang]
   if x == 25:
-    return lu.sdgvarID_to_indicator_25_str[lang]
+#    return lu.sdgvarID_to_indicator_25_str[lang]
+    return lu.sdgvarID_to_subtitle_25_str[lang]
   if x == 26:
 #    return lu.sdgvarID_to_indicator_26_str[lang]
     return lu.sdgvarID_to_subtitle_26_str[lang]
   if x == 27:
-    return lu.sdgvarID_to_indicator_27_str[lang]
+#    return lu.sdgvarID_to_indicator_27_str[lang]
+    return lu.sdgvarID_to_subtitle_27_str[lang]
   if x == 28:
-    return lu.sdgvarID_to_indicator_28_str[lang]
+#    return lu.sdgvarID_to_indicator_28_str[lang]
+    return lu.sdgvarID_to_subtitle_28_str[lang]
   if x == 29:
-    return lu.sdgvarID_to_indicator_29_str[lang]
+#    return lu.sdgvarID_to_indicator_29_str[lang]
+    return lu.sdgvarID_to_subtitle_29_str[lang]
   if x == 30:
 #    return lu.sdgvarID_to_indicator_30_str[lang]
     return lu.sdgvarID_to_subtitle_30_str[lang]
@@ -544,24 +567,31 @@ def get_indicator_from_lu(x, lang):
 #    return lu.sdgvarID_to_indicator_31_str[lang]
     return lu.sdgvarID_to_subtitle_31_str[lang]
   if x == 32:
-    return lu.sdgvarID_to_indicator_32_str[lang]
+#    return lu.sdgvarID_to_indicator_32_str[lang]
+    return lu.sdgvarID_to_subtitle_32_str[lang]
   if x == 33:
 #    return lu.sdgvarID_to_indicator_33_str[lang]
     return lu.sdgvarID_to_subtitle_33_str[lang]
   if x == 34:
-    return lu.sdgvarID_to_indicator_34_str[lang]
+#    return lu.sdgvarID_to_indicator_34_str[lang]
+    return lu.sdgvarID_to_subtitle_34_str[lang]
   if x == 35:
 #    return lu.sdgvarID_to_indicator_35_str[lang]
     return lu.sdgvarID_to_subtitle_35_str[lang]
   if x == 36:
-    return lu.sdgvarID_to_indicator_36_str[lang]
+#    return lu.sdgvarID_to_indicator_36_str[lang]
+    return lu.sdgvarID_to_subtitle_36_str[lang]
   if x == 37:
-    return lu.sdgvarID_to_indicator_37_str[lang]
+#    return lu.sdgvarID_to_indicator_37_str[lang]
+    return lu.sdgvarID_to_subtitle_37_str[lang]
   if x == 38:
-    return lu.sdgvarID_to_indicator_38_str[lang]
+#    return lu.sdgvarID_to_indicator_38_str[lang]
+    return lu.sdgvarID_to_subtitle_38_str[lang]
   if x == 39:
-    return lu.sdgvarID_to_indicator_39_str[lang]
+#    return lu.sdgvarID_to_indicator_39_str[lang]
+    return lu.sdgvarID_to_subtitle_39_str[lang]
   if x == 40:
+#    return lu.sdgvarID_to_indicator_40_str[lang]
     return lu.sdgvarID_to_indicator_40_str[lang]
 
 def make_png_nat(df):
