@@ -463,7 +463,8 @@ def get_title_from_lu(x, lang):
   if x == 38:
     return lu.sdgvarID_to_sdg_38_str[lang]
   if x == 39:
-    return lu.sdgvarID_to_sdg_39_str[lang]
+#    return lu.sdgvarID_to_sdg_39_str[lang]
+    return lu.nat_graph_7_title[lang]
   if x == 40:
     return lu.sdgvarID_to_sdg_40_str[lang]
 
