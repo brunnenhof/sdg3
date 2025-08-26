@@ -6,6 +6,14 @@ from anvil.tables import app_tables
 #########
 ######### lu = language used
 #########
+gmau_btn_tx = [
+  "Player IDs",
+  "Spieler:innen IDs",
+  "Spieler:innen IDs",
+  "IDs des joueurs",
+  "Spiller-ID-er",
+  "_last_"
+]
 sorry = [
   "Sorry - to see you go",
   "Es tut uns leid, dass Sie gehen",
