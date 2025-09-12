@@ -1422,6 +1422,14 @@ sdgvarID_to_indicator_0_str = [
   "Millioner mennesker",
   "_last_"
 ]
+sdgvarID_to_indicator_40_str = [
+  "sdgvarID_to_indicator_40_str_en",
+  "sdgvarID_to_indicator_40_str_de_sie",
+  "sdgvarID_to_indicator_40_str_de_du",
+  "sdgvarID_to_indicator_40_str_fr_vous",
+  "sdgvarID_to_indicator_40_str_no",
+  "_last_"
+]
 sdgvarID_to_sdg_13_str = [
   "Decent work and economic growth",
   "Menschenwürdige Arbeit und Wirtschaftswachstum",

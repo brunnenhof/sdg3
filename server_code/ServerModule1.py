@@ -481,7 +481,7 @@ def get_indicator_from_lu(x, lang):
     return lu.sdgvarID_to_subtitle_2_str[lang]
   if x == 3:
 #    return lu.sdgvarID_to_indicator_3_str[lang]
-    return lu.sdgvarID_to_indicator_3_str[lang]
+    return lu.sdgvarID_to_subtitle_3_str[lang]
   if x == 4:
 #    return lu.sdgvarID_to_indicator_4_str[lang]
     return lu.sdgvarID_to_subtitle_4_str[lang]
