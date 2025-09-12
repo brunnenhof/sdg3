@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'ZQPLDB,CXPZLJ'}
   name: text_1
-  properties: {bold: true, font_size: 24, text: Sign_up}
+  properties: {bold: true, font_size: 18, text: Sign_up}
   type: form:dep_srfw5i6mu5hwvt:_Components.Text
 - event_bindings: {change: text_box_1_change}
   layout_properties: {grid_position: 'OVHTAG,EWWNUG'}

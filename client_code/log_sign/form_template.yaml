@@ -2,7 +2,7 @@ components:
 - components:
   - layout_properties: {grid_position: 'YDQYTO,QJGMWR'}
     name: login_title
-    properties: {bold: true, font_size: 24, text: login_title, text_color: 'theme:Primary'}
+    properties: {bold: true, font_size: 20, text: login_title, text_color: 'theme:Primary'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: regi_first_click}
     layout_properties: {grid_position: 'RSEZNA,MALFTK'}
@@ -35,7 +35,7 @@ components:
 - components:
   - layout_properties: {grid_position: 'RUXGAQ,HMFBFX'}
     name: regi_title
-    properties: {bold: true, font_size: 24, text: regi_title, text_color: 'theme:Primary'}
+    properties: {bold: true, font_size: 20, text: regi_title, text_color: 'theme:Primary'}
     type: form:dep_srfw5i6mu5hwvt:_Components.Text
   - event_bindings: {click: login_first_click}
     layout_properties: {grid_position: 'PHFOVO,IMLPYL'}
@@ -44,6 +44,7 @@ components:
       appearance: text
       background_color: white
       bold: true
+      font_size: 18
       spacing:
         margin: [null, '4', null, '4']
         padding: [null, '8', null, '8']

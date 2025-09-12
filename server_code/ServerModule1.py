@@ -418,7 +418,8 @@ def get_title_from_lu(x, lang):
   if x == 15:
     return lu.sdgvarID_to_sdg_15_str[lang]
   if x == 16:
-    return lu.sdgvarID_to_sdg_16_str[lang]
+#    return lu.sdgvarID_to_sdg_16_str[lang]
+    return lu.sdgvarID_to_subtitle_16_str[lang]
   if x == 17:
     return lu.sdgvarID_to_sdg_17_str[lang]
   if x == 18:

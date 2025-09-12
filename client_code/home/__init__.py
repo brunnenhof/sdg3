@@ -138,7 +138,7 @@ class home(homeTemplate):
       self.show_ta_6()
       pass
     else:
-      alert(str(where), title="Entering script")
+      alert(str(where), title="Oopps, something went quite wrong ...")
 
   def get_user(self, **event_args):
     em = mg.my_email
