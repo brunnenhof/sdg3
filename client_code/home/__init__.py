@@ -866,11 +866,11 @@ class home(homeTemplate):
   def top_btn_help_click(self, **event_args):
     my_lox = mg.my_lang
     if my_lox == 0:
-      webbrowser.open_new("http://gamehelpen.blue-way.net")
+      webbrowser.open_new("https://www.manula.com/manuals/blue-way/sdg-game/")
     elif my_lox == 1 or my_lox == 2:
-      webbrowser.open_new("http://gamehelpde.blue-way.net")    
+      webbrowser.open_new("https://www.manula.com/manuals/blue-way/sdg-game/")    
     else:
-      webbrowser.open_new("http://gamehelpen.blue-way.net")
+      webbrowser.open_new("https://www.manula.com/manuals/blue-way/sdg-game/")
 
   def set_lang(self, my_lox):
     self.checkbox_1.text = lu.checkbox_1_tx[my_lox]
