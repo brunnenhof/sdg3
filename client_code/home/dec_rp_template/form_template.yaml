@@ -31,7 +31,7 @@ components:
 - data_bindings:
   - {code: 'self.item[''pol_gl'']', property: max, writeback: false}
   - {code: 'self.item[''pol_tltl'']', property: min, writeback: false}
-  - {code: '(self.item[''pol_gl''] - self.item[''pol_tltl'']) / 10', property: step, writeback: false}
+  - {code: '(self.item[''pol_gl''] - self.item[''pol_tltl'']) / 4', property: step, writeback: false}
   - {code: 'self.item[''slide_tip'']', property: tooltip, writeback: false}
   - {code: '(self.item[''slide_val''])', property: value, writeback: true}
   event_bindings: {change_end: slider_1_change_end}
@@ -46,7 +46,7 @@ components:
   name: slide_min
   properties:
     bold: true
-    font_size: 10
+    font_size: 14
     foreground: theme:Primary
     italic: true
     spacing:
@@ -60,7 +60,7 @@ components:
   properties:
     align: right
     bold: true
-    font_size: 10
+    font_size: 14
     foreground: theme:Primary
     italic: true
     spacing:
